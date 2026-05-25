@@ -234,9 +234,7 @@
     "item3Titulo": "Implementación rápida",
     "item3Desc": "SaaS lista para usar. Sólo necesitas subir documentos y configurar usuarios — sin infraestructura propia en planes Personal, Team y Enterprise.",
     "item4Titulo": "Soporte cercano",
-    "item4Desc": "Equipo de desarrollo local con disponibilidad para adaptar la plataforma a tus necesidades y resolver integraciones con sistemas existentes.",
-    "item5Titulo": "Contexto preciso para cualquier agente",
-    "item5Desc": "No es un programa cerrado para partners. Cualquier agente —el que armas sin código o el que construye un integrador— recibe de Server LM el contexto documental exacto que necesita, con ingesta, vectores y seguridad ya resueltos."
+    "item4Desc": "Equipo de desarrollo local con disponibilidad para adaptar la plataforma a tus necesidades y resolver integraciones con sistemas existentes."
   },
   "cta": {
     "eyebrow": "Empieza hoy",

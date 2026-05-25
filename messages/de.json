@@ -234,9 +234,7 @@
     "item3Titulo": "Schnelle Implementierung",
     "item3Desc": "Sofort einsatzbereites SaaS. Du musst nur Dokumente hochladen und Benutzer konfigurieren — ohne eigene Infrastruktur in den Tarifen Personal, Team und Enterprise.",
     "item4Titulo": "Persönlicher Support",
-    "item4Desc": "Lokales Entwicklungsteam, verfügbar, um die Plattform an deine Bedürfnisse anzupassen und Integrationen mit bestehenden Systemen zu lösen.",
-    "item5Titulo": "Präziser Kontext für jeden Agenten",
-    "item5Desc": "Es ist kein geschlossenes Programm für Partner. Jeder Agent — der, den du ohne Code baust, oder der, den ein Integrator entwickelt — erhält von Server LM genau den dokumentarischen Kontext, den er braucht, mit bereits gelöster Ingestion, Vektoren und Sicherheit."
+    "item4Desc": "Lokales Entwicklungsteam, verfügbar, um die Plattform an deine Bedürfnisse anzupassen und Integrationen mit bestehenden Systemen zu lösen."
   },
   "cta": {
     "eyebrow": "Starte heute",

@@ -234,9 +234,7 @@
     "item3Titulo": "Fast implementation",
     "item3Desc": "Ready-to-use SaaS. You only need to upload documents and configure users — no own infrastructure on Personal, Team and Enterprise plans.",
     "item4Titulo": "Close support",
-    "item4Desc": "Local development team available to adapt the platform to your needs and resolve integrations with existing systems.",
-    "item5Titulo": "Precise context for any agent",
-    "item5Desc": "It's not a closed program for partners. Any agent — the one you build without code or the one an integrator builds — gets from Server LM the exact document context it needs, with ingestion, vectors and security already solved."
+    "item4Desc": "Local development team available to adapt the platform to your needs and resolve integrations with existing systems."
   },
   "cta": {
     "eyebrow": "Start today",

@@ -234,9 +234,7 @@
     "item3Titulo": "Mise en œuvre rapide",
     "item3Desc": "SaaS prêt à l'emploi. Tu n'as qu'à téléverser des documents et configurer les utilisateurs — sans infrastructure propre sur les plans Personal, Team et Enterprise.",
     "item4Titulo": "Support de proximité",
-    "item4Desc": "Équipe de développement locale disponible pour adapter la plateforme à tes besoins et résoudre les intégrations avec les systèmes existants.",
-    "item5Titulo": "Un contexte précis pour n'importe quel agent",
-    "item5Desc": "Ce n'est pas un programme fermé réservé aux partenaires. N'importe quel agent — celui que tu construis sans code ou celui qu'un intégrateur développe — reçoit de Server LM le contexte documentaire exact dont il a besoin, avec ingestion, vecteurs et sécurité déjà résolus."
+    "item4Desc": "Équipe de développement locale disponible pour adapter la plateforme à tes besoins et résoudre les intégrations avec les systèmes existants."
   },
   "cta": {
     "eyebrow": "Commence aujourd'hui",
