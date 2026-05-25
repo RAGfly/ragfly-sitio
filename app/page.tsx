@@ -857,7 +857,7 @@ function PricingSection() {
 /* ------------------------------------------------------------------ */
 function WhyUsSection() {
   const t = useTranslations()
-  const items = [0, 1, 2, 3, 4].map((i) => ({
+  const items = [0, 1, 2, 3].map((i) => ({
     titulo: t(`porQueNosotros.item${i}Titulo` as Parameters<typeof t>[0]),
     desc: t(`porQueNosotros.item${i}Desc` as Parameters<typeof t>[0]),
   }))

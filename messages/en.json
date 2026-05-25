@@ -114,17 +114,17 @@
     "titulo": "Four steps. No jargon.",
     "subtitulo": "Vector semantic search — AI that understands the meaning of your documents, not just their words.",
     "paso0N": "01",
-    "paso0Titulo": "Upload your documents",
-    "paso0Desc": "Load PDF, Word, Excel or text. Server LM reads and processes them automatically.",
+    "paso0Titulo": "Connect your documents",
+    "paso0Desc": "Your files never leave where they are. Server LM only indexes their metadata and meaning — PDF, Word, Excel or text — so it can operate on them.",
     "paso1N": "02",
     "paso1Titulo": "AI indexes the knowledge",
     "paso1Desc": "Extracts the text, splits it into fragments and creates a semantic base. Each fragment is ready to be found by concept.",
     "paso2N": "03",
     "paso2Titulo": "Ask your question",
-    "paso2Desc": "Write in plain language. \"Give me the active contracts\" or \"Summarize January's reports\".",
+    "paso2Desc": "Ask directly in plain language —\"Give me the active contracts\"— or let your own agents query for you.",
     "paso3N": "04",
     "paso3Titulo": "Get the answer",
-    "paso3Desc": "Semantic search across all your documents and a precise answer, citing the source files."
+    "paso3Desc": "A precise answer via semantic search, citing the source files. In the chat or served straight to your agents."
   },
   "modulos": {
     "eyebrow": "Modules",
@@ -135,11 +135,11 @@
     "agentsDesc": "Validated APIs, skills and orchestrations that solve complex tasks in natural language — from document querying to delivering the exact context your AI agents need.",
     "agentsChip0": "Secure APIs",
     "agentsChip1": "Skills",
-    "agentsChip2": "Orchestrations",
+    "agentsChip2": "Tools",
     "agentsChip3": "Everything by prompts",
-    "agentsChip4": "Multi-tenant",
+    "agentsChip4": "Heuristics",
     "item0Key": "DOCS",
-    "item0Titulo": "AI document manager",
+    "item0Titulo": "More than an AI document manager",
     "item0Desc": "Upload, organize, process and query documents. Automatic pipeline of scanning, chunking and vectorization with intelligent chat over your files.",
     "item1Key": "CHAT",
     "item1Titulo": "Conversational assistant",
@@ -216,9 +216,7 @@
     "item2Titulo": "No vendor lock-in",
     "item2Desc": "Compatible with Claude (Anthropic), GPT (OpenAI), Gemini (Google) and open source models. You're not tied to a single provider.",
     "item3Titulo": "Fast implementation",
-    "item3Desc": "Ready-to-use SaaS. You only need to upload documents and configure users — no own infrastructure on Personal, Team and Enterprise plans.",
-    "item4Titulo": "Close support",
-    "item4Desc": "Local development team available to adapt the platform to your needs and resolve integrations with existing systems."
+    "item3Desc": "Ready-to-use SaaS. You only need to upload documents and configure users — no own infrastructure on Personal, Team and Enterprise plans."
   },
   "cta": {
     "eyebrow": "Start today",

@@ -114,17 +114,17 @@
     "titulo": "Quatro passos. Sem tecnicismos.",
     "subtitulo": "Busca semântica vetorial — IA que entende o significado dos seus documentos, não só suas palavras.",
     "paso0N": "01",
-    "paso0Titulo": "Envie seus documentos",
-    "paso0Desc": "Carregue PDF, Word, Excel ou texto. O Server LM os lê e processa automaticamente.",
+    "paso0Titulo": "Conecte seus documentos",
+    "paso0Desc": "Seus arquivos nunca saem de onde estão. O Server LM apenas indexa sua metadata e significado — PDF, Word, Excel ou texto — para poder operar sobre eles.",
     "paso1N": "02",
     "paso1Titulo": "A IA indexa o conhecimento",
     "paso1Desc": "Extrai o texto, divide-o em fragmentos e cria uma base semântica. Cada fragmento fica pronto para ser encontrado por conceito.",
     "paso2N": "03",
     "paso2Titulo": "Faça sua pergunta",
-    "paso2Desc": "Escreva em linguagem normal. \"Me dê os contratos vigentes\" ou \"Resuma os relatórios de janeiro\".",
+    "paso2Desc": "Pergunte direto em linguagem normal —\"Me dê os contratos vigentes\"— ou deixe seus próprios agentes consultarem por você.",
     "paso3N": "04",
     "paso3Titulo": "Obtenha a resposta",
-    "paso3Desc": "Busca semântica entre todos os seus documentos e resposta precisa, citando os arquivos de origem."
+    "paso3Desc": "Resposta precisa por busca semântica, citando os arquivos de origem. No chat ou servida direto aos seus agentes."
   },
   "modulos": {
     "eyebrow": "Módulos",
@@ -135,11 +135,11 @@
     "agentsDesc": "APIs validadas, habilidades e orquestrações que resolvem tarefas complexas em linguagem natural — da consulta documental a entregar o contexto exato que seus agentes de IA precisam.",
     "agentsChip0": "APIs seguras",
     "agentsChip1": "Habilidades",
-    "agentsChip2": "Orquestrações",
+    "agentsChip2": "Ferramentas",
     "agentsChip3": "Tudo por prompts",
-    "agentsChip4": "Multi-tenant",
+    "agentsChip4": "Heurísticas",
     "item0Key": "DOCS",
-    "item0Titulo": "Gestor documental com IA",
+    "item0Titulo": "Mais que um gestor documental com IA",
     "item0Desc": "Envie, organize, processe e consulte documentos. Pipeline automático de escaneamento, chunking e vetorização com chat inteligente sobre seus arquivos.",
     "item1Key": "CHAT",
     "item1Titulo": "Assistente conversacional",
@@ -216,9 +216,7 @@
     "item2Titulo": "Sem dependência de fornecedor",
     "item2Desc": "Compatível com Claude (Anthropic), GPT (OpenAI), Gemini (Google) e modelos open source. Você não fica preso a um único fornecedor.",
     "item3Titulo": "Implementação rápida",
-    "item3Desc": "SaaS pronto para usar. Você só precisa enviar documentos e configurar usuários — sem infraestrutura própria nos planos Personal, Team e Enterprise.",
-    "item4Titulo": "Suporte próximo",
-    "item4Desc": "Equipe de desenvolvimento local com disponibilidade para adaptar a plataforma às suas necessidades e resolver integrações com sistemas existentes."
+    "item3Desc": "SaaS pronto para usar. Você só precisa enviar documentos e configurar usuários — sem infraestrutura própria nos planos Personal, Team e Enterprise."
   },
   "cta": {
     "eyebrow": "Comece hoje",

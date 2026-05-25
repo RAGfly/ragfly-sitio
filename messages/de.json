@@ -114,17 +114,17 @@
     "titulo": "Vier Schritte. Ohne Fachjargon.",
     "subtitulo": "Vektorielle semantische Suche — KI, die die Bedeutung deiner Dokumente versteht, nicht nur ihre Wörter.",
     "paso0N": "01",
-    "paso0Titulo": "Lade deine Dokumente hoch",
-    "paso0Desc": "Lade PDF, Word, Excel oder Text. Server LM liest und verarbeitet sie automatisch.",
+    "paso0Titulo": "Verbinde deine Dokumente",
+    "paso0Desc": "Deine Dateien verlassen nie ihren Ort. Server LM indexiert nur ihre Metadaten und Bedeutung — PDF, Word, Excel oder Text — um damit arbeiten zu können.",
     "paso1N": "02",
     "paso1Titulo": "Die KI indexiert das Wissen",
     "paso1Desc": "Extrahiert den Text, teilt ihn in Fragmente und erstellt eine semantische Basis. Jedes Fragment ist bereit, nach Konzept gefunden zu werden.",
     "paso2N": "03",
     "paso2Titulo": "Stelle deine Frage",
-    "paso2Desc": "Schreibe in normaler Sprache. „Gib mir die gültigen Verträge“ oder „Fasse mir die Januar-Berichte zusammen“.",
+    "paso2Desc": "Frage direkt in normaler Sprache — „Gib mir die gültigen Verträge“ — oder lass deine eigenen Agenten für dich anfragen.",
     "paso3N": "04",
     "paso3Titulo": "Erhalte die Antwort",
-    "paso3Desc": "Semantische Suche über alle deine Dokumente und eine präzise Antwort, die die Quelldateien zitiert."
+    "paso3Desc": "Präzise Antwort per semantischer Suche, die die Quelldateien zitiert. Im Chat oder direkt an deine Agenten geliefert."
   },
   "modulos": {
     "eyebrow": "Module",
@@ -135,11 +135,11 @@
     "agentsDesc": "Validierte APIs, Fähigkeiten und Orchestrierungen, die komplexe Aufgaben in natürlicher Sprache lösen — von der Dokumentenabfrage bis zur Bereitstellung des genauen Kontexts, den deine KI-Agenten brauchen.",
     "agentsChip0": "Sichere APIs",
     "agentsChip1": "Fähigkeiten",
-    "agentsChip2": "Orchestrierungen",
+    "agentsChip2": "Werkzeuge",
     "agentsChip3": "Alles per Prompts",
-    "agentsChip4": "Mandantenfähig",
+    "agentsChip4": "Heuristiken",
     "item0Key": "DOCS",
-    "item0Titulo": "Dokumentenmanager mit KI",
+    "item0Titulo": "Mehr als ein Dokumentenmanager mit KI",
     "item0Desc": "Lade hoch, organisiere, verarbeite und frage Dokumente ab. Automatische Pipeline aus Scannen, Chunking und Vektorisierung mit intelligentem Chat über deine Dateien.",
     "item1Key": "CHAT",
     "item1Titulo": "Konversationsassistent",
@@ -216,9 +216,7 @@
     "item2Titulo": "Keine Anbieterabhängigkeit",
     "item2Desc": "Kompatibel mit Claude (Anthropic), GPT (OpenAI), Gemini (Google) und Open-Source-Modellen. Du bist nicht an einen einzigen Anbieter gebunden.",
     "item3Titulo": "Schnelle Implementierung",
-    "item3Desc": "Sofort einsatzbereites SaaS. Du musst nur Dokumente hochladen und Benutzer konfigurieren — ohne eigene Infrastruktur in den Tarifen Personal, Team und Enterprise.",
-    "item4Titulo": "Persönlicher Support",
-    "item4Desc": "Lokales Entwicklungsteam, verfügbar, um die Plattform an deine Bedürfnisse anzupassen und Integrationen mit bestehenden Systemen zu lösen."
+    "item3Desc": "Sofort einsatzbereites SaaS. Du musst nur Dokumente hochladen und Benutzer konfigurieren — ohne eigene Infrastruktur in den Tarifen Personal, Team und Enterprise."
   },
   "cta": {
     "eyebrow": "Starte heute",
