@@ -92,7 +92,7 @@ function Header() {
   const t = useTranslations()
   const [open, setOpen] = useState(false)
   const links = [
-    { l: t('nav.producto'), h: '#producto' },
+    { l: t('nav.producto'), h: '#dos-formas' },
     { l: t('nav.capacidades'), h: '#capacidades' },
     { l: t('nav.comoFunciona'), h: '#como-funciona' },
     { l: t('nav.seguridad'), h: '#seguridad' },
@@ -199,7 +199,12 @@ function Hero() {
   const t = useTranslations()
   return (
     <div className="flex-1 flex flex-col items-center justify-between px-6 md:px-12 pb-12 md:pb-16 relative">
-      <div className="pt-6 md:pt-10 z-10" />
+      <div className="pt-6 md:pt-10 z-10">
+        <BlurIn className="inline-flex items-center gap-2 rounded-full bg-white/70 backdrop-blur-md border border-slm-dark/10 px-4 py-1.5">
+          <span className="inline-block w-1.5 h-1.5 rounded-full bg-gradient-to-br from-slm-brand-dark to-slm-brand-light" />
+          <span className="text-xs md:text-sm tracking-[0.04em] text-slm-dark/80">{t('hero.eyebrow')}</span>
+        </BlurIn>
+      </div>
       <div className="flex-1 flex flex-col items-center justify-center z-10 gap-5">
         <BlurIn
           as="h1"
@@ -210,8 +215,8 @@ function Hero() {
             {t('hero.headlineAccent')}
           </span>
         </BlurIn>
-        <BlurIn delay={0.1} className="text-lg md:text-xl text-slm-gray tracking-[0.01em]">
-          {t('hero.subtitle')}
+        <BlurIn delay={0.1} className="font-helvetica-neue text-lg md:text-xl text-slm-gray tracking-[0.01em]">
+          {t('hero.tagline')}
         </BlurIn>
       </div>
       <div className="z-10 flex flex-col items-center gap-7 max-w-xl text-center">
@@ -223,7 +228,7 @@ function Hero() {
             {t('hero.ctaPrimario')}
           </a>
           <a
-            href="#producto"
+            href="#dos-formas"
             className="border border-slm-dark text-slm-dark px-7 py-3 rounded-full font-medium text-base hover:bg-gray-50 transition-colors"
           >
             {t('hero.ctaSecundario')}
@@ -339,6 +344,171 @@ function InsightsSection() {
 }
 
 /* ------------------------------------------------------------------ */
+/* ZeroSetupSection                                                     */
+/* ------------------------------------------------------------------ */
+function ZeroSetupSection() {
+  const t = useTranslations()
+  const bullets = [0, 1, 2].map((i) => t(`zeroSetup.bullet${i}` as Parameters<typeof t>[0]))
+  const folders = [0, 1, 2, 3].map((i) => ({
+    name: t(`zeroSetup.folder${i}Name` as Parameters<typeof t>[0]),
+    count: t(`zeroSetup.folder${i}Count` as Parameters<typeof t>[0]),
+  }))
+  return (
+    <section className="px-6 md:px-12 lg:px-[60px] py-24 md:py-32 bg-white">
+      <div className="max-w-[1280px] mx-auto grid lg:grid-cols-[1fr_1.1fr] gap-12 lg:gap-20 items-center">
+        <div className="flex flex-col gap-7">
+          <span className="text-sm uppercase tracking-[0.18em] text-slm-brand">{t('zeroSetup.eyebrow')}</span>
+          <BlurIn as="h2" className="text-slm-dark text-4xl md:text-5xl lg:text-6xl font-helvetica-neue font-medium leading-[1.05] tracking-[-0.03em]">
+            {t('zeroSetup.titulo1')}{' '}
+            <span className="bg-gradient-to-r from-slm-brand-dark via-slm-brand to-slm-brand-light bg-clip-text text-transparent">{t('zeroSetup.tituloAccent')}</span>
+          </BlurIn>
+          <p className="text-slm-gray font-helvetica-neue text-base md:text-lg leading-relaxed max-w-[480px]">
+            {t('zeroSetup.descripcion')}
+          </p>
+          <ul className="flex flex-col gap-3 mt-2">
+            {bullets.map((s, i) => (
+              <li key={i} className="flex gap-3 text-slm-dark/85 font-helvetica-neue text-base leading-snug">
+                <span className="mt-2 inline-block w-1.5 h-1.5 rounded-full bg-slm-brand flex-none" />{s}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="relative">
+          <div className="rounded-[28px] bg-gradient-to-br from-slm-light via-white to-slm-light border border-slm-dark/8 p-6 md:p-8 relative overflow-hidden">
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 hidden md:block" aria-hidden="true">
+              <svg width="80" height="200" viewBox="0 0 80 200" fill="none">
+                <path d="M 0 100 C 30 100, 50 100, 80 100" stroke="url(#beam)" strokeWidth="1.5" strokeDasharray="3 4">
+                  <animate attributeName="stroke-dashoffset" from="0" to="-14" dur="1.5s" repeatCount="indefinite" />
+                </path>
+                <defs>
+                  <linearGradient id="beam" x1="0" y1="0" x2="80" y2="0">
+                    <stop offset="0%" stopColor="#4089CD" stopOpacity="0.1" />
+                    <stop offset="100%" stopColor="#4089CD" stopOpacity="0.8" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+
+            <div className="text-xs uppercase tracking-[0.18em] text-slm-dark/40 mb-4">{t('zeroSetup.seleccionados')}</div>
+
+            <ul className="flex flex-col gap-2.5">
+              {folders.map((f, i) => (
+                <li
+                  key={i}
+                  className="group flex items-center gap-3 p-3.5 rounded-xl bg-white border border-slm-dark/8"
+                  style={{ animation: 'folderScan 6s ease-in-out infinite', animationDelay: `${i * 0.6}s` }}
+                >
+                  <span className="inline-flex items-center justify-center w-9 h-9 rounded-md bg-slm-light border border-slm-dark/8 flex-none">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E4A82" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z" />
+                    </svg>
+                  </span>
+                  <div className="flex-1 min-w-0">
+                    <div className="font-medium text-sm text-slm-dark truncate">{f.name}</div>
+                    <div className="text-xs text-slm-dark/50">{f.count}</div>
+                  </div>
+                  <span className="text-[10px] uppercase tracking-[0.18em] flex-none zs-status">{t('zeroSetup.indexado')}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-5 flex items-center justify-between rounded-xl bg-slm-dark text-slm-light px-4 py-3">
+              <span className="text-xs uppercase tracking-[0.18em] text-slm-brand-light">{t('zeroSetup.pipeline')}</span>
+              <span className="text-sm flex items-center gap-2">
+                <span className="inline-block w-1.5 h-1.5 rounded-full bg-slm-brand-light animate-pulse" />
+                {t('zeroSetup.reindexacion')}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/* ------------------------------------------------------------------ */
+/* TwoPathsSection                                                      */
+/* ------------------------------------------------------------------ */
+function TwoPathsSection() {
+  const t = useTranslations()
+  const paths = [
+    {
+      tag: t('dosFormas.cardATag'),
+      h: t('dosFormas.cardATitulo'),
+      d: t('dosFormas.cardADesc'),
+      bullets: [0, 1, 2].map((i) => t(`dosFormas.cardAB${i}` as Parameters<typeof t>[0])),
+      cta: t('dosFormas.cardACta'),
+      dark: false,
+    },
+    {
+      tag: t('dosFormas.cardBTag'),
+      h: t('dosFormas.cardBTitulo'),
+      d: t('dosFormas.cardBDesc'),
+      bullets: [0, 1, 2].map((i) => t(`dosFormas.cardBB${i}` as Parameters<typeof t>[0])),
+      cta: t('dosFormas.cardBCta'),
+      dark: true,
+    },
+  ]
+  return (
+    <section id="dos-formas" className="px-6 md:px-12 lg:px-[60px] py-24 md:py-32 bg-white">
+      <div className="max-w-[1280px] mx-auto flex flex-col gap-16">
+        <div className="max-w-[720px] flex flex-col gap-6">
+          <span className="text-sm uppercase tracking-[0.18em] text-slm-brand">{t('dosFormas.eyebrow')}</span>
+          <BlurIn as="h2" className="text-slm-dark text-4xl md:text-5xl lg:text-6xl font-helvetica-neue font-medium leading-[1.05] tracking-[-0.03em]">
+            {t('dosFormas.titulo1')}{' '}
+            <em className="not-italic bg-gradient-to-r from-slm-brand-dark via-slm-brand to-slm-brand-light bg-clip-text text-transparent">{t('dosFormas.tituloEm')}</em>{' '}
+            {t('dosFormas.titulo2')}
+          </BlurIn>
+          <p className="text-base md:text-lg text-slm-gray font-helvetica-neue max-w-[560px] leading-relaxed">
+            {t('dosFormas.descripcion')}
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-5">
+          {paths.map((p) => (
+            <div
+              key={p.tag}
+              className={`rounded-[32px] p-8 md:p-10 lg:p-12 flex flex-col gap-7 min-h-[520px] relative overflow-hidden border ${
+                p.dark ? 'bg-slm-dark text-slm-light border-slm-brand-dark/40' : 'bg-slm-light text-slm-dark border-slm-dark/8'
+              }`}
+            >
+              {p.dark && (
+                <div
+                  className="absolute inset-0 opacity-50 pointer-events-none"
+                  style={{ background: 'radial-gradient(600px 400px at 90% 0%, rgba(64,137,205,0.28), transparent 70%)' }}
+                />
+              )}
+              <div className="relative flex flex-col gap-7 flex-1">
+                <span className={`text-xs uppercase tracking-[0.18em] ${p.dark ? 'text-slm-brand-light' : 'text-slm-brand'}`}>{p.tag}</span>
+                <h3 className={`font-helvetica-neue text-3xl md:text-4xl font-medium leading-[1.1] tracking-[-0.02em] ${p.dark ? 'text-white' : 'text-slm-dark'}`}>{p.h}</h3>
+                <p className={`font-helvetica-neue text-base md:text-lg leading-relaxed ${p.dark ? 'text-slm-light/85' : 'text-slm-gray'}`}>{p.d}</p>
+                <ul className="flex flex-col gap-3 mt-auto">
+                  {p.bullets.map((b, i) => (
+                    <li key={i} className={`flex gap-3 text-sm md:text-base font-helvetica-neue leading-snug ${p.dark ? 'text-slm-light/90' : 'text-slm-dark/80'}`}>
+                      <span className={`mt-1.5 inline-block w-1.5 h-1.5 rounded-full flex-none ${p.dark ? 'bg-slm-brand-light' : 'bg-slm-brand'}`} />{b}
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href="#contacto"
+                  className={`relative inline-flex w-fit items-center gap-2 px-6 py-3 rounded-full font-medium text-sm md:text-base transition-opacity hover:opacity-90 ${
+                    p.dark ? 'bg-slm-brand-light text-slm-dark' : 'bg-slm-dark text-slm-light'
+                  }`}
+                >
+                  {p.cta}
+                  <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/* ------------------------------------------------------------------ */
 /* ProblemSolutionSection                                               */
 /* ------------------------------------------------------------------ */
 function ProblemSolutionSection() {
@@ -397,7 +567,7 @@ function ProblemSolutionSection() {
 /* ------------------------------------------------------------------ */
 function CapabilitiesSection() {
   const t = useTranslations()
-  const caps = [0, 1, 2, 3, 4].map((i) => ({
+  const caps = [0, 1, 2, 3, 4, 5].map((i) => ({
     titulo: t(`capacidades.item${i}Titulo` as Parameters<typeof t>[0]),
     desc: t(`capacidades.item${i}Desc` as Parameters<typeof t>[0]),
   }))
@@ -518,11 +688,12 @@ function DifferentiatorsSection() {
 /* ------------------------------------------------------------------ */
 function ModulesSection() {
   const t = useTranslations()
-  const mods = [0, 1, 2, 3].map((i) => ({
+  const mods = [0, 1, 2].map((i) => ({
     key: t(`modulos.item${i}Key` as Parameters<typeof t>[0]),
     titulo: t(`modulos.item${i}Titulo` as Parameters<typeof t>[0]),
     desc: t(`modulos.item${i}Desc` as Parameters<typeof t>[0]),
   }))
+  const chips = [0, 1, 2, 3, 4].map((i) => t(`modulos.agentsChip${i}` as Parameters<typeof t>[0]))
   return (
     <section className="px-6 md:px-12 lg:px-[60px] py-24 md:py-32 bg-white">
       <div className="max-w-[1200px] mx-auto flex flex-col gap-16">
@@ -532,6 +703,33 @@ function ModulesSection() {
             {t('modulos.titulo')}
           </BlurIn>
         </div>
+
+        <div className="rounded-[32px] p-8 md:p-10 lg:p-12 bg-gradient-to-br from-slm-dark via-slm-brand-dark to-slm-brand text-slm-light relative overflow-hidden">
+          <div
+            className="absolute inset-0 opacity-30 pointer-events-none"
+            style={{ background: 'radial-gradient(700px 400px at 90% 10%, rgba(122,180,221,0.40), transparent 65%)' }}
+          />
+          <div className="relative grid lg:grid-cols-[1fr_auto] gap-8 items-center">
+            <div className="flex flex-col gap-4 max-w-[640px]">
+              <div className="flex items-center gap-3">
+                <span className="font-manrope font-bold text-sm tracking-[0.15em] text-white bg-white/15 px-3 py-1 rounded-full">{t('modulos.agentsTag')}</span>
+                <span className="text-xs uppercase tracking-[0.18em] text-slm-brand-light">{t('modulos.agentsCapa')}</span>
+              </div>
+              <h3 className="font-helvetica-neue text-2xl md:text-3xl lg:text-4xl font-medium tracking-[-0.02em] leading-[1.15]">
+                {t('modulos.agentsTitulo')}
+              </h3>
+              <p className="font-helvetica-neue text-base md:text-lg text-slm-light/85 leading-relaxed">
+                {t('modulos.agentsDesc')}
+              </p>
+            </div>
+            <div className="flex flex-wrap lg:flex-col gap-2 lg:gap-1.5 lg:items-end">
+              {chips.map((c) => (
+                <span key={c} className="text-xs md:text-sm text-white/85 bg-white/10 px-3 py-1.5 rounded-full whitespace-nowrap">{c}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+
         <div className="grid md:grid-cols-2 gap-5">
           {mods.map((m) => (
             <div key={m.key} className="rounded-[28px] p-10 border border-slm-dark/8 bg-gradient-to-br from-white to-slm-light/60 flex flex-col gap-5 min-h-[240px]">
@@ -597,7 +795,7 @@ function TextFillSection() {
 /* ------------------------------------------------------------------ */
 function SecuritySection() {
   const t = useTranslations()
-  const puntos = [0, 1, 2, 3, 4, 5, 6, 7].map((i) => t(`seguridad.punto${i}` as Parameters<typeof t>[0]))
+  const puntos = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => t(`seguridad.punto${i}` as Parameters<typeof t>[0]))
   return (
     <section id="seguridad" className="px-6 md:px-12 lg:px-[60px] py-24 md:py-32 bg-slm-dark text-slm-light relative overflow-hidden">
       <div className="absolute inset-0 opacity-40 pointer-events-none"
@@ -694,7 +892,7 @@ function PricingSection() {
 /* ------------------------------------------------------------------ */
 function WhyUsSection() {
   const t = useTranslations()
-  const items = [0, 1, 2, 3, 4].map((i) => ({
+  const items = [0, 1, 2, 3, 4, 5].map((i) => ({
     titulo: t(`porQueNosotros.item${i}Titulo` as Parameters<typeof t>[0]),
     desc: t(`porQueNosotros.item${i}Desc` as Parameters<typeof t>[0]),
   }))
@@ -709,7 +907,7 @@ function WhyUsSection() {
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {items.map((r, i) => {
-            const azul = i === 0 || i === 4
+            const azul = i === 0
             return (
               <div
                 key={r.titulo}
@@ -814,6 +1012,8 @@ export default function Home() {
         <Hero />
       </div>
       <InsightsSection />
+      <ZeroSetupSection />
+      <TwoPathsSection />
       <ProblemSolutionSection />
       <CapabilitiesSection />
       <HowItWorksSection />
