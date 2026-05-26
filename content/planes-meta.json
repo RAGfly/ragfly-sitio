@@ -1,0 +1,29 @@
+{
+  "plans": [
+    {
+      "idx": 0,
+      "featured": false,
+      "featureCount": 6
+    },
+    {
+      "idx": 1,
+      "featured": false,
+      "featureCount": 7
+    },
+    {
+      "idx": 2,
+      "featured": true,
+      "featureCount": 9
+    },
+    {
+      "idx": 3,
+      "featured": false,
+      "featureCount": 7
+    },
+    {
+      "idx": 4,
+      "featured": false,
+      "featureCount": 6
+    }
+  ]
+}

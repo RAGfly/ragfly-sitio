@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl'
 import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
 import { SelectorIdioma } from '../components/SelectorIdioma'
+import planesMeta from '../content/planes-meta.json'
 
 /* ------------------------------------------------------------------ */
 /* BlurIn                                                               */
@@ -793,12 +794,8 @@ function SecuritySection() {
 /* ------------------------------------------------------------------ */
 function PricingSection() {
   const t = useTranslations()
-  const plans = [
-    { idx: 0, featured: false, featureCount: 4 },
-    { idx: 1, featured: false, featureCount: 5 },
-    { idx: 2, featured: true, featureCount: 7 },
-    { idx: 3, featured: false, featureCount: 5 },
-  ]
+  // Fuente: content/planes.mjs → build:planes → planes-meta.json (no hardcodear)
+  const plans = planesMeta.plans
   return (
     <section id="planes" className="px-6 md:px-12 lg:px-[60px] py-24 md:py-32 bg-slm-light">
       <div className="max-w-[1280px] mx-auto flex flex-col gap-16">
@@ -808,7 +805,7 @@ function PricingSection() {
             {t('planes.titulo')}
           </BlurIn>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
           {plans.map(({ idx, featured, featureCount }) => {
             const nombre = t(`planes.plan${idx}Nombre` as Parameters<typeof t>[0])
             const sub = t(`planes.plan${idx}Sub` as Parameters<typeof t>[0])
