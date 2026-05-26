@@ -29,8 +29,8 @@ export const planes = [
     resaltado: false,
     cta: 'Probar 15 días',
     limites: {
-      tokens: 'Hasta 1M de tokens al mes',
-      vectores: 'Hasta 5.000 documentos vectorizados',
+      tokens: 'Hasta 300.000 tokens al mes',
+      vectores: 'Hasta 2.500 documentos vectorizados',
     },
     features: [
       'Chat ilimitado con tus documentos',
@@ -46,8 +46,8 @@ export const planes = [
     resaltado: false,
     cta: 'Probar 15 días',
     limites: {
-      tokens: 'Hasta 8M de tokens al mes',
-      vectores: 'Hasta 50.000 documentos vectorizados',
+      tokens: 'Hasta 3.000.000 tokens al mes',
+      vectores: 'Hasta 15.000 documentos vectorizados',
     },
     features: [
       'Todo lo del plan Professional',
@@ -64,8 +64,8 @@ export const planes = [
     resaltado: true,
     cta: 'Regístrate y prueba',
     limites: {
-      tokens: 'Hasta 30M de tokens al mes',
-      vectores: 'Hasta 300.000 documentos vectorizados',
+      tokens: 'Hasta 15.000.000 tokens al mes',
+      vectores: 'Hasta 60.000 documentos vectorizados',
     },
     features: [
       'Todo lo del plan Team',
@@ -84,8 +84,8 @@ export const planes = [
     resaltado: false,
     cta: 'Hablar con ventas',
     limites: {
-      tokens: '150M+ de tokens al mes (uso justo)',
-      vectores: '2.000.000+ documentos vectorizados',
+      tokens: 'Hasta 150.000.000 tokens al mes',
+      vectores: 'Hasta 600.000 documentos vectorizados',
     },
     features: [
       'Todo lo del plan Business',
