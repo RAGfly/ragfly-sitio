@@ -51,7 +51,7 @@ export const planes = [
     },
     features: [
       'Todo lo del plan Professional',
-      'Control de acceso por área o cargo',
+      'Control de acceso por área o perfil',
       'Cada miembro ve sólo su área',
       'Administrador del equipo',
       'Auditoría de accesos',
@@ -71,7 +71,7 @@ export const planes = [
       'Todo lo del plan Team',
       'Client LM: la indexación no sale de tu red',
       'Elección de IA: Claude, GPT, Gemini, open source',
-      'Permisos granulares por rol, función y cargo',
+      'Permisos granulares por rol, función y perfil',
       'Branding propio (color, logo, nombre)',
       'API de integración con sistemas internos',
       'Soporte prioritario',
