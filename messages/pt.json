@@ -20,16 +20,6 @@
     "ctaPrimario": "Cadastre-se e teste",
     "ctaSecundario": "Veja como funciona"
   },
-  "insights": {
-    "titulo": "O que nos torna diferentes.",
-    "subtitulo": "Privacidade real, alcance internacional e isolamento total por organização — desde o primeiro dia.",
-    "card1Stat": "100%",
-    "card1Desc": "Privacidade. Seus arquivos físicos nunca saem da sua rede interna — apenas o texto processado é sincronizado com o chat.",
-    "card2Stat": "5",
-    "card2Desc": "Idiomas: espanhol, inglês, português, francês e alemão. Pensado para equipes internacionais.",
-    "card3Stat": "∞",
-    "card3Desc": "Multi-organização: cada filial com sua própria configuração, identidade visual e dados completamente isolados."
-  },
   "zeroSetup": {
     "eyebrow": "Habilitação imediata",
     "titulo1": "Aponte para suas pastas.",
@@ -125,28 +115,6 @@
     "paso3N": "04",
     "paso3Titulo": "Obtenha a resposta",
     "paso3Desc": "Resposta precisa por busca semântica, citando os arquivos de origem. No chat ou servida direto aos seus agentes."
-  },
-  "modulos": {
-    "eyebrow": "Módulos",
-    "titulo": "Capacidades modulares. Habilite o que precisa.",
-    "agentsTag": "AGENTS",
-    "agentsCapa": "Camada transversal",
-    "agentsTitulo": "As capacidades de IA atravessam todos os módulos.",
-    "agentsDesc": "APIs validadas, habilidades e orquestrações que resolvem tarefas complexas em linguagem natural — da consulta documental a entregar o contexto exato que seus agentes de IA precisam.",
-    "agentsChip0": "APIs seguras",
-    "agentsChip1": "Habilidades",
-    "agentsChip2": "Ferramentas",
-    "agentsChip3": "Tudo por prompts",
-    "agentsChip4": "Heurísticas",
-    "item0Key": "DOCS",
-    "item0Titulo": "Mais que um gestor documental com IA",
-    "item0Desc": "Envie, organize, processe e consulte documentos. Pipeline automático de escaneamento, chunking e vetorização com chat inteligente sobre seus arquivos.",
-    "item1Key": "CHAT",
-    "item1Titulo": "Assistente conversacional",
-    "item1Desc": "Interface de chat com respostas em tempo real (streaming). Contexto multi-turno com histórico sobre documentos, dados e funcionalidades do sistema.",
-    "item2Key": "ADMIN",
-    "item2Titulo": "Painel de administração",
-    "item2Desc": "Gestão de grupos, entidades, usuários, papéis e permissões. Configuração visual (cores, logo, nome) e auditoria completa das operações."
   },
   "seguridad": {
     "eyebrow": "Segurança e privacidade",

@@ -20,16 +20,6 @@
     "ctaPrimario": "Registrieren & testen",
     "ctaSecundario": "So funktioniert's"
   },
-  "insights": {
-    "titulo": "Was uns anders macht.",
-    "subtitulo": "Echter Datenschutz, internationale Reichweite und vollständige Isolation pro Organisation — vom ersten Tag an.",
-    "card1Stat": "100 %",
-    "card1Desc": "Datenschutz. Deine physischen Dateien verlassen nie dein internes Netzwerk — nur der verarbeitete Text wird mit dem Chat synchronisiert.",
-    "card2Stat": "5",
-    "card2Desc": "Sprachen: Spanisch, Englisch, Portugiesisch, Französisch und Deutsch. Für internationale Teams konzipiert.",
-    "card3Stat": "∞",
-    "card3Desc": "Multi-Organisation: jede Tochtergesellschaft mit eigener Konfiguration, eigenem Branding und vollständig isolierten Daten."
-  },
   "zeroSetup": {
     "eyebrow": "Sofortige Aktivierung",
     "titulo1": "Zeige auf deine Ordner.",
@@ -125,28 +115,6 @@
     "paso3N": "04",
     "paso3Titulo": "Erhalte die Antwort",
     "paso3Desc": "Präzise Antwort per semantischer Suche, die die Quelldateien zitiert. Im Chat oder direkt an deine Agenten geliefert."
-  },
-  "modulos": {
-    "eyebrow": "Module",
-    "titulo": "Modulare Funktionen. Aktiviere, was du brauchst.",
-    "agentsTag": "AGENTS",
-    "agentsCapa": "Übergreifende Ebene",
-    "agentsTitulo": "Die KI-Funktionen durchziehen alle Module.",
-    "agentsDesc": "Validierte APIs, Fähigkeiten und Orchestrierungen, die komplexe Aufgaben in natürlicher Sprache lösen — von der Dokumentenabfrage bis zur Bereitstellung des genauen Kontexts, den deine KI-Agenten brauchen.",
-    "agentsChip0": "Sichere APIs",
-    "agentsChip1": "Fähigkeiten",
-    "agentsChip2": "Werkzeuge",
-    "agentsChip3": "Alles per Prompts",
-    "agentsChip4": "Heuristiken",
-    "item0Key": "DOCS",
-    "item0Titulo": "Mehr als ein Dokumentenmanager mit KI",
-    "item0Desc": "Lade hoch, organisiere, verarbeite und frage Dokumente ab. Automatische Pipeline aus Scannen, Chunking und Vektorisierung mit intelligentem Chat über deine Dateien.",
-    "item1Key": "CHAT",
-    "item1Titulo": "Konversationsassistent",
-    "item1Desc": "Chat-Oberfläche mit Echtzeit-Antworten (Streaming). Mehrstufiger Kontext mit Verlauf über Dokumente, Daten und Systemfunktionen.",
-    "item2Key": "ADMIN",
-    "item2Titulo": "Administrationsbereich",
-    "item2Desc": "Verwaltung von Gruppen, Entitäten, Benutzern, Rollen und Berechtigungen. Visuelle Konfiguration (Farben, Logo, Name) und vollständiges Audit der Vorgänge."
   },
   "seguridad": {
     "eyebrow": "Sicherheit und Datenschutz",

@@ -20,16 +20,6 @@
     "ctaPrimario": "Inscris-toi et essaie",
     "ctaSecundario": "Voir comment ça marche"
   },
-  "insights": {
-    "titulo": "Ce qui nous rend différents.",
-    "subtitulo": "Confidentialité réelle, portée internationale et isolation totale par organisation — dès le premier jour.",
-    "card1Stat": "100 %",
-    "card1Desc": "Confidentialité. Tes fichiers physiques ne quittent jamais ton réseau interne — seul le texte traité est synchronisé avec le chat.",
-    "card2Stat": "5",
-    "card2Desc": "Langues : espagnol, anglais, portugais, français et allemand. Conçu pour les équipes internationales.",
-    "card3Stat": "∞",
-    "card3Desc": "Multi-organisation : chaque filiale avec sa propre configuration, son identité et des données totalement isolées."
-  },
   "zeroSetup": {
     "eyebrow": "Activation immédiate",
     "titulo1": "Pointe vers tes dossiers.",
@@ -125,28 +115,6 @@
     "paso3N": "04",
     "paso3Titulo": "Obtiens la réponse",
     "paso3Desc": "Réponse précise par recherche sémantique, en citant les fichiers sources. Dans le chat ou servie directement à tes agents."
-  },
-  "modulos": {
-    "eyebrow": "Modules",
-    "titulo": "Capacités modulaires. Active ce dont tu as besoin.",
-    "agentsTag": "AGENTS",
-    "agentsCapa": "Couche transversale",
-    "agentsTitulo": "Les capacités d'IA traversent tous les modules.",
-    "agentsDesc": "API validées, compétences et orchestrations qui résolvent des tâches complexes en langage naturel — de la consultation documentaire à la fourniture du contexte exact dont tes agents IA ont besoin.",
-    "agentsChip0": "API sécurisées",
-    "agentsChip1": "Compétences",
-    "agentsChip2": "Outils",
-    "agentsChip3": "Tout par prompts",
-    "agentsChip4": "Heuristiques",
-    "item0Key": "DOCS",
-    "item0Titulo": "Plus qu'un gestionnaire documentaire avec IA",
-    "item0Desc": "Téléverse, organise, traite et consulte des documents. Pipeline automatique de scan, chunking et vectorisation avec chat intelligent sur tes fichiers.",
-    "item1Key": "CHAT",
-    "item1Titulo": "Assistant conversationnel",
-    "item1Desc": "Interface de chat avec réponses en temps réel (streaming). Contexte multi-tours avec historique sur documents, données et fonctionnalités du système.",
-    "item2Key": "ADMIN",
-    "item2Titulo": "Panneau d'administration",
-    "item2Desc": "Gestion des groupes, entités, utilisateurs, rôles et permissions. Configuration visuelle (couleurs, logo, nom) et audit complet des opérations."
   },
   "seguridad": {
     "eyebrow": "Sécurité et confidentialité",

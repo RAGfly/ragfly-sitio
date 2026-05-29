@@ -242,109 +242,6 @@ function Hero() {
 }
 
 /* ------------------------------------------------------------------ */
-/* Card visuals (CSS-only)                                              */
-/* ------------------------------------------------------------------ */
-function Card1Visual() {
-  return (
-    <div className="card-visual card1-bg grain">
-      <div className="card1-ring r2" />
-      <div className="card1-ring" />
-      <div className="card1-shield" />
-      <svg className="absolute inset-0" viewBox="0 0 400 400" preserveAspectRatio="none">
-        {Array.from({ length: 8 }, (_, i) => {
-          const a = (i / 8) * Math.PI * 2
-          const cx = 200 + Math.cos(a) * 150
-          const cy = 170 + Math.sin(a) * 150
-          return (
-            <g key={i}>
-              <line x1="200" y1="170" x2={cx} y2={cy} stroke="rgba(30,74,130,0.18)" strokeWidth="1" strokeDasharray="2 4" />
-              <circle cx={cx} cy={cy} r="3.2" fill="#1E4A82" opacity="0.8" />
-            </g>
-          )
-        })}
-      </svg>
-    </div>
-  )
-}
-
-function Card2Visual() {
-  const greetings = ['Hola', 'Hello', 'Olá', 'Bonjour', 'Hallo', 'Hola']
-  return (
-    <div className="card-visual card2-bg grain">
-      <div className="greeting-stack" aria-hidden="true">
-        <ul>
-          {greetings.map((g, i) => <li key={i}>{g}</li>)}
-        </ul>
-      </div>
-      <div className="flag-dots" aria-hidden="true">
-        <span className="on" /><span /><span /><span /><span />
-      </div>
-    </div>
-  )
-}
-
-function Card3Visual() {
-  return (
-    <div className="card-visual card3-bg grain">
-      <div className="org-grid" aria-hidden="true">
-        {[1, 2, 3].map((i) => (
-          <div key={i} className={`org-card c${i}`}>
-            <span className="accent" />
-            <span className="ln a" /><span className="ln b" /><span className="ln c" />
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-}
-
-/* ------------------------------------------------------------------ */
-/* InsightsSection                                                      */
-/* ------------------------------------------------------------------ */
-function InsightsSection() {
-  const t = useTranslations()
-  const cards = [
-    { visual: <Card1Visual />, overlay: 'rgba(206,223,235,0.25)', stat: t('insights.card1Stat'), desc: t('insights.card1Desc'), minH: 'min-h-[450px]' },
-    { visual: <Card2Visual />, overlay: 'rgba(247,236,233,0.6)', stat: t('insights.card2Stat'), desc: t('insights.card2Desc'), minH: 'min-h-[350px]' },
-    { visual: <Card3Visual />, overlay: 'rgba(218,218,218,0.2)', stat: t('insights.card3Stat'), desc: t('insights.card3Desc'), minH: 'min-h-[450px]' },
-  ]
-  return (
-    <section className="px-6 md:px-12 lg:px-[60px] py-20 bg-white flex flex-col gap-[90px]">
-      <div className="max-w-[517px] flex flex-col gap-10">
-        <BlurIn as="h2" className="text-slm-dark text-4xl md:text-5xl lg:text-6xl font-helvetica-neue font-medium leading-[1] lg:leading-[60px] tracking-[-0.03em]">
-          {t('insights.titulo')}
-        </BlurIn>
-        <BlurIn as="p" className="text-slm-gray text-base md:text-lg lg:text-xl font-helvetica-neue max-w-[420px] leading-snug">
-          {t('insights.subtitulo')}
-        </BlurIn>
-      </div>
-      <motion.div
-        className="flex flex-col lg:flex-row items-stretch lg:items-end gap-5"
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.2 }}
-        variants={{ hidden: {}, show: { transition: { staggerChildren: 0.2 } } }}
-      >
-        {cards.map((c, i) => (
-          <motion.div
-            key={i}
-            className={`flex-1 p-10 rounded-[40px] relative overflow-hidden flex flex-col justify-end ${c.minH}`}
-            variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } } }}
-          >
-            {c.visual}
-            <div className="absolute inset-0" style={{ background: c.overlay }} />
-            <div className="relative z-10 flex flex-col gap-5">
-              <span className="text-5xl md:text-[60px] font-helvetica-neue font-medium leading-[1] text-slm-dark">{c.stat}</span>
-              <p className="text-lg md:text-[22px] font-helvetica-neue opacity-80 text-slm-gray leading-snug max-w-[377px]">{c.desc}</p>
-            </div>
-          </motion.div>
-        ))}
-      </motion.div>
-    </section>
-  )
-}
-
-/* ------------------------------------------------------------------ */
 /* ZeroSetupSection                                                     */
 /* ------------------------------------------------------------------ */
 function ZeroSetupSection() {
@@ -650,71 +547,6 @@ function HowItWorksSection() {
 }
 
 /* ------------------------------------------------------------------ */
-/* ModulesSection                                                       */
-/* ------------------------------------------------------------------ */
-function ModulesSection() {
-  const t = useTranslations()
-  const mods = [0, 1, 2].map((i) => ({
-    key: t(`modulos.item${i}Key` as Parameters<typeof t>[0]),
-    titulo: t(`modulos.item${i}Titulo` as Parameters<typeof t>[0]),
-    desc: t(`modulos.item${i}Desc` as Parameters<typeof t>[0]),
-  }))
-  const chips = [0, 1, 2, 3, 4].map((i) => t(`modulos.agentsChip${i}` as Parameters<typeof t>[0]))
-  return (
-    <section className="px-6 md:px-12 lg:px-[60px] py-24 md:py-32 bg-white">
-      <div className="max-w-[1200px] mx-auto flex flex-col gap-16">
-        <div className="max-w-[680px] flex flex-col gap-6">
-          <span className="text-sm uppercase tracking-[0.18em] text-slm-brand">{t('modulos.eyebrow')}</span>
-          <BlurIn as="h2" className="text-slm-dark text-4xl md:text-5xl lg:text-6xl font-helvetica-neue font-medium leading-[1.05] tracking-[-0.03em]">
-            {t('modulos.titulo')}
-          </BlurIn>
-        </div>
-
-        <div className="rounded-[32px] p-8 md:p-10 lg:p-12 bg-gradient-to-br from-slm-dark via-slm-brand-dark to-slm-brand text-slm-light relative overflow-hidden">
-          <div
-            className="absolute inset-0 opacity-30 pointer-events-none"
-            style={{ background: 'radial-gradient(700px 400px at 90% 10%, rgba(122,180,221,0.40), transparent 65%)' }}
-          />
-          <div className="relative grid lg:grid-cols-[1fr_auto] gap-8 items-center">
-            <div className="flex flex-col gap-4 max-w-[640px]">
-              <div className="flex items-center gap-3">
-                <span className="font-manrope font-bold text-sm tracking-[0.15em] text-white bg-white/15 px-3 py-1 rounded-full">{t('modulos.agentsTag')}</span>
-                <span className="text-xs uppercase tracking-[0.18em] text-slm-brand-light">{t('modulos.agentsCapa')}</span>
-              </div>
-              <h3 className="font-helvetica-neue text-2xl md:text-3xl lg:text-4xl font-medium tracking-[-0.02em] leading-[1.15]">
-                {t('modulos.agentsTitulo')}
-              </h3>
-              <p className="font-helvetica-neue text-base md:text-lg text-slm-light/85 leading-relaxed">
-                {t('modulos.agentsDesc')}
-              </p>
-            </div>
-            <div className="flex flex-wrap lg:flex-col gap-2 lg:gap-1.5 lg:items-end">
-              {chips.map((c) => (
-                <span key={c} className="text-xs md:text-sm text-white/85 bg-white/10 px-3 py-1.5 rounded-full whitespace-nowrap">{c}</span>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-5">
-          {mods.map((m) => (
-            <div key={m.key} className="rounded-[28px] p-10 border border-slm-dark/8 bg-gradient-to-br from-white to-slm-light/60 flex flex-col gap-5 min-h-[240px]">
-              <div className="flex items-center gap-3">
-                <span className="font-manrope font-bold text-sm tracking-[0.15em] text-slm-brand-dark bg-slm-brand-light/20 px-3 py-1 rounded-full">
-                  {m.key}
-                </span>
-              </div>
-              <h3 className="font-helvetica-neue text-2xl md:text-3xl font-medium text-slm-dark tracking-[-0.02em]">{m.titulo}</h3>
-              <p className="text-slm-gray font-helvetica-neue text-base md:text-[17px] leading-relaxed">{m.desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-/* ------------------------------------------------------------------ */
 /* TextFillSection                                                      */
 /* ------------------------------------------------------------------ */
 function TextFillSection() {
@@ -973,13 +805,11 @@ export default function Home() {
         <Header />
         <Hero />
       </div>
-      <InsightsSection />
       <ZeroSetupSection />
       <TwoPathsSection />
       <ProblemSolutionSection />
       <CapabilitiesSection />
       <HowItWorksSection />
-      <ModulesSection />
       <TextFillSection />
       <SecuritySection />
       <PricingSection />

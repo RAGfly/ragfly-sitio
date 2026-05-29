@@ -20,16 +20,6 @@
     "ctaPrimario": "Sign up & try",
     "ctaSecundario": "See how it works"
   },
-  "insights": {
-    "titulo": "What makes us different.",
-    "subtitulo": "Real privacy, international reach and total isolation per organization — from day one.",
-    "card1Stat": "100%",
-    "card1Desc": "Privacy. Your physical files never leave your internal network — only the processed text is synced to the chat.",
-    "card2Stat": "5",
-    "card2Desc": "Languages: Spanish, English, Portuguese, French and German. Built for international teams.",
-    "card3Stat": "∞",
-    "card3Desc": "Multi-organization: each subsidiary with its own configuration, branding and completely isolated data."
-  },
   "zeroSetup": {
     "eyebrow": "Instant setup",
     "titulo1": "Point to your folders.",
@@ -125,28 +115,6 @@
     "paso3N": "04",
     "paso3Titulo": "Get the answer",
     "paso3Desc": "A precise answer via semantic search, citing the source files. In the chat or served straight to your agents."
-  },
-  "modulos": {
-    "eyebrow": "Modules",
-    "titulo": "Modular capabilities. Enable what you need.",
-    "agentsTag": "AGENTS",
-    "agentsCapa": "Cross-cutting layer",
-    "agentsTitulo": "AI capabilities cut across every module.",
-    "agentsDesc": "Validated APIs, skills and orchestrations that solve complex tasks in natural language — from document querying to delivering the exact context your AI agents need.",
-    "agentsChip0": "Secure APIs",
-    "agentsChip1": "Skills",
-    "agentsChip2": "Tools",
-    "agentsChip3": "Everything by prompts",
-    "agentsChip4": "Heuristics",
-    "item0Key": "DOCS",
-    "item0Titulo": "More than an AI document manager",
-    "item0Desc": "Upload, organize, process and query documents. Automatic pipeline of scanning, chunking and vectorization with intelligent chat over your files.",
-    "item1Key": "CHAT",
-    "item1Titulo": "Conversational assistant",
-    "item1Desc": "Chat interface with real-time (streaming) responses. Multi-turn context with history over documents, data and system features.",
-    "item2Key": "ADMIN",
-    "item2Titulo": "Administration panel",
-    "item2Desc": "Management of groups, entities, users, roles and permissions. Visual configuration (colors, logo, name) and full audit of operations."
   },
   "seguridad": {
     "eyebrow": "Security and privacy",
