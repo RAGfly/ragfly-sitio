@@ -1,11 +1,11 @@
 {
-  "nombre": "Server LM",
+  "nombre": "RAGfly",
   "descripcion": "Infraestructura RAG multi-tenant. Entrega a un agente de IA el contexto documental exacto que necesita, filtrado por RBAC, vía MCP, CLI o API REST.",
-  "sitio": "https://serverlm.ai",
-  "app": "https://app.serverlm.ai",
+  "sitio": "https://ragfly.ai",
+  "app": "https://app.ragfly.ai",
   "actualizado": "2026-05-29",
   "mcp": {
-    "nombre": "serverlm",
+    "nombre": "ragfly",
     "endpointSSE": "https://seguridad-backend-production-6250.up.railway.app/mcp",
     "endpointHTTP": "https://seguridad-backend-production-6250.up.railway.app/mcp-http",
     "auth": "Authorization: Bearer <JWT | API_KEY>",
@@ -23,7 +23,7 @@
     {
       "id": "estado_sesion",
       "familia": "Sesión",
-      "cli": "serverlm cloud me",
+      "cli": "ragfly cloud me",
       "metodo": "GET",
       "ruta": "/auth/me",
       "tipo_acceso": "USUARIO",
@@ -33,7 +33,7 @@
     {
       "id": "listar_documentos",
       "familia": "Consultar",
-      "cli": "serverlm cloud documento listar",
+      "cli": "ragfly cloud documento listar",
       "metodo": "GET",
       "ruta": "/documentos/paginado",
       "tipo_acceso": "USUARIO",
@@ -62,7 +62,7 @@
     {
       "id": "ver_documento",
       "familia": "Consultar",
-      "cli": "serverlm cloud documento ver",
+      "cli": "ragfly cloud documento ver",
       "metodo": "GET",
       "ruta": "/documentos/{codigo_documento}",
       "tipo_acceso": "USUARIO",
@@ -79,7 +79,7 @@
     {
       "id": "listar_espacios",
       "familia": "Organizar",
-      "cli": "serverlm cloud espacio listar",
+      "cli": "ragfly cloud espacio listar",
       "metodo": "GET",
       "ruta": "/espacios-trabajo/paginado",
       "tipo_acceso": "USUARIO",
@@ -96,7 +96,7 @@
     {
       "id": "ver_espacio",
       "familia": "Organizar",
-      "cli": "serverlm cloud espacio ver",
+      "cli": "ragfly cloud espacio ver",
       "metodo": "GET",
       "ruta": "/espacios-trabajo/{id_espacio}/documentos/paginado",
       "tipo_acceso": "USUARIO",
@@ -119,7 +119,7 @@
     {
       "id": "ver_cola",
       "familia": "Monitorear",
-      "cli": "serverlm cloud cola ver",
+      "cli": "ragfly cloud cola ver",
       "metodo": "GET",
       "ruta": "/cola-estados-docs/paginado",
       "tipo_acceso": "USUARIO",
@@ -148,7 +148,7 @@
     {
       "id": "ver_ejecuciones",
       "familia": "Monitorear",
-      "cli": "serverlm cloud cola ejecuciones",
+      "cli": "ragfly cloud cola ejecuciones",
       "metodo": "GET",
       "ruta": "/cola-estados-docs/ejecuciones",
       "tipo_acceso": "USUARIO",
@@ -165,7 +165,7 @@
     {
       "id": "listar_habilidades",
       "familia": "Consultar",
-      "cli": "serverlm cloud habilidad listar",
+      "cli": "ragfly cloud habilidad listar",
       "metodo": "GET",
       "ruta": "/habilidades",
       "tipo_acceso": "USUARIO",
@@ -175,7 +175,7 @@
     {
       "id": "ver_habilidad",
       "familia": "Consultar",
-      "cli": "serverlm cloud habilidad ver",
+      "cli": "ragfly cloud habilidad ver",
       "metodo": "GET",
       "ruta": "/habilidades/{codigo_habilidad}",
       "tipo_acceso": "USUARIO",
@@ -192,7 +192,7 @@
     {
       "id": "ejecutar_habilidad",
       "familia": "Producir",
-      "cli": "serverlm cloud habilidad ejecutar",
+      "cli": "ragfly cloud habilidad ejecutar",
       "metodo": "POST",
       "ruta": "/habilidades/{codigo_habilidad}/ejecutar",
       "tipo_acceso": "USUARIO",
@@ -221,7 +221,7 @@
     {
       "id": "buscar_chunks",
       "familia": "Consultar",
-      "cli": "serverlm cloud buscar",
+      "cli": "ragfly cloud buscar",
       "metodo": "POST",
       "ruta": "/documentos/buscar-semantico",
       "tipo_acceso": "USUARIO",
@@ -256,7 +256,7 @@
     {
       "id": "preguntar",
       "familia": "Consultar",
-      "cli": "serverlm cloud chat preguntar",
+      "cli": "ragfly cloud chat preguntar",
       "metodo": "POST",
       "ruta": "/chat/conversaciones",
       "tipo_acceso": "USUARIO",

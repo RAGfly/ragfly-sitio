@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "title": "Server LM — Documentos a tu servicio",
+    "title": "RAGfly — Documentos a tu servicio",
     "description": "Conversa con tus documentos y da contexto preciso a tus agentes de IA. Infraestructura RAG multi-tenant, lista para usar, configurable en lenguaje natural."
   },
   "nav": {
@@ -25,7 +25,7 @@
     "eyebrow": "Habilitación inmediata",
     "titulo1": "Apunta a tus carpetas.",
     "tituloAccent": "Lo demás es automático.",
-    "descripcion": "Sin migrar archivos. Sin reorganizar nada. Sin configurar pipelines. Selecciona tus directorios y Server LM se encarga de leer, indexar y vectorizar — y de mantenerlo todo al día.",
+    "descripcion": "Sin migrar archivos. Sin reorganizar nada. Sin configurar pipelines. Selecciona tus directorios y RAGfly se encarga de leer, indexar y vectorizar — y de mantenerlo todo al día.",
     "bullet0": "PDF, Word, Excel, texto: se procesan donde están",
     "bullet1": "Indexación incremental: detecta cambios y reindexa solo lo nuevo",
     "bullet2": "OCR automático para escaneados",
@@ -43,7 +43,7 @@
     "reindexacion": "Reindexación incremental"
   },
   "dosFormas": {
-    "eyebrow": "Dos formas de usar Server LM",
+    "eyebrow": "Dos formas de usar RAGfly",
     "titulo1": "Diseñado para ser usado por",
     "tituloEm": "personas y agentes",
     "titulo2": "",
@@ -57,7 +57,7 @@
     "cardACta": "Pruébalo gratis 15 días",
     "cardBTag": "B · Plataforma",
     "cardBTitulo": "Da contexto preciso a tus agentes de IA",
-    "cardBDesc": "Dar contexto a un agente ya no es solo para perfiles técnicos: desde un profesional que arma su agente sin código hasta consultoras e integradores que construyen para terceros. Server LM les entrega resuelto lo difícil — ingesta, vectores y seguridad.",
+    "cardBDesc": "Dar contexto a un agente ya no es solo para perfiles técnicos: desde un profesional que arma su agente sin código hasta consultoras e integradores que construyen para terceros. RAGfly les entrega resuelto lo difícil — ingesta, vectores y seguridad.",
     "cardBB0": "Motor RAG llave en mano: escanea, vectoriza e indexa por ti",
     "cardBB1": "Base de datos semántica lista para alimentar a tu agente",
     "cardBB2": "Multi-tenant, seguro y configurable por prompts",
@@ -68,12 +68,12 @@
     "titulo": "Lo esencial, de un vistazo",
     "colPregunta": "Pregunta",
     "colRespuesta": "Respuesta",
-    "q0": "¿Qué es Server LM?",
+    "q0": "¿Qué es RAGfly?",
     "a0": "Infraestructura RAG multi-tenant lista para usar: conversa con tus documentos en lenguaje natural y entrega a cualquier agente de IA el contexto documental exacto que necesita, filtrado por RBAC.",
     "q1": "¿Para quién es?",
     "a1": "Para profesionales, equipos, empresas y holdings que trabajan con grandes volúmenes de documentos; y para desarrolladores que construyen agentes de IA y necesitan contexto documental resuelto.",
     "q2": "¿Cómo funciona?",
-    "a2": "Apuntas Server LM al directorio de tus documentos; el sistema los escanea, vectoriza e indexa automáticamente. Luego consultas por significado y obtienes respuestas con citas a la fuente.",
+    "a2": "Apuntas RAGfly al directorio de tus documentos; el sistema los escanea, vectoriza e indexa automáticamente. Luego consultas por significado y obtienes respuestas con citas a la fuente.",
     "q3": "¿Cuánto cuesta?",
     "a3": "Professional USD $7,99/mes, Team USD $49,99/mes, Business USD $199/mes, Enterprise USD $1.990/mes y Corporate a medida. Prueba gratis de 15 días sin método de pago."
   },
@@ -83,8 +83,8 @@
     "titulo1": "La información ya está ahí.",
     "tituloAccent": "Lo difícil es encontrarla.",
     "descripcion": "Los equipos acumulan miles de contratos, informes, minutas, reglamentos, procedimientos y correos. El problema no es la falta de información — es que está dispersa y es difícil de usar.",
-    "sinTitulo": "Sin Server LM",
-    "conTitulo": "Con Server LM",
+    "sinTitulo": "Sin RAGfly",
+    "conTitulo": "Con RAGfly",
     "sin0": "Buscar en carpetas por nombre de archivo",
     "sin1": "Abrir documentos uno a uno para leer el contenido",
     "sin2": "Copiar y pegar texto manualmente para comparar",
@@ -120,7 +120,7 @@
     "subtitulo": "Búsqueda semántica vectorial — IA que entiende el significado de tus documentos, no sólo sus palabras.",
     "paso0N": "01",
     "paso0Titulo": "Conecta tus documentos",
-    "paso0Desc": "Tus archivos nunca salen de donde están. Server LM solo indexa su metadata y significado — PDF, Word, Excel o texto — para poder operar sobre ellos.",
+    "paso0Desc": "Tus archivos nunca salen de donde están. RAGfly solo indexa su metadata y significado — PDF, Word, Excel o texto — para poder operar sobre ellos.",
     "paso1N": "02",
     "paso1Titulo": "La IA indexa el conocimiento",
     "paso1Desc": "Extrae el texto, lo divide en fragmentos y crea una base semántica. Cada fragmento queda listo para encontrarse por concepto.",
@@ -135,7 +135,7 @@
     "eyebrow": "Para Agentes",
     "titulo1": "Consumible por",
     "tituloAccent": "agentes de IA",
-    "descripcion": "Server LM expone su conocimiento documental como contexto para agentes externos vía MCP, CLI y API REST —siempre filtrado por RBAC. Estas son las operaciones disponibles; el catálogo completo está publicado en formato máquina-legible.",
+    "descripcion": "RAGfly expone su conocimiento documental como contexto para agentes externos vía MCP, CLI y API REST —siempre filtrado por RBAC. Estas son las operaciones disponibles; el catálogo completo está publicado en formato máquina-legible.",
     "conexionTitulo": "Conexión MCP",
     "authLabel": "Autenticación",
     "scopeLabel": "Alcance",
@@ -151,7 +151,7 @@
     "eyebrow": "Seguridad y privacidad",
     "titulo1": "Tus datos son tuyos.",
     "tituloAccent": "Siempre.",
-    "descripcion": "Server LM se diseñó desde el inicio sobre la premisa de que los documentos confidenciales deben permanecer bajo el control de tu organización.",
+    "descripcion": "RAGfly se diseñó desde el inicio sobre la premisa de que los documentos confidenciales deben permanecer bajo el control de tu organización.",
     "punto0": "Datos encriptados en base de datos en reposo (AES-256)",
     "punto1": "Operación interna solo por APIs: ninguna posibilidad de inyectar prompts maliciosos",
     "punto2": "Indexación «en el aire»: los documentos no se cargan a la nube",
@@ -161,7 +161,7 @@
     "punto6": "Control de acceso basado en roles (RBAC) con permisos granulares por función y perfil",
     "punto7": "Auditoría completa: cada acción registrada con usuario, fecha y módulo",
     "punto8": "Comunicaciones cifradas (HTTPS) en todas las capas",
-    "punto9": "Client LM opcional: la indexación no sale de la red interna del cliente"
+    "punto9": "RAGfly Desktop opcional: la indexación no sale de la red interna del cliente"
   },
   "planes": {
     "eyebrow": "Planes",
@@ -195,7 +195,7 @@
     "plan2F0": "Hasta 15.000.000 tokens al mes",
     "plan2F1": "Hasta 60.000 documentos vectorizados",
     "plan2F2": "Todo lo del plan Team",
-    "plan2F3": "Client LM: la indexación no sale de tu red",
+    "plan2F3": "RAGfly Desktop: la indexación no sale de tu red",
     "plan2F4": "Elección de IA: Claude, GPT, Gemini, open source",
     "plan2F5": "Permisos granulares por rol, función y perfil",
     "plan2F6": "Branding propio (color, logo, nombre)",
@@ -224,7 +224,7 @@
     "plan4F5": "Acuerdo comercial y SLA personalizados"
   },
   "porQueNosotros": {
-    "eyebrow": "¿Por qué Server LM?",
+    "eyebrow": "¿Por qué RAGfly?",
     "titulo": "Razones para elegirnos.",
     "item0Titulo": "Producto y plataforma a la vez",
     "item0Desc": "Úsalo para conversar con tus documentos hoy, o como fuente de contexto preciso para tus agentes de IA mañana — sin rehacer la ingesta, la vectorización ni la seguridad.",
@@ -237,7 +237,7 @@
   },
   "cta": {
     "eyebrow": "Empieza hoy",
-    "titulo": "¿Te interesa Server LM para tu trabajo, equipo, empresa o como fuente de contexto para tus agentes de IA?",
+    "titulo": "¿Te interesa RAGfly para tu trabajo, equipo, empresa o como fuente de contexto para tus agentes de IA?",
     "subtitulo": "Contáctanos para una demostración sin costo ni compromiso. 15 días gratis, sin método de pago.",
     "ctaPrimario": "Regístrate y prueba",
     "ctaSecundario": "Hablar con ventas"
@@ -255,7 +255,7 @@
     "contacto": "Contacto",
     "terminos": "Términos",
     "privacidad": "Privacidad",
-    "copyright": "© {year} Server LM — Todos los derechos reservados.",
+    "copyright": "© {year} RAGfly — Todos los derechos reservados.",
     "actualizado": "Actualizado {fecha}"
   },
   "selector": {

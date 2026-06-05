@@ -108,9 +108,9 @@ function Header() {
   return (
     <header className="sticky top-0 left-0 right-0 flex justify-between items-center px-6 md:px-12 lg:px-15 py-6 z-20 bg-white/80 backdrop-blur-sm">
       <div className="flex items-center gap-10">
-        <a href="#" className="flex items-center gap-2.5" aria-label="Server LM">
-          <Image src="/serverlm_isotipo.png" alt="" width={28} height={28} className="h-7 w-auto" />
-          <span className="font-manrope font-semibold text-2xl text-slm-dark tracking-tight">Server LM</span>
+        <a href="#" className="flex items-center gap-2.5" aria-label="RAGfly">
+          <Image src="/ragfly_isotipo.png" alt="" width={28} height={28} className="h-7 w-auto" />
+          <span className="font-manrope font-semibold text-2xl text-slm-dark tracking-tight">RAGfly</span>
         </a>
         <nav className="hidden lg:flex items-center gap-8">
           {links.map((it) => (
@@ -123,11 +123,11 @@ function Header() {
 
       <div className="hidden lg:flex items-center gap-4">
         <SelectorIdioma />
-        <a href="https://app.serverlm.ai" className="text-base font-medium text-slm-dark hover:opacity-70 transition-opacity">
+        <a href="https://app.ragfly.ai" className="text-base font-medium text-slm-dark hover:opacity-70 transition-opacity">
           {t('nav.iniciarSesion')}
         </a>
         <a
-          href="https://app.serverlm.ai"
+          href="https://app.ragfly.ai"
           className="bg-slm-dark text-slm-light px-6 py-2.5 rounded-full font-medium text-base hover:opacity-90 transition-opacity"
         >
           {t('nav.cta')}
@@ -181,11 +181,11 @@ function Header() {
               ))}
               <div className="border-t border-black/10 my-2" />
               <SelectorIdioma />
-              <a href="https://app.serverlm.ai" className="font-medium text-base text-slm-dark">
+              <a href="https://app.ragfly.ai" className="font-medium text-base text-slm-dark">
                 {t('nav.iniciarSesion')}
               </a>
               <a
-                href="https://app.serverlm.ai"
+                href="https://app.ragfly.ai"
                 className="bg-slm-dark text-slm-light px-6 py-2.5 rounded-full font-medium text-base text-center"
               >
                 {t('nav.cta')}
@@ -228,7 +228,7 @@ function Hero() {
       <div className="z-10 flex flex-col items-center gap-7 max-w-xl text-center">
         <BlurIn delay={0.3} className="flex flex-col sm:flex-row items-center gap-3">
           <a
-            href="https://app.serverlm.ai"
+            href="https://app.ragfly.ai"
             className="bg-slm-dark text-slm-light px-7 py-3 rounded-full font-medium text-base hover:opacity-90 transition-opacity"
           >
             {t('hero.ctaPrimario')}
@@ -743,7 +743,7 @@ function FinalCTASection() {
             {t('cta.subtitulo')}
           </p>
           <div className="flex flex-col sm:flex-row items-start gap-3">
-            <a href="https://app.serverlm.ai" className="bg-white text-slm-dark px-7 py-3.5 rounded-full font-medium text-base hover:opacity-90 transition-opacity">
+            <a href="https://app.ragfly.ai" className="bg-white text-slm-dark px-7 py-3.5 rounded-full font-medium text-base hover:opacity-90 transition-opacity">
               {t('cta.ctaPrimario')}
             </a>
             <a href="mailto:rufinocabreragaillard@gmail.com" className="border border-white/40 text-white px-7 py-3.5 rounded-full font-medium text-base hover:bg-white/10 transition-colors">
@@ -767,8 +767,8 @@ function Footer() {
       <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row gap-10 md:gap-16 items-start justify-between">
         <div className="flex flex-col gap-4 max-w-[320px]">
           <div className="flex items-center gap-2.5 font-manrope font-semibold text-2xl text-white">
-            <Image src="/serverlm_isotipo.png" alt="" width={28} height={28} className="h-7 w-auto brightness-0 invert" style={{ filter: 'brightness(0) invert(1)' }} />
-            Server LM
+            <Image src="/ragfly_isotipo.png" alt="" width={28} height={28} className="h-7 w-auto brightness-0 invert" style={{ filter: 'brightness(0) invert(1)' }} />
+            RAGfly
           </div>
           <p className="font-helvetica-neue text-sm leading-relaxed">{t('footer.tagline')}</p>
         </div>
@@ -787,8 +787,8 @@ function Footer() {
           </div>
           <div className="flex flex-col gap-3">
             <span className="text-xs uppercase tracking-[0.18em] text-white/60">{t('footer.legal')}</span>
-            <a href="#" className="font-helvetica-neue text-sm hover:text-white">{t('footer.terminos')}</a>
-            <a href="#" className="font-helvetica-neue text-sm hover:text-white">{t('footer.privacidad')}</a>
+            <a href="/terminos" className="font-helvetica-neue text-sm hover:text-white">{t('footer.terminos')}</a>
+            <a href="/privacidad" className="font-helvetica-neue text-sm hover:text-white">{t('footer.privacidad')}</a>
           </div>
         </div>
       </div>

@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 /* ============================================================
-   Paleta Server LM — alineada con el diseño Claude Design
+   Paleta RAGfly — alineada con el diseño Claude Design
    ============================================================ */
 :root {
   --background: #ffffff;
   --foreground: #0F1729;
 
-  /* Server LM brand */
+  /* RAGfly brand */
   --slm-dark: #0F1729;
   --slm-brand: #4089CD;
   --slm-brand-dark: #1E4A82;

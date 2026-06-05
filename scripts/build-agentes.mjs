@@ -27,11 +27,11 @@ const fecha = new Date().toISOString().slice(0, 10)
 
 // ── agents.json ────────────────────────────────────────────────────────────
 const json = {
-  nombre: 'Server LM',
+  nombre: 'RAGfly',
   descripcion:
     'Infraestructura RAG multi-tenant. Entrega a un agente de IA el contexto documental exacto que necesita, filtrado por RBAC, vía MCP, CLI o API REST.',
-  sitio: 'https://serverlm.ai',
-  app: 'https://app.serverlm.ai',
+  sitio: 'https://ragfly.ai',
+  app: 'https://app.ragfly.ai',
   actualizado: fecha,
   mcp,
   total_operaciones: capacidades.length,
@@ -49,7 +49,7 @@ writeFileSync(
 
 // ── llms-full.txt ────────────────────────────────────────────────────────
 const L = []
-L.push('# Server LM — Catálogo de operaciones para agentes')
+L.push('# RAGfly — Catálogo de operaciones para agentes')
 L.push('')
 L.push('> ' + json.descripcion)
 L.push('')
@@ -62,7 +62,7 @@ L.push(`- Endpoint HTTP (streamable): ${mcp.endpointHTTP}`)
 L.push(`- Autenticación: ${mcp.auth}`)
 L.push(`- Alcance: ${mcp.scope}`)
 L.push('')
-L.push('También disponible vía la CLI de Client LM: `serverlm cloud ...`')
+L.push('También disponible vía la CLI de RAGfly Desktop: `ragfly cloud ...`')
 L.push('')
 L.push(`## Operaciones (${capacidades.length})`)
 L.push('')

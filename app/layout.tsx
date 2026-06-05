@@ -24,7 +24,7 @@ const manrope = Manrope({
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("metadata");
   return {
-    metadataBase: new URL("https://serverlm.ai"),
+    metadataBase: new URL("https://ragfly.ai"),
     title: t("title"),
     description: t("description"),
     alternates: {
@@ -40,8 +40,8 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     openGraph: {
       type: "website",
-      siteName: "Server LM",
-      url: "https://serverlm.ai",
+      siteName: "RAGfly",
+      url: "https://ragfly.ai",
       title: t("title"),
       description: t("description"),
     },
@@ -61,19 +61,19 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://serverlm.ai/#organization",
-      name: "Server LM",
-      url: "https://serverlm.ai",
-      logo: "https://serverlm.ai/serverlm_logo.png",
+      "@id": "https://ragfly.ai/#organization",
+      name: "RAGfly",
+      url: "https://ragfly.ai",
+      logo: "https://ragfly.ai/ragfly_logo.png",
     },
     {
       "@type": "SoftwareApplication",
-      "@id": "https://serverlm.ai/#software",
-      name: "Server LM",
+      "@id": "https://ragfly.ai/#software",
+      name: "RAGfly",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web, macOS, Windows",
-      url: "https://serverlm.ai",
-      publisher: { "@id": "https://serverlm.ai/#organization" },
+      url: "https://ragfly.ai",
+      publisher: { "@id": "https://ragfly.ai/#organization" },
       description:
         "Infraestructura RAG multi-tenant: conversa con tus documentos en lenguaje natural y entrega a tus agentes de IA el contexto documental exacto, filtrado por RBAC, vía MCP, CLI y API REST.",
       featureList: [
@@ -93,8 +93,8 @@ const jsonLd = {
     },
     {
       "@type": "OfferCatalog",
-      "@id": "https://serverlm.ai/#planes",
-      name: "Planes de Server LM",
+      "@id": "https://ragfly.ai/#planes",
+      name: "Planes de RAGfly",
       itemListElement: [
         { "@type": "Offer", name: "Professional", price: "7.99", priceCurrency: "USD", description: "Para profesionales independientes." },
         { "@type": "Offer", name: "Team", price: "49.99", priceCurrency: "USD", description: "Para equipos colaborativos." },
@@ -105,11 +105,11 @@ const jsonLd = {
     },
     {
       "@type": "FAQPage",
-      "@id": "https://serverlm.ai/#faq",
+      "@id": "https://ragfly.ai/#faq",
       mainEntity: [
         {
           "@type": "Question",
-          name: "¿Qué es Server LM?",
+          name: "¿Qué es RAGfly?",
           acceptedAnswer: {
             "@type": "Answer",
             text: "Infraestructura RAG multi-tenant lista para usar: permite conversar con tus documentos en lenguaje natural y entrega a cualquier agente de IA el contexto documental exacto que necesita, filtrado por RBAC.",
@@ -136,15 +136,15 @@ const jsonLd = {
           name: "¿Cómo funciona?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Apuntas Server LM al directorio de tus documentos; el sistema los escanea, vectoriza e indexa automáticamente. Luego consultas por significado en lenguaje natural y obtienes respuestas con citas a la fuente, en el chat o servidas a tus agentes.",
+            text: "Apuntas RAGfly al directorio de tus documentos; el sistema los escanea, vectoriza e indexa automáticamente. Luego consultas por significado en lenguaje natural y obtienes respuestas con citas a la fuente, en el chat o servidas a tus agentes.",
           },
         },
         {
           "@type": "Question",
-          name: "¿Cómo consume un agente de IA a Server LM?",
+          name: "¿Cómo consume un agente de IA a RAGfly?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Vía un servidor MCP remoto (SSE o HTTP) o la CLI de Client LM, autenticándose con JWT o API Key. El catálogo de operaciones está publicado en https://serverlm.ai/agents.json y https://serverlm.ai/llms-full.txt.",
+            text: "Vía un servidor MCP remoto (SSE o HTTP) o la CLI de RAGfly Desktop, autenticándose con JWT o API Key. El catálogo de operaciones está publicado en https://ragfly.ai/agents.json y https://ragfly.ai/llms-full.txt.",
           },
         },
         {
@@ -152,7 +152,7 @@ const jsonLd = {
           name: "¿Mis documentos salen a la nube?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "No. La indexación y vectorización se realizan «en el aire» y los datos quedan encriptados. Con Client LM la indexación no sale de la red interna del cliente.",
+            text: "No. La indexación y vectorización se realizan «en el aire» y los datos quedan encriptados. Con RAGfly Desktop la indexación no sale de la red interna del cliente.",
           },
         },
       ],

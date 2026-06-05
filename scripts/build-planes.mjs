@@ -7,7 +7,7 @@
 // Lee la fuente única (content/planes.mjs), reescribe el bloque "planes"
 // de messages/es.json y emite content/planes-meta.json (resaltado + conteo
 // de features) que consume app/page.tsx. NO toca los otros idiomas: para
-// eso corre la skill /serverlm-idiomas-sitio después.
+// eso corre la skill /ragfly-idiomas-sitio después.
 // ─────────────────────────────────────────────────────────────────────────
 
 import { readFileSync, writeFileSync } from 'node:fs'
@@ -57,4 +57,4 @@ planes.forEach((p, i) =>
   console.log(`  plan${i} ${p.nombre.padEnd(13)} ${meta.plans[i].featureCount} features${p.resaltado ? '  ★ recomendado' : ''}`)
 )
 console.log(`✓ content/planes-meta.json — metadatos para page.tsx`)
-console.log(`\nAhora corre  /serverlm-idiomas-sitio  para regenerar en/pt/fr/de.`)
+console.log(`\nAhora corre  /ragfly-idiomas-sitio  para regenerar en/pt/fr/de.`)

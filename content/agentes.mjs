@@ -2,9 +2,9 @@
 // FUENTE ÚNICA DE VERDAD — CATÁLOGO DE OPERACIONES PARA AGENTES
 // ─────────────────────────────────────────────────────────────────────────
 //
-// Espejo curado de la superficie agent-facing de Server LM: las tools MCP
+// Espejo curado de la superficie agent-facing de RAGfly: las tools MCP
 // (backend/app/routers/mcp_server.py) y su comando CLI equivalente
-// (cliente/serverlm/cli.py). Cada operación corresponde a un api_endpoint
+// (cliente/ragfly/cli.py). Cada operación corresponde a un api_endpoint
 // con tipo_acceso USUARIO o ADMINISTRADOR (los SISTEMA no se exponen).
 //
 // Editas SOLO este archivo. Luego corres:
@@ -25,7 +25,7 @@
 const BACKEND = 'https://seguridad-backend-production-6250.up.railway.app'
 
 export const mcp = {
-  nombre: 'serverlm',
+  nombre: 'ragfly',
   // Transportes remotos: SSE y Streamable HTTP. Sin instalar nada local.
   endpointSSE: `${BACKEND}/mcp`,
   endpointHTTP: `${BACKEND}/mcp-http`,
@@ -40,7 +40,7 @@ export const capacidades = [
   {
     id: 'estado_sesion',
     familia: 'Sesión',
-    cli: 'serverlm cloud me',
+    cli: 'ragfly cloud me',
     metodo: 'GET',
     ruta: '/auth/me',
     tipo_acceso: 'USUARIO',
@@ -50,7 +50,7 @@ export const capacidades = [
   {
     id: 'listar_documentos',
     familia: 'Consultar',
-    cli: 'serverlm cloud documento listar',
+    cli: 'ragfly cloud documento listar',
     metodo: 'GET',
     ruta: '/documentos/paginado',
     tipo_acceso: 'USUARIO',
@@ -64,7 +64,7 @@ export const capacidades = [
   {
     id: 'ver_documento',
     familia: 'Consultar',
-    cli: 'serverlm cloud documento ver',
+    cli: 'ragfly cloud documento ver',
     metodo: 'GET',
     ruta: '/documentos/{codigo_documento}',
     tipo_acceso: 'USUARIO',
@@ -76,7 +76,7 @@ export const capacidades = [
   {
     id: 'listar_espacios',
     familia: 'Organizar',
-    cli: 'serverlm cloud espacio listar',
+    cli: 'ragfly cloud espacio listar',
     metodo: 'GET',
     ruta: '/espacios-trabajo/paginado',
     tipo_acceso: 'USUARIO',
@@ -88,7 +88,7 @@ export const capacidades = [
   {
     id: 'ver_espacio',
     familia: 'Organizar',
-    cli: 'serverlm cloud espacio ver',
+    cli: 'ragfly cloud espacio ver',
     metodo: 'GET',
     ruta: '/espacios-trabajo/{id_espacio}/documentos/paginado',
     tipo_acceso: 'USUARIO',
@@ -101,7 +101,7 @@ export const capacidades = [
   {
     id: 'ver_cola',
     familia: 'Monitorear',
-    cli: 'serverlm cloud cola ver',
+    cli: 'ragfly cloud cola ver',
     metodo: 'GET',
     ruta: '/cola-estados-docs/paginado',
     tipo_acceso: 'USUARIO',
@@ -115,7 +115,7 @@ export const capacidades = [
   {
     id: 'ver_ejecuciones',
     familia: 'Monitorear',
-    cli: 'serverlm cloud cola ejecuciones',
+    cli: 'ragfly cloud cola ejecuciones',
     metodo: 'GET',
     ruta: '/cola-estados-docs/ejecuciones',
     tipo_acceso: 'USUARIO',
@@ -127,7 +127,7 @@ export const capacidades = [
   {
     id: 'listar_habilidades',
     familia: 'Consultar',
-    cli: 'serverlm cloud habilidad listar',
+    cli: 'ragfly cloud habilidad listar',
     metodo: 'GET',
     ruta: '/habilidades',
     tipo_acceso: 'USUARIO',
@@ -137,7 +137,7 @@ export const capacidades = [
   {
     id: 'ver_habilidad',
     familia: 'Consultar',
-    cli: 'serverlm cloud habilidad ver',
+    cli: 'ragfly cloud habilidad ver',
     metodo: 'GET',
     ruta: '/habilidades/{codigo_habilidad}',
     tipo_acceso: 'USUARIO',
@@ -149,7 +149,7 @@ export const capacidades = [
   {
     id: 'ejecutar_habilidad',
     familia: 'Producir',
-    cli: 'serverlm cloud habilidad ejecutar',
+    cli: 'ragfly cloud habilidad ejecutar',
     metodo: 'POST',
     ruta: '/habilidades/{codigo_habilidad}/ejecutar',
     tipo_acceso: 'USUARIO',
@@ -163,7 +163,7 @@ export const capacidades = [
   {
     id: 'buscar_chunks',
     familia: 'Consultar',
-    cli: 'serverlm cloud buscar',
+    cli: 'ragfly cloud buscar',
     metodo: 'POST',
     ruta: '/documentos/buscar-semantico',
     tipo_acceso: 'USUARIO',
@@ -178,7 +178,7 @@ export const capacidades = [
   {
     id: 'preguntar',
     familia: 'Consultar',
-    cli: 'serverlm cloud chat preguntar',
+    cli: 'ragfly cloud chat preguntar',
     metodo: 'POST',
     ruta: '/chat/conversaciones',
     tipo_acceso: 'USUARIO',

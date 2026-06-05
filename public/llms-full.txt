@@ -1,4 +1,4 @@
-# Server LM — Catálogo de operaciones para agentes
+# RAGfly — Catálogo de operaciones para agentes
 
 > Infraestructura RAG multi-tenant. Entrega a un agente de IA el contexto documental exacto que necesita, filtrado por RBAC, vía MCP, CLI o API REST.
 
@@ -11,7 +11,7 @@ Actualizado: 2026-05-29
 - Autenticación: Authorization: Bearer <JWT | API_KEY>
 - Alcance: Todas las operaciones quedan acotadas al grupo y entidad activos del usuario autenticado (RBAC).
 
-También disponible vía la CLI de Client LM: `serverlm cloud ...`
+También disponible vía la CLI de RAGfly Desktop: `ragfly cloud ...`
 
 ## Operaciones (12)
 
@@ -22,7 +22,7 @@ También disponible vía la CLI de Client LM: `serverlm cloud ...`
 Verifica la sesión y devuelve el contexto del usuario (email, rol, grupo y entidad activos). Úsala antes de cualquier otra operación para confirmar que el JWT o API Key es válido.
 
 - MCP tool: `estado_sesion`
-- CLI: `serverlm cloud me`
+- CLI: `ragfly cloud me`
 - REST: `GET /auth/me` (acceso USUARIO)
 
 ### Consultar
@@ -32,7 +32,7 @@ Verifica la sesión y devuelve el contexto del usuario (email, rol, grupo y enti
 Lista los documentos del grupo activo con su estado de procesamiento, ubicación, tamaño y número de chunks.
 
 - MCP tool: `listar_documentos`
-- CLI: `serverlm cloud documento listar`
+- CLI: `ragfly cloud documento listar`
 - REST: `GET /documentos/paginado` (acceso USUARIO)
 - Parámetros:
   - `estado` (string, def: todos) — Filtra por estado: CARGADO, METADATA, ESCANEADO, CHUNKEADO, VECTORIZADO, NO_ESCANEABLE, REVISAR.
@@ -44,7 +44,7 @@ Lista los documentos del grupo activo con su estado de procesamiento, ubicación
 Detalle completo de un documento: metadatos, estado de procesamiento, chunks, resumen y características extraídas.
 
 - MCP tool: `ver_documento`
-- CLI: `serverlm cloud documento ver`
+- CLI: `ragfly cloud documento ver`
 - REST: `GET /documentos/{codigo_documento}` (acceso USUARIO)
 - Parámetros:
   - `codigo_documento` (string, def: —) — Código del documento.
@@ -54,7 +54,7 @@ Detalle completo de un documento: metadatos, estado de procesamiento, chunks, re
 Lista las habilidades LLM disponibles en el catálogo: unidades atómicas de procesamiento LLM sobre documentos.
 
 - MCP tool: `listar_habilidades`
-- CLI: `serverlm cloud habilidad listar`
+- CLI: `ragfly cloud habilidad listar`
 - REST: `GET /habilidades` (acceso USUARIO)
 
 #### ver_habilidad
@@ -62,7 +62,7 @@ Lista las habilidades LLM disponibles en el catálogo: unidades atómicas de pro
 Detalle de una habilidad: prompt, system prompt, modelo, tipo, salida y variables disponibles.
 
 - MCP tool: `ver_habilidad`
-- CLI: `serverlm cloud habilidad ver`
+- CLI: `ragfly cloud habilidad ver`
 - REST: `GET /habilidades/{codigo_habilidad}` (acceso USUARIO)
 - Parámetros:
   - `codigo_habilidad` (string, def: —) — Código de la habilidad.
@@ -72,7 +72,7 @@ Detalle de una habilidad: prompt, system prompt, modelo, tipo, salida y variable
 Búsqueda semántica RAG sobre los chunks vectorizados del grupo activo. Devuelve los fragmentos más relevantes con su documento de origen, score coseno y rerank — contexto citable sin entrar al chat.
 
 - MCP tool: `buscar_chunks`
-- CLI: `serverlm cloud buscar`
+- CLI: `ragfly cloud buscar`
 - REST: `POST /documentos/buscar-semantico` (acceso USUARIO)
 - Parámetros:
   - `consulta` (string, def: —) — Pregunta o frase a buscar en lenguaje natural.
@@ -85,7 +85,7 @@ Búsqueda semántica RAG sobre los chunks vectorizados del grupo activo. Devuelv
 Pregunta al chat RAG y devuelve la respuesta completa con citas. Crea una conversación nueva o reutiliza una existente.
 
 - MCP tool: `preguntar`
-- CLI: `serverlm cloud chat preguntar`
+- CLI: `ragfly cloud chat preguntar`
 - REST: `POST /chat/conversaciones` (acceso USUARIO)
 - Parámetros:
   - `mensaje` (string, def: —) — Pregunta del usuario.
@@ -100,7 +100,7 @@ Pregunta al chat RAG y devuelve la respuesta completa con citas. Crea una conver
 Lista los Espacios de Trabajo del grupo activo: colecciones de documentos sobre las que se ejecutan habilidades LLM de forma masiva.
 
 - MCP tool: `listar_espacios`
-- CLI: `serverlm cloud espacio listar`
+- CLI: `ragfly cloud espacio listar`
 - REST: `GET /espacios-trabajo/paginado` (acceso USUARIO)
 - Parámetros:
   - `limite` (int, def: 20) — Máximo de espacios.
@@ -110,7 +110,7 @@ Lista los Espacios de Trabajo del grupo activo: colecciones de documentos sobre 
 Detalle de un Espacio de Trabajo y sus documentos asociados, con el estado de la cola de procesamiento por documento.
 
 - MCP tool: `ver_espacio`
-- CLI: `serverlm cloud espacio ver`
+- CLI: `ragfly cloud espacio ver`
 - REST: `GET /espacios-trabajo/{id_espacio}/documentos/paginado` (acceso USUARIO)
 - Parámetros:
   - `id_espacio` (int, def: —) — ID del Espacio de Trabajo.
@@ -123,7 +123,7 @@ Detalle de un Espacio de Trabajo y sus documentos asociados, con el estado de la
 Ejecuta una habilidad LLM sobre un Espacio de Trabajo o un documento. La tarea se encola y se procesa en background; el resultado se consulta con ver_cola.
 
 - MCP tool: `ejecutar_habilidad`
-- CLI: `serverlm cloud habilidad ejecutar`
+- CLI: `ragfly cloud habilidad ejecutar`
 - REST: `POST /habilidades/{codigo_habilidad}/ejecutar` (acceso USUARIO)
 - Parámetros:
   - `codigo_habilidad` (string, def: —) — Código de la habilidad, ej. RESUMIR_DOCUMENTO.
@@ -137,7 +137,7 @@ Ejecuta una habilidad LLM sobre un Espacio de Trabajo o un documento. La tarea s
 Estado actual de la cola del pipeline (ANALIZAR → CHUNKEAR → VECTORIZAR). Útil para monitorear el avance de habilidades o de la ingesta.
 
 - MCP tool: `ver_cola`
-- CLI: `serverlm cloud cola ver`
+- CLI: `ragfly cloud cola ver`
 - REST: `GET /cola-estados-docs/paginado` (acceso USUARIO)
 - Parámetros:
   - `proceso` (string, def: todos) — Filtra por proceso, ej. VECTORIZAR.
@@ -149,7 +149,7 @@ Estado actual de la cola del pipeline (ANALIZAR → CHUNKEAR → VECTORIZAR). Ú
 Historial de ejecuciones de habilidades: cuántos documentos procesó cada ejecución, cuántos con éxito y cuántos con error.
 
 - MCP tool: `ver_ejecuciones`
-- CLI: `serverlm cloud cola ejecuciones`
+- CLI: `ragfly cloud cola ejecuciones`
 - REST: `GET /cola-estados-docs/ejecuciones` (acceso USUARIO)
 - Parámetros:
   - `limite` (int, def: 10) — Máximo de ejecuciones.

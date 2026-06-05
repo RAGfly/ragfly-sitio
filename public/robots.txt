@@ -1,4 +1,4 @@
-# Server LM — serverlm.ai
+# RAGfly — ragfly.ai
 # Damos la bienvenida explícita a los agentes y crawlers de IA.
 
 User-agent: *
@@ -26,4 +26,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://serverlm.ai/sitemap.xml
+Sitemap: https://ragfly.ai/sitemap.xml

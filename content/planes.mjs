@@ -8,7 +8,7 @@
 //
 // Eso regenera el bloque "planes" de messages/es.json y los metadatos
 // (resaltado + nº de features) que usa la landing. Para traducir a los
-// otros idiomas (en/pt/fr/de) corre la skill:  /serverlm-idiomas-sitio
+// otros idiomas (en/pt/fr/de) corre la skill:  /ragfly-idiomas-sitio
 //
 // REGLAS:
 //   - "nombre" NO se traduce (es nombre comercial / coincide con Paddle).
@@ -69,7 +69,7 @@ export const planes = [
     },
     features: [
       'Todo lo del plan Team',
-      'Client LM: la indexación no sale de tu red',
+      'RAGfly Desktop: la indexación no sale de tu red',
       'Elección de IA: Claude, GPT, Gemini, open source',
       'Permisos granulares por rol, función y perfil',
       'Branding propio (color, logo, nombre)',
