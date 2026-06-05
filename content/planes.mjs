@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────
-// FUENTE ÚNICA DE VERDAD — PLANES DE SERVER LM
+// FUENTE ÚNICA DE VERDAD — PLANES DE RAGFLY
 // ─────────────────────────────────────────────────────────────────────────
 //
 // Editas SOLO este archivo (en español). Luego corres:
