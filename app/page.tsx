@@ -645,8 +645,8 @@ function SurfacesSection() {
   const snippet = `{
   "mcpServers": {
     "ragfly": {
-      "url": "https://mcp.ragfly.ai/sse",
-      "headers": { "Authorization": "Bearer rag_tu_token" }
+      "url": "https://api.ragfly.ai/mcp/sse",
+      "headers": { "Authorization": "Bearer slm_live_xxxxxxxxxx" }
     }
   }
 }`
