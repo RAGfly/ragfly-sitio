@@ -2,10 +2,12 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 
 /* ------------------------------------------------------------------ */
 /* Quickstart — ragfly.ai/quickstart                                   */
 /* Guía de integración para desarrolladores: MCP · REST · CLI         */
+/* Strings en messages/{es,en,pt,fr,de}.json → quickstart.*           */
 /* ------------------------------------------------------------------ */
 
 function Code({ children }: { children: string }) {
@@ -47,7 +49,123 @@ function SectionCard({ id, emoji, title, badge, children }: { id: string; emoji:
   )
 }
 
+/* Snippets de código — no se traducen (son técnicos) */
+const SNIPPET_MCP = `{
+  "mcpServers": {
+    "ragfly": {
+      "url": "https://api.ragfly.ai/mcp/sse",
+      "headers": {
+        "Authorization": "Bearer slm_live_xxxxxxxxxx"
+      }
+    }
+  }
+}`
+
+const SNIPPET_MCP_VERIFY = `estado_sesion()
+→ {"usuario": "bot-finanzas", "grupo": "EMPRESA", "rol": "DOC-ADMIN"}`
+
+const SNIPPET_MCP_RESULT = `# Pregunta en lenguaje natural con RAG completo
+preguntar(texto="¿Cuáles son las cláusulas de penalización en los contratos de 2024?")
+→ Respuesta con citas a la fuente
+
+# Búsqueda semántica directa (sin LLM)
+buscar_chunks(q="cláusulas de penalización", limite=5)
+→ [{chunk, documento, score}, ...]`
+
+const SNIPPET_REST_VERIFY = `curl https://api.ragfly.ai/auth/me \\
+  -H "Authorization: Bearer slm_live_xxxxxxxxxx"
+
+# Respuesta esperada:
+{
+  "codigo_usuario": "bot-finanzas",
+  "rol_principal": "DOC-ADMIN",
+  "grupo_activo": "EMPRESA"
+}`
+
+const SNIPPET_REST_LIST = `curl "https://api.ragfly.ai/documentos/paginado?estado=VECTORIZADO&limite=10" \\
+  -H "Authorization: Bearer slm_live_xxxxxxxxxx"`
+
+const SNIPPET_REST_SEARCH = `curl -X POST https://api.ragfly.ai/documentos/buscar-semantico \\
+  -H "Authorization: Bearer slm_live_xxxxxxxxxx" \\
+  -H "Content-Type: application/json" \\
+  -d '{"q": "cláusulas de penalización", "limit": 5}'`
+
+const SNIPPET_REST_RAG = `# 1. Crear conversación
+curl -X POST https://api.ragfly.ai/chat/conversaciones \\
+  -H "Authorization: Bearer slm_live_xxxxxxxxxx" \\
+  -H "Content-Type: application/json" \\
+  -d '{"codigo_funcion": "CHAT-USUARIO"}'
+# → {"id": 42, ...}
+
+# 2. Enviar mensaje (respuesta en SSE)
+curl -X POST https://api.ragfly.ai/chat/conversaciones/42/mensajes/stream \\
+  -H "Authorization: Bearer slm_live_xxxxxxxxxx" \\
+  -H "Content-Type: application/json" \\
+  -d '{"texto": "¿Cuáles son las cláusulas de penalización?"}'`
+
+const SNIPPET_CLI_INSTALL = `pip install ragfly
+ragfly version
+# RAGfly Desktop v2.x.x`
+
+const SNIPPET_CLI_AUTH = `# Opción A — Login interactivo (JWT, 1 hora)
+ragfly login
+
+# Opción B — API Key (automatizaciones, sin caducidad)
+export RAGFLY_TOKEN=slm_live_xxxxxxxxxx
+
+# Verificar
+ragfly cloud me
+# Usuario: bot-finanzas · Rol: DOC-ADMIN · Grupo: EMPRESA`
+
+const SNIPPET_CLI_COMMANDS = `# Listar documentos vectorizados
+ragfly cloud documento listar --estado VECTORIZADO --limite 20
+
+# Ver un documento en detalle
+ragfly cloud documento ver DOC-2024-001
+
+# Listar Espacios de Trabajo
+ragfly cloud espacio listar
+
+# Ejecutar una habilidad LLM y esperar resultado
+ragfly cloud habilidad ejecutar RESUMIR_DOCUMENTO --espacio 42 --esperar
+
+# Ver estado del pipeline
+ragfly cloud cola ver --estado EJECUTANDO`
+
+const SNIPPET_CLI_BINARY = `ragfly
+├── login / logout / version / config
+├── local       ← operaciones sobre el filesystem local
+└── cloud
+    ├── me
+    ├── documento   listar | ver
+    ├── espacio     listar | ver
+    ├── habilidad   listar | ver | ejecutar
+    ├── cola        ver | ejecuciones
+    ├── api-key     crear | listar | revocar
+    └── chat        enviar`
+
+const SNIPPET_APIKEY = `# Formato de la key
+slm_live_xxxxxxxxxxxxxxxxxxxxxxxx
+
+# Úsala en todos los métodos:
+Authorization: Bearer slm_live_xxxxxxxxxxxxxxxxxxxxxxxx`
+
+const MCP_TOOLS = ['estado_sesion', 'listar_documentos', 'ver_documento', 'buscar_chunks', 'preguntar', 'listar_espacios', 'ver_espacio', 'listar_habilidades', 'ver_habilidad', 'ejecutar_habilidad', 'ver_cola', 'ver_ejecuciones']
+
+const REST_ENDPOINTS: [string, string, string][] = [
+  ['GET',  '/auth/me',                                      'restEp1'],
+  ['GET',  '/documentos/paginado',                          'restEp2'],
+  ['POST', '/documentos/buscar-semantico',                  'restEp3'],
+  ['GET',  '/espacios-trabajo/paginado',                    'restEp4'],
+  ['GET',  '/habilidades',                                  'restEp5'],
+  ['POST', '/habilidades/{codigo}/ejecutar',                'restEp6'],
+  ['GET',  '/cola-estados-docs/paginado',                   'restEp7'],
+  ['POST', '/chat/conversaciones/{id}/mensajes/stream',     'restEp8'],
+]
+
 export default function QuickstartPage() {
+  const t = useTranslations('quickstart')
+
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
@@ -63,7 +181,7 @@ export default function QuickstartPage() {
             <a href="#cli" className="hover:text-slm-dark transition-colors">CLI</a>
             <a href="https://api.ragfly.ai/docs" target="_blank" rel="noopener noreferrer" className="hover:text-slm-dark transition-colors">Swagger API</a>
             <a href="https://app.ragfly.ai" className="bg-slm-dark text-white px-4 py-1.5 rounded-full text-xs font-medium hover:opacity-80 transition-opacity">
-              Ir a la app →
+              {t('navApp')}
             </a>
           </nav>
         </div>
@@ -73,228 +191,142 @@ export default function QuickstartPage() {
 
         {/* Intro */}
         <div className="mb-14">
-          <p className="text-xs uppercase tracking-[0.18em] text-slm-brand font-medium mb-3">Quickstart</p>
+          <p className="text-xs uppercase tracking-[0.18em] text-slm-brand font-medium mb-3">{t('eyebrow')}</p>
           <h1 className="text-4xl font-semibold text-slm-dark mb-4 leading-tight">
-            De cero a tu primer resultado<br />
-            <span className="bg-gradient-to-r from-slm-brand-dark via-slm-brand to-slm-brand-light bg-clip-text text-transparent">en menos de 5 minutos.</span>
+            {t('heroTitle1')}<br />
+            <span className="bg-gradient-to-r from-slm-brand-dark via-slm-brand to-slm-brand-light bg-clip-text text-transparent">{t('heroTitle2')}</span>
           </h1>
           <p className="text-lg text-slm-gray font-helvetica-neue leading-relaxed max-w-[620px]">
-            RAGfly expone tres superficies de integración. Elige la que encaje con tu flujo — el resultado es el mismo: tu agente o aplicación respondiendo con citas sobre tus documentos.
+            {t('heroDesc')}
           </p>
 
-          {/* Elige tu camino */}
           <div className="grid grid-cols-3 gap-4 mt-8">
-            {[
-              { id: 'mcp', icon: '🤖', label: 'MCP', desc: 'Agentes LLM (Claude, Cursor, Cline)', badge: 'Abrimos aquí' },
-              { id: 'rest', icon: '🔌', label: 'REST', desc: 'Código propio (Python, Node, curl)' },
-              { id: 'cli', icon: '⚡', label: 'CLI', desc: 'Terminal, scripts, CI/CD' },
-            ].map(c => (
+            {([
+              { id: 'mcp',  icon: '🤖', label: 'MCP',  descKey: 'pathMcpDesc',  badgeKey: 'pathMcpBadge' },
+              { id: 'rest', icon: '🔌', label: 'REST', descKey: 'pathRestDesc', badgeKey: undefined },
+              { id: 'cli',  icon: '⚡', label: 'CLI',  descKey: 'pathCliDesc',  badgeKey: undefined },
+            ] as const).map(c => (
               <a key={c.id} href={`#${c.id}`} className="border border-slm-light-gray rounded-2xl p-5 hover:border-slm-brand hover:shadow-sm transition-all group">
                 <div className="text-2xl mb-2">{c.icon}</div>
                 <div className="font-semibold text-slm-dark text-sm group-hover:text-slm-brand transition-colors">{c.label}</div>
-                <div className="text-xs text-slm-gray mt-1 font-helvetica-neue leading-snug">{c.desc}</div>
-                {c.badge && <div className="mt-2 text-xs text-slm-brand font-medium">{c.badge} ↓</div>}
+                <div className="text-xs text-slm-gray mt-1 font-helvetica-neue leading-snug">{t(c.descKey)}</div>
+                {c.badgeKey && <div className="mt-2 text-xs text-slm-brand font-medium">{t(c.badgeKey)} ↓</div>}
               </a>
             ))}
           </div>
         </div>
 
-        {/* Paso previo: API Key */}
+        {/* API Key */}
         <div className="bg-slm-light rounded-2xl p-6 mb-14 border border-slm-light-gray">
-          <h2 className="font-semibold text-slm-dark mb-1">Antes de empezar — obtén tu API Key</h2>
+          <h2 className="font-semibold text-slm-dark mb-1">{t('apiKeyTitle')}</h2>
           <p className="text-sm text-slm-gray font-helvetica-neue mb-4">
-            Entra a <a href="https://app.ragfly.ai/api-keys" className="text-slm-brand underline" target="_blank" rel="noopener noreferrer">app.ragfly.ai/api-keys</a> y crea una key con el rol que necesitas. La verás solo una vez — guárdala en tu gestor de secretos.
+            {t.rich('apiKeyDesc', {
+              link: (chunks) => (
+                <a href="https://app.ragfly.ai/api-keys" className="text-slm-brand underline" target="_blank" rel="noopener noreferrer">{chunks}</a>
+              ),
+            })}
           </p>
           <div className="flex flex-wrap gap-3">
-            {['DOC-ADMIN — lectura y escritura (documentos, espacios, habilidades)', 'DOCS-USUARIO-FINAL — solo lectura'].map(r => (
-              <span key={r} className="text-xs bg-white border border-slm-light-gray rounded-lg px-3 py-1.5 text-slm-gray font-mono">{r}</span>
+            {(['apiKeyRole1', 'apiKeyRole2'] as const).map(k => (
+              <span key={k} className="text-xs bg-white border border-slm-light-gray rounded-lg px-3 py-1.5 text-slm-gray font-mono">{t(k)}</span>
             ))}
           </div>
-          <Code>{`# Formato de la key
-slm_live_xxxxxxxxxxxxxxxxxxxxxxxx
-
-# Úsala en todos los métodos:
-Authorization: Bearer slm_live_xxxxxxxxxxxxxxxxxxxxxxxx`}</Code>
-          <p className="text-xs text-slm-gray font-helvetica-neue">Verifica que funciona: <code className="bg-white px-1.5 py-0.5 rounded border border-slm-light-gray text-xs">curl https://api.ragfly.ai/auth/me -H "Authorization: Bearer slm_live_..."</code></p>
+          <Code>{SNIPPET_APIKEY}</Code>
+          <p className="text-xs text-slm-gray font-helvetica-neue">
+            {t('apiKeyVerify')}{' '}
+            <code className="bg-white px-1.5 py-0.5 rounded border border-slm-light-gray text-xs">curl https://api.ragfly.ai/auth/me -H &quot;Authorization: Bearer slm_live_...&quot;</code>
+          </p>
         </div>
 
         {/* MCP */}
-        <SectionCard id="mcp" emoji="🤖" title="Integración vía MCP" badge="Abrimos aquí">
-          <p className="text-slm-gray font-helvetica-neue mb-6 leading-relaxed">
-            El camino más rápido si ya usas un agente LLM compatible con MCP (Claude Code, Cursor, Cline, etc.). El agente descubre los tools automáticamente — sin escribir código de integración.
-          </p>
+        <SectionCard id="mcp" emoji="🤖" title={t('mcpTitle')} badge={t('mcpBadge')}>
+          <p className="text-slm-gray font-helvetica-neue mb-6 leading-relaxed">{t('mcpDesc')}</p>
 
-          <Step n={1} title="Agrega RAGfly como servidor MCP">
-            <p className="text-sm text-slm-gray mb-2 font-helvetica-neue">En tu archivo <code className="bg-slm-light px-1.5 rounded text-xs">.mcp.json</code> (proyecto) o <code className="bg-slm-light px-1.5 rounded text-xs">~/.mcp.json</code> (global):</p>
-            <Code>{`{
-  "mcpServers": {
-    "ragfly": {
-      "url": "https://api.ragfly.ai/mcp/sse",
-      "headers": {
-        "Authorization": "Bearer slm_live_xxxxxxxxxx"
-      }
-    }
-  }
-}`}</Code>
-            <p className="text-xs text-slm-gray font-helvetica-neue">Si tu cliente soporta HTTP streamable (más eficiente): usa <code className="bg-slm-light px-1 rounded">https://api.ragfly.ai/mcp-http/</code></p>
+          <Step n={1} title={t('mcpStep1Title')}>
+            <p className="text-sm text-slm-gray mb-2 font-helvetica-neue">
+              {t.rich('mcpStep1FileNote', {
+                f: (chunks) => <code className="bg-slm-light px-1.5 rounded text-xs">{chunks}</code>,
+                g: (chunks) => <code className="bg-slm-light px-1.5 rounded text-xs">{chunks}</code>,
+              })}
+            </p>
+            <Code>{SNIPPET_MCP}</Code>
+            <p className="text-xs text-slm-gray font-helvetica-neue">
+              {t.rich('mcpStep1HttpNote', {
+                c: (chunks) => <code className="bg-slm-light px-1 rounded text-xs">{chunks}</code>,
+              })}
+            </p>
           </Step>
 
-          <Step n={2} title="Reinicia tu cliente y verifica la conexión">
-            <p className="text-sm text-slm-gray font-helvetica-neue mb-2">Los tools aparecen con prefijo <code className="bg-slm-light px-1 rounded text-xs">mcp__ragfly__</code>. Llama primero:</p>
-            <Code>{`estado_sesion()
-→ {"usuario": "bot-finanzas", "grupo": "EMPRESA", "rol": "DOC-ADMIN"}`}</Code>
+          <Step n={2} title={t('mcpStep2Title')}>
+            <p className="text-sm text-slm-gray font-helvetica-neue mb-2">
+              {t.rich('mcpStep2Note', {
+                c: (chunks) => <code className="bg-slm-light px-1 rounded text-xs">{chunks}</code>,
+              })}
+            </p>
+            <Code>{SNIPPET_MCP_VERIFY}</Code>
           </Step>
 
-          <Step n={3} title="Tu primer resultado">
-            <Code>{`# Pregunta en lenguaje natural con RAG completo
-preguntar(texto="¿Cuáles son las cláusulas de penalización en los contratos de 2024?")
-→ Respuesta con citas a la fuente
-
-# Búsqueda semántica directa (sin LLM)
-buscar_chunks(q="cláusulas de penalización", limite=5)
-→ [{chunk, documento, score}, ...]`}</Code>
+          <Step n={3} title={t('mcpStep3Title')}>
+            <Code>{SNIPPET_MCP_RESULT}</Code>
           </Step>
 
           <div className="bg-slm-light rounded-xl p-4 text-sm">
-            <p className="font-medium text-slm-dark mb-2">Tools disponibles (12 en total)</p>
+            <p className="font-medium text-slm-dark mb-2">{t('mcpToolsTitle')}</p>
             <div className="grid grid-cols-2 gap-x-6 gap-y-1 text-xs text-slm-gray font-mono">
-              {['estado_sesion', 'listar_documentos', 'ver_documento', 'buscar_chunks', 'preguntar', 'listar_espacios', 'ver_espacio', 'listar_habilidades', 'ver_habilidad', 'ejecutar_habilidad', 'ver_cola', 'ver_ejecuciones'].map(t => (
-                <span key={t}>· {t}</span>
-              ))}
+              {MCP_TOOLS.map(tool => <span key={tool}>· {tool}</span>)}
             </div>
-            <a href="/agents.json" className="text-xs text-slm-brand mt-3 block hover:underline">Ver catálogo completo → agents.json</a>
+            <a href="/agents.json" className="text-xs text-slm-brand mt-3 block hover:underline">{t('mcpToolsCatalog')}</a>
           </div>
         </SectionCard>
 
         {/* REST */}
-        <SectionCard id="rest" emoji="🔌" title="Integración vía REST">
+        <SectionCard id="rest" emoji="🔌" title={t('restTitle')}>
           <p className="text-slm-gray font-helvetica-neue mb-6 leading-relaxed">
-            Acceso directo desde cualquier lenguaje o plataforma. Base URL: <code className="bg-slm-light px-1.5 rounded text-sm">https://api.ragfly.ai</code> · Swagger interactivo: <a href="https://api.ragfly.ai/docs" target="_blank" rel="noopener noreferrer" className="text-slm-brand hover:underline">api.ragfly.ai/docs</a>
+            {t.rich('restDesc', {
+              c: (chunks) => <code className="bg-slm-light px-1.5 rounded text-sm">{chunks}</code>,
+              link: (chunks) => (
+                <a href="https://api.ragfly.ai/docs" target="_blank" rel="noopener noreferrer" className="text-slm-brand hover:underline">{chunks}</a>
+              ),
+            })}
           </p>
 
-          <Step n={1} title="Verificar conexión">
-            <Code>{`curl https://api.ragfly.ai/auth/me \\
-  -H "Authorization: Bearer slm_live_xxxxxxxxxx"
-
-# Respuesta esperada:
-{
-  "codigo_usuario": "bot-finanzas",
-  "rol_principal": "DOC-ADMIN",
-  "grupo_activo": "EMPRESA"
-}`}</Code>
-          </Step>
-
-          <Step n={2} title="Listar documentos vectorizados">
-            <Code>{`curl "https://api.ragfly.ai/documentos/paginado?estado=VECTORIZADO&limite=10" \\
-  -H "Authorization: Bearer slm_live_xxxxxxxxxx"`}</Code>
-          </Step>
-
-          <Step n={3} title="Búsqueda semántica">
-            <Code>{`curl -X POST https://api.ragfly.ai/documentos/buscar-semantico \\
-  -H "Authorization: Bearer slm_live_xxxxxxxxxx" \\
-  -H "Content-Type: application/json" \\
-  -d '{"q": "cláusulas de penalización", "limit": 5}'`}</Code>
-          </Step>
-
-          <Step n={4} title="Pregunta con RAG completo (stream)">
-            <Code>{`# 1. Crear conversación
-curl -X POST https://api.ragfly.ai/chat/conversaciones \\
-  -H "Authorization: Bearer slm_live_xxxxxxxxxx" \\
-  -H "Content-Type: application/json" \\
-  -d '{"codigo_funcion": "CHAT-USUARIO"}'
-# → {"id": 42, ...}
-
-# 2. Enviar mensaje (respuesta en SSE)
-curl -X POST https://api.ragfly.ai/chat/conversaciones/42/mensajes/stream \\
-  -H "Authorization: Bearer slm_live_xxxxxxxxxx" \\
-  -H "Content-Type: application/json" \\
-  -d '{"texto": "¿Cuáles son las cláusulas de penalización?"}'`}</Code>
-          </Step>
+          <Step n={1} title={t('restStep1Title')}><Code>{SNIPPET_REST_VERIFY}</Code></Step>
+          <Step n={2} title={t('restStep2Title')}><Code>{SNIPPET_REST_LIST}</Code></Step>
+          <Step n={3} title={t('restStep3Title')}><Code>{SNIPPET_REST_SEARCH}</Code></Step>
+          <Step n={4} title={t('restStep4Title')}><Code>{SNIPPET_REST_RAG}</Code></Step>
 
           <div className="border border-slm-light-gray rounded-xl overflow-hidden text-sm">
-            <div className="bg-slm-light px-4 py-3 font-medium text-slm-dark text-xs uppercase tracking-wide">Endpoints esenciales</div>
-            {[
-              ['GET', '/auth/me', 'Contexto del usuario autenticado'],
-              ['GET', '/documentos/paginado', 'Listar documentos con filtros'],
-              ['POST', '/documentos/buscar-semantico', 'Búsqueda semántica sin LLM'],
-              ['GET', '/espacios-trabajo/paginado', 'Listar Espacios de Trabajo'],
-              ['GET', '/habilidades', 'Catálogo de habilidades LLM'],
-              ['POST', '/habilidades/{codigo}/ejecutar', 'Ejecutar habilidad sobre espacio o doc'],
-              ['GET', '/cola-estados-docs/paginado', 'Estado del pipeline de ingesta'],
-              ['POST', '/chat/conversaciones/{id}/mensajes/stream', 'RAG con respuesta en stream'],
-            ].map(([m, r, d]) => (
-              <div key={r} className="flex items-start gap-3 px-4 py-2.5 border-t border-slm-light-gray">
-                <span className={`text-xs font-mono font-semibold shrink-0 w-10 ${m === 'POST' ? 'text-green-600' : 'text-slm-brand'}`}>{m}</span>
-                <code className="text-xs text-slm-dark shrink-0 w-64">{r}</code>
-                <span className="text-xs text-slm-gray font-helvetica-neue">{d}</span>
+            <div className="bg-slm-light px-4 py-3 font-medium text-slm-dark text-xs uppercase tracking-wide">{t('restEndpointsTitle')}</div>
+            {REST_ENDPOINTS.map(([method, route, key]) => (
+              <div key={route} className="flex items-start gap-3 px-4 py-2.5 border-t border-slm-light-gray">
+                <span className={`text-xs font-mono font-semibold shrink-0 w-10 ${method === 'POST' ? 'text-green-600' : 'text-slm-brand'}`}>{method}</span>
+                <code className="text-xs text-slm-dark shrink-0 w-64">{route}</code>
+                <span className="text-xs text-slm-gray font-helvetica-neue">{t(key as Parameters<typeof t>[0])}</span>
               </div>
             ))}
           </div>
         </SectionCard>
 
         {/* CLI */}
-        <SectionCard id="cli" emoji="⚡" title="Integración vía CLI">
-          <p className="text-slm-gray font-helvetica-neue mb-6 leading-relaxed">
-            Ideal para scripts, automatizaciones, pipelines CI/CD y operación desde terminal. Sin escribir HTTP directamente.
-          </p>
+        <SectionCard id="cli" emoji="⚡" title={t('cliTitle')}>
+          <p className="text-slm-gray font-helvetica-neue mb-6 leading-relaxed">{t('cliDesc')}</p>
 
-          <Step n={1} title="Instalar">
-            <Code>{`pip install ragfly
-ragfly version
-# RAGfly Desktop v2.x.x`}</Code>
-          </Step>
-
-          <Step n={2} title="Autenticar">
-            <Code>{`# Opción A — Login interactivo (JWT, 1 hora)
-ragfly login
-
-# Opción B — API Key (automatizaciones, sin caducidad)
-export RAGFLY_TOKEN=slm_live_xxxxxxxxxx
-
-# Verificar
-ragfly cloud me
-# Usuario: bot-finanzas · Rol: DOC-ADMIN · Grupo: EMPRESA`}</Code>
-          </Step>
-
-          <Step n={3} title="Primeros comandos">
-            <Code>{`# Listar documentos vectorizados
-ragfly cloud documento listar --estado VECTORIZADO --limite 20
-
-# Ver un documento en detalle
-ragfly cloud documento ver DOC-2024-001
-
-# Listar Espacios de Trabajo
-ragfly cloud espacio listar
-
-# Ejecutar una habilidad LLM y esperar resultado
-ragfly cloud habilidad ejecutar RESUMIR_DOCUMENTO --espacio 42 --esperar
-
-# Ver estado del pipeline
-ragfly cloud cola ver --estado EJECUTANDO`}</Code>
-          </Step>
+          <Step n={1} title={t('cliStep1Title')}><Code>{SNIPPET_CLI_INSTALL}</Code></Step>
+          <Step n={2} title={t('cliStep2Title')}><Code>{SNIPPET_CLI_AUTH}</Code></Step>
+          <Step n={3} title={t('cliStep3Title')}><Code>{SNIPPET_CLI_COMMANDS}</Code></Step>
 
           <div className="bg-slm-light rounded-xl p-4 text-sm">
-            <p className="font-medium text-slm-dark mb-3">Estructura del binario</p>
-            <Code>{`ragfly
-├── login / logout / version / config
-├── local       ← operaciones sobre el filesystem local
-└── cloud
-    ├── me
-    ├── documento   listar | ver
-    ├── espacio     listar | ver
-    ├── habilidad   listar | ver | ejecutar
-    ├── cola        ver | ejecuciones
-    ├── api-key     crear | listar | revocar
-    └── chat        enviar`}</Code>
+            <p className="font-medium text-slm-dark mb-3">{t('cliBinaryTitle')}</p>
+            <Code>{SNIPPET_CLI_BINARY}</Code>
           </div>
         </SectionCard>
 
-        {/* Siguiente paso */}
+        {/* CTA */}
         <div className="bg-gradient-to-br from-slm-brand-dark to-slm-brand rounded-2xl p-8 text-white text-center">
-          <h2 className="text-xl font-semibold mb-2">¿Listo para producción?</h2>
-          <p className="text-white/80 font-helvetica-neue text-sm mb-6">Empieza gratis — sin tarjeta, sin fricción.</p>
+          <h2 className="text-xl font-semibold mb-2">{t('ctaTitle')}</h2>
+          <p className="text-white/80 font-helvetica-neue text-sm mb-6">{t('ctaDesc')}</p>
           <div className="flex flex-wrap justify-center gap-3">
-            <a href="https://app.ragfly.ai" className="bg-white text-slm-dark px-6 py-2.5 rounded-full font-medium text-sm hover:opacity-90 transition-opacity">Empieza gratis</a>
+            <a href="https://app.ragfly.ai" className="bg-white text-slm-dark px-6 py-2.5 rounded-full font-medium text-sm hover:opacity-90 transition-opacity">{t('ctaBtn')}</a>
             <a href="https://api.ragfly.ai/docs" target="_blank" rel="noopener noreferrer" className="border border-white/40 text-white px-6 py-2.5 rounded-full font-medium text-sm hover:bg-white/10 transition-colors">Swagger API</a>
             <a href="/agents.json" className="border border-white/40 text-white px-6 py-2.5 rounded-full font-medium text-sm hover:bg-white/10 transition-colors">agents.json</a>
           </div>
@@ -302,7 +334,7 @@ ragfly cloud cola ver --estado EJECUTANDO`}</Code>
 
         {/* Footer mínimo */}
         <div className="mt-12 pt-8 border-t border-slm-light-gray flex justify-between items-center text-xs text-slm-gray font-helvetica-neue">
-          <Link href="/" className="hover:text-slm-dark transition-colors">← Volver al sitio</Link>
+          <Link href="/" className="hover:text-slm-dark transition-colors">{t('footerBack')}</Link>
           <span>© 2026 RAGfly</span>
         </div>
       </main>
