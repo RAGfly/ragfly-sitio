@@ -232,7 +232,8 @@
     "plan4F2": "Todo lo de Scale",
     "plan4F3": "Client LM / on-prem garantizado",
     "plan4F4": "Seguridad, compliance y DPA",
-    "plan4F5": "SLA y soporte dedicado"
+    "plan4F5": "SLA y soporte dedicado",
+    "nota": "Los tokens se resetean el primer día de cada mes y no se acumulan. Si los agotás, podés comprar paquetes adicionales."
   },
   "porQue": {
     "eyebrow": "Por qué RAGfly",

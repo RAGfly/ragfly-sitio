@@ -233,7 +233,7 @@
     "plan4F3": "Client LM / on-prem garanti",
     "plan4F4": "Sécurité, conformité et DPA",
     "plan4F5": "SLA et support dédié",
-    "nota": "Stockage au coût avec un multiplicateur borné qui couvre la gestion de l'infra — ce n'est pas un centre de profit. La marge vit dans la récupération (la valeur), pas dans le stockage. Enterprise est une seule porte inbound : le déploiement — managé à grande échelle ou on-prem/souverain — se définit lors de l'appel."
+    "nota": "Les tokens se réinitialisent le premier jour du mois et ne s'accumulent pas. En cas d'épuisement, vous pouvez acheter des packs supplémentaires."
   },
   "porQue": {
     "eyebrow": "Pourquoi RAGfly",

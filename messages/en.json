@@ -233,7 +233,7 @@
     "plan4F3": "Guaranteed Client LM / on-prem",
     "plan4F4": "Security, compliance and DPA",
     "plan4F5": "SLA and dedicated support",
-    "nota": "Storage at cost with a bounded multiplier that recovers infra administration — it's not a profit center. The margin lives in retrieval (the value), not in storage. Enterprise is a single inbound door: the deployment — large managed or on-prem/sovereign — is defined on the call."
+    "nota": "Tokens reset on the first day of each month and do not carry over. If you run out, you can purchase additional packs."
   },
   "porQue": {
     "eyebrow": "Why RAGfly",

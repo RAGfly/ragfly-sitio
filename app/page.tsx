@@ -685,6 +685,7 @@ function SurfacesSection() {
             <a href="/agents.json" className="bg-slm-brand-light text-slm-dark px-5 py-2.5 rounded-full font-medium text-sm hover:opacity-90 transition-opacity">agents.json</a>
             <a href="/llms-full.txt" className="border border-white/30 text-slm-light px-5 py-2.5 rounded-full font-medium text-sm hover:bg-white/10 transition-colors">Catálogo (Markdown)</a>
             <a href="https://api.ragfly.ai/docs" target="_blank" rel="noopener noreferrer" className="border border-white/30 text-slm-light px-5 py-2.5 rounded-full font-medium text-sm hover:bg-white/10 transition-colors">Swagger API</a>
+            <a href="/quickstart" className="border border-white/30 text-slm-light px-5 py-2.5 rounded-full font-medium text-sm hover:bg-white/10 transition-colors">Quickstart →</a>
           </div>
         </div>
       </div>
@@ -919,6 +920,7 @@ function Footer() {
             <a href="#seguridad" className="font-helvetica-neue text-sm hover:text-white">{t('footer.seguridadLink')}</a>
             <a href="#contacto" className="font-helvetica-neue text-sm hover:text-white">{t('footer.contacto')}</a>
             <a href="https://api.ragfly.ai/docs" target="_blank" rel="noopener noreferrer" className="font-helvetica-neue text-sm hover:text-white">Swagger API</a>
+            <a href="/quickstart" className="font-helvetica-neue text-sm hover:text-white">Quickstart</a>
             <a href="/llms.txt" className="font-helvetica-neue text-sm hover:text-white">llms.txt</a>
             <a href="/agents.json" className="font-helvetica-neue text-sm hover:text-white">agents.json</a>
           </div>
