@@ -684,6 +684,7 @@ function SurfacesSection() {
           <div className="flex flex-wrap gap-3">
             <a href="/agents.json" className="bg-slm-brand-light text-slm-dark px-5 py-2.5 rounded-full font-medium text-sm hover:opacity-90 transition-opacity">agents.json</a>
             <a href="/llms-full.txt" className="border border-white/30 text-slm-light px-5 py-2.5 rounded-full font-medium text-sm hover:bg-white/10 transition-colors">Catálogo (Markdown)</a>
+            <a href="https://api.ragfly.ai/docs" target="_blank" rel="noopener noreferrer" className="border border-white/30 text-slm-light px-5 py-2.5 rounded-full font-medium text-sm hover:bg-white/10 transition-colors">Swagger API</a>
           </div>
         </div>
       </div>
@@ -917,6 +918,9 @@ function Footer() {
             <span className="text-xs uppercase tracking-[0.18em] text-white/60">{t('footer.empresa' as Parameters<typeof t>[0])}</span>
             <a href="#seguridad" className="font-helvetica-neue text-sm hover:text-white">{t('footer.seguridadLink')}</a>
             <a href="#contacto" className="font-helvetica-neue text-sm hover:text-white">{t('footer.contacto')}</a>
+            <a href="https://api.ragfly.ai/docs" target="_blank" rel="noopener noreferrer" className="font-helvetica-neue text-sm hover:text-white">Swagger API</a>
+            <a href="/llms.txt" className="font-helvetica-neue text-sm hover:text-white">llms.txt</a>
+            <a href="/agents.json" className="font-helvetica-neue text-sm hover:text-white">agents.json</a>
           </div>
           <div className="flex flex-col gap-3">
             <span className="text-xs uppercase tracking-[0.18em] text-white/60">{t('footer.legal')}</span>
