@@ -139,9 +139,9 @@
   },
   "superficies": {
     "eyebrow": "How to use it",
-    "titulo1": "MCP, REST or CLI.",
+    "titulo1": "MCP, REST, CLI or SDK.",
     "tituloAccent": "Use it from wherever you work.",
-    "descripcion": "All three surfaces, on every plan. The message is one of neutrality; the path we show first is MCP.",
+    "descripcion": "Four surfaces, on every plan. The message is one of neutrality; the path we show first is MCP.",
     "mcpTitulo": "MCP",
     "mcpDesc": "Connect RAGfly as an MCP server and your agent converses with the documents without you building any UI. It's where we open the door.",
     "restTitulo": "REST",
@@ -149,7 +149,9 @@
     "cliTitulo": "CLI",
     "cliDesc": "DX, operations and bulk ingestion. Day-to-day convenience.",
     "snippetTitulo": "MCP connection",
-    "snippetSub": "Minutes, not months."
+    "snippetSub": "Minutes, not months.",
+    "sdkTitulo": "SDK",
+    "sdkDesc": "Integrate RAGfly directly into your code. Python and TypeScript. No MCP infrastructure required."
   },
   "construido": {
     "eyebrow": "How it's built",
@@ -257,6 +259,15 @@
     "subtitulo": "Start free and connect your first directory via MCP in minutes.",
     "ctaPrimario": "Start free",
     "ctaSecundario": "See the live demo"
+  },
+  "waitlist": {
+    "prompt": "Not ready to sign up? Join the early-access list and we'll let you know.",
+    "placeholder": "you@company.com",
+    "button": "Notify me",
+    "sending": "Sending…",
+    "success": "You're on the list. We'll be in touch soon.",
+    "error": "Something went wrong. Please try again.",
+    "invalid": "Please enter a valid email."
   },
   "footer": {
     "tagline": "Multi-tenant RAG infrastructure for your AI agents. We don't store your document; if you need it, we handle it without it leaving your network.",

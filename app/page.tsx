@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl'
 import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
 import { SelectorIdioma } from '../components/SelectorIdioma'
+import { WaitlistForm } from '../components/WaitlistForm'
 import planesMeta from '../content/planes-meta.json'
 import agentes from '../content/agentes-data.json'
 
@@ -633,7 +634,7 @@ function ModesSection() {
 }
 
 /* ------------------------------------------------------------------ */
-/* SurfacesSection — "MCP, REST o CLI" + snippet                        */
+/* SurfacesSection — "MCP, REST, CLI o SDK" + snippet                   */
 /* ------------------------------------------------------------------ */
 function SurfacesSection() {
   const t = useTranslations()
@@ -641,6 +642,7 @@ function SurfacesSection() {
     { h: t('superficies.mcpTitulo'), d: t('superficies.mcpDesc'), feat: true },
     { h: t('superficies.restTitulo'), d: t('superficies.restDesc'), feat: false },
     { h: t('superficies.cliTitulo'), d: t('superficies.cliDesc'), feat: false },
+    { h: t('superficies.sdkTitulo'), d: t('superficies.sdkDesc'), feat: false },
   ]
   const snippet = `{
   "mcpServers": {
@@ -661,7 +663,7 @@ function SurfacesSection() {
           </BlurIn>
           <p className="text-base md:text-lg text-slm-gray font-helvetica-neue max-w-[560px] leading-relaxed">{t('superficies.descripcion')}</p>
         </div>
-        <div className="grid md:grid-cols-3 gap-4">
+        <div className="grid md:grid-cols-4 gap-4">
           {surfaces.map((s) => (
             <div
               key={s.h}
@@ -884,6 +886,9 @@ function FinalCTASection() {
             <a href="#pruebalo" className="border border-white/40 text-white px-7 py-3.5 rounded-full font-medium text-base hover:bg-white/10 transition-colors">
               {t('cta.ctaSecundario')}
             </a>
+          </div>
+          <div className="w-full pt-6 mt-2 border-t border-white/20">
+            <WaitlistForm variant="onDark" />
           </div>
         </div>
       </div>

@@ -139,9 +139,9 @@
   },
   "superficies": {
     "eyebrow": "Comment l'utiliser",
-    "titulo1": "MCP, REST ou CLI.",
+    "titulo1": "MCP, REST, CLI ou SDK.",
     "tituloAccent": "Utilisez-le là où vous travaillez.",
-    "descripcion": "Les trois surfaces, dans tous les forfaits. Le message est de neutralité ; le chemin que nous montrons en premier est MCP.",
+    "descripcion": "Quatre surfaces, dans tous les forfaits. Le message est de neutralité ; le chemin que nous montrons en premier est MCP.",
     "mcpTitulo": "MCP",
     "mcpDesc": "Connectez RAGfly comme serveur MCP et votre agent converse avec les documents sans que vous construisiez la moindre UI. C'est par là que nous ouvrons.",
     "restTitulo": "REST",
@@ -149,7 +149,9 @@
     "cliTitulo": "CLI",
     "cliDesc": "DX, opération et ingestion massive. La commodité au quotidien.",
     "snippetTitulo": "Connexion MCP",
-    "snippetSub": "Des minutes, pas des mois."
+    "snippetSub": "Des minutes, pas des mois.",
+    "sdkTitulo": "SDK",
+    "sdkDesc": "Intégrez RAGfly directement dans votre code. Python et TypeScript. Sans infrastructure MCP nécessaire."
   },
   "construido": {
     "eyebrow": "Comment c'est construit",
@@ -257,6 +259,15 @@
     "subtitulo": "Commencez gratuitement et connectez votre premier répertoire via MCP en quelques minutes.",
     "ctaPrimario": "Commencer gratuitement",
     "ctaSecundario": "Voir la démo en direct"
+  },
+  "waitlist": {
+    "prompt": "Pas encore prêt à vous inscrire ? Rejoignez la liste d'accès anticipé et nous vous préviendrons.",
+    "placeholder": "vous@entreprise.com",
+    "button": "Prévenez-moi",
+    "sending": "Envoi…",
+    "success": "Vous êtes sur la liste. Nous vous contacterons bientôt.",
+    "error": "Une erreur s'est produite. Réessayez.",
+    "invalid": "Saisissez une adresse e-mail valide."
   },
   "footer": {
     "tagline": "Infrastructure RAG multi-tenant pour vos agents d'IA. Nous ne stockons pas votre document ; si vous en avez besoin, nous le traitons sans qu'il quitte votre réseau.",
