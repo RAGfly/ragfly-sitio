@@ -15,8 +15,9 @@
   },
   "hero": {
     "eyebrow": "RAG infrastructure for agents",
-    "headlineLead": "The hard RAG, solved",
-    "headlineAccent": "— for your agents.",
+    "headlineLead": "Augmented retrieval",
+    "headlineAccent": "for your agents.",
+    "slogan": "Simple, private, and precise. And every one of your clients, in their own space.",
     "tagline": "Any agent conversing with thousands of private documents: at scale, isolated per client, without us storing your documents. Connect a directory and your agent answers with citations — without building or maintaining a RAG pipeline.",
     "ctaPrimario": "Start free",
     "ctaSecundario": "See the live demo"
@@ -239,8 +240,8 @@
   },
   "porQue": {
     "eyebrow": "Why RAGfly",
-    "titulo": "The hard RAG, solved.",
-    "item0Titulo": "The hard RAG, solved",
+    "titulo": "Augmented retrieval for your agents.",
+    "item0Titulo": "RAG infrastructure, solved",
     "item0Desc": "Ingestion, scale, multi-tenancy and security come solved. You build the agent logic, not the infrastructure.",
     "item1Titulo": "Multi-tenant for those who serve many",
     "item1Desc": "Isolated clients from a single panel — what cloud-first vendors don't offer.",

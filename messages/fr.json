@@ -15,8 +15,9 @@
   },
   "hero": {
     "eyebrow": "Infrastructure RAG pour agents",
-    "headlineLead": "Le RAG difficile, résolu",
-    "headlineAccent": "— pour vos agents.",
+    "headlineLead": "Récupération augmentée",
+    "headlineAccent": "pour vos agents.",
+    "slogan": "Simple, privé et précis. Et chacun de vos clients, dans son propre espace.",
     "tagline": "N'importe quel agent conversant avec des milliers de documents privés : à l'échelle, isolés par client, sans que nous stockions vos documents. Vous connectez un répertoire et votre agent répond avec des citations — sans construire ni maintenir un pipeline RAG.",
     "ctaPrimario": "Commencer gratuitement",
     "ctaSecundario": "Voir la démo en direct"
@@ -239,8 +240,8 @@
   },
   "porQue": {
     "eyebrow": "Pourquoi RAGfly",
-    "titulo": "Le RAG difficile, résolu.",
-    "item0Titulo": "Le RAG difficile, résolu",
+    "titulo": "Récupération augmentée pour vos agents.",
+    "item0Titulo": "L'infrastructure RAG, résolue",
     "item0Desc": "Ingestion, mise à l'échelle, multi-tenancy et sécurité arrivent résolus. Vous construisez la logique de l'agent, pas l'infrastructure.",
     "item1Titulo": "Multi-tenant pour qui sert beaucoup de clients",
     "item1Desc": "Des clients isolés depuis un seul panneau — ce que les cloud-first n'offrent pas.",
