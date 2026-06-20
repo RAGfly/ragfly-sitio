@@ -103,11 +103,11 @@ const jsonLd = {
       "@id": "https://ragfly.ai/#planes",
       name: "Planes de RAGfly",
       itemListElement: [
-        { "@type": "Offer", name: "Free", price: "0", priceCurrency: "USD", description: "Para probar — ~1.000 páginas procesadas, 1 entidad." },
-        { "@type": "Offer", name: "Starter", price: "19", priceCurrency: "USD", description: "Para un dev en solitario — ~4.000 páginas, 1 entidad." },
-        { "@type": "Offer", name: "Team", price: "95", priceCurrency: "USD", description: "Multi-tenant para consultoras — ~10.000 páginas, hasta 3 entidades aisladas." },
-        { "@type": "Offer", name: "Scale", price: "490", priceCurrency: "USD", description: "Producción a escala — ~60.000 páginas, hasta 15 entidades, Client LM/on-prem y BYO." },
-        { "@type": "Offer", name: "Enterprise", description: "Regulado, soberano o gran volumen — inbound; despliegue managed u on-prem/soberano." },
+        { "@type": "Offer", name: "Free", price: "0", priceCurrency: "USD", url: "https://ragfly.ai/#planes", description: "Para probar — ~1.000 páginas procesadas, 1 entidad." },
+        { "@type": "Offer", name: "Starter", price: "19", priceCurrency: "USD", url: "https://ragfly.ai/#planes", description: "Para un dev en solitario — ~4.000 páginas, 1 entidad." },
+        { "@type": "Offer", name: "Team", price: "95", priceCurrency: "USD", url: "https://ragfly.ai/#planes", description: "Multi-tenant para consultoras — ~10.000 páginas, hasta 3 entidades aisladas." },
+        { "@type": "Offer", name: "Scale", price: "490", priceCurrency: "USD", url: "https://ragfly.ai/#planes", description: "Producción a escala — ~60.000 páginas, hasta 15 entidades, Client LM/on-prem y BYO." },
+        { "@type": "Offer", name: "Enterprise", url: "https://ragfly.ai/#planes", description: "Regulado, soberano o gran volumen — inbound; despliegue managed u on-prem/soberano." },
       ],
     },
     {
@@ -159,7 +159,55 @@ const jsonLd = {
           name: "¿Mis documentos salen a la nube?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "No. La indexación y vectorización se realizan «en el aire» y los datos quedan encriptados. Con RAGfly Desktop la indexación no sale de la red interna del cliente.",
+            text: "No almacenamos tu documento: la indexación y vectorización se realizan «en el aire» y los datos quedan encriptados. Con RAGfly Desktop la indexación tampoco sale de la red interna del cliente.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "¿Cómo se aíslan los datos de un cliente respecto de otro?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Multi-tenant de fábrica: cada cliente vive en un corpus aislado desde la base de datos, con una estructura de Grupos → Entidades → Áreas. Una consultora o integrador puede servir a decenas de clientes desde una sola plataforma sin que un dato cruce de uno a otro.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "¿Puedo usar mi propia base vectorial y mi propio modelo?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Sí. RAGfly es DB-agnóstico: en los planes avanzados traes tu propia base vectorial (BYO) y eliges tus propios modelos de embeddings y LLM, sin quedar atado a un proveedor.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "¿Con qué modelos de IA funciona — Claude, GPT, Gemini?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "RAGfly es agnóstico de modelo. Entrega la recuperación con citas y permisos; tu agente corre sobre el LLM que prefieras —Claude, GPT, Gemini u otro— y consume RAGfly vía MCP, REST o CLI.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "¿Qué formatos soporta? ¿Funciona con PDFs escaneados (OCR)?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "PDF, Word, Excel y texto plano, incluidos documentos escaneados gracias a OCR de primer nivel y comprensión de tablas y layout. El foco es texto y documentos complejos, no audio ni video.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "¿Puedo desplegarlo on-premise para datos regulados (legal, salud, gobierno)?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Sí. Con RAGfly Desktop / Client LM la indexación y vectorización ocurren dentro de la red del cliente, sin que el documento salga. Es lo que habilita clientes regulados de legal, salud, gobierno y finanzas.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "¿En cuánto tiempo paso de un directorio a un agente respondiendo con citas?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Apuntas RAGfly a un directorio y, con ingesta, vectorización e indexado automáticos, puedes tener un agente respondiendo con citas en menos de 30 minutos — sin construir ni mantener un pipeline RAG a escala.",
           },
         },
       ],
