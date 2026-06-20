@@ -2,7 +2,28 @@
   "metadata": {
     "title": "RAGfly — Multi-tenant RAG framework for AI agents",
     "description": "Retrieval-augmented generation (RAG) infrastructure at scale so any AI agent can converse with thousands of private documents — multi-tenant, isolated per client, without storing your documents. Connect a directory via MCP, REST, CLI or SDK.",
-    "keywords": ["RAG framework", "RAG infrastructure", "managed RAG", "RAG as a service", "multi-tenant RAG", "context engine for AI agents", "retrieval augmented generation", "RAG for AI agents", "RAG with MCP", "RAG REST API", "private on-premise RAG", "RAG for regulated data", "per-client data isolation", "RBAC for AI agents", "OCR for scanned documents", "bring your own vector database", "RAG for consultancies and integrators", "Ragie alternative", "LlamaParse alternative", "Vectara alternative"]
+    "keywords": [
+      "RAG framework",
+      "RAG infrastructure",
+      "managed RAG",
+      "RAG as a service",
+      "multi-tenant RAG",
+      "context engine for AI agents",
+      "retrieval augmented generation",
+      "RAG for AI agents",
+      "RAG with MCP",
+      "RAG REST API",
+      "private on-premise RAG",
+      "RAG for regulated data",
+      "per-client data isolation",
+      "RBAC for AI agents",
+      "OCR for scanned documents",
+      "bring your own vector database",
+      "RAG for consultancies and integrators",
+      "Ragie alternative",
+      "LlamaParse alternative",
+      "Vectara alternative"
+    ]
   },
   "nav": {
     "producto": "What it is",
@@ -349,5 +370,80 @@
     "sdkStep3Title": "Semantic search without LLM",
     "sdkStep4Title": "Context manager (auto close)",
     "sdkMethodsTitle": "Available methods"
+  },
+  "build": {
+    "eyebrow": "Build on RAGfly",
+    "metaTitle": "Build on RAGfly — Integration kit",
+    "metaDesc": "Connect your agent or app to RAGfly: five interfaces (Python SDK, MCP, CLI, REST, Web), one auth contract, RBAC by design. Docs for Claude, Codex, developers and consultancies.",
+    "heroTitle": "Give your agent the <grad>exact document context it needs.</grad>",
+    "heroDesc": "RAGfly exposes your group's document corpus to any external system — agents, code, automations. Five interfaces, one auth contract, multi-tenant RBAC by design. Pick a path below or grab the raw docs.",
+    "ctaQuickstart": "Quickstart →",
+    "ctaSwagger": "Interactive API (Swagger)",
+    "ctaAgents": "agents.json",
+    "navApp": "Go to app →",
+    "apiKeyTitle": "Before you start — get your API Key",
+    "apiKeyDesc": "The group admin creates a key at <link>app.ragfly.ai/api-keys</link> (or via <code>POST /auth/api-key</code>). Shown only once — store it in a secrets manager.",
+    "startHere": "Start here",
+    "webTitle": "Web",
+    "webDesc": "End users operate at app.ragfly.ai directly — no integration needed.",
+    "rawTitle": "Raw files for agents",
+    "rawDesc": "Every doc is also served as plain Markdown so an agent can fetch it directly. Point your agent at:",
+    "backToSite": "← Back to site",
+    "allDocs": "← All docs",
+    "otherDocs": "Other docs",
+    "viewRaw": "View raw {archivo} →",
+    "docMetaSuffix": "Build on RAGfly",
+    "groups": {
+      "interfaces": {
+        "titulo": "The five interfaces",
+        "desc": "Pick the one that fits your stack — all share the same auth contract and the same RBAC."
+      },
+      "guias": {
+        "titulo": "Guides & reference",
+        "desc": "How to start, how each runtime behaves, and how to report your evaluation."
+      }
+    },
+    "cards": {
+      "sdk": {
+        "titulo": "Python SDK",
+        "desc": "pip install ragfly. Fastest path from Python: client.ask(\"…\")."
+      },
+      "mcp": {
+        "titulo": "MCP",
+        "desc": "LLM agents (Claude Code, Cursor, Cline, Codex). The agent discovers the tools itself."
+      },
+      "cli": {
+        "titulo": "CLI",
+        "desc": "Scripts, automations, CI/CD pipelines and terminal diagnostics."
+      },
+      "rest": {
+        "titulo": "REST + SSE",
+        "desc": "Any language or platform: n8n, Make, Zapier, custom apps."
+      },
+      "quickstart": {
+        "titulo": "Quickstart",
+        "desc": "From zero to first semantic query: sign up → API Key → MCP → result."
+      },
+      "integration": {
+        "titulo": "Integration guide",
+        "desc": "Credentials, roles, identity types and the contract common to every interface."
+      },
+      "runtime-hints": {
+        "titulo": "Runtime hints",
+        "desc": "Which tool to use per runtime: short-context agents, reasoners, IDEs, REST."
+      },
+      "agents-md": {
+        "titulo": "AGENTS.md",
+        "desc": "Drop it in the root of your agent workspace (Codex/Claude)."
+      },
+      "evaluation-template": {
+        "titulo": "Evaluation template",
+        "desc": "Report findings from your test with a standard format."
+      },
+      "readme": {
+        "titulo": "Integration kit",
+        "desc": "Kit index."
+      }
+    }
   }
 }

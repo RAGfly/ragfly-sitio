@@ -2,11 +2,15 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import { getTranslations } from 'next-intl/server'
 import docsData from '../../../content/integradores-docs.json'
 
 /* ------------------------------------------------------------------ */
 /* /build/[doc] — renders one integration doc synced from the product  */
 /* repo. HTML is pre-rendered at build time by build-integradores.mjs. */
+/* Chrome (title, nav, footer) is multilingual via next-intl (ns       */
+/* `build`); the doc title/desc come from i18n keyed by slug. Only the  */
+/* doc BODY (d.html) stays in English — shared kit fetched by agents.   */
 /* Visual language aligned with the landing + /legal: brand v2.0       */
 /* tokens, helvetica-neue heading, sober document body via .doc-prose. */
 /* ------------------------------------------------------------------ */
@@ -34,9 +38,10 @@ export async function generateMetadata({ params }: { params: Promise<{ doc: stri
   const { doc } = await params
   const d = docs[doc]
   if (!d) return {}
+  const t = await getTranslations('build')
   return {
-    title: `${d.titulo} — Build on RAGfly`,
-    description: d.desc,
+    title: `${t(`cards.${d.slug}.titulo`)} — ${t('docMetaSuffix')}`,
+    description: t(`cards.${d.slug}.desc`),
     alternates: { canonical: `/build/${d.slug}` },
   }
 }
@@ -45,6 +50,7 @@ export default async function DocPage({ params }: { params: Promise<{ doc: strin
   const { doc } = await params
   const d = docs[doc]
   if (!d) notFound()
+  const t = await getTranslations('build')
 
   return (
     <div className="min-h-screen bg-white">
@@ -65,7 +71,7 @@ export default async function DocPage({ params }: { params: Promise<{ doc: strin
       </header>
 
       <main className="mx-auto max-w-[820px] px-6 py-12 md:px-8">
-        <Link href="/build" className="text-sm text-slm-brand-dark transition-colors hover:text-slm-brand">← All docs</Link>
+        <Link href="/build" className="text-sm text-slm-brand-dark transition-colors hover:text-slm-brand">{t('allDocs')}</Link>
 
         {/* Encabezado del documento — barra de acento + título helvetica-neue */}
         <div className="mb-8 mt-5">
@@ -73,31 +79,31 @@ export default async function DocPage({ params }: { params: Promise<{ doc: strin
           <div className="flex items-center gap-3">
             <span className="text-3xl">{d.icono}</span>
             <div>
-              <h1 className="font-helvetica-neue text-3xl font-medium leading-tight tracking-[-0.02em] text-slm-dark">{d.titulo}</h1>
-              <p className="font-helvetica-neue text-sm text-slm-gray">{d.desc}</p>
+              <h1 className="font-helvetica-neue text-3xl font-medium leading-tight tracking-[-0.02em] text-slm-dark">{t(`cards.${d.slug}.titulo`)}</h1>
+              <p className="font-helvetica-neue text-sm text-slm-gray">{t(`cards.${d.slug}.desc`)}</p>
             </div>
           </div>
         </div>
 
-        {/* Rendered Markdown */}
+        {/* Rendered Markdown — doc body stays in English (shared kit) */}
         <article className="doc-prose" dangerouslySetInnerHTML={{ __html: d.html }} />
 
         {/* Other docs */}
         <div className="mt-16 border-t border-slm-dark/8 pt-8">
-          <p className="mb-4 text-xs font-medium uppercase tracking-[0.18em] text-slm-brand">Other docs</p>
+          <p className="mb-4 text-xs font-medium uppercase tracking-[0.18em] text-slm-brand">{t('otherDocs')}</p>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
             {order.filter((o) => o.slug !== d.slug).map((o) => (
               <Link key={o.slug} href={`/build/${o.slug}`} className="flex items-center gap-2 rounded-xl border border-slm-dark/8 px-3 py-2.5 text-sm transition-colors hover:border-slm-brand/40">
                 <span>{o.icono}</span>
-                <span className="truncate text-slm-dark">{o.titulo}</span>
+                <span className="truncate text-slm-dark">{t(`cards.${o.slug}.titulo`)}</span>
               </Link>
             ))}
           </div>
         </div>
 
         <div className="mt-12 flex items-center justify-between border-t border-slm-dark/8 pt-8 font-helvetica-neue text-xs text-slm-gray">
-          <Link href="/" className="transition-colors hover:text-slm-dark">← Back to site</Link>
-          <a href={d.rawUrl} className="transition-colors hover:text-slm-dark">View raw {d.archivo} →</a>
+          <Link href="/" className="transition-colors hover:text-slm-dark">{t('backToSite')}</Link>
+          <a href={d.rawUrl} className="transition-colors hover:text-slm-dark">{t('viewRaw', { archivo: d.archivo })}</a>
         </div>
       </main>
     </div>

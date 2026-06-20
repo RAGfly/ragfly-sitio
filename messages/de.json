@@ -2,7 +2,28 @@
   "metadata": {
     "title": "RAGfly — Multi-tenant RAG-Framework für KI-Agenten",
     "description": "RAG-Infrastruktur (Retrieval-Augmented Generation) im großen Maßstab, damit jeder KI-Agent mit Tausenden privaten Dokumenten sprechen kann — multi-tenant, pro Kunde isoliert, ohne deine Dokumente zu speichern. Verbinde ein Verzeichnis per MCP, REST, CLI oder SDK.",
-    "keywords": ["RAG Framework", "RAG-Infrastruktur", "Managed RAG", "RAG as a Service", "Multi-Tenant RAG", "Context Engine für KI-Agenten", "Retrieval-Augmented Generation", "RAG für KI-Agenten", "RAG mit MCP", "RAG REST API", "privates On-Premise-RAG", "RAG für regulierte Daten", "Datenisolierung pro Kunde", "RBAC für KI-Agenten", "OCR für gescannte Dokumente", "eigene Vektordatenbank verwenden", "RAG für Beratungen und Integratoren", "Ragie Alternative", "LlamaParse Alternative", "Vectara Alternative"]
+    "keywords": [
+      "RAG Framework",
+      "RAG-Infrastruktur",
+      "Managed RAG",
+      "RAG as a Service",
+      "Multi-Tenant RAG",
+      "Context Engine für KI-Agenten",
+      "Retrieval-Augmented Generation",
+      "RAG für KI-Agenten",
+      "RAG mit MCP",
+      "RAG REST API",
+      "privates On-Premise-RAG",
+      "RAG für regulierte Daten",
+      "Datenisolierung pro Kunde",
+      "RBAC für KI-Agenten",
+      "OCR für gescannte Dokumente",
+      "eigene Vektordatenbank verwenden",
+      "RAG für Beratungen und Integratoren",
+      "Ragie Alternative",
+      "LlamaParse Alternative",
+      "Vectara Alternative"
+    ]
   },
   "nav": {
     "producto": "Was es ist",
@@ -349,5 +370,80 @@
     "sdkStep3Title": "Semantische Suche ohne LLM",
     "sdkStep4Title": "Context Manager (automatisches Schließen)",
     "sdkMethodsTitle": "Verfügbare Methoden"
+  },
+  "build": {
+    "eyebrow": "Auf RAGfly aufbauen",
+    "metaTitle": "Auf RAGfly aufbauen — Integrations-Kit",
+    "metaDesc": "Verbinde deinen Agenten oder deine App mit RAGfly: fünf Schnittstellen (Python SDK, MCP, CLI, REST, Web), ein Authentifizierungsvertrag, RBAC by Design. Dokumentation für Claude, Codex, Entwickler und Beratungen.",
+    "heroTitle": "Gib deinem Agenten den <grad>exakten Dokumentenkontext, den er braucht.</grad>",
+    "heroDesc": "RAGfly stellt den Dokumentenbestand deiner Gruppe jedem externen System bereit — Agenten, Code, Automatisierungen. Fünf Schnittstellen, ein Authentifizierungsvertrag, mandantenfähiges RBAC by Design. Wähle unten einen Weg oder hol dir die rohen Docs.",
+    "ctaQuickstart": "Quickstart →",
+    "ctaSwagger": "Interaktive API (Swagger)",
+    "ctaAgents": "agents.json",
+    "navApp": "Zur App →",
+    "apiKeyTitle": "Bevor du startest — hol dir deinen API Key",
+    "apiKeyDesc": "Der Gruppen-Admin erstellt einen Key unter <link>app.ragfly.ai/api-keys</link> (oder via <code>POST /auth/api-key</code>). Wird nur einmal angezeigt — speichere ihn in einem Secrets-Manager.",
+    "startHere": "Hier starten",
+    "webTitle": "Web",
+    "webDesc": "Endnutzer arbeiten direkt auf app.ragfly.ai — keine Integration nötig.",
+    "rawTitle": "Rohe Dateien für Agenten",
+    "rawDesc": "Jedes Doc wird auch als reines Markdown bereitgestellt, damit ein Agent es direkt abrufen kann. Richte deinen Agenten auf:",
+    "backToSite": "← Zurück zur Seite",
+    "allDocs": "← Alle Docs",
+    "otherDocs": "Weitere Docs",
+    "viewRaw": "{archivo} roh ansehen →",
+    "docMetaSuffix": "Auf RAGfly aufbauen",
+    "groups": {
+      "interfaces": {
+        "titulo": "Die fünf Schnittstellen",
+        "desc": "Wähle die, die zu deinem Stack passt — alle teilen denselben Authentifizierungsvertrag und dasselbe RBAC."
+      },
+      "guias": {
+        "titulo": "Anleitungen & Referenz",
+        "desc": "Wie man startet, wie sich jede Runtime verhält und wie man seine Evaluierung berichtet."
+      }
+    },
+    "cards": {
+      "sdk": {
+        "titulo": "Python SDK",
+        "desc": "pip install ragfly. Schnellster Weg aus Python: client.ask(\"…\")."
+      },
+      "mcp": {
+        "titulo": "MCP",
+        "desc": "LLM-Agenten (Claude Code, Cursor, Cline, Codex). Der Agent entdeckt die Tools selbst."
+      },
+      "cli": {
+        "titulo": "CLI",
+        "desc": "Skripte, Automatisierungen, CI/CD-Pipelines und Terminal-Diagnose."
+      },
+      "rest": {
+        "titulo": "REST + SSE",
+        "desc": "Jede Sprache oder Plattform: n8n, Make, Zapier, eigene Apps."
+      },
+      "quickstart": {
+        "titulo": "Quickstart",
+        "desc": "Von null zur ersten semantischen Abfrage: Registrierung → API Key → MCP → Ergebnis."
+      },
+      "integration": {
+        "titulo": "Integrationsleitfaden",
+        "desc": "Anmeldedaten, Rollen, Identitätstypen und der für jede Schnittstelle gemeinsame Vertrag."
+      },
+      "runtime-hints": {
+        "titulo": "Runtime hints",
+        "desc": "Welches Tool je Runtime: Agenten mit kurzem Kontext, Reasoner, IDEs, REST."
+      },
+      "agents-md": {
+        "titulo": "AGENTS.md",
+        "desc": "Lege es in den Root deines Agenten-Workspace (Codex/Claude)."
+      },
+      "evaluation-template": {
+        "titulo": "Evaluierungsvorlage",
+        "desc": "Berichte die Ergebnisse deines Tests in einem Standardformat."
+      },
+      "readme": {
+        "titulo": "Integrations-Kit",
+        "desc": "Kit-Index."
+      }
+    }
   }
 }

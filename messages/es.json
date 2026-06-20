@@ -370,5 +370,44 @@
     "ctaBtn": "Empieza gratis",
     "navApp": "Ir a la app →",
     "footerBack": "← Volver al sitio"
+  },
+  "build": {
+    "eyebrow": "Construye sobre RAGfly",
+    "metaTitle": "Construye sobre RAGfly — Kit de integración",
+    "metaDesc": "Conecta tu agente o aplicación a RAGfly: cinco interfaces (SDK Python, MCP, CLI, REST, Web), un mismo contrato de autenticación, RBAC por diseño. Documentación para Claude, Codex, desarrolladores y consultoras.",
+    "heroTitle": "Dale a tu agente el <grad>contexto documental exacto que necesita.</grad>",
+    "heroDesc": "RAGfly expone el corpus documental de tu grupo a cualquier sistema externo — agentes, código, automatizaciones. Cinco interfaces, un contrato de autenticación, RBAC multi-tenant por diseño. Elige un camino abajo o toma los docs crudos.",
+    "ctaQuickstart": "Quickstart →",
+    "ctaSwagger": "API interactiva (Swagger)",
+    "ctaAgents": "agents.json",
+    "navApp": "Ir a la app →",
+    "apiKeyTitle": "Antes de empezar — obtén tu API Key",
+    "apiKeyDesc": "El admin del grupo crea una key en <link>app.ragfly.ai/api-keys</link> (o vía <code>POST /auth/api-key</code>). Se muestra una sola vez — guárdala en un gestor de secretos.",
+    "startHere": "Empieza aquí",
+    "webTitle": "Web",
+    "webDesc": "Los usuarios finales operan directamente en app.ragfly.ai — sin integración.",
+    "rawTitle": "Archivos crudos para agentes",
+    "rawDesc": "Cada doc se sirve también como Markdown plano para que un agente lo fetchee directo. Apunta tu agente a:",
+    "backToSite": "← Volver al sitio",
+    "allDocs": "← Todos los docs",
+    "otherDocs": "Otros docs",
+    "viewRaw": "Ver {archivo} crudo →",
+    "docMetaSuffix": "Construye sobre RAGfly",
+    "groups": {
+      "interfaces": { "titulo": "Las cinco interfaces", "desc": "Elige la que encaje con tu stack — todas comparten el mismo contrato de autenticación y el mismo RBAC." },
+      "guias": { "titulo": "Guías y referencia", "desc": "Cómo empezar, cómo se comporta cada runtime y cómo reportar tu evaluación." }
+    },
+    "cards": {
+      "sdk": { "titulo": "Python SDK", "desc": "pip install ragfly. El camino más rápido desde Python: client.ask(\"…\")." },
+      "mcp": { "titulo": "MCP", "desc": "Agentes LLM (Claude Code, Cursor, Cline, Codex). El agente descubre los tools por sí mismo." },
+      "cli": { "titulo": "CLI", "desc": "Scripts, automatizaciones, pipelines CI/CD y diagnóstico desde terminal." },
+      "rest": { "titulo": "REST + SSE", "desc": "Cualquier lenguaje o plataforma: n8n, Make, Zapier, apps propias." },
+      "quickstart": { "titulo": "Quickstart", "desc": "De cero a la primera consulta semántica: registro → API Key → MCP → resultado." },
+      "integration": { "titulo": "Guía de integración", "desc": "Credenciales, roles, tipos de identidad y el contrato común a toda interfaz." },
+      "runtime-hints": { "titulo": "Runtime hints", "desc": "Qué tool usar según el runtime: agentes de contexto corto, razonadores, IDEs, REST." },
+      "agents-md": { "titulo": "AGENTS.md", "desc": "Déjalo en la raíz del workspace de tu agente (Codex/Claude)." },
+      "evaluation-template": { "titulo": "Plantilla de evaluación", "desc": "Reporta los hallazgos de tu prueba con un formato estándar." },
+      "readme": { "titulo": "Kit de integración", "desc": "Índice del kit." }
+    }
   }
 }
