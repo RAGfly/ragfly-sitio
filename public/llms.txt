@@ -30,6 +30,8 @@ RAGfly es la capa de contexto documental para agentes: apuntas a un directorio d
 - [Aplicación](https://app.ragfly.ai): iniciar sesión y operar.
 - [Sitio](https://ragfly.ai): producto, capacidades, planes y seguridad.
 - [Build on RAGfly](https://ragfly.ai/build): hub de integración (las 5 interfaces + guías), sincronizado con el kit del producto.
+- [Términos de Servicio](https://ragfly.ai/legal/terms): condiciones de uso del servicio.
+- [Política de Privacidad](https://ragfly.ai/legal/privacy): tratamiento de datos, roles del responsable y derechos del titular.
 
 ## Kit de integración (Markdown crudo, fetcheable)
 

@@ -28,4 +28,6 @@
   <url><loc>https://ragfly.ai/build/runtime-hints</loc><lastmod>2026-06-18</lastmod><priority>0.6</priority></url>
   <url><loc>https://ragfly.ai/build/agents-md</loc><lastmod>2026-06-18</lastmod><priority>0.6</priority></url>
   <url><loc>https://ragfly.ai/build/evaluation-template</loc><lastmod>2026-06-18</lastmod><priority>0.6</priority></url>
+  <url><loc>https://ragfly.ai/legal/terms</loc><lastmod>2026-06-20</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://ragfly.ai/legal/privacy</loc><lastmod>2026-06-20</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
 </urlset>
