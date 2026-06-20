@@ -50,7 +50,7 @@ export default async function DocPage({ params }: { params: Promise<{ doc: strin
       <header className="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slm-light-gray">
         <div className="max-w-[820px] mx-auto px-6 h-14 flex items-center justify-between">
           <Link href="/build" className="flex items-center gap-2.5">
-            <Image src="/ragfly_isotipo.png" alt="RAGfly" width={24} height={24} />
+            <Image src="/ala_5c.png" alt="RAGfly" width={2348} height={553} className="h-6 w-auto" />
             <span className="font-manrope font-semibold text-slm-dark text-base">RAGfly</span>
             <span className="text-slm-light-gray">/</span>
             <span className="text-slm-gray text-sm">build</span>

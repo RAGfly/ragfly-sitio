@@ -69,7 +69,7 @@ const jsonLd = {
       "@id": "https://ragfly.ai/#organization",
       name: "RAGfly",
       url: "https://ragfly.ai",
-      logo: "https://ragfly.ai/ragfly_logo.png",
+      logo: "https://ragfly.ai/logo_4_3c.png",
     },
     {
       "@type": "SoftwareApplication",

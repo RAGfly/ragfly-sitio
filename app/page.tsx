@@ -111,7 +111,7 @@ function Header() {
     <header className="sticky top-0 left-0 right-0 flex justify-between items-center px-6 md:px-12 lg:px-15 py-6 z-20 bg-white/80 backdrop-blur-sm">
       <div className="flex items-center gap-10">
         <a href="#" className="flex items-center gap-2.5" aria-label="RAGfly">
-          <Image src="/ragfly_isotipo.png" alt="" width={28} height={28} className="h-7 w-auto" />
+          <Image src="/ala_5c.png" alt="" width={2348} height={553} className="h-7 w-auto" />
           <span className="font-manrope font-semibold text-2xl text-slm-dark tracking-tight">RAGfly</span>
         </a>
         <nav className="hidden lg:flex items-center gap-8">
@@ -306,7 +306,7 @@ function ProblemSolutionSection() {
   return (
     <section id="problema" className="px-6 md:px-12 lg:px-[60px] py-24 md:py-32 bg-slm-dark text-slm-light relative overflow-hidden">
       <div className="absolute inset-0 opacity-30 pointer-events-none"
-        style={{ background: 'radial-gradient(800px 500px at 80% 20%, rgba(0,138,209,0.35), transparent 60%), radial-gradient(700px 500px at 10% 90%, rgba(204,232,246,0.18), transparent 70%)' }} />
+        style={{ background: 'radial-gradient(800px 500px at 80% 20%, rgba(0,139,214,0.35), transparent 60%), radial-gradient(700px 500px at 10% 90%, rgba(213,236,248,0.18), transparent 70%)' }} />
       <div className="relative max-w-[1200px] mx-auto flex flex-col gap-16">
         <div className="max-w-[680px] flex flex-col gap-6">
           <span className="text-sm uppercase tracking-[0.18em] text-slm-brand-light">{t('problema.eyebrow')}</span>
@@ -392,8 +392,8 @@ function WhatIsSection() {
                 </path>
                 <defs>
                   <linearGradient id="beam" x1="0" y1="0" x2="80" y2="0">
-                    <stop offset="0%" stopColor="#008AD1" stopOpacity="0.1" />
-                    <stop offset="100%" stopColor="#008AD1" stopOpacity="0.8" />
+                    <stop offset="0%" stopColor="#008BD6" stopOpacity="0.1" />
+                    <stop offset="100%" stopColor="#008BD6" stopOpacity="0.8" />
                   </linearGradient>
                 </defs>
               </svg>
@@ -409,7 +409,7 @@ function WhatIsSection() {
                   style={{ animation: 'folderScan 6s ease-in-out infinite', animationDelay: `${i * 0.6}s` }}
                 >
                   <span className="inline-flex items-center justify-center w-9 h-9 rounded-md bg-slm-light border border-slm-dark/8 flex-none">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#045B8E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#005D8F" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z" />
                     </svg>
                   </span>
@@ -616,7 +616,7 @@ function ModesSection() {
           </div>
           <div className="rounded-[28px] bg-slm-dark text-slm-light p-8 md:p-10 flex flex-col gap-5 relative overflow-hidden border border-slm-brand-dark/40">
             <div className="absolute inset-0 opacity-50 pointer-events-none"
-              style={{ background: 'radial-gradient(600px 400px at 90% 0%, rgba(0,138,209,0.28), transparent 70%)' }} />
+              style={{ background: 'radial-gradient(600px 400px at 90% 0%, rgba(0,139,214,0.28), transparent 70%)' }} />
             <div className="relative flex flex-col gap-5">
               <span className="text-xs uppercase tracking-[0.16em] text-slm-brand-light">{t('modos.desktopTitulo')}</span>
               <p className="text-slm-light/85 font-helvetica-neue text-base md:text-lg leading-relaxed">{t('modos.desktopDesc')}</p>
@@ -742,7 +742,7 @@ function SecuritySection() {
   return (
     <section id="seguridad" className="px-6 md:px-12 lg:px-[60px] py-24 md:py-32 bg-slm-dark text-slm-light relative overflow-hidden">
       <div className="absolute inset-0 opacity-40 pointer-events-none"
-        style={{ background: 'radial-gradient(700px 500px at 90% 10%, rgba(0,138,209,0.30), transparent 60%), radial-gradient(600px 400px at 0% 90%, rgba(204,232,246,0.15), transparent 70%)' }} />
+        style={{ background: 'radial-gradient(700px 500px at 90% 10%, rgba(0,139,214,0.30), transparent 60%), radial-gradient(600px 400px at 0% 90%, rgba(213,236,248,0.15), transparent 70%)' }} />
       <div className="relative max-w-[1200px] mx-auto grid lg:grid-cols-2 gap-16 items-start">
         <div className="flex flex-col gap-8">
           <span className="text-sm uppercase tracking-[0.18em] text-slm-brand-light">{t('seguridad.eyebrow')}</span>
@@ -910,7 +910,7 @@ function Footer() {
       <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row gap-10 md:gap-16 items-start justify-between">
         <div className="flex flex-col gap-4 max-w-[320px]">
           <div className="flex items-center gap-2.5 font-manrope font-semibold text-2xl text-white">
-            <Image src="/ragfly_isotipo.png" alt="" width={28} height={28} className="h-7 w-auto brightness-0 invert" style={{ filter: 'brightness(0) invert(1)' }} />
+            <Image src="/ala_1.5c.png" alt="" width={2348} height={553} className="h-7 w-auto" />
             RAGfly
           </div>
           <p className="font-helvetica-neue text-sm leading-relaxed">{t('footer.tagline')}</p>

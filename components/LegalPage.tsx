@@ -131,7 +131,7 @@ export default function LegalPage({ content }: { content: LegalContent }) {
       <header className="sticky top-0 z-20 border-b border-slm-dark/10 bg-white/85 backdrop-blur-md">
         <div className="mx-auto flex max-w-[1100px] items-center justify-between px-6 py-4 md:px-10">
           <Link href="/" className="flex items-center gap-2.5 font-manrope text-xl font-semibold text-slm-dark">
-            <Image src="/ragfly_isotipo.png" alt="" width={26} height={26} className="h-6 w-auto" />
+            <Image src="/ala_5c.png" alt="" width={2348} height={553} className="h-6 w-auto" />
             RAGfly
           </Link>
           <div className="flex items-center gap-4">

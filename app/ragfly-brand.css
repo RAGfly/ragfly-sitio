@@ -1,6 +1,6 @@
 /* ============================================================
    RAGfly — Tokens de marca · FUENTE ÚNICA DE VERDAD
-   Sistema de marca v1.0 · ragfly.ai
+   Sistema de marca v2.0 · ragfly.ai
    ------------------------------------------------------------
    Este archivo es la fuente canónica de COLOR y TIPOGRAFÍA de
    la marca RAGfly. Vive en comercial/marca/ y se COPIA (no se
@@ -8,6 +8,13 @@
      · producto  → frontend/src/app/  (importado en globals.css)
      · sitio web  → frontend/app/      (importado en globals.css)
      · pptx       → theme de Office (mismos hex y fuentes)
+
+   ISOTIPO — "el ala de la Fly":
+   La figura de la marca es **el ala** del vuelo de RAGfly (la _Fly_),
+   NO un "swoosh". Nombrarla siempre como *ala*. Versión OFICIAL:
+   ala celeste (3c #55B2E4) sobre fondo claro; variante de ala azul
+   oscuro (5c #005D8F) para fondo negro/oscuro. Assets por tono en
+   comercial/marca/logos/ (ver MARCA_ASSETS.md).
 
    REGLA DE DISEÑO:
    - Colores y tipografías: IDÉNTICOS en todas las superficies.
@@ -19,18 +26,48 @@
    ============================================================ */
 
 :root {
-  /* ── Paleta v1.0 (los 7 colores oficiales) ── */
-  --ragfly-azul-marca:  #008AD1; /* Color principal de marca · CMYK 54 43 53 0 */
-  --ragfly-azul-fondo:  #045B8E; /* Fondos / banda */
-  --ragfly-azul-oscuro: #133242; /* Titulares / tinta */
-  --ragfly-azul-claro:  #CCE8F6; /* Acento / fondo suave */
-  --ragfly-gris-oscuro: #646363; /* Texto secundario · CMYK 69 62 59 8 */
-  --ragfly-gris-claro:  #B4B3B3; /* Bordes / apoyo · CMYK 34 26 27 0 */
-  --ragfly-fondo-app:   #EBEBEB; /* Tema de interfaz */
+  /* ── PALETA v2.0 · escala oficial ──────────────────────────
+     Dos rampas paralelas de 7 pasos (claro→oscuro) + intermedios.
+     COLOR (c) = azul de marca · GRISES (g) = neutro de acción.
+     1 y 7 son comunes (blanco / negro). Snap: todo azul cae al
+     tono `c` más cercano; todo gris al tono `g` por luminancia. */
 
-  /* ── Variantes derivadas (para hover/focus sin salir de la marca) ── */
-  --ragfly-azul-marca-hover: #0079B8; /* azul-marca ~8% más oscuro */
-  --ragfly-azul-marca-10:    rgba(0, 138, 209, 0.10); /* fondo suave del acento */
+  /* COLOR (c) — azul */
+  --c-1c:   #FFFFFF;
+  --c-1_5c: #D5ECF8;
+  --c-2c:   #AAD8F1;
+  --c-3c:   #55B2E4;  /* ala oficial sobre fondo claro */
+  --c-4c:   #008BD6;  /* ← COLOR DE MARCA */
+  --c-5c:   #005D8F;  /* ala sobre fondo oscuro */
+  --c-6c:   #002E47;
+  --c-6_5c: #001724;
+  --c-7c:   #000000;
+
+  /* GRISES (g) — neutro */
+  --c-1g:   #FFFFFF;
+  --c-1_5g: #EAEAEA;
+  --c-2g:   #D5D5D5;
+  --c-3g:   #AAAAAA;
+  --c-4g:   #808080;
+  --c-5g:   #555555;
+  --c-6g:   #2B2B2B;
+  --c-6_5g: #151515;
+  --c-7g:   #000000;
+
+  /* ── Tokens de ROL (mapeados a la escala) ──
+     Los nombres de rol se mantienen para no romper aguas abajo;
+     ahora apuntan al tono nuevo más cercano. */
+  --ragfly-azul-marca:  var(--c-4c);  /* #008BD6 · color principal de marca */
+  --ragfly-azul-fondo:  var(--c-5c);  /* #005D8F · fondos / banda */
+  --ragfly-azul-oscuro: var(--c-6c);  /* #002E47 · titulares / tinta */
+  --ragfly-azul-claro:  var(--c-1_5c);/* #D5ECF8 · acento / fondo suave */
+  --ragfly-gris-oscuro: var(--c-5g);  /* #555555 · texto secundario */
+  --ragfly-gris-claro:  var(--c-3g);  /* #AAAAAA · bordes / apoyo */
+  --ragfly-fondo-app:   #EBEBEB;       /* tema de interfaz (definido por marca) */
+
+  /* ── Variantes derivadas (hover/focus sin salir de la marca) ── */
+  --ragfly-azul-marca-hover: var(--c-5c);            /* un paso más oscuro que 4c */
+  --ragfly-azul-marca-10:    rgba(0, 139, 214, 0.10);/* 4c al 10% · fondo suave del acento */
 
   /* ── Tipografía v1.0 ── */
   --ragfly-font-sans:  "Inter", sans-serif;     /* titulares y cuerpo */
