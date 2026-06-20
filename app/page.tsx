@@ -74,6 +74,25 @@ function HeroBg() {
 
   return (
     <div className="hero-canvas">
+      {/* Ala de la marca — pieza decorativa (como en el PPTX), reemplaza el
+          motivo de círculos. Tono claro (1.5c) para no competir con el texto. */}
+      <Image
+        src="/ala_1.5c.png"
+        alt=""
+        aria-hidden
+        width={2348}
+        height={553}
+        priority
+        className="hero-wing hero-wing--top"
+      />
+      <Image
+        src="/ala_1.5c.png"
+        alt=""
+        aria-hidden
+        width={2348}
+        height={553}
+        className="hero-wing hero-wing--bottom"
+      />
       <div className="doc-field">
         {tiles.map((t) => (
           <div
