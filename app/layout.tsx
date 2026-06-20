@@ -25,6 +25,11 @@ export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("metadata");
   return {
     metadataBase: new URL("https://ragfly.ai"),
+    // Verificación de propiedad en Google Search Console (necesaria para la
+    // verificación OAuth del conector de Google Drive: dominio autorizado).
+    verification: {
+      google: "jr4AtHP1EE0jv8mk9SF30S1AAarBbP_Fsh_qCNg7tQU",
+    },
     title: t("title"),
     description: t("description"),
     alternates: {
