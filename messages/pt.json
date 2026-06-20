@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "RAGfly — RAG framework multi-tenant para agentes de IA",
-    "description": "Infraestrutura de recuperação aumentada (RAG) em escala para que qualquer agente de IA converse com milhares de documentos privados — multi-tenant, isolado por cliente, sem armazenar seus documentos. Conecte um diretório via MCP, REST ou CLI.",
+    "description": "Infraestrutura de recuperação aumentada (RAG) em escala para que qualquer agente de IA converse com milhares de documentos privados — multi-tenant, isolado por cliente, sem armazenar seus documentos. Conecte um diretório via MCP, REST, CLI ou SDK.",
     "keywords": ["RAG framework", "infraestrutura RAG", "RAG gerenciado", "managed RAG", "RAG as a service", "RAG multi-tenant", "context engine para agentes", "recuperação aumentada", "retrieval augmented generation", "RAG para agentes de IA", "RAG com MCP", "RAG API REST", "RAG privado on-premise", "RAG para dados regulados", "isolamento de dados por cliente", "RBAC para agentes", "OCR de documentos digitalizados", "traga seu próprio banco vetorial", "RAG para consultorias e integradores", "alternativa ao Ragie", "alternativa ao LlamaParse"]
   },
   "nav": {
@@ -28,7 +28,7 @@
     "titulo1": "Escolha por onde entrar.",
     "tituloEm": "RAGfly é o mesmo chão",
     "titulo2": "para os três.",
-    "descripcion": "Você o consome de onde trabalha — MCP, REST ou CLI. A camada de contexto documental já vem resolvida; você constrói a lógica do agente.",
+    "descripcion": "Você o consome de onde trabalha — MCP, REST, CLI ou SDK. A camada de contexto documental já vem resolvida; você constrói a lógica do agente.",
     "cardATag": "Um agente para um cliente",
     "cardATitulo": "Monto um agente para um cliente",
     "cardADesc": "Você tem um corpus grande e não quer ser dono da infraestrutura RAG. Aponte o RAGfly para o diretório e construa a lógica do agente, não o pipeline.",
@@ -39,7 +39,7 @@
     "cardBCta": "Ver multi-tenant",
     "cardCTag": "RAG no meu SaaS",
     "cardCTitulo": "Coloco RAG no meu SaaS",
-    "cardCDesc": "Você não quer reconstruir ingestão, escala, multi-tenancy e segurança. O RAGfly te entrega tudo resolvido, consumido por MCP, REST ou CLI.",
+    "cardCDesc": "Você não quer reconstruir ingestão, escala, multi-tenancy e segurança. O RAGfly te entrega tudo resolvido, consumido por MCP, REST, CLI ou SDK.",
     "cardCCta": "Ver superfícies"
   },
   "problema": {
@@ -194,7 +194,7 @@
     "plan0Cta": "Começar grátis",
     "plan0F0": "~1.000 páginas processadas incluídas",
     "plan0F1": "1 entidade",
-    "plan0F2": "MCP, REST e CLI",
+    "plan0F2": "MCP, REST, CLI e SDK",
     "plan0F3": "Recuperação com citações",
     "plan0F4": "Página adicional Fast $0,02 / Hi-res $0,05",
     "plan1Nombre": "Starter",
@@ -204,7 +204,7 @@
     "plan1F0": "~4.000 páginas processadas incluídas",
     "plan1F1": "1 entidade",
     "plan1F2": "Tudo do Free",
-    "plan1F3": "MCP, REST e CLI",
+    "plan1F3": "MCP, REST, CLI e SDK",
     "plan1F4": "Recuperação com citações",
     "plan1F5": "Suporte pela comunidade",
     "plan2Nombre": "Team",

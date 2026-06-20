@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "RAGfly — Multi-tenant RAG-Framework für KI-Agenten",
-    "description": "RAG-Infrastruktur (Retrieval-Augmented Generation) im großen Maßstab, damit jeder KI-Agent mit Tausenden privaten Dokumenten sprechen kann — multi-tenant, pro Kunde isoliert, ohne deine Dokumente zu speichern. Verbinde ein Verzeichnis per MCP, REST oder CLI.",
+    "description": "RAG-Infrastruktur (Retrieval-Augmented Generation) im großen Maßstab, damit jeder KI-Agent mit Tausenden privaten Dokumenten sprechen kann — multi-tenant, pro Kunde isoliert, ohne deine Dokumente zu speichern. Verbinde ein Verzeichnis per MCP, REST, CLI oder SDK.",
     "keywords": ["RAG Framework", "RAG-Infrastruktur", "Managed RAG", "RAG as a Service", "Multi-Tenant RAG", "Context Engine für KI-Agenten", "Retrieval-Augmented Generation", "RAG für KI-Agenten", "RAG mit MCP", "RAG REST API", "privates On-Premise-RAG", "RAG für regulierte Daten", "Datenisolierung pro Kunde", "RBAC für KI-Agenten", "OCR für gescannte Dokumente", "eigene Vektordatenbank verwenden", "RAG für Beratungen und Integratoren", "Ragie Alternative", "LlamaParse Alternative", "Vectara Alternative"]
   },
   "nav": {
@@ -28,7 +28,7 @@
     "titulo1": "Wähle deinen Einstieg.",
     "tituloEm": "RAGfly ist derselbe Boden",
     "titulo2": "für alle drei.",
-    "descripcion": "Du nutzt es von dort, wo du arbeitest — MCP, REST oder CLI. Die dokumentarische Kontextschicht kommt fertig gelöst; du baust die Logik des Agenten.",
+    "descripcion": "Du nutzt es von dort, wo du arbeitest — MCP, REST, CLI oder SDK. Die dokumentarische Kontextschicht kommt fertig gelöst; du baust die Logik des Agenten.",
     "cardATag": "Ein Agent für einen Kunden",
     "cardATitulo": "Ich baue einen Agenten für einen Kunden",
     "cardADesc": "Du hast einen großen Korpus und willst nicht der Eigentümer der RAG-Infrastruktur sein. Richte RAGfly auf das Verzeichnis und baue die Agentenlogik, nicht die Pipeline.",
@@ -39,7 +39,7 @@
     "cardBCta": "Multi-tenant ansehen",
     "cardCTag": "RAG in meinem SaaS",
     "cardCTitulo": "Ich bringe RAG in mein SaaS",
-    "cardCDesc": "Du willst Ingestion, Skalierung, Multi-tenancy und Sicherheit nicht neu bauen. RAGfly liefert es fertig, nutzbar per MCP, REST oder CLI.",
+    "cardCDesc": "Du willst Ingestion, Skalierung, Multi-tenancy und Sicherheit nicht neu bauen. RAGfly liefert es fertig, nutzbar per MCP, REST, CLI oder SDK.",
     "cardCCta": "Schnittstellen ansehen"
   },
   "problema": {
@@ -194,7 +194,7 @@
     "plan0Cta": "Kostenlos starten",
     "plan0F0": "~1.000 verarbeitete Seiten inklusive",
     "plan0F1": "1 Entität",
-    "plan0F2": "MCP, REST und CLI",
+    "plan0F2": "MCP, REST, CLI und SDK",
     "plan0F3": "Retrieval mit Quellenangaben",
     "plan0F4": "Zusätzliche Seite Fast $0,02 / Hi-res $0,05",
     "plan1Nombre": "Starter",
@@ -204,7 +204,7 @@
     "plan1F0": "~4.000 verarbeitete Seiten inklusive",
     "plan1F1": "1 Entität",
     "plan1F2": "Alles aus Free",
-    "plan1F3": "MCP, REST und CLI",
+    "plan1F3": "MCP, REST, CLI und SDK",
     "plan1F4": "Retrieval mit Quellenangaben",
     "plan1F5": "Community-Support",
     "plan2Nombre": "Team",

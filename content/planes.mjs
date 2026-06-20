@@ -19,7 +19,7 @@
 //   - "limites" se muestran como features al inicio de la tarjeta.
 //
 // MODELO (jun-2026): cobro por PÁGINA procesada + uso de recuperación, en
-// páginas y dólares (no créditos). Superficies MCP/REST/CLI en todos los
+// páginas y dólares (no créditos). Superficies MCP/REST/CLI/SDK en todos los
 // planes. Margen vive en la recuperación (valor); storage/infra a costo.
 // Fuente de cifras: "RAGfly - Modelo de Pricing.xlsx".
 // ─────────────────────────────────────────────────────────────────────────
@@ -36,7 +36,7 @@ export const planes = [
       vectores: '1 entidad',
     },
     features: [
-      'MCP, REST y CLI',
+      'MCP, REST, CLI y SDK',
       'Recuperación con citas',
       'Página adicional Fast $0,02 / Hi-res $0,05',
     ],
@@ -53,7 +53,7 @@ export const planes = [
     },
     features: [
       'Todo lo de Free',
-      'MCP, REST y CLI',
+      'MCP, REST, CLI y SDK',
       'Recuperación con citas',
       'Soporte por comunidad',
     ],

@@ -82,7 +82,7 @@ export default function Image() {
             letterSpacing: "0.02em",
           }}
         >
-          ragfly.ai · MCP · REST · CLI
+          ragfly.ai · MCP · REST · CLI · SDK
         </div>
       </div>
     ),

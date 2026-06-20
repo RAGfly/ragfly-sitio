@@ -84,14 +84,14 @@ const jsonLd = {
       url: "https://ragfly.ai",
       publisher: { "@id": "https://ragfly.ai/#organization" },
       description:
-        "Infraestructura RAG multi-tenant para agentes de IA: convierte cualquier corpus de documentos en una base de recuperación segura, aislada por cliente y lista para producción, apuntando a un directorio. El dato no sale de tu red. Vía MCP, REST y CLI.",
+        "Infraestructura RAG multi-tenant para agentes de IA: convierte cualquier corpus de documentos en una base de recuperación segura, aislada por cliente y lista para producción, apuntando a un directorio. El dato no sale de tu red. Vía MCP, REST, CLI y SDK.",
       featureList: [
         "De cero a producción apuntando a un directorio (ingesta, vectorización e indexado automáticos)",
         "Multi-tenant de fábrica: un corpus aislado por cliente (Grupos → Entidades → Áreas)",
         "El documento nunca sale de la red: vectorización «en el aire», Client LM opcional",
         "Recuperación con citas y permisos (RBAC para personas y para agentes vía perfiles)",
         "DB-agnóstico y BYO: trae tu propia base vectorial y tu propio LLM",
-        "Superficies MCP, REST y CLI en todos los planes",
+        "Superficies MCP, REST, CLI y SDK en todos los planes",
       ],
       offers: {
         "@type": "AggregateOffer",

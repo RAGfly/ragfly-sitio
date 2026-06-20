@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "RAGfly — Multi-tenant RAG framework for AI agents",
-    "description": "Retrieval-augmented generation (RAG) infrastructure at scale so any AI agent can converse with thousands of private documents — multi-tenant, isolated per client, without storing your documents. Connect a directory via MCP, REST or CLI.",
+    "description": "Retrieval-augmented generation (RAG) infrastructure at scale so any AI agent can converse with thousands of private documents — multi-tenant, isolated per client, without storing your documents. Connect a directory via MCP, REST, CLI or SDK.",
     "keywords": ["RAG framework", "RAG infrastructure", "managed RAG", "RAG as a service", "multi-tenant RAG", "context engine for AI agents", "retrieval augmented generation", "RAG for AI agents", "RAG with MCP", "RAG REST API", "private on-premise RAG", "RAG for regulated data", "per-client data isolation", "RBAC for AI agents", "OCR for scanned documents", "bring your own vector database", "RAG for consultancies and integrators", "Ragie alternative", "LlamaParse alternative", "Vectara alternative"]
   },
   "nav": {
@@ -28,7 +28,7 @@
     "titulo1": "Pick where you come in.",
     "tituloEm": "RAGfly is the same ground",
     "titulo2": "for all three.",
-    "descripcion": "Consume it from wherever you work — MCP, REST or CLI. The document context layer comes solved; you build the agent logic.",
+    "descripcion": "Consume it from wherever you work — MCP, REST, CLI or SDK. The document context layer comes solved; you build the agent logic.",
     "cardATag": "One agent for one client",
     "cardATitulo": "I'm building an agent for one client",
     "cardADesc": "You have a large corpus and don't want to own the RAG infrastructure. Point RAGfly at the directory and build the agent logic, not the pipeline.",
@@ -39,7 +39,7 @@
     "cardBCta": "See multi-tenant",
     "cardCTag": "RAG in my SaaS",
     "cardCTitulo": "I'm adding RAG to my SaaS",
-    "cardCDesc": "You don't want to rebuild ingestion, scale, multi-tenancy and security. RAGfly gives it to you solved, consumed via MCP, REST or CLI.",
+    "cardCDesc": "You don't want to rebuild ingestion, scale, multi-tenancy and security. RAGfly gives it to you solved, consumed via MCP, REST, CLI or SDK.",
     "cardCCta": "See the surfaces"
   },
   "problema": {
@@ -194,7 +194,7 @@
     "plan0Cta": "Start free",
     "plan0F0": "~1,000 processed pages included",
     "plan0F1": "1 entity",
-    "plan0F2": "MCP, REST and CLI",
+    "plan0F2": "MCP, REST, CLI and SDK",
     "plan0F3": "Retrieval with citations",
     "plan0F4": "Extra page Fast $0.02 / Hi-res $0.05",
     "plan1Nombre": "Starter",
@@ -204,7 +204,7 @@
     "plan1F0": "~4,000 processed pages included",
     "plan1F1": "1 entity",
     "plan1F2": "Everything in Free",
-    "plan1F3": "MCP, REST and CLI",
+    "plan1F3": "MCP, REST, CLI and SDK",
     "plan1F4": "Retrieval with citations",
     "plan1F5": "Community support",
     "plan2Nombre": "Team",
