@@ -37,26 +37,30 @@ const BACK_LABEL: Record<string, string> = {
 }
 
 /* ------------------------------------------------------------------ */
-/* Render inline: **negrita** + enlaces de email                       */
+/* Render inline: **negrita** + enlaces de email, URL y dominio ragfly  */
 /* ------------------------------------------------------------------ */
-function linkifyEmail(text: string, keyBase: string): React.ReactNode[] {
+function linkify(text: string, keyBase: string): React.ReactNode[] {
   const out: React.ReactNode[] = []
-  const re = /[\w.+-]+@[\w-]+\.[\w.-]+/g
+  // 1) email  2) URL http(s)  3) dominio ragfly.ai (con subdominio opcional)
+  const re = /([\w.+-]+@[\w-]+(?:\.[\w-]+)+)|(https?:\/\/[^\s)]+)|((?:[a-z0-9-]+\.)*ragfly\.ai)\b/gi
   let last = 0
   let m: RegExpExecArray | null
   let i = 0
   while ((m = re.exec(text)) !== null) {
     if (m.index > last) out.push(text.slice(last, m.index))
+    const [match, email, url, domain] = m
+    const href = email ? `mailto:${email}` : url ? url : `https://${domain}`
     out.push(
       <a
-        key={`${keyBase}-mail-${i++}`}
-        href={`mailto:${m[0]}`}
+        key={`${keyBase}-ln-${i++}`}
+        href={href}
         className="text-slm-brand-dark underline underline-offset-2 hover:text-slm-brand"
+        {...(url ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
       >
-        {m[0]}
+        {match}
       </a>,
     )
-    last = m.index + m[0].length
+    last = m.index + match.length
   }
   if (last < text.length) out.push(text.slice(last))
   return out
@@ -69,7 +73,7 @@ function renderInline(text: string, keyBase: string): React.ReactNode[] {
   let m: RegExpExecArray | null
   let i = 0
   while ((m = re.exec(text)) !== null) {
-    if (m.index > last) out.push(...linkifyEmail(text.slice(last, m.index), `${keyBase}-t${i}`))
+    if (m.index > last) out.push(...linkify(text.slice(last, m.index), `${keyBase}-t${i}`))
     out.push(
       <strong key={`${keyBase}-b-${i++}`} className="font-semibold text-slm-dark">
         {m[1]}
@@ -77,7 +81,7 @@ function renderInline(text: string, keyBase: string): React.ReactNode[] {
     )
     last = m.index + m[0].length
   }
-  if (last < text.length) out.push(...linkifyEmail(text.slice(last), `${keyBase}-t-end`))
+  if (last < text.length) out.push(...linkify(text.slice(last), `${keyBase}-t-end`))
   return out
 }
 
