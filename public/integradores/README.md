@@ -51,6 +51,7 @@ curl $RAGFLY_API_URL/auth/me -H "Authorization: Bearer $RAGFLY_API_KEY"
 | **`REST.md`** | Backends, pipelines, n8n/Make |
 | **`CLI.md`** | Terminal and scripts |
 | **`SDK.md`** | Python SDK |
+| **`SDK-TS.md`** | TypeScript/JavaScript SDK |
 | **`RUNTIME_HINTS.md`** | Hints by agent/runtime type (Codex, Claude, IDEs, REST) |
 | **`EVALUATION_TEMPLATE.md`** | Template for reporting findings |
 | **`.env.example`** | Environment variables template |
@@ -62,7 +63,9 @@ curl $RAGFLY_API_URL/auth/me -H "Authorization: Bearer $RAGFLY_API_KEY"
 **Codex** → `QUICKSTART.md` (MCP via `codex mcp add`)  
 **Claude Code / Cursor / Cline** → `MCP.md`, then `QUICKSTART.md` section 4  
 **REST / backend** → `REST.md`  
-**CLI** → `CLI.md`
+**CLI** → `CLI.md`  
+**Python** → `SDK.md` (`pip install ragfly`)  
+**TypeScript / Node / edge** → `SDK-TS.md` (`npm i @ragfly/sdk`)
 
 ---
 

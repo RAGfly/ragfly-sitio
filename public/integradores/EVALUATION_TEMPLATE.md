@@ -29,6 +29,7 @@
 | 6. Codex (MCP) | ✅ / ❌ / ⏭ | |
 | 7. CLI | ✅ / ❌ / ⏭ | |
 | 8. Python SDK direct | ✅ / ❌ / ⏭ | |
+| 9. TypeScript SDK direct | ✅ / ❌ / ⏭ | |
 
 ---
 

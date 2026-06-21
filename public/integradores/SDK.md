@@ -11,6 +11,8 @@ see_also:
 # RAGfly Python SDK
 
 > The Python SDK is the fastest way to connect a Python agent or script to RAGfly. It wraps the REST API and SSE stream protocol into three simple methods.
+>
+> Using TypeScript/JavaScript instead? See [SDK-TS.md](SDK-TS.md) (`npm install @ragfly/sdk`) — same surface.
 
 ---
 

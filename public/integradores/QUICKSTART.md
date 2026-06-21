@@ -8,9 +8,10 @@ Full walkthrough from scratch: sign up → API Key → MCP → first semantic qu
 
 ## Prerequisites
 
-- Python 3.11+
-- `pip install httpx`
+- Python 3.11+ and `pip install httpx` (this walkthrough uses curl + Python), **or** Node 18+ for the TypeScript path
 - RAGfly account (see step 1)
+
+> Prefer an official SDK? `pip install ragfly` ([SDK.md](SDK.md)) or `npm i @ragfly/sdk` ([SDK-TS.md](SDK-TS.md)) — both wrap the steps below into `client.ask()` / `client.search()`.
 
 ---
 

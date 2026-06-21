@@ -130,6 +130,32 @@ def list_docs(limit: int = 20) -> list:
     ).raise_for_status().json().get("items", [])
 ```
 
+## TypeScript usage pattern
+
+```ts
+const BASE = process.env.RAGFLY_API_URL!;
+const HEADERS = { Authorization: `Bearer ${process.env.RAGFLY_API_KEY}`, "Content-Type": "application/json" };
+
+const me = () =>
+  fetch(`${BASE}/auth/me`, { headers: HEADERS }).then((r) => r.json());
+
+const search = (q: string, limit = 5) =>
+  fetch(`${BASE}/documentos/buscar-semantico`, {
+    method: "POST",
+    headers: HEADERS,
+    body: JSON.stringify({ q, limit }),
+  })
+    .then((r) => r.json())
+    .then((d) => d.resultados ?? []);
+
+const listDocs = (limit = 20) =>
+  fetch(`${BASE}/documentos/paginado?codigo_estado_doc=VECTORIZADO&limit=${limit}`, { headers: HEADERS })
+    .then((r) => r.json())
+    .then((d) => d.items ?? []);
+```
+
+> Or use the official SDK: `npm i @ragfly/sdk` → `new RAGfly({ apiKey }).search(q)`. See [SDK-TS.md](SDK-TS.md).
+
 ## Security invariants
 
 - The API Key operates exclusively on the corpus of the tenant that issued it.

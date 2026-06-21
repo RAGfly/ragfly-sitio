@@ -145,6 +145,28 @@ See [SDK.md](SDK.md) for the full client reference.
 
 ---
 
+## TypeScript SDK (`npm i @ragfly/sdk`)
+
+Same surface as the Python SDK, zero dependencies (native `fetch`). Runs on Node 18+, the browser, Vercel Edge and Cloudflare Workers — ideal for agents built on the JS/TS stack (Next.js, Vercel AI SDK, Workers).
+
+```ts
+import { RAGfly } from "@ragfly/sdk";
+
+const client = new RAGfly({ apiKey: process.env.RAGFLY_API_KEY! });
+const resp = await client.ask("What are the penalty clauses?");
+console.log(resp.answer);
+
+// Direct semantic search (without LLM)
+const results = await client.search("contracts 2024", { limit: 5 });
+for (const doc of results.documents) {
+  console.log(`[rrf=${doc.rrfScore?.toFixed(3)}] ${doc.nombre}`);
+}
+```
+
+See [SDK-TS.md](SDK-TS.md) for the full client reference.
+
+---
+
 ## Summary — choosing a tool or endpoint
 
 | Need | MCP tool | REST endpoint |

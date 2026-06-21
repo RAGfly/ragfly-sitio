@@ -11,7 +11,7 @@ see_also:
 
 # RAGfly — Integration Guide
 
-> RAGfly exposes its vector corpus and AI capabilities to external systems through five interfaces. This guide covers the essentials for connecting; each extension details one interface in depth.
+> RAGfly exposes its vector corpus and AI capabilities to external systems through six interfaces. This guide covers the essentials for connecting; each extension details one interface in depth.
 
 ---
 
@@ -28,17 +28,18 @@ Everything respects RAGfly's multi-tenant model: each credential is anchored to 
 
 ---
 
-## The five interfaces
+## The six interfaces
 
 | Interface | When to use | Extension |
 |---|---|---|
 | **Python SDK** | Python code — `pip install ragfly`. Simplest: `client.ask("...")` | [SDK.md](SDK.md) |
+| **TypeScript SDK** | TypeScript/JavaScript code (Node, browser, edge) — `npm install @ragfly/sdk`. Same surface as Python. | [SDK-TS.md](SDK-TS.md) |
 | **MCP** | LLM agents (Claude Code, Cursor, Cline, etc.) — the agent discovers and calls RAGfly tools directly | [MCP.md](MCP.md) |
 | **CLI** | Scripts, automations, CI/CD pipelines, terminal diagnostics | [CLI.md](CLI.md) |
 | **REST + SSE** | Any language / platform (n8n, Make, Zapier, custom apps) | [REST.md](REST.md) |
 | **Web** | End users use [`app.ragfly.ai`](https://app.ragfly.ai) directly — no integration needed | — |
 
-The first four share the same authentication contract and the same RBAC; what changes is the transport protocol. The Python SDK wraps the REST API.
+The first five share the same authentication contract and the same RBAC; what changes is the transport protocol. Both SDKs wrap the REST API.
 
 ---
 
