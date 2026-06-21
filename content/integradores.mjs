@@ -18,7 +18,7 @@ export const KIT_DIR = '../../ragfly/docs/integradores'
 // Grupos de la página-cara, en orden de render. Copy en inglés: el kit es
 // inglés y el defaultLocale del sitio es 'en' (audiencia global de devs/agentes).
 export const grupos = [
-  { id: 'interfaces', titulo: 'The five interfaces', desc: 'Pick the one that fits your stack — all share the same auth contract and the same RBAC.' },
+  { id: 'interfaces', titulo: 'The six interfaces', desc: 'Pick the one that fits your stack — all share the same auth contract and the same RBAC.' },
   { id: 'guias',      titulo: 'Guides & reference',  desc: 'How to start, how each runtime behaves, and how to report your evaluation.' },
 ]
 
@@ -28,12 +28,13 @@ export const grupos = [
 // `cara: false` → no aparece como tarjeta en la página-cara (sólo accesible
 // por URL directa), p.ej. el README del kit que la propia página-cara absorbe.
 export const documentos = [
-  // ── The five interfaces ───────────────────────────────────────────────
-  { slug: 'sdk',  archivo: 'SDK.md',  grupo: 'interfaces', icono: '📦', titulo: 'Python SDK', desc: 'pip install ragfly. Fastest path from Python: client.ask("…").' },
-  { slug: 'mcp',  archivo: 'MCP.md',  grupo: 'interfaces', icono: '🤖', titulo: 'MCP',        desc: 'LLM agents (Claude Code, Cursor, Cline, Codex). The agent discovers the tools itself.', destacado: true },
-  { slug: 'cli',  archivo: 'CLI.md',  grupo: 'interfaces', icono: '⚡', titulo: 'CLI',        desc: 'Scripts, automations, CI/CD pipelines and terminal diagnostics.' },
-  { slug: 'rest', archivo: 'REST.md', grupo: 'interfaces', icono: '🔌', titulo: 'REST + SSE', desc: 'Any language or platform: n8n, Make, Zapier, custom apps.' },
-  // "Web" is the fifth interface: use app.ragfly.ai directly, no integration.
+  // ── The six interfaces ────────────────────────────────────────────────
+  { slug: 'sdk',    archivo: 'SDK.md',    grupo: 'interfaces', icono: '📦', titulo: 'Python SDK',     desc: 'pip install ragfly. Fastest path from Python: client.ask("…").' },
+  { slug: 'sdk-ts', archivo: 'SDK-TS.md', grupo: 'interfaces', icono: '📘', titulo: 'TypeScript SDK', desc: 'npm i @ragfly/sdk. Same surface as Python, zero deps: Node, browser, Vercel Edge, Workers.' },
+  { slug: 'mcp',    archivo: 'MCP.md',    grupo: 'interfaces', icono: '🤖', titulo: 'MCP',            desc: 'LLM agents (Claude Code, Cursor, Cline, Codex). The agent discovers the tools itself.', destacado: true },
+  { slug: 'cli',    archivo: 'CLI.md',    grupo: 'interfaces', icono: '⚡', titulo: 'CLI',            desc: 'Scripts, automations, CI/CD pipelines and terminal diagnostics.' },
+  { slug: 'rest',   archivo: 'REST.md',   grupo: 'interfaces', icono: '🔌', titulo: 'REST + SSE',     desc: 'Any language or platform: n8n, Make, Zapier, custom apps.' },
+  // "Web" is the sixth interface: use app.ragfly.ai directly, no integration.
 
   // ── Guides & reference ────────────────────────────────────────────────
   { slug: 'quickstart',          archivo: 'QUICKSTART.md',          grupo: 'guias', icono: '🚀', titulo: 'Quickstart',           desc: 'From zero to first semantic query: sign up → API Key → MCP → result.' },
