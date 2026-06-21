@@ -31,9 +31,9 @@ Confirms the connection and returns the active tenant context.
 
 **Main tools:**
 - `mcp__ragfly__estado_sesion()` — verify connection
-- `mcp__ragfly__buscar_chunks(q, limite)` — semantic search
+- `mcp__ragfly__buscar_chunks(consulta, limite)` — semantic search
 - `mcp__ragfly__listar_documentos(estado, limite)` — list documents
-- `mcp__ragfly__preguntar(texto)` — full RAG question with citations
+- `mcp__ragfly__preguntar(mensaje)` — full RAG question with citations
 
 If MCP is not available, use the REST endpoints documented below.
 

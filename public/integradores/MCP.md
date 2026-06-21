@@ -71,13 +71,16 @@ Register the SSE URL and the `Authorization` header. Consult your client's docum
 | `ver_documento` | Full detail of a document | `codigo_documento` |
 | `listar_espacios` | Lists the group's Workspaces | `limite` |
 | `ver_espacio` | Workspace detail: criteria + documents + queue | `id_espacio`, `limite_docs` |
+| `componer_espacios` | Set algebra (COMPOSE) of two Workspaces → a new Workspace handle | `operacion`, `id_espacio_a`, `id_espacio_b`, `nombre?`, `tipo_espacio?` |
+| `leer_espacio` | Materialize a Workspace (READ) at a chosen resolution, paginated | `id_espacio`, `resolucion?`, `q?`, `limite?` |
 | `ver_cola` | Current state of the processing pipeline | `proceso`, `estado`, `limite` |
 | `ver_ejecuciones` | Skill execution history | `limite` |
+| `catalogo` | User capabilities: available functions + LLM skills (RBAC-filtered) | `tipo?` (`FUNCIONES`\|`HABILIDADES`\|`TODO`) |
 | `listar_habilidades` | Catalog of available LLM skills | — |
 | `ver_habilidad` | Skill detail: prompt, model, output type | `codigo_habilidad` |
 | `ejecutar_habilidad` | Queues execution over a workspace or document | `codigo_habilidad`, `id_espacio?`, `codigo_documento?` |
-| `buscar_chunks` | Direct semantic search over the corpus | `q`, `limite` |
-| `preguntar` | Natural language question with full RAG (stream) | `texto`, `id_conversacion?` |
+| `buscar_chunks` | Direct semantic search over the corpus | `consulta`, `limite?`, `min_similitud?`, `codigo_entidad?` |
+| `preguntar` | Natural language question with full RAG (non-streaming) | `mensaje`, `codigo_funcion?`, `id_conversacion?`, `titulo?` |
 
 **Always call `estado_sesion` first** to confirm the connection is valid.
 
@@ -99,7 +102,7 @@ estado_sesion()
 → {"usuario": "bot-finance", "grupo": "COMPANY", "rol": "DOC-ADMIN"}
 
 # 2. Ask over documents
-preguntar(texto="What are the penalty clauses in the 2024 contracts?")
+preguntar(mensaje="What are the penalty clauses in the 2024 contracts?")
 → RAG response with chunk citations
 
 # 3. List vectorized documents

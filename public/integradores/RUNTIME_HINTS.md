@@ -20,14 +20,14 @@ see_also:
 
 ```
 estado_sesion()                         # confirm connection
-→ buscar_chunks(q="your query", limite=5) # direct semantic search
+→ buscar_chunks(consulta="your query", limite=5) # direct semantic search
 → use chunks[].texto in the prompt        # no re-processing needed
 ```
 
 Or if the corpus is large and a generated response is needed:
 
 ```
-preguntar(texto="your question")        # full RAG in one call
+preguntar(mensaje="your question")      # full RAG in one call
 → use the response directly
 ```
 
