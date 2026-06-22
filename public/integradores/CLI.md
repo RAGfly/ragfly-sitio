@@ -18,7 +18,7 @@ The `ragfly` binary lets you operate RAGfly from the terminal or scripts without
 ```bash
 pip install ragfly-cli
 ragfly version
-# RAGfly Cliente v1.16.0
+# RAGfly Cliente v1.17.2
 ```
 
 > **Three different packages — don't confuse them:**
