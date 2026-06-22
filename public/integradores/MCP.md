@@ -117,31 +117,6 @@ ver_cola(estado="EJECUTANDO")
 
 ---
 
-## Local stdio mode (alternative)
-
-If you already have the RAGfly client installed and need to operate on the local filesystem:
-
-```bash
-pip install ragfly
-ragfly login
-```
-
-Config in `.claude/settings.json`:
-```json
-{
-  "mcpServers": {
-    "ragfly-local": {
-      "command": "ragfly-mcp",
-      "args": []
-    }
-  }
-}
-```
-
-The local mode exposes the same tools but reads the JWT from `~/.ragfly/credentials.json`. Useful when the agent also needs to scan local directories with `ragfly local escanear`.
-
----
-
 ## Permissions
 
 Each tool operates in the context of the API Key's user — same RBAC as the web interface. An agent with role `DOCS-USUARIO-FINAL` can read but cannot execute skills.
@@ -154,7 +129,6 @@ Each tool operates in the context of the API Key's user — same RBAC as the web
 |---|---|---|
 | `HTTP 401` before handshake | Invalid or revoked API Key | Check the key at [`app.ragfly.ai/api-keys`](https://app.ragfly.ai/api-keys) |
 | Tools don't appear | Client not restarted | Restart the MCP client |
-| `estado_sesion` returns error | Expired JWT (local mode) | `ragfly login` |
 | `HTTP 403` on a tool | Role lacks permission for that operation | Ask the admin for a role with more permissions |
 
 ---
