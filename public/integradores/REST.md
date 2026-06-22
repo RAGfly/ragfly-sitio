@@ -1,6 +1,6 @@
 ---
 status: live
-last_updated: 2026-06-18
+last_updated: 2026-06-22
 audience: external integrators — HTTP / automation platforms
 see_also:
   - INTEGRATION.md
@@ -67,7 +67,7 @@ Authorization: Bearer <token>
 
 | Method | Route | Description |
 |---|---|---|
-| `GET` | `/cola-estados-docs/paginado` | Queue state (`estado`, `proceso`, `limit`) |
+| `GET` | `/cola-estados-docs/paginado` | Queue state. Filters: `estado_cola`, `q` (free text), `limit`, `page` |
 
 ### Conversational interface (chat + RAG)
 
@@ -76,20 +76,25 @@ Authorization: Bearer <token>
 | `POST` | `/chat/conversaciones` | Create conversation. Body: `{"codigo_funcion": "CHAT-USUARIO"}` |
 | `GET` | `/chat/conversaciones` | List user conversations |
 | `GET` | `/chat/conversaciones/{id}` | Messages in a conversation |
-| `POST` | `/chat/conversaciones/{id}/mensajes/stream` | Send message → SSE response |
+| `POST` | `/chat/conversaciones/{id}/mensajes/stream` | Send message → SSE response. Body: `{"contenido": "..."}` |
 | `DELETE` | `/chat/conversaciones/{id}` | Delete conversation |
 
 ---
 
 ## SSE protocol (chat response)
 
-The `mensajes/stream` endpoint returns `Content-Type: text/event-stream`:
+The `mensajes/stream` endpoint takes `{"contenido": "..."}` and returns
+`Content-Type: text/event-stream`:
 
 ```
+data: {"status": "analizando"}\n\n
 data: {"text": "response fragment"}\n\n
 data: {"text": "another fragment"}\n\n
-data: {"done": true, "id_mensaje_user": 477, "id_mensaje_assistant": 478}\n\n
+data: {"done": true, "id_mensaje_user": 477}\n\n
 ```
+
+`status` events are progress hints (e.g. `analizando`); `text` events carry the
+answer fragments; the final `done` event closes the stream.
 
 Error mid-stream:
 ```
@@ -114,8 +119,11 @@ r = httpx.post(
     json={"q": "active maintenance contracts", "limit": 5},
 )
 r.raise_for_status()
-for chunk in r.json()["resultados"]:
-    print(chunk["codigo_documento"], chunk["similitud_max"], chunk["texto"][:200])
+# `resultados` is a list of DOCUMENTS; each carries its matching `chunks`.
+for doc in r.json()["resultados"]:
+    print(doc["codigo_documento"], doc["nombre_documento"], doc["similitud_max"])
+    for chunk in doc["chunks"]:
+        print("   ", chunk["nro_pagina"], chunk["texto"][:200])
 ```
 
 ### curl — list vectorized documents
