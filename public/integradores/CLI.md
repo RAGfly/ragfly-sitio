@@ -1,6 +1,6 @@
 ---
 status: live
-last_updated: 2026-06-18
+last_updated: 2026-06-22
 audience: external integrators — scripts and terminal
 see_also:
   - INTEGRATION.md
@@ -18,7 +18,7 @@ The `ragfly` binary lets you operate RAGfly from the terminal or scripts without
 ```bash
 pip install ragfly-cli
 ragfly version
-# RAGfly Cliente v1.17.2
+# RAGfly Cliente v1.17.3
 ```
 
 > **Three different packages — don't confuse them:**
@@ -139,9 +139,6 @@ ragfly cloud habilidad ejecutar RESUMIR_DOCUMENTO --documento DOC-2024-001 --esp
 # View current state
 ragfly cloud cola ver --estado EJECUTANDO
 
-# Follow in real time (like tail -f)
-ragfly cloud cola ver -f
-
 # Execution history
 ragfly cloud cola ejecuciones --limite 10
 ```
@@ -163,12 +160,16 @@ ragfly cloud chat preguntar --conversacion 512 "Which ones have a price adjustme
 | Flag | Effect |
 |---|---|
 | `-o tabla` | Human-readable output (default) |
-| `-o json` | Structured JSON — for scripts and pipes |
-| `-o csv` | For tabular analysis |
-| `-o id` | Only the resource id/code — useful in pipes |
-| `-v` | Shows method + URL + status for each request |
-| `--limite N` | Number of results |
-| `--pagina N` | Pagination |
+| `-o json` | Structured JSON — for scripts and pipes (raw stdout, `jq`-safe) |
+| `-o csv` | Tabular output (on `documento listar`) |
+| `-o id` | Only the resource id/code, one per line — for pipes (on `listar` commands) |
+| `-v` | Method + URL + status of each request, to **stderr**. Goes before the subcommand: `ragfly -v cloud documento listar` |
+| `--limite N` | Results per page (on listing commands) |
+| `--pagina N` | Page number (on `documento listar`) |
+
+> `-o json` and `-o id` write raw to stdout; `-v` writes to stderr. So
+> `ragfly -v cloud documento listar -o json | jq` works — the diagnostics never
+> pollute the JSON.
 
 ---
 
@@ -178,9 +179,8 @@ ragfly cloud chat preguntar --conversacion 512 "Which ones have a price adjustme
 #!/bin/bash
 export RAGFLY_TOKEN=slm_live_xxxxxxxxxx
 
-# List unchunked documents and process them
-ragfly cloud documento listar --estado CHUNKEADO -o json \
-  | jq -r '.[].codigo_documento' \
+# List chunked documents and process them (-o id → one code per line)
+ragfly cloud documento listar --estado CHUNKEADO -o id \
   | while read codigo; do
       ragfly cloud habilidad ejecutar RESUMIR_DOCUMENTO --documento "$codigo" --esperar
     done
