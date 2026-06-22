@@ -86,7 +86,7 @@
             "**Isolement.** Les Données du Client sont structurellement isolées de celles des autres clients. Aucun groupe, entité ou client ne peut accéder aux données d'un autre.",
             "**Portabilité et restitution.** Vous pouvez exporter ou demander la restitution de vos Données du Client à tout moment pendant la durée du Contrat et pendant le délai de grâce postérieur à la résiliation décrit à la Section 12.",
             "**Suppression.** À votre demande, ou après la résiliation et le délai de grâce applicable, nous supprimerons vos Données du Client de nos systèmes, sauf lorsque la loi en impose la conservation.",
-            "**Traitement local optionnel.** Sur les forfaits qui le permettent, RAGfly Desktop vous permet de conserver l'indexation des documents au sein de votre propre réseau, de sorte que les documents ne quittent pas votre infrastructure."
+            "**Traitement local optionnel.** Sur les forfaits compatibles, RAGfly Desktop traite le fichier original et son extraction dans votre réseau. Selon le déploiement, des chunks, embeddings et métadonnées peuvent être synchronisés ; RAGfly traite les chunks nécessaires à la récupération du contexte."
           ]
         },
         {

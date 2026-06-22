@@ -1,6 +1,6 @@
 # RAGfly — Catálogo de operaciones para agentes
 
-> Infraestructura RAG multi-tenant. Entrega a un agente de IA el contexto documental exacto que necesita, filtrado por RBAC, vía MCP, CLI o API REST.
+> RAG Framework multi-tenant. Entrega a un agente de IA el contexto documental exacto que necesita, filtrado por RBAC, vía MCP, CLI o API REST.
 
 Actualizado: 2026-06-18
 

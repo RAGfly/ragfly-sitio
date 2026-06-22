@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "RAGfly — Framework RAG multi-tenant pour agents IA",
-    "description": "Infrastructure de génération augmentée par récupération (RAG) à l'échelle pour que tout agent IA dialogue avec des milliers de documents privés — multi-tenant, isolé par client, sans stocker vos documents. Connectez un répertoire via MCP, REST, CLI ou SDK.",
+    "description": "Infrastructure RAG multi-tenant pour agents IA, avec isolation par client et confidentialité vérifiable pour chaque mode de déploiement. Connectez un répertoire via MCP, REST, CLI ou SDK.",
     "keywords": [
       "RAG framework",
       "infrastructure RAG",
@@ -41,7 +41,7 @@
     "headlineLead": "Récupération augmentée",
     "headlineAccent": "pour vos agents.",
     "slogan": "Simple, privé et précis. Et chacun de vos clients, dans son propre espace.",
-    "tagline": "N'importe quel agent conversant avec des milliers de documents privés : à l'échelle, isolés par client, sans que nous stockions vos documents. Vous connectez un répertoire et votre agent répond avec des citations — sans construire ni maintenir un pipeline RAG.",
+    "tagline": "N'importe quel agent conversant avec des milliers de documents privés : à l'échelle et isolés par client. Vous connectez un répertoire et votre agent répond avec des citations — sans construire ni maintenir un pipeline RAG.",
     "ctaPrimario": "Commencer gratuitement",
     "ctaSecundario": "Voir la démo en direct"
   },
@@ -78,7 +78,7 @@
     "sin4": "Des mois d'intégration avant le premier résultat",
     "con0": "Vous pointez vers un répertoire ; ingestion, vectorisation et indexation automatiques",
     "con1": "Multi-tenant nativement : un corpus isolé par client, dès la base de données",
-    "con2": "Nous ne stockons pas votre document ; et si vous en avez besoin, nous le traitons sans qu'il quitte votre réseau",
+    "con2": "Le Cloud ne conserve pas l'original ; Desktop le traite localement ; dans les offres souveraines, la base appartient au client",
     "con3": "Agnostique à la base de données et BYO : apportez votre propre base vectorielle et votre propre modèle",
     "con4": "De zéro à un agent répondant avec des citations en moins de 30 minutes"
   },
@@ -99,8 +99,8 @@
     "item0Titulo": "Multi-tenant nativement",
     "item0Desc": "Un corpus isolé par client, gouverné depuis un seul panneau avec une structure Groupes → Entités → Domaines. Vous servez 20 clients depuis une seule plateforme sans qu'une donnée passe de l'un à l'autre. C'est ce que les context engines cloud-first ne résolvent pas : là, cet isolement, c'est vous qui le construisez.",
     "item1Num": "2",
-    "item1Titulo": "Nous ne stockons pas votre document — et si vous en avez besoin, il ne quitte pas votre réseau",
-    "item1Desc": "Nous ne stockons jamais le document : il est traité « en vol » —parsing, chunks, embeddings— et n'est pas conservé. Et si vous en avez besoin, nous le traitons sans qu'il quitte votre réseau : le document ne sort pas, seuls des chunks chiffrés avec une clé par groupe sortent, et lors de la récupération votre agent reçoit des index et des URL locales, jamais le fichier. Cela ouvre les clients régulés —juridique, santé, secteur public— que les autres ne peuvent pas prendre. Dans les forfaits avancés, vous apportez en plus votre propre base vectorielle et choisissez vos modèles (BYO).",
+    "item1Titulo": "Une confidentialité précise selon le mode",
+    "item1Desc": "RAGfly traite l'entrée et la sortie. Le Cloud traite le fichier original mais ne le conserve pas après l'ingestion. Desktop traite l'original et son extraction dans votre réseau et peut synchroniser des dérivés chiffrés. Dans les offres souveraines, le client possède la base et les dérivés au repos, tandis que RAGfly accède aux chunks pour récupérer le contexte.",
     "item2Num": "3",
     "item2Titulo": "Du répertoire à la production",
     "item2Desc": "Sans projet d'intégration. Ingestion, vectorisation et indexation automatiques à l'échelle de dizaines de milliers de fichiers. Votre seule tâche est de pointer ; le système se charge du reste.",
@@ -113,7 +113,7 @@
     "tablaSin1": "Construire l'isolement multi-client à la main",
     "tablaCon1": "Multi-tenant nativement : un corpus isolé par client, dès la base de données",
     "tablaSin2": "Téléverser les documents vers un cloud tiers",
-    "tablaCon2": "Nous ne stockons pas votre document ; et si vous en avez besoin, nous le traitons sans qu'il quitte votre réseau",
+    "tablaCon2": "Le Cloud ne conserve pas l'original ; Desktop le traite localement ; dans les offres souveraines, la base appartient au client",
     "tablaSin3": "Vous lier à un fournisseur de base vectorielle ou de LLM",
     "tablaCon3": "Agnostique à la base de données et BYO : apportez votre propre base vectorielle et votre propre modèle",
     "tablaSin4": "Des mois d'intégration avant le premier résultat",
@@ -148,15 +148,15 @@
     "eyebrow": "Cloud ou Desktop",
     "titulo1": "La même plateforme,",
     "tituloAccent": "deux modes.",
-    "descripcion": "Même interface. Dans le cloud, vous démarrez en quelques minutes. En Desktop, la donnée n'est pas touchée hors de votre réseau — pas même pour en extraire le contenu —, ce qui ajoute de la confidentialité et de la vitesse.",
+    "descripcion": "Même interface. Dans le Cloud, RAGfly traite l'original et les chunks pertinents. Avec Desktop, le composant local traite l'original dans votre réseau et l'empêche d'atteindre le Cloud RAGfly.",
     "cloudTitulo": "Cloud",
     "cloudDesc": "Vous démarrez en quelques minutes, sans infrastructure propre. RAGfly provisionne tout et vous pointez vers votre répertoire.",
     "cloud0": "Zéro friction au démarrage",
     "cloud1": "Vectorisation « en vol », données chiffrées",
     "cloud2": "Mise à l'échelle managée sans rien opérer",
     "desktopTitulo": "Desktop",
-    "desktopDesc": "La donnée ne quitte pas votre réseau, pas même pour extraire le contenu. Active ce que le cloud ne peut pas : de vrais chemins du système de fichiers.",
-    "desktop0": "L'indexation ne sort pas du réseau interne",
+    "desktopDesc": "L'original et son extraction sont traités dans votre réseau. Des dérivés peuvent être synchronisés et RAGfly traite des chunks lors de la récupération.",
+    "desktop0": "Le fichier original n'atteint pas le Cloud RAGfly",
     "desktop1": "Orchestre de vrais répertoires par utilisateur",
     "desktop2": "Dépose les documents récupérés dans un dossier prêt pour votre agent local",
     "nota": "Desktop ne remplace pas votre agent — Claude Code, ou celui que vous utilisez : il le sert mieux. C'est la même couche d'action de RAGfly, plus puissante quand elle s'exécute au sein de votre réseau."
@@ -195,7 +195,7 @@
     "titulo1": "Vos données sont les vôtres.",
     "tituloAccent": "Toujours.",
     "descripcion": "La protection est un pilier de conception, pas un forfait premium. Les documents confidentiels restent sous le contrôle de votre organisation.",
-    "punto0": "Nous ne stockons pas les documents : ils sont traités « en vol » (parsing → chunks → embeddings) et ne sont pas conservés",
+    "punto0": "Le Cloud traite le fichier original mais ne le conserve pas après l'ingestion ; les chunks, embeddings et métadonnées persistent",
     "punto1": "Données des documents chiffrées dans la base de données",
     "punto2": "Filtrage structurel depuis la base : tout accès passe par des vues qui filtrent ce que chaque identité peut voir",
     "punto3": "Isolement total entre organisations : aucun groupe ne voit les données d'un autre",
@@ -204,7 +204,7 @@
     "punto6": "Authentification à double facteur et tokens JWT sécurisés",
     "punto7": "Audit complet : chaque action enregistrée avec identité, date et module",
     "punto8": "Communications chiffrées (HTTPS) à toutes les couches",
-    "punto9": "Client LM en option : l'indexation ne sort pas du réseau interne ; quand vous en avez besoin, la récupération renvoie à votre agent des index et des URL locales —les chunks pertinents—, jamais le document"
+    "punto9": "Desktop traite l'original localement ; dans les offres souveraines, le client possède la base et les dérivés au repos, tandis que RAGfly accède aux chunks pour récupérer le contexte"
   },
   "planes": {
     "eyebrow": "Forfaits",
@@ -268,8 +268,8 @@
     "item0Desc": "Ingestion, mise à l'échelle, multi-tenancy et sécurité arrivent résolus. Vous construisez la logique de l'agent, pas l'infrastructure.",
     "item1Titulo": "Multi-tenant pour qui sert beaucoup de clients",
     "item1Desc": "Des clients isolés depuis un seul panneau — ce que les cloud-first n'offrent pas.",
-    "item2Titulo": "Nous ne stockons pas votre document — et si vous en avez besoin, il ne quitte pas votre réseau",
-    "item2Desc": "Vectorisation en vol, Client LM optionnel, BYO base vectorielle et BYO LLM. Ouvre les clients régulés — juridique, santé, gouvernement — que les autres ne peuvent pas prendre.",
+    "item2Titulo": "Confidentialité explicite selon le mode",
+    "item2Desc": "Le Cloud ne conserve pas l'original ; Desktop le traite localement ; dans les offres souveraines, la base appartient au client. RAGfly traite des chunks pour récupérer le contexte.",
     "item3Titulo": "Sans lock-in",
     "item3Desc": "Agnostique à la base de données, compatible avec Claude, GPT, Gemini et les modèles open source. Apportez votre DB et votre modèle.",
     "item4Titulo": "Du répertoire à la production en quelques minutes",
@@ -294,7 +294,7 @@
     "invalid": "Saisissez une adresse e-mail valide."
   },
   "footer": {
-    "tagline": "Infrastructure RAG multi-tenant pour vos agents d'IA. Nous ne stockons pas votre document ; si vous en avez besoin, nous le traitons sans qu'il quitte votre réseau.",
+    "tagline": "Infrastructure RAG multi-tenant pour vos agents d'IA. Le Cloud ne conserve pas l'original ; Desktop le traite localement ; dans les offres souveraines, la base appartient au client.",
     "producto": "Produit",
     "empresa": "Ressources",
     "legal": "Légal",

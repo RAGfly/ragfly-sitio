@@ -68,7 +68,7 @@ export default function Image() {
               maxWidth: 980,
             }}
           >
-            Recuperación aumentada para tus agentes de IA — aislada por cliente, sin almacenar tus documentos.
+            Recuperación aumentada para tus agentes de IA, aislada por cliente y con privacidad verificable.
           </div>
         </div>
 

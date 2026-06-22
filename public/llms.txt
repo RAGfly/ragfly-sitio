@@ -1,14 +1,14 @@
 # RAGfly
 
-> Infraestructura RAG multi-tenant para agentes de IA. Convierte cualquier corpus de documentos en una base de recuperación segura, aislada por cliente y lista para producción — sin construir ni mantener un pipeline RAG. Vía MCP, REST y CLI.
+> RAG Framework multi-tenant para agentes de IA. Convierte cualquier corpus de documentos en una base de recuperación segura, aislada por cliente y lista para producción — sin construir ni mantener un pipeline RAG. Vía MCP, REST y CLI.
 
-RAGfly es la capa de contexto documental para agentes: apuntas a un directorio de documentos y el sistema los escanea, vectoriza e indexa automáticamente. Tu agente obtiene respuestas con citas a la fuente — a escala, aislado por cliente, sin que almacenemos tus documentos.
+RAGfly es la capa de contexto documental para agentes: apuntas a un directorio de documentos y el sistema los escanea, vectoriza e indexa automáticamente. Tu agente obtiene respuestas con citas a la fuente, a escala y aislado por cliente.
 
 - Qué ofrece: retrieval semántico con citas + capa de acción (habilidades LLM sobre documentos) + multi-tenant de fábrica.
 - Para quién: desarrolladores, consultoras e integradores que construyen agentes sobre documentos privados de uno o varios clientes.
 - Cómo funciona: apunta a un directorio → ingesta, vectorización e indexado automáticos → tu agente consulta por significado vía MCP, REST o CLI con citas a la fuente.
 - Precios (por página procesada, en USD): Free $0 (~1.000 páginas) · Starter $19 (~4.000 páginas) · Team $95 (~10.000 páginas, multi-tenant hasta 3 entidades) · Scale $490 (~60.000 páginas, hasta 15 entidades, Client LM / BYO) · Enterprise inbound (managed u on-prem/soberano).
-- Privacidad: no almacenamos los documentos — se procesan en el aire (parse → chunks → embeddings) y no se persisten. Con Desktop (Client LM), la indexación no sale de la red interna del cliente.
+- Privacidad por modo: Cloud procesa el original pero no lo conserva después de la ingesta; Desktop procesa el original localmente y puede sincronizar derivados; en soberano la BD y los derivados en reposo son del cliente, mientras RAGfly accede a chunks para recuperar contexto.
 
 ## Para agentes
 

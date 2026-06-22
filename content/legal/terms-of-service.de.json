@@ -86,7 +86,7 @@
             "**Isolierung.** Kundendaten sind strukturell von denen anderer Kunden isoliert. Keine Gruppe, Einheit oder Kunde kann auf die Daten eines anderen zugreifen.",
             "**Übertragbarkeit und Rückgabe.** Sie können Ihre Kundendaten jederzeit während der Laufzeit und während der in Abschnitt 12 beschriebenen Nachfrist nach Kündigung exportieren oder deren Rückgabe verlangen.",
             "**Löschung.** Auf Ihre Anfrage oder nach Kündigung und Ablauf der geltenden Nachfrist löschen wir Ihre Kundendaten aus unseren Systemen, außer wenn eine Aufbewahrung gesetzlich vorgeschrieben ist.",
-            "**Optionale lokale Verarbeitung.** Bei Tarifen, die dies unterstützen, ermöglicht RAGfly Desktop, die Dokumentenindexierung innerhalb Ihres eigenen Netzwerks zu halten, sodass die Dokumente Ihre Infrastruktur nicht verlassen."
+            "**Optionale lokale Verarbeitung.** Bei unterstützten Tarifen verarbeitet RAGfly Desktop die Originaldatei und deren Extraktion in Ihrem Netzwerk. Je nach Bereitstellung können Chunks, Embeddings und Metadaten synchronisiert werden; RAGfly verarbeitet die für den Kontextabruf erforderlichen Chunks."
           ]
         },
         {

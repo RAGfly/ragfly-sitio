@@ -86,7 +86,7 @@
             "**Aislamiento.** Los Datos del Cliente están estructuralmente aislados de los de otros clientes. Ningún grupo, entidad o cliente puede acceder a los datos de otro.",
             "**Portabilidad y devolución.** Puede exportar o solicitar la devolución de sus Datos del Cliente en cualquier momento durante la vigencia y durante el período de gracia posterior a la terminación descrito en la Sección 12.",
             "**Eliminación.** A su solicitud, o tras la terminación y el período de gracia aplicable, eliminaremos sus Datos del Cliente de nuestros sistemas, salvo cuando la ley exija su conservación.",
-            "**Procesamiento local opcional.** En los planes que lo admiten, RAGfly Desktop le permite mantener la indexación de documentos dentro de su propia red, de modo que los documentos no salgan de su infraestructura."
+            "**Procesamiento local opcional.** En los planes que lo admiten, RAGfly Desktop procesa el archivo original y su extracción dentro de su red. Según el despliegue, pueden sincronizarse chunks, embeddings y metadatos; RAGfly procesa los chunks necesarios para recuperar contexto."
           ]
         },
         {

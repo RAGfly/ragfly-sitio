@@ -13,15 +13,15 @@
   },
   {
     "q": "¿Cómo funciona?",
-    "a": "Apuntas RAGfly al directorio de tus documentos; el sistema los escanea, vectoriza e indexa automáticamente. Luego tu agente recupera por significado y obtiene respuestas con citas a la fuente vía MCP, REST o CLI — aislado por cliente y dentro de tu red."
+    "a": "Apuntas RAGfly al directorio de tus documentos; el sistema los escanea, vectoriza e indexa automáticamente. Luego tu agente recupera por significado y obtiene respuestas con citas a la fuente vía MCP, REST o CLI, aislado por cliente y según el modo de despliegue."
   },
   {
     "q": "¿Cómo consume un agente de IA a RAGfly?",
     "a": "Vía un servidor MCP remoto (SSE o HTTP) o la CLI de RAGfly Desktop, autenticándose con JWT o API Key. El catálogo de operaciones está publicado en https://ragfly.ai/agents.json y https://ragfly.ai/llms-full.txt."
   },
   {
-    "q": "¿Mis documentos salen a la nube?",
-    "a": "No almacenamos tu documento: la indexación y vectorización se realizan «en el aire» y los datos quedan encriptados. Con RAGfly Desktop la indexación tampoco sale de la red interna del cliente."
+    "q": "¿Qué procesa RAGfly y dónde quedan mis datos?",
+    "a": "RAGfly procesa información documental en la entrada y chunks relevantes en la salida. Cloud procesa el archivo original pero no lo conserva después de la ingesta; persisten derivados. Desktop procesa el original localmente y puede sincronizar derivados. En planes soberanos, la base de datos y los derivados en reposo son del cliente; RAGfly accede a chunks para recuperar contexto."
   },
   {
     "q": "¿Cómo se aíslan los datos de un cliente respecto de otro?",

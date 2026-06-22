@@ -86,7 +86,7 @@
             "**Isolation.** Customer Data is structurally isolated from that of other customers. No group, entity, or customer can access another's data.",
             "**Portability and return.** You may export or request the return of your Customer Data at any time during the term and during the post-termination grace period described in Section 12.",
             "**Deletion.** Upon your request, or after termination and the applicable grace period, we will delete your Customer Data from our systems, except where retention is required by law.",
-            "**Optional local processing.** On plans that support it, RAGfly Desktop lets you keep document indexing within your own network so that the documents do not leave your infrastructure."
+            "**Optional local processing.** On supported plans, RAGfly Desktop processes the original file and its extraction within your network. Depending on the deployment, chunks, embeddings, and metadata may be synchronized; RAGfly processes the chunks required to retrieve context."
           ]
         },
         {
