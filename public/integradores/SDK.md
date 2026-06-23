@@ -122,7 +122,7 @@ Paginated list of the active group's corpus.
 
 ```python
 page = client.list_documents(page=1, page_size=50)
-# → dict with keys: items, total, pagina, limite
+# → dict with keys: items, total, page, limit
 ```
 
 ---

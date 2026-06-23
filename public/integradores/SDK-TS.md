@@ -128,7 +128,7 @@ Paginated list of the active group's corpus.
 
 ```ts
 const page = await client.listDocuments({ page: 1, pageSize: 50 });
-// → object with keys: items, total, pagina, limite
+// → object with keys: items, total, page, limit
 ```
 
 ---
