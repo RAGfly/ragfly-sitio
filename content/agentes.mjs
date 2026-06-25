@@ -104,7 +104,7 @@ export const capacidades = [
     cli: 'ragfly cloud cola ver',
     metodo: 'GET',
     ruta: '/cola-estados-docs/paginado',
-    tipo_acceso: 'USUARIO',
+    tipo_acceso: 'ADMINISTRADOR',
     descripcion: 'Estado actual de la cola del pipeline (ANALIZAR → CHUNKEAR → VECTORIZAR). Útil para monitorear el avance de habilidades o de la ingesta.',
     params: [
       { nombre: 'proceso', tipo: 'string', default: 'todos', desc: 'Filtra por proceso, ej. VECTORIZAR.' },
@@ -118,7 +118,7 @@ export const capacidades = [
     cli: 'ragfly cloud cola ejecuciones',
     metodo: 'GET',
     ruta: '/cola-estados-docs/ejecuciones',
-    tipo_acceso: 'USUARIO',
+    tipo_acceso: 'ADMINISTRADOR',
     descripcion: 'Historial de ejecuciones de habilidades: cuántos documentos procesó cada ejecución, cuántos con éxito y cuántos con error.',
     params: [
       { nombre: 'limite', tipo: 'int', default: '10', desc: 'Máximo de ejecuciones.' },

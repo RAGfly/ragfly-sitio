@@ -3,7 +3,7 @@
   "descripcion": "Infraestructura RAG multi-tenant. Entrega a un agente de IA el contexto documental exacto que necesita, filtrado por RBAC, vía MCP, CLI o API REST.",
   "sitio": "https://ragfly.ai",
   "app": "https://app.ragfly.ai",
-  "actualizado": "2026-06-18",
+  "actualizado": "2026-06-25",
   "mcp": {
     "nombre": "ragfly",
     "endpointSSE": "https://api.ragfly.ai/mcp/sse",
@@ -122,7 +122,7 @@
       "cli": "ragfly cloud cola ver",
       "metodo": "GET",
       "ruta": "/cola-estados-docs/paginado",
-      "tipo_acceso": "USUARIO",
+      "tipo_acceso": "ADMINISTRADOR",
       "descripcion": "Estado actual de la cola del pipeline (ANALIZAR → CHUNKEAR → VECTORIZAR). Útil para monitorear el avance de habilidades o de la ingesta.",
       "params": [
         {
@@ -151,7 +151,7 @@
       "cli": "ragfly cloud cola ejecuciones",
       "metodo": "GET",
       "ruta": "/cola-estados-docs/ejecuciones",
-      "tipo_acceso": "USUARIO",
+      "tipo_acceso": "ADMINISTRADOR",
       "descripcion": "Historial de ejecuciones de habilidades: cuántos documentos procesó cada ejecución, cuántos con éxito y cuántos con error.",
       "params": [
         {
