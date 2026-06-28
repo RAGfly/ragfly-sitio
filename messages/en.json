@@ -281,7 +281,8 @@
     "titulo": "Building agents that need to talk to private documents?",
     "subtitulo": "Start free and connect your first directory via MCP in minutes.",
     "ctaPrimario": "Start free",
-    "ctaSecundario": "See the live demo"
+    "ctaSecundario": "See the live demo",
+    "escribenos": "Prefer to write to us directly?"
   },
   "waitlist": {
     "prompt": "Not ready to sign up? Join the early-access list and we'll let you know.",

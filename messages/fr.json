@@ -282,7 +282,8 @@
     "titulo": "Vous construisez des agents qui ont besoin de dialoguer avec des documents privés ?",
     "subtitulo": "Commencez gratuitement et connectez votre premier répertoire via MCP en quelques minutes.",
     "ctaPrimario": "Commencer gratuitement",
-    "ctaSecundario": "Voir la démo en direct"
+    "ctaSecundario": "Voir la démo en direct",
+    "escribenos": "Vous préférez nous écrire directement ?"
   },
   "waitlist": {
     "prompt": "Pas encore prêt à vous inscrire ? Rejoignez la liste d'accès anticipé et nous vous préviendrons.",

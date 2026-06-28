@@ -912,6 +912,10 @@ function FinalCTASection() {
           <div className="w-full pt-6 mt-2 border-t border-white/20">
             <WaitlistForm variant="onDark" />
           </div>
+          <p className="text-white/70 font-helvetica-neue text-sm">
+            {t('cta.escribenos')}{' '}
+            <a href="mailto:info@ragfly.ai" className="text-white underline underline-offset-2 hover:text-white/80">info@ragfly.ai</a>
+          </p>
         </div>
       </div>
     </section>
