@@ -98,7 +98,7 @@
           "kind": "list",
           "items": [
             "**Unterauftragsverarbeiter und Dienstleister** — wie Anbieter von Cloud-Hosting, Datenbanken und Infrastruktur — gebunden durch Vertraulichkeits- und Datenschutzpflichten.",
-            "**KI-Modellanbieter** — wenn Sie ein Modell eines Dritten auswählen (zum Beispiel Anthropic, OpenAI, Google), werden die relevanten Inhalte von diesem Anbieter gemäß dessen Bedingungen verarbeitet; bei unterstützten Tarifen können Sie das Modell wählen oder die Verarbeitung über RAGfly Desktop lokal halten.",
+            "**KI-Modellanbieter** — wenn Sie ein Modell eines Dritten auswählen (zum Beispiel Anthropic, OpenAI, Google), werden die relevanten Inhalte von diesem Anbieter gemäß dessen Bedingungen verarbeitet; bei unterstützten Tarifen können Sie wählen, welches Modell verwendet wird.",
             "**Identitätsanbieter** — zur Authentifizierung Ihrer Anmeldung (zum Beispiel Microsoft Entra ID).",
             "**Recht und Sicherheit** — wenn gesetzlich vorgeschrieben oder zum Schutz von Rechten, Sicherheit und Integrität des Dienstes.",
             "**Unternehmensübertragungen** — im Zusammenhang mit einer Fusion, Übernahme oder Umstrukturierung, wobei der Schutz dieser Richtlinie gewahrt bleibt."
@@ -116,7 +116,7 @@
       "blocks": [
         {
           "kind": "p",
-          "text": "Der Dienst kann Daten in anderen Ländern als Ihrem verarbeiten. Soweit das geltende Recht es verlangt, verwenden wir geeignete Garantien (wie Standardvertragsklauseln) für grenzüberschreitende Übermittlungen. Bei unterstützten Tarifen können Sie die Verarbeitung über RAGfly Desktop auf Ihre eigene Infrastruktur beschränken."
+          "text": "Der Dienst kann Daten in anderen Ländern als Ihrem verarbeiten. Soweit das geltende Recht es verlangt, verwenden wir geeignete Garantien (wie Standardvertragsklauseln) für grenzüberschreitende Übermittlungen. Bei unterstützten Tarifen hält RAGfly Desktop die Verarbeitung Ihrer Originaldateien innerhalb Ihrer eigenen Infrastruktur; abgeleitete Darstellungen ihres Inhalts (Chunks, Embeddings und Metadaten) können weiterhin durch den Dienst gemäß dieser Richtlinie verarbeitet werden."
         }
       ]
     },

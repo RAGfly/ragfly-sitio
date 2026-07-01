@@ -98,7 +98,7 @@
           "kind": "list",
           "items": [
             "**Sous-traitants ultérieurs et prestataires de services** — tels que les fournisseurs d'hébergement cloud, de bases de données et d'infrastructure — liés par des obligations de confidentialité et de protection des données.",
-            "**Fournisseurs de modèles d'IA** — lorsque vous sélectionnez un modèle tiers (par exemple Anthropic, OpenAI, Google), le contenu pertinent est traité par ce fournisseur sous réserve de ses conditions ; sur les forfaits compatibles, vous pouvez choisir le modèle ou conserver le traitement local via RAGfly Desktop.",
+            "**Fournisseurs de modèles d'IA** — lorsque vous sélectionnez un modèle tiers (par exemple Anthropic, OpenAI, Google), le contenu pertinent est traité par ce fournisseur sous réserve de ses conditions ; sur les forfaits compatibles, vous pouvez choisir quel modèle est utilisé.",
             "**Fournisseurs d'identité** — pour authentifier votre connexion (par exemple Microsoft Entra ID).",
             "**Aspects juridiques et de sécurité** — lorsque la loi l'exige ou pour protéger les droits, la sécurité et l'intégrité du Service.",
             "**Transferts d'entreprise** — dans le cadre d'une fusion, d'une acquisition ou d'une réorganisation, en préservant les protections de la présente politique."
@@ -116,7 +116,7 @@
       "blocks": [
         {
           "kind": "p",
-          "text": "Le Service peut traiter des données dans des pays autres que le vôtre. Lorsque la loi applicable l'exige, nous utilisons des garanties appropriées (telles que les clauses contractuelles types) pour les transferts transfrontaliers. Sur les forfaits compatibles, vous pouvez restreindre le traitement à votre propre infrastructure via RAGfly Desktop."
+          "text": "Le Service peut traiter des données dans des pays autres que le vôtre. Lorsque la loi applicable l'exige, nous utilisons des garanties appropriées (telles que les clauses contractuelles types) pour les transferts transfrontaliers. Sur les forfaits compatibles, RAGfly Desktop maintient le traitement de vos fichiers originaux au sein de votre propre infrastructure ; les représentations dérivées de leur contenu (chunks, embeddings et métadonnées) peuvent continuer à être traitées par le Service comme décrit dans la présente politique."
         }
       ]
     },

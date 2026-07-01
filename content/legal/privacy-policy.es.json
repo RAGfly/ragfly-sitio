@@ -98,7 +98,7 @@
           "kind": "list",
           "items": [
             "**Subencargados y proveedores de servicios** — como proveedores de alojamiento en la nube, bases de datos e infraestructura — obligados por deberes de confidencialidad y protección de datos.",
-            "**Proveedores de modelos de IA** — cuando usted selecciona un modelo de terceros (por ejemplo, Anthropic, OpenAI, Google), el contenido pertinente es tratado por ese proveedor con sujeción a sus términos; en los planes compatibles puede elegir el modelo o mantener el procesamiento local mediante RAGfly Desktop.",
+            "**Proveedores de modelos de IA** — cuando usted selecciona un modelo de terceros (por ejemplo, Anthropic, OpenAI, Google), el contenido pertinente es tratado por ese proveedor con sujeción a sus términos; en los planes compatibles puede elegir qué modelo se utiliza.",
             "**Proveedores de identidad** — para autenticar su inicio de sesión (por ejemplo, Microsoft Entra ID).",
             "**Aspectos legales y de seguridad** — cuando lo exige la ley o para proteger derechos, la seguridad y la integridad del Servicio.",
             "**Transmisiones empresariales** — en relación con una fusión, adquisición o reorganización, preservando las protecciones de esta política."
@@ -116,7 +116,7 @@
       "blocks": [
         {
           "kind": "p",
-          "text": "El Servicio puede tratar datos en países distintos del suyo. Cuando la ley aplicable lo exige, utilizamos garantías apropiadas (como cláusulas contractuales tipo) para las transferencias transfronterizas. En los planes compatibles, puede restringir el procesamiento a su propia infraestructura mediante RAGfly Desktop."
+          "text": "El Servicio puede tratar datos en países distintos del suyo. Cuando la ley aplicable lo exige, utilizamos garantías apropiadas (como cláusulas contractuales tipo) para las transferencias transfronterizas. En los planes compatibles, RAGfly Desktop mantiene el procesamiento de sus archivos originales dentro de su propia infraestructura; las representaciones derivadas de su contenido (chunks, embeddings y metadatos) pueden seguir siendo tratadas por el Servicio según lo descrito en esta política."
         }
       ]
     },

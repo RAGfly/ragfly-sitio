@@ -98,7 +98,7 @@
           "kind": "list",
           "items": [
             "**Subprocessors and service providers** — such as cloud hosting, database, and infrastructure providers — bound by confidentiality and data-protection obligations.",
-            "**AI model providers** — when you select a third-party model (for example, Anthropic, OpenAI, Google), the relevant content is processed by that provider subject to its terms; on supported plans you may choose the model or keep processing local via RAGfly Desktop.",
+            "**AI model providers** — when you select a third-party model (for example, Anthropic, OpenAI, Google), the relevant content is processed by that provider subject to its terms; on supported plans you may choose which model is used.",
             "**Identity providers** — to authenticate your sign-in (for example, Microsoft Entra ID).",
             "**Legal and safety** — when required by law or to protect rights, safety, and the integrity of the Service.",
             "**Business transfers** — in connection with a merger, acquisition, or reorganization, with the protections of this policy preserved."
@@ -116,7 +116,7 @@
       "blocks": [
         {
           "kind": "p",
-          "text": "The Service may process data in countries other than yours. Where applicable law requires, we use appropriate safeguards (such as standard contractual clauses) for cross-border transfers. On supported plans, you may restrict processing to your own infrastructure via RAGfly Desktop."
+          "text": "The Service may process data in countries other than yours. Where applicable law requires, we use appropriate safeguards (such as standard contractual clauses) for cross-border transfers. On supported plans, RAGfly Desktop keeps the processing of your original files within your own infrastructure; derived representations of their content (chunks, embeddings, and metadata) may still be processed by the Service as described in this policy."
         }
       ]
     },
