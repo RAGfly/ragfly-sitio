@@ -38,6 +38,26 @@ function stripFrontmatter(src) {
 
 marked.setOptions({ gfm: true, breaks: false })
 
+// Ids de heading estilo GitHub — sin esto los enlaces `#ancla` del kit
+// (p.ej. MCP.md#setting-up-ragfly_root--…) no apuntan a nada en la sub-página.
+function githubSlug(html) {
+  return html
+    .replace(/<[^>]+>/g, '')
+    .toLowerCase()
+    .trim()
+    .replace(/[^\p{L}\p{N}\s_-]/gu, '')
+    .replace(/\s/g, '-')
+}
+
+marked.use({
+  renderer: {
+    heading({ tokens, depth }) {
+      const html = this.parser.parseInline(tokens)
+      return `<h${depth} id="${githubSlug(html)}">${html}</h${depth}>\n`
+    },
+  },
+})
+
 // Mapa archivo .md → slug de URL, para reescribir enlaces intra-kit.
 const slugByArchivo = Object.fromEntries(documentos.map((d) => [d.archivo, d.slug]))
 

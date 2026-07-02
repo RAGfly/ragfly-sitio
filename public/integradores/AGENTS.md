@@ -42,7 +42,18 @@ If MCP is not available, use the REST endpoints documented below.
 ```
 RAGFLY_API_URL=https://api.ragfly.ai
 RAGFLY_API_KEY=slm_live_...
+RAGFLY_ROOT=/Users/you/Dropbox      # only if you open documents on disk — see below
 ```
+
+`RAGFLY_ROOT` lets you open web-uploaded documents on disk. It's the **parent
+folder** of the folder the user selected when uploading — e.g. the user uploaded
+`/Users/ana/Dropbox/MisDocumentos` → `RAGFLY_ROOT=/Users/ana/Dropbox`, and the
+relative path `/MisDocumentos/letras/cancion.txt` resolves to
+`/Users/ana/Dropbox/MisDocumentos/letras/cancion.txt`. RAGfly never reads it —
+it lives only on this machine (env var or one line in `CLAUDE.md`/`AGENTS.md`).
+Skip it if documents were loaded via RAGfly Desktop (their `fs.ruta_es_absoluta`
+is `true`). Step-by-step walkthrough:
+[MCP.md § Setting up `RAGFLY_ROOT`](MCP.md#setting-up-ragfly_root--once-per-machine-in-3-steps).
 
 ## Authentication
 
@@ -93,6 +104,12 @@ Content-Type: application/json
 ```
 GET /documentos/{codigo_documento}
 ```
+
+### Open a document on disk
+`listar_documentos` / `ver_documento` return an `fs` block with `como_abrir`
+(literal instruction). If `fs.ruta_es_absoluta` is `true`, open `fs.ruta_archivo`
+directly; if `false` (web upload), open `$RAGFLY_ROOT + fs.ruta_archivo`. Always
+`exists()`-check first. Full rules: [MCP.md § Opening a document on disk](MCP.md).
 
 ### List workspaces
 ```

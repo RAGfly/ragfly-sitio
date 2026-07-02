@@ -60,6 +60,14 @@ You can also create it from the web app (**API Keys** screen) or the REST API
 slm_live_…` against every REST endpoint, and the CLI consumes it via
 `RAGFLY_TOKEN` on any `ragfly cloud …` command (verified).
 
+> **`RAGFLY_ROOT` (optional).** If an agent on this machine opens the actual
+> documents on disk, set `RAGFLY_ROOT` so web-uploaded files (which carry a
+> relative `ruta_archivo`) resolve correctly. It is the **parent folder** of the
+> folder you selected when uploading — e.g. you uploaded
+> `/Users/ana/Dropbox/MisDocumentos` → `export RAGFLY_ROOT="/Users/ana/Dropbox"`
+> in your `~/.zshrc`. Step-by-step walkthrough:
+> [MCP.md § Setting up `RAGFLY_ROOT`](MCP.md#setting-up-ragfly_root--once-per-machine-in-3-steps).
+
 ---
 
 ## Binary structure

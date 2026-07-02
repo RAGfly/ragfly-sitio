@@ -198,6 +198,34 @@ curl "$RAGFLY_API_URL/cola-estados-docs/paginado?limit=10" \
 
 ---
 
+## Step 7 — Open a document on disk (optional)
+
+If your agent runs on the same machine where the documents live and needs to open
+the actual file (not just search it), each document carries an `fs` block via the
+`listar_documentos` / `ver_documento` MCP tools:
+
+```json
+"fs": {
+  "ruta_archivo": "/MyDocs/contracts/2024.pdf",
+  "ruta_es_absoluta": false,
+  "como_abrir": "Ruta relativa de carga web: abrir $RAGFLY_ROOT + `ruta_archivo`."
+}
+```
+
+- `ruta_es_absoluta: true` (loaded via RAGfly Desktop) → open `ruta_archivo` directly.
+- `ruta_es_absoluta: false` (web upload) → set `RAGFLY_ROOT` to the **parent folder**
+  of the folder you selected when uploading, then open `$RAGFLY_ROOT + ruta_archivo`.
+  Example: you uploaded `/Users/ana/Dropbox/MyDocs` →
+  `RAGFLY_ROOT=/Users/ana/Dropbox`, so `/MyDocs/contracts/2024.pdf` resolves to
+  `/Users/ana/Dropbox/MyDocs/contracts/2024.pdf`.
+
+RAGfly never reads `RAGFLY_ROOT` nor stores your absolute disk root — configure
+it once per machine (shell profile, agent context file, or MCP client config).
+Step-by-step walkthrough:
+[MCP.md § Setting up `RAGFLY_ROOT`](MCP.md#setting-up-ragfly_root--once-per-machine-in-3-steps).
+
+---
+
 ## Full test script
 
 ```python

@@ -125,6 +125,42 @@ page = client.list_documents(page=1, page_size=50)
 # → dict with keys: items, total, page, limit
 ```
 
+**Opening a document on disk.** Each document returned by `list_documents`
+(and by the document-detail response) carries an `fs` field describing where the
+file lives, so an agent running **on the same machine as the documents** can
+open it. The `fs` field of the response holds: `ruta_archivo`,
+`ruta_es_absoluta`, `carpeta_relativa`, `nombre_archivo`, and `como_abrir` (a
+plain-language instruction). The single rule:
+
+1. `ruta_es_absoluta` is `True` (loaded via RAGfly Desktop) → open `ruta_archivo`
+   directly.
+2. `ruta_es_absoluta` is `False` (web upload via browser) → open
+   `$RAGFLY_ROOT + ruta_archivo`, where `RAGFLY_ROOT` is the **parent folder**
+   of the root folder the user picked when uploading. Example: the user
+   uploaded `/Users/ana/Dropbox/MisDocumentos` → set
+   `RAGFLY_ROOT=/Users/ana/Dropbox`, and `/MisDocumentos/letras/cancion.txt`
+   resolves to `/Users/ana/Dropbox/MisDocumentos/letras/cancion.txt`.
+
+```python
+import os
+from pathlib import Path
+
+for doc in client.list_documents(page=1, page_size=50)["items"]:
+    fs = doc["fs"]
+    if fs["ruta_es_absoluta"]:
+        path = Path(fs["ruta_archivo"])
+    else:
+        path = Path(os.environ["RAGFLY_ROOT"]) / fs["ruta_archivo"].lstrip("/")
+    if path.exists():
+        text = path.read_text()
+```
+
+Set `RAGFLY_ROOT` once per machine — e.g.
+`export RAGFLY_ROOT="/Users/ana/Dropbox"` in your `~/.zshrc`; the cloud never
+reads it nor stores your absolute root. Always check `exists()` before reading.
+Step-by-step walkthrough:
+[MCP.md § Setting up `RAGFLY_ROOT`](MCP.md#setting-up-ragfly_root--once-per-machine-in-3-steps).
+
 ---
 
 ## Data models

@@ -131,6 +131,47 @@ const page = await client.listDocuments({ page: 1, pageSize: 50 });
 // → object with keys: items, total, page, limit
 ```
 
+**Opening a document on disk.** Each document returned by `listDocuments` (and
+by the document-detail response) carries an `fs` field describing where the file
+lives, so an agent running **on the same machine as the documents** can open it.
+The `fs` field of the response holds: `ruta_archivo`, `ruta_es_absoluta`,
+`carpeta_relativa`, `nombre_archivo`, and `como_abrir` (a plain-language
+instruction). The single rule:
+
+1. `ruta_es_absoluta` is `true` (loaded via RAGfly Desktop) → open `ruta_archivo`
+   directly.
+2. `ruta_es_absoluta` is `false` (web upload via browser) → open
+   `$RAGFLY_ROOT + ruta_archivo`, where `RAGFLY_ROOT` is the **parent folder**
+   of the root folder the user picked when uploading. Example: the user
+   uploaded `/Users/ana/Dropbox/MisDocumentos` → set
+   `RAGFLY_ROOT=/Users/ana/Dropbox`, and `/MisDocumentos/letras/cancion.txt`
+   resolves to `/Users/ana/Dropbox/MisDocumentos/letras/cancion.txt`.
+
+```ts
+import { existsSync, readFileSync } from "node:fs";
+import { join } from "node:path";
+
+const page = await client.listDocuments({ page: 1, pageSize: 50 });
+for (const doc of page.items) {
+  const fs = doc.fs;
+  const path = fs.ruta_es_absoluta
+    ? fs.ruta_archivo
+    : join(process.env.RAGFLY_ROOT!, fs.ruta_archivo);
+  if (existsSync(path)) {
+    const text = readFileSync(path, "utf8");
+  }
+}
+```
+
+> The `fs` field comes straight from the API in `snake_case` (it is not part of
+> the mapped `Document` model above).
+
+Set `RAGFLY_ROOT` once per machine — e.g.
+`export RAGFLY_ROOT="/Users/ana/Dropbox"` in your `~/.zshrc`; the cloud never
+reads it nor stores your absolute root. Always check `existsSync` before
+reading. Step-by-step walkthrough:
+[MCP.md § Setting up `RAGFLY_ROOT`](MCP.md#setting-up-ragfly_root--once-per-machine-in-3-steps).
+
 ---
 
 ## Data models

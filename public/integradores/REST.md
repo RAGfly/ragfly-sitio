@@ -48,6 +48,39 @@ Authorization: Bearer <token>
 | `GET` | `/documentos/{codigo}` | Document detail |
 | `POST` | `/documentos/buscar-semantico` | Semantic search without LLM. Body: `{"q": "...", "limit": 10}` |
 
+#### Opening a document on disk (`fs` block)
+
+`GET /documentos/paginado` and `GET /documentos/{codigo}` each return an `fs`
+block so an agent running **on the same machine where the documents live** can
+open the file on disk. The `como_abrir` field spells out the action.
+
+```json
+"fs": {
+  "ruta_archivo": "/MisDocumentos/letras/cancion.txt",
+  "ruta_es_absoluta": false,
+  "carpeta_relativa": "MisDocumentos/letras",
+  "nombre_archivo": "cancion.txt",
+  "como_abrir": "Ruta relativa de carga web: abrir $RAGFLY_ROOT + `ruta_archivo`."
+}
+```
+
+The single rule:
+
+1. `ruta_es_absoluta: true` (loaded via RAGfly Desktop) → open `ruta_archivo`
+   as-is.
+2. `ruta_es_absoluta: false` (web upload via browser) → open
+   `$RAGFLY_ROOT + ruta_archivo`, where `RAGFLY_ROOT` is the **parent folder**
+   of the root folder the user picked when uploading. Example: the user
+   uploaded `/Users/ana/Dropbox/MisDocumentos` → set
+   `RAGFLY_ROOT=/Users/ana/Dropbox`, and `/MisDocumentos/letras/cancion.txt`
+   resolves to `/Users/ana/Dropbox/MisDocumentos/letras/cancion.txt`.
+
+`RAGFLY_ROOT` is set once per machine — env var (`~/.zshrc`), your agent's
+context file (`CLAUDE.md`/`AGENTS.md`), or your MCP client config; the cloud
+never reads it nor stores your absolute root. Always `exists()`-check the
+resolved path before reading. Step-by-step walkthrough:
+[MCP.md § Setting up `RAGFLY_ROOT`](MCP.md#setting-up-ragfly_root--once-per-machine-in-3-steps).
+
 ### Workspaces
 
 | Method | Route | Description |

@@ -23,6 +23,12 @@ see_also:
 - **Execute LLM Skills** over documents or workspaces (summarize, extract, analyze).
 - **Monitor the ingestion pipeline** (states, queue, executions).
 - **Upload documents** and trigger vectorization (via REST or local client).
+- **Open documents on disk** when the agent runs on the user's machine — each
+  document carries an `fs` block; configure `RAGFLY_ROOT` once (the **parent
+  folder** of the folder you uploaded — e.g. uploaded
+  `/Users/ana/Dropbox/MisDocumentos` → `RAGFLY_ROOT=/Users/ana/Dropbox`).
+  Step-by-step walkthrough:
+  [MCP.md § Setting up `RAGFLY_ROOT`](MCP.md#setting-up-ragfly_root--once-per-machine-in-3-steps).
 
 Everything respects RAGfly's multi-tenant model: each credential is anchored to a user, a group, and a role — other groups' data is invisible by design.
 
@@ -49,7 +55,9 @@ The first five share the same authentication contract and the same RBAC; what ch
 
 Long-lived, no expiry, revocable. Format: `slm_live_xxxxxxxx…`
 
-**Who creates it**: only the group administrator (role `SEG-GRUPO`) from [`app.ragfly.ai/api-keys`](https://app.ragfly.ai/api-keys) — or via REST:
+**Who creates it**: any authenticated user can create **their own** API Key, from [`app.ragfly.ai/api-keys`](https://app.ragfly.ai/api-keys) or via REST. Only a **group administrator** (a user with `ADMINISTRADOR` access) can create a Key **for another user** — e.g. for a `PROFILE`/bot without email — by passing `codigo_usuario_destino`.
+
+A Key never grants more than its owner already has: the administrator governs each user's privilege envelope (**area, entity, role**), and a self-issued Key is capped to that envelope. Role, area and entity are validated server-side against what the target user actually holds — there is no privilege escalation:
 
 ```bash
 # With an active JWT:
@@ -99,7 +107,7 @@ PROFILEs let the admin deliver credentials to integrations without exposing pers
 | `PROCESOS_RAGFLY` | Queue and pipeline process management |
 | `OPERADOR` | According to the functions assigned to the role in your group |
 
-The administrator defines the role when creating the API Key. Principle of least privilege: if your integration only reads, use `DOCS-USUARIO-FINAL`.
+Whoever creates the Key defines its role, capped at their own access level (the administrator sets each user's role, area and entity). Principle of least privilege: if your integration only reads, use `DOCS-USUARIO-FINAL`.
 
 ---
 
