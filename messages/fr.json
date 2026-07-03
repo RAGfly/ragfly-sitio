@@ -159,7 +159,7 @@
     "desktopDesc": "L'original et son extraction sont traités dans votre réseau. Des dérivés peuvent être synchronisés et RAGfly traite des chunks lors de la récupération.",
     "desktop0": "Le fichier original n'atteint pas le Cloud RAGfly",
     "desktop1": "Orchestre de vrais répertoires par utilisateur",
-    "desktop2": "Dépose les documents récupérés dans un dossier prêt pour votre agent local",
+    "desktop2": "Renvoie le chemin local réel de chaque fichier, pas une copie — votre agent l'ouvre là où il se trouve",
     "nota": "Desktop ne remplace pas votre agent — Claude Code, ou celui que vous utilisez : il le sert mieux. C'est la même couche d'action de RAGfly, plus puissante quand elle s'exécute au sein de votre réseau."
   },
   "download": {
