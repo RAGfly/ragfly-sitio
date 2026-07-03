@@ -79,7 +79,9 @@ for (const d of documentos) {
   const raw = readFileSync(resolve(kit, d.archivo), 'utf8')
 
   // 1) .md crudo público (nombre original, para fetch de agentes).
-  writeFileSync(resolve(outMd, d.archivo), raw, 'utf8')
+  //    Sin frontmatter: el YAML de NORMA_DOCS es metadata interna del repo producto,
+  //    no parte del kit público.
+  writeFileSync(resolve(outMd, d.archivo), stripFrontmatter(raw), 'utf8')
 
   // 2) HTML pre-renderizado para la sub-página.
   const cuerpo = rewriteKitLinks(stripFrontmatter(raw))

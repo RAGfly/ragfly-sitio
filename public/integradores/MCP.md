@@ -1,13 +1,3 @@
----
-status: live
-last_updated: 2026-06-23
-audience: external integrators — LLM agents
-see_also:
-  - INTEGRATION.md
-  - REST.md
-  - RUNTIME_HINTS.md
----
-
 # RAGfly — MCP Interface
 
 Connect any MCP-compatible LLM agent (Claude Code, Cursor, Cline, etc.) to your RAGfly group's documents and capabilities. The agent discovers tools automatically — no integration code required.
@@ -79,6 +69,8 @@ Register the SSE URL and the `Authorization` header. Consult your client's docum
 | `ver_espacio` | Workspace detail: criteria + documents + queue | `id_espacio`, `limite_docs` |
 | `componer_espacios` | Set algebra (COMPOSE) of two Workspaces → a new Workspace handle | `operacion`, `id_espacio_a`, `id_espacio_b`, `nombre?`, `tipo_espacio?` |
 | `leer_espacio` | Materialize a Workspace (READ) at a chosen resolution, paginated | `id_espacio`, `resolucion?`, `consulta?`, `limite?` |
+| `refrescar_espacio` | Re-applies the Workspace's natural-language criteria and re-materializes its set (picks up newly qualifying documents) | `id_espacio` |
+| `promover_espacio` | Promotes a temporary Workspace (AREA) to permanent (ESPACIO) | `id_espacio` |
 | `ver_cola` | Current state of the processing pipeline | `proceso`, `estado`, `limite` |
 | `ver_ejecuciones` | Skill execution history | `limite` |
 | `catalogo` | User capabilities: available functions + LLM skills (RBAC-filtered) | `tipo?` (`FUNCIONES`\|`HABILIDADES`\|`TODO`) |

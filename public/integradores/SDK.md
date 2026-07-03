@@ -1,13 +1,3 @@
----
-status: live
-last_updated: 2026-06-23
-audience: external integrators — Python developers
-see_also:
-  - INTEGRATION.md
-  - REST.md
-  - MCP.md
----
-
 # RAGfly Python SDK
 
 > The Python SDK is the fastest way to connect a Python agent or script to RAGfly. It wraps the REST API and SSE stream protocol into three simple methods.
@@ -25,7 +15,7 @@ pip install ragfly
 Requires Python 3.10+. Single dependency: `httpx`.
 
 - **PyPI**: [pypi.org/project/ragfly](https://pypi.org/project/ragfly/)
-- **GitHub**: [github.com/rufinocabreragaillard/ragfly-python](https://github.com/rufinocabreragaillard/ragfly-python)
+- **GitHub**: [github.com/RAGfly/ragfly-python](https://github.com/RAGfly/ragfly-python)
 
 ---
 
@@ -184,7 +174,7 @@ import os
 client = RAGfly(api_key=os.environ["RAGFLY_API_KEY"])
 ```
 
-The Key inherits the group, entity, and role of the user who issued it. See [INTEGRATION.md](INTEGRATION.md) § Credentials for role and PROFILE details.
+The Key inherits the group, entity, and role of the user who issued it. See [INTEGRATION.md](INTEGRATION.md) § Credentials for role and PERFIL details.
 
 ---
 

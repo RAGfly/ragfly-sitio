@@ -1,12 +1,3 @@
----
-status: live
-last_updated: 2026-06-22
-audience: external integrators — scripts and terminal
-see_also:
-  - INTEGRATION.md
-  - REST.md
----
-
 # RAGfly — CLI Interface
 
 The `ragfly` binary lets you operate RAGfly from the terminal or scripts without writing HTTP directly.

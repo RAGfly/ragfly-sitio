@@ -1,14 +1,3 @@
----
-status: live
-last_updated: 2026-06-23
-audience: external integrators — TypeScript/JavaScript developers
-see_also:
-  - INTEGRATION.md
-  - SDK.md
-  - REST.md
-  - MCP.md
----
-
 # RAGfly TypeScript/JavaScript SDK
 
 > The TypeScript SDK is the fastest way to connect a Node, browser, or edge agent to RAGfly. It wraps the REST API and SSE stream protocol into the same surface as the [Python SDK](SDK.md). Zero dependencies — native `fetch`.
@@ -24,7 +13,7 @@ npm install @ragfly/sdk
 Runs on **Node 18+**, the **browser**, **Vercel Edge** and **Cloudflare Workers** (anywhere `fetch` exists). No runtime dependencies.
 
 - **npm**: [npmjs.com/package/@ragfly/sdk](https://www.npmjs.com/package/@ragfly/sdk)
-- **GitHub**: [github.com/rufinocabreragaillard/ragfly-typescript](https://github.com/rufinocabreragaillard/ragfly-typescript)
+- **GitHub**: [github.com/RAGfly/ragfly-typescript](https://github.com/RAGfly/ragfly-typescript)
 
 ---
 

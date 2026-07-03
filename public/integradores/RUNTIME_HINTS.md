@@ -1,13 +1,3 @@
----
-status: live
-last_updated: 2026-06-18
-audience: external integrators — behavior by agent/runtime type
-see_also:
-  - MCP.md
-  - REST.md
-  - SDK.md
----
-
 # RAGfly — Runtime Hints
 
 > The MCP protocol and REST API are agent-agnostic. This document complements the technical reference with behavioral guidance for each runtime type: when to use which tool, how to read responses, and what to avoid.

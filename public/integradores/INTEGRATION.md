@@ -1,14 +1,3 @@
----
-status: live
-last_updated: 2026-06-18
-audience: external integrators
-see_also:
-  - SDK.md
-  - MCP.md
-  - CLI.md
-  - REST.md
----
-
 # RAGfly — Integration Guide
 
 > RAGfly exposes its vector corpus and AI capabilities to external systems through six interfaces. This guide covers the essentials for connecting; each extension details one interface in depth.
@@ -55,7 +44,7 @@ The first five share the same authentication contract and the same RBAC; what ch
 
 Long-lived, no expiry, revocable. Format: `slm_live_xxxxxxxx…`
 
-**Who creates it**: any authenticated user can create **their own** API Key, from [`app.ragfly.ai/api-keys`](https://app.ragfly.ai/api-keys) or via REST. Only a **group administrator** (a user with `ADMINISTRADOR` access) can create a Key **for another user** — e.g. for a `PROFILE`/bot without email — by passing `codigo_usuario_destino`.
+**Who creates it**: any authenticated user can create **their own** API Key, from [`app.ragfly.ai/api-keys`](https://app.ragfly.ai/api-keys) or via REST. Only a **group administrator** (a user with `ADMINISTRADOR` access) can create a Key **for another user** — e.g. for a `PERFIL`/bot without email — by passing `codigo_usuario_destino`.
 
 A Key never grants more than its owner already has: the administrator governs each user's privilege envelope (**area, entity, role**), and a self-issued Key is capped to that envelope. Role, area and entity are validated server-side against what the target user actually holds — there is no privilege escalation:
 
@@ -92,9 +81,9 @@ Each API Key acts **on behalf of a user** in the group. RAGfly has two user type
 | Type | Description |
 |---|---|
 | `MAIL` | Real person with email. Can issue their own API Key. |
-| `PROFILE` | Functional handle ("bot-finance", "night-agent") without email, created by the admin. The admin issues the Key on behalf of the PROFILE. |
+| `PERFIL` | Functional handle ("bot-finance", "night-agent") without email, created by the admin. The admin issues the Key on behalf of the PERFIL. |
 
-PROFILEs let the admin deliver credentials to integrations without exposing personal accounts.
+PERFIL users let the admin deliver credentials to integrations without exposing personal accounts.
 
 ---
 

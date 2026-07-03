@@ -1,12 +1,3 @@
----
-status: live
-last_updated: 2026-06-22
-audience: external integrators — HTTP / automation platforms
-see_also:
-  - INTEGRATION.md
-  - MCP.md
----
-
 # RAGfly — REST Interface
 
 Direct API access from any language or platform (Python, Node, n8n, Make, Zapier, curl).
