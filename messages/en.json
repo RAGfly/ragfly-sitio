@@ -158,7 +158,7 @@
     "desktopDesc": "The original and its extraction are processed inside your network. Derivatives may be synchronized, and RAGfly processes chunks during retrieval.",
     "desktop0": "The original file does not reach RAGfly Cloud",
     "desktop1": "Orchestrates real directories per user",
-    "desktop2": "Returns each file's real local path, not a copy — your agent opens it right where it lives",
+    "desktop2": "Hands your agent each file's local path, not a copy — it opens the file where it lives",
     "nota": "Desktop doesn't replace your agent — Claude Code, whichever you use: it serves it better. It's the same RAGfly action layer, more powerful when it runs inside your network."
   },
   "download": {
