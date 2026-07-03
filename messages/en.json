@@ -33,7 +33,8 @@
     "seguridad": "Security",
     "planes": "Plans",
     "iniciarSesion": "Sign in",
-    "cta": "Start free"
+    "cta": "Start free",
+    "descargar": "Desktop"
   },
   "hero": {
     "eyebrow": "RAG Service",
@@ -159,6 +160,27 @@
     "desktop1": "Orchestrates real directories per user",
     "desktop2": "Drops retrieved documents into a folder ready for your local agent",
     "nota": "Desktop doesn't replace your agent — Claude Code, whichever you use: it serves it better. It's the same RAGfly action layer, more powerful when it runs inside your network."
+  },
+  "download": {
+    "eyebrow": "RAGfly Desktop · macOS & Windows",
+    "titulo1": "Download",
+    "tituloAccent": "RAGfly Desktop.",
+    "descripcion": "RAGfly's local component: point it at your files directory and it scans, vectorizes and indexes them automatically. The original and its extraction are processed inside your network — the original file never reaches RAGfly Cloud.",
+    "ctaMac": "Download for macOS",
+    "ctaWindows": "Download for Windows",
+    "versionLabel": "Latest version",
+    "todasVersiones": "All releases",
+    "notaInstalacion": "macOS: the first time, right-click the app → Open. Windows: if SmartScreen warns you, More info → Run anyway.",
+    "pasosEyebrow": "Getting started",
+    "pasosTitulo": "Ready in three steps",
+    "paso0Titulo": "Install and open",
+    "paso0Desc": "DMG on macOS, installer on Windows. No terminal, no dependencies.",
+    "paso1Titulo": "Sign in",
+    "paso1Desc": "With your RAGfly account. Your group, your spaces and your permissions travel with you.",
+    "paso2Titulo": "Point it at your directory",
+    "paso2Desc": "RAGfly scans, vectorizes and indexes your documents, ready for your interface and your agents.",
+    "cloudNota": "Prefer to start without installing anything?",
+    "cloudCta": "Use RAGfly Cloud"
   },
   "superficies": {
     "eyebrow": "How to use it",
@@ -307,7 +329,8 @@
     "terminos": "Terms",
     "privacidad": "Privacy",
     "copyright": "© {year} RAGfly — All rights reserved.",
-    "actualizado": "Updated {fecha}"
+    "actualizado": "Updated {fecha}",
+    "desktopLink": "RAGfly Desktop"
   },
   "selector": {
     "label": "Language"

@@ -124,6 +124,7 @@ function Header() {
     { l: t('nav.comoFunciona'), h: '#como-se-usa' },
     { l: t('nav.seguridad'), h: '#seguridad' },
     { l: t('nav.planes'), h: '#planes' },
+    { l: t('nav.descargar'), h: '/download' },
   ]
 
   return (
@@ -945,6 +946,7 @@ function Footer() {
             <a href="#como-se-usa" className="font-helvetica-neue text-sm hover:text-white">{t('footer.comoFunciona')}</a>
             <a href="#como-se-usa" className="font-helvetica-neue text-sm hover:text-white">{t('footer.paraAgentes')}</a>
             <a href="#planes" className="font-helvetica-neue text-sm hover:text-white">{t('footer.planesLink')}</a>
+            <a href="/download" className="font-helvetica-neue text-sm hover:text-white">{t('footer.desktopLink')}</a>
           </div>
           <div className="flex flex-col gap-3">
             <span className="text-xs uppercase tracking-[0.18em] text-white/60">{t('footer.empresa' as Parameters<typeof t>[0])}</span>

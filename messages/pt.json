@@ -34,7 +34,8 @@
     "seguridad": "Segurança",
     "planes": "Planos",
     "iniciarSesion": "Entrar",
-    "cta": "Comece grátis"
+    "cta": "Comece grátis",
+    "descargar": "Desktop"
   },
   "hero": {
     "eyebrow": "Serviço de RAG",
@@ -160,6 +161,27 @@
     "desktop1": "Orquestra diretórios reais por usuário",
     "desktop2": "Deixa documentos recuperados em uma pasta pronta para o seu agente local",
     "nota": "O Desktop não substitui o seu agente —Claude Code, o que você usar—: ele o serve melhor. É a mesma camada de ação do RAGfly, mais potente quando roda dentro da sua rede."
+  },
+  "download": {
+    "eyebrow": "RAGfly Desktop · macOS e Windows",
+    "titulo1": "Baixe o",
+    "tituloAccent": "RAGfly Desktop.",
+    "descripcion": "O componente local do RAGfly: aponte-o para o diretório dos seus arquivos e ele os escaneia, vetoriza e indexa automaticamente. O original e sua extração são processados dentro da sua rede — o arquivo original não chega à Cloud do RAGfly.",
+    "ctaMac": "Baixar para macOS",
+    "ctaWindows": "Baixar para Windows",
+    "versionLabel": "Última versão",
+    "todasVersiones": "Todas as versões",
+    "notaInstalacion": "macOS: na primeira vez, clique com o botão direito no app → Abrir. Windows: se o SmartScreen avisar, Mais informações → Executar assim mesmo.",
+    "pasosEyebrow": "Como começar",
+    "pasosTitulo": "Pronto em três passos",
+    "paso0Titulo": "Instale e abra",
+    "paso0Desc": "DMG no macOS, instalador no Windows. Sem terminal, sem dependências.",
+    "paso1Titulo": "Faça login",
+    "paso1Desc": "Com a sua conta RAGfly. Seu grupo, seus espaços e suas permissões viajam com você.",
+    "paso2Titulo": "Aponte para o seu diretório",
+    "paso2Desc": "O RAGfly escaneia, vetoriza e indexa seus documentos, prontos para a sua interface e seus agentes.",
+    "cloudNota": "Prefere começar sem instalar nada?",
+    "cloudCta": "Use o RAGfly Cloud"
   },
   "superficies": {
     "eyebrow": "Como se usa",
@@ -308,7 +330,8 @@
     "terminos": "Termos",
     "privacidad": "Privacidade",
     "copyright": "© {year} RAGfly — Todos os direitos reservados.",
-    "actualizado": "Atualizado {fecha}"
+    "actualizado": "Atualizado {fecha}",
+    "desktopLink": "RAGfly Desktop"
   },
   "selector": {
     "label": "Idioma"

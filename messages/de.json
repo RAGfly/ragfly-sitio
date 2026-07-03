@@ -33,7 +33,8 @@
     "seguridad": "Sicherheit",
     "planes": "Pläne",
     "iniciarSesion": "Anmelden",
-    "cta": "Kostenlos starten"
+    "cta": "Kostenlos starten",
+    "descargar": "Desktop"
   },
   "hero": {
     "eyebrow": "RAG-Dienst",
@@ -159,6 +160,27 @@
     "desktop1": "Orchestriert echte Verzeichnisse pro Nutzer",
     "desktop2": "Legt abgerufene Dokumente in einem Ordner ab, bereit für deinen lokalen Agenten",
     "nota": "Desktop ersetzt deinen Agenten nicht —Claude Code, welchen auch immer du nutzt—: es bedient ihn besser. Es ist dieselbe Aktionsschicht von RAGfly, stärker, wenn sie innerhalb deines Netzwerks läuft."
+  },
+  "download": {
+    "eyebrow": "RAGfly Desktop · macOS und Windows",
+    "titulo1": "Lade",
+    "tituloAccent": "RAGfly Desktop.",
+    "descripcion": "Die lokale Komponente von RAGfly: auf das Verzeichnis deiner Dateien richten, und sie werden automatisch gescannt, vektorisiert und indexiert. Original und Extraktion werden in deinem Netz verarbeitet — die Originaldatei erreicht die RAGfly Cloud nicht.",
+    "ctaMac": "Für macOS herunterladen",
+    "ctaWindows": "Für Windows herunterladen",
+    "versionLabel": "Neueste Version",
+    "todasVersiones": "Alle Versionen",
+    "notaInstalacion": "macOS: beim ersten Mal Rechtsklick auf die App → Öffnen. Windows: falls SmartScreen warnt, Weitere Informationen → Trotzdem ausführen.",
+    "pasosEyebrow": "Erste Schritte",
+    "pasosTitulo": "In drei Schritten startklar",
+    "paso0Titulo": "Installieren und öffnen",
+    "paso0Desc": "DMG auf macOS, Installer auf Windows. Kein Terminal, keine Abhängigkeiten.",
+    "paso1Titulo": "Anmelden",
+    "paso1Desc": "Mit deinem RAGfly-Konto. Deine Gruppe, deine Räume und deine Berechtigungen reisen mit.",
+    "paso2Titulo": "Auf dein Verzeichnis richten",
+    "paso2Desc": "RAGfly scannt, vektorisiert und indexiert deine Dokumente — bereit für deine Oberfläche und deine Agenten.",
+    "cloudNota": "Lieber ohne Installation starten?",
+    "cloudCta": "RAGfly Cloud nutzen"
   },
   "superficies": {
     "eyebrow": "So nutzt du es",
@@ -307,7 +329,8 @@
     "terminos": "Nutzungsbedingungen",
     "privacidad": "Datenschutz",
     "copyright": "© {year} RAGfly — Alle Rechte vorbehalten.",
-    "actualizado": "Aktualisiert {fecha}"
+    "actualizado": "Aktualisiert {fecha}",
+    "desktopLink": "RAGfly Desktop"
   },
   "selector": {
     "label": "Sprache"
