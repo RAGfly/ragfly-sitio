@@ -210,7 +210,7 @@
     "eyebrow": "Forfaits",
     "titulo": "Nous facturons à la page traitée. En pages et en dollars, pas en crédits.",
     "recomendado": "Recommandé",
-    "nota": "La facturation se fait à la page traitée plus l’usage de récupération, en dollars — sans crédits qui expirent. Les pages supplémentaires sont facturées à l’usage (Fast 0,02 $ / Hi-res 0,05 $).",
+    "nota": "La facturation se fait à la page traitée plus l’usage de récupération, en dollars — sans crédits qui expirent. Les pages supplémentaires sont facturées à l’usage (Fast 0,02 $ / Hi-res 0,05 $). En option sur les plans payants : RAG agentique, un agent géré par RAGfly, acheté au tour (0,135 $), pour ceux qui n'ont pas encore leur propre agent.",
     "plan0Nombre": "Free",
     "plan0Sub": "Pour essayer",
     "plan0Precio": "USD $0/mois",

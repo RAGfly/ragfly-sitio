@@ -21,7 +21,8 @@
 // MODELO (jun-2026): cobro por PÁGINA procesada + uso de recuperación, en
 // páginas y dólares (no créditos). Superficies MCP/REST/CLI/SDK en todos los
 // planes. Margen vive en la recuperación (valor); storage/infra a costo.
-// Fuente de cifras: "RAGfly - Modelo de Pricing.xlsx".
+// Fuente de cifras: la BD (tablas `caracteristicas_plan` + `planes`) — canónica.
+// El xlsx comercial y este archivo DERIVAN de ella; ante discrepancia manda la BD.
 // ─────────────────────────────────────────────────────────────────────────
 
 export const planes = [
@@ -113,4 +114,4 @@ export const planes = [
 
 // Nota al pie de la tabla de planes (se traduce con /ragfly-idiomas-sitio).
 export const notaPlanes =
-  'El cobro es por página procesada más uso de recuperación, en dólares — sin créditos que caduquen. Las páginas extra se cobran por uso (Fast $0,02 / Hi-res $0,05).'
+  'El cobro es por página procesada más uso de recuperación, en dólares — sin créditos que caduquen. Las páginas extra se cobran por uso (Fast $0,02 / Hi-res $0,05). Opcional en los planes pagos: RAG Agéntico, un agente gestionado por RAGfly que se adquiere por turno ($0,135), para quienes aún no tienen su propio agente.'

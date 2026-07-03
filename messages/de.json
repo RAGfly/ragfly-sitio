@@ -209,7 +209,7 @@
     "eyebrow": "Pläne",
     "titulo": "Wir berechnen pro verarbeiteter Seite. In Seiten und Dollar, nicht in Credits.",
     "recomendado": "Empfohlen",
-    "nota": "Die Abrechnung erfolgt pro verarbeiteter Seite plus Retrieval-Nutzung, in Dollar — ohne verfallende Credits. Zusätzliche Seiten werden nach Nutzung abgerechnet (Fast 0,02 $ / Hi-res 0,05 $).",
+    "nota": "Die Abrechnung erfolgt pro verarbeiteter Seite plus Retrieval-Nutzung, in Dollar — ohne verfallende Credits. Zusätzliche Seiten werden nach Nutzung abgerechnet (Fast 0,02 $ / Hi-res 0,05 $). Optional in den kostenpflichtigen Tarifen: Agentic RAG, ein von RAGfly verwalteter Agent, abgerechnet pro Turn (0,135 $), für alle, die noch keinen eigenen Agenten haben.",
     "plan0Nombre": "Free",
     "plan0Sub": "Zum Ausprobieren",
     "plan0Precio": "USD $0/Monat",

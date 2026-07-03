@@ -210,7 +210,7 @@
     "eyebrow": "Planes",
     "titulo": "Cobramos por página procesada. En páginas y dólares, no en créditos.",
     "recomendado": "Recomendado",
-    "nota": "El cobro es por página procesada más uso de recuperación, en dólares — sin créditos que caduquen. Las páginas extra se cobran por uso (Fast $0,02 / Hi-res $0,05).",
+    "nota": "El cobro es por página procesada más uso de recuperación, en dólares — sin créditos que caduquen. Las páginas extra se cobran por uso (Fast $0,02 / Hi-res $0,05). Opcional en los planes pagos: RAG Agéntico, un agente gestionado por RAGfly que se adquiere por turno ($0,135), para quienes aún no tienen su propio agente.",
     "plan0Nombre": "Free",
     "plan0Sub": "Para probar",
     "plan0Precio": "USD $0/mes",

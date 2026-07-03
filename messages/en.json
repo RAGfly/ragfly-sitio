@@ -209,7 +209,7 @@
     "eyebrow": "Plans",
     "titulo": "We charge per page processed. In pages and dollars, not credits.",
     "recomendado": "Recommended",
-    "nota": "Billing is per processed page plus retrieval usage, in dollars — no credits that expire. Extra pages are billed by usage (Fast $0.02 / Hi-res $0.05).",
+    "nota": "Billing is per processed page plus retrieval usage, in dollars — no credits that expire. Extra pages are billed by usage (Fast $0.02 / Hi-res $0.05). Optional on paid plans: Agentic RAG, an agent managed by RAGfly, purchased per turn ($0.135), for those who don't yet have their own agent.",
     "plan0Nombre": "Free",
     "plan0Sub": "To try it out",
     "plan0Precio": "USD $0/mo",
