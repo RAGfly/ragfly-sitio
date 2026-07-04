@@ -1,0 +1,106 @@
+{
+  "title": "Refund Policy",
+  "subtitle": "Last updated: 04/07/2026 · Version 1.0",
+  "intro": [
+    {
+      "kind": "p",
+      "text": "This Refund Policy explains when and how refunds apply to paid subscriptions and charges for the **RAGfly** platform, websites, applications, APIs, and related services (the \"Service\"). It forms part of, and should be read together with, our Terms of Service."
+    },
+    {
+      "kind": "p",
+      "text": "Payments are processed by **Paddle**, our Merchant of Record. Paddle handles billing, taxes, and the processing of any refunds approved under this policy."
+    }
+  ],
+  "sections": [
+    {
+      "id": "sec-1",
+      "heading": "1. Free Plan",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "The **Free** plan is provided at no cost and requires no payment. As no charge is made, refunds do not apply."
+        }
+      ]
+    },
+    {
+      "id": "sec-2",
+      "heading": "2. Paid Subscriptions",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Our paid plans (**Starter**, **Team**, and **Scale**) are recurring subscriptions billed in advance for each billing cycle (monthly or annual). Paid plans **do not include a free trial**; the Free plan is the way to evaluate the Service before subscribing."
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Except where required by applicable law, **fees are non-refundable for billing periods that have already started**.",
+            "We do not provide prorated or partial refunds for unused time within a billing period.",
+            "If a price changes, we give reasonable advance notice and the change takes effect at the next billing cycle."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sec-3",
+      "heading": "3. Cancellations",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "You can cancel a paid subscription at any time from your account or the Paddle customer portal. When you cancel:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Your subscription remains active until the end of the current paid period, and you keep access to your plan until then.",
+            "You are not charged again after the current period ends.",
+            "The cancellation does not, by itself, generate a refund of amounts already billed for the current period."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sec-4",
+      "heading": "4. Usage-Based and One-Off Charges",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Charges for usage beyond your plan's included allowances (overage) and any other one-off charges are **non-refundable once the corresponding usage has been incurred**, except where required by applicable law."
+        }
+      ]
+    },
+    {
+      "id": "sec-5",
+      "heading": "5. Statutory Consumer Rights",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Nothing in this policy limits any refund or cancellation rights that you have under mandatory consumer-protection law in your jurisdiction (for example, a statutory cooling-off period). Where such rights apply, they prevail over the sections above. If you believe you are entitled to a refund under applicable law, contact us and we will review your request in good faith."
+        }
+      ]
+    },
+    {
+      "id": "sec-6",
+      "heading": "6. How to Request a Refund",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "To request a refund or ask a billing question, email **admin@ragfly.ai** from the address associated with your account, including your order or subscription details. You can also manage your subscription and invoices through the Paddle customer portal linked from your billing receipts."
+        },
+        {
+          "kind": "p",
+          "text": "Approved refunds are issued to the original payment method by Paddle. Processing times depend on your payment provider."
+        }
+      ]
+    },
+    {
+      "id": "sec-7",
+      "heading": "7. Contact",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Questions about this Refund Policy can be sent to **admin@ragfly.ai**."
+        }
+      ]
+    }
+  ]
+}

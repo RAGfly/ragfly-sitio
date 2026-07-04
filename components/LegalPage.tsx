@@ -37,13 +37,13 @@ const BACK_LABEL: Record<string, string> = {
 }
 
 /* Etiquetas del chrome (footer) por idioma — mismo registro que el contenido */
-type ChromeLabels = { rights: string; terms: string; privacy: string; home: string }
+type ChromeLabels = { rights: string; terms: string; privacy: string; refund: string; home: string }
 const CHROME: Record<string, ChromeLabels> = {
-  es: { rights: 'Todos los derechos reservados.', terms: 'Términos', privacy: 'Privacidad', home: 'Inicio' },
-  en: { rights: 'All rights reserved.', terms: 'Terms', privacy: 'Privacy', home: 'Home' },
-  pt: { rights: 'Todos os direitos reservados.', terms: 'Termos', privacy: 'Privacidade', home: 'Início' },
-  fr: { rights: 'Tous droits réservés.', terms: 'Conditions', privacy: 'Confidentialité', home: 'Accueil' },
-  de: { rights: 'Alle Rechte vorbehalten.', terms: 'Bedingungen', privacy: 'Datenschutz', home: 'Startseite' },
+  es: { rights: 'Todos los derechos reservados.', terms: 'Términos', privacy: 'Privacidad', refund: 'Reembolsos', home: 'Inicio' },
+  en: { rights: 'All rights reserved.', terms: 'Terms', privacy: 'Privacy', refund: 'Refunds', home: 'Home' },
+  pt: { rights: 'Todos os direitos reservados.', terms: 'Termos', privacy: 'Privacidade', refund: 'Reembolsos', home: 'Início' },
+  fr: { rights: 'Tous droits réservés.', terms: 'Conditions', privacy: 'Confidentialité', refund: 'Remboursements', home: 'Accueil' },
+  de: { rights: 'Alle Rechte vorbehalten.', terms: 'Bedingungen', privacy: 'Datenschutz', refund: 'Rückerstattungen', home: 'Startseite' },
 }
 
 /* ------------------------------------------------------------------ */
@@ -203,6 +203,7 @@ export default function LegalPage({ content }: { content: LegalContent }) {
           <div className="flex gap-6">
             <Link href="/legal/terms" className="hover:text-white">{chrome.terms}</Link>
             <Link href="/legal/privacy" className="hover:text-white">{chrome.privacy}</Link>
+            <Link href="/legal/refund" className="hover:text-white">{chrome.refund}</Link>
             <Link href="/" className="hover:text-white">{chrome.home}</Link>
           </div>
         </div>

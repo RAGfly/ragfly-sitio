@@ -1,0 +1,106 @@
+{
+  "title": "Rückerstattungsrichtlinie",
+  "subtitle": "Zuletzt aktualisiert: 04.07.2026 · Version 1.0",
+  "intro": [
+    {
+      "kind": "p",
+      "text": "Diese Rückerstattungsrichtlinie erläutert, wann und wie Rückerstattungen für kostenpflichtige Abonnements und Gebühren der **RAGfly**-Plattform, ihrer Websites, Anwendungen, APIs und zugehörigen Dienste (der „Dienst\") gelten. Sie ist Teil unserer Nutzungsbedingungen und sollte zusammen mit diesen gelesen werden."
+    },
+    {
+      "kind": "p",
+      "text": "Zahlungen werden von **Paddle**, unserem Merchant of Record, abgewickelt. Paddle übernimmt die Abrechnung, die Steuern und die Bearbeitung aller nach dieser Richtlinie genehmigten Rückerstattungen."
+    }
+  ],
+  "sections": [
+    {
+      "id": "sec-1",
+      "heading": "1. Kostenloser Tarif",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Der **Free**-Tarif wird kostenlos bereitgestellt und erfordert keine Zahlung. Da keine Gebühr anfällt, sind Rückerstattungen nicht anwendbar."
+        }
+      ]
+    },
+    {
+      "id": "sec-2",
+      "heading": "2. Kostenpflichtige Abonnements",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Unsere kostenpflichtigen Tarife (**Starter**, **Team** und **Scale**) sind wiederkehrende Abonnements, die für jeden Abrechnungszeitraum (monatlich oder jährlich) im Voraus in Rechnung gestellt werden. Kostenpflichtige Tarife **beinhalten keine kostenlose Testphase**; der Free-Tarif ist die Möglichkeit, den Dienst vor dem Abonnieren zu evaluieren."
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Sofern nicht durch geltendes Recht vorgeschrieben, **sind Gebühren für bereits begonnene Abrechnungszeiträume nicht erstattungsfähig**.",
+            "Wir gewähren keine anteiligen oder teilweisen Rückerstattungen für ungenutzte Zeit innerhalb eines Abrechnungszeitraums.",
+            "Bei einer Preisänderung kündigen wir diese angemessen im Voraus an, und die Änderung wird zum nächsten Abrechnungszeitraum wirksam."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sec-3",
+      "heading": "3. Kündigungen",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Du kannst ein kostenpflichtiges Abonnement jederzeit über dein Konto oder das Paddle-Kundenportal kündigen. Bei einer Kündigung:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Bleibt dein Abonnement bis zum Ende des laufenden bezahlten Zeitraums aktiv, und du behältst bis dahin den Zugang zu deinem Tarif.",
+            "Wird dir nach Ablauf des laufenden Zeitraums keine weitere Gebühr berechnet.",
+            "Führt die Kündigung allein nicht zu einer Rückerstattung bereits für den laufenden Zeitraum berechneter Beträge."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sec-4",
+      "heading": "4. Nutzungsbasierte und einmalige Gebühren",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Gebühren für Nutzung, die die in deinem Tarif enthaltenen Kontingente überschreitet (Overage), sowie sonstige einmalige Gebühren **sind nicht erstattungsfähig, sobald die entsprechende Nutzung erfolgt ist**, sofern nicht durch geltendes Recht vorgeschrieben."
+        }
+      ]
+    },
+    {
+      "id": "sec-5",
+      "heading": "5. Gesetzliche Verbraucherrechte",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Nichts in dieser Richtlinie schränkt Rückerstattungs- oder Kündigungsrechte ein, die dir nach zwingendem Verbraucherschutzrecht deiner Rechtsordnung zustehen (zum Beispiel ein gesetzliches Widerrufsrecht). Soweit solche Rechte gelten, haben sie Vorrang vor den obigen Abschnitten. Wenn du der Ansicht bist, nach geltendem Recht Anspruch auf eine Rückerstattung zu haben, kontaktiere uns, und wir prüfen dein Anliegen nach Treu und Glauben."
+        }
+      ]
+    },
+    {
+      "id": "sec-6",
+      "heading": "6. So beantragst du eine Rückerstattung",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Um eine Rückerstattung zu beantragen oder eine Frage zur Abrechnung zu stellen, schreibe an **admin@ragfly.ai** von der mit deinem Konto verknüpften Adresse und gib deine Bestell- oder Abonnementdaten an. Du kannst dein Abonnement und deine Rechnungen auch über das Paddle-Kundenportal verwalten, das in deinen Zahlungsbelegen verlinkt ist."
+        },
+        {
+          "kind": "p",
+          "text": "Genehmigte Rückerstattungen werden von Paddle auf das ursprüngliche Zahlungsmittel ausgezahlt. Die Bearbeitungszeiten hängen von deinem Zahlungsanbieter ab."
+        }
+      ]
+    },
+    {
+      "id": "sec-7",
+      "heading": "7. Kontakt",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Fragen zu dieser Rückerstattungsrichtlinie können an **admin@ragfly.ai** gesendet werden."
+        }
+      ]
+    }
+  ]
+}

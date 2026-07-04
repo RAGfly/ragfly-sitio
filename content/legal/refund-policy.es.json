@@ -1,0 +1,106 @@
+{
+  "title": "Política de Reembolsos",
+  "subtitle": "Última actualización: 04/07/2026 · Versión 1.0",
+  "intro": [
+    {
+      "kind": "p",
+      "text": "Esta Política de Reembolsos explica cuándo y cómo aplican los reembolsos a las suscripciones de pago y a los cargos de la plataforma **RAGfly**, sus sitios web, aplicaciones, APIs y servicios relacionados (el \"Servicio\"). Forma parte de nuestros Términos de Servicio y debe leerse junto con ellos."
+    },
+    {
+      "kind": "p",
+      "text": "Los pagos son procesados por **Paddle**, nuestro comerciante registrado (Merchant of Record). Paddle gestiona la facturación, los impuestos y el procesamiento de cualquier reembolso aprobado según esta política."
+    }
+  ],
+  "sections": [
+    {
+      "id": "sec-1",
+      "heading": "1. Plan Gratuito",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "El plan **Free** se ofrece sin costo y no requiere pago. Como no se realiza ningún cargo, no aplican reembolsos."
+        }
+      ]
+    },
+    {
+      "id": "sec-2",
+      "heading": "2. Suscripciones de Pago",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Nuestros planes de pago (**Starter**, **Team** y **Scale**) son suscripciones recurrentes facturadas por adelantado en cada ciclo de facturación (mensual o anual). Los planes de pago **no incluyen un período de prueba gratuito**; el plan Free es la forma de evaluar el Servicio antes de suscribirte."
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Salvo cuando lo exija la ley aplicable, **las tarifas no son reembolsables por los períodos de facturación ya iniciados**.",
+            "No otorgamos reembolsos prorrateados ni parciales por el tiempo no utilizado dentro de un período de facturación.",
+            "Si un precio cambia, damos aviso previo razonable y el cambio entra en vigor en el siguiente ciclo de facturación."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sec-3",
+      "heading": "3. Cancelaciones",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Puedes cancelar una suscripción de pago en cualquier momento desde tu cuenta o desde el portal de cliente de Paddle. Al cancelar:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Tu suscripción permanece activa hasta el final del período pagado en curso, y conservas el acceso a tu plan hasta entonces.",
+            "No se te vuelve a cobrar una vez finalizado el período en curso.",
+            "La cancelación no genera, por sí sola, un reembolso de los importes ya facturados por el período en curso."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sec-4",
+      "heading": "4. Cargos por Consumo y Cargos Puntuales",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Los cargos por consumo que exceda los cupos incluidos en tu plan (overage) y cualquier otro cargo puntual **no son reembolsables una vez que el consumo correspondiente se ha producido**, salvo cuando lo exija la ley aplicable."
+        }
+      ]
+    },
+    {
+      "id": "sec-5",
+      "heading": "5. Derechos del Consumidor",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Nada en esta política limita los derechos de reembolso o cancelación que te correspondan bajo la legislación imperativa de protección al consumidor de tu jurisdicción (por ejemplo, un período de desistimiento legal). Cuando dichos derechos apliquen, prevalecen sobre las secciones anteriores. Si consideras que tienes derecho a un reembolso según la ley aplicable, contáctanos y revisaremos tu solicitud de buena fe."
+        }
+      ]
+    },
+    {
+      "id": "sec-6",
+      "heading": "6. Cómo Solicitar un Reembolso",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Para solicitar un reembolso o hacer una consulta de facturación, escribe a **admin@ragfly.ai** desde la dirección asociada a tu cuenta, incluyendo los datos de tu pedido o suscripción. También puedes gestionar tu suscripción y facturas desde el portal de cliente de Paddle enlazado en tus recibos."
+        },
+        {
+          "kind": "p",
+          "text": "Los reembolsos aprobados se emiten al método de pago original a través de Paddle. Los tiempos de procesamiento dependen de tu proveedor de pago."
+        }
+      ]
+    },
+    {
+      "id": "sec-7",
+      "heading": "7. Contacto",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Las consultas sobre esta Política de Reembolsos pueden enviarse a **admin@ragfly.ai**."
+        }
+      ]
+    }
+  ]
+}

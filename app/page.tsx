@@ -961,6 +961,7 @@ function Footer() {
             <span className="text-xs uppercase tracking-[0.18em] text-white/60">{t('footer.legal')}</span>
             <a href="/legal/terms" className="font-helvetica-neue text-sm hover:text-white">{t('footer.terminos')}</a>
             <a href="/legal/privacy" className="font-helvetica-neue text-sm hover:text-white">{t('footer.privacidad')}</a>
+            <a href="/legal/refund" className="font-helvetica-neue text-sm hover:text-white">{t('footer.reembolsos')}</a>
           </div>
         </div>
       </div>

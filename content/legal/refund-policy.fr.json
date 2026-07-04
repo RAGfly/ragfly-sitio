@@ -1,0 +1,106 @@
+{
+  "title": "Politique de Remboursement",
+  "subtitle": "Dernière mise à jour : 04/07/2026 · Version 1.0",
+  "intro": [
+    {
+      "kind": "p",
+      "text": "Cette Politique de Remboursement explique quand et comment les remboursements s'appliquent aux abonnements payants et aux frais de la plateforme **RAGfly**, de ses sites web, applications, API et services associés (le « Service »). Elle fait partie de nos Conditions d'utilisation et doit être lue conjointement avec celles-ci."
+    },
+    {
+      "kind": "p",
+      "text": "Les paiements sont traités par **Paddle**, notre revendeur officiel (Merchant of Record). Paddle gère la facturation, les taxes et le traitement de tout remboursement approuvé au titre de la présente politique."
+    }
+  ],
+  "sections": [
+    {
+      "id": "sec-1",
+      "heading": "1. Offre Gratuite",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "L'offre **Free** est fournie gratuitement et ne nécessite aucun paiement. Aucun frais n'étant prélevé, aucun remboursement ne s'applique."
+        }
+      ]
+    },
+    {
+      "id": "sec-2",
+      "heading": "2. Abonnements Payants",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Nos offres payantes (**Starter**, **Team** et **Scale**) sont des abonnements récurrents facturés à l'avance pour chaque cycle de facturation (mensuel ou annuel). Les offres payantes **n'incluent pas de période d'essai gratuite** ; l'offre Free est le moyen d'évaluer le Service avant de souscrire."
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Sauf lorsque la loi applicable l'exige, **les frais ne sont pas remboursables pour les périodes de facturation déjà commencées**.",
+            "Nous n'accordons pas de remboursement au prorata ni partiel pour le temps non utilisé au sein d'une période de facturation.",
+            "Si un prix change, nous en donnons un préavis raisonnable et le changement prend effet au cycle de facturation suivant."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sec-3",
+      "heading": "3. Résiliations",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Vous pouvez résilier un abonnement payant à tout moment depuis votre compte ou depuis le portail client Paddle. Lors de la résiliation :"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Votre abonnement reste actif jusqu'à la fin de la période payée en cours, et vous conservez l'accès à votre offre jusque-là.",
+            "Vous n'êtes plus facturé une fois la période en cours terminée.",
+            "La résiliation ne génère pas, à elle seule, de remboursement des montants déjà facturés pour la période en cours."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sec-4",
+      "heading": "4. Frais à l'Usage et Frais Ponctuels",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Les frais liés à un usage dépassant les quotas inclus dans votre offre (dépassement) et tout autre frais ponctuel **ne sont pas remboursables une fois que l'usage correspondant a été effectué**, sauf lorsque la loi applicable l'exige."
+        }
+      ]
+    },
+    {
+      "id": "sec-5",
+      "heading": "5. Droits des Consommateurs",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Rien dans la présente politique ne limite les droits de remboursement ou de résiliation dont vous disposez en vertu du droit impératif de la consommation de votre juridiction (par exemple, un délai de rétractation légal). Lorsque de tels droits s'appliquent, ils prévalent sur les sections ci-dessus. Si vous estimez avoir droit à un remboursement en vertu de la loi applicable, contactez-nous et nous examinerons votre demande de bonne foi."
+        }
+      ]
+    },
+    {
+      "id": "sec-6",
+      "heading": "6. Comment Demander un Remboursement",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Pour demander un remboursement ou poser une question de facturation, écrivez à **admin@ragfly.ai** depuis l'adresse associée à votre compte, en indiquant les détails de votre commande ou de votre abonnement. Vous pouvez aussi gérer votre abonnement et vos factures via le portail client Paddle accessible depuis vos reçus."
+        },
+        {
+          "kind": "p",
+          "text": "Les remboursements approuvés sont émis vers le moyen de paiement d'origine par Paddle. Les délais de traitement dépendent de votre prestataire de paiement."
+        }
+      ]
+    },
+    {
+      "id": "sec-7",
+      "heading": "7. Contact",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Les questions relatives à cette Politique de Remboursement peuvent être envoyées à **admin@ragfly.ai**."
+        }
+      ]
+    }
+  ]
+}
