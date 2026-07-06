@@ -5,13 +5,14 @@ import { NextResponse } from 'next/server'
    del sitio apunta aquí y no al asset directo. */
 const REPO = 'RAGfly/ragfly-desktop-releases'
 
-export const revalidate = 300
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
 
 export async function GET() {
   try {
     const res = await fetch(`https://api.github.com/repos/${REPO}/releases/latest`, {
       headers: { Accept: 'application/vnd.github+json' },
-      next: { revalidate: 300 },
+      cache: 'no-store',
     })
     if (res.ok) {
       const rel = await res.json()
