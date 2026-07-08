@@ -4,7 +4,7 @@
   "intro": [
     {
       "kind": "p",
-      "text": "Les présentes Conditions d'utilisation (le **« Contrat »**) constituent un contrat contraignant entre vous (**« Client », « vous » ou « votre »**) et **RAGfly** (**« RAGfly », « nous » ou « notre »**). Ce Contrat régit votre accès et votre utilisation de la plateforme RAGfly, des sites web, des applications, des API et des services connexes (collectivement, le **« Service »**)."
+      "text": "Les présentes Conditions d'utilisation (le **« Contrat »**) constituent un contrat contraignant entre vous (**« Client », « vous » ou « votre »**) et **CAB Ltd.**, opérant sous la marque « RAGfly » (**« RAGfly », « nous » ou « notre »**). Ce Contrat régit votre accès et votre utilisation de la plateforme RAGfly, des sites web, des applications, des API et des services connexes (collectivement, le **« Service »**)."
     },
     {
       "kind": "p",
@@ -210,7 +210,7 @@
       "blocks": [
         {
           "kind": "p",
-          "text": "Ce Contrat est régi par les lois de la juridiction dans laquelle RAGfly est établie, sans égard aux règles de conflit de lois. Les parties tenteront d'abord de résoudre tout litige de bonne foi. Rien dans cette section ne limite les droits impératifs qui vous sont accordés en tant que consommateur en vertu des lois de votre pays de résidence, y compris le droit de porter des réclamations devant les tribunaux de votre propre juridiction lorsque la loi applicable le prévoit."
+          "text": "Ce Contrat est régi par les lois de l'État du Delaware, États-Unis d'Amérique, sans égard aux règles de conflit de lois et à l'exclusion de la Convention des Nations Unies sur les contrats de vente internationale de marchandises. Les parties tenteront d'abord de résoudre tout litige de bonne foi. Tout litige qui ne peut être résolu à l'amiable sera tranché définitivement par arbitrage contraignant administré selon le Règlement d'arbitrage de la Chambre de commerce internationale (CCI) par un arbitre ; le siège de l'arbitrage sera Wilmington, Delaware, et la langue de l'arbitrage sera l'anglais. Rien dans cette section ne limite les droits impératifs qui vous sont accordés en tant que consommateur en vertu des lois de votre pays de résidence, y compris le droit de porter des réclamations devant les tribunaux de votre propre juridiction lorsque la loi applicable le prévoit."
         }
       ]
     },

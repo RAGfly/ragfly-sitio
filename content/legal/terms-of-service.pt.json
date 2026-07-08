@@ -4,7 +4,7 @@
   "intro": [
     {
       "kind": "p",
-      "text": "Estes Termos de Serviço (este **\"Contrato\"**) constituem um contrato vinculativo entre você (**\"Cliente\", \"você\" ou \"seu\"**) e a **RAGfly** (**\"RAGfly\", \"nós\" ou \"nosso\"**). Este Contrato rege o seu acesso e uso da plataforma RAGfly, dos sites, aplicações, APIs e serviços relacionados (coletivamente, o **\"Serviço\"**)."
+      "text": "Estes Termos de Serviço (este **\"Contrato\"**) constituem um contrato vinculativo entre você (**\"Cliente\", \"você\" ou \"seu\"**) e a **CAB Ltd.**, que opera sob a marca \"RAGfly\" (**\"RAGfly\", \"nós\" ou \"nosso\"**). Este Contrato rege o seu acesso e uso da plataforma RAGfly, dos sites, aplicações, APIs e serviços relacionados (coletivamente, o **\"Serviço\"**)."
     },
     {
       "kind": "p",
@@ -210,7 +210,7 @@
       "blocks": [
         {
           "kind": "p",
-          "text": "Este Contrato é regido pelas leis da jurisdição em que a RAGfly está estabelecida, sem considerar as regras de conflito de leis. As partes tentarão primeiro resolver qualquer controvérsia de boa-fé. Nada nesta seção limita os direitos imperativos que lhe são conferidos como consumidor conforme as leis do seu país de residência, incluindo o direito de apresentar reclamações perante os tribunais da sua própria jurisdição quando a lei aplicável assim o dispuser."
+          "text": "Este Contrato é regido pelas leis do Estado de Delaware, Estados Unidos da América, sem considerar as regras de conflito de leis e excluindo a Convenção das Nações Unidas sobre Contratos de Compra e Venda Internacional de Mercadorias. As partes tentarão primeiro resolver qualquer controvérsia de boa-fé. Qualquer controvérsia que não possa ser resolvida amigavelmente será definitivamente resolvida por arbitragem vinculante administrada segundo o Regulamento de Arbitragem da Câmara de Comércio Internacional (CCI) por um árbitro; a sede da arbitragem será Wilmington, Delaware, e o idioma da arbitragem será o inglês. Nada nesta seção limita os direitos imperativos que lhe são conferidos como consumidor conforme as leis do seu país de residência, incluindo o direito de apresentar reclamações perante os tribunais da sua própria jurisdição quando a lei aplicável assim o dispuser."
         }
       ]
     },
