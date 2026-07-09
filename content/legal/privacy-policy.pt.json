@@ -146,7 +146,7 @@
       "blocks": [
         {
           "kind": "p",
-          "text": "Dependendo da sua jurisdição, você pode ter direitos de acesso, correção, exclusão, portabilidade ou restrição do tratamento das suas informações pessoais, bem como de opor-se a certos tratamentos ou retirar o consentimento. Para exercer esses direitos, entre em contato em admin@ragfly.ai. Se as suas informações pessoais estiverem contidas em Dados do Cliente controlados por uma organização, dirija a sua solicitação a essa organização; nós a auxiliaremos na qualidade de operador."
+          "text": "Dependendo da sua jurisdição, você pode ter direitos de acesso, correção, exclusão, portabilidade ou restrição do tratamento das suas informações pessoais, bem como de opor-se a certos tratamentos ou retirar o consentimento. Para exercer esses direitos, entre em contato em admin@ragfly.ai. Se as suas informações pessoais estiverem contidas em Dados do Cliente controlados por uma organização, dirija a sua solicitação a essa organização; nós a auxiliaremos na qualidade de operador. Nota sobre portabilidade: a RAGfly não armazena os seus arquivos originais (apenas derivados cifrados como texto, fragmentos e embeddings) — os seus documentos originais permanecem em sua posse a todo momento, portanto não há uma exportação de dados adicional que devamos fornecer."
         }
       ]
     },

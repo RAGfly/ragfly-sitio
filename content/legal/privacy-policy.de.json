@@ -146,7 +146,7 @@
       "blocks": [
         {
           "kind": "p",
-          "text": "Je nach Ihrer Rechtsordnung haben Sie möglicherweise Rechte auf Auskunft, Berichtigung, Löschung, Übertragbarkeit oder Einschränkung der Verarbeitung Ihrer personenbezogenen Daten sowie das Recht, bestimmten Verarbeitungen zu widersprechen oder Ihre Einwilligung zu widerrufen. Um diese Rechte auszuüben, kontaktieren Sie uns unter admin@ragfly.ai. Wenn Ihre personenbezogenen Daten in Kundendaten enthalten sind, die von einer Organisation kontrolliert werden, richten Sie Ihre Anfrage bitte an diese Organisation; wir unterstützen sie in unserer Eigenschaft als Auftragsverarbeiter."
+          "text": "Je nach Ihrer Rechtsordnung haben Sie möglicherweise Rechte auf Auskunft, Berichtigung, Löschung, Übertragbarkeit oder Einschränkung der Verarbeitung Ihrer personenbezogenen Daten sowie das Recht, bestimmten Verarbeitungen zu widersprechen oder Ihre Einwilligung zu widerrufen. Um diese Rechte auszuüben, kontaktieren Sie uns unter admin@ragfly.ai. Wenn Ihre personenbezogenen Daten in Kundendaten enthalten sind, die von einer Organisation kontrolliert werden, richten Sie Ihre Anfrage bitte an diese Organisation; wir unterstützen sie in unserer Eigenschaft als Auftragsverarbeiter. Hinweis zur Übertragbarkeit: RAGfly speichert Ihre Originaldateien nicht (nur verschlüsselte Ableitungen wie Text, Chunks und Embeddings) — Ihre Originaldokumente verbleiben jederzeit in Ihrem Besitz, sodass es keinen gesonderten Datenexport gibt, den wir bereitstellen müssten."
         }
       ]
     },

@@ -146,7 +146,7 @@
       "blocks": [
         {
           "kind": "p",
-          "text": "Depending on your jurisdiction, you may have rights to access, correct, delete, port, or restrict the processing of your personal information, and to object to certain processing or withdraw consent. To exercise these rights, contact us at admin@ragfly.ai. If your personal information is contained in Customer Data controlled by an organization, please direct your request to that organization; we will assist them as their processor."
+          "text": "Depending on your jurisdiction, you may have rights to access, correct, delete, port, or restrict the processing of your personal information, and to object to certain processing or withdraw consent. To exercise these rights, contact us at admin@ragfly.ai. If your personal information is contained in Customer Data controlled by an organization, please direct your request to that organization; we will assist them as their processor. Note on portability: RAGfly does not store your original files (only encrypted derivatives such as text, chunks, and embeddings) — your original documents remain in your own possession at all times, so there is no separate data export for us to provide."
         }
       ]
     },
