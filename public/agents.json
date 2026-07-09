@@ -3,7 +3,7 @@
   "descripcion": "Infraestructura RAG multi-tenant. Entrega a un agente de IA el contexto documental exacto que necesita, filtrado por RBAC, vía MCP, CLI o API REST.",
   "sitio": "https://ragfly.ai",
   "app": "https://app.ragfly.ai",
-  "actualizado": "2026-06-25",
+  "actualizado": "2026-07-09",
   "mcp": {
     "nombre": "ragfly",
     "endpointSSE": "https://api.ragfly.ai/mcp/sse",

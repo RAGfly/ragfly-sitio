@@ -33,7 +33,7 @@ ragfly login
 ### API Key (automations, no expiry)
 
 ```bash
-export RAGFLY_TOKEN=slm_live_xxxxxxxxxx   # the CLI picks it up automatically
+export RAGFLY_API_KEY=slm_live_xxxxxxxxxx   # the CLI picks it up automatically
 ```
 
 Create one from the CLI:
@@ -49,7 +49,7 @@ ragfly cloud api-key revocar slm_live_a1b2c3   # por prefijo
 You can also create it from the web app (**API Keys** screen) or the REST API
 (`POST /auth/api-key`). The key authenticates as `Authorization: Bearer
 slm_live_…` against every REST endpoint, and the CLI consumes it via
-`RAGFLY_TOKEN` on any `ragfly cloud …` command (verified).
+`RAGFLY_API_KEY` on any `ragfly cloud …` command (verified).
 
 > **`RAGFLY_ROOT` (optional).** If an agent on this machine opens the actual
 > documents on disk, set `RAGFLY_ROOT` so web-uploaded files (which carry a
@@ -176,7 +176,7 @@ ragfly cloud chat preguntar --conversacion 512 "Which ones have a price adjustme
 
 ```bash
 #!/bin/bash
-export RAGFLY_TOKEN=slm_live_xxxxxxxxxx
+export RAGFLY_API_KEY=slm_live_xxxxxxxxxx
 
 # List chunked documents and process them (-o id → one code per line)
 ragfly cloud documento listar --estado CHUNKEADO -o id \

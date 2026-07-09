@@ -92,6 +92,14 @@ Register the SSE URL and the `Authorization` header. Consult your client's docum
 runs **on the same machine where the documents live** can open the file on disk.
 The `como_abrir` field tells the agent exactly what to do — read it and follow it.
 
+The same `fs` block is attached **per document** when you retrieve *many* at once:
+`leer_espacio(id_espacio, resolucion="manifiesto")` and the `espacio://{id}`
+resource enumerate the documents of a Working Space (the set that indexes them),
+and every item in the manifest carries its own `fs`. Retrieving one document or a
+whole set follows the identical rule below — absolute paths open as-is, relative
+paths get `$RAGFLY_ROOT` prepended. (Only the `manifiesto` resolution lists files;
+`chunks`/`texto` return fragments, not file locations.)
+
 ```json
 "fs": {
   "ruta_archivo": "/Users/you/Dropbox/RUFINO/CONCIERTOS/afiche.pdf",

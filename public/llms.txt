@@ -42,4 +42,5 @@ RAGfly es la capa de contexto documental para agentes: apuntas a un directorio d
 - [CLI](https://ragfly.ai/integradores/CLI.md): terminal, scripts y CI/CD.
 - [Python SDK](https://ragfly.ai/integradores/SDK.md): `pip install ragfly`.
 - [Runtime hints](https://ragfly.ai/integradores/RUNTIME_HINTS.md): qué tool usar según el runtime.
+- [Variables de entorno](https://ragfly.ai/integradores/ENV_VARS.md): referencia única de todas las variables RAGFLY_ (nombre canónico, default, sin aliases).
 - [AGENTS.md](https://ragfly.ai/integradores/AGENTS.md): para soltar en la raíz del workspace del agente.

@@ -104,6 +104,20 @@ writeFileSync(
   'utf8',
 )
 
-console.log(`✓ public/integradores/ — ${documentos.length} .md crudos`)
+// Archivos no-.md del kit que también se sirven crudos (fetch de agentes /
+// referenciados por el README, p.ej. `.env.example`).
+const EXTRAS = ['.env.example']
+let extrasCopiados = 0
+for (const nombre of EXTRAS) {
+  try {
+    const raw = readFileSync(resolve(kit, nombre), 'utf8')
+    writeFileSync(resolve(outMd, nombre), raw, 'utf8')
+    extrasCopiados++
+  } catch {
+    console.warn(`⚠ extra no encontrado en el kit, se omite: ${nombre}`)
+  }
+}
+
+console.log(`✓ public/integradores/ — ${documentos.length} .md crudos + ${extrasCopiados} extra(s)`)
 console.log(`✓ content/integradores-docs.json — ${documentos.length} docs (HTML + meta)`)
 console.log(`  fuente: ${KIT_DIR}  ·  ${fecha}`)

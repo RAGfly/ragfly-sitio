@@ -40,6 +40,7 @@ export const documentos = [
   { slug: 'quickstart',          archivo: 'QUICKSTART.md',          grupo: 'guias', icono: '🚀', titulo: 'Quickstart',           desc: 'From zero to first semantic query: sign up → API Key → MCP → result.' },
   { slug: 'integration',         archivo: 'INTEGRATION.md',         grupo: 'guias', icono: '🧭', titulo: 'Integration guide',     desc: 'Credentials, roles, identity types and the contract common to every interface.' },
   { slug: 'runtime-hints',       archivo: 'RUNTIME_HINTS.md',       grupo: 'guias', icono: '🎛️', titulo: 'Runtime hints',         desc: 'Which tool to use per runtime: short-context agents, reasoners, IDEs, REST.' },
+  { slug: 'env-vars',            archivo: 'ENV_VARS.md',            grupo: 'guias', icono: '🔧', titulo: 'Environment variables', desc: 'Every RAGFLY_ variable: canonical name, default, legacy aliases. One place, no surprises.' },
   { slug: 'agents-md',           archivo: 'AGENTS.md',              grupo: 'guias', icono: '📄', titulo: 'AGENTS.md',             desc: 'Drop it in the root of your agent workspace (Codex/Claude).' },
   { slug: 'evaluation-template', archivo: 'EVALUATION_TEMPLATE.md', grupo: 'guias', icono: '✅', titulo: 'Evaluation template',   desc: 'Report findings from your test with a standard format.' },
 

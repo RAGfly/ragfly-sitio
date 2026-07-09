@@ -53,6 +53,7 @@ curl $RAGFLY_API_URL/auth/me -H "Authorization: Bearer $RAGFLY_API_KEY"
 | **`SDK.md`** | Python SDK |
 | **`SDK-TS.md`** | TypeScript/JavaScript SDK |
 | **`RUNTIME_HINTS.md`** | Hints by agent/runtime type (Codex, Claude, IDEs, REST) |
+| **`ENV_VARS.md`** | **Every environment variable — canonical names, defaults, legacy aliases** |
 | **`EVALUATION_TEMPLATE.md`** | Template for reporting findings |
 | **`.env.example`** | Environment variables template |
 
