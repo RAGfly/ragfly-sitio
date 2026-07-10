@@ -27,3 +27,7 @@ User-agent: CCBot
 Allow: /
 
 Sitemap: https://ragfly.ai/sitemap.xml
+
+# Guía para agentes de IA (índice de docs legibles por máquina).
+LLM-Content: https://ragfly.ai/llms.txt
+LLM-Full: https://ragfly.ai/llms-full.txt
