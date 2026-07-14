@@ -34,19 +34,21 @@ function WindowsIcon() {
 
 type OS = 'mac' | 'windows' | null
 
+function detectOS(): OS {
+  if (typeof navigator === 'undefined') return null
+  const ua = navigator.userAgent
+  if (/Windows/i.test(ua)) return 'windows'
+  if (/Mac/i.test(ua)) return 'mac'
+  return null
+}
+
 export default function DownloadPage() {
   const t = useTranslations()
   const locale = useLocale()
   const back = BACK_LABEL[locale] ?? BACK_LABEL.en
 
-  const [os, setOs] = useState<OS>(null)
+  const [os] = useState<OS>(() => detectOS())
   const [version, setVersion] = useState<string | null>(null)
-
-  useEffect(() => {
-    const ua = navigator.userAgent
-    if (/Windows/i.test(ua)) setOs('windows')
-    else if (/Mac/i.test(ua)) setOs('mac')
-  }, [])
 
   useEffect(() => {
     fetch('https://api.github.com/repos/RAGfly/ragfly-desktop-releases/releases/latest')

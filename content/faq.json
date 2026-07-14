@@ -9,19 +9,19 @@
   },
   {
     "q": "¿Cuánto cuesta?",
-    "a": "Planes en USD: Free $0 (1 Entity, 500 Pages totales, 25 Retrievals/día, 50 Verified Answers totales), Starter $39/mes, Growth $149/mes, Scale $590/mes y Enterprise/Soberano custom. Add-ons: Pages Fast $0,02/page, Hi-res/OCR $0,05/page, Agentic Retrieval $1,15/operation y packs de Verified Answers por plan."
+    "a": "Planes en USD: Free $0, Starter $39/mes, Growth $149/mes, Scale $590/mes y Enterprise/Soberano custom. Cada plan muestra su cupo de Pages, Retrievals, Verified Answers y Entities, además de los add-ons disponibles cuando aplican. Superficies MCP/REST/CLI/SDK en todos los planes."
   },
   {
     "q": "¿Cómo funciona?",
-    "a": "Apuntas RAGfly al directorio de tus documentos; el sistema los escanea, vectoriza e indexa automáticamente. Luego tu agente recupera por significado y obtiene respuestas con citas a la fuente vía MCP, REST o CLI, aislado por cliente y según el modo de despliegue."
+    "a": "Apuntas RAGfly al directorio de tus documentos; el sistema los escanea, vectoriza e indexa automáticamente. Luego tu agente recupera por significado y obtiene respuestas con citas a la fuente vía MCP, REST o CLI, aislado por cliente y con el tratamiento de datos correspondiente al modo de despliegue."
   },
   {
     "q": "¿Cómo consume un agente de IA a RAGfly?",
-    "a": "Vía un servidor MCP remoto (SSE o HTTP) o la CLI de RAGfly Desktop, autenticándose con JWT o API Key. El catálogo de operaciones está publicado en https://ragfly.ai/agents.json y https://ragfly.ai/llms-full.txt."
+    "a": "Vía un servidor MCP remoto (SSE o HTTP) o la CLI de RAGfly Desktop, autenticándose con JWT o API Key. El catálogo de operaciones está publicado en `https://ragfly.ai/agents.json` y `https://ragfly.ai/llms-full.txt`."
   },
   {
     "q": "¿Qué procesa RAGfly y dónde quedan mis datos?",
-    "a": "RAGfly procesa información documental en la entrada y chunks relevantes en la salida. Cloud procesa el archivo original pero no lo conserva después de la ingesta; persisten derivados. Desktop procesa el original localmente y puede sincronizar derivados. En planes soberanos, la base de datos y los derivados en reposo son del cliente; RAGfly accede a chunks para recuperar contexto."
+    "a": "RAGfly procesa información documental en la entrada y chunks relevantes en la salida. En Cloud procesa el archivo original pero no lo conserva después de la ingesta; persisten chunks, embeddings y metadata. Con Desktop, el original y su extracción se procesan dentro de tu red, aunque pueden sincronizarse derivados. En planes soberanos, la base de datos y los derivados en reposo son del cliente; RAGfly accede a los chunks necesarios para recuperar y entregar contexto."
   },
   {
     "q": "¿Cómo se aíslan los datos de un cliente respecto de otro?",
@@ -40,8 +40,8 @@
     "a": "PDF, Word, Excel y texto plano, incluidos documentos escaneados gracias a OCR de primer nivel y comprensión de tablas y layout. El foco es texto y documentos complejos, no audio ni video."
   },
   {
-    "q": "¿Puedo desplegarlo on-premise para datos regulados (legal, salud, gobierno)?",
-    "a": "Sí. Con RAGfly Desktop / Client LM la indexación y vectorización ocurren dentro de la red del cliente, sin que el documento salga. Es lo que habilita clientes regulados de legal, salud, gobierno y finanzas."
+    "q": "¿Puedo usarlo con datos regulados (legal, salud, gobierno)?",
+    "a": "Sí. Desktop procesa el archivo original y su extracción dentro de la red del cliente. En planes soberanos, el cliente es dueño de la base donde persisten los derivados. RAGfly sigue procesando chunks en la salida para producir la recuperación; un runtime in-situ completo es el modo que mantiene también ese procesamiento dentro de infraestructura del cliente."
   },
   {
     "q": "¿En cuánto tiempo paso de un directorio a un agente respondiendo con citas?",

@@ -16,7 +16,7 @@
 //   - El nº de features de cada plan se calcula solo: agrega o quita líneas
 //     libremente, no hay que tocar código.
 //   - "resaltado: true" marca el plan recomendado (solo uno).
-//   - "limites" se muestran como features al inicio de la tarjeta.
+//   - "featuresIniciales" se muestran primero; luego "limites"; luego "features".
 //
 // MODELO (jul-2026): planes por Pages, Retrievals y Verified Answers, con
 // add-ons explícitos para Pages, Agentic Retrieval y packs de Verified Answers.
@@ -41,7 +41,7 @@ export const planes = [
       '25 Retrievals/día',
       '50 Verified Answers totales',
       'Playground incluido',
-      'Comentarios *',
+      '*',
     ],
   },
   {
@@ -57,9 +57,10 @@ export const planes = [
     features: [
       '5.000 Retrievals/mes',
       '300 Verified Answers/mes',
+      'Pack adicional: +250 Verified Answers por $25',
       'RAGfly Desktop',
       'Agentic Retrieval add-on',
-      'Comentarios **',
+      '**',
     ],
   },
   {
@@ -72,13 +73,14 @@ export const planes = [
       tokens: '10.000 Pages/mes',
       vectores: '5 Entities',
     },
+    featuresIniciales: ['Todo lo de Starter'],
     features: [
-      'Todo lo de Starter',
       '25.000 Retrievals/mes',
       '1.500 Verified Answers/mes',
+      'Pack adicional: +1.500 Verified Answers por $120',
       'Control por Área y BYOK',
       'Agentic Retrieval add-on',
-      'Comentarios ***',
+      '***',
     ],
   },
   {
@@ -91,13 +93,14 @@ export const planes = [
       tokens: '40.000 Pages/mes',
       vectores: '15 Entities',
     },
+    featuresIniciales: ['Todo lo de Growth'],
     features: [
-      'Todo lo de Growth',
       '100.000 Retrievals/mes',
       '5.000 Verified Answers/mes',
+      'Pack adicional: +10.000 Verified Answers por $700',
       'BYO base vectorial + BYO LLM',
       'Agentic Retrieval add-on',
-      'Comentarios ****',
+      '****',
     ],
   },
   {
@@ -110,17 +113,18 @@ export const planes = [
       tokens: 'Pages custom',
       vectores: 'Entities custom',
     },
+    featuresIniciales: ['Todo lo de Scale'],
     features: [
-      'Todo lo de Scale',
       'Retrievals custom',
       'Verified Answers custom',
+      'BYOK + BYO vectorial/LLM',
       'DPA/SLA',
       'Despliegue dedicado si aplica',
-      'Comentarios *****',
+      '*****',
     ],
   },
 ]
 
 // Nota al pie de la tabla de planes (se traduce con /ragfly-idiomas-sitio).
 export const notaPlanes =
-  'Add-ons: Pages Fast $0,02/page · Pages Hi-res/OCR $0,05/page · Agentic Retrieval $1,15/operation o pack 100 ops = $115. Packs de Verified Answers: Starter +250 por $25 · Growth +1.500 por $120 · Scale +10.000 por $700.\n* Free es POC con límites totales, no un plan productivo.\n** Starter incluye RAGfly Desktop y pack adicional de +250 Verified Answers por $25.\n*** Growth agrega Control por Área/BYOK y pack adicional de +1.500 Verified Answers por $120.\n**** Scale agrega BYO vectorial/LLM y pack adicional de +10.000 Verified Answers por $700.\n***** Enterprise/Soberano es sales-assisted: contrato anual, DPA/SLA y despliegue dedicado si aplica.'
+  '* Free es POC con límites totales, no un plan productivo.\n** Overage se factura solo cuando el uso supera el cupo incluido del plan.\n*** Control por Área/BYOK queda sujeto a configuración inicial del grupo.\n**** BYO requiere revisión técnica de la base vectorial y del LLM elegido.\n***** Enterprise/Soberano es sales-assisted: contrato anual, DPA/SLA y despliegue dedicado si aplica.'

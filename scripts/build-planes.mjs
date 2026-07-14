@@ -35,8 +35,8 @@ const bloque = {
 const meta = { plans: [] }
 
 planes.forEach((p, i) => {
-  // Las features visibles = límites (tokens, vectores) + features cualitativas.
-  const feats = [p.limites.tokens, p.limites.vectores, ...p.features]
+  // Algunas líneas de herencia comercial deben abrir la tarjeta antes de los límites.
+  const feats = [...(p.featuresIniciales ?? []), p.limites.tokens, p.limites.vectores, ...p.features]
 
   bloque[`plan${i}Nombre`] = p.nombre
   bloque[`plan${i}Sub`] = p.sub
