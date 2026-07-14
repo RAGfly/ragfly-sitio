@@ -41,7 +41,7 @@ export const planes = [
       '25 Retrievals/día',
       '50 Verified Answers totales',
       'Playground incluido',
-      'Comentarios ***1',
+      'Comentarios *',
     ],
   },
   {
@@ -59,7 +59,7 @@ export const planes = [
       '300 Verified Answers/mes',
       'RAGfly Desktop',
       'Agentic Retrieval add-on',
-      'Comentarios ***2',
+      'Comentarios **',
     ],
   },
   {
@@ -78,7 +78,7 @@ export const planes = [
       '1.500 Verified Answers/mes',
       'Control por Área y BYOK',
       'Agentic Retrieval add-on',
-      'Comentarios ***3',
+      'Comentarios ***',
     ],
   },
   {
@@ -97,7 +97,7 @@ export const planes = [
       '5.000 Verified Answers/mes',
       'BYO base vectorial + BYO LLM',
       'Agentic Retrieval add-on',
-      'Comentarios ***4',
+      'Comentarios ****',
     ],
   },
   {
@@ -116,11 +116,11 @@ export const planes = [
       'Verified Answers custom',
       'DPA/SLA',
       'Despliegue dedicado si aplica',
-      'Comentarios ***5',
+      'Comentarios *****',
     ],
   },
 ]
 
 // Nota al pie de la tabla de planes (se traduce con /ragfly-idiomas-sitio).
 export const notaPlanes =
-  'Add-ons: Pages Fast $0,02/page · Pages Hi-res/OCR $0,05/page · Agentic Retrieval $1,15/operation o pack 100 ops = $115. Packs de Verified Answers: Starter +250 por $25 · Growth +1.500 por $120 · Scale +10.000 por $700. ***1 Free es POC con límites totales, no un plan productivo. ***2 Starter incluye RAGfly Desktop y pack adicional de +250 Verified Answers por $25. ***3 Growth agrega Control por Área/BYOK y pack adicional de +1.500 Verified Answers por $120. ***4 Scale agrega BYO vectorial/LLM y pack adicional de +10.000 Verified Answers por $700. ***5 Enterprise/Soberano es sales-assisted: contrato anual, DPA/SLA y despliegue dedicado si aplica.'
+  'Add-ons: Pages Fast $0,02/page · Pages Hi-res/OCR $0,05/page · Agentic Retrieval $1,15/operation o pack 100 ops = $115. Packs de Verified Answers: Starter +250 por $25 · Growth +1.500 por $120 · Scale +10.000 por $700.\n* Free es POC con límites totales, no un plan productivo.\n** Starter incluye RAGfly Desktop y pack adicional de +250 Verified Answers por $25.\n*** Growth agrega Control por Área/BYOK y pack adicional de +1.500 Verified Answers por $120.\n**** Scale agrega BYO vectorial/LLM y pack adicional de +10.000 Verified Answers por $700.\n***** Enterprise/Soberano es sales-assisted: contrato anual, DPA/SLA y despliegue dedicado si aplica.'
