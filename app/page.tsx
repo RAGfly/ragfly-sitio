@@ -869,10 +869,12 @@ function PricingSection() {
                 className={`rounded-[24px] p-8 flex flex-col gap-6 border ${featured ? 'bg-slm-dark text-slm-light border-slm-brand-dark' : 'bg-white border-slm-dark/8'}`}
               >
                 <div className="flex flex-col gap-1.5">
-                  <div className="flex items-center justify-between">
-                    <h3 className={`font-helvetica-neue text-2xl font-medium tracking-[-0.02em] ${featured ? 'text-white' : 'text-slm-dark'}`}>{nombre}</h3>
-                    {featured && <span className="text-[10px] uppercase tracking-[0.15em] bg-slm-brand-light/20 text-slm-brand-light px-2 py-1 rounded-full">{t('planes.recomendado')}</span>}
-                  </div>
+                  {featured ? (
+                    <span className="self-start text-[10px] uppercase tracking-[0.15em] bg-slm-brand-light/20 text-slm-brand-light px-2 py-1 rounded-full mb-1">{t('planes.recomendado')}</span>
+                  ) : (
+                    <span className="mb-1 h-[22px]" aria-hidden="true" />
+                  )}
+                  <h3 className={`font-helvetica-neue text-2xl font-medium tracking-[-0.02em] ${featured ? 'text-white' : 'text-slm-dark'}`}>{nombre}</h3>
                   <p className={`font-helvetica-neue text-sm ${featured ? 'text-slm-gray-light' : 'text-slm-gray'}`}><PricingText>{sub}</PricingText></p>
                 </div>
                 <div className={`font-helvetica-neue text-lg font-medium ${featured ? 'text-white' : 'text-slm-dark'}`}><PricingText>{precio}</PricingText></div>
