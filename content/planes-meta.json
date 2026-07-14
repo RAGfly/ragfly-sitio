@@ -8,22 +8,22 @@
     {
       "idx": 1,
       "featured": false,
-      "featureCount": 6
+      "featureCount": 7
     },
     {
       "idx": 2,
       "featured": true,
-      "featureCount": 5
+      "featureCount": 8
     },
     {
       "idx": 3,
       "featured": false,
-      "featureCount": 6
+      "featureCount": 8
     },
     {
       "idx": 4,
       "featured": false,
-      "featureCount": 6
+      "featureCount": 8
     }
   ]
 }

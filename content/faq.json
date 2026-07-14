@@ -9,7 +9,7 @@
   },
   {
     "q": "¿Cuánto cuesta?",
-    "a": "Cobro por página procesada, en páginas y dólares: Free $0 (~1.000 páginas), Starter $19 (~4.000), Team $95 (~10.000, multi-tenant), Scale $490 (~60.000) y Enterprise inbound. Página adicional Fast $0,02 / Hi-res $0,05. Superficies MCP/REST/CLI/SDK en todos los planes."
+    "a": "Planes en USD: Free $0 (1 Entity, 500 Pages totales, 25 Retrievals/día, 50 Verified Answers totales), Starter $39/mes, Growth $149/mes, Scale $590/mes y Enterprise/Soberano custom. Add-ons: Pages Fast $0,02/page, Hi-res/OCR $0,05/page, Agentic Retrieval $1,15/operation y packs de Verified Answers por plan."
   },
   {
     "q": "¿Cómo funciona?",

@@ -18,9 +18,10 @@
 //   - "resaltado: true" marca el plan recomendado (solo uno).
 //   - "limites" se muestran como features al inicio de la tarjeta.
 //
-// MODELO (jun-2026): cobro por PÁGINA procesada + uso de recuperación, en
-// páginas y dólares (no créditos). Superficies MCP/REST/CLI/SDK en todos los
-// planes. Margen vive en la recuperación (valor); storage/infra a costo.
+// MODELO (jul-2026): planes por Pages, Retrievals y Verified Answers, con
+// add-ons explícitos para Pages, Agentic Retrieval y packs de Verified Answers.
+// Superficies MCP/REST/CLI/SDK en todos los planes. Margen vive en la
+// recuperación/generación verificada (valor); storage/infra a costo.
 // Fuente de cifras: la BD (tablas `caracteristicas_plan` + `planes`) — canónica.
 // El xlsx comercial y este archivo DERIVAN de ella; ante discrepancia manda la BD.
 // ─────────────────────────────────────────────────────────────────────────
@@ -28,90 +29,98 @@
 export const planes = [
   {
     nombre: 'Free',
-    sub: 'Para probar',
+    sub: 'POC y evaluación',
     precio: 'USD $0/mes',
     resaltado: false,
     cta: 'Empezar gratis',
     limites: {
-      tokens: '~1.000 páginas procesadas incluidas',
-      vectores: '2 entidades aisladas',
+      tokens: '500 Pages totales',
+      vectores: '1 Entity',
     },
     features: [
-      'Multi-tenant: un corpus aislado por cliente',
-      'MCP, REST, CLI y SDK',
-      'Recuperación con citas',
-      'Página adicional Fast $0,02 / Hi-res $0,05',
+      '25 Retrievals/día',
+      '50 Verified Answers totales',
+      'Playground incluido',
+      'Comentarios ***1',
     ],
   },
   {
     nombre: 'Starter',
-    sub: 'Para un dev en solitario',
-    precio: 'USD $19/mes',
+    sub: 'Para empezar en producción',
+    precio: 'USD $39/mes',
     resaltado: false,
     cta: 'Empezar',
     limites: {
-      tokens: '~4.000 páginas procesadas incluidas',
-      vectores: '5 entidades aisladas',
+      tokens: '2.000 Pages/mes',
+      vectores: '2 Entities',
     },
     features: [
-      'Todo lo de Free',
-      'MCP, REST, CLI y SDK',
-      'Recuperación con citas',
-      'Soporte por comunidad',
+      '5.000 Retrievals/mes',
+      '300 Verified Answers/mes',
+      'RAGfly Desktop',
+      'Agentic Retrieval add-on',
+      'Comentarios ***2',
     ],
   },
   {
-    nombre: 'Team',
-    sub: 'Para quienes sirven a varios clientes',
-    precio: 'USD $95/mes',
+    nombre: 'Growth',
+    sub: 'Para equipos con control por área',
+    precio: 'USD $149/mes',
     resaltado: true,
     cta: 'Empezar',
     limites: {
-      tokens: '~10.000 páginas procesadas incluidas',
-      vectores: 'Hasta 25 entidades aisladas',
+      tokens: '10.000 Pages/mes',
+      vectores: '5 Entities',
     },
     features: [
       'Todo lo de Starter',
-      'Control por Área y perfil',
-      'Panel único para todas las entidades',
+      '25.000 Retrievals/mes',
+      '1.500 Verified Answers/mes',
+      'Control por Área y BYOK',
+      'Agentic Retrieval add-on',
+      'Comentarios ***3',
     ],
   },
   {
     nombre: 'Scale',
     sub: 'Para producción a escala',
-    precio: 'USD $490/mes',
+    precio: 'USD $590/mes',
     resaltado: false,
     cta: 'Empezar',
     limites: {
-      tokens: '~60.000 páginas procesadas incluidas',
-      vectores: 'Hasta 150 entidades aisladas',
+      tokens: '40.000 Pages/mes',
+      vectores: '15 Entities',
     },
     features: [
-      'Todo lo de Team',
-      'Client LM / on-prem opcional',
+      'Todo lo de Growth',
+      '100.000 Retrievals/mes',
+      '5.000 Verified Answers/mes',
       'BYO base vectorial + BYO LLM',
-      'Storage a costo (sin markup de valor)',
+      'Agentic Retrieval add-on',
+      'Comentarios ***4',
     ],
   },
   {
-    nombre: 'Enterprise',
-    sub: 'Regulado, soberano o gran volumen',
-    precio: 'Inbound',
+    nombre: 'Enterprise / Soberano',
+    sub: 'Contrato anual y despliegue dedicado',
+    precio: 'Custom',
     resaltado: false,
     cta: 'Hablar con nosotros',
     limites: {
-      tokens: 'Páginas a definir · entidades ilimitadas',
-      vectores: 'Despliegue managed u on-prem/soberano',
+      tokens: 'Pages custom',
+      vectores: 'Entities custom',
     },
     features: [
       'Todo lo de Scale',
-      'Client LM / on-prem garantizado',
-      'Seguridad, compliance y DPA',
-      'SLA y soporte dedicado',
+      'Retrievals custom',
+      'Verified Answers custom',
+      'DPA/SLA',
+      'Despliegue dedicado si aplica',
+      'Comentarios ***5',
     ],
   },
 ]
 
 // Nota al pie de la tabla de planes (se traduce con /ragfly-idiomas-sitio).
 export const notaPlanes =
-  'El cobro es por página procesada más uso de recuperación, en dólares — sin créditos que caduquen. Las páginas extra se cobran por uso (Fast $0,02 / Hi-res $0,05). Opcional en los planes pagos: RAG Agéntico, un agente gestionado por RAGfly que se adquiere por turno ($0,135), para quienes aún no tienen su propio agente.'
+  'Add-ons: Pages Fast $0,02/page · Pages Hi-res/OCR $0,05/page · Agentic Retrieval $1,15/operation o pack 100 ops = $115. Packs de Verified Answers: Starter +250 por $25 · Growth +1.500 por $120 · Scale +10.000 por $700. ***1 Free es POC con límites totales, no un plan productivo. ***2 Starter incluye RAGfly Desktop y pack adicional de +250 Verified Answers por $25. ***3 Growth agrega Control por Área/BYOK y pack adicional de +1.500 Verified Answers por $120. ***4 Scale agrega BYO vectorial/LLM y pack adicional de +10.000 Verified Answers por $700. ***5 Enterprise/Soberano es sales-assisted: contrato anual, DPA/SLA y despliegue dedicado si aplica.'

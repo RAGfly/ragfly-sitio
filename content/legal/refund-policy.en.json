@@ -28,7 +28,7 @@
       "blocks": [
         {
           "kind": "p",
-          "text": "Our paid plans (**Starter**, **Team**, and **Scale**) are recurring subscriptions billed in advance for each billing cycle (monthly or annual). Paid plans **do not include a free trial**; the Free plan is the way to evaluate the Service before subscribing."
+          "text": "Our paid plans (**Starter**, **Growth**, and **Scale**) are recurring subscriptions billed in advance for each billing cycle (monthly or annual). Paid plans **do not include a free trial**; the Free plan is the way to evaluate the Service before subscribing."
         },
         {
           "kind": "list",

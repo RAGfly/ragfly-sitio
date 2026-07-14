@@ -28,7 +28,7 @@
       "blocks": [
         {
           "kind": "p",
-          "text": "Nossos planos pagos (**Starter**, **Team** e **Scale**) são assinaturas recorrentes cobradas antecipadamente a cada ciclo de faturamento (mensal ou anual). Os planos pagos **não incluem período de teste gratuito**; o plano Free é a forma de avaliar o Serviço antes de assinar."
+          "text": "Nossos planos pagos (**Starter**, **Growth** e **Scale**) são assinaturas recorrentes cobradas antecipadamente a cada ciclo de faturamento (mensal ou anual). Os planos pagos **não incluem período de teste gratuito**; o plano Free é a forma de avaliar o Serviço antes de assinar."
         },
         {
           "kind": "list",
