@@ -714,10 +714,10 @@ function ModesSection() {
 function SurfacesSection() {
   const t = useTranslations()
   const surfaces = [
-    { h: t('superficies.mcpTitulo'), d: t('superficies.mcpDesc'), feat: true },
-    { h: t('superficies.restTitulo'), d: t('superficies.restDesc'), feat: false },
-    { h: t('superficies.cliTitulo'), d: t('superficies.cliDesc'), feat: false },
-    { h: t('superficies.sdkTitulo'), d: t('superficies.sdkDesc'), feat: false },
+    { h: t('superficies.mcpTitulo'), d: t('superficies.mcpDesc'), href: '/build/mcp', feat: true },
+    { h: t('superficies.cliTitulo'), d: t('superficies.cliDesc'), href: '/build/cli', feat: false },
+    { h: t('superficies.restTitulo'), d: t('superficies.restDesc'), href: '/build/rest', feat: false },
+    { h: t('superficies.sdkTitulo'), d: t('superficies.sdkDesc'), href: '/build/sdk', feat: false },
   ]
   const snippet = `{
   "mcpServers": {
@@ -740,16 +740,17 @@ function SurfacesSection() {
         </div>
         <div className="grid md:grid-cols-4 gap-4">
           {surfaces.map((s) => (
-            <div
+            <Link
               key={s.h}
-              className={`rounded-[24px] p-8 flex flex-col gap-3 border ${s.feat ? 'bg-white border-slm-brand/40' : 'bg-white border-slm-dark/8'}`}
+              href={s.href}
+              className={`rounded-[24px] p-8 flex flex-col gap-3 border transition-colors hover:border-slm-brand hover:bg-slm-light ${s.feat ? 'bg-white border-slm-brand/40' : 'bg-white border-slm-dark/8'}`}
             >
               <div className="flex items-center gap-2">
                 <h3 className="font-mono text-xl font-medium text-slm-dark">{s.h}</h3>
                 {s.feat && <span className="text-[10px] uppercase tracking-[0.15em] bg-slm-brand/10 text-slm-brand px-2 py-0.5 rounded-full">abrimos aquí</span>}
               </div>
               <p className="text-slm-gray font-helvetica-neue text-base leading-relaxed">{s.d}</p>
-            </div>
+            </Link>
           ))}
         </div>
         <div className="rounded-[24px] bg-slm-dark text-slm-light p-6 md:p-8 flex flex-col gap-4">
@@ -1005,7 +1006,10 @@ function Footer() {
             <span className="text-xs uppercase tracking-[0.18em] text-white/60">{t('footer.producto' as Parameters<typeof t>[0])}</span>
             <a href="#que-es" className="font-helvetica-neue text-sm hover:text-white">{t('footer.capacidades')}</a>
             <a href="#como-se-usa" className="font-helvetica-neue text-sm hover:text-white">{t('footer.comoFunciona')}</a>
-            <a href="#como-se-usa" className="font-helvetica-neue text-sm hover:text-white">{t('footer.paraAgentes')}</a>
+            <Link href="/build/mcp" className="font-helvetica-neue text-sm hover:text-white">MCP</Link>
+            <Link href="/build/cli" className="font-helvetica-neue text-sm hover:text-white">CLI</Link>
+            <Link href="/build/rest" className="font-helvetica-neue text-sm hover:text-white">REST</Link>
+            <Link href="/build/sdk" className="font-helvetica-neue text-sm hover:text-white">SDK</Link>
             <a href="#planes" className="font-helvetica-neue text-sm hover:text-white">{t('footer.planesLink')}</a>
             <a href="/download" className="font-helvetica-neue text-sm hover:text-white">{t('footer.desktopLink')}</a>
           </div>

@@ -51,11 +51,17 @@ export default function DownloadPage() {
   const [version, setVersion] = useState<string | null>(null)
 
   useEffect(() => {
-    fetch('https://api.github.com/repos/RAGfly/ragfly-desktop-releases/releases/latest')
+    const extension = os === 'windows' ? '.exe' : '.dmg'
+    fetch('https://api.github.com/repos/RAGfly/ragfly-desktop-releases/releases?per_page=100')
       .then((r) => (r.ok ? r.json() : null))
-      .then((j) => j?.tag_name && setVersion(j.tag_name))
+      .then((releases) => {
+        const release = Array.isArray(releases)
+          ? releases.find((item) => !item.draft && !item.prerelease && item.assets?.some((asset: { name: string }) => asset.name.endsWith(extension)))
+          : null
+        if (release?.tag_name) setVersion(release.tag_name)
+      })
       .catch(() => {})
-  }, [])
+  }, [os])
 
   const macBtn = (primary: boolean) => (
     <a

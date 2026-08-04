@@ -11,7 +11,9 @@ export async function GET() {
     // Ver el comentario de ../mac/route.ts: un release de solo-Python publica solo
     // el payload firmado (sin instaladores), así que el "latest" puede no traer .exe.
     // Buscamos el release más reciente que SÍ tenga instalador de Windows.
-    const res = await fetch(`https://api.github.com/repos/${REPO}/releases?per_page=30`, {
+    // Véase el equivalente de macOS: los releases de solo payload pueden dejar
+    // el instalador más reciente fuera de los primeros 30 resultados.
+    const res = await fetch(`https://api.github.com/repos/${REPO}/releases?per_page=100`, {
       headers: { Accept: 'application/vnd.github+json' },
       cache: 'no-store',
     })
