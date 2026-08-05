@@ -19,6 +19,16 @@ function pickFromAcceptLanguage(header: string | null): Locale | null {
   return null
 }
 
+/**
+ * Idioma efectivo: 1) la preferencia explícita (cookie del selector, que en
+ * producción ya trae la decisión por país que toma `proxy.ts`), 2) el idioma
+ * del navegador, 3) inglés.
+ *
+ * El paso 2 es solo una red para entornos SIN el encabezado de país —
+ * desarrollo local o un despliegue fuera de Vercel—. En producción el proxy
+ * siempre deja la cookie puesta antes de llegar acá, así que manda el LUGAR,
+ * igual que en app.ragfly.ai.
+ */
 export default getRequestConfig(async () => {
   const cookieStore = await cookies()
   const cookieLocale = cookieStore.get('NEXT_LOCALE')?.value
