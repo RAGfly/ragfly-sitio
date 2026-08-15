@@ -523,7 +523,7 @@
     "eyebrow": "SIMPLES · O EMBARQUE",
     "titulo1": "Você aponta para o diretório.",
     "tituloAccent": "O resto é com o pipeline.",
-    "descripcion": "Você entrega o diretório —pasta local ou Google Drive— e o sistema carrega, extrai, analisa, divide em chunks e vetoriza sozinho. Sem desenvolvimento de ingestão documental, sem configuração prévia e sem projeto de integração.",
+    "descripcion": "Você entrega o diretório —sua pasta local— e o sistema carrega, extrai, analisa, divide em chunks e vetoriza sozinho. Sem desenvolvimento de ingestão documental, sem configuração prévia e sem projeto de integração.",
     "formatosTitulo": "FORMATOS",
     "formatos": "PDF, Word, Excel, PowerPoint, RTF, texto puro e digitalizados via OCR.",
     "pipelineTitulo": "ESTADOS DO PIPELINE",

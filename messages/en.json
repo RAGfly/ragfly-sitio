@@ -522,7 +522,7 @@
     "eyebrow": "SIMPLE · BOARDING",
     "titulo1": "You point at the directory.",
     "tituloAccent": "The pipeline does the rest.",
-    "descripcion": "You bring the directory —a local folder or Google Drive— and the system loads, extracts, analyzes, chunks and vectorizes on its own. No document ingestion to build, no upfront configuration and no integration project.",
+    "descripcion": "You bring the directory —your local folder— and the system loads, extracts, analyzes, chunks and vectorizes on its own. No document ingestion to build, no upfront configuration and no integration project.",
     "formatosTitulo": "FORMATS",
     "formatos": "PDF, Word, Excel, PowerPoint, RTF, plain text and scans via OCR.",
     "pipelineTitulo": "PIPELINE STATES",

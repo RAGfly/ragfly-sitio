@@ -522,7 +522,7 @@
     "eyebrow": "EINFACH · DAS BOARDING",
     "titulo1": "Du zeigst auf das Verzeichnis.",
     "tituloAccent": "Den Rest macht die Pipeline.",
-    "descripcion": "Du lieferst das Verzeichnis —lokaler Ordner oder Google Drive— und das System lädt, extrahiert, analysiert, chunkt und vektorisiert von allein. Keine Entwicklung für die Dokumentenaufnahme, keine Vorkonfiguration und kein Integrationsprojekt.",
+    "descripcion": "Du lieferst das Verzeichnis —deinen lokalen Ordner— und das System lädt, extrahiert, analysiert, chunkt und vektorisiert von allein. Keine Entwicklung für die Dokumentenaufnahme, keine Vorkonfiguration und kein Integrationsprojekt.",
     "formatosTitulo": "FORMATE",
     "formatos": "PDF, Word, Excel, PowerPoint, RTF, reiner Text und Scans per OCR.",
     "pipelineTitulo": "ZUSTÄNDE DER PIPELINE",

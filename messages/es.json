@@ -523,7 +523,7 @@
     "eyebrow": "SIMPLE · EL EMBARQUE",
     "titulo1": "Apuntas al directorio.",
     "tituloAccent": "El resto lo hace el pipeline.",
-    "descripcion": "Aportas el directorio —carpeta local o Google Drive— y el sistema carga, extrae, analiza, chunkea y vectoriza solo. Sin desarrollo de alimentación documental, sin configuración previa y sin proyecto de integración.",
+    "descripcion": "Aportas el directorio —tu carpeta local— y el sistema carga, extrae, analiza, chunkea y vectoriza solo. Sin desarrollo de alimentación documental, sin configuración previa y sin proyecto de integración.",
     "formatosTitulo": "FORMATOS",
     "formatos": "PDF, Word, Excel, PowerPoint, RTF, texto plano y escaneados vía OCR.",
     "pipelineTitulo": "ESTADOS DEL PIPELINE",

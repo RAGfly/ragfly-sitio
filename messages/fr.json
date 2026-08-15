@@ -523,7 +523,7 @@
     "eyebrow": "SIMPLE · L'EMBARQUEMENT",
     "titulo1": "Vous pointez le répertoire.",
     "tituloAccent": "Le pipeline fait le reste.",
-    "descripcion": "Vous fournissez le répertoire —dossier local ou Google Drive— et le système charge, extrait, analyse, découpe et vectorise tout seul. Sans développement d'ingestion documentaire, sans configuration préalable et sans projet d'intégration.",
+    "descripcion": "Vous fournissez le répertoire —votre dossier local— et le système charge, extrait, analyse, découpe et vectorise tout seul. Sans développement d'ingestion documentaire, sans configuration préalable et sans projet d'intégration.",
     "formatosTitulo": "FORMATS",
     "formatos": "PDF, Word, Excel, PowerPoint, RTF, texte brut et documents scannés via OCR.",
     "pipelineTitulo": "ÉTATS DU PIPELINE",
