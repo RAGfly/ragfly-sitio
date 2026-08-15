@@ -511,6 +511,7 @@
     "item1": "Berechtigungen angewandt",
     "item2": "Zitat bis Dokument und Seite aufgelöst",
     "item3": "Beleg für diese Aussage",
+    "estadoPendiente": "AUSSTEHEND",
     "estadoOk": "VERIFIZIERT",
     "estadoBloqueado": "OHNE BELEG",
     "respuestaTitulo": "ANTWORT DES SYSTEMS",

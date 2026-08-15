@@ -512,6 +512,7 @@
     "item1": "permissions appliquées",
     "item2": "citation résolue jusqu'au document et à la page",
     "item3": "preuve pour cette affirmation",
+    "estadoPendiente": "EN ATTENTE",
     "estadoOk": "VÉRIFIÉ",
     "estadoBloqueado": "SANS PREUVE",
     "respuestaTitulo": "RÉPONSE DU SYSTÈME",

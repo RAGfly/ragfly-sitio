@@ -307,6 +307,22 @@ body {
 .org-card.c3 .accent { background: #D5ECF8; animation: accentPulse 6s ease-in-out infinite; animation-delay: -4s; }
 @keyframes accentPulse { 0%,100% { transform: scale(1); opacity: 1 } 50% { transform: scale(1.15); opacity: .8 } }
 
+/* ============================================================
+   Preflight — checklist que va cambiando de pendiente a verificado
+   (NegativaSection). Cada fila usa el mismo timeline (pfFadeOut/In),
+   desfasada con animation-delay para que "vayan ticando" en cadena.
+   ============================================================ */
+.pf-stack { display: grid; }
+.pf-stack > * { grid-area: 1 / 1; }
+.pf-fade-out { animation: pfFadeOut 9.6s ease-in-out infinite; }
+.pf-fade-in  { opacity: 0; animation: pfFadeIn 9.6s ease-in-out infinite; }
+@keyframes pfFadeOut { 0%, 8% { opacity: 1; } 16%, 88% { opacity: 0; } 96%, 100% { opacity: 1; } }
+@keyframes pfFadeIn  { 0%, 8% { opacity: 0; } 16%, 88% { opacity: 1; } 96%, 100% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .pf-fade-out { animation: none; opacity: 0; }
+  .pf-fade-in  { animation: none; opacity: 1; }
+}
+
 /* Grain overlay */
 .grain::after {
   content: ""; position: absolute; inset: 0; pointer-events: none; mix-blend-mode: overlay; opacity: .04;

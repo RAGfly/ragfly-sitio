@@ -511,6 +511,7 @@
     "item1": "permissions applied",
     "item2": "citation resolved to document and page",
     "item3": "evidence for this claim",
+    "estadoPendiente": "PENDING",
     "estadoOk": "VERIFIED",
     "estadoBloqueado": "NO EVIDENCE",
     "respuestaTitulo": "SYSTEM ANSWER",

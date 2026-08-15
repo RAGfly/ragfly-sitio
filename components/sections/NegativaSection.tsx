@@ -32,7 +32,7 @@ export function NegativaSection() {
           <p className="text-slm-light/60 font-helvetica-neue text-sm md:text-base italic leading-relaxed max-w-[520px]">
             {t('negativa.nota')}
           </p>
-          <p className="text-slm-light/55 font-helvetica-neue text-sm leading-relaxed max-w-[520px]">
+          <p className="text-slm-light/55 font-helvetica-neue text-base md:text-lg leading-relaxed max-w-[520px]">
             {t('negativa.pie')}
           </p>
         </div>
@@ -42,23 +42,43 @@ export function NegativaSection() {
           <span className="rf-anot text-slm-brand-light/70">{t('negativa.listaTitulo')}</span>
 
           <ul className="flex flex-col">
-            {chequeos.map((c) => (
-              <li key={c} className="flex items-center gap-4 py-4 border-b border-white/8">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" className="flex-none">
-                  <path d="M4 10 l4 4 l8 -10" stroke="#E8A33D" strokeWidth="1.5" strokeLinecap="round" />
-                </svg>
-                <span className="flex-1 font-mono text-sm text-slm-light/90">{c}</span>
-                <span className="rf-anot text-slm-ambar/80">{t('negativa.estadoOk')}</span>
-              </li>
-            ))}
+            {chequeos.map((c, i) => {
+              const delay = `${i * 1.1}s`
+              return (
+                <li key={c} className="flex items-center gap-4 py-4 border-b border-white/8">
+                  <span className="pf-stack flex-none w-5 h-5">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" className="pf-fade-out" style={{ animationDelay: delay }}>
+                      <circle cx="10" cy="10" r="3" fill="none" stroke="rgba(255,255,255,.35)" strokeWidth="1.4" />
+                    </svg>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" className="pf-fade-in" style={{ animationDelay: delay }}>
+                      <path d="M4 10 l4 4 l8 -10" stroke="#E8A33D" strokeWidth="1.5" strokeLinecap="round" />
+                    </svg>
+                  </span>
+                  <span className="flex-1 font-mono text-sm text-slm-light/90">{c}</span>
+                  <span className="pf-stack">
+                    <span className="rf-anot text-slm-light/40 pf-fade-out" style={{ animationDelay: delay }}>{t('negativa.estadoPendiente')}</span>
+                    <span className="rf-anot text-slm-ambar/80 pf-fade-in" style={{ animationDelay: delay }}>{t('negativa.estadoOk')}</span>
+                  </span>
+                </li>
+              )
+            })}
             <li className="flex items-center gap-4 py-4 border-b border-white/8">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" className="flex-none">
-                <path d="M5 5 l10 10 M15 5 l-10 10" stroke="#C08A3A" strokeWidth="1.5" strokeLinecap="round" />
-              </svg>
-              <span className="flex-1 font-mono text-sm text-slm-light/55 line-through decoration-white/25">
-                {t('negativa.item3')}
+              <span className="pf-stack flex-none w-5 h-5">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" className="pf-fade-out" style={{ animationDelay: '3.3s' }}>
+                  <circle cx="10" cy="10" r="3" fill="none" stroke="rgba(255,255,255,.35)" strokeWidth="1.4" />
+                </svg>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" className="pf-fade-in" style={{ animationDelay: '3.3s' }}>
+                  <path d="M5 5 l10 10 M15 5 l-10 10" stroke="#C08A3A" strokeWidth="1.5" strokeLinecap="round" />
+                </svg>
               </span>
-              <span className="rf-anot text-slm-light/45">{t('negativa.estadoBloqueado')}</span>
+              <span className="pf-stack flex-1">
+                <span className="font-mono text-sm text-slm-light/90 pf-fade-out" style={{ animationDelay: '3.3s' }}>{t('negativa.item3')}</span>
+                <span className="font-mono text-sm text-slm-light/55 line-through decoration-white/25 pf-fade-in" style={{ animationDelay: '3.3s' }}>{t('negativa.item3')}</span>
+              </span>
+              <span className="pf-stack">
+                <span className="rf-anot text-slm-light/40 pf-fade-out" style={{ animationDelay: '3.3s' }}>{t('negativa.estadoPendiente')}</span>
+                <span className="rf-anot text-slm-light/45 pf-fade-in" style={{ animationDelay: '3.3s' }}>{t('negativa.estadoBloqueado')}</span>
+              </span>
             </li>
           </ul>
 

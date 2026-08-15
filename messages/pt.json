@@ -512,6 +512,7 @@
     "item1": "permissões aplicadas",
     "item2": "citação resolvida até o documento e a página",
     "item3": "evidência para esta afirmação",
+    "estadoPendiente": "PENDENTE",
     "estadoOk": "VERIFICADO",
     "estadoBloqueado": "SEM EVIDÊNCIA",
     "respuestaTitulo": "RESPOSTA DO SISTEMA",
