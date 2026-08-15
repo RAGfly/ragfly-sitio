@@ -27,8 +27,8 @@
   --slm-gray:        var(--ragfly-gris-oscuro);  /* #555555 texto secundario (5g) */
   --slm-gray-light:  var(--ragfly-gris-claro);   /* #AAAAAA bordes/apoyo (3g) */
   --slm-light:       #EAF6FC;                     /* fondo suave azulado de marca */
-  --slm-cabina:      #001A29;                     /* superficie cabina (derivada de la tinta) */
-  --slm-ambar:       #E8A33D;                     /* ÁMBAR = autorización. Nunca decorativo. */
+  --slm-cabina:      var(--ragfly-cabina);        /* #001A29 superficie cabina (derivada de la tinta) */
+  --slm-ambar:       var(--ragfly-ambar);         /* #E8A33D ÁMBAR de marca: autorización + contraste. Nunca decorativo, nunca un segundo cálido. */
 }
 
 @theme inline {

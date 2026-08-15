@@ -42,6 +42,10 @@
   --c-6c:   #002E47;
   --c-6_5c: #001724;
   --c-7c:   #000000;
+  --c-cabina: #001A29;  /* superficie cabina, derivada de la tinta (entre 6c y 6.5c) */
+
+  /* CÁLIDO (ámbar) — único no-azul de la marca, doble rol: autorización + contraste */
+  --c-ambar: #E8A33D;
 
   /* GRISES (g) — neutro */
   --c-1g:   #FFFFFF;
@@ -64,6 +68,8 @@
   --ragfly-gris-oscuro: var(--c-5g);  /* #555555 · texto secundario */
   --ragfly-gris-claro:  var(--c-3g);  /* #AAAAAA · bordes / apoyo */
   --ragfly-fondo-app:   #EBEBEB;       /* tema de interfaz (definido por marca) */
+  --ragfly-cabina:      var(--c-cabina); /* #001A29 · superficie cabina */
+  --ragfly-ambar:       var(--c-ambar);  /* #E8A33D · único cálido: autorización + contraste. Nunca decorativo, nunca un segundo tono cálido */
 
   /* ── Variantes derivadas (hover/focus sin salir de la marca) ── */
   --ragfly-azul-marca-hover: var(--c-5c);            /* un paso más oscuro que 4c */
