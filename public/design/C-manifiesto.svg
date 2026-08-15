@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 250" width="960" role="img" aria-label="Manifiesto">
+      <rect x="30" y="26" width="420" height="150" rx="9" fill="#fff" stroke="#008BD6" stroke-width="1.3"/>
+      <text x="46" y="48" font-family="ui-monospace,monospace" font-size="10" fill="#005D8F" letter-spacing="1.6">MANIFIESTO · ENT-02</text>
+      <g stroke="#EAEAEA"><path d="M30 58 L450 58"/><path d="M30 88 L450 88"/><path d="M30 118 L450 118"/><path d="M30 148 L450 148"/></g>
+      <g font-family="ui-monospace,monospace" font-size="10.5" fill="#002E47">
+        <text x="46" y="78">contrato-obra-2024.pdf</text><text x="46" y="108">anexo-tecnico-b.docx</text>
+        <text x="46" y="138">acta-recepcion-07.pdf</text>
+      </g>
+      <g fill="#E8A33D"><circle cx="424" cy="74" r="3.2"/><circle cx="424" cy="104" r="3.2"/><circle cx="424" cy="134" r="3.2"/></g>
+      <g opacity=".45">
+        <rect x="30" y="196" width="420" height="34" rx="9" fill="#fff" stroke="#AAAAAA" stroke-dasharray="5 4"/>
+        <text x="46" y="218" font-family="ui-monospace,monospace" font-size="10.5" fill="#AAAAAA">nomina-rrhh-otra-entidad.xlsx</text>
+        <text x="316" y="218" font-family="ui-monospace,monospace" font-size="9" fill="#AAAAAA" letter-spacing="1.2">NO EMBARCÓ</text>
+      </g>
+    </svg>

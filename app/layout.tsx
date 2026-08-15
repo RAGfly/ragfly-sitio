@@ -3,9 +3,6 @@ import { Inter, Lora, Manrope } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages, getTranslations } from "next-intl/server";
 import "./globals.css";
-// FAQ: fuente única en comercial/comercial-operativo/RAGfly_FAQ.md (bloque A).
-// Espejo sincronizado por la skill /ragfly-faq-sitio — no editar a mano.
-import faq from "../content/faq.json";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -65,7 +62,12 @@ export async function generateMetadata(): Promise<Metadata> {
 // JSON-LD: señales estructuradas para agentes y buscadores de IA.
 // Mantener en español (mercado primario); los agentes lo parsean igual.
 // Precios = fuente de verdad content/planes.mjs (sincronizar si cambian).
-const jsonLd = {
+// FAQ: fuente única en comercial/comercial-operativo/RAGfly_FAQ.md (bloque A).
+// Vive en i18n (namespace `faq`, claves q0/a0…qN/aN + `total`) en los 5 idiomas,
+// para que el FAQPage estructurado hable el mismo idioma que la página.
+type FaqEntry = { q: string; a: string };
+
+const buildJsonLd = (faq: FaqEntry[]) => ({
   "@context": "https://schema.org",
   "@graph": [
     {
@@ -123,7 +125,7 @@ const jsonLd = {
       })),
     },
   ],
-};
+});
 
 export default async function RootLayout({
   children,
@@ -132,6 +134,13 @@ export default async function RootLayout({
 }>) {
   const locale = await getLocale();
   const messages = await getMessages();
+  const tFaq = await getTranslations("faq");
+  const jsonLd = buildJsonLd(
+    Array.from({ length: Number(tFaq("total")) }, (_, i) => ({
+      q: tFaq(`q${i}` as Parameters<typeof tFaq>[0]),
+      a: tFaq(`a${i}` as Parameters<typeof tFaq>[0]),
+    })),
+  );
 
   return (
     <html lang={locale} className={`${inter.variable} ${lora.variable} ${manrope.variable} h-full antialiased`}>

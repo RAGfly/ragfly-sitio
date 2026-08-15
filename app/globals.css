@@ -27,6 +27,8 @@
   --slm-gray:        var(--ragfly-gris-oscuro);  /* #555555 texto secundario (5g) */
   --slm-gray-light:  var(--ragfly-gris-claro);   /* #AAAAAA bordes/apoyo (3g) */
   --slm-light:       #EAF6FC;                     /* fondo suave azulado de marca */
+  --slm-cabina:      #001A29;                     /* superficie cabina (derivada de la tinta) */
+  --slm-ambar:       #E8A33D;                     /* ÁMBAR = autorización. Nunca decorativo. */
 }
 
 @theme inline {
@@ -39,6 +41,8 @@
   --color-slm-gray: var(--slm-gray);
   --color-slm-gray-light: var(--slm-gray-light);
   --color-slm-light: var(--slm-light);
+  --color-slm-cabina: var(--slm-cabina);
+  --color-slm-ambar: var(--slm-ambar);
   --font-sans: var(--font-sans);
   /* Tipografía unificada a marca v2.0: Inter como sans. El alias heredado se
      conserva pero ahora resuelve a Inter (no Helvetica Neue). */
@@ -163,6 +167,43 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .blip { animation: none; }
+}
+
+/* ------------------------------------------------------------------ */
+/* Sistema v2 — dibujo técnico: anotación, línea fina y el eje de −11° */
+/* ------------------------------------------------------------------ */
+
+/* Anotación técnica: monoespaciada, mayúsculas, con tracking. */
+.rf-anot {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.6875rem;
+  line-height: 1.4;
+}
+
+/* Acento de sección: un trazo fino sobre el único eje declarado. */
+.rf-eje {
+  display: inline-block;
+  width: 56px;
+  height: 1px;
+  background: var(--slm-brand);
+  transform: rotate(-11deg);
+  transform-origin: left center;
+}
+
+/* Corte de sección: la banda superior entra inclinada, no recta. */
+.rf-corte::before {
+  content: "";
+  position: absolute;
+  left: -5%;
+  right: -5%;
+  top: 0;
+  height: 1px;
+  background: rgba(0, 139, 214, 0.25);
+  transform: rotate(-11deg);
+  transform-origin: left center;
+  pointer-events: none;
 }
 
 /* ============================================================

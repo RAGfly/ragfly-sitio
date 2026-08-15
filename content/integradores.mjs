@@ -29,11 +29,12 @@ export const grupos = [
 // por URL directa), p.ej. el README del kit que la propia página-cara absorbe.
 export const documentos = [
   // ── The six interfaces ────────────────────────────────────────────────
+  // Orden = camino del integrador: MCP (por donde abrimos) → SDK → REST → CLI.
+  { slug: 'mcp',    archivo: 'MCP.md',    grupo: 'interfaces', icono: '🤖', titulo: 'MCP',            desc: 'LLM agents (Claude Code, Cursor, Cline, Codex). The agent discovers the tools itself.', destacado: true },
   { slug: 'sdk',    archivo: 'SDK.md',    grupo: 'interfaces', icono: '📦', titulo: 'Python SDK',     desc: 'pip install ragfly. Fastest path from Python: client.ask("…").' },
   { slug: 'sdk-ts', archivo: 'SDK-TS.md', grupo: 'interfaces', icono: '📘', titulo: 'TypeScript SDK', desc: 'npm i @ragfly/sdk. Same surface as Python, zero deps: Node, browser, Vercel Edge, Workers.' },
-  { slug: 'mcp',    archivo: 'MCP.md',    grupo: 'interfaces', icono: '🤖', titulo: 'MCP',            desc: 'LLM agents (Claude Code, Cursor, Cline, Codex). The agent discovers the tools itself.', destacado: true },
-  { slug: 'cli',    archivo: 'CLI.md',    grupo: 'interfaces', icono: '⚡', titulo: 'CLI',            desc: 'Scripts, automations, CI/CD pipelines and terminal diagnostics.' },
   { slug: 'rest',   archivo: 'REST.md',   grupo: 'interfaces', icono: '🔌', titulo: 'REST + SSE',     desc: 'Any language or platform: n8n, Make, Zapier, custom apps.' },
+  { slug: 'cli',    archivo: 'CLI.md',    grupo: 'interfaces', icono: '⚡', titulo: 'CLI',            desc: 'Scripts, automations, CI/CD pipelines and terminal diagnostics.' },
   // "Web" is the sixth interface: use app.ragfly.ai directly, no integration.
 
   // ── Guides & reference ────────────────────────────────────────────────

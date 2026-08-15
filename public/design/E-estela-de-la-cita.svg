@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 250" width="960" role="img" aria-label="Estela de la cita">
+      <rect x="250" y="52" width="206" height="86" rx="10" fill="#EAF6FC" stroke="#AAD8F1"/>
+      <g font-family=""Manrope","Inter",system-ui,-apple-system,"Segoe UI",Arial,sans-serif" font-size="11" fill="#002E47">
+        <text x="266" y="76" font-size="10.5">El plazo de entrega es de</text>
+        <text x="266" y="94" font-size="10.5">120 días corridos.</text>
+      </g>
+      <text x="266" y="122" font-family="ui-monospace,monospace" font-size="9" fill="#005D8F" letter-spacing="1.1">RESPUESTA</text>
+      <path d="M250 108 C 190 108, 170 150, 116 158" fill="none" stroke="#008BD6" stroke-width="1.4" stroke-dasharray="4 4"/>
+      <rect x="34" y="122" width="82" height="102" rx="7" fill="#fff" stroke="#008BD6" stroke-width="1.3"/>
+      <rect x="46" y="136" width="58" height="4" rx="2" fill="#008BD6"/>
+      <g fill="#D5ECF8"><rect x="46" y="150" width="58" height="4" rx="2"/><rect x="46" y="160" width="44" height="4" rx="2"/>
+        <rect x="46" y="170" width="58" height="4" rx="2"/></g>
+      <rect x="46" y="182" width="58" height="9" rx="3" fill="#E8A33D" opacity=".85"/>
+      <g fill="#AAD8F1"><rect x="46" y="198" width="50" height="4" rx="2"/><rect x="46" y="208" width="36" height="4" rx="2"/></g>
+      <text x="34" y="240" font-family="ui-monospace,monospace" font-size="9" fill="#005D8F" letter-spacing="1.1">contrato-obra.pdf · p. 14</text>
+    </svg>

@@ -54,7 +54,7 @@ export default async function BuildPage() {
       <main className="mx-auto max-w-[960px] px-6 py-14 md:px-8">
         {/* Hero */}
         <div className="mb-14">
-          <p className="mb-4 text-sm uppercase tracking-[0.18em] text-slm-brand">{t('eyebrow')}</p>
+          <p className="rf-anot mb-4 text-slm-brand">{t('eyebrow')}</p>
           <h1 className="max-w-[760px] font-helvetica-neue text-4xl font-medium leading-[1.05] tracking-[-0.03em] text-slm-dark md:text-5xl">
             {t.rich('heroTitle', {
               grad: (chunks) => (

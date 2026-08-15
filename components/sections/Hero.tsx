@@ -45,7 +45,9 @@ export function Hero() {
             {t('hero.ctaPrimario')}
           </a>
           <a
-            href="#pruebalo"
+            /* #pruebalo (ChatSection) salió del flujo: la demostración
+               temprana ahora es S2 → S5 la precisión. */
+            href="#negativa"
             className="border border-slm-dark text-slm-dark px-7 py-3 rounded-full font-medium text-base hover:bg-gray-50 transition-colors"
           >
             {t('hero.ctaSecundario')}

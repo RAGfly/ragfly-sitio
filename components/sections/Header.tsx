@@ -13,10 +13,12 @@ export function Header() {
   const t = useTranslations()
   const [open, setOpen] = useState(false)
   const links = [
-    { l: t('nav.producto'), h: '#que-es' },
-    { l: t('nav.capacidades'), h: '#diferencia' },
-    { l: t('nav.comoFunciona'), h: '#como-se-usa' },
-    { l: t('nav.seguridad'), h: '#seguridad' },
+    /* Anclas del orden nuevo (S1→S10). Las viejas —#que-es, #diferencia,
+       #como-se-usa, #seguridad, #pruebalo— ya no existen en la página. */
+    { l: t('nav.producto'), h: '#simple' },
+    { l: t('nav.capacidades'), h: '#precision' },
+    { l: t('nav.comoFunciona'), h: '#superficies' },
+    { l: t('nav.seguridad'), h: '#privado' },
     { l: t('nav.planes'), h: '#planes' },
     { l: t('nav.descargar'), h: '/download' },
   ]

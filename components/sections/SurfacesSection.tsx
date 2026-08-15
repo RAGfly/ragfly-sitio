@@ -24,7 +24,7 @@ export function SurfacesSection() {
   }
 }`
   return (
-    <section id="como-se-usa" className="px-6 md:px-12 lg:px-[60px] py-24 md:py-32 bg-slm-light">
+    <section id="superficies" className="relative rf-corte px-6 md:px-12 lg:px-[60px] py-24 md:py-32 bg-slm-light overflow-hidden">
       <div className="max-w-[1200px] mx-auto flex flex-col gap-12">
         <div className="max-w-[720px] flex flex-col gap-6">
           <span className="text-sm uppercase tracking-[0.18em] text-slm-brand">{t('superficies.eyebrow')}</span>
@@ -33,6 +33,9 @@ export function SurfacesSection() {
             <span className="inline-block pb-[0.06em] bg-gradient-to-r from-slm-brand-dark via-slm-brand to-slm-brand-light bg-clip-text text-transparent">{t('superficies.tituloAccent')}</span>
           </BlurIn>
           <p className="text-base md:text-lg text-slm-gray font-helvetica-neue max-w-[560px] leading-relaxed">{t('superficies.descripcion')}</p>
+          <p className="font-mono text-xs md:text-[13px] text-slm-dark/70 leading-relaxed border-l border-slm-brand/50 pl-4 max-w-[620px]">
+            {t('superficies.planesNota')}
+          </p>
         </div>
         <div className="grid md:grid-cols-4 gap-4">
           {surfaces.map((s) => (
@@ -61,6 +64,17 @@ export function SurfacesSection() {
             <a href="https://api.ragfly.ai/docs" target="_blank" rel="noopener noreferrer" className="border border-white/30 text-slm-light px-5 py-2.5 rounded-full font-medium text-sm hover:bg-white/10 transition-colors">Swagger API</a>
             <Link href="/build/quickstart" className="border border-white/30 text-slm-light px-5 py-2.5 rounded-full font-medium text-sm hover:bg-white/10 transition-colors">Quickstart →</Link>
           </div>
+        </div>
+
+        {/* Sub-bloque «No solo contexto: acción» (Resumen Comercial ago-2026) */}
+        <div className="border border-slm-dark/10 bg-white p-8 md:p-10 flex flex-col gap-4 max-w-[900px]">
+          <span className="rf-anot text-slm-dark/45">{t('superficies.accionEyebrow')}</span>
+          <h3 className="font-helvetica-neue text-2xl md:text-3xl font-medium text-slm-dark tracking-[-0.02em] leading-tight">
+            {t('superficies.accionTitulo')}
+          </h3>
+          <p className="text-slm-gray font-helvetica-neue text-base md:text-lg leading-relaxed">{t('superficies.accionDesc')}</p>
+          <p className="font-mono text-sm text-slm-dark/80 border-l border-slm-brand/50 pl-4">{t('superficies.accionCita')}</p>
+          <p className="text-slm-dark/85 font-helvetica-neue text-base leading-relaxed">{t('superficies.accionRemate')}</p>
         </div>
       </div>
     </section>

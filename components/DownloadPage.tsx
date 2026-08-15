@@ -168,6 +168,9 @@ export default function DownloadPage() {
           <p className="text-xs text-slm-dark/50 font-helvetica-neue max-w-[560px] leading-relaxed">
             {t('download.notaInstalacion')}
           </p>
+          <p className="text-xs text-slm-dark/50 font-helvetica-neue max-w-[560px] leading-relaxed">
+            {t('download.actualizacion')}
+          </p>
         </div>
       </section>
 

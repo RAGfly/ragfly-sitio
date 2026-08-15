@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 250" width="960" role="img" aria-label="Panel de instrumentos">
+  <rect x="0" y="0" width="480" height="250" fill="#0b2233"/>
+      <g font-family="ui-monospace,monospace">
+        <g><text x="34" y="52" font-size="9" fill="#4a708a" letter-spacing="1.6">DOCUMENTOS</text>
+           <text x="34" y="88" font-size="30" fill="#D5ECF8">42.180</text></g>
+        <g><text x="196" y="52" font-size="9" fill="#4a708a" letter-spacing="1.6">ENTIDADES</text>
+           <text x="196" y="88" font-size="30" fill="#D5ECF8">21</text></g>
+        <g><text x="330" y="52" font-size="9" fill="#4a708a" letter-spacing="1.6">TIPIFICADOS</text>
+           <text x="330" y="88" font-size="30" fill="#D5ECF8">98,4<tspan font-size="16">%</tspan></text></g>
+        <g stroke="#123c56"><path d="M34 118 L446 118"/></g>
+        <g><text x="34" y="150" font-size="9" fill="#4a708a" letter-spacing="1.6">RERANK</text>
+           <text x="34" y="176" font-size="15" fill="#8fd0f2">activo</text></g>
+        <g><text x="196" y="150" font-size="9" fill="#4a708a" letter-spacing="1.6">AISLAMIENTO</text>
+           <text x="196" y="176" font-size="15" fill="#8fd0f2">verificado</text></g>
+        <g><text x="330" y="150" font-size="9" fill="#4a708a" letter-spacing="1.6">ESTADO</text>
+           <text x="330" y="176" font-size="15" fill="#E8A33D">autorizado</text></g>
+        <circle cx="424" cy="170" r="4.5" fill="#E8A33D"/>
+        <text x="34" y="220" font-size="9" fill="#2b5470" letter-spacing="1.4">p95 · SLOT DE PRUEBA — PENDIENTE DE MEDIR</text>
+      </g>
+    </svg>

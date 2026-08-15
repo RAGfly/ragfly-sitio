@@ -66,13 +66,17 @@ export function PricingSection() {
   const plans = planesMeta.plans
   const notaLines = t('planes.nota').split('\n').filter(Boolean)
   return (
-    <section id="planes" className="px-6 md:px-12 lg:px-[60px] py-24 md:py-32 bg-slm-light">
+    <section id="planes" className="relative rf-corte px-6 md:px-12 lg:px-[60px] py-24 md:py-32 bg-white overflow-hidden">
       <div className="max-w-[1280px] mx-auto flex flex-col gap-16">
         <div className="max-w-[760px] flex flex-col gap-6">
-          <span className="text-sm uppercase tracking-[0.18em] text-slm-brand">{t('planes.eyebrow')}</span>
+          <span className="rf-anot text-slm-brand">{t('planes.eyebrow')}</span>
           <BlurIn as="h2" className="text-slm-dark text-4xl md:text-5xl lg:text-6xl font-helvetica-neue font-medium leading-[1.05] tracking-[-0.03em]">
             <PricingText>{t('planes.titulo')}</PricingText>
           </BlurIn>
+          <span className="rf-eje" aria-hidden="true" />
+          {/* Tono instrumento: anotación técnica. Las cifras siguen saliendo
+              tal cual de content/planes.mjs — acá no se toca ningún dato. */}
+          <span className="rf-anot text-slm-dark/45">{t('planes.anotacion')}</span>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
           {plans.map(({ idx, featured, featureCount }) => {
@@ -86,7 +90,7 @@ export function PricingSection() {
             return (
               <div
                 key={nombre}
-                className={`rounded-[24px] p-8 flex flex-col gap-6 border ${featured ? 'bg-slm-dark text-slm-light border-slm-brand-dark' : 'bg-white border-slm-dark/8'}`}
+                className={`rounded-[24px] p-8 flex flex-col gap-6 border ${featured ? 'bg-slm-dark text-slm-light border-slm-brand-dark' : 'bg-slm-light/60 border-slm-dark/10'}`}
               >
                 <div className="flex flex-col gap-1.5">
                   {featured ? (
