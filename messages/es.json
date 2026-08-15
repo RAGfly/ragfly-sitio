@@ -616,7 +616,7 @@
     "p2Desc": "La credencial se emite a nombre de una identidad y hereda su alcance: cambias el área del perfil y cambia lo que ve el agente, sin tocar la integración.",
     "p3Titulo": "Escala con tu cartera",
     "p3Desc": "Veinte contextos son veinte conjuntos de perfiles aislados, gobernados desde un solo lugar. Defines el perfil una vez y se lo asignas a cualquier agente, hoy o el año que viene.",
-    "remate": "Es la respuesta al miedo número uno de quien despliega un agente en una organización regulada: que le filtre a alguien un documento que no debía ver."
+    "remate": "En una organización regulada, es la garantía de que un agente nunca le filtra a nadie un documento que no debía ver."
   },
   "lockin": {
     "eyebrow": "SIN LOCK-IN",

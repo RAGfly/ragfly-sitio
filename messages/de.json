@@ -615,7 +615,7 @@
     "p2Desc": "Die Zugangsdaten werden auf den Namen einer Identität ausgestellt und erben deren Geltungsbereich: du änderst den Bereich des Profils und änderst damit, was der Agent sieht — ohne die Integration anzufassen.",
     "p3Titulo": "Skaliert mit deinem Portfolio",
     "p3Desc": "Zwanzig Kontexte sind zwanzig isolierte Profilsätze, von einer einzigen Stelle aus gesteuert. Du definierst das Profil einmal und weist es jedem Agenten zu, heute oder nächstes Jahr.",
-    "remate": "Das ist die Antwort auf die größte Angst derer, die einen Agenten in einer regulierten Organisation ausrollen: dass er jemandem ein Dokument zuspielt, das er nicht sehen durfte."
+    "remate": "In einer regulierten Organisation ist das die Garantie, dass ein Agent nie jemandem ein Dokument zuspielt, das er nicht sehen durfte."
   },
   "lockin": {
     "eyebrow": "KEIN LOCK-IN",

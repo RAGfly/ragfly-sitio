@@ -615,7 +615,7 @@
     "p2Desc": "The credential is issued in the name of an identity and inherits its scope: change the profile's area and what the agent sees changes, without touching the integration.",
     "p3Titulo": "Scales with your portfolio",
     "p3Desc": "Twenty contexts are twenty isolated sets of profiles, governed from a single place. You define the profile once and assign it to any agent, today or next year.",
-    "remate": "It's the answer to the number one fear of anyone deploying an agent inside a regulated organization: that it leaks someone a document they weren't supposed to see."
+    "remate": "In a regulated organization, it guarantees an agent never leaks anyone a document they weren't supposed to see."
   },
   "lockin": {
     "eyebrow": "NO LOCK-IN",

@@ -616,7 +616,7 @@
     "p2Desc": "L'identifiant est émis au nom d'une identité et hérite de son périmètre : vous changez le domaine du profil et ce que voit l'agent change, sans toucher à l'intégration.",
     "p3Titulo": "S'adapte à votre portefeuille",
     "p3Desc": "Vingt contextes, ce sont vingt ensembles de profils isolés, gouvernés depuis un seul endroit. Vous définissez le profil une fois et vous l'assignez à n'importe quel agent, aujourd'hui ou l'an prochain.",
-    "remate": "C'est la réponse à la peur numéro un de qui déploie un agent dans une organisation régulée : qu'il divulgue à quelqu'un un document qu'il ne devait pas voir."
+    "remate": "Dans une organisation régulée, c'est la garantie qu'un agent ne divulgue jamais à quelqu'un un document qu'il ne devait pas voir."
   },
   "lockin": {
     "eyebrow": "SANS LOCK-IN",
