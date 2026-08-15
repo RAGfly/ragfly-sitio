@@ -541,7 +541,7 @@
     "descripcion": "In Cloud the original is processed on the way in and not retained: what persists are the derivatives —chunks, embeddings and metadata—. With Desktop, the file and its extraction stay inside your network, and depending on the deployment encrypted derivatives may be synchronized. On sovereign plans, that database is yours.",
     "manifiestoTag": "ISOLATION",
     "manifiestoTitulo": "It's not that you can't see it. It's that it isn't on board.",
-    "manifiestoDesc": "The group and entity filter lives inside the SQL search function itself: vectors from another context are never even scored. It isn't a filter applied afterwards — they never entered the search. It holds on every plan, the free one included.",
+    "manifiestoDesc": "The group and entity filter lives inside the search engine itself: vectors from another context are never even scored. It isn't a filter applied afterwards — they never entered the search. It holds on every plan, the free one included.",
     "subeTitulo": "Uploading vectorized content is not uploading the document.",
     "subeDesc": "Extracted text goes up, in chunks, encrypted. The file doesn't. If the document is signed, the signature doesn't go up.",
     "cartaTag": "MI-PASS",

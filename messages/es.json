@@ -542,7 +542,7 @@
     "descripcion": "En Cloud el original se procesa en la entrada y no se conserva: lo que persiste son los derivados —fragmentos, embeddings y metadata—. Con Desktop, el archivo y su extracción se quedan dentro de tu red, y según el despliegue pueden sincronizarse derivados cifrados. En planes soberanos, esa base es tuya.",
     "manifiestoTag": "AISLAMIENTO",
     "manifiestoTitulo": "No es que no lo veas. Es que no está a bordo.",
-    "manifiestoDesc": "El filtro por grupo y entidad entra dentro de la función SQL de búsqueda: los vectores de otro contexto nunca se puntúan siquiera. No es un filtro que se aplica después — es que nunca entraron a la búsqueda. Rige en todos los planes, incluido el gratuito.",
+    "manifiestoDesc": "El filtro por grupo y entidad entra dentro del motor de búsqueda: los vectores de otro contexto nunca se puntúan siquiera. No es un filtro que se aplica después — es que nunca entraron a la búsqueda. Rige en todos los planes, incluido el gratuito.",
     "subeTitulo": "Que suba el contenido vectorizado no es que suba el documento.",
     "subeDesc": "Sube texto extraído, en fragmentos, cifrado. El archivo no. Si el documento está firmado, la firma no sube.",
     "cartaTag": "MI-PASS",

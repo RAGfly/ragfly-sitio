@@ -542,7 +542,7 @@
     "descripcion": "Dans le Cloud, l'original est traité à l'entrée et n'est pas conservé : ce qui persiste, ce sont les dérivés —fragments, embeddings et métadonnées—. Avec Desktop, le fichier et son extraction restent dans votre réseau et, selon le déploiement, des dérivés chiffrés peuvent être synchronisés. Dans les offres souveraines, cette base est la vôtre.",
     "manifiestoTag": "ISOLEMENT",
     "manifiestoTitulo": "Ce n'est pas que vous ne le voyez pas. C'est qu'il n'est pas à bord.",
-    "manifiestoDesc": "Le filtre par groupe et entité est intégré à la fonction SQL de recherche : les vecteurs d'un autre contexte ne sont même jamais scorés. Ce n'est pas un filtre appliqué après — ils ne sont jamais entrés dans la recherche. Cela vaut pour tous les forfaits, le gratuit inclus.",
+    "manifiestoDesc": "Le filtre par groupe et entité est intégré au moteur de recherche lui-même : les vecteurs d'un autre contexte ne sont même jamais scorés. Ce n'est pas un filtre appliqué après — ils ne sont jamais entrés dans la recherche. Cela vaut pour tous les forfaits, le gratuit inclus.",
     "subeTitulo": "Que le contenu vectorisé monte ne veut pas dire que le document monte.",
     "subeDesc": "C'est du texte extrait qui monte, en fragments, chiffré. Pas le fichier. Si le document est signé, la signature ne monte pas.",
     "cartaTag": "MI-PASS",
