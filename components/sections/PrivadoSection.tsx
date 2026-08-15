@@ -38,11 +38,11 @@ export function PrivadoSection() {
               {t('privado.manifiestoTitulo')}
             </h3>
             <p className="text-slm-gray font-helvetica-neue text-base leading-relaxed">{t('privado.manifiestoDesc')}</p>
-            <div className="border-l border-slm-brand/50 pl-4 flex flex-col gap-2">
-              <p className="text-slm-dark font-helvetica-neue text-base leading-relaxed font-medium">
+            <div className="border-l border-slm-brand/50 pl-4 flex flex-col gap-1">
+              <p className="font-mono text-xs md:text-[13px] text-slm-dark/70 leading-relaxed">
                 {t('privado.subeTitulo')}
               </p>
-              <p className="text-slm-gray font-helvetica-neue text-base leading-relaxed">{t('privado.subeDesc')}</p>
+              <p className="font-mono text-xs md:text-[13px] text-slm-dark/50 leading-relaxed">{t('privado.subeDesc')}</p>
             </div>
           </div>
           <Image src="/design/C-manifiesto.svg" alt="" aria-hidden width={960} height={520} className="w-full h-auto" />
@@ -57,11 +57,11 @@ export function PrivadoSection() {
               {t('privado.cartaTitulo')}
             </h3>
             <p className="text-slm-gray font-helvetica-neue text-base leading-relaxed">{t('privado.cartaDesc')}</p>
-            <div className="border-l border-slm-brand/50 pl-4 flex flex-col gap-2">
-              <p className="text-slm-dark font-helvetica-neue text-base leading-relaxed font-medium">
+            <div className="border-l border-slm-brand/50 pl-4 flex flex-col gap-1">
+              <p className="font-mono text-xs md:text-[13px] text-slm-dark/70 leading-relaxed">
                 {t('privado.cartaCierreTitulo')}
               </p>
-              <p className="text-slm-gray font-helvetica-neue text-base leading-relaxed">{t('privado.cartaCierreDesc')}</p>
+              <p className="font-mono text-xs md:text-[13px] text-slm-dark/50 leading-relaxed">{t('privado.cartaCierreDesc')}</p>
             </div>
           </div>
         </div>
@@ -74,11 +74,11 @@ export function PrivadoSection() {
               {t('privado.byokTitulo')}
             </h3>
             <p className="text-slm-gray font-helvetica-neue text-base leading-relaxed">{t('privado.byokDesc')}</p>
-            <div className="border-l border-slm-brand/50 pl-4 flex flex-col gap-2 mt-auto">
-              <p className="text-slm-dark font-helvetica-neue text-base leading-relaxed font-medium">
+            <div className="border-l border-slm-brand/50 pl-4 flex flex-col gap-1 mt-auto">
+              <p className="font-mono text-xs md:text-[13px] text-slm-dark/70 leading-relaxed">
                 {t('privado.byokNotaTitulo')}
               </p>
-              <p className="text-slm-gray font-helvetica-neue text-base leading-relaxed">{t('privado.byokNotaDesc')}</p>
+              <p className="font-mono text-xs md:text-[13px] text-slm-dark/50 leading-relaxed">{t('privado.byokNotaDesc')}</p>
             </div>
           </div>
           <div className="border border-slm-dark/10 bg-white p-8 md:p-10 flex flex-col gap-5">
@@ -88,7 +88,7 @@ export function PrivadoSection() {
             </h3>
             <p className="text-slm-gray font-helvetica-neue text-base leading-relaxed">{t('privado.pisoDesc')}</p>
             <p className="text-slm-gray font-helvetica-neue text-base leading-relaxed">{t('privado.pisoVerificacion')}</p>
-            <p className="text-slm-dark font-helvetica-neue text-base leading-relaxed font-medium border-l border-slm-brand/50 pl-4 mt-auto">
+            <p className="font-mono text-xs md:text-[13px] text-slm-dark/70 leading-relaxed border-l border-slm-brand/50 pl-4 mt-auto">
               {t('privado.pisoHonestidad')}
             </p>
           </div>

@@ -61,13 +61,13 @@ export function ConfigContextoSection() {
               </h3>
               <p className="text-slm-gray font-helvetica-neue text-base leading-relaxed">{c.desc}</p>
               {c.nota ? (
-                <p className="text-slm-dark font-helvetica-neue text-sm leading-relaxed font-medium border-l border-slm-brand/50 pl-4 mt-auto">
+                <p className="font-mono text-xs md:text-[13px] text-slm-dark/70 leading-relaxed border-l border-slm-brand/50 pl-4 mt-auto">
                   {c.nota}
                 </p>
               ) : (
-                <div className="border-l border-slm-brand/50 pl-4 flex flex-col gap-1.5 mt-auto">
-                  <p className="text-slm-dark font-helvetica-neue text-sm leading-relaxed font-medium">{card2NotaTitulo}</p>
-                  <p className="text-slm-gray font-helvetica-neue text-sm leading-relaxed">{card2NotaDesc}</p>
+                <div className="border-l border-slm-brand/50 pl-4 flex flex-col gap-1 mt-auto">
+                  <p className="font-mono text-xs md:text-[13px] text-slm-dark/70 leading-relaxed">{card2NotaTitulo}</p>
+                  <p className="font-mono text-xs md:text-[13px] text-slm-dark/50 leading-relaxed">{card2NotaDesc}</p>
                 </div>
               )}
             </motion.div>
