@@ -1,16 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 250" width="960" role="img" aria-label="Carta de espacio aéreo — tres entidades aisladas, cada una con su propio tráfico">
       <style>
-        .lane { stroke: #AAD8F1; stroke-width: 1; opacity: .45; }
-        .blip { fill: #008BD6; filter: drop-shadow(0 0 2px rgba(0,139,214,.55)); animation: travel linear infinite; }
-        .blip.amber { fill: #E8A33D; filter: drop-shadow(0 0 2.5px rgba(232,163,61,.6)); }
+        .lane { stroke: #AAD8F1; stroke-width: 1.4; opacity: .6; }
+        .blip-group { animation: travel linear infinite; }
+        .blip-halo { fill: #008BD6; opacity: .35; }
+        .blip-core { fill: #eaf7ff; filter: drop-shadow(0 0 2px rgba(0,139,214,.9)); }
+        .amber .blip-halo { fill: #E8A33D; }
+        .amber .blip-core { fill: #fff3df; filter: drop-shadow(0 0 2.5px rgba(232,163,61,.95)); }
         @keyframes travel {
           0%   { offset-distance: 0%;   opacity: 0; }
-          10%  { opacity: 1; }
-          88%  { opacity: 1; }
+          8%   { opacity: 1; }
+          90%  { opacity: 1; }
           100% { offset-distance: 100%; opacity: 0; }
         }
         @media (prefers-reduced-motion: reduce) {
-          .blip { animation: none; opacity: 0; }
+          .blip-group { animation: none; opacity: 0; }
         }
       </style>
 
@@ -34,23 +37,43 @@
 
       <!-- tráfico interno: cada carril vive DENTRO de su propia entidad, ninguno la cruza -->
       <g>
-        <line class="lane" x1="48" y1="138" x2="150" y2="132"/>
-        <line class="lane" x1="48" y1="151" x2="150" y2="158"/>
-        <circle class="blip" r="2.4" style="offset-path: path('M 48 138 L 150 132'); animation-duration: 2.4s; animation-delay: 0s;"/>
-        <circle class="blip" r="2.4" style="offset-path: path('M 48 151 L 150 158'); animation-duration: 2.9s; animation-delay: .8s;"/>
+        <line class="lane" x1="48" y1="138" x2="150" y2="130"/>
+        <line class="lane" x1="48" y1="152" x2="150" y2="160"/>
+        <g class="blip-group" style="offset-path: path('M 48 138 L 150 130'); animation-duration: 2.6s; animation-delay: 0s;">
+          <circle class="blip-halo" r="7"/><circle class="blip-core" r="2.6"/>
+        </g>
+        <g class="blip-group" style="offset-path: path('M 48 152 L 150 160'); animation-duration: 3.1s; animation-delay: .9s;">
+          <circle class="blip-halo" r="7"/><circle class="blip-core" r="2.6"/>
+        </g>
       </g>
       <g>
-        <line class="lane" x1="190" y1="140" x2="292" y2="135"/>
-        <line class="lane" x1="190" y1="154" x2="292" y2="150"/>
-        <circle class="blip" r="2.4" style="offset-path: path('M 190 140 L 292 135'); animation-duration: 2.7s; animation-delay: 1.3s;"/>
-        <circle class="blip" r="2.4" style="offset-path: path('M 190 154 L 292 150'); animation-duration: 2.2s; animation-delay: .3s;"/>
+        <line class="lane" x1="190" y1="140" x2="292" y2="134"/>
+        <line class="lane" x1="190" y1="155" x2="292" y2="150"/>
+        <g class="blip-group" style="offset-path: path('M 190 140 L 292 134'); animation-duration: 2.9s; animation-delay: 1.4s;">
+          <circle class="blip-halo" r="7"/><circle class="blip-core" r="2.6"/>
+        </g>
+        <g class="blip-group" style="offset-path: path('M 190 155 L 292 150'); animation-duration: 2.4s; animation-delay: .4s;">
+          <circle class="blip-halo" r="7"/><circle class="blip-core" r="2.6"/>
+        </g>
+      </g>
+      <g>
+        <line class="lane" x1="332" y1="139" x2="434" y2="133"/>
+        <line class="lane" x1="332" y1="153" x2="434" y2="159"/>
+        <g class="blip-group" style="offset-path: path('M 332 139 L 434 133'); animation-duration: 3.3s; animation-delay: .6s;">
+          <circle class="blip-halo" r="7"/><circle class="blip-core" r="2.6"/>
+        </g>
+        <g class="blip-group" style="offset-path: path('M 332 153 L 434 159'); animation-duration: 2.5s; animation-delay: 1.7s;">
+          <circle class="blip-halo" r="7"/><circle class="blip-core" r="2.6"/>
+        </g>
       </g>
 
       <!-- consulta autorizada: viaja, se enciende y se apaga — no sale del borde de ENT·01 -->
       <g stroke="#E8A33D" stroke-width="1.4" fill="none" opacity=".55">
         <path d="M60 190 L138 168"/>
       </g>
-      <circle class="blip amber" r="3.2" style="offset-path: path('M 60 190 L 138 168'); animation-duration: 3.1s; animation-delay: 0s;"/>
+      <g class="blip-group amber" style="offset-path: path('M 60 190 L 138 168'); animation-duration: 3.4s; animation-delay: 0s;">
+        <circle class="blip-halo" r="9"/><circle class="blip-core" r="3.4"/>
+      </g>
 
       <text x="48" y="208" font-family="ui-monospace,monospace" font-size="8.5" fill="#AAAAAA" letter-spacing="1">CONSULTA · AUTORIZADA</text>
       <g stroke="#AAAAAA" stroke-width="1" stroke-dasharray="3 4">
