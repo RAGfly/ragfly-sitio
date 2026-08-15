@@ -544,7 +544,7 @@
     "manifiestoDesc": "Der Filter nach Gruppe und Entität steckt in der SQL-Suchfunktion selbst: Vektoren aus einem anderen Kontext werden nicht einmal bewertet. Kein Filter, der hinterher greift — sie sind nie in die Suche gelangt. Das gilt in allen Tarifen, auch im kostenlosen.",
     "subeTitulo": "Dass vektorisierter Inhalt hochgeht, heißt nicht, dass das Dokument hochgeht.",
     "subeDesc": "Hoch geht extrahierter Text, in Fragmenten, verschlüsselt. Die Datei nicht. Ist das Dokument signiert, geht die Signatur nicht mit hoch.",
-    "cartaTag": "LUFTRAUMKARTE",
+    "cartaTag": "MI-PASS",
     "cartaTitulo": "Gruppe → Entität → Bereich",
     "cartaDesc": "Die Gruppe ist der Mandant; die Entität trennt Organisationen oder Kontexte innerhalb der Gruppe; der Bereich legt fest, welchen Dokument-Teilbaum jede Identität sieht, mit hierarchischer Vererbung — wer oben steht, sieht, was in seinen untergeordneten Bereichen liegt.",
     "byokTag": "DEINE ZUGANGSDATEN",

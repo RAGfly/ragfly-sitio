@@ -545,7 +545,7 @@
     "manifiestoDesc": "El filtro por grupo y entidad entra dentro de la función SQL de búsqueda: los vectores de otro contexto nunca se puntúan siquiera. No es un filtro que se aplica después — es que nunca entraron a la búsqueda. Rige en todos los planes, incluido el gratuito.",
     "subeTitulo": "Que suba el contenido vectorizado no es que suba el documento.",
     "subeDesc": "Sube texto extraído, en fragmentos, cifrado. El archivo no. Si el documento está firmado, la firma no sube.",
-    "cartaTag": "CARTA DE ESPACIO AÉREO",
+    "cartaTag": "MI-PASS",
     "cartaTitulo": "Grupo → Entidad → Área",
     "cartaDesc": "El grupo es el tenant; la entidad separa organizaciones o contextos dentro del grupo; el área define qué subárbol de documentos ve cada identidad, con herencia jerárquica — quien está arriba ve lo de sus áreas descendientes.",
     "byokTag": "TUS CREDENCIALES",

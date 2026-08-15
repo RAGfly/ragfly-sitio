@@ -544,7 +544,7 @@
     "manifiestoDesc": "The group and entity filter lives inside the SQL search function itself: vectors from another context are never even scored. It isn't a filter applied afterwards — they never entered the search. It holds on every plan, the free one included.",
     "subeTitulo": "Uploading vectorized content is not uploading the document.",
     "subeDesc": "Extracted text goes up, in chunks, encrypted. The file doesn't. If the document is signed, the signature doesn't go up.",
-    "cartaTag": "AIRSPACE CHART",
+    "cartaTag": "MI-PASS",
     "cartaTitulo": "Group → Entity → Area",
     "cartaDesc": "The group is the tenant; the entity separates organizations or contexts within the group; the area defines which document subtree each identity sees, with hierarchical inheritance — whoever sits above sees what their descendant areas hold.",
     "byokTag": "YOUR CREDENTIALS",
