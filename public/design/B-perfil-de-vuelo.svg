@@ -1,4 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 250" width="960" role="img" aria-label="Perfil de vuelo">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 250" width="960" role="img" aria-label="Perfil de vuelo, con el itinerario recorrido por una luz de izquierda a derecha">
+  <style>
+    .itinerario {
+      fill: #eaf7ff;
+      filter: drop-shadow(0 0 3px rgba(170,216,241,.85)) drop-shadow(0 0 7px rgba(0,139,214,.55));
+      offset-path: path('M40 210 C 92 208, 118 176, 150 128 L 430 92');
+      animation: recorrido 14s linear infinite;
+    }
+    @keyframes recorrido {
+      0%   { offset-distance: 0%;   opacity: 0; }
+      6%   { opacity: 1; }
+      94%  { opacity: 1; }
+      100% { offset-distance: 100%; opacity: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .itinerario { animation: none; opacity: 0; }
+    }
+  </style>
   <rect x="0" y="0" width="480" height="250" fill="#0b2233"/>
       <g stroke="#123c56" stroke-width="1">
         <path d="M40 210 L448 210"/><path d="M40 40 L40 210"/>
@@ -13,4 +30,5 @@
         <text x="46" y="54" fill="#4a708a">ALT</text>
       </g>
       <g fill="#AAD8F1"><circle cx="430" cy="92" r="3.2"/></g>
+      <circle class="itinerario" r="4"/>
     </svg>
