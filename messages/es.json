@@ -533,7 +533,7 @@
     "interfacesTitulo": "Seis interfaces, en todos los planes",
     "interfacesDesc": "Chat web, servidor MCP, API REST /v1, SDK Python, SDK TypeScript y CLI: una sola configuración las alimenta a todas. RAGfly Desktop va aparte, desde Starter.",
     "limiteTitulo": "Lo que no hacemos",
-    "limiteDesc": "Audio y video quedan fuera, por foco."
+    "limiteDesc": "No procesamos audio, video ni imágenes que no sean de texto."
   },
   "privado": {
     "eyebrow": "PRIVADO · EL MANIFIESTO",

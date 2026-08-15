@@ -57,7 +57,9 @@ export function PrivadoSection() {
               {t('privado.cartaTitulo')}
             </h3>
             <p className="text-slm-gray font-helvetica-neue text-base leading-relaxed">{t('privado.cartaDesc')}</p>
-            <p className="text-slm-dark/85 font-helvetica-neue text-base leading-relaxed">{t('privado.cartaCierre')}</p>
+            <p className="text-slm-dark/85 font-helvetica-neue text-base leading-relaxed border-l border-slm-brand/50 pl-4">
+              {t('privado.cartaCierre')}
+            </p>
           </div>
         </div>
 
@@ -69,7 +71,7 @@ export function PrivadoSection() {
               {t('privado.byokTitulo')}
             </h3>
             <p className="text-slm-gray font-helvetica-neue text-base leading-relaxed">{t('privado.byokDesc')}</p>
-            <p className="text-slm-dark/85 font-helvetica-neue text-base leading-relaxed border-t border-slm-dark/8 pt-5 mt-auto">
+            <p className="text-slm-dark/85 font-helvetica-neue text-base leading-relaxed border-l border-slm-brand/50 pl-4 mt-auto">
               {t('privado.byokNota')}
             </p>
           </div>
@@ -80,7 +82,7 @@ export function PrivadoSection() {
             </h3>
             <p className="text-slm-gray font-helvetica-neue text-base leading-relaxed">{t('privado.pisoDesc')}</p>
             <p className="text-slm-gray font-helvetica-neue text-base leading-relaxed">{t('privado.pisoVerificacion')}</p>
-            <p className="text-slm-dark/70 font-helvetica-neue text-sm leading-relaxed border-t border-slm-dark/8 pt-5 mt-auto italic">
+            <p className="text-slm-dark/85 font-helvetica-neue text-base leading-relaxed border-l border-slm-brand/50 pl-4 mt-auto">
               {t('privado.pisoHonestidad')}
             </p>
           </div>

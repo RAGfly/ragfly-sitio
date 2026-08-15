@@ -29,10 +29,10 @@ export function NegativaSection() {
           <p className="text-slm-gray-light font-helvetica-neue text-base md:text-lg leading-relaxed max-w-[520px]">
             {t('negativa.descripcion')}
           </p>
-          <p className="text-slm-light/70 font-helvetica-neue text-base leading-relaxed max-w-[520px]">
+          <p className="text-slm-light/60 font-helvetica-neue text-sm md:text-base italic leading-relaxed max-w-[520px]">
             {t('negativa.nota')}
           </p>
-          <p className="rf-anot text-slm-light/40 max-w-[520px] normal-case tracking-[0.04em]">
+          <p className="text-slm-light/55 font-helvetica-neue text-sm leading-relaxed max-w-[520px]">
             {t('negativa.pie')}
           </p>
         </div>

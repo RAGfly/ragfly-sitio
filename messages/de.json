@@ -532,7 +532,7 @@
     "interfacesTitulo": "Sechs Schnittstellen, in allen Tarifen",
     "interfacesDesc": "Web-Chat, MCP-Server, REST-API /v1, Python-SDK, TypeScript-SDK und CLI: eine einzige Konfiguration versorgt alle. RAGfly Desktop läuft separat, ab Starter.",
     "limiteTitulo": "Was wir nicht machen",
-    "limiteDesc": "Audio und Video bleiben außen vor, aus Fokus."
+    "limiteDesc": "Wir verarbeiten kein Audio, kein Video und keine Bilder ohne Text."
   },
   "privado": {
     "eyebrow": "PRIVAT · DAS MANIFEST",

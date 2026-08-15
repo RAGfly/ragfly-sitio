@@ -32,7 +32,7 @@ export function Hero() {
         <BlurIn delay={0.09} className="font-helvetica-neue text-base md:text-lg text-slm-dark/75 tracking-[0.01em] max-w-2xl text-center leading-snug">
           {t('hero.lineaApoyo')}
         </BlurIn>
-        <BlurIn delay={0.1} className="font-helvetica-neue text-base md:text-xl text-slm-gray tracking-[0.01em] max-w-2xl text-center leading-relaxed">
+        <BlurIn delay={0.1} className="font-helvetica-neue text-sm md:text-base text-slm-gray tracking-[0.01em] max-w-2xl text-center leading-relaxed">
           {t('hero.tagline')}
         </BlurIn>
       </div>
