@@ -548,11 +548,9 @@
     "cartaTag": "CARTA DE ESPACIO AÉREO",
     "cartaTitulo": "Grupo → Entidad → Área",
     "cartaDesc": "El grupo es el tenant; la entidad separa organizaciones o contextos dentro del grupo; el área define qué subárbol de documentos ve cada identidad, con herencia jerárquica — quien está arriba ve lo de sus áreas descendientes.",
-    "cartaCierre": "Sin área asignada, el acceso es cerrado por defecto, nunca abierto. El texto de un documento prohibido jamás llega al modelo ni al agente: no se oculta en la pantalla, no entra al prompt.",
     "byokTag": "TUS CREDENCIALES",
     "byokTitulo": "Con parsing-BYOK y embedding-BYOK, ningún modelo bajo nuestra cuenta ve tu documento.",
     "byokDesc": "Las cinco llamadas del pipeline —lectura, tipificación, resumen, características y vectorización— corren con tus credenciales, contra Anthropic, OpenAI o Google, bajo tu contrato y tu factura.",
-    "byokNota": "Y si tu credencial falla —cuota, límite de tasa, proveedor caído—, la operación falla y te lo decimos: nunca reintentamos con las nuestras. Un fallback silencioso rompería exactamente la promesa.",
     "pisoTag": "PISO DE PRIVACIDAD",
     "pisoTitulo": "Lo determina el plan, no una casilla.",
     "pisoDesc": "Los planes de pago resuelven únicamente contra proveedores de modelos obligados contractualmente a no entrenar con el contenido enviado — no una casilla que alguien pueda dejar mal puesta.",
@@ -561,7 +559,11 @@
     "pildorasTitulo": "INSTRUMENTOS",
     "pildora0": "AES-256-GCM · cifrado de aplicación con jerarquía de claves",
     "pildora1": "TLS 1.3 en tránsito",
-    "pildora2": "Registro de auditoría de operaciones de negocio"
+    "pildora2": "Registro de auditoría de operaciones de negocio",
+    "cartaCierreTitulo": "Sin área asignada, el acceso es cerrado por defecto, nunca abierto.",
+    "cartaCierreDesc": "El texto de un documento prohibido jamás llega al modelo ni al agente: no se oculta en la pantalla, no entra al prompt.",
+    "byokNotaTitulo": "Nunca reintentamos con las nuestras.",
+    "byokNotaDesc": "Si tu credencial falla —cuota, límite de tasa, proveedor caído—, la operación falla y te lo decimos. Un fallback silencioso rompería exactamente la promesa."
   },
   "preciso": {
     "eyebrow": "PRECISO · LA ESTELA",
@@ -601,7 +603,8 @@
     "card2Tag": "ENRIQUECIMIENTO",
     "card2Titulo": "Contexto en cada vector",
     "card2Desc": "Antes de vectorizar, a cada fragmento se le antepone la ficha del documento entero: nombre, ubicación, fecha, resumen y características. Enriquecimiento, no solo trozado.",
-    "card2Nota": "Está medido: se probó sacarla y la recuperación empeoró. El resumen además compite como candidato propio en la búsqueda."
+    "card2NotaTitulo": "Está medido: se probó sacarla y la recuperación empeoró.",
+    "card2NotaDesc": "El resumen además compite como candidato propio en la búsqueda."
   },
   "perfiles": {
     "eyebrow": "PERFILES · LA TRIPULACIÓN",

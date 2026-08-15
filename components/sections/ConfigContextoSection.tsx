@@ -18,8 +18,10 @@ export function ConfigContextoSection() {
     tag: t(`config.card${i}Tag` as Parameters<typeof t>[0]),
     titulo: t(`config.card${i}Titulo` as Parameters<typeof t>[0]),
     desc: t(`config.card${i}Desc` as Parameters<typeof t>[0]),
-    nota: t(`config.card${i}Nota` as Parameters<typeof t>[0]),
+    nota: i === 2 ? undefined : t(`config.card${i}Nota` as Parameters<typeof t>[0]),
   }))
+  const card2NotaTitulo = t('config.card2NotaTitulo')
+  const card2NotaDesc = t('config.card2NotaDesc')
 
   return (
     <section id="configuracion" className="relative rf-corte px-6 md:px-12 lg:px-[60px] py-24 md:py-32 bg-slm-light overflow-hidden">
@@ -58,9 +60,16 @@ export function ConfigContextoSection() {
                 {c.titulo}
               </h3>
               <p className="text-slm-gray font-helvetica-neue text-base leading-relaxed">{c.desc}</p>
-              <p className="font-mono text-xs md:text-[13px] text-slm-dark/70 leading-relaxed border-l border-slm-brand/50 pl-4 mt-auto">
-                {c.nota}
-              </p>
+              {c.nota ? (
+                <p className="text-slm-dark font-helvetica-neue text-sm leading-relaxed font-medium border-l border-slm-brand/50 pl-4 mt-auto">
+                  {c.nota}
+                </p>
+              ) : (
+                <div className="border-l border-slm-brand/50 pl-4 flex flex-col gap-1.5 mt-auto">
+                  <p className="text-slm-dark font-helvetica-neue text-sm leading-relaxed font-medium">{card2NotaTitulo}</p>
+                  <p className="text-slm-gray font-helvetica-neue text-sm leading-relaxed">{card2NotaDesc}</p>
+                </div>
+              )}
             </motion.div>
           ))}
         </motion.div>

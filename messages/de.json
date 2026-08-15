@@ -547,11 +547,9 @@
     "cartaTag": "LUFTRAUMKARTE",
     "cartaTitulo": "Gruppe → Entität → Bereich",
     "cartaDesc": "Die Gruppe ist der Mandant; die Entität trennt Organisationen oder Kontexte innerhalb der Gruppe; der Bereich legt fest, welchen Dokument-Teilbaum jede Identität sieht, mit hierarchischer Vererbung — wer oben steht, sieht, was in seinen untergeordneten Bereichen liegt.",
-    "cartaCierre": "Ohne zugewiesenen Bereich ist der Zugriff standardmäßig geschlossen, nie offen. Der Text eines gesperrten Dokuments erreicht weder Modell noch Agent: er wird nicht am Bildschirm versteckt, er kommt gar nicht in den Prompt.",
     "byokTag": "DEINE ZUGANGSDATEN",
     "byokTitulo": "Mit parsing-BYOK und embedding-BYOK sieht kein Modell unter unserem Konto dein Dokument.",
     "byokDesc": "Die fünf Aufrufe der Pipeline —Lesen, Typisierung, Zusammenfassung, Merkmale und Vektorisierung— laufen mit deinen Zugangsdaten, gegen Anthropic, OpenAI oder Google, unter deinem Vertrag und deiner Rechnung.",
-    "byokNota": "Und wenn deine Zugangsdaten scheitern —Kontingent, Rate Limit, Anbieter down—, scheitert die Operation und wir sagen es dir: wir versuchen es nie mit unseren. Ein stiller Fallback würde genau dieses Versprechen brechen.",
     "pisoTag": "DATENSCHUTZ-UNTERGRENZE",
     "pisoTitulo": "Das bestimmt der Tarif, nicht ein Häkchen.",
     "pisoDesc": "Bezahlte Tarife lösen ausschließlich gegen Modellanbieter auf, die vertraglich verpflichtet sind, nicht mit den gesendeten Inhalten zu trainieren — kein Häkchen, das jemand falsch stehen lassen kann.",
@@ -560,7 +558,11 @@
     "pildorasTitulo": "INSTRUMENTE",
     "pildora0": "AES-256-GCM · Anwendungsverschlüsselung mit Schlüsselhierarchie",
     "pildora1": "TLS 1.3 im Transit",
-    "pildora2": "Audit-Log der Geschäftsoperationen"
+    "pildora2": "Audit-Log der Geschäftsoperationen",
+    "cartaCierreTitulo": "Ohne zugewiesenen Bereich ist der Zugriff standardmäßig geschlossen, nie offen.",
+    "cartaCierreDesc": "Der Text eines gesperrten Dokuments erreicht weder Modell noch Agent: er wird nicht am Bildschirm versteckt, er kommt gar nicht in den Prompt.",
+    "byokNotaTitulo": "Wir versuchen es nie mit unseren.",
+    "byokNotaDesc": "Wenn deine Zugangsdaten scheitern —Kontingent, Rate Limit, Anbieter down—, scheitert die Operation und wir sagen es dir. Ein stiller Fallback würde genau dieses Versprechen brechen."
   },
   "preciso": {
     "eyebrow": "PRÄZISE · DIE SPUR",
@@ -600,7 +602,8 @@
     "card2Tag": "ANREICHERUNG",
     "card2Titulo": "Kontext in jedem Vektor",
     "card2Desc": "Vor der Vektorisierung wird jedem Fragment die Karteikarte des gesamten Dokuments vorangestellt: Name, Ablageort, Datum, Zusammenfassung und Merkmale. Anreicherung, nicht bloß Zerteilen.",
-    "card2Nota": "Es ist gemessen: wir haben sie testweise entfernt und der Abruf wurde schlechter. Die Zusammenfassung tritt zusätzlich als eigener Kandidat in der Suche an."
+    "card2NotaTitulo": "Es ist gemessen: wir haben sie testweise entfernt und der Abruf wurde schlechter.",
+    "card2NotaDesc": "Die Zusammenfassung tritt zusätzlich als eigener Kandidat in der Suche an."
   },
   "perfiles": {
     "eyebrow": "PROFILE · DIE CREW",

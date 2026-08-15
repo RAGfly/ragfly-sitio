@@ -548,11 +548,9 @@
     "cartaTag": "CARTE DE L'ESPACE AÉRIEN",
     "cartaTitulo": "Groupe → Entité → Domaine",
     "cartaDesc": "Le groupe est le tenant ; l'entité sépare les organisations ou les contextes au sein du groupe ; le domaine définit quel sous-arbre de documents voit chaque identité, avec héritage hiérarchique — qui est au-dessus voit ce que contiennent ses domaines descendants.",
-    "cartaCierre": "Sans domaine assigné, l'accès est fermé par défaut, jamais ouvert. Le texte d'un document interdit n'atteint jamais le modèle ni l'agent : il n'est pas masqué à l'écran, il n'entre pas dans le prompt.",
     "byokTag": "VOS IDENTIFIANTS",
     "byokTitulo": "Avec parsing-BYOK et embedding-BYOK, aucun modèle sous notre compte ne voit votre document.",
     "byokDesc": "Les cinq appels du pipeline —lecture, typage, résumé, caractéristiques et vectorisation— s'exécutent avec vos identifiants, chez Anthropic, OpenAI ou Google, sous votre contrat et votre facture.",
-    "byokNota": "Et si vos identifiants échouent —quota, limite de débit, fournisseur en panne—, l'opération échoue et nous vous le disons : nous ne réessayons jamais avec les nôtres. Un fallback silencieux briserait exactement cette promesse.",
     "pisoTag": "SOCLE DE CONFIDENTIALITÉ",
     "pisoTitulo": "C'est le forfait qui le détermine, pas une case à cocher.",
     "pisoDesc": "Les forfaits payants ne résolvent que vers des fournisseurs de modèles contractuellement tenus de ne pas entraîner sur le contenu envoyé — pas une case que quelqu'un pourrait laisser mal cochée.",
@@ -561,7 +559,11 @@
     "pildorasTitulo": "INSTRUMENTS",
     "pildora0": "AES-256-GCM · chiffrement applicatif avec hiérarchie de clés",
     "pildora1": "TLS 1.3 en transit",
-    "pildora2": "Journal d'audit des opérations métier"
+    "pildora2": "Journal d'audit des opérations métier",
+    "cartaCierreTitulo": "Sans domaine assigné, l'accès est fermé par défaut, jamais ouvert.",
+    "cartaCierreDesc": "Le texte d'un document interdit n'atteint jamais le modèle ni l'agent : il n'est pas masqué à l'écran, il n'entre pas dans le prompt.",
+    "byokNotaTitulo": "Nous ne réessayons jamais avec les nôtres.",
+    "byokNotaDesc": "Si vos identifiants échouent —quota, limite de débit, fournisseur en panne—, l'opération échoue et nous vous le disons. Un fallback silencieux briserait exactement cette promesse."
   },
   "preciso": {
     "eyebrow": "PRÉCIS · LE SILLAGE",
@@ -601,7 +603,8 @@
     "card2Tag": "ENRICHISSEMENT",
     "card2Titulo": "Du contexte dans chaque vecteur",
     "card2Desc": "Avant la vectorisation, chaque fragment est précédé de la fiche du document entier : nom, emplacement, date, résumé et caractéristiques. De l'enrichissement, pas seulement du découpage.",
-    "card2Nota": "C'est mesuré : nous avons essayé de la retirer et la récupération s'est dégradée. Le résumé concourt en plus comme candidat à part entière dans la recherche."
+    "card2NotaTitulo": "C'est mesuré : nous avons essayé de la retirer et la récupération s'est dégradée.",
+    "card2NotaDesc": "Le résumé concourt en plus comme candidat à part entière dans la recherche."
   },
   "perfiles": {
     "eyebrow": "PROFILS · L'ÉQUIPAGE",

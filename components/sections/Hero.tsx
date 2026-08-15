@@ -32,11 +32,11 @@ export function Hero() {
         <BlurIn delay={0.09} className="font-helvetica-neue text-base md:text-lg text-slm-dark/75 tracking-[0.01em] max-w-2xl text-center leading-snug">
           {t('hero.lineaApoyo')}
         </BlurIn>
-        <BlurIn delay={0.1} className="font-helvetica-neue text-sm md:text-base text-slm-gray tracking-[0.01em] max-w-2xl text-center leading-relaxed">
+        <BlurIn delay={0.1} className="font-helvetica-neue text-sm md:text-base text-slm-gray-light tracking-[0.01em] max-w-2xl text-center leading-relaxed">
           {t('hero.tagline')}
         </BlurIn>
       </div>
-      <div className="z-10 flex flex-col items-center gap-7 max-w-xl text-center">
+      <div className="z-10 flex flex-col items-center gap-7 max-w-xl text-center pt-8 md:pt-10">
         <BlurIn delay={0.3} className="flex flex-col sm:flex-row items-center gap-3">
           <a
             href="https://app.ragfly.ai"
