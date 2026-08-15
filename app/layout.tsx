@@ -84,10 +84,10 @@ const jsonLd = {
       url: "https://ragfly.ai",
       publisher: { "@id": "https://ragfly.ai/#organization" },
       description:
-        "Infraestructura RAG multi-tenant para agentes de IA: convierte cualquier corpus de documentos en una base de recuperación segura, aislada por cliente y lista para producción. Cloud no conserva el archivo original; Desktop lo procesa localmente; en planes soberanos la base de datos es del cliente.",
+        "Servicio de RAG multi-tenant para agentes de IA: convierte cualquier corpus de documentos en una base de recuperación segura, aislada por cliente y lista para producción. Cloud no conserva el archivo original; Desktop lo procesa localmente; en planes soberanos la base de datos es del cliente.",
       featureList: [
         "De cero a producción apuntando a un directorio (ingesta, vectorización e indexado automáticos)",
-        "Multi-tenant de fábrica: un corpus aislado por cliente (Grupos → Entidades → Áreas)",
+        "Multi-tenant de fábrica: un corpus aislado por contexto (Grupos → Entidades → Áreas)",
         "Privacidad por modo: original no conservado en Cloud, procesamiento local en Desktop y BD propia en planes soberanos",
         "Recuperación con citas y permisos (RBAC para personas y para agentes vía perfiles)",
         "DB-agnóstico y BYO: trae tu propia base vectorial y tu propio LLM",
@@ -106,10 +106,10 @@ const jsonLd = {
       "@id": "https://ragfly.ai/#planes",
       name: "Planes de RAGfly",
       itemListElement: [
-        { "@type": "Offer", name: "Free", price: "0", priceCurrency: "USD", url: "https://ragfly.ai/#planes", description: "POC y evaluación — 1 Entity, 500 Pages totales, 25 Retrievals/día y 50 Verified Answers totales." },
-        { "@type": "Offer", name: "Starter", price: "39", priceCurrency: "USD", url: "https://ragfly.ai/#planes", description: "Para empezar en producción — 2 Entities, 2.000 Pages/mes, 5.000 Retrievals/mes y 300 Verified Answers/mes." },
-        { "@type": "Offer", name: "Growth", price: "149", priceCurrency: "USD", url: "https://ragfly.ai/#planes", description: "Para equipos con Control por Área/BYOK — 5 Entities, 10.000 Pages/mes, 25.000 Retrievals/mes y 1.500 Verified Answers/mes." },
-        { "@type": "Offer", name: "Scale", price: "590", priceCurrency: "USD", url: "https://ragfly.ai/#planes", description: "Producción a escala — 15 Entities, 40.000 Pages/mes, 100.000 Retrievals/mes, 5.000 Verified Answers/mes y BYO vectorial/LLM." },
+        { "@type": "Offer", name: "Free", price: "0", priceCurrency: "USD", url: "https://ragfly.ai/#planes", description: "POC y evaluación — 2 Entities, 500 Pages totales, 25 Retrievals/día y 50 Verified Answers totales." },
+        { "@type": "Offer", name: "Starter", price: "39", priceCurrency: "USD", url: "https://ragfly.ai/#planes", description: "Para empezar en producción — 5 Entities, 2.000 Pages/mes, 5.000 Retrievals/mes y 300 Verified Answers/mes." },
+        { "@type": "Offer", name: "Growth", price: "149", priceCurrency: "USD", url: "https://ragfly.ai/#planes", description: "Para equipos con Control por Área · parsing-BYOK · embedding-BYOK — 10 Entities, 10.000 Pages/mes, 25.000 Retrievals/mes y 1.500 Verified Answers/mes." },
+        { "@type": "Offer", name: "Scale", price: "590", priceCurrency: "USD", url: "https://ragfly.ai/#planes", description: "Producción a escala — 25 Entities, 40.000 Pages/mes, 100.000 Retrievals/mes, 5.000 Verified Answers/mes y BYO vectorial/LLM." },
         { "@type": "Offer", name: "Enterprise / Soberano", url: "https://ragfly.ai/#planes", description: "Plan custom sales-assisted con contrato anual, DPA/SLA y despliegue dedicado si aplica." },
       ],
     },

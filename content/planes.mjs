@@ -35,7 +35,7 @@ export const planes = [
     cta: 'Empezar gratis',
     limites: {
       tokens: '500 Pages totales',
-      vectores: '1 Entity',
+      vectores: '2 Entities',
     },
     features: [
       '25 Retrievals/día',
@@ -52,7 +52,7 @@ export const planes = [
     cta: 'Empezar',
     limites: {
       tokens: '2.000 Pages/mes',
-      vectores: '2 Entities',
+      vectores: '5 Entities',
     },
     features: [
       '5.000 Retrievals/mes',
@@ -71,14 +71,14 @@ export const planes = [
     cta: 'Empezar',
     limites: {
       tokens: '10.000 Pages/mes',
-      vectores: '5 Entities',
+      vectores: '10 Entities',
     },
     featuresIniciales: ['Todo lo de Starter'],
     features: [
       '25.000 Retrievals/mes',
       '1.500 Verified Answers/mes',
       'Pack adicional: +1.500 Verified Answers por $120',
-      'Control por Área y BYOK',
+      'Control por Área, parsing-BYOK y embedding-BYOK',
       'Agentic Retrieval add-on',
       '***',
     ],
@@ -91,7 +91,7 @@ export const planes = [
     cta: 'Empezar',
     limites: {
       tokens: '40.000 Pages/mes',
-      vectores: '15 Entities',
+      vectores: '25 Entities',
     },
     featuresIniciales: ['Todo lo de Growth'],
     features: [
@@ -117,7 +117,7 @@ export const planes = [
     features: [
       'Retrievals custom',
       'Verified Answers custom',
-      'BYOK + BYO vectorial/LLM',
+      'parsing-BYOK + embedding-BYOK + base vectorial propia',
       'DPA/SLA',
       'Despliegue dedicado si aplica',
       '*****',
@@ -127,4 +127,4 @@ export const planes = [
 
 // Nota al pie de la tabla de planes (se traduce con /ragfly-idiomas-sitio).
 export const notaPlanes =
-  '* Free es POC con límites totales, no un plan productivo.\n** Overage se factura solo cuando el uso supera el cupo incluido del plan.\n*** Control por Área/BYOK queda sujeto a configuración inicial del grupo.\n**** BYO requiere revisión técnica de la base vectorial y del LLM elegido.\n***** Enterprise/Soberano es sales-assisted: contrato anual, DPA/SLA y despliegue dedicado si aplica.'
+  '* Free es POC con límites totales, no un plan productivo.\n** Overage se factura solo cuando el uso supera el cupo incluido del plan.\n*** Control por Área · parsing-BYOK · embedding-BYOK queda sujeto a configuración inicial del grupo.\n**** BYO requiere revisión técnica de la base vectorial y del LLM elegido.\n***** Enterprise/Soberano es sales-assisted: contrato anual, DPA/SLA y despliegue dedicado si aplica.'

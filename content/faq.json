@@ -1,11 +1,11 @@
 [
   {
     "q": "¿Qué es RAGfly?",
-    "a": "La capa de contexto documental para agentes de IA: convierte cualquier corpus de documentos —miles o decenas de miles, incluidos escaneados— en una base de recuperación segura, multi-tenant y lista para producción, sin construir ni mantener un pipeline RAG."
+    "a": "Un servicio de RAG para agentes de IA: convierte cualquier corpus de documentos —miles o decenas de miles, incluidos escaneados— en una base de recuperación segura, multi-tenant y lista para producción, sin construir ni mantener un pipeline RAG."
   },
   {
     "q": "¿Para quién es?",
-    "a": "Para desarrolladores, consultoras e integradores que construyen agentes de IA sobre documentos privados —a veces de muchos clientes distintos— y no quieren ser dueños de la infraestructura RAG a escala."
+    "a": "Para desarrolladores, consultoras e integradores que construyen agentes de IA sobre documentos privados —a veces de muchos clientes distintos— y no quieren construir ni mantener el pipeline de RAG a escala."
   },
   {
     "q": "¿Cuánto cuesta?",
@@ -13,7 +13,7 @@
   },
   {
     "q": "¿Cómo funciona?",
-    "a": "Apuntas RAGfly al directorio de tus documentos; el sistema los escanea, vectoriza e indexa automáticamente. Luego tu agente recupera por significado y obtiene respuestas con citas a la fuente vía MCP, REST o CLI, aislado por cliente y con el tratamiento de datos correspondiente al modo de despliegue."
+    "a": "Apuntas RAGfly al directorio de tus documentos; el sistema los escanea, vectoriza e indexa automáticamente. Luego tu agente recupera por significado y obtiene respuestas con citas a la fuente vía MCP, REST o CLI, aislado por contexto y con el tratamiento de datos correspondiente al modo de despliegue."
   },
   {
     "q": "¿Cómo consume un agente de IA a RAGfly?",
@@ -45,6 +45,6 @@
   },
   {
     "q": "¿En cuánto tiempo paso de un directorio a un agente respondiendo con citas?",
-    "a": "Apuntas RAGfly a un directorio y, con ingesta, vectorización e indexado automáticos, puedes tener un agente respondiendo con citas en menos de 30 minutos — sin construir ni mantener un pipeline RAG a escala."
+    "a": "Apuntas RAGfly a un directorio y, con ingesta, vectorización e indexado automáticos, puedes tener un agente respondiendo con citas en poco tiempo, sin ayuda humana — sin construir ni mantener un pipeline RAG a escala."
   }
 ]

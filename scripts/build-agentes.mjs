@@ -29,7 +29,7 @@ const fecha = new Date().toISOString().slice(0, 10)
 const json = {
   nombre: 'RAGfly',
   descripcion:
-    'Infraestructura RAG multi-tenant. Entrega a un agente de IA el contexto documental exacto que necesita, filtrado por RBAC, vía MCP, CLI o API REST.',
+    'Servicio de RAG multi-tenant. Entrega a un agente de IA el contexto documental exacto que necesita, filtrado por RBAC, vía MCP, CLI o API REST.',
   sitio: 'https://ragfly.ai',
   app: 'https://app.ragfly.ai',
   actualizado: fecha,

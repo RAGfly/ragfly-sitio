@@ -1,13 +1,13 @@
 # RAGfly
 
-> Servicio de RAG multi-tenant para agentes de IA. Convierte cualquier corpus de documentos en una base de recuperación segura, aislada por cliente y lista para producción — sin construir ni mantener un pipeline RAG. Vía MCP, REST y CLI.
+> Servicio de RAG multi-tenant para agentes de IA. Convierte cualquier corpus de documentos en una base de recuperación segura, aislada por contexto y lista para producción — sin construir ni mantener un pipeline RAG. Vía MCP, REST y CLI.
 
-RAGfly es la capa de contexto documental para agentes: apuntas a un directorio de documentos y el sistema los escanea, vectoriza e indexa automáticamente. Tu agente obtiene respuestas con citas a la fuente, a escala y aislado por cliente.
+RAGfly es un servicio de RAG para agentes: apuntas a un directorio de documentos y el sistema los escanea, vectoriza e indexa automáticamente. Tu agente obtiene respuestas con citas a la fuente, a escala y aislado por contexto.
 
 - Qué ofrece: retrieval semántico con citas + capa de acción (habilidades LLM sobre documentos) + multi-tenant de fábrica.
-- Para quién: desarrolladores, consultoras e integradores que construyen agentes sobre documentos privados de uno o varios clientes.
+- Para quién: primero, el dev que opera agentes propios y necesita que no crucen información entre sus contextos (proyectos, vida personal, memoria del agente); después, consultoras e integradores que construyen agentes sobre documentos privados de varios clientes, y productos SaaS que meten RAG adentro.
 - Cómo funciona: apunta a un directorio → ingesta, vectorización e indexado automáticos → tu agente consulta por significado vía MCP, REST o CLI con citas a la fuente.
-- Precios (USD): Free $0 (1 Entity, 500 Pages totales, 25 Retrievals/día, 50 Verified Answers totales) · Starter $39/mes (2 Entities, 2.000 Pages/mes, 5.000 Retrievals/mes, 300 Verified Answers/mes) · Growth $149/mes (5 Entities, 10.000 Pages/mes, 25.000 Retrievals/mes, 1.500 Verified Answers/mes, Control por Área/BYOK) · Scale $590/mes (15 Entities, 40.000 Pages/mes, 100.000 Retrievals/mes, 5.000 Verified Answers/mes, BYO vectorial/LLM) · Enterprise/Soberano custom.
+- Precios (USD): Free $0 (2 Entities, 500 Pages totales, 25 Retrievals/día, 50 Verified Answers totales) · Starter $39/mes (5 Entities, 2.000 Pages/mes, 5.000 Retrievals/mes, 300 Verified Answers/mes) · Growth $149/mes (10 Entities, 10.000 Pages/mes, 25.000 Retrievals/mes, 1.500 Verified Answers/mes, Control por Área · parsing-BYOK · embedding-BYOK) · Scale $590/mes (25 Entities, 40.000 Pages/mes, 100.000 Retrievals/mes, 5.000 Verified Answers/mes, BYO vectorial/LLM) · Enterprise/Soberano custom.
 - Privacidad por modo: Cloud procesa el original pero no lo conserva después de la ingesta; Desktop procesa el original localmente y puede sincronizar derivados; en soberano la BD y los derivados en reposo son del cliente, mientras RAGfly accede a chunks para recuperar contexto.
 
 ## Para agentes
