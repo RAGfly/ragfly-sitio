@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 250" width="960" role="img" aria-label="Un perfil, radios de acceso hacia cada área — uno autorizado, el resto sin cruzarse">
+      <style>
+        .ga-lane { stroke: #AAD8F1; stroke-width: 1.4; opacity: .55; }
+        .ga-group { animation: gaTravel linear infinite; }
+        .ga-halo { fill: #008BD6; opacity: .3; }
+        .ga-core { fill: #eaf7ff; filter: drop-shadow(0 0 2px rgba(0,139,214,.9)); }
+        .ga-group.amber .ga-halo { fill: #E8A33D; }
+        .ga-group.amber .ga-core { fill: #fff3df; filter: drop-shadow(0 0 2.5px rgba(232,163,61,.95)); }
+        @keyframes gaTravel {
+          0%   { offset-distance: 0%;   opacity: 0; }
+          8%   { opacity: 1; }
+          90%  { opacity: 1; }
+          100% { offset-distance: 100%; opacity: 0; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .ga-group { animation: none; opacity: 0; }
+        }
+      </style>
+
+      <text x="14" y="24" font-family="ui-monospace,monospace" font-size="10" fill="#55B2E4" letter-spacing="1.5">MI-PASS · PERFIL</text>
+
+      <!-- el origen: un perfil, una sola identidad -->
+      <circle cx="46" cy="132" r="4.5" fill="none" stroke="#005D8F" stroke-width="1.6"/>
+      <circle cx="46" cy="132" r="9" fill="none" stroke="#AAD8F1" stroke-width="1" opacity=".5"/>
+
+      <!-- radios: cada uno es un área a la que el perfil SÍ o NO llega -->
+      <line class="ga-lane" x1="46" y1="132" x2="430" y2="46"/>
+      <line class="ga-lane" x1="46" y1="132" x2="430" y2="90"/>
+      <line class="ga-lane" x1="46" y1="132" x2="430" y2="132"/>
+      <line class="ga-lane" x1="46" y1="132" x2="430" y2="174"/>
+      <line class="ga-lane" x1="46" y1="132" x2="430" y2="216"/>
+
+      <g class="ga-group amber" style="offset-path: path('M 46 132 L 430 46'); animation-duration: 3.2s; animation-delay: 0s;">
+        <circle class="ga-halo" r="9"/><circle class="ga-core" r="3.4"/>
+      </g>
+      <g class="ga-group" style="offset-path: path('M 46 132 L 430 90'); animation-duration: 2.7s; animation-delay: .7s;">
+        <circle class="ga-halo" r="7"/><circle class="ga-core" r="2.6"/>
+      </g>
+      <g class="ga-group" style="offset-path: path('M 46 132 L 430 132'); animation-duration: 3.5s; animation-delay: 1.6s;">
+        <circle class="ga-halo" r="7"/><circle class="ga-core" r="2.6"/>
+      </g>
+      <g class="ga-group" style="offset-path: path('M 46 132 L 430 174'); animation-duration: 2.4s; animation-delay: .3s;">
+        <circle class="ga-halo" r="7"/><circle class="ga-core" r="2.6"/>
+      </g>
+      <g class="ga-group" style="offset-path: path('M 46 132 L 430 216'); animation-duration: 3s; animation-delay: 2.1s;">
+        <circle class="ga-halo" r="7"/><circle class="ga-core" r="2.6"/>
+      </g>
+
+      <text x="66" y="54" font-family="ui-monospace,monospace" font-size="8.5" letter-spacing="1" fill="#C08A3A">ÁREA AUTORIZADA</text>
+      <text x="66" y="230" font-family="ui-monospace,monospace" font-size="8.5" letter-spacing="1" fill="#AAAAAA">RESTO · SIN ACCESO</text>
+    </svg>
