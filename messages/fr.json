@@ -42,6 +42,7 @@
     "headlineLead": "Récupération augmentée",
     "headlineAccent": "pour vos agents.",
     "slogan": "Simple, privé et précis. Et chacun de vos contextes, dans son propre espace.",
+    "lineaApoyo": "Fonctionne avec les agents que vous utilisez déjà — via MCP — et avec ceux que vous construisez.",
     "tagline": "N'importe quel agent conversant avec des milliers de documents privés : à l'échelle et isolés par contexte. Vous connectez un répertoire et votre agent répond avec des citations — sans construire ni maintenir un pipeline RAG.",
     "ctaPrimario": "Commencer gratuitement",
     "ctaSecundario": "Voir la démo en direct"

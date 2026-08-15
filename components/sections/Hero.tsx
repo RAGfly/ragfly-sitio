@@ -29,6 +29,9 @@ export function Hero() {
         <BlurIn delay={0.08} className="font-helvetica-neue text-lg md:text-2xl text-slm-dark/90 font-medium tracking-[0.01em] max-w-2xl text-center leading-snug">
           {t('hero.slogan')}
         </BlurIn>
+        <BlurIn delay={0.09} className="font-helvetica-neue text-base md:text-lg text-slm-dark/75 tracking-[0.01em] max-w-2xl text-center leading-snug">
+          {t('hero.lineaApoyo')}
+        </BlurIn>
         <BlurIn delay={0.1} className="font-helvetica-neue text-base md:text-xl text-slm-gray tracking-[0.01em] max-w-2xl text-center leading-relaxed">
           {t('hero.tagline')}
         </BlurIn>

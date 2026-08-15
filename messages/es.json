@@ -42,6 +42,7 @@
     "headlineLead": "Simple, privado y preciso.",
     "headlineAccent": "Y cada uno de tus contextos, en su propio espacio.",
     "slogan": "Recuperación aumentada para tus agentes.",
+    "lineaApoyo": "Funciona con los agentes que ya usas —por MCP— y con los que construyas tú.",
     "tagline": "Cualquier agente conversando con miles de documentos privados: a escala, aislados por contexto y con privacidad verificable por modo de despliegue. Conectas un directorio y tu agente responde con citas sin construir ni mantener un pipeline RAG.",
     "ctaPrimario": "Empieza gratis",
     "ctaSecundario": "Ver la demo viva"

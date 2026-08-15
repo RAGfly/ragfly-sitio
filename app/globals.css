@@ -111,41 +111,58 @@ body {
   .hero-wing { animation: none !important; }
 }
 
-/* ============================================================
-   Floating document tiles
-   ============================================================ */
-.doc-field { position: absolute; inset: 0; pointer-events: none; }
+/* ------------------------------------------------------------------ */
+/* CORREDORES — fondo del hero (reemplaza .doc-field / .doc-tile)      */
+/* Pegar en app/globals.css junto al resto de utilidades del hero.     */
+/* Regla física: nada cae, todo viaja. Eje único de 11°.               */
+/* ------------------------------------------------------------------ */
 
-.doc-tile {
+.lane-field { position: absolute; inset: 0; overflow: hidden; }
+
+/* Cada corredor es un contenedor rotado; la línea y el blip viven
+   DENTRO, así el punto viaja exactamente sobre su corredor. */
+.lane {
   position: absolute;
-  width: clamp(70px, 8vw, 120px);
-  aspect-ratio: 4/5;
-  background: rgba(255,255,255,0.78);
-  border: 1px solid rgba(0,93,143,0.10);
-  border-radius: 10px;
-  box-shadow: 0 12px 30px -18px rgba(0,46,71,0.35), 0 2px 8px rgba(0,46,71,0.04);
-  backdrop-filter: blur(6px);
-  overflow: hidden;
-  animation: floatUp 18s linear infinite;
-  will-change: transform;
+  left: -12%;
+  width: 124%;
+  height: 0;
+  transform: rotate(-11deg);
+  transform-origin: left center;
 }
-.doc-tile::before {
-  content: ""; position: absolute; left: 10%; right: 10%; top: 14%;
-  height: 6px; border-radius: 3px;
-  background: linear-gradient(90deg, #005D8F, #008BD6);
-  opacity: 0.75;
-}
-.doc-tile::after {
-  content: ""; position: absolute; left: 10%; right: 30%; top: 30%; bottom: 14%;
-  background: repeating-linear-gradient(180deg, rgba(85,85,85,0.35) 0 2px, transparent 2px 8px);
-  opacity: 0.7;
+.lane::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; top: 0;
+  height: 1px;
+  background: #AAD8F1;
+  opacity: .65;
 }
 
-@keyframes floatUp {
-  0%   { transform: translate3d(0,12vh,0) rotate(var(--r,-4deg)); opacity: 0; }
-  10%  { opacity: 1; }
-  90%  { opacity: 1; }
-  100% { transform: translate3d(0,-90vh,0) rotate(var(--r,-4deg)); opacity: 0; }
+.blip {
+  position: absolute;
+  top: -3px;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #008BD6;
+  box-shadow: 0 0 0 5px rgba(0, 139, 214, .10);
+  animation: travel linear infinite;
+}
+/* Ámbar = autorización. UNO solo en toda la pantalla. */
+.blip--amber {
+  background: #E8A33D;
+  box-shadow: 0 0 0 5px rgba(232, 163, 61, .16);
+}
+
+/* Velocidad constante, sin spring, sin rebote: entra y sale de cuadro. */
+@keyframes travel {
+  0%   { left: -6%;  opacity: 0; }
+  8%   { opacity: 1; }
+  92%  { opacity: 1; }
+  100% { left: 106%; opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blip { animation: none; }
 }
 
 /* ============================================================

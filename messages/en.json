@@ -41,6 +41,7 @@
     "headlineLead": "Augmented retrieval",
     "headlineAccent": "for your agents.",
     "slogan": "Simple, private, and precise. And each of your contexts, in its own space.",
+    "lineaApoyo": "Works with the agents you already use — over MCP — and with the ones you build.",
     "tagline": "Any agent conversing with thousands of private documents: at scale and isolated per context. Connect a directory and your agent answers with citations — without building or maintaining a RAG pipeline.",
     "ctaPrimario": "Start free",
     "ctaSecundario": "See the live demo"
