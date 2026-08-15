@@ -545,7 +545,7 @@
     "manifiestoTitulo": "Ce n'est pas que vous ne le voyez pas. C'est qu'il n'est pas à bord.",
     "manifiestoDesc": "Le filtre par groupe et entité est intégré au moteur de recherche lui-même : les vecteurs d'un autre contexte ne sont même jamais scorés. Ce n'est pas un filtre appliqué après — ils ne sont jamais entrés dans la recherche. Cela vaut pour tous les forfaits, le gratuit inclus.",
     "subeTitulo": "Que le contenu vectorisé monte ne veut pas dire que le document monte.",
-    "subeDesc": "C'est du texte extrait qui monte, en fragments, chiffré. Pas le fichier. Si le document est signé, la signature ne monte pas.",
+    "subeDesc": "C'est du texte extrait qui monte, en fragments, chiffré. Pas le fichier. Par exemple, si le document est signé, la signature ne monte pas.",
     "cartaTag": "MI-PASS",
     "cartaTitulo": "Groupe → Entité → Domaine",
     "cartaDesc": "Le groupe est le tenant ; l'entité sépare les organisations ou les contextes au sein du groupe ; le domaine définit quel sous-arbre de documents voit chaque identité, avec héritage hiérarchique — qui est au-dessus voit ce que contiennent ses domaines descendants.",
