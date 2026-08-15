@@ -526,7 +526,7 @@
     "formatos": "PDF, Word, Excel, PowerPoint, RTF, plain text and scans via OCR.",
     "pipelineTitulo": "PIPELINE STATES",
     "ritmoTitulo": "The climb is smooth; the cruise, instant.",
-    "ritmoDesc": "Ingesting a large corpus runs on its own, unattended: you leave it going and move on. The speed is where it counts — in every query, in real time.",
+    "ritmoDesc": "Ingesting a large corpus runs on its own, unattended: you leave it going and move on. What you notice in every query isn't speed — it's that the answer is faithful to what you loaded.",
     "onboardingTitulo": "Onboarding without red tape",
     "onboardingDesc": "If you start out alone, group, entity, area and profile are a single node that unfolds as your organization grows. The simplicity of day one, with the enterprise ceiling already built in.",
     "interfacesTitulo": "Six interfaces, on every plan",

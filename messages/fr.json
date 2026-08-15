@@ -527,7 +527,7 @@
     "formatos": "PDF, Word, Excel, PowerPoint, RTF, texte brut et documents scannés via OCR.",
     "pipelineTitulo": "ÉTATS DU PIPELINE",
     "ritmoTitulo": "La montée est douce ; la croisière, instantanée.",
-    "ritmoDesc": "L'ingestion d'un grand corpus tourne seule, sans surveillance : vous la laissez tourner et passez à autre chose. La vitesse est là où elle compte — à chaque requête, en temps réel.",
+    "ritmoDesc": "L'ingestion d'un grand corpus tourne seule, sans surveillance : vous la laissez tourner et passez à autre chose. Ce qui compte à chaque requête, ce n'est pas la vitesse — c'est que la réponse soit fidèle à ce que vous avez chargé.",
     "onboardingTitulo": "Un onboarding sans bureaucratie",
     "onboardingDesc": "Pour qui démarre seul, groupe, entité, domaine et profil ne forment qu'un seul nœud, qui s'ouvre à mesure que l'organisation grandit. La simplicité du départ, avec le plafond enterprise déjà intégré.",
     "interfacesTitulo": "Six interfaces, dans tous les forfaits",

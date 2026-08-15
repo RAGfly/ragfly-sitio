@@ -527,7 +527,7 @@
     "formatos": "PDF, Word, Excel, PowerPoint, RTF, texto puro e digitalizados via OCR.",
     "pipelineTitulo": "ESTADOS DO PIPELINE",
     "ritmoTitulo": "A subida é suave; o cruzeiro, instantâneo.",
-    "ritmoDesc": "A ingestão de um corpus grande roda sozinha, sem supervisão: você a deixa rodando e segue em frente. A velocidade está onde importa — em cada consulta, em tempo real.",
+    "ritmoDesc": "A ingestão de um corpus grande roda sozinha, sem supervisão: você a deixa rodando e segue em frente. O que se nota em cada consulta não é a velocidade — é que a resposta é fiel ao que você carregou.",
     "onboardingTitulo": "Onboarding sem burocracia",
     "onboardingDesc": "Para quem começa sozinho, grupo, entidade, área e perfil são um único nó, que vai se abrindo conforme a organização cresce. A simplicidade do início com o teto enterprise já embutido.",
     "interfacesTitulo": "Seis interfaces, em todos os planos",
