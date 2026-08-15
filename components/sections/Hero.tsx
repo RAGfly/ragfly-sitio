@@ -19,20 +19,20 @@ export function Hero() {
       <div className="flex-1 flex flex-col items-center justify-center z-10 gap-6">
         <BlurIn
           as="h1"
-          className="text-center font-helvetica-neue font-medium leading-[1.08] text-slm-dark max-w-4xl"
+          className="text-center font-helvetica-neue font-medium text-slm-dark max-w-3xl flex flex-col gap-2 md:gap-3"
         >
-          <span className="block text-4xl md:text-6xl lg:text-7xl tracking-[-0.03em]">{t('hero.headlineLead')}</span>
-          <span className="block text-4xl md:text-6xl lg:text-7xl tracking-[-0.03em] pb-[0.12em] bg-gradient-to-r from-slm-brand-dark via-slm-brand to-slm-brand-light bg-clip-text text-transparent">
+          <span className="block text-3xl md:text-5xl lg:text-6xl tracking-[-0.03em] leading-[1.08]">{t('hero.headlineLead')}</span>
+          <span className="block text-xl md:text-3xl lg:text-4xl tracking-[-0.02em] leading-snug pb-[0.12em] bg-gradient-to-r from-slm-brand-dark via-slm-brand to-slm-brand-light bg-clip-text text-transparent">
             {t('hero.headlineAccent')}
           </span>
         </BlurIn>
-        <BlurIn delay={0.08} className="font-helvetica-neue text-lg md:text-2xl text-slm-dark/90 font-medium tracking-[0.01em] max-w-2xl text-center leading-snug">
+        <BlurIn delay={0.08} className="font-helvetica-neue text-base md:text-xl text-slm-dark/90 font-medium tracking-[0.01em] max-w-2xl text-center leading-snug mt-2">
           {t('hero.slogan')}
         </BlurIn>
-        <BlurIn delay={0.09} className="font-helvetica-neue text-base md:text-lg text-slm-dark/75 tracking-[0.01em] max-w-2xl text-center leading-snug">
+        <BlurIn delay={0.09} className="font-helvetica-neue text-sm md:text-base text-slm-dark/75 tracking-[0.01em] max-w-2xl text-center leading-snug">
           {t('hero.lineaApoyo')}
         </BlurIn>
-        <BlurIn delay={0.1} className="font-helvetica-neue text-sm md:text-base text-slm-gray-light tracking-[0.01em] max-w-2xl text-center leading-relaxed">
+        <BlurIn delay={0.1} className="font-helvetica-neue text-xs md:text-sm text-slm-gray-light tracking-[0.01em] max-w-2xl text-center leading-relaxed">
           {t('hero.tagline')}
         </BlurIn>
       </div>
