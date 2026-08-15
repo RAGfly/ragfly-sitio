@@ -67,6 +67,9 @@ export function SimpleSection() {
             </h3>
             <p className="text-slm-gray font-helvetica-neue text-base leading-relaxed">{t('simple.onboardingDesc')}</p>
           </div>
+          {/* Par simétrico: por dónde entra el documento y por dónde sale la
+              respuesta. Misma estructura en las dos — etiqueta, lista y un pie
+              con su matiz— para que se lean como las dos bocas del pipeline. */}
           <div className="border border-slm-dark/10 p-8 flex flex-col gap-3">
             <span className="rf-anot text-slm-dark/45">{t('simple.formatosTitulo')}</span>
             <p className="text-slm-dark/85 font-helvetica-neue text-base leading-relaxed">{t('simple.formatos')}</p>
@@ -76,10 +79,12 @@ export function SimpleSection() {
             </p>
           </div>
           <div className="border border-slm-dark/10 p-8 flex flex-col gap-3">
-            <h3 className="font-helvetica-neue text-xl md:text-2xl font-medium text-slm-dark tracking-[-0.02em]">
-              {t('simple.interfacesTitulo')}
-            </h3>
-            <p className="text-slm-gray font-helvetica-neue text-base leading-relaxed">{t('simple.interfacesDesc')}</p>
+            <span className="rf-anot text-slm-dark/45">{t('simple.interfacesTitulo')}</span>
+            <p className="text-slm-dark/85 font-helvetica-neue text-base leading-relaxed">{t('simple.interfaces')}</p>
+            <p className="text-slm-gray font-helvetica-neue text-sm leading-relaxed mt-auto pt-3 border-t border-slm-dark/8">
+              <span className="rf-anot text-slm-dark/45 mr-2">{t('simple.interfacesNotaTitulo')}</span>
+              {t('simple.interfacesNotaDesc')}
+            </p>
           </div>
         </div>
       </div>

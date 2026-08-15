@@ -5,17 +5,107 @@ import { BlurIn } from './shared'
 
 /* ------------------------------------------------------------------ */
 /* LockInSection — S8.bis (NUEVA) · «Sin lock-in», una pantalla         */
-/* Familia F (instrumento): tres diales —modelo / base / corpus—, cada  */
-/* uno con su dueño. Se dibujan inline y SIN cifras: la familia F exige */
-/* que solo aparezcan números reales, y aquí no hay ninguno que medir.  */
-/* Nunca «BYOK» a secas: siempre parsing-BYOK y embedding-BYOK.         */
+/* Familia F (instrumento): tres instrumentos —modelo / base / corpus—, */
+/* cada uno con su dueño. Se dibujan inline y SIN cifras: la familia F  */
+/* exige que solo aparezcan números reales, y aquí no hay ninguno que   */
+/* medir. Nunca «BYOK» a secas: siempre parsing-BYOK y embedding-BYOK.  */
+/*                                                                     */
+/* Cada tarjeta lleva un instrumento DISTINTO —dial, botonera, grafo—:  */
+/* tres diales idénticos no decían nada. Todos comparten el mismo       */
+/* lienzo 120×66 para que las tres tarjetas queden alineadas.           */
 /* ------------------------------------------------------------------ */
+
+const AZUL = '#55B2E4'
+const CABINA = '#001A29' /* fondo de la tarjeta: los nodos lo usan de relleno */
+
+/* MODELO — dial de aguja. El único que se mueve (ver .lk-aguja). */
+function DialModelo() {
+  return (
+    <svg viewBox="0 0 120 66" width="120" height="66" fill="none" aria-hidden="true">
+      <path d="M10 60 A50 50 0 0 1 110 60" stroke="rgba(255,255,255,0.18)" strokeWidth="1" />
+      <path d="M10 60 A50 50 0 0 1 110 60" stroke={AZUL} strokeWidth="1.5" strokeDasharray="118 40" />
+      <g className="lk-aguja">
+        <path d="M60 60 L90 26" stroke={AZUL} strokeWidth="1" strokeLinecap="round" />
+      </g>
+      <circle cx="60" cy="60" r="2.5" fill={AZUL} />
+    </svg>
+  )
+}
+
+/* BASE — botonera de cinco slots. Los encendidos van en ÁMBAR de marca
+   (#E8A33D): aquí no es decoración, marca qué corre bajo tu autorización. */
+const SLOTS = [
+  { x: 12, on: false },
+  { x: 32, on: true },
+  { x: 52, on: true },
+  { x: 72, on: false },
+  { x: 92, on: false },
+]
+
+function BotoneraBase() {
+  return (
+    <svg viewBox="0 0 120 66" width="120" height="66" fill="none" aria-hidden="true">
+      <rect x="5" y="19" width="110" height="34" rx="2" stroke="rgba(255,255,255,0.14)" strokeWidth="1" />
+      {SLOTS.map((s) =>
+        s.on ? (
+          <g key={s.x}>
+            <rect x={s.x - 3} y={25} width={22} height={22} rx="3" fill="#E8A33D" opacity="0.16" />
+            <rect x={s.x} y={28} width={16} height={16} rx="1.5" fill="#E8A33D" />
+          </g>
+        ) : (
+          <rect
+            key={s.x}
+            x={s.x}
+            y={28}
+            width={16}
+            height={16}
+            rx="1.5"
+            fill="rgba(255,255,255,0.06)"
+            stroke="rgba(255,255,255,0.35)"
+            strokeWidth="1"
+          />
+        ),
+      )}
+    </svg>
+  )
+}
+
+/* DOCUMENTOS — el documento dentro de tu perímetro. Sin flechas: el
+   documento no entra ni sale de ningún lado, se queda donde está. Nada
+   de exportar (daría a entender que primero lo almacenamos nosotros). */
+function DocumentoEnTuPerimetro() {
+  return (
+    <svg viewBox="0 0 120 66" width="120" height="66" fill="none" aria-hidden="true">
+      {/* las cuatro esquinas de tu perímetro */}
+      <path
+        d="M30 18 V8 H40 M80 8 H90 V18 M90 48 V58 H80 M40 58 H30 V48"
+        stroke="rgba(255,255,255,0.35)"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      {/* la hoja, adentro */}
+      <path d="M46 16 H66 L74 24 V50 H46 Z" fill={CABINA} stroke={AZUL} strokeWidth="1.5" strokeLinejoin="round" />
+      <path d="M66 16 V24 H74" stroke={AZUL} strokeWidth="1.5" strokeLinejoin="round" />
+      <path
+        d="M52 32 H64 M52 38 H68 M52 44 H60"
+        stroke="rgba(255,255,255,0.3)"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  )
+}
+
+const INSTRUMENTOS = [DialModelo, BotoneraBase, DocumentoEnTuPerimetro]
+
 export function LockInSection() {
   const t = useTranslations()
   const diales = [0, 1, 2].map((i) => ({
     tag: t(`lockin.card${i}Tag` as Parameters<typeof t>[0]),
     titulo: t(`lockin.card${i}Titulo` as Parameters<typeof t>[0]),
     desc: t(`lockin.card${i}Desc` as Parameters<typeof t>[0]),
+    Instrumento: INSTRUMENTOS[i],
   }))
 
   return (
@@ -40,13 +130,8 @@ export function LockInSection() {
                 <span className="rf-anot text-slm-brand-light/70">{d.tag}</span>
                 <span className="rf-anot text-slm-light/40">{t('lockin.dueno')}</span>
               </div>
-              {/* Dial: arco fino, sin relleno ni cifra inventada. */}
-              <svg viewBox="0 0 120 66" width="120" height="66" fill="none" aria-hidden="true">
-                <path d="M10 60 A50 50 0 0 1 110 60" stroke="rgba(255,255,255,0.18)" strokeWidth="1" />
-                <path d="M10 60 A50 50 0 0 1 110 60" stroke="#55B2E4" strokeWidth="1.5" strokeDasharray="118 40" />
-                <path d="M60 60 L90 26" stroke="#55B2E4" strokeWidth="1" strokeLinecap="round" />
-                <circle cx="60" cy="60" r="2.5" fill="#55B2E4" />
-              </svg>
+              {/* Instrumento: trazo fino, sin relleno ni cifra inventada. */}
+              <d.Instrumento />
               <h3 className="font-helvetica-neue text-xl md:text-2xl font-medium tracking-[-0.02em] leading-tight">
                 {d.titulo}
               </h3>

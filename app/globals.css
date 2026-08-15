@@ -345,6 +345,26 @@ body {
 }
 
 /* ============================================================
+   Lock-in — los tres instrumentos (LockInSection)
+   Cada tarjeta lleva su propio instrumento: dial (MODELO),
+   botonera (BASE) y grafo (CORPUS). Solo la aguja del dial se
+   mueve —oscilación leve—: un único movimiento por sección, si no
+   los tres compiten entre sí.
+   ============================================================ */
+.lk-aguja {
+  transform-box: view-box;
+  transform-origin: 60px 60px;
+  animation: lkAguja 5.6s ease-in-out infinite;
+}
+@keyframes lkAguja {
+  0%, 100% { transform: rotate(-5deg); }
+  50%      { transform: rotate(5deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lk-aguja { animation: none; }
+}
+
+/* ============================================================
    .doc-prose — render de los .md del kit de integradores (/build/[doc])
    ============================================================ */
 .doc-prose {

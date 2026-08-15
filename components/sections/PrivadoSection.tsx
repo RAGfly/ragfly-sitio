@@ -48,20 +48,22 @@ export function PrivadoSection() {
           <Image src="/design/C-manifiesto.svg" alt="" aria-hidden width={960} height={520} className="w-full h-auto" />
         </div>
 
-        {/* Pieza 2 — carta de espacio aéreo + privilegios por área */}
-        <div className="grid lg:grid-cols-[1fr_1.05fr] gap-8 lg:gap-12 items-center border border-slm-dark/10 bg-white p-6 md:p-10">
+        {/* Pieza 2 — carta de espacio aéreo + privilegios por área
+            Tarjeta en negro: el fondo es el mismo #060a10 del SVG, para que la
+            lámina y el recuadro sean una sola superficie. Contraste invertido. */}
+        <div className="grid lg:grid-cols-[1fr_1.05fr] gap-8 lg:gap-12 items-center border border-white/10 bg-[#060a10] p-6 md:p-10">
           <Image src="/design/G-pase-de-acceso.svg" alt="" aria-hidden width={960} height={520} className="w-full h-auto order-2 lg:order-1" />
           <div className="flex flex-col gap-5 order-1 lg:order-2">
-            <span className="rf-anot text-slm-dark/45">{t('privado.cartaTag')}</span>
-            <h3 className="font-helvetica-neue text-2xl md:text-3xl font-medium text-slm-dark tracking-[-0.02em] leading-tight">
+            <span className="rf-anot text-white/45">{t('privado.cartaTag')}</span>
+            <h3 className="font-helvetica-neue text-2xl md:text-3xl font-medium text-slm-light tracking-[-0.02em] leading-tight">
               {t('privado.cartaTitulo')}
             </h3>
-            <p className="text-slm-gray font-helvetica-neue text-base leading-relaxed">{t('privado.cartaDesc')}</p>
-            <div className="border-l border-slm-brand/50 pl-4 flex flex-col gap-1">
-              <p className="font-mono text-xs md:text-[13px] text-slm-dark/70 leading-relaxed">
+            <p className="text-slm-gray-light font-helvetica-neue text-base leading-relaxed">{t('privado.cartaDesc')}</p>
+            <div className="border-l border-slm-brand/60 pl-4 flex flex-col gap-1">
+              <p className="font-mono text-xs md:text-[13px] text-white/75 leading-relaxed">
                 {t('privado.cartaCierreTitulo')}
               </p>
-              <p className="font-mono text-xs md:text-[13px] text-slm-dark/50 leading-relaxed">{t('privado.cartaCierreDesc')}</p>
+              <p className="font-mono text-xs md:text-[13px] text-white/50 leading-relaxed">{t('privado.cartaCierreDesc')}</p>
             </div>
           </div>
         </div>

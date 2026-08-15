@@ -25,7 +25,7 @@
         <rect x="320" y="52" width="126" height="164" rx="8"/>
       </g>
       <g font-family="ui-monospace,monospace" font-size="9.5" fill="#005D8F" letter-spacing="1.2">
-        <text x="48" y="72">ENT · 01</text><text x="190" y="72">ENT · 02</text><text x="332" y="72">ENT · 03</text>
+        <text x="48" y="72">ENTIDAD · 01</text><text x="190" y="72">ENTIDAD · 02</text><text x="332" y="72">ENTIDAD · 03</text>
       </g>
       <g fill="#D5ECF8">
         <rect x="48" y="86" width="102" height="7" rx="3.5"/><rect x="48" y="99" width="80" height="7" rx="3.5"/>
@@ -75,9 +75,14 @@
         <circle class="blip-halo" r="9"/><circle class="blip-core" r="3.4"/>
       </g>
 
-      <text x="48" y="208" font-family="ui-monospace,monospace" font-size="8.5" fill="#AAAAAA" letter-spacing="1">CONSULTA · AUTORIZADA</text>
       <g stroke="#AAAAAA" stroke-width="1" stroke-dasharray="3 4">
         <path d="M162 134 L178 134"/><path d="M304 134 L320 134"/>
       </g>
-      <text x="196" y="208" font-family="ui-monospace,monospace" font-size="8.5" fill="#AAAAAA" letter-spacing="1">SIN CRUCE</text>
+      <!-- pies de foto: van DEBAJO de cada tarjeta, en la banda libre entre el
+           borde de la entidad (y=216) y el marco del grupo (y=236). Adentro no
+           caben: «CONSULTA · AUTORIZADA» es más ancha que la tarjeta. -->
+      <g font-family="ui-monospace,monospace" font-size="8" fill="#AAAAAA" letter-spacing=".5">
+        <text x="36" y="229">CONSULTA · AUTORIZADA</text>
+        <text x="178" y="229">SIN CRUCE</text>
+      </g>
     </svg>

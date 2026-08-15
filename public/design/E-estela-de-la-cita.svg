@@ -1,11 +1,48 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 250" width="960" role="img" aria-label="Estela de la cita">
-      <rect x="250" y="52" width="206" height="86" rx="10" fill="#EAF6FC" stroke="#AAD8F1"/>
-      <g font-family="Manrope, Inter, system-ui, -apple-system, 'Segoe UI', Arial, sans-serif" font-size="11" fill="#002E47">
-        <text x="266" y="76" font-size="10.5">El plazo de entrega es de</text>
-        <text x="266" y="94" font-size="10.5">120 días corridos.</text>
+      <style>
+        /* Secuencia: el documento y su fragmento están siempre; la estela se
+           dibuja desde el documento hacia la respuesta, y recién cuando llega
+           aparece la cita. El orden es el argumento: la afirmación llega
+           después de su respaldo, nunca antes. */
+        .ec-borrar { transform-box: view-box; transform-origin: 112px 0; animation: ecEstela 6s ease-in-out infinite; }
+        @keyframes ecEstela {
+          0%, 8%    { transform: scaleX(0); }
+          34%, 88%  { transform: scaleX(1); }
+          96%, 100% { transform: scaleX(0); }
+        }
+        .ec-cita { transform-box: view-box; transform-origin: 353px 95px; opacity: 0; animation: ecCita 6s ease-in-out infinite; }
+        @keyframes ecCita {
+          0%, 34%   { opacity: 0; transform: translateY(5px); }
+          44%, 88%  { opacity: 1; transform: translateY(0); }
+          96%, 100% { opacity: 0; transform: translateY(5px); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .ec-borrar { animation: none; transform: none; }
+          .ec-cita   { animation: none; opacity: 1; transform: none; }
+        }
+      </style>
+      <defs>
+        <clipPath id="ec-wipe">
+          <rect class="ec-borrar" x="112" y="100" width="142" height="66"/>
+        </clipPath>
+      </defs>
+
+      <!-- 2 · la cita, que llega cuando la estela ya la respalda -->
+      <g class="ec-cita">
+        <rect x="250" y="52" width="206" height="86" rx="10" fill="#EAF6FC" stroke="#AAD8F1"/>
+        <g font-family="Manrope, Inter, system-ui, -apple-system, 'Segoe UI', Arial, sans-serif" font-size="11" fill="#002E47">
+          <text x="266" y="76" font-size="10.5">El plazo de entrega es de</text>
+          <text x="266" y="94" font-size="10.5">120 días corridos.</text>
+        </g>
+        <text x="266" y="122" font-family="ui-monospace,monospace" font-size="9" fill="#005D8F" letter-spacing="1.1">RESPUESTA</text>
       </g>
-      <text x="266" y="122" font-family="ui-monospace,monospace" font-size="9" fill="#005D8F" letter-spacing="1.1">RESPUESTA</text>
-      <path d="M250 108 C 190 108, 170 150, 116 158" fill="none" stroke="#008BD6" stroke-width="1.4" stroke-dasharray="4 4"/>
+
+      <!-- 1 · la estela, revelada de izquierda a derecha -->
+      <g clip-path="url(#ec-wipe)">
+        <path d="M250 108 C 190 108, 170 150, 116 158" fill="none" stroke="#008BD6" stroke-width="1.4" stroke-dasharray="4 4"/>
+      </g>
+
+      <!-- siempre presente: el documento y el fragmento que respalda -->
       <rect x="34" y="122" width="82" height="102" rx="7" fill="#fff" stroke="#008BD6" stroke-width="1.3"/>
       <rect x="46" y="136" width="58" height="4" rx="2" fill="#008BD6"/>
       <g fill="#D5ECF8"><rect x="46" y="150" width="58" height="4" rx="2"/><rect x="46" y="160" width="44" height="4" rx="2"/>
