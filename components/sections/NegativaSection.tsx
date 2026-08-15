@@ -32,9 +32,11 @@ export function NegativaSection() {
           <p className="text-slm-light/60 font-helvetica-neue text-sm md:text-base italic leading-relaxed max-w-[520px]">
             {t('negativa.nota')}
           </p>
-          <p className="text-slm-light/55 font-helvetica-neue text-base md:text-lg leading-relaxed max-w-[520px]">
-            {t('negativa.pie')}
-          </p>
+          <div className="border-l border-slm-ambar/60 pl-4">
+            <p className="text-slm-light/55 font-helvetica-neue text-base md:text-lg leading-relaxed max-w-[520px]">
+              {t('negativa.pie')}
+            </p>
+          </div>
         </div>
 
         {/* Lista de chequeo — dibujo técnico, línea fina, sin relleno */}
@@ -77,7 +79,7 @@ export function NegativaSection() {
               </span>
               <span className="pf-stack">
                 <span className="rf-anot text-slm-light/40 pf-fade-out" style={{ animationDelay: '3.3s' }}>{t('negativa.estadoPendiente')}</span>
-                <span className="rf-anot text-slm-light/45 pf-fade-in" style={{ animationDelay: '3.3s' }}>{t('negativa.estadoBloqueado')}</span>
+                <span className="rf-anot text-[#C08A3A] pf-fade-in" style={{ animationDelay: '3.3s' }}>{t('negativa.estadoBloqueado')}</span>
               </span>
             </li>
           </ul>
