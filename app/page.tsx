@@ -23,7 +23,7 @@ import { Footer } from '../components/sections/Footer'
 export default function Home() {
   return (
     <main className="flex flex-col min-h-full">
-      <div className="h-screen flex flex-col relative overflow-hidden">
+      <div className="min-h-screen flex flex-col relative overflow-hidden">
         <HeroBg />
         <Header />
         <Hero />

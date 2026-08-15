@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 250" width="960" role="img" aria-label="Estela de la cita">
       <rect x="250" y="52" width="206" height="86" rx="10" fill="#EAF6FC" stroke="#AAD8F1"/>
-      <g font-family=""Manrope","Inter",system-ui,-apple-system,"Segoe UI",Arial,sans-serif" font-size="11" fill="#002E47">
+      <g font-family="Manrope, Inter, system-ui, -apple-system, 'Segoe UI', Arial, sans-serif" font-size="11" fill="#002E47">
         <text x="266" y="76" font-size="10.5">El plazo de entrega es de</text>
         <text x="266" y="94" font-size="10.5">120 días corridos.</text>
       </g>
