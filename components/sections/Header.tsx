@@ -14,11 +14,13 @@ export function Header() {
   const [open, setOpen] = useState(false)
   const links = [
     /* Anclas del orden nuevo (S1→S10). Las viejas —#que-es, #diferencia,
-       #como-se-usa, #seguridad, #pruebalo— ya no existen en la página. */
+       #como-se-usa, #seguridad, #pruebalo— ya no existen en la página.
+       El orden Simple → Privado → Preciso refuerza el eslogan y espeja el
+       orden de las secciones de la landing. */
     { l: t('nav.producto'), h: '#simple' },
+    { l: t('nav.seguridad'), h: '#privado' },
     { l: t('nav.capacidades'), h: '#precision' },
     { l: t('nav.comoFunciona'), h: '#superficies' },
-    { l: t('nav.seguridad'), h: '#privado' },
     { l: t('nav.planes'), h: '#planes' },
     { l: t('nav.descargar'), h: '/download' },
   ]
