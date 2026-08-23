@@ -44,3 +44,5 @@ RAGfly es un servicio de RAG para agentes: apuntas a un directorio de documentos
 - [Runtime hints](https://ragfly.ai/integradores/RUNTIME_HINTS.md): qué tool usar según el runtime.
 - [Variables de entorno](https://ragfly.ai/integradores/ENV_VARS.md): referencia única de todas las variables RAGFLY_ (nombre canónico, default, sin aliases).
 - [AGENTS.md](https://ragfly.ai/integradores/AGENTS.md): para soltar en la raíz del workspace del agente.
+- [TypeScript SDK](https://ragfly.ai/integradores/SDK-TS.md): `npm i @ragfly/sdk`.
+- [Google Drive](https://ragfly.ai/integradores/GOOGLE_DRIVE.md): habilitar el conector de Drive para un espacio de trabajo (credenciales Google Cloud + configuración del grupo).

@@ -497,6 +497,10 @@
       "env-vars": {
         "titulo": "Umgebungsvariablen",
         "desc": "Alle RAGFLY_-Variablen: kanonischer Name, Standardwert, Alt-Aliasse. Ein Ort, keine Überraschungen."
+      },
+      "google-drive": {
+        "titulo": "Google Drive",
+        "desc": "Drive-Connector für Ihren Workspace aktivieren: Google-Cloud-Anmeldedaten und Gruppenkonfiguration."
       }
     }
   },

@@ -498,6 +498,10 @@
       "env-vars": {
         "titulo": "Variables de entorno",
         "desc": "Todas las variables RAGFLY_: nombre canónico, valor por defecto, alias heredados. Un solo lugar, sin sorpresas."
+      },
+      "google-drive": {
+        "titulo": "Google Drive",
+        "desc": "Habilita el conector de Drive para tu espacio: credenciales de Google Cloud y configuración del grupo."
       }
     }
   },
