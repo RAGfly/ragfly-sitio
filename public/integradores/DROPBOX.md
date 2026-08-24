@@ -85,7 +85,14 @@ One line per environment where you use RAGfly, always ending in
 > ⚠️ Miss this step and users get a **redirect URI mismatch** error when they
 > try to authorize.
 
-### 1.4 Copy the App key
+### 1.4 Raise the user limit
+
+Still in **Settings**, look for **Development users** — a new app says "Only
+you", meaning nobody else can authorize it. Click **Enable additional users**
+to raise the cap to 500. Skip this and every colleague gets *"This app has
+reached its user limit"* the moment they try to connect.
+
+### 1.5 Copy the App key
 
 Still in **Settings**: copy the **App key** (a short lowercase string). Ignore
 the App secret — the PKCE flow doesn't use it.
@@ -102,7 +109,7 @@ Under **Ingestion connectors**, paste it:
 
 | Parameter | Value |
 |---|---|
-| `Dropbox — App key` | the App key from step 1.4 |
+| `Dropbox — App key` | the App key from step 1.5 |
 
 It is stored **per group**: each customer uses their own Dropbox app, and the
 value is shown masked.
@@ -148,6 +155,15 @@ is cleared, since it belonged to the previous account.
 
 The domain you are using is not listed in the app's **Redirect URIs** (step
 1.3). Add it exactly, with `https://` and the `/dropbox-callback` path.
+
+### "This app has reached its user limit"
+
+A brand-new Dropbox app is limited to **one** user — its own developer — so the
+first colleague who tries to authorize it hits this error. In the app's
+**Settings** tab, find **Development users** ("Only you") and click **Enable
+additional users**: the cap rises to 500, which covers any pilot. Beyond 500
+users you need **Apply for production**, a formal Dropbox review that also
+requires the branding of step 2 to be complete.
 
 ### The browser blocked the authorization popup
 
