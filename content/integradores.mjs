@@ -18,6 +18,7 @@ export const KIT_DIR = '../../ragfly/docs/integradores'
 // Grupos de la página-cara, en orden de render. Copy en inglés: el kit es
 // inglés y el defaultLocale del sitio es 'en' (audiencia global de devs/agentes).
 export const grupos = [
+  { id: 'alimentacion', titulo: 'Feed your corpus', desc: 'Start with the source of truth: local files, Google Drive or Dropbox. RAGfly indexes the content; the original stays where it belongs.' },
   { id: 'interfaces', titulo: 'The six interfaces', desc: 'Pick the one that fits your stack — all share the same auth contract and the same RBAC.' },
   { id: 'guias',      titulo: 'Guides & reference',  desc: 'How to start, how each runtime behaves, and how to report your evaluation.' },
 ]
@@ -28,6 +29,11 @@ export const grupos = [
 // `cara: false` → no aparece como tarjeta en la página-cara (sólo accesible
 // por URL directa), p.ej. el README del kit que la propia página-cara absorbe.
 export const documentos = [
+  // ── Feed your corpus ──────────────────────────────────────────────────
+  { slug: 'integration',         archivo: 'INTEGRATION.md',         grupo: 'alimentacion', icono: '🧭', titulo: 'Feed your corpus', desc: 'Choose local files, Google Drive or Dropbox; learn credentials, privacy and how agents access indexed content.', destacado: true },
+  { slug: 'google-drive',        archivo: 'GOOGLE_DRIVE.md',        grupo: 'alimentacion', icono: '📁', titulo: 'Google Drive',     desc: 'Enable the Drive connector for your workspace: Google Cloud credentials and group setup.' },
+  { slug: 'dropbox',             archivo: 'DROPBOX.md',             grupo: 'alimentacion', icono: '📦', titulo: 'Dropbox',          desc: 'Enable the Dropbox connector for your workspace: app key, redirect URI and group setup.' },
+
   // ── The six interfaces ────────────────────────────────────────────────
   // Orden = camino del integrador: MCP (por donde abrimos) → SDK → REST → CLI.
   { slug: 'mcp',    archivo: 'MCP.md',    grupo: 'interfaces', icono: '🤖', titulo: 'MCP',            desc: 'LLM agents (Claude Code, Cursor, Cline, Codex). The agent discovers the tools itself.', destacado: true },
@@ -39,13 +45,10 @@ export const documentos = [
 
   // ── Guides & reference ────────────────────────────────────────────────
   { slug: 'quickstart',          archivo: 'QUICKSTART.md',          grupo: 'guias', icono: '🚀', titulo: 'Quickstart',           desc: 'From zero to first semantic query: sign up → API Key → MCP → result.' },
-  { slug: 'integration',         archivo: 'INTEGRATION.md',         grupo: 'guias', icono: '🧭', titulo: 'Integration guide',     desc: 'Credentials, roles, identity types and the contract common to every interface.' },
   { slug: 'runtime-hints',       archivo: 'RUNTIME_HINTS.md',       grupo: 'guias', icono: '🎛️', titulo: 'Runtime hints',         desc: 'Which tool to use per runtime: short-context agents, reasoners, IDEs, REST.' },
   { slug: 'env-vars',            archivo: 'ENV_VARS.md',            grupo: 'guias', icono: '🔧', titulo: 'Environment variables', desc: 'Every RAGFLY_ variable: canonical name, default, legacy aliases. One place, no surprises.' },
   { slug: 'agents-md',           archivo: 'AGENTS.md',              grupo: 'guias', icono: '📄', titulo: 'AGENTS.md',             desc: 'Drop it in the root of your agent workspace (Codex/Claude).' },
   { slug: 'evaluation-template', archivo: 'EVALUATION_TEMPLATE.md', grupo: 'guias', icono: '✅', titulo: 'Evaluation template',   desc: 'Report findings from your test with a standard format.' },
-  { slug: 'google-drive',        archivo: 'GOOGLE_DRIVE.md',        grupo: 'guias', icono: '📁', titulo: 'Google Drive',          desc: 'Enable the Drive connector for your workspace: Google Cloud credentials and group setup.' },
-  { slug: 'dropbox',             archivo: 'DROPBOX.md',             grupo: 'guias', icono: '📦', titulo: 'Dropbox',               desc: 'Enable the Dropbox connector for your workspace: app key, redirect URI and group setup.' },
 
   // Kit README: absorbed by the landing face, not shown as a card.
   { slug: 'readme', archivo: 'README.md', grupo: 'guias', icono: '📚', titulo: 'Integration kit', desc: 'Kit index.', cara: false },

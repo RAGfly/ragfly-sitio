@@ -34,15 +34,19 @@ Full walkthrough: [QUICKSTART.md](QUICKSTART.md).
 
 ### `RAGFLY_ROOT` — when you actually need it
 
-RAGfly returns each document with two fields it has **stored** for that file:
+RAGfly returns each document with fields that describe how its original can be accessed:
 
-- `ruta_archivo` — the file path.
-- `ruta_es_absoluta` — `true` / `false`. **RAGfly grabbed this at upload time; the agent does not decide it.**
+- `path` — the stored location.
+- `is_absolute` — whether `path` is an OS path. **RAGfly determines it at upload time; the agent does not decide it.**
+- `is_cloud_only` — whether the original remains in a cloud connector and must
+  not be resolved locally.
 
 The single rule the agent follows:
 
-- `ruta_es_absoluta: true` (uploaded via **RAGfly Desktop**) → open `ruta_archivo` directly. **No `RAGFLY_ROOT` needed.**
-- `ruta_es_absoluta: false` (uploaded via **web browser**) → open `RAGFLY_ROOT + ruta_archivo`.
+- `is_cloud_only: true` (fed by **Google Drive** or **Dropbox**) → do not use
+  `path` or `RAGFLY_ROOT`; the original stays with the provider.
+- `is_absolute: true` (uploaded via **RAGfly Desktop**) → open `path` directly. **No `RAGFLY_ROOT` needed.**
+- `origin: WEB` and `is_cloud_only: false` (uploaded from a **web local folder**) → open `RAGFLY_ROOT + path`.
 
 The browser never exposes your real disk path, so web-uploaded files carry only a
 *relative* path. `RAGFLY_ROOT` is the parent folder of what you uploaded (e.g. you

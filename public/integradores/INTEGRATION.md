@@ -1,6 +1,6 @@
 # RAGfly — Integration Guide
 
-> RAGfly exposes its vector corpus and AI capabilities to external systems through six interfaces. This guide covers the essentials for connecting; each extension details one interface in depth.
+> RAGfly exposes its vector corpus and AI capabilities to external systems through six interfaces. It also feeds that corpus from local files, Google Drive and Dropbox without storing the original files in RAGfly Cloud. This guide covers both sides; each extension details one path in depth.
 
 ---
 
@@ -11,15 +11,52 @@
 - **Operate on Workspaces**: list, compose, read their contents.
 - **Execute LLM Skills** over documents or workspaces (summarize, extract, analyze).
 - **Monitor the ingestion pipeline** (states, queue, executions).
-- **Upload documents** and trigger vectorization (via REST or local client).
-- **Open documents on disk** when the agent runs on the user's machine — each
-  document carries an `fs` block; configure `RAGFLY_ROOT` once (the **parent
-  folder** of the folder you uploaded — e.g. uploaded
-  `/Users/ana/Dropbox/MisDocumentos` → `RAGFLY_ROOT=/Users/ana/Dropbox`).
-  Step-by-step walkthrough:
-  [MCP.md § Setting up `RAGFLY_ROOT`](MCP.md#setting-up-ragfly_root--once-per-machine-in-3-steps).
+- **Feed documents** from a local folder, Google Drive or Dropbox in the Web
+  app, or from the local filesystem with RAGfly Desktop, and trigger
+  vectorization. The stable public REST `/v1` contract does not currently
+  expose a file-upload route.
+- **Open original files on disk** when they came from a filesystem available to
+  the agent. This does not apply to cloud-only Google Drive or Dropbox files;
+  their original bytes remain in the provider.
 
-Everything respects RAGfly's multi-tenant model: each credential is anchored to a user, a group, and a role — other groups' data is invisible by design.
+Every RAGfly request respects the multi-tenant model: its RAGfly credential is
+anchored to a user, a group and a role, so other groups' data is invisible by
+design. Connector configuration belongs to the group, while each provider
+authorization belongs to the Google or Dropbox user who grants it.
+
+---
+
+## Feeding the corpus
+
+The source changes how RAGfly obtains the original file, but not the downstream
+pipeline: every supported source produces document metadata and extracted text,
+then follows the same analysis, chunking and vectorization stages.
+
+| Source | Where users connect it | Administrator setup | Original file access |
+|---|---|---|---|
+| **Local folder — Web** | **Documents → Feed documents → Files** | None | The browser provides a relative path. A local agent can open it only when the same filesystem is available and `RAGFLY_ROOT` is configured. |
+| **Local folder — RAGfly Desktop** | RAGfly Desktop | Install and sign in to the Desktop app | The document can carry an absolute local path that an agent on that machine can open directly. |
+| **Google Drive** | **Documents → Feed documents → Google Drive** | OAuth Client ID + API Key + connector flag, per group | Cloud-only originals stay in Drive and are not exposed as local files. See [GOOGLE_DRIVE.md](GOOGLE_DRIVE.md). |
+| **Dropbox** | **Documents → Feed documents → Dropbox** | Dropbox App key + connector flag, per group | Cloud-only originals stay in Dropbox and are not exposed as local files. See [DROPBOX.md](DROPBOX.md). |
+
+For Web ingestion — local folders, Google Drive and Dropbox — extraction runs
+in the browser. For cloud connectors, file bytes travel from the provider to
+browser memory; only encrypted extracted text is uploaded to RAGfly. RAGfly
+Cloud never stores the original file.
+
+### Opening an original file from an agent
+
+Indexed content is available through RAGfly regardless of source. Access to the
+original binary is a separate capability:
+
+- **Desktop path**: open the absolute path directly.
+- **Web local-folder path**: configure `RAGFLY_ROOT` as the parent of the folder
+  you fed, then resolve `RAGFLY_ROOT + fs.path`. See
+  [MCP.md § Setting up `RAGFLY_ROOT`](MCP.md#setting-up-ragfly_root--once-per-machine-in-3-steps).
+- **Google Drive or Dropbox**: do not use `RAGFLY_ROOT`; RAGfly indexed the
+  content but did not copy the original into the local filesystem or RAGfly
+  Cloud.
+- **Public URL**: open the URL directly when a document explicitly provides one.
 
 ---
 
@@ -32,13 +69,25 @@ Everything respects RAGfly's multi-tenant model: each credential is anchored to 
 | **MCP** | LLM agents (Claude Code, Cursor, Cline, etc.) — the agent discovers and calls RAGfly tools directly | [MCP.md](MCP.md) |
 | **CLI** | Scripts, automations, CI/CD pipelines, terminal diagnostics | [CLI.md](CLI.md) |
 | **REST + SSE** | Any language / platform (n8n, Make, Zapier, custom apps) | [REST.md](REST.md) |
-| **Web** | End users use [`app.ragfly.ai`](https://app.ragfly.ai) directly — no integration needed | — |
+| **Web** | End users search, operate and feed documents from Files, Google Drive or Dropbox at [`app.ragfly.ai`](https://app.ragfly.ai) | [GOOGLE_DRIVE.md](GOOGLE_DRIVE.md) · [DROPBOX.md](DROPBOX.md) |
 
-The first five share the same authentication contract and the same RBAC; what changes is the transport protocol. Both SDKs wrap the REST API.
+The first five share the same RAGfly authentication contract and the same RBAC; what changes is the transport protocol. Both SDKs wrap the REST API. Google and Dropbox authorization is separate: it grants the Web app read-only access to a user's source account and is used only during ingestion.
 
 ---
 
 ## Credentials
+
+RAGfly integrations and ingestion connectors use different credentials for
+different purposes:
+
+| Credential class | Purpose | Examples | Where it lives |
+|---|---|---|---|
+| **RAGfly credential** | Authenticate an external system and enforce RAGfly RBAC | API Key, JWT | Integration secret store or interactive session |
+| **Connector app credential** | Identify the customer's provider application | Google OAuth Client ID + restricted API Key; Dropbox App key | RAGfly Group Parameters, configured by a group administrator |
+| **User provider token** | Authorize read-only access to one user's Drive or Dropbox | Google access token; Dropbox PKCE token | Browser session only; never stored as a RAGfly API Key |
+
+The sections below describe RAGfly credentials. Connector setup is documented
+in [GOOGLE_DRIVE.md](GOOGLE_DRIVE.md) and [DROPBOX.md](DROPBOX.md).
 
 ### API Key (recommended for integrations)
 
@@ -57,7 +106,7 @@ curl -X POST https://api.ragfly.ai/auth/api-key \
 # → {"api_key": "slm_live_...", ...}   # shown only once — store in a secrets manager
 ```
 
-**How to use it** — in all interfaces:
+**How to use it** — in SDK, MCP, CLI and REST integrations:
 
 ```
 Authorization: Bearer slm_live_xxxxxxxxxx

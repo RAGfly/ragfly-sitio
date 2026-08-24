@@ -95,8 +95,8 @@ export default async function BuildPage() {
         {/* Doc groups */}
         {grupos.map((g) => (
           <section key={g.id} className="mb-14">
-            <h2 className="mb-1 font-helvetica-neue text-2xl font-medium tracking-[-0.02em] text-slm-dark md:text-3xl">{t(`groups.${g.id}.titulo`)}</h2>
-            <p className="mb-6 font-helvetica-neue leading-relaxed text-slm-gray">{t(`groups.${g.id}.desc`)}</p>
+            <h2 className="mb-1 font-helvetica-neue text-2xl font-medium tracking-[-0.02em] text-slm-dark md:text-3xl">{g.id === 'alimentacion' ? g.titulo : t(`groups.${g.id}.titulo`)}</h2>
+            <p className="mb-6 font-helvetica-neue leading-relaxed text-slm-gray">{g.id === 'alimentacion' ? g.desc : t(`groups.${g.id}.desc`)}</p>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
               {cards.filter((d) => d.grupo === g.id).map((d) => (
                 <Link
@@ -112,8 +112,8 @@ export default async function BuildPage() {
                       </span>
                     )}
                   </div>
-                  <div className="text-sm font-semibold text-slm-dark transition-colors group-hover:text-slm-brand">{t(`cards.${d.slug}.titulo`)}</div>
-                  <div className="mt-1 font-helvetica-neue text-xs leading-snug text-slm-gray">{t(`cards.${d.slug}.desc`)}</div>
+                  <div className="text-sm font-semibold text-slm-dark transition-colors group-hover:text-slm-brand">{d.grupo === 'alimentacion' ? d.titulo : t(`cards.${d.slug}.titulo`)}</div>
+                  <div className="mt-1 font-helvetica-neue text-xs leading-snug text-slm-gray">{d.grupo === 'alimentacion' ? d.desc : t(`cards.${d.slug}.desc`)}</div>
                 </Link>
               ))}
               {g.id === 'interfaces' && (

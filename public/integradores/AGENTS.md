@@ -51,8 +51,9 @@ folder** of the folder the user selected when uploading — e.g. the user upload
 relative path `/MisDocumentos/letras/cancion.txt` resolves to
 `/Users/ana/Dropbox/MisDocumentos/letras/cancion.txt`. RAGfly never reads it —
 it lives only on this machine (env var or one line in `CLAUDE.md`/`AGENTS.md`).
-Skip it if documents were loaded via RAGfly Desktop (their `fs.ruta_es_absoluta`
-is `true`). Step-by-step walkthrough:
+Skip it if documents were loaded via RAGfly Desktop (`fs.is_absolute` is `true`)
+or Google Drive/Dropbox (`fs.is_cloud_only` is `true`; originals remain with the
+provider). Step-by-step walkthrough:
 [MCP.md § Setting up `RAGFLY_ROOT`](MCP.md#setting-up-ragfly_root--once-per-machine-in-3-steps).
 
 ## Authentication
@@ -106,10 +107,12 @@ GET /documentos/{codigo_documento}
 ```
 
 ### Open a document on disk
-`listar_documentos` / `ver_documento` return an `fs` block with `como_abrir`
-(literal instruction). If `fs.ruta_es_absoluta` is `true`, open `fs.ruta_archivo`
-directly; if `false` (web upload), open `$RAGFLY_ROOT + fs.ruta_archivo`. Always
-`exists()`-check first. Full rules: [MCP.md § Opening a document on disk](MCP.md).
+`list_documents` / `get_document` return an `fs` block with `how_to_open`
+(literal instruction). When `fs.is_cloud_only` is `true`, never open `fs.path`
+or prepend `RAGFLY_ROOT`: the original remains in Drive or Dropbox. Otherwise,
+if `fs.is_absolute` is `true`, open `fs.path` directly; if `origin` is `WEB`,
+open `$RAGFLY_ROOT + fs.path`. Always `exists()`-check local paths first. Full
+rules: [MCP.md § Opening a document on disk](MCP.md).
 
 ### List workspaces
 ```

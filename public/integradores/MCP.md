@@ -132,14 +132,16 @@ files; `chunks`/`text` return fragments, not file locations.)
 }
 ```
 
-**Why three cases exist** — it depends on how the documents were loaded. Read
-`origin`; never guess from the shape of the string:
+**Why these cases exist** — it depends on how the documents were loaded. Check
+`is_cloud_only` first, then read `origin`; never guess from the shape of the string:
 
 | Loaded via | `origin` | `path` | Agent action |
 |---|---|---|---|
 | **RAGfly Desktop** | `DESKTOP` | real OS path (`/Users/...`, `C:\...`) | open it directly |
 | **Web upload** (browser) | `WEB` | logical path `/​<root_folder>/sub/file` | prepend `$RAGFLY_ROOT` |
 | **Public source** | `PUBLIC` | full URL (`https://...`) | open the URL as-is |
+| **Google Drive** | usually `WEB` | connector logical path | `is_cloud_only: true`; do not resolve it with `RAGFLY_ROOT` |
+| **Dropbox** | usually `WEB` | connector logical path | `is_cloud_only: true`; do not resolve it with `RAGFLY_ROOT` |
 
 The browser's File System Access API never exposes the real disk path, so a
 web-uploaded document is stored relative to the folder the user picked, with that
@@ -150,13 +152,17 @@ regulation, an agency circular). Its location *is* the citable address of the
 original, so it needs no local disk access at all — and prepending `$RAGFLY_ROOT`
 to it would break it.
 
-**The single rule the agent follows:**
+**The single rule the agent follows:** Check `is_cloud_only` before `origin`.
 
-1. `origin: "PUBLIC"` (or `is_public_url: true`) → open `path` as-is. It is a
+1. `is_cloud_only: true` → do **not** open `path` and do **not** prepend
+   `RAGFLY_ROOT`. The original remains in the named `ingestion_source`
+   (`GOOGLE_DRIVE` or `DROPBOX`); use RAGfly's indexed content and citations.
+2. `origin: "PUBLIC"` (or `is_public_url: true`) → open `path` as-is. It is a
    URL, not a file path. Never prepend anything.
-2. `origin: "DESKTOP"` (`is_absolute: true`) → open `path` as-is. Done. (No
+3. `origin: "DESKTOP"` (`is_absolute: true`) → open `path` as-is. Done. (No
    config needed.)
-3. `origin: "WEB"` → open `$RAGFLY_ROOT + path`. That's the web-upload case —
+4. `origin: "WEB"` and `is_cloud_only: false` → open `$RAGFLY_ROOT + path`.
+   That's the web-local-folder upload case —
    set up `RAGFLY_ROOT` once, as follows.
 
 > `is_absolute` means "already an openable OS path". A public URL is **not**
@@ -212,6 +218,9 @@ ls "$RAGFLY_ROOT/MyDocuments/lyrics/song.txt"   # should list the file
 **When you DON'T need `RAGFLY_ROOT`:**
 
 - Documents loaded via **RAGfly Desktop** — their paths are already absolute.
+- Documents fed through **Google Drive or Dropbox** — their originals remain
+  with the provider. `is_cloud_only: true` means never resolve their logical
+  path against a local root.
 - Agents that only **search, ask and cite** — the indexed content is served from
   the cloud; `RAGFLY_ROOT` is only for opening the *original file* on disk.
 - Agents running on a machine that doesn't have the files at all.

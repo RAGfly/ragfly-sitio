@@ -45,6 +45,7 @@ curl $RAGFLY_API_URL/auth/me -H "Authorization: Bearer $RAGFLY_API_KEY"
 
 | File | For whom |
 |---|---|
+| **`INTEGRATION.md`** | Start here — interfaces, corpus feeding, credentials and security |
 | **`QUICKSTART.md`** | Codex and code agents — full walkthrough with runnable script |
 | **`AGENTS.md`** | Drop this in the root of your Codex workspace |
 | **`MCP.md`** | Claude Code, Cursor, Cline — MCP setup |
@@ -54,6 +55,8 @@ curl $RAGFLY_API_URL/auth/me -H "Authorization: Bearer $RAGFLY_API_KEY"
 | **`SDK-TS.md`** | TypeScript/JavaScript SDK |
 | **`RUNTIME_HINTS.md`** | Hints by agent/runtime type (Codex, Claude, IDEs, REST) |
 | **`ENV_VARS.md`** | **Every environment variable — canonical names, defaults, legacy aliases** |
+| **`GOOGLE_DRIVE.md`** | Workspace administrators — feed documents directly from Google Drive |
+| **`DROPBOX.md`** | Workspace administrators — feed documents directly from Dropbox |
 | **`EVALUATION_TEMPLATE.md`** | Template for reporting findings |
 | **`.env.example`** | Environment variables template |
 
@@ -61,12 +64,14 @@ curl $RAGFLY_API_URL/auth/me -H "Authorization: Bearer $RAGFLY_API_KEY"
 
 ## Where to start
 
-**Codex** → `QUICKSTART.md` (MCP via `codex mcp add`)  
-**Claude Code / Cursor / Cline** → `MCP.md`, then `QUICKSTART.md` section 4  
-**REST / backend** → `REST.md`  
-**CLI** → `CLI.md`  
-**Python** → `SDK.md` (`pip install ragfly`)  
-**TypeScript / Node / edge** → `SDK-TS.md` (`npm i @ragfly/sdk`)
+**Codex** → `QUICKSTART.md` (MCP via `codex mcp add`)<br>
+**Claude Code / Cursor / Cline** → `MCP.md`, then `QUICKSTART.md` section 4<br>
+**REST / backend** → `REST.md`<br>
+**CLI** → `CLI.md`<br>
+**Python** → `SDK.md` (`pip install ragfly`)<br>
+**TypeScript / Node / edge** → `SDK-TS.md` (`npm i @ragfly/sdk`)<br>
+**Feed from Google Drive** → `GOOGLE_DRIVE.md`<br>
+**Feed from Dropbox** → `DROPBOX.md`
 
 ---
 
@@ -84,6 +89,9 @@ Revoke: `DELETE /auth/api-key/{prefix}`.
 
 ## Secrets
 
-- Always load from environment variables — never hardcode.
+- Always load RAGfly API Keys from environment variables — never hardcode them.
 - Add `.env` to `.gitignore`.
 - Revoke immediately if a key is compromised.
+- RAGfly API Keys authenticate integrations. Google and Dropbox connector
+  credentials authorize document sources and follow the separate storage and
+  browser-session rules in `INTEGRATION.md`.
