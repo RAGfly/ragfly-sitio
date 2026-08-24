@@ -2,7 +2,7 @@
 
 > Servicio de RAG multi-tenant. Entrega a un agente de IA el contexto documental exacto que necesita, filtrado por RBAC, vía MCP, CLI o API REST.
 
-Actualizado: 2026-07-09
+Actualizado: 2026-08-23
 
 ## Conexión MCP
 

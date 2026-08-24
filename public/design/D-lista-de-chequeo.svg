@@ -1,17 +1,47 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 250" width="960" role="img" aria-label="Lista de chequeo">
-      <g font-family="ui-monospace,monospace" font-size="10.5">
-        <text x="30" y="30" font-size="10" fill="#005D8F" letter-spacing="1.6">PREFLIGHT</text>
-        <g fill="#002E47">
-          <text x="58" y="66">corpus indexado</text><text x="58" y="102">permisos aplicados</text>
-          <text x="58" y="138">cita resuelta al documento</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 250" width="960" role="img" aria-label="Lista de chequeo — cada ítem se verifica en cadena, la negativa llega con su evidencia">
+      <style>
+        /* Misma cadencia que NegativaSection (pf-fade): cada check se DIBUJA en
+           orden, la negativa llega después, la nota-evidencia cierra el ciclo.
+           Loop de 6s, con una pausa sostenida antes de reiniciar. */
+        .D .chk { stroke-dasharray: 26; stroke-dashoffset: 26; animation: D-draw 6s ease-in-out infinite; }
+        .D .chk.c2 { animation-delay: .5s; }
+        .D .chk.c3 { animation-delay: 1s; }
+        @keyframes D-draw {
+          0%, 4%    { stroke-dashoffset: 26; }
+          20%, 78%  { stroke-dashoffset: 0; }
+          94%, 100% { stroke-dashoffset: 26; }
+        }
+        .D .deny { stroke-dasharray: 22; stroke-dashoffset: 22; animation: D-draw 6s ease-in-out infinite; animation-delay: 1.6s; }
+        .D .note { opacity: 0; animation: D-fadeNote 6s ease-in-out infinite; animation-delay: 2.1s; }
+        @keyframes D-fadeNote {
+          0%, 4%    { opacity: 0; }
+          20%, 78%  { opacity: 1; }
+          94%, 100% { opacity: 0; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .D .chk, .D .deny { animation: none; stroke-dashoffset: 0; }
+          .D .note { animation: none; opacity: 1; }
+        }
+      </style>
+      <g class="D">
+        <g font-family="ui-monospace,monospace" font-size="10.5">
+          <text x="30" y="30" font-size="10" fill="#005D8F" letter-spacing="1.6">PREFLIGHT</text>
+          <g fill="#002E47">
+            <text x="58" y="66">corpus indexado</text><text x="58" y="102">permisos aplicados</text>
+            <text x="58" y="138">cita resuelta al documento</text>
+          </g>
+          <text x="58" y="186" fill="#8a6a2f">evidencia para esta afirmación</text>
         </g>
-        <text x="58" y="186" fill="#8a6a2f">evidencia para esta afirmación</text>
+        <g stroke="#E8A33D" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path class="chk c1" d="M32 62 l6 6 l11 -13"/><path class="chk c2" d="M32 98 l6 6 l11 -13"/><path class="chk c3" d="M32 134 l6 6 l11 -13"/>
+        </g>
+        <g stroke="#c08a3a" stroke-width="2" stroke-linecap="round">
+          <path class="deny" d="M32 178 l14 14"/><path class="deny" d="M46 178 l-14 14"/>
+        </g>
+        <g class="note">
+          <rect x="24" y="204" width="432" height="34" rx="8" fill="#FDF6EA" stroke="#EBD5AE"/>
+          <text x="38" y="226" font-family="ui-monospace,monospace" font-size="10" fill="#8a6a2f">
+            “No encontré evidencia en tus documentos para responder esto con confianza.”</text>
+        </g>
       </g>
-      <g stroke="#E8A33D" stroke-width="2" fill="none" stroke-linecap="round">
-        <path d="M32 62 l6 6 l11 -13"/><path d="M32 98 l6 6 l11 -13"/><path d="M32 134 l6 6 l11 -13"/>
-      </g>
-      <g stroke="#c08a3a" stroke-width="2" stroke-linecap="round"><path d="M32 178 l14 14"/><path d="M46 178 l-14 14"/></g>
-      <rect x="24" y="204" width="432" height="34" rx="8" fill="#FDF6EA" stroke="#EBD5AE"/>
-      <text x="38" y="226" font-family="ui-monospace,monospace" font-size="10" fill="#8a6a2f">
-        “No encontré evidencia en tus documentos para responder esto con confianza.”</text>
     </svg>

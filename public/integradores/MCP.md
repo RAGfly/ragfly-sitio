@@ -140,8 +140,8 @@ files; `chunks`/`text` return fragments, not file locations.)
 | **RAGfly Desktop** | `DESKTOP` | real OS path (`/Users/...`, `C:\...`) | open it directly |
 | **Web upload** (browser) | `WEB` | logical path `/​<root_folder>/sub/file` | prepend `$RAGFLY_ROOT` |
 | **Public source** | `PUBLIC` | full URL (`https://...`) | open the URL as-is |
-| **Google Drive** | usually `WEB` | connector logical path | `is_cloud_only: true`; do not resolve it with `RAGFLY_ROOT` |
-| **Dropbox** | usually `WEB` | connector logical path | `is_cloud_only: true`; do not resolve it with `RAGFLY_ROOT` |
+| **Google Drive** | usually `WEB` | connector logical path | `is_cloud_only: true`; fetch with `source_id` instead of `RAGFLY_ROOT` |
+| **Dropbox** | usually `WEB` | connector logical path | `is_cloud_only: true`; fetch with `source_id` instead of `RAGFLY_ROOT` |
 
 The browser's File System Access API never exposes the real disk path, so a
 web-uploaded document is stored relative to the folder the user picked, with that
@@ -154,9 +154,21 @@ to it would break it.
 
 **The single rule the agent follows:** Check `is_cloud_only` before `origin`.
 
-1. `is_cloud_only: true` → do **not** open `path` and do **not** prepend
-   `RAGFLY_ROOT`. The original remains in the named `ingestion_source`
-   (`GOOGLE_DRIVE` or `DROPBOX`); use RAGfly's indexed content and citations.
+1. `is_cloud_only: true` → never open `path` and never prepend `RAGFLY_ROOT`
+   (it is only a logical citation path, not resolvable to a real one). The
+   original lives with the named `ingestion_source` (`GOOGLE_DRIVE` or
+   `DROPBOX`). Two sub-cases, both read from `how_to_open`:
+   - **`source_id` present** (document indexed after the connector started
+     capturing provider ids) → the original is fetchable with **your own**
+     provider credentials — `files/download` with `{"path": source_id}` for
+     Dropbox (the id survives renames), `files.get(fileId=source_id,
+     alt='media')` for Drive — or by opening `source_url` in a browser
+     session that has access to it. RAGfly never sees or stores that
+     credential; its own indexed content and citations remain usable without
+     one.
+   - **`source_id` absent** (document indexed before that, or the connector
+     scan hasn't re-run) → no original to fetch; rely on RAGfly's indexed
+     content and citations.
 2. `origin: "PUBLIC"` (or `is_public_url: true`) → open `path` as-is. It is a
    URL, not a file path. Never prepend anything.
 3. `origin: "DESKTOP"` (`is_absolute: true`) → open `path` as-is. Done. (No
@@ -164,6 +176,32 @@ to it would break it.
 4. `origin: "WEB"` and `is_cloud_only: false` → open `$RAGFLY_ROOT + path`.
    That's the web-local-folder upload case —
    set up `RAGFLY_ROOT` once, as follows.
+
+#### Cloud connector originals (`source_id` / `source_path` / `source_url`)
+
+```json
+"fs": {
+  "path": "/CompanyDocs/finance/tax-2026.pdf",
+  "origin": "WEB",
+  "is_absolute": false,
+  "is_public_url": false,
+  "is_cloud_only": true,
+  "ingestion_source": "DROPBOX",
+  "source_id": "id:a1B2c3D4e5F6",
+  "source_path": "/team/finance/tax-2026.pdf",
+  "source_url": "https://www.dropbox.com/home/team/finance?preview=tax-2026.pdf",
+  "how_to_open": "The original lives in Dropbox. Fetch it with your OWN Dropbox credentials: `files/download` with `{\"path\": source_id}` (the id survives renames), or open `source_url` in a browser session with access. RAGfly's indexed content and citations remain available without any provider credential."
+}
+```
+
+`source_id` is the provider's **stable** id (Dropbox `id:…`, Drive `fileId`) —
+unlike `source_path`, it survives renames and moves. It is only present for
+documents ingested after the connector started capturing it; older rows omit
+all three `source_*` fields and `how_to_open` falls back to the no-original text
+above. No RAGfly credential unlocks the original — fetching it always requires
+**your own** Dropbox/Drive credential, kept entirely on your side. This is the
+cloud-connector counterpart of `RAGFLY_ROOT`: instead of a path prefix you
+configure once, it is a provider id RAGfly hands you per document.
 
 > `is_absolute` means "already an openable OS path". A public URL is **not**
 > absolute in that sense: it comes as `is_absolute: false` **and**

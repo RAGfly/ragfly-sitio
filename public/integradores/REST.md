@@ -119,6 +119,21 @@ Document responses may include an English `fs` block:
 resolve as `$RAGFLY_ROOT + path`; `PUBLIC` paths are URLs and open directly.
 RAGfly never reads or stores `RAGFLY_ROOT`.
 
+Documents ingested via a cloud connector (Google Drive, Dropbox) carry
+`is_cloud_only: true` instead — `path` is a logical citation path, never
+resolvable with `RAGFLY_ROOT`. When the connector captured the provider's
+stable id at ingestion time, the block also carries `source_id` /
+`source_path` / `source_url`, fetchable with **your own** provider
+credentials (never RAGfly's):
+
+```json
+{"path":"/CompanyDocs/finance/tax-2026.pdf","origin":"WEB","is_cloud_only":true,"ingestion_source":"DROPBOX","source_id":"id:a1B2c3D4e5F6","source_path":"/team/finance/tax-2026.pdf","source_url":"https://www.dropbox.com/home/team/finance?preview=tax-2026.pdf","how_to_open":"The original lives in Dropbox. Fetch it with your OWN Dropbox credentials…"}
+```
+
+See [MCP.md § Cloud connector originals](MCP.md#cloud-connector-originals-source_id--source_path--source_url)
+for the full field reference — this REST surface returns the identical `fs`
+shape.
+
 ## Internal REST
 
 Routes such as `/documentos`, `/espacios-trabajo` and `/interfaz` are internal
