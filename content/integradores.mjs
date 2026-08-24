@@ -45,6 +45,7 @@ export const documentos = [
   { slug: 'agents-md',           archivo: 'AGENTS.md',              grupo: 'guias', icono: '📄', titulo: 'AGENTS.md',             desc: 'Drop it in the root of your agent workspace (Codex/Claude).' },
   { slug: 'evaluation-template', archivo: 'EVALUATION_TEMPLATE.md', grupo: 'guias', icono: '✅', titulo: 'Evaluation template',   desc: 'Report findings from your test with a standard format.' },
   { slug: 'google-drive',        archivo: 'GOOGLE_DRIVE.md',        grupo: 'guias', icono: '📁', titulo: 'Google Drive',          desc: 'Enable the Drive connector for your workspace: Google Cloud credentials and group setup.' },
+  { slug: 'dropbox',             archivo: 'DROPBOX.md',             grupo: 'guias', icono: '📦', titulo: 'Dropbox',               desc: 'Enable the Dropbox connector for your workspace: app key, redirect URI and group setup.' },
 
   // Kit README: absorbed by the landing face, not shown as a card.
   { slug: 'readme', archivo: 'README.md', grupo: 'guias', icono: '📚', titulo: 'Integration kit', desc: 'Kit index.', cara: false },

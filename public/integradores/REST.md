@@ -1,177 +1,126 @@
-# RAGfly — REST Interface
+# RAGfly — Public REST API v1
 
-Direct API access from any language or platform (Python, Node, n8n, Make, Zapier, curl).
+`/v1` is the stable English HTTP face of RAGfly for agents, developers and
+automation platforms. It wraps the authenticated internal REST routes at the
+edge. Internal routes remain Spanish for Web/Desktop and are not part of this
+public contract.
 
-**Base URL**: `https://api.ragfly.ai`  
-**Interactive Swagger**: [https://api.ragfly.ai/docs](https://api.ragfly.ai/docs)
+**Base URL:** `https://api.ragfly.ai`  
+**OpenAPI:** [https://api.ragfly.ai/openapi.json](https://api.ragfly.ai/openapi.json)  
+**Swagger:** [https://api.ragfly.ai/docs](https://api.ragfly.ai/docs)
 
----
+There is no `/v2`. A future incompatible contract would be introduced explicitly
+as a new version; `/v1` is the current public contract.
 
 ## Authentication
 
-All routes require the header:
+Every `/v1` route requires:
 
+```http
+Authorization: Bearer <JWT-or-slm_live_API_key>
 ```
-Authorization: Bearer <token>
+
+The public contract ignores `Accept-Language`: routes, field names, enums,
+catalog codes and standard messages are always English. User document content
+keeps its original language.
+
+## Routes
+
+| Method | Route | Purpose |
+|---|---|---|
+| `GET` | `/v1/session` | Authenticated identity and active context |
+| `GET` | `/v1/documents` | Paginated corpus documents (`status`, `limit`, `page`) |
+| `GET` | `/v1/documents/{document_code}` | Document detail |
+| `GET` | `/v1/documents/{document_code}/edges` | Document graph edges (`neighbor_limit`) |
+| `POST` | `/v1/documents/search` | Hybrid semantic search |
+| `GET` | `/v1/spaces` | List workspaces |
+| `GET` | `/v1/spaces/{space_id}` | Workspace and its documents |
+| `POST` | `/v1/spaces/{space_id}/refresh` | Re-materialize a workspace |
+| `POST` | `/v1/spaces/{space_id}/promote` | Promote an AREA to a SPACE |
+| `POST` | `/v1/spaces/compose` | Set operation over two workspaces |
+| `POST` | `/v1/spaces/{space_id}/read` | Read a workspace (`count`, `manifest`, `chunks`, `text`) |
+| `GET` | `/v1/queue` | Processing queue (`process`, `status`, `limit`) |
+| `GET` | `/v1/runs` | Skill run history |
+| `GET` | `/v1/catalog` | RBAC-filtered functions and skills (`type`) |
+| `GET` | `/v1/skills` | Skill catalog |
+| `GET` | `/v1/skills/{skill_code}` | Skill detail |
+| `POST` | `/v1/skills/{skill_code}/run` | Queue a skill (`space_id` or `document_code`) |
+| `POST` | `/v1/ask` | Complete RAG answer |
+| `GET` | `/v1/agent/context` | Layered prompt, identity, tools and limits |
+| `POST` | `/v1/agent/tools/{public_name}` | Run one authorized agent tool |
+
+## Search example
+
+```bash
+curl https://api.ragfly.ai/v1/documents/search \
+  -H 'Authorization: Bearer slm_live_xxxxxxxxxx' \
+  -H 'Content-Type: application/json' \
+  -d '{"query":"active maintenance contracts","limit":5,"min_similarity":0.35}'
 ```
 
-`<token>` can be a JWT (1 h, interactive login) or an API Key (`slm_live_…`, long-lived). See [INTEGRATION.md § Credentials](INTEGRATION.md).
-
----
-
-## Core endpoints
-
-### Authentication
-
-| Method | Route | Description |
-|---|---|---|
-| `POST` | `/auth/login` | JWT with email/password |
-| `GET` | `/auth/me` | Authenticated user context |
-| `POST` | `/auth/api-key` | Create API Key |
-| `GET` | `/auth/api-key` | List user's API Keys |
-| `DELETE` | `/auth/api-key/{prefix}` | Revoke API Key |
-
-### Documents
-
-| Method | Route | Description |
-|---|---|---|
-| `GET` | `/documentos/paginado` | List documents with filters (`codigo_estado_doc`, `limit`, `page`) |
-| `GET` | `/documentos/{codigo}` | Document detail |
-| `POST` | `/documentos/buscar-semantico` | Semantic search without LLM. Body: `{"q": "...", "limit": 10}` |
-
-#### Opening a document on disk (`fs` block)
-
-`GET /documentos/paginado` and `GET /documentos/{codigo}` each return an `fs`
-block so an agent running **on the same machine where the documents live** can
-open the file on disk. The `como_abrir` field spells out the action.
+Response fields are English:
 
 ```json
-"fs": {
-  "ruta_archivo": "/MisDocumentos/letras/cancion.txt",
-  "ruta_es_absoluta": false,
-  "carpeta_relativa": "MisDocumentos/letras",
-  "nombre_archivo": "cancion.txt",
-  "como_abrir": "Ruta relativa de carga web: abrir $RAGFLY_ROOT + `ruta_archivo`."
+{
+  "documents": [{
+    "code": "DOC-2024-001",
+    "name": "Maintenance contract",
+    "chunks": [{"text": "...", "similarity": 0.91, "rerank_score": 0.88, "page": 4, "extra": {}}]
+  }],
+  "total_documents": 1,
+  "total_chunks": 1,
+  "duration_ms": 42
 }
 ```
 
-The single rule:
-
-1. `ruta_es_absoluta: true` (loaded via RAGfly Desktop) → open `ruta_archivo`
-   as-is.
-2. `ruta_es_absoluta: false` (web upload via browser) → open
-   `$RAGFLY_ROOT + ruta_archivo`, where `RAGFLY_ROOT` is the **parent folder**
-   of the root folder the user picked when uploading. Example: the user
-   uploaded `/Users/ana/Dropbox/MisDocumentos` → set
-   `RAGFLY_ROOT=/Users/ana/Dropbox`, and `/MisDocumentos/letras/cancion.txt`
-   resolves to `/Users/ana/Dropbox/MisDocumentos/letras/cancion.txt`.
-
-`RAGFLY_ROOT` is set once per machine — env var (`~/.zshrc`), your agent's
-context file (`CLAUDE.md`/`AGENTS.md`), or your MCP client config; the cloud
-never reads it nor stores your absolute root. Always `exists()`-check the
-resolved path before reading. Step-by-step walkthrough:
-[MCP.md § Setting up `RAGFLY_ROOT`](MCP.md#setting-up-ragfly_root--once-per-machine-in-3-steps).
-
-### Workspaces
-
-| Method | Route | Description |
-|---|---|---|
-| `GET` | `/espacios-trabajo/paginado` | List workspaces |
-| `GET` | `/espacios-trabajo/{id}/documentos/paginado` | Documents in a workspace |
-
-### LLM Skills
-
-| Method | Route | Description |
-|---|---|---|
-| `GET` | `/habilidades` | Skills catalog |
-| `GET` | `/habilidades/{codigo}` | Skill detail |
-| `POST` | `/habilidades/{codigo}/ejecutar` | Queue execution. Body: `{"id_espacio": N}` or `{"codigo_documento": "X"}` |
-
-### Pipeline
-
-| Method | Route | Description |
-|---|---|---|
-| `GET` | `/cola-estados-docs/paginado` | Queue state. Filters: `estado_cola`, `q` (free text), `limit`, `page` |
-
-### Conversational interface (chat + RAG)
-
-| Method | Route | Description |
-|---|---|---|
-| `POST` | `/chat/conversaciones` | Create conversation. Body: `{"codigo_funcion": "CHAT-USUARIO"}` |
-| `GET` | `/chat/conversaciones` | List user conversations |
-| `GET` | `/chat/conversaciones/{id}` | Messages in a conversation |
-| `POST` | `/chat/conversaciones/{id}/mensajes/stream` | Send message → SSE response. Body: `{"contenido": "..."}` |
-| `DELETE` | `/chat/conversaciones/{id}` | Delete conversation |
-
----
-
-## SSE protocol (chat response)
-
-The `mensajes/stream` endpoint takes `{"contenido": "..."}` and returns
-`Content-Type: text/event-stream`:
-
-```
-data: {"status": "analizando"}\n\n
-data: {"text": "response fragment"}\n\n
-data: {"text": "another fragment"}\n\n
-data: {"done": true, "id_mensaje_user": 477}\n\n
-```
-
-`status` events are progress hints (e.g. `analizando`); `text` events carry the
-answer fragments; the final `done` event closes the stream.
-
-Error mid-stream:
-```
-data: {"error": "error description"}\n\n
-```
-
----
-
-## Examples
-
-### Python — semantic search
-
-```python
-import os, httpx
-
-BASE    = "https://api.ragfly.ai"
-HEADERS = {"Authorization": f"Bearer {os.environ['RAGFLY_API_KEY']}"}
-
-r = httpx.post(
-    f"{BASE}/documentos/buscar-semantico",
-    headers=HEADERS,
-    json={"q": "active maintenance contracts", "limit": 5},
-)
-r.raise_for_status()
-# `resultados` is a list of DOCUMENTS; each carries its matching `chunks`.
-for doc in r.json()["resultados"]:
-    print(doc["codigo_documento"], doc["nombre_documento"], doc["similitud_max"])
-    for chunk in doc["chunks"]:
-        print("   ", chunk["nro_pagina"], chunk["texto"][:200])
-```
-
-### curl — list vectorized documents
+## Ask example
 
 ```bash
-curl "https://api.ragfly.ai/documentos/paginado?codigo_estado_doc=VECTORIZADO&limit=10" \
-  -H "Authorization: Bearer slm_live_xxxxxxxxxx"
+curl https://api.ragfly.ai/v1/ask \
+  -H 'Authorization: Bearer slm_live_xxxxxxxxxx' \
+  -H 'Content-Type: application/json' \
+  -d '{"question":"What is the renewal date?","function_code":"CHAT-USER"}'
 ```
 
-### n8n / Make / Zapier
+```json
+{"answer":"The renewal date is 30 June.","conversation_id":512,"message_id":513}
+```
 
-1. **HTTP Request** node
-2. URL: `https://api.ragfly.ai/<route>`
-3. Authentication: **Header Auth**
-4. Header name: `Authorization`
-5. Header value: `Bearer slm_live_xxxxxxxxxx` (store in workspace credentials)
+`stream=true` in SDKs is a compatibility iterator over this complete response;
+the public HTTP endpoint is JSON, not the internal Spanish SSE route.
 
----
+## Errors
 
-## Rate limits
+All public errors use one English envelope. `request_id` is echoed when supplied:
 
-| Endpoint | Limit |
-|---|---|
-| `POST /chat/conversaciones` | 20 / min per API Key |
-| `POST /chat/conversaciones/{id}/mensajes/stream` | 30 / min per API Key |
+```json
+{
+  "code": "NOT_FOUND",
+  "message": "The requested resource was not found.",
+  "details": {},
+  "request_id": "req-123"
+}
+```
 
-Response when exceeded: `429 Too Many Requests`. Retry after 60 s.
+Known codes include `INVALID_REQUEST`, `UNAUTHORIZED`, `FORBIDDEN`,
+`NOT_FOUND`, `VALIDATION_ERROR`, `CONFLICT`, `RATE_LIMITED` and `INTERNAL_ERROR`.
+A catalog value without an English public mapping fails closed with
+`PUBLIC_CODE_MAPPING_MISSING`; it is never emitted as an internal Spanish code.
+
+## File locations (`fs`)
+
+Document responses may include an English `fs` block:
+
+```json
+{"path":"/MyDocuments/contract.pdf","origin":"WEB","is_absolute":false,"is_public_url":false,"relative_folder":"MyDocuments","file_name":"contract.pdf","how_to_open":"Open $RAGFLY_ROOT + path."}
+```
+
+`DESKTOP` paths are absolute and open directly. `WEB` paths are relative and
+resolve as `$RAGFLY_ROOT + path`; `PUBLIC` paths are URLs and open directly.
+RAGfly never reads or stores `RAGFLY_ROOT`.
+
+## Internal REST
+
+Routes such as `/documentos`, `/espacios-trabajo` and `/interfaz` are internal
+implementation routes for Web/Desktop. Do not build external integrations on
+them; use `/v1`.

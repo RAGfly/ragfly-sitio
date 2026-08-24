@@ -46,3 +46,4 @@ RAGfly es un servicio de RAG para agentes: apuntas a un directorio de documentos
 - [AGENTS.md](https://ragfly.ai/integradores/AGENTS.md): para soltar en la raíz del workspace del agente.
 - [TypeScript SDK](https://ragfly.ai/integradores/SDK-TS.md): `npm i @ragfly/sdk`.
 - [Google Drive](https://ragfly.ai/integradores/GOOGLE_DRIVE.md): habilitar el conector de Drive para un espacio de trabajo (credenciales Google Cloud + configuración del grupo).
+- [Dropbox](https://ragfly.ai/integradores/DROPBOX.md): habilitar el conector de Dropbox para un espacio de trabajo (app key OAuth PKCE + configuración del grupo).

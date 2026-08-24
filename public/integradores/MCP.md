@@ -62,71 +62,106 @@ Register the SSE URL and the `Authorization` header. Consult your client's docum
 
 | Tool | Description | Parameters |
 |---|---|---|
-| `estado_sesion` | Verifies the connection and returns the user context | — |
-| `listar_documentos` | Lists group documents with filters | `estado`, `limite`, `pagina` |
-| `ver_documento` | Full detail of a document | `codigo_documento` |
-| `listar_espacios` | Lists the group's Workspaces | `limite` |
-| `ver_espacio` | Workspace detail: criteria + documents + queue | `id_espacio`, `limite_docs` |
-| `componer_espacios` | Set algebra (COMPOSE) of two Workspaces → a new Workspace handle | `operacion`, `id_espacio_a`, `id_espacio_b`, `nombre?`, `tipo_espacio?` |
-| `leer_espacio` | Materialize a Workspace (READ) at a chosen resolution, paginated | `id_espacio`, `resolucion?`, `consulta?`, `limite?` |
-| `refrescar_espacio` | Re-applies the Workspace's natural-language criteria and re-materializes its set (picks up newly qualifying documents) | `id_espacio` |
-| `promover_espacio` | Promotes a temporary Workspace (AREA) to permanent (ESPACIO) | `id_espacio` |
-| `ver_cola` | Current state of the processing pipeline | `proceso`, `estado`, `limite` |
-| `ver_ejecuciones` | Skill execution history | `limite` |
-| `catalogo` | User capabilities: available functions + LLM skills (RBAC-filtered) | `tipo?` (`FUNCIONES`\|`HABILIDADES`\|`TODO`) |
-| `listar_habilidades` | Catalog of available LLM skills | — |
-| `ver_habilidad` | Skill detail: prompt, model, output type | `codigo_habilidad` |
-| `ejecutar_habilidad` | Queues execution over a workspace or document | `codigo_habilidad`, `id_espacio?`, `codigo_documento?` |
-| `buscar_chunks` | Direct semantic search over the corpus | `consulta`, `limite?`, `min_similitud?`, `codigo_entidad?` |
-| `preguntar` | Natural language question with full RAG (non-streaming) | `mensaje`, `codigo_funcion?`, `id_conversacion?`, `titulo?` |
+| `session` | Verifies the connection and returns the user context | — |
+| `list_documents` | Lists group documents with filters | `status`, `limit`, `page` |
+| `get_document` | Full detail of a document | `document_code` |
+| `list_spaces` | Lists the group's Workspaces | `limit` |
+| `get_space` | Workspace detail: criteria + documents + queue | `space_id`, `doc_limit` |
+| `compose_spaces` | Set algebra (COMPOSE) of two Workspaces → a new Workspace handle | `operation`, `space_id_a`, `space_id_b`, `name?`, `space_type?` |
+| `read_space` | Materialize a Workspace (READ) at a chosen resolution, paginated | `space_id`, `resolution?`, `query?`, `limit?` |
+| `refresh_space` | Re-applies the Workspace's natural-language criteria and re-materializes its set (picks up newly qualifying documents) | `space_id` |
+| `promote_space` | Promotes a temporary Workspace (AREA) to permanent (SPACE) | `space_id` |
+| `queue` | Current state of the processing pipeline | `process`, `status`, `limit` |
+| `list_runs` | Skill run history | `limit` |
+| `catalog` | User capabilities: available functions + LLM skills (RBAC-filtered) | `type?` (`FUNCTIONS`\|`SKILLS`\|`ALL`) |
+| `list_skills` | Catalog of available LLM skills | — |
+| `get_skill` | Skill detail: prompt, model, output type | `skill_code` |
+| `run_skill` | Queues a run over a workspace or document | `skill_code`, `space_id?`, `document_code?` |
+| `search_documents` | Direct semantic search over the corpus | `query`, `limit?`, `min_similarity?`, `entity_code?` |
+| `ask` | Natural language question with full RAG (non-streaming) | `message`, `function_code?`, `conversation_id?`, `title?` |
+| `get_agent_context` | Authenticated layered prompt, identity, allowed tools and limits for Agentic Retrieval | `function_profile?` (`user_chat`\|`support_chat`) |
+| `run_agent_tool` | Runs one tool from the current authenticated AgentContext | `public_name`, `arguments_json?`, `function_profile?` |
 
-**Always call `estado_sesion` first** to confirm the connection is valid.
+### English cutover and compatibility window
 
-### Document `estado` values
+Release A (2026-08-09) publishes the English tools and keeps the following
+legacy aliases temporarily: `session_status`→`session`, `get_queue`→`queue`,
+`search_chunks`→`search_documents`, plus the existing Spanish aliases. The
+aliases delegate to the same implementation and return the same English JSON;
+they are input-only compatibility names, not a second contract.
 
-`CARGADO` · `METADATA` · `ESCANEADO` · `CHUNKEADO` · `VECTORIZADO` · `NO_ESCANEABLE` · `REVISAR`
+The minimum compatible clients for the cutover are Python SDK `0.3.0`,
+TypeScript SDK `0.3.0` and CLI `2.0.0`. Release B may remove the aliases after
+the 14-day window closes on 2026-08-23, once connected clients and telemetry
+have been checked. New integrations must use the canonical English names now.
+
+**Always call `session` first** to confirm the connection is valid.
+
+For **Retrieval**, call `search_documents` and let your agent reason over the
+returned evidence. For **Agentic Retrieval**, call `get_agent_context`, use its
+`system_prompt` and limits, and invoke only tools declared in `tools` through
+`run_agent_tool`. Never cache or persist the prompt or credentials; campaign
+artifacts should retain only `system_prompt_hash` and the per-layer hashes.
+
+### Document `status` values
+
+`LOADED` · `METADATA` · `SCANNED` · `CHUNKED` · `VECTORIZED` · `NOT_SCANNABLE` · `REVIEW`
 
 ### Opening a document on disk (`fs` block)
 
-`listar_documentos` and `ver_documento` return an `fs` block so an agent that
+`list_documents` and `get_document` return an `fs` block so an agent that
 runs **on the same machine where the documents live** can open the file on disk.
-The `como_abrir` field tells the agent exactly what to do — read it and follow it.
+The `how_to_open` field tells the agent exactly what to do — read it and follow it.
 
 The same `fs` block is attached **per document** when you retrieve *many* at once:
-`leer_espacio(id_espacio, resolucion="manifiesto")` and the `espacio://{id}`
+`read_space(space_id, resolution="manifest")` and the `space://{id}`
 resource enumerate the documents of a Working Space (the set that indexes them),
 and every item in the manifest carries its own `fs`. Retrieving one document or a
-whole set follows the identical rule below — absolute paths open as-is, relative
-paths get `$RAGFLY_ROOT` prepended. (Only the `manifiesto` resolution lists files;
-`chunks`/`texto` return fragments, not file locations.)
+whole set follows the identical rule below. (Only the `manifest` resolution lists
+files; `chunks`/`text` return fragments, not file locations.)
 
 ```json
 "fs": {
-  "ruta_archivo": "/Users/you/Dropbox/RUFINO/CONCIERTOS/afiche.pdf",
-  "ruta_es_absoluta": true,
-  "carpeta_relativa": "RUFINO/CONCIERTOS",
-  "nombre_archivo": "afiche.pdf",
-  "como_abrir": "Abrir `ruta_archivo` directo (ya es absoluta)."
+  "path": "/Users/you/Dropbox/RUFINO/CONCERTS/poster.pdf",
+  "origin": "DESKTOP",
+  "is_absolute": true,
+  "is_public_url": false,
+  "relative_folder": "RUFINO/CONCERTS",
+  "file_name": "poster.pdf",
+  "how_to_open": "Open `path` directly (it is already absolute)."
 }
 ```
 
-**Why two cases exist** — it depends on how the documents were loaded:
+**Why three cases exist** — it depends on how the documents were loaded. Read
+`origin`; never guess from the shape of the string:
 
-| Loaded via | `ruta_archivo` | `ruta_es_absoluta` | Agent action |
+| Loaded via | `origin` | `path` | Agent action |
 |---|---|---|---|
-| **RAGfly Desktop** | real OS path (`/Users/...`, `C:\...`) | `true` | open it directly |
-| **Web upload** (browser) | logical path `/​<root_folder>/sub/file` | `false` | prepend `$RAGFLY_ROOT` |
+| **RAGfly Desktop** | `DESKTOP` | real OS path (`/Users/...`, `C:\...`) | open it directly |
+| **Web upload** (browser) | `WEB` | logical path `/​<root_folder>/sub/file` | prepend `$RAGFLY_ROOT` |
+| **Public source** | `PUBLIC` | full URL (`https://...`) | open the URL as-is |
 
 The browser's File System Access API never exposes the real disk path, so a
 web-uploaded document is stored relative to the folder the user picked, with that
-folder's name as the first segment (`/MisDocumentos/letras/cancion.txt`).
+folder's name as the first segment (`/MyDocuments/lyrics/song.txt`).
+
+A **public source** is a document captured from an official public URL (a law, a
+regulation, an agency circular). Its location *is* the citable address of the
+original, so it needs no local disk access at all — and prepending `$RAGFLY_ROOT`
+to it would break it.
 
 **The single rule the agent follows:**
 
-1. `ruta_es_absoluta: true` → open `ruta_archivo` as-is. Done. (Desktop case — no
+1. `origin: "PUBLIC"` (or `is_public_url: true`) → open `path` as-is. It is a
+   URL, not a file path. Never prepend anything.
+2. `origin: "DESKTOP"` (`is_absolute: true`) → open `path` as-is. Done. (No
    config needed.)
-2. `ruta_es_absoluta: false` → open `$RAGFLY_ROOT + ruta_archivo`. That's the
-   web-upload case — set up `RAGFLY_ROOT` once, as follows.
+3. `origin: "WEB"` → open `$RAGFLY_ROOT + path`. That's the web-upload case —
+   set up `RAGFLY_ROOT` once, as follows.
+
+> `is_absolute` means "already an openable OS path". A public URL is **not**
+> absolute in that sense: it comes as `is_absolute: false` **and**
+> `is_public_url: true`. Check `origin` first — it is unambiguous.
 
 #### Setting up `RAGFLY_ROOT` — once per machine, in 3 steps
 
@@ -136,13 +171,13 @@ turn the relative path RAGfly returns into a real path on *your* disk.
 
 **Step 1 — find the value.** It is the **parent folder** of the folder you
 selected when you uploaded your documents to RAGfly. Concrete example — Ana
-uploaded the folder `MisDocumentos` from the web app:
+uploaded the folder `MyDocuments` from the web app:
 
 ```
 /Users/ana/Dropbox            ← RAGFLY_ROOT = the PARENT of what she uploaded
-└── MisDocumentos             ← the folder Ana picked in the web upload
-    └── letras
-        └── cancion.txt       ← RAGfly returns "/MisDocumentos/letras/cancion.txt"
+└── MyDocuments               ← the folder Ana picked in the web upload
+    └── lyrics
+        └── song.txt          ← RAGfly returns "/MyDocuments/lyrics/song.txt"
 ```
 
 So on Ana's machine:
@@ -154,8 +189,8 @@ RAGFLY_ROOT=/Users/ana/Dropbox
 and the composition works out to:
 
 ```
-RAGFLY_ROOT      +  ruta_archivo                      =  real path on disk
-/Users/ana/Dropbox  /MisDocumentos/letras/cancion.txt    /Users/ana/Dropbox/MisDocumentos/letras/cancion.txt
+RAGFLY_ROOT      +  path                          =  real path on disk
+/Users/ana/Dropbox  /MyDocuments/lyrics/song.txt     /Users/ana/Dropbox/MyDocuments/lyrics/song.txt
 ```
 
 **Step 2 — put it where your agent can read it.** Anywhere the agent can see the
@@ -168,10 +203,10 @@ value works; pick what matches your setup:
 | MCP client whose config supports env vars | The `env` block of the RAGfly entry in your MCP config |
 
 **Step 3 — verify.** Take any document whose `fs` block says
-`ruta_es_absoluta: false` and check the composed path exists:
+`is_absolute: false` and check the composed path exists:
 
 ```bash
-ls "$RAGFLY_ROOT/MisDocumentos/letras/cancion.txt"   # should list the file
+ls "$RAGFLY_ROOT/MyDocuments/lyrics/song.txt"   # should list the file
 ```
 
 **When you DON'T need `RAGFLY_ROOT`:**
@@ -193,17 +228,17 @@ resolves on any machine — each one just sets its own `RAGFLY_ROOT`
 #### What to put in the client manual
 
 - **Clients who load with RAGfly Desktop:** nothing. The agent opens files
-  directly (`ruta_es_absoluta: true`). No `RAGFLY_ROOT`, no instructions.
+  directly (`is_absolute: true`). No `RAGFLY_ROOT`, no instructions.
 - **Clients who upload via the browser:** one line — *"Set `RAGFLY_ROOT` to the
   parent folder of the folder you selected when uploading your documents (e.g.
-  you uploaded `/Users/ana/Dropbox/MisDocumentos` → `RAGFLY_ROOT=/Users/ana/Dropbox`)."*
+  you uploaded `/Users/ana/Dropbox/MyDocuments` → `RAGFLY_ROOT=/Users/ana/Dropbox`)."*
   That's the only special instruction the manual needs.
 
-### Queue `estado` values
+### Queue `status` values
 
-A document's queue lifecycle: `PENDIENTE` → `EN_PROCESO` → `COMPLETADO` / `ERROR`.
+A document's queue lifecycle: `PENDING` → `IN_PROGRESS` → `COMPLETED` / `ERROR`.
 
-> You may occasionally see `WAITING`, a transient internal state used while an orchestrated step waits for its dependencies. Treat it like `EN_PROCESO` (in progress).
+> You may occasionally see `WAITING`, a transient internal state used while an orchestrated step waits for its dependencies. Treat it like `IN_PROGRESS`.
 
 ---
 
@@ -211,21 +246,21 @@ A document's queue lifecycle: `PENDIENTE` → `EN_PROCESO` → `COMPLETADO` / `E
 
 ```
 # 1. Verify connection
-estado_sesion()
-→ {"usuario": "bot-finance", "grupo": "COMPANY", "rol": "DOC-ADMIN"}
+session()
+→ {"user": "bot-finance", "active_group": "COMPANY", "role": "DOC-ADMIN"}
 
 # 2. Ask over documents
-preguntar(mensaje="What are the penalty clauses in the 2024 contracts?")
+ask(message="What are the penalty clauses in the 2024 contracts?")
 → RAG response with chunk citations
 
 # 3. List vectorized documents
-listar_documentos(estado="VECTORIZADO", limite=10)
+list_documents(status="VECTORIZED", limit=10)
 
-# 4. Execute a skill over a workspace
-ejecutar_habilidad(codigo_habilidad="RESUMIR_DOCUMENTO", id_espacio=42)
+# 4. Run a skill over a workspace
+run_skill(skill_code="SUMMARIZE_DOCUMENT", space_id=42)
 
 # 5. Monitor progress
-ver_cola(estado="EN_PROCESO")
+queue(status="IN_PROGRESS")
 ```
 
 ---
@@ -263,6 +298,6 @@ See `QUICKSTART.md` for the full walkthrough with setup, test script, and case t
 | Feature | Codex | Claude Code / Cursor |
 |---|---|---|
 | Setup | `codex mcp add` with `--bearer-token-env-var` | `.mcp.json` with URL + header |
-| Tools | `mcp__ragfly__estado_sesion()` etc. | `mcp__ragfly__estado_sesion()` etc. |
+| Tools | `mcp__ragfly__session()` etc. | `mcp__ragfly__session()` etc. |
 | Authentication | `--bearer-token-env-var RAGFLY_API_KEY` | Declared in `.mcp.json` |
 | Discovery | MCP protocol automatic | MCP protocol automatic |
