@@ -501,6 +501,10 @@
       "google-drive": {
         "titulo": "Google Drive",
         "desc": "Enable the Drive connector for your workspace: Google Cloud credentials and group setup."
+      },
+      "dropbox": {
+        "titulo": "Dropbox",
+        "desc": "Enable the Dropbox connector for your workspace: app key, redirect URI and group setup."
       }
     }
   },

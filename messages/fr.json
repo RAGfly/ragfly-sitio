@@ -502,6 +502,10 @@
       "google-drive": {
         "titulo": "Google Drive",
         "desc": "Activez le connecteur Drive pour votre espace : identifiants Google Cloud et configuration du groupe."
+      },
+      "dropbox": {
+        "titulo": "Dropbox",
+        "desc": "Activez le connecteur Dropbox pour votre espace : app key, redirect URI et configuration du groupe."
       }
     }
   },

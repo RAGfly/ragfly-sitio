@@ -501,6 +501,10 @@
       "google-drive": {
         "titulo": "Google Drive",
         "desc": "Drive-Connector für Ihren Workspace aktivieren: Google-Cloud-Anmeldedaten und Gruppenkonfiguration."
+      },
+      "dropbox": {
+        "titulo": "Dropbox",
+        "desc": "Dropbox-Connector für Ihren Workspace aktivieren: App-Key, Redirect-URI und Gruppenkonfiguration."
       }
     }
   },
