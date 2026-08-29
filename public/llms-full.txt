@@ -1,8 +1,8 @@
-# RAGfly — Catálogo de operaciones para agentes
+# RAGfly — Catálogo para agentes
 
 > Servicio de RAG multi-tenant. Entrega a un agente de IA el contexto documental exacto que necesita, filtrado por RBAC, vía MCP, CLI o API REST.
 
-Actualizado: 2026-08-23
+Actualizado: 2026-08-29
 
 ## Conexión MCP
 
@@ -12,6 +12,23 @@ Actualizado: 2026-08-23
 - Alcance: Todas las operaciones quedan acotadas al grupo y entidad activos del usuario autenticado (RBAC).
 
 También disponible vía la CLI de RAGfly Desktop: `ragfly cloud ...`
+
+## Recursos operativos (1; no son tools)
+
+### Configurar conectores de ingesta: Google Drive y Dropbox
+
+Cuando una persona necesite conectar Google Drive o Dropbox, acompáñala con estas guías. No es una tool MCP, un comando CLI, una operación REST ni una función del SDK: el administrador configura la aplicación y los parámetros del grupo directamente en RAGfly; cada usuario autoriza su propia cuenta y elige la carpeta en el navegador.
+
+Reglas de seguridad:
+- Nunca pidas, recibas, almacenes ni repitas secretos de cliente, access tokens, refresh tokens, contraseñas, cookies o códigos OAuth.
+- Indica al administrador que ingrese las credenciales de aplicación solo en Parámetros de Grupo de RAGfly; el agente solo describe los pasos y verifica requisitos no sensibles.
+- No intentes completar la autorización OAuth ni seleccionar carpetas fuera del navegador y la sesión del usuario.
+
+Documentación:
+- [Guía humana: Google Drive](https://ragfly.ai/build/google-drive)
+- [Guía humana: Dropbox](https://ragfly.ai/build/dropbox)
+- [Referencia técnica: Google Drive (Markdown)](https://ragfly.ai/integradores/GOOGLE_DRIVE.md)
+- [Referencia técnica: Dropbox (Markdown)](https://ragfly.ai/integradores/DROPBOX.md)
 
 ## Operaciones (12)
 

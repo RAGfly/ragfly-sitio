@@ -12,13 +12,19 @@ RAGfly es un servicio de RAG para agentes: apuntas a un directorio de documentos
 
 ## Para agentes
 
-- [Catálogo de operaciones (Markdown)](https://ragfly.ai/llms-full.txt): las 12 operaciones MCP/CLI que un agente puede invocar.
-- [Catálogo de operaciones (JSON)](https://ragfly.ai/agents.json): el mismo catálogo, máquina-legible, con endpoint MCP y autenticación.
+- [Catálogo para agentes (Markdown)](https://ragfly.ai/llms-full.txt): las operaciones MCP/CLI invocables y recursos operativos no automatizables.
+- [Catálogo para agentes (JSON)](https://ragfly.ai/agents.json): el mismo catálogo, máquina-legible, con endpoint MCP, autenticación y recursos de orientación.
 - Conexión MCP (SSE): https://api.ragfly.ai/mcp/sse
 - Conexión MCP (HTTP streamable): https://api.ragfly.ai/mcp-http/
 - Autenticación: `Authorization: Bearer slm_live_xxxxxxxxxx` (API Key, larga duración) o `Bearer <JWT>` (sesión interactiva, 1 h).
 - Alcance: cada credencial está anclada a un usuario, un grupo y un rol — los datos de otros grupos son invisibles por construcción.
 - Swagger interactivo: https://api.ragfly.ai/docs
+
+### Conectores de ingesta
+
+- [Guía de Google Drive](https://ragfly.ai/build/google-drive) y [guía de Dropbox](https://ragfly.ai/build/dropbox): acompañamiento paso a paso para administradores y usuarios.
+- Configurar un conector no es una operación disponible por MCP, CLI, REST ni SDK. Un administrador carga las credenciales de aplicación directamente en Parámetros de Grupo de RAGfly; cada usuario autoriza su cuenta y selecciona una carpeta en el navegador.
+- Un agente no debe pedir, recibir, almacenar ni repetir secretos de cliente, tokens, contraseñas, cookies ni códigos OAuth. Solo puede orientar y comprobar requisitos no sensibles.
 
 ## Tipos de identidad
 

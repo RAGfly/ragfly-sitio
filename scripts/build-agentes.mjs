@@ -17,7 +17,7 @@
 import { writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, resolve } from 'node:path'
-import { mcp, familias, capacidades } from '../content/agentes.mjs'
+import { mcp, familias, capacidades, recursos } from '../content/agentes.mjs'
 
 const here = dirname(fileURLToPath(import.meta.url))
 const root = resolve(here, '..')
@@ -37,19 +37,21 @@ const json = {
   total_operaciones: capacidades.length,
   familias,
   operaciones: capacidades,
+  total_recursos: recursos.length,
+  recursos,
 }
 writeFileSync(resolve(pub, 'agents.json'), JSON.stringify(json, null, 2) + '\n', 'utf8')
 
 // content/agentes-data.json — consumido por app/page.tsx (sección "Para Agentes").
 writeFileSync(
   resolve(root, 'content/agentes-data.json'),
-  JSON.stringify({ mcp, familias, operaciones: capacidades, actualizado: fecha }, null, 2) + '\n',
+  JSON.stringify({ mcp, familias, operaciones: capacidades, recursos, actualizado: fecha }, null, 2) + '\n',
   'utf8',
 )
 
 // ── llms-full.txt ────────────────────────────────────────────────────────
 const L = []
-L.push('# RAGfly — Catálogo de operaciones para agentes')
+L.push('# RAGfly — Catálogo para agentes')
 L.push('')
 L.push('> ' + json.descripcion)
 L.push('')
@@ -64,6 +66,20 @@ L.push(`- Alcance: ${mcp.scope}`)
 L.push('')
 L.push('También disponible vía la CLI de RAGfly Desktop: `ragfly cloud ...`')
 L.push('')
+L.push(`## Recursos operativos (${recursos.length}; no son tools)`)
+L.push('')
+for (const recurso of recursos) {
+  L.push(`### ${recurso.titulo}`)
+  L.push('')
+  L.push(recurso.descripcion)
+  L.push('')
+  L.push('Reglas de seguridad:')
+  for (const regla of recurso.reglas_seguridad) L.push(`- ${regla}`)
+  L.push('')
+  L.push('Documentación:')
+  for (const enlace of recurso.enlaces) L.push(`- [${enlace.titulo}](${enlace.url})`)
+  L.push('')
+}
 L.push(`## Operaciones (${capacidades.length})`)
 L.push('')
 for (const fam of familias) {
@@ -90,7 +106,7 @@ for (const fam of familias) {
 }
 writeFileSync(resolve(pub, 'llms-full.txt'), L.join('\n'), 'utf8')
 
-console.log(`✓ public/agents.json — ${capacidades.length} operaciones`)
+console.log(`✓ public/agents.json — ${capacidades.length} operaciones, ${recursos.length} recursos`)
 console.log(`✓ content/agentes-data.json — datos para page.tsx`)
 console.log(`✓ public/llms-full.txt — catálogo Markdown`)
 const porFam = familias.map((f) => `${f}:${capacidades.filter((c) => c.familia === f).length}`).join('  ')
