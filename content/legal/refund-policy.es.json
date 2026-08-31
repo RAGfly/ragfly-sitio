@@ -1,6 +1,6 @@
 {
   "title": "Política de Reembolsos",
-  "subtitle": "Última actualización: 04/07/2026 · Versión 1.0",
+  "subtitle": "Última actualización: 30/08/2026 · Versión 1.1",
   "intro": [
     {
       "kind": "p",
@@ -28,7 +28,7 @@
       "blocks": [
         {
           "kind": "p",
-          "text": "Nuestros planes de pago (**Starter**, **Growth** y **Scale**) son suscripciones recurrentes facturadas por adelantado en cada ciclo de facturación (mensual o anual). Los planes de pago **no incluyen un período de prueba gratuito**; el plan Free es la forma de evaluar el Servicio antes de suscribirte."
+          "text": "Nuestros planes de pago (**Starter**, **Growth** y **Scale**) son suscripciones mensuales recurrentes facturadas por adelantado desde la fecha de compra. No incluyen prueba con vencimiento; el plan Free permanente permite evaluar el Servicio antes de suscribirte."
         },
         {
           "kind": "list",
@@ -60,11 +60,11 @@
     },
     {
       "id": "sec-4",
-      "heading": "4. Cargos por Consumo y Cargos Puntuales",
+      "heading": "4. Adicionales y Cargos Puntuales",
       "blocks": [
         {
           "kind": "p",
-          "text": "Los cargos por consumo que exceda los cupos incluidos en tu plan (overage) y cualquier otro cargo puntual **no son reembolsables una vez que el consumo correspondiente se ha producido**, salvo cuando lo exija la ley aplicable."
+          "text": "RAGfly no cobra sobreconsumo automático. Los packs de crédito son compras únicas y no expiran; la capacidad adicional de corpus es mensual y recurrente. Salvo cuando lo exija la ley, un pack ya acreditado o consumido y un período recurrente ya iniciado no son reembolsables."
         }
       ]
     },

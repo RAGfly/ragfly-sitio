@@ -1,6 +1,6 @@
 {
   "title": "Privacy Policy",
-  "subtitle": "Last updated: 16/06/2026 · Version 1.0",
+  "subtitle": "Last updated: 30/08/2026 · Version 1.1",
   "intro": [
     {
       "kind": "p",
@@ -24,7 +24,7 @@
           "kind": "list",
           "items": [
             "**Account and authentication data** (described in Section 2). For this data we act as a **data controller**: we decide how and why it is processed to operate the Service.",
-            "**Customer Data** — the documents and content you upload, connect, or process through the Service. For this data we act as a **data processor (or \"encargado\")** on your behalf. You (or your organization) are the controller. We process Customer Data only on your instructions and as described in the Terms of Service, and **you own it at all times**. We do not use Customer Data to train AI models or for any purpose other than providing the Service to you."
+            "**Customer Data** — extracted content, references, metadata, chunks, embeddings, and configurations that you connect or process. We do not store your original files in RAGfly Cloud. We act as a **data processor** on your behalf and you retain ownership. RAGfly does not use this data for advertising or to train RAGfly-owned models; model-provider processing is limited to delivering the Service and is subject to the applicable provider's policies."
           ]
         }
       ]
@@ -72,7 +72,7 @@
         },
         {
           "kind": "p",
-          "text": "We do **not** sell personal information, and we do **not** use Customer Data to train AI models or for advertising."
+          "text": "We do **not** sell personal information or use Customer Data for advertising or to train RAGfly-owned models. Model providers may process content strictly to perform the requested operation, under their own terms and policies."
         }
       ]
     },
@@ -98,7 +98,7 @@
           "kind": "list",
           "items": [
             "**Subprocessors and service providers** — such as cloud hosting, database, and infrastructure providers — bound by confidentiality and data-protection obligations.",
-            "**AI model providers** — when you select a third-party model (for example, Anthropic, OpenAI, Google), the relevant content is processed by that provider subject to its terms; on supported plans you may choose which model is used.",
+            "**AI model providers** — content strictly required for an operation may be processed by the configured provider. Providers and models may change. On Free, the active list is shown in My Account and requires explicit acceptance before first processing; other plans support the selection or configuration available to that plan.",
             "**Identity providers** — to authenticate your sign-in (for example, Microsoft Entra ID).",
             "**Legal and safety** — when required by law or to protect rights, safety, and the integrity of the Service.",
             "**Business transfers** — in connection with a merger, acquisition, or reorganization, with the protections of this policy preserved."

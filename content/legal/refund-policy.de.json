@@ -1,6 +1,6 @@
 {
   "title": "Rückerstattungsrichtlinie",
-  "subtitle": "Zuletzt aktualisiert: 04.07.2026 · Version 1.0",
+  "subtitle": "Zuletzt aktualisiert: 30.08.2026 · Version 1.1",
   "intro": [
     {
       "kind": "p",
@@ -28,7 +28,7 @@
       "blocks": [
         {
           "kind": "p",
-          "text": "Unsere kostenpflichtigen Tarife (**Starter**, **Growth** und **Scale**) sind wiederkehrende Abonnements, die für jeden Abrechnungszeitraum (monatlich oder jährlich) im Voraus in Rechnung gestellt werden. Kostenpflichtige Tarife **beinhalten keine kostenlose Testphase**; der Free-Tarif ist die Möglichkeit, den Dienst vor dem Abonnieren zu evaluieren."
+          "text": "Unsere kostenpflichtigen Tarife (**Starter**, **Growth** und **Scale**) sind monatlich wiederkehrende Abonnements, die ab Kaufdatum im Voraus berechnet werden. Sie enthalten keinen befristeten Test; mit dem dauerhaften Free-Tarif kann der Dienst vor dem Abonnement bewertet werden."
         },
         {
           "kind": "list",
@@ -60,11 +60,11 @@
     },
     {
       "id": "sec-4",
-      "heading": "4. Nutzungsbasierte und einmalige Gebühren",
+      "heading": "4. Zusatzoptionen und einmalige Gebühren",
       "blocks": [
         {
           "kind": "p",
-          "text": "Gebühren für Nutzung, die die in deinem Tarif enthaltenen Kontingente überschreitet (Overage), sowie sonstige einmalige Gebühren **sind nicht erstattungsfähig, sobald die entsprechende Nutzung erfolgt ist**, sofern nicht durch geltendes Recht vorgeschrieben."
+          "text": "RAGfly berechnet keinen automatischen Mehrverbrauch. Guthabenpakete sind einmalige Käufe und verfallen nicht; zusätzliche Korpuskapazität ist monatlich und wiederkehrend. Soweit gesetzlich nicht anders vorgeschrieben, sind bereits gutgeschriebene oder verbrauchte Pakete sowie begonnene wiederkehrende Zeiträume nicht erstattungsfähig."
         }
       ]
     },

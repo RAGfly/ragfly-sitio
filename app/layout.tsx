@@ -61,7 +61,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
 // JSON-LD: señales estructuradas para agentes y buscadores de IA.
 // Mantener en español (mercado primario); los agentes lo parsean igual.
-// Precios = fuente de verdad content/planes.mjs (sincronizar si cambian).
+// Precios/cupos visibles = GET /pagos/catalogo-publico (BD); este JSON-LD es
+// un snapshot semántico que debe acompañar la oferta canónica PROD_08.
 // FAQ: fuente única en comercial/comercial-operativo/RAGfly_FAQ.md (bloque A).
 // Vive en i18n (namespace `faq`, claves q0/a0…qN/aN + `total`) en los 5 idiomas,
 // para que el FAQPage estructurado hable el mismo idioma que la página.
@@ -108,11 +109,11 @@ const buildJsonLd = (faq: FaqEntry[]) => ({
       "@id": "https://ragfly.ai/#planes",
       name: "Planes de RAGfly",
       itemListElement: [
-        { "@type": "Offer", name: "Free", price: "0", priceCurrency: "USD", url: "https://ragfly.ai/#planes", description: "POC y evaluación — 2 Entities, 500 Pages totales, 25 Retrievals/día y 50 Verified Answers totales." },
-        { "@type": "Offer", name: "Starter", price: "39", priceCurrency: "USD", url: "https://ragfly.ai/#planes", description: "Para empezar en producción — 5 Entities, 2.000 Pages/mes, 5.000 Retrievals/mes y 300 Verified Answers/mes." },
-        { "@type": "Offer", name: "Growth", price: "149", priceCurrency: "USD", url: "https://ragfly.ai/#planes", description: "Para equipos con Control por Área · parsing-BYOK · embedding-BYOK — 10 Entities, 10.000 Pages/mes, 25.000 Retrievals/mes y 1.500 Verified Answers/mes." },
-        { "@type": "Offer", name: "Scale", price: "590", priceCurrency: "USD", url: "https://ragfly.ai/#planes", description: "Producción a escala — 25 Entities, 40.000 Pages/mes, 100.000 Retrievals/mes, 5.000 Verified Answers/mes y BYO vectorial/LLM." },
-        { "@type": "Offer", name: "Enterprise / Soberano", url: "https://ragfly.ai/#planes", description: "Plan custom sales-assisted con contrato anual, DPA/SLA y despliegue dedicado si aplica." },
+        { "@type": "Offer", name: "Free", price: "0", priceCurrency: "USD", url: "https://ragfly.ai/#planes", description: "Free permanente — corpus activo 1.000 páginas, 1.500 Retrieval simple, 30 RAG Aumentado y 5 RAG Agéntico por mes." },
+        { "@type": "Offer", name: "Starter", price: "39", priceCurrency: "USD", url: "https://ragfly.ai/#planes", description: "Corpus activo 10.000 páginas, 5.000 Retrieval simple, 300 RAG Aumentado y 50 RAG Agéntico por mes." },
+        { "@type": "Offer", name: "Growth", price: "149", priceCurrency: "USD", url: "https://ragfly.ai/#planes", description: "Corpus activo 50.000 páginas, 25.000 Retrieval simple, 1.500 RAG Aumentado y 150 RAG Agéntico por mes." },
+        { "@type": "Offer", name: "Scale", price: "590", priceCurrency: "USD", url: "https://ragfly.ai/#planes", description: "Corpus activo 250.000 páginas, 100.000 Retrieval simple, 5.000 RAG Aumentado y 500 RAG Agéntico por mes." },
+        { "@type": "Offer", name: "Enterprise / Soberano", url: "https://ragfly.ai/#planes", description: "Plan a medida con DPA/SLA y despliegue dedicado si aplica." },
       ],
     },
     {

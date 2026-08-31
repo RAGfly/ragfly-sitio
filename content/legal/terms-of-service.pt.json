@@ -1,6 +1,6 @@
 {
   "title": "Termos de Serviço",
-  "subtitle": "Última atualização: 16/06/2026 · Versão 1.0",
+  "subtitle": "Última atualização: 30/08/2026 · Versão 1.1",
   "intro": [
     {
       "kind": "p",
@@ -57,7 +57,10 @@
         {
           "kind": "list",
           "items": [
-            "As taxas são cobradas antecipadamente conforme o ciclo de faturamento do plano (mensal ou anual).",
+            "As assinaturas self-service são cobradas mensalmente e antecipadamente a partir da data da compra. Mudanças de plano e de capacidade recorrente são rateadas pelo mecanismo da Paddle.",
+            "Free é permanente, não exige cartão e tem cotas mensais. Não é um teste com vencimento.",
+            "Os pacotes de RAG Aumentado e RAG Agêntico são compras únicas de créditos sem expiração; a capacidade adicional de corpus é recorrente. Nenhum excedente é cobrado automaticamente.",
+            "O processamento incluído está sujeito a uso razoável para proteger a disponibilidade e o desempenho compartilhados; em caso de uso anômalo, podemos pausar cargas e entrar em contato antes de impor uma restrição duradoura.",
             "Os preços podem mudar; daremos aviso prévio razoável, e as alterações entram em vigor no ciclo de faturamento seguinte.",
             "O pagamento atrasado ou malsucedido pode resultar na suspensão do Serviço após aviso.",
             "Salvo quando exigido pela lei aplicável, as taxas não são reembolsáveis por períodos já iniciados."
@@ -82,7 +85,7 @@
           "items": [
             "**Propriedade.** Você mantém a propriedade dos seus Dados do Cliente, incluindo os documentos originais e os índices, vetores e conteúdos derivados gerados a partir deles. Não adquirimos quaisquer direitos de propriedade sobre seus Dados do Cliente.",
             "**Licença limitada a nosso favor.** Você nos concede uma licença limitada, não exclusiva e revogável para hospedar, processar, transmitir, indexar e exibir seus Dados do Cliente unicamente para prestar e manter o Serviço para você. Esta licença não autoriza nenhum outro uso.",
-            "**Sem uso para treinamento ou fins secundários.** Não vendemos, alugamos nem divulgamos seus Dados do Cliente, e não os usamos para treinar nossos modelos de inteligência artificial ou de terceiros, nem para publicidade ou qualquer finalidade que não seja prestar o Serviço a você.",
+            "**Sem fins secundários do RAGfly.** Não vendemos os Dados do Cliente nem os usamos para publicidade ou para treinar modelos próprios do RAGfly. O processamento por modelos de terceiros fica sujeito às políticas do provedor aplicável; no Free, os provedores econômicos ativos são divulgados e exigem aceitação explícita antes do processamento.",
             "**Isolamento.** Os Dados do Cliente são estruturalmente isolados dos de outros clientes. Nenhum grupo, entidade ou cliente pode acessar os dados de outro.",
             "**Portabilidade e devolução.** Você pode exportar ou solicitar a devolução dos seus Dados do Cliente a qualquer momento durante a vigência e durante o período de carência posterior ao encerramento descrito na Seção 12.",
             "**Exclusão.** A seu pedido, ou após o encerramento e o período de carência aplicável, excluiremos seus Dados do Cliente dos nossos sistemas, exceto quando a retenção for exigida por lei.",
@@ -122,7 +125,7 @@
       "blocks": [
         {
           "kind": "p",
-          "text": "O Serviço pode integrar-se a modelos de IA de terceiros (por exemplo, Anthropic, OpenAI, Google) ou a modelos proprietários, conforme seu plano e configuração. Quando você seleciona um modelo de terceiros, o processamento correspondente também fica sujeito aos termos desse provedor. As respostas geradas por IA podem conter imprecisões; você é responsável por verificar as informações antes de confiar nelas. O Serviço não constitui aconselhamento jurídico, financeiro, médico ou outro aconselhamento profissional."
+          "text": "O Serviço integra provedores de modelos de IA que podem mudar ao longo do tempo. Em planos configuráveis, você pode selecionar ou fornecer provedores; no Free, os provedores econômicos ativos são publicados em Minha Conta e exigem aceitação explícita antes do primeiro processamento. O tratamento de cada provedor também está sujeito aos seus termos e política de privacidade. As respostas geradas por IA podem conter imprecisões; você deve verificá-las antes de confiar nelas."
         }
       ]
     },

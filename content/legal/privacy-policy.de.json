@@ -1,6 +1,6 @@
 {
   "title": "Datenschutzrichtlinie",
-  "subtitle": "Zuletzt aktualisiert: 16/06/2026 · Version 1.0",
+  "subtitle": "Zuletzt aktualisiert: 30/08/2026 · Version 1.1",
   "intro": [
     {
       "kind": "p",
@@ -24,7 +24,7 @@
           "kind": "list",
           "items": [
             "**Konto- und Authentifizierungsdaten** (beschrieben in Abschnitt 2). Für diese Daten handeln wir als **Verantwortlicher**: Wir entscheiden, wie und warum sie zum Betrieb des Dienstes verarbeitet werden.",
-            "**Kundendaten** — die Dokumente und Inhalte, die Sie über den Dienst hochladen, verbinden oder verarbeiten. Für diese Daten handeln wir als **Auftragsverarbeiter** in Ihrem Auftrag. Sie (oder Ihre Organisation) sind der Verantwortliche. Wir verarbeiten Kundendaten nur nach Ihren Weisungen und gemäß den Nutzungsbedingungen, und **Sie sind jederzeit deren Eigentümer**. Wir verwenden Kundendaten nicht, um KI-Modelle zu trainieren, oder zu einem anderen Zweck als der Bereitstellung des Dienstes für Sie."
+            "**Kundendaten** — extrahierte Inhalte, Referenzen, Metadaten, Chunks, Embeddings und Konfigurationen, die Sie verbinden oder verarbeiten. Wir speichern Ihre Originaldateien nicht in RAGfly Cloud. Wir handeln als **Auftragsverarbeiter** und Sie behalten das Eigentum. RAGfly nutzt diese Daten weder für Werbung noch zum Training eigener Modelle; die Verarbeitung durch Modellanbieter ist auf den Dienst beschränkt und unterliegt deren Richtlinien."
           ]
         }
       ]
@@ -72,7 +72,7 @@
         },
         {
           "kind": "p",
-          "text": "Wir verkaufen **keine** personenbezogenen Daten und verwenden Kundendaten **nicht**, um KI-Modelle zu trainieren oder für Werbung."
+          "text": "Wir verkaufen **keine** personenbezogenen Daten und verwenden Kundendaten weder für Werbung noch zum Training RAGfly-eigener Modelle. Modellanbieter dürfen Inhalte ausschließlich zur Ausführung der angeforderten Operation gemäß ihren Bedingungen und Richtlinien verarbeiten."
         }
       ]
     },
@@ -98,7 +98,7 @@
           "kind": "list",
           "items": [
             "**Unterauftragsverarbeiter und Dienstleister** — wie Anbieter von Cloud-Hosting, Datenbanken und Infrastruktur — gebunden durch Vertraulichkeits- und Datenschutzpflichten.",
-            "**KI-Modellanbieter** — wenn Sie ein Modell eines Dritten auswählen (zum Beispiel Anthropic, OpenAI, Google), werden die relevanten Inhalte von diesem Anbieter gemäß dessen Bedingungen verarbeitet; bei unterstützten Tarifen können Sie wählen, welches Modell verwendet wird.",
+            "**KI-Modellanbieter** — nur für eine Operation notwendige Inhalte dürfen vom konfigurierten Anbieter verarbeitet werden. Anbieter und Modelle können wechseln. Bei Free wird die aktive Liste in Mein Konto angezeigt und muss vor der ersten Verarbeitung ausdrücklich akzeptiert werden; andere Tarife bieten die jeweils verfügbare Auswahl oder Konfiguration.",
             "**Identitätsanbieter** — zur Authentifizierung Ihrer Anmeldung (zum Beispiel Microsoft Entra ID).",
             "**Recht und Sicherheit** — wenn gesetzlich vorgeschrieben oder zum Schutz von Rechten, Sicherheit und Integrität des Dienstes.",
             "**Unternehmensübertragungen** — im Zusammenhang mit einer Fusion, Übernahme oder Umstrukturierung, wobei der Schutz dieser Richtlinie gewahrt bleibt."

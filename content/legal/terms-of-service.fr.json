@@ -1,6 +1,6 @@
 {
   "title": "Conditions d'utilisation",
-  "subtitle": "Dernière mise à jour : 16/06/2026 · Version 1.0",
+  "subtitle": "Dernière mise à jour : 30/08/2026 · Version 1.1",
   "intro": [
     {
       "kind": "p",
@@ -57,7 +57,10 @@
         {
           "kind": "list",
           "items": [
-            "Les frais sont facturés à l'avance selon le cycle de facturation du forfait (mensuel ou annuel).",
+            "Les abonnements en libre-service sont facturés mensuellement à l'avance à compter de la date d'achat. Les changements de forfait et de capacité récurrente sont calculés au prorata par Paddle.",
+            "Free est permanent, ne nécessite aucune carte et comporte des quotas mensuels. Il ne s'agit pas d'un essai à durée limitée.",
+            "Les packs RAG augmenté et RAG agentique sont des achats uniques de crédits sans expiration ; la capacité de corpus ajoutée est récurrente. Aucun dépassement n'est facturé automatiquement.",
+            "Le traitement inclus est soumis à un usage raisonnable afin de protéger la disponibilité et les performances partagées ; en cas d'usage anormal, nous pouvons suspendre les chargements et vous contacter avant toute restriction durable.",
             "Les prix peuvent changer ; nous donnerons un préavis raisonnable, et les changements prennent effet au cycle de facturation suivant.",
             "Un paiement tardif ou en échec peut entraîner la suspension du Service après préavis.",
             "Sauf disposition contraire de la loi applicable, les frais ne sont pas remboursables pour les périodes déjà commencées."
@@ -82,7 +85,7 @@
           "items": [
             "**Propriété.** Vous conservez la propriété de vos Données du Client, y compris les documents originaux et les index, vecteurs et contenus dérivés générés à partir de ceux-ci. Nous n'acquérons aucun droit de propriété sur vos Données du Client.",
             "**Licence limitée en notre faveur.** Vous nous accordez une licence limitée, non exclusive et révocable pour héberger, traiter, transmettre, indexer et afficher vos Données du Client uniquement afin de vous fournir et de maintenir le Service. Cette licence n'autorise aucun autre usage.",
-            "**Aucune utilisation pour l'entraînement ou à des fins secondaires.** Nous ne vendons, ne louons ni ne divulguons vos Données du Client, et nous ne les utilisons pas pour entraîner nos modèles d'intelligence artificielle ou ceux de tiers, ni à des fins publicitaires ou à toute autre fin que la fourniture du Service.",
+            "**Aucune finalité secondaire de RAGfly.** Nous ne vendons pas les Données du Client et ne les utilisons ni pour la publicité ni pour entraîner des modèles appartenant à RAGfly. Le traitement par des modèles tiers est soumis aux politiques du fournisseur concerné ; avec Free, les fournisseurs économiques actifs sont publiés et exigent une acceptation explicite avant traitement.",
             "**Isolement.** Les Données du Client sont structurellement isolées de celles des autres clients. Aucun groupe, entité ou client ne peut accéder aux données d'un autre.",
             "**Portabilité et restitution.** Vous pouvez exporter ou demander la restitution de vos Données du Client à tout moment pendant la durée du Contrat et pendant le délai de grâce postérieur à la résiliation décrit à la Section 12.",
             "**Suppression.** À votre demande, ou après la résiliation et le délai de grâce applicable, nous supprimerons vos Données du Client de nos systèmes, sauf lorsque la loi en impose la conservation.",
@@ -122,7 +125,7 @@
       "blocks": [
         {
           "kind": "p",
-          "text": "Le Service peut s'intégrer à des modèles d'IA tiers (par exemple Anthropic, OpenAI, Google) ou à des modèles propriétaires, selon votre forfait et votre configuration. Lorsque vous sélectionnez un modèle tiers, le traitement correspondant est également soumis aux conditions de ce fournisseur. Les réponses générées par IA peuvent contenir des inexactitudes ; il vous incombe de vérifier les informations avant de vous y fier. Le Service ne constitue pas un conseil juridique, financier, médical ou autre conseil professionnel."
+          "text": "Le Service intègre des fournisseurs de modèles d'IA susceptibles d'évoluer. Avec les forfaits configurables, vous pouvez sélectionner ou fournir des prestataires ; avec Free, les fournisseurs économiques actifs sont publiés dans Mon compte et une acceptation explicite est demandée avant le premier traitement. Le traitement de chaque fournisseur est également soumis à ses propres conditions et politique de confidentialité. Les réponses générées par IA peuvent contenir des inexactitudes et doivent être vérifiées."
         }
       ]
     },

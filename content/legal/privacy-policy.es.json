@@ -1,6 +1,6 @@
 {
   "title": "Política de Privacidad",
-  "subtitle": "Última actualización: 16/06/2026 · Versión 1.0",
+  "subtitle": "Última actualización: 30/08/2026 · Versión 1.1",
   "intro": [
     {
       "kind": "p",
@@ -24,7 +24,7 @@
           "kind": "list",
           "items": [
             "**Datos de cuenta y autenticación** (descritos en la Sección 2). Respecto de estos datos actuamos como **responsable del tratamiento**: decidimos cómo y por qué se tratan para operar el Servicio.",
-            "**Datos del Cliente** — los documentos y el contenido que usted carga, conecta o procesa a través del Servicio. Respecto de estos datos actuamos como **encargado del tratamiento** por cuenta suya. Usted (o su organización) es el responsable. Tratamos los Datos del Cliente únicamente según sus instrucciones y conforme a los Términos de Servicio, y **usted es su propietario en todo momento**. No usamos los Datos del Cliente para entrenar modelos de IA ni para ningún fin distinto de prestarle el Servicio."
+            "**Datos del Cliente** — el contenido extraído, referencias, metadatos, chunks, embeddings y configuraciones que usted conecta o procesa. No almacenamos sus archivos originales en RAGfly Cloud. Actuamos como **encargado del tratamiento** por cuenta suya y usted conserva la propiedad. RAGfly no usa estos datos para publicidad ni para entrenar modelos propios; el tratamiento por proveedores de modelos se limita a prestar el Servicio y queda sujeto a las políticas del proveedor aplicable."
           ]
         }
       ]
@@ -72,7 +72,7 @@
         },
         {
           "kind": "p",
-          "text": "**No** vendemos información personal, y **no** usamos los Datos del Cliente para entrenar modelos de IA ni para publicidad."
+          "text": "**No** vendemos información personal ni usamos los Datos del Cliente para publicidad o para entrenar modelos propios de RAGfly. Los proveedores de modelos pueden tratar el contenido estrictamente para ejecutar la operación solicitada, bajo sus propios términos y políticas."
         }
       ]
     },
@@ -98,7 +98,7 @@
           "kind": "list",
           "items": [
             "**Subencargados y proveedores de servicios** — como proveedores de alojamiento en la nube, bases de datos e infraestructura — obligados por deberes de confidencialidad y protección de datos.",
-            "**Proveedores de modelos de IA** — cuando usted selecciona un modelo de terceros (por ejemplo, Anthropic, OpenAI, Google), el contenido pertinente es tratado por ese proveedor con sujeción a sus términos; en los planes compatibles puede elegir qué modelo se utiliza.",
+            "**Proveedores de modelos de IA** — el contenido estrictamente necesario para la operación puede ser tratado por el proveedor configurado. Los proveedores y modelos pueden cambiar. En Free, la lista vigente se muestra en Mi Cuenta y requiere aceptación explícita antes del primer procesamiento; otros planes permiten la selección o configuración disponible para el plan.",
             "**Proveedores de identidad** — para autenticar su inicio de sesión (por ejemplo, Microsoft Entra ID).",
             "**Aspectos legales y de seguridad** — cuando lo exige la ley o para proteger derechos, la seguridad y la integridad del Servicio.",
             "**Transmisiones empresariales** — en relación con una fusión, adquisición o reorganización, preservando las protecciones de esta política."

@@ -1,6 +1,6 @@
 {
   "title": "Política de Reembolso",
-  "subtitle": "Última atualização: 04/07/2026 · Versão 1.0",
+  "subtitle": "Última atualização: 30/08/2026 · Versão 1.1",
   "intro": [
     {
       "kind": "p",
@@ -28,7 +28,7 @@
       "blocks": [
         {
           "kind": "p",
-          "text": "Nossos planos pagos (**Starter**, **Growth** e **Scale**) são assinaturas recorrentes cobradas antecipadamente a cada ciclo de faturamento (mensal ou anual). Os planos pagos **não incluem período de teste gratuito**; o plano Free é a forma de avaliar o Serviço antes de assinar."
+          "text": "Nossos planos pagos (**Starter**, **Growth** e **Scale**) são assinaturas mensais recorrentes cobradas antecipadamente a partir da data da compra. Não incluem teste com vencimento; o plano Free permanente permite avaliar o Serviço antes de assinar."
         },
         {
           "kind": "list",
@@ -60,11 +60,11 @@
     },
     {
       "id": "sec-4",
-      "heading": "4. Cobranças por Uso e Cobranças Avulsas",
+      "heading": "4. Adicionais e Cobranças Avulsas",
       "blocks": [
         {
           "kind": "p",
-          "text": "As cobranças por uso que exceda as cotas incluídas no seu plano (overage) e quaisquer outras cobranças avulsas **não são reembolsáveis uma vez que o uso correspondente tenha ocorrido**, exceto quando exigido pela lei aplicável."
+          "text": "O RAGfly não cobra excedente automático. Os pacotes de crédito são compras únicas e não expiram; a capacidade adicional de corpus é mensal e recorrente. Salvo exigência legal, um pacote já creditado ou consumido e um período recorrente já iniciado não são reembolsáveis."
         }
       ]
     },

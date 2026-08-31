@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────
-// FUENTE ÚNICA DE VERDAD — PLANES DE RAGFLY
+// SNAPSHOT DE RESERVA — la fuente viva es GET /pagos/catalogo-publico (BD)
 // ─────────────────────────────────────────────────────────────────────────
 //
 // Editas SOLO este archivo (en español). Luego corres:
@@ -18,8 +18,8 @@
 //   - "resaltado: true" marca el plan recomendado (solo uno).
 //   - "featuresIniciales" se muestran primero; luego "limites"; luego "features".
 //
-// MODELO (jul-2026): planes por Pages, Retrievals y Verified Answers, con
-// add-ons explícitos para Pages, Agentic Retrieval y packs de Verified Answers.
+// MODELO (ago-2026): corpus activo, Retrieval simple, RAG Aumentado y RAG
+// Agéntico, con adicionales explícitos y sin overage automático.
 // Superficies MCP/REST/CLI/SDK en todos los planes. Margen vive en la
 // recuperación/generación verificada (valor); storage/infra a costo.
 // Fuente de cifras: la BD (tablas `caracteristicas_plan` + `planes`) — canónica.
@@ -29,19 +29,19 @@
 export const planes = [
   {
     nombre: 'Free',
-    sub: 'POC y evaluación',
+    sub: 'Para probar el valor completo',
     precio: 'USD $0/mes',
     resaltado: false,
     cta: 'Empezar gratis',
     limites: {
-      tokens: '500 Pages totales',
-      vectores: '2 Entities',
+      tokens: '1.000 páginas de corpus activo',
+      vectores: '2 entidades (entornos aislados)',
     },
     features: [
-      '25 Retrievals/día',
-      '50 Verified Answers totales',
-      'Playground incluido',
-      '*',
+      '1.500 Retrieval simple/mes',
+      '30 RAG Aumentado/mes',
+      '5 RAG Agéntico/mes',
+      '4 áreas · 5 Espacios de Trabajo · síntesis de hasta 1.500 páginas',
     ],
   },
   {
@@ -51,16 +51,16 @@ export const planes = [
     resaltado: false,
     cta: 'Empezar',
     limites: {
-      tokens: '2.000 Pages/mes',
-      vectores: '5 Entities',
+      tokens: '10.000 páginas de corpus activo',
+      vectores: '5 entidades (entornos aislados)',
     },
     features: [
-      '5.000 Retrievals/mes',
-      '300 Verified Answers/mes',
-      'Pack adicional: +250 Verified Answers por $25',
+      '5.000 Retrieval simple/mes',
+      '300 RAG Aumentado/mes',
+      '50 RAG Agéntico/mes',
+      'Adicionales: corpus +10.000/$10 mes · RAG Aumentado +500/$35 · RAG Agéntico +50/$59',
       'RAGfly Desktop',
-      'Agentic Retrieval add-on',
-      '**',
+      '12 áreas · 10 Espacios de Trabajo · síntesis de hasta 10.000 páginas',
     ],
   },
   {
@@ -70,17 +70,17 @@ export const planes = [
     resaltado: true,
     cta: 'Empezar',
     limites: {
-      tokens: '10.000 Pages/mes',
-      vectores: '10 Entities',
+      tokens: '50.000 páginas de corpus activo',
+      vectores: '25 entidades (entornos aislados)',
     },
     featuresIniciales: ['Todo lo de Starter'],
     features: [
-      '25.000 Retrievals/mes',
-      '1.500 Verified Answers/mes',
-      'Pack adicional: +1.500 Verified Answers por $120',
+      '25.000 Retrieval simple/mes',
+      '1.500 RAG Aumentado/mes',
+      '150 RAG Agéntico/mes',
+      'Adicionales: corpus +10.000/$10 mes · RAG Aumentado +500/$35 · RAG Agéntico +50/$59',
       'Control por Área, parsing-BYOK y embedding-BYOK',
-      'Agentic Retrieval add-on',
-      '***',
+      '50 áreas · 50 Espacios de Trabajo · síntesis de hasta 50.000 páginas',
     ],
   },
   {
@@ -90,22 +90,22 @@ export const planes = [
     resaltado: false,
     cta: 'Empezar',
     limites: {
-      tokens: '40.000 Pages/mes',
-      vectores: '25 Entities',
+      tokens: '250.000 páginas de corpus activo',
+      vectores: '150 entidades (entornos aislados)',
     },
     featuresIniciales: ['Todo lo de Growth'],
     features: [
-      '100.000 Retrievals/mes',
-      '5.000 Verified Answers/mes',
-      'Pack adicional: +10.000 Verified Answers por $700',
+      '100.000 Retrieval simple/mes',
+      '5.000 RAG Aumentado/mes',
+      '500 RAG Agéntico/mes',
+      'Adicionales: corpus +10.000/$10 mes · RAG Aumentado +500/$35 · RAG Agéntico +50/$59',
       'BYO base vectorial + BYO LLM',
-      'Agentic Retrieval add-on',
-      '****',
+      '200 áreas · 200 Espacios de Trabajo · síntesis de hasta 200.000 páginas',
     ],
   },
   {
     nombre: 'Enterprise / Soberano',
-    sub: 'Contrato anual y despliegue dedicado',
+    sub: 'Soberanía y condiciones a medida',
     precio: 'Custom',
     resaltado: false,
     cta: 'Hablar con nosotros',
@@ -120,11 +120,10 @@ export const planes = [
       'parsing-BYOK + embedding-BYOK + base vectorial propia',
       'DPA/SLA',
       'Despliegue dedicado si aplica',
-      '*****',
     ],
   },
 ]
 
 // Nota al pie de la tabla de planes (se traduce con /ragfly-idiomas-sitio).
 export const notaPlanes =
-  '* Free es POC con límites totales, no un plan productivo.\n** Overage se factura solo cuando el uso supera el cupo incluido del plan.\n*** Control por Área · parsing-BYOK · embedding-BYOK queda sujeto a configuración inicial del grupo.\n**** BYO requiere revisión técnica de la base vectorial y del LLM elegido.\n***** Enterprise/Soberano es sales-assisted: contrato anual, DPA/SLA y despliegue dedicado si aplica.'
+  'Free es permanente, sin tarjeta y con cupos mensuales. Los planes pagados permiten packs manuales y capacidad recurrente de corpus; no existe sobreconsumo automático. El procesamiento incluido está sujeto a uso razonable.'

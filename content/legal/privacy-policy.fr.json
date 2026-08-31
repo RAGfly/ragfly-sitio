@@ -1,6 +1,6 @@
 {
   "title": "Politique de confidentialité",
-  "subtitle": "Dernière mise à jour : 16/06/2026 · Version 1.0",
+  "subtitle": "Dernière mise à jour : 30/08/2026 · Version 1.1",
   "intro": [
     {
       "kind": "p",
@@ -24,7 +24,7 @@
           "kind": "list",
           "items": [
             "**Données de compte et d'authentification** (décrites à la Section 2). Pour ces données, nous agissons en tant que **responsable du traitement** : nous décidons comment et pourquoi elles sont traitées pour exploiter le Service.",
-            "**Données du Client** — les documents et contenus que vous téléversez, connectez ou traitez via le Service. Pour ces données, nous agissons en tant que **sous-traitant** pour votre compte. Vous (ou votre organisation) êtes le responsable du traitement. Nous traitons les Données du Client uniquement selon vos instructions et conformément aux Conditions d'utilisation, et **vous en êtes propriétaire à tout moment**. Nous n'utilisons pas les Données du Client pour entraîner des modèles d'IA ni à toute autre fin que la fourniture du Service."
+            "**Données du Client** — contenu extrait, références, métadonnées, chunks, embeddings et configurations que vous connectez ou traitez. Nous ne stockons pas vos fichiers originaux dans RAGfly Cloud. Nous agissons comme **sous-traitant** et vous en conservez la propriété. RAGfly n'utilise pas ces données pour la publicité ni pour entraîner ses propres modèles ; le traitement par les fournisseurs est limité au Service et soumis à leurs politiques."
           ]
         }
       ]
@@ -72,7 +72,7 @@
         },
         {
           "kind": "p",
-          "text": "Nous ne vendons **pas** d'informations personnelles, et nous n'utilisons **pas** les Données du Client pour entraîner des modèles d'IA ou à des fins publicitaires."
+          "text": "Nous ne vendons **pas** d'informations personnelles et n'utilisons pas les Données du Client à des fins publicitaires ou pour entraîner des modèles appartenant à RAGfly. Les fournisseurs peuvent traiter le contenu uniquement pour exécuter l'opération demandée, selon leurs conditions et politiques."
         }
       ]
     },
@@ -98,7 +98,7 @@
           "kind": "list",
           "items": [
             "**Sous-traitants ultérieurs et prestataires de services** — tels que les fournisseurs d'hébergement cloud, de bases de données et d'infrastructure — liés par des obligations de confidentialité et de protection des données.",
-            "**Fournisseurs de modèles d'IA** — lorsque vous sélectionnez un modèle tiers (par exemple Anthropic, OpenAI, Google), le contenu pertinent est traité par ce fournisseur sous réserve de ses conditions ; sur les forfaits compatibles, vous pouvez choisir quel modèle est utilisé.",
+            "**Fournisseurs de modèles d'IA** — le contenu strictement nécessaire peut être traité par le fournisseur configuré. Les fournisseurs et modèles peuvent changer. Avec Free, la liste active figure dans Mon compte et exige une acceptation explicite avant le premier traitement ; les autres forfaits proposent la sélection ou configuration disponible.",
             "**Fournisseurs d'identité** — pour authentifier votre connexion (par exemple Microsoft Entra ID).",
             "**Aspects juridiques et de sécurité** — lorsque la loi l'exige ou pour protéger les droits, la sécurité et l'intégrité du Service.",
             "**Transferts d'entreprise** — dans le cadre d'une fusion, d'une acquisition ou d'une réorganisation, en préservant les protections de la présente politique."

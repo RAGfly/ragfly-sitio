@@ -1,6 +1,6 @@
 {
   "title": "Politique de Remboursement",
-  "subtitle": "Dernière mise à jour : 04/07/2026 · Version 1.0",
+  "subtitle": "Dernière mise à jour : 30/08/2026 · Version 1.1",
   "intro": [
     {
       "kind": "p",
@@ -28,7 +28,7 @@
       "blocks": [
         {
           "kind": "p",
-          "text": "Nos offres payantes (**Starter**, **Growth** et **Scale**) sont des abonnements récurrents facturés à l'avance pour chaque cycle de facturation (mensuel ou annuel). Les offres payantes **n'incluent pas de période d'essai gratuite** ; l'offre Free est le moyen d'évaluer le Service avant de souscrire."
+          "text": "Nos offres payantes (**Starter**, **Growth** et **Scale**) sont des abonnements mensuels récurrents facturés à l'avance à compter de la date d'achat. Elles ne comportent pas d'essai à durée limitée ; l'offre Free permanente permet d'évaluer le Service avant de souscrire."
         },
         {
           "kind": "list",
@@ -60,11 +60,11 @@
     },
     {
       "id": "sec-4",
-      "heading": "4. Frais à l'Usage et Frais Ponctuels",
+      "heading": "4. Options et Frais Ponctuels",
       "blocks": [
         {
           "kind": "p",
-          "text": "Les frais liés à un usage dépassant les quotas inclus dans votre offre (dépassement) et tout autre frais ponctuel **ne sont pas remboursables une fois que l'usage correspondant a été effectué**, sauf lorsque la loi applicable l'exige."
+          "text": "RAGfly ne facture aucun dépassement automatique. Les packs de crédits sont des achats uniques sans expiration ; la capacité de corpus ajoutée est mensuelle et récurrente. Sauf obligation légale, un pack déjà crédité ou consommé et une période récurrente déjà commencée ne sont pas remboursables."
         }
       ]
     },

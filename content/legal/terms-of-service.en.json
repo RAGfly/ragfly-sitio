@@ -1,6 +1,6 @@
 {
   "title": "Terms of Service",
-  "subtitle": "Last updated: 16/06/2026 · Version 1.0",
+  "subtitle": "Last updated: 30/08/2026 · Version 1.1",
   "intro": [
     {
       "kind": "p",
@@ -57,7 +57,10 @@
         {
           "kind": "list",
           "items": [
-            "Fees are billed in advance according to the plan's billing cycle (monthly or annual).",
+            "Self-service subscriptions are billed monthly in advance from the purchase date. Plan and recurring-capacity changes are prorated through Paddle's mechanism.",
+            "Free is permanent, requires no payment card, and has monthly allowances. It is not an expiring trial.",
+            "Augmented RAG and Agentic RAG packs are one-time purchases of non-expiring credits; added corpus capacity is recurring. No excess usage is charged automatically.",
+            "Included processing is subject to reasonable use to protect shared availability and performance; for anomalous usage we may pause uploads and contact you before imposing a lasting restriction.",
             "Prices may change; we will give reasonable advance notice, and changes take effect at the next billing cycle.",
             "Late or failed payment may result in suspension of the Service after notice.",
             "Except where required by applicable law, fees are non-refundable for periods already started."
@@ -82,7 +85,7 @@
           "items": [
             "**Ownership.** You retain ownership of your Customer Data, including original documents and the indexes, vectors, and derived content generated from them. We acquire no ownership rights in your Customer Data.",
             "**Limited license to us.** You grant us a limited, non-exclusive, revocable license to host, process, transmit, index, and display your Customer Data solely to provide and maintain the Service for you. This license authorizes no other use.",
-            "**No use for training or secondary purposes.** We do not sell, rent, or disclose your Customer Data, and we do not use it to train our own or any third party's artificial-intelligence models, or for advertising or any purpose other than providing the Service to you.",
+            "**No RAGfly secondary purposes.** We do not sell Customer Data or use it for advertising or to train RAGfly-owned models. Processing by third-party models is subject to the applicable provider's policies; on Free, the active economy providers are disclosed and require explicit acceptance before content is processed.",
             "**Isolation.** Customer Data is structurally isolated from that of other customers. No group, entity, or customer can access another's data.",
             "**Portability and return.** You may export or request the return of your Customer Data at any time during the term and during the post-termination grace period described in Section 12.",
             "**Deletion.** Upon your request, or after termination and the applicable grace period, we will delete your Customer Data from our systems, except where retention is required by law.",
@@ -122,7 +125,7 @@
       "blocks": [
         {
           "kind": "p",
-          "text": "The Service may integrate with third-party AI models (for example, Anthropic, OpenAI, Google) or with proprietary models, depending on your plan and configuration. When you select a third-party model, the corresponding processing is also subject to that provider's terms. AI-generated responses may contain inaccuracies; you are responsible for verifying information before relying on it. The Service does not constitute legal, financial, medical, or other professional advice."
+          "text": "The Service integrates with AI model providers that may change over time. On configurable plans you may select or supply providers; on Free, the active economy providers are published in My Account and explicit acceptance is requested before the first processing. Each provider's processing is also subject to its own terms and privacy policy. AI-generated responses may contain inaccuracies; you are responsible for verifying information before relying on it. The Service does not constitute legal, financial, medical, or other professional advice."
         }
       ]
     },

@@ -1,6 +1,6 @@
 {
   "title": "Nutzungsbedingungen",
-  "subtitle": "Zuletzt aktualisiert: 16/06/2026 · Version 1.0",
+  "subtitle": "Zuletzt aktualisiert: 30/08/2026 · Version 1.1",
   "intro": [
     {
       "kind": "p",
@@ -57,7 +57,10 @@
         {
           "kind": "list",
           "items": [
-            "Die Gebühren werden im Voraus gemäß dem Abrechnungszyklus des Tarifs (monatlich oder jährlich) berechnet.",
+            "Self-Service-Abonnements werden ab Kaufdatum monatlich im Voraus abgerechnet. Änderungen von Tarif und wiederkehrender Kapazität werden über Paddle anteilig berechnet.",
+            "Free ist dauerhaft, erfordert keine Karte und hat monatliche Kontingente. Es ist kein befristeter Test.",
+            "Pakete für Erweitertes RAG und Agentisches RAG sind einmalige Käufe nicht verfallender Guthaben; zusätzliche Korpuskapazität ist wiederkehrend. Mehrverbrauch wird niemals automatisch berechnet.",
+            "Die enthaltene Verarbeitung unterliegt einer angemessenen Nutzung zum Schutz gemeinsamer Verfügbarkeit und Leistung; bei ungewöhnlicher Nutzung können wir Uploads pausieren und Sie kontaktieren, bevor eine dauerhafte Einschränkung erfolgt.",
             "Preise können sich ändern; wir kündigen dies mit angemessener Frist an, und Änderungen treten zum nächsten Abrechnungszyklus in Kraft.",
             "Verspätete oder fehlgeschlagene Zahlungen können nach Ankündigung zur Sperrung des Dienstes führen.",
             "Soweit nicht durch geltendes Recht vorgeschrieben, sind Gebühren für bereits begonnene Zeiträume nicht erstattungsfähig."
@@ -82,7 +85,7 @@
           "items": [
             "**Eigentum.** Sie behalten das Eigentum an Ihren Kundendaten, einschließlich der Originaldokumente und der daraus erzeugten Indizes, Vektoren und abgeleiteten Inhalte. Wir erwerben keine Eigentumsrechte an Ihren Kundendaten.",
             "**Begrenzte Lizenz an uns.** Sie gewähren uns eine begrenzte, nicht ausschließliche, widerrufliche Lizenz zum Hosten, Verarbeiten, Übertragen, Indexieren und Anzeigen Ihrer Kundendaten ausschließlich zur Bereitstellung und Aufrechterhaltung des Dienstes für Sie. Diese Lizenz berechtigt zu keiner anderen Nutzung.",
-            "**Keine Nutzung für Training oder Sekundärzwecke.** Wir verkaufen, vermieten oder offenbaren Ihre Kundendaten nicht und verwenden sie nicht, um unsere eigenen oder die Modelle Dritter für künstliche Intelligenz zu trainieren, noch für Werbung oder einen anderen Zweck als die Bereitstellung des Dienstes für Sie.",
+            "**Keine sekundären Zwecke von RAGfly.** Wir verkaufen Kundendaten nicht und verwenden sie weder für Werbung noch zum Training RAGfly-eigener Modelle. Die Verarbeitung durch Drittmodelle unterliegt den Richtlinien des jeweiligen Anbieters; bei Free werden die aktiven Economy-Anbieter offengelegt und müssen vor der Verarbeitung ausdrücklich akzeptiert werden.",
             "**Isolierung.** Kundendaten sind strukturell von denen anderer Kunden isoliert. Keine Gruppe, Einheit oder Kunde kann auf die Daten eines anderen zugreifen.",
             "**Übertragbarkeit und Rückgabe.** Sie können Ihre Kundendaten jederzeit während der Laufzeit und während der in Abschnitt 12 beschriebenen Nachfrist nach Kündigung exportieren oder deren Rückgabe verlangen.",
             "**Löschung.** Auf Ihre Anfrage oder nach Kündigung und Ablauf der geltenden Nachfrist löschen wir Ihre Kundendaten aus unseren Systemen, außer wenn eine Aufbewahrung gesetzlich vorgeschrieben ist.",
@@ -122,7 +125,7 @@
       "blocks": [
         {
           "kind": "p",
-          "text": "Der Dienst kann je nach Ihrem Tarif und Ihrer Konfiguration mit KI-Modellen Dritter (zum Beispiel Anthropic, OpenAI, Google) oder mit proprietären Modellen integriert werden. Wenn Sie ein Modell eines Dritten auswählen, unterliegt die entsprechende Verarbeitung auch den Bedingungen dieses Anbieters. KI-generierte Antworten können Ungenauigkeiten enthalten; Sie sind dafür verantwortlich, Informationen zu überprüfen, bevor Sie sich darauf verlassen. Der Dienst stellt keine rechtliche, finanzielle, medizinische oder sonstige professionelle Beratung dar."
+          "text": "Der Dienst integriert Anbieter von KI-Modellen, die sich im Laufe der Zeit ändern können. In konfigurierbaren Tarifen können Sie Anbieter auswählen oder bereitstellen; bei Free werden die aktiven Economy-Anbieter in Mein Konto veröffentlicht und vor der ersten Verarbeitung ausdrücklich akzeptiert. Die Verarbeitung jedes Anbieters unterliegt zusätzlich dessen Bedingungen und Datenschutzrichtlinie. KI-generierte Antworten können Ungenauigkeiten enthalten und müssen überprüft werden."
         }
       ]
     },
