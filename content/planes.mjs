@@ -1,14 +1,10 @@
 // ─────────────────────────────────────────────────────────────────────────
-// SNAPSHOT DE RESERVA — la fuente viva es GET /pagos/catalogo-publico (BD)
+// ARTEFACTO LEGADO — la fuente viva es GET /pagos/catalogo-publico (BD)
 // ─────────────────────────────────────────────────────────────────────────
 //
-// Editas SOLO este archivo (en español). Luego corres:
-//
-//     npm run build:planes
-//
-// Eso regenera el bloque "planes" de messages/es.json y los metadatos
-// (resaltado + nº de features) que usa la landing. Para traducir a los
-// otros idiomas (en/pt/fr/de) corre la skill:  /ragfly-idiomas-sitio
+// No participa del runtime ni es el fallback operativo. Se conserva como snapshot
+// histórico legible; el fallback vigente vive en PricingSection.tsx. No ejecutar
+// build:planes para publicar la oferta.
 //
 // REGLAS:
 //   - "nombre" NO se traduce (es nombre comercial / coincide con Paddle).
@@ -79,7 +75,7 @@ export const planes = [
       '1.500 RAG Aumentado/mes',
       '150 RAG Agéntico/mes',
       'Adicionales: corpus +10.000/$10 mes · RAG Aumentado +500/$35 · RAG Agéntico +50/$59',
-      'Control por Área, parsing-BYOK y embedding-BYOK',
+      'Operaciones entre Espacios · parsing-BYOK · embedding-BYOK · agentic-BYOK',
       '50 áreas · 50 Espacios de Trabajo · síntesis de hasta 50.000 páginas',
     ],
   },
@@ -99,7 +95,7 @@ export const planes = [
       '5.000 RAG Aumentado/mes',
       '500 RAG Agéntico/mes',
       'Adicionales: corpus +10.000/$10 mes · RAG Aumentado +500/$35 · RAG Agéntico +50/$59',
-      'BYO base vectorial + BYO LLM',
+      'Proyecto Supabase vectorial propio',
       '200 áreas · 200 Espacios de Trabajo · síntesis de hasta 200.000 páginas',
     ],
   },
@@ -115,9 +111,9 @@ export const planes = [
     },
     featuresIniciales: ['Todo lo de Scale'],
     features: [
-      'Retrievals custom',
-      'Verified Answers custom',
-      'parsing-BYOK + embedding-BYOK + base vectorial propia',
+      'Retrieval simple, RAG Aumentado y RAG Agéntico a convenir',
+      'BYO LLM + bases vectoriales soportadas',
+      'parsing-BYOK · embedding-BYOK · agentic-BYOK',
       'DPA/SLA',
       'Despliegue dedicado si aplica',
     ],

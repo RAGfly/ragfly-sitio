@@ -1,13 +1,15 @@
 // ─────────────────────────────────────────────────────────────────────────
-// build-planes.mjs — compila content/planes.mjs → messages/es.json + meta
+// LEGACY: build-planes.mjs — no participa del catálogo dinámico vigente.
 // ─────────────────────────────────────────────────────────────────────────
 //
 //   node scripts/build-planes.mjs       (o: npm run build:planes)
 //
-// Lee la fuente única (content/planes.mjs), reescribe el bloque "planes"
+// Lee el catálogo heredado (content/planes.mjs), reescribe el bloque "planes"
 // de messages/es.json y emite content/planes-meta.json (resaltado + conteo
-// de features) que consume app/page.tsx. NO toca los otros idiomas: para
+// de features). El runtime actual NO consume esos artefactos. NO toca los otros idiomas: para
 // eso corre la skill /ragfly-idiomas-sitio después.
+// La fuente operativa viva es GET /pagos/catalogo-publico (BD) y el fallback está
+// en components/sections/PricingSection.tsx. No ejecutar para publicar planes.
 // ─────────────────────────────────────────────────────────────────────────
 
 import { readFileSync, writeFileSync } from 'node:fs'
