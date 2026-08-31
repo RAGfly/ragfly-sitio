@@ -9,7 +9,7 @@
   },
   {
     "q": "¿Cuánto cuesta?",
-    "a": "Planes en USD: Free $0, Starter $39/mes, Growth $149/mes, Scale $590/mes y Enterprise/Soberano custom. Cada plan muestra su cupo de Pages, Retrievals, Verified Answers y Entities, además de los add-ons disponibles cuando aplican. Superficies MCP/REST/CLI/SDK en todos los planes."
+    "a": "Planes en USD: Free $0, Starter $39/mes, Growth $149/mes, Scale $590/mes y Enterprise a convenir. Cada plan muestra corpus activo, Retrieval simple, RAG Aumentado, RAG Agéntico y entidades; los planes pagados permiten adicionales manuales y no tienen sobreconsumo automático. MCP, REST, CLI y SDK están disponibles en todos los planes."
   },
   {
     "q": "¿Cómo funciona?",
@@ -29,7 +29,7 @@
   },
   {
     "q": "¿Puedo usar mi propia base vectorial y mi propio modelo?",
-    "a": "Sí. RAGfly es DB-agnóstico: en los planes avanzados traes tu propia base vectorial (BYO) y eliges tus propios modelos de embeddings y LLM, sin quedar atado a un proveedor."
+    "a": "Según el plan. Growth habilita parsing-BYOK, embedding-BYOK y agentic-BYOK; Scale agrega un proyecto Supabase vectorial propio; Enterprise admite LLM y bases vectoriales compatibles del cliente."
   },
   {
     "q": "¿Con qué modelos de IA funciona — Claude, GPT, Gemini?",
