@@ -135,15 +135,22 @@ Under **Ingestion connectors**, paste what you copied:
 | `Google Drive — OAuth Client ID` | the Client ID from step 1.4 |
 | `Google Drive — API Key` | the API key from step 1.5 |
 
-These are stored **per group**: each customer uses their own Google project, and
-credentials are shown masked.
+These are normally stored as a **group override**: each customer can use its own
+Google project, and credentials are shown masked. A RAGfly platform operator can
+instead set a general value inherited by groups; a non-empty group value takes
+precedence over that default.
 
-### 2.2 Turn the connector on
+### 2.2 Confirm the source is enabled
 
-Under **Feature flags**, switch **`Google Drive connector`** to `true`.
+There is **no Google Drive feature flag**. The connector appears when:
 
-That's it. The connector appears **only** when both conditions are met: the flag
-is on **and** the credentials are loaded.
+- the **Google Drive** ingestion source is enabled for the group, and
+- both credentials above are available (from the group override or a general
+  inherited value).
+
+New groups normally receive the source already enabled. If it is absent after
+you save the credentials and reload, ask your RAGfly platform operator to enable
+the **Google Drive** source for the group.
 
 ---
 
@@ -188,12 +195,10 @@ apply changes.
 
 ### The connector doesn't appear at all in the source selector
 
-Both conditions must hold, in Group Parameters:
-
-- the flag `Google Drive connector` is `true`, and
-- both credentials are loaded.
-
-If you just changed either one, reload the page.
+The **Google Drive** source must be enabled for the group and both credentials
+must be available. First reload the page after saving. If it is still absent,
+ask your RAGfly platform operator to enable the source or verify its inherited
+credentials; there is no feature flag to switch on.
 
 ### "This app is blocked" / verification warning
 

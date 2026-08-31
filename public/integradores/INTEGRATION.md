@@ -36,8 +36,8 @@ then follows the same analysis, chunking and vectorization stages.
 |---|---|---|---|
 | **Local folder — Web** | **Documents → Feed documents → Files** | None | The browser provides a relative path. A local agent can open it only when the same filesystem is available and `RAGFLY_ROOT` is configured. |
 | **Local folder — RAGfly Desktop** | RAGfly Desktop | Install and sign in to the Desktop app | The document can carry an absolute local path that an agent on that machine can open directly. |
-| **Google Drive** | **Documents → Feed documents → Google Drive** | OAuth Client ID + API Key + connector flag, per group | Cloud-only originals stay in Drive and are not exposed as local files. See [GOOGLE_DRIVE.md](GOOGLE_DRIVE.md). |
-| **Dropbox** | **Documents → Feed documents → Dropbox** | Dropbox App key + connector flag, per group | Cloud-only originals stay in Dropbox and are not exposed as local files. See [DROPBOX.md](DROPBOX.md). |
+| **Google Drive** | **Documents → Feed documents → Google Drive** | OAuth Client ID + API Key; the Google Drive source must be enabled for the group | Cloud-only originals stay in Drive and are not exposed as local files. See [GOOGLE_DRIVE.md](GOOGLE_DRIVE.md). |
+| **Dropbox** | **Documents → Feed documents → Dropbox** | Dropbox App key; the Dropbox source must be enabled for the group | Cloud-only originals stay in Dropbox and are not exposed as local files. See [DROPBOX.md](DROPBOX.md). |
 
 For Web ingestion — local folders, Google Drive and Dropbox — extraction runs
 in the browser. For cloud connectors, file bytes travel from the provider to
