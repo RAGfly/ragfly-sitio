@@ -12,8 +12,7 @@ export function Hero() {
     <div className="flex-1 flex flex-col items-center justify-between px-6 md:px-12 pb-12 md:pb-16 relative">
       <div className="pt-6 md:pt-10 z-10">
         <BlurIn className="inline-flex items-center gap-2 rounded-full bg-white/70 backdrop-blur-md border border-slm-dark/10 px-4 py-1.5">
-          <span className="inline-block w-1.5 h-1.5 rounded-full bg-gradient-to-br from-slm-brand-dark to-slm-brand-light" />
-          <span className="text-xs md:text-sm tracking-[0.04em] text-slm-dark/80">{t('hero.eyebrow')}</span>
+          <span className="font-[family-name:var(--font-dato)] text-xs md:text-sm tracking-[0.04em] text-slm-dark/80">{t('hero.eyebrow')}</span>
         </BlurIn>
       </div>
       <div className="flex-1 flex flex-col items-center justify-center z-10 gap-6">
@@ -32,7 +31,7 @@ export function Hero() {
         <BlurIn delay={0.09} className="font-helvetica-neue text-sm md:text-base text-slm-dark/75 tracking-[0.01em] max-w-2xl text-center leading-snug">
           {t('hero.lineaApoyo')}
         </BlurIn>
-        <BlurIn delay={0.1} className="font-helvetica-neue text-xs md:text-sm text-slm-gray-light tracking-[0.01em] max-w-2xl text-center leading-relaxed">
+        <BlurIn delay={0.1} className="font-[family-name:var(--font-interfaz)] text-xs md:text-sm text-slm-gray tracking-[0.01em] max-w-2xl text-center leading-relaxed">
           {t('hero.tagline')}
         </BlurIn>
       </div>
