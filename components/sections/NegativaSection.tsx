@@ -32,7 +32,7 @@ export function NegativaSection() {
           <p className="text-slm-light/60 font-helvetica-neue text-sm md:text-base italic leading-relaxed max-w-[520px]">
             {t('negativa.nota')}
           </p>
-          <div className="border-l border-slm-ambar/60 pl-4">
+          <div className="font-interfaz border-l border-slm-ambar/60 pl-4">
             <p className="text-slm-light/55 font-helvetica-neue text-base md:text-lg leading-relaxed max-w-[520px]">
               {t('negativa.pie')}
             </p>
@@ -84,7 +84,7 @@ export function NegativaSection() {
             </li>
           </ul>
 
-          <div className="flex flex-col gap-2 border-l border-slm-ambar/60 pl-4">
+          <div className="font-interfaz flex flex-col gap-2 border-l border-slm-ambar/60 pl-4">
             <span className="rf-anot text-slm-light/40">{t('negativa.respuestaTitulo')}</span>
             <p className="font-mono text-sm md:text-base text-slm-light/90 leading-relaxed">
               “{t('negativa.respuesta')}”

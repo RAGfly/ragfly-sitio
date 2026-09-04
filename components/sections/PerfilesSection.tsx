@@ -47,7 +47,7 @@ export function PerfilesSection() {
           ))}
         </div>
 
-        <p className="max-w-[820px] text-slm-dark font-helvetica-neue text-lg md:text-xl leading-relaxed border-l border-slm-brand/50 pl-5">
+        <p className="max-w-[820px] text-slm-dark font-interfaz text-lg md:text-xl leading-relaxed border-l border-slm-brand/50 pl-5">
           {t('perfiles.remate')}
         </p>
       </div>

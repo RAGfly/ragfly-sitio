@@ -33,7 +33,7 @@ export function SurfacesSection() {
             <span className="inline-block pb-[0.06em] bg-gradient-to-r from-slm-brand-dark via-slm-brand to-slm-brand-light bg-clip-text text-transparent">{t('superficies.tituloAccent')}</span>
           </BlurIn>
           <p className="text-base md:text-lg text-slm-gray font-helvetica-neue max-w-[560px] leading-relaxed">{t('superficies.descripcion')}</p>
-          <p className="font-mono text-xs md:text-[13px] text-slm-dark/70 leading-relaxed border-l border-slm-brand/50 pl-4 max-w-[620px]">
+          <p className="font-interfaz text-xs md:text-[13px] text-slm-dark/70 leading-relaxed border-l border-slm-brand/50 pl-4 max-w-[620px]">
             {t('superficies.planesNota')}
           </p>
         </div>
@@ -73,7 +73,7 @@ export function SurfacesSection() {
             {t('superficies.accionTitulo')}
           </h3>
           <p className="text-slm-gray font-helvetica-neue text-base md:text-lg leading-relaxed">{t('superficies.accionDesc')}</p>
-          <p className="font-mono text-sm text-slm-dark/80 border-l border-slm-brand/50 pl-4">{t('superficies.accionCita')}</p>
+          <p className="font-interfaz text-sm text-slm-dark/80 border-l border-slm-brand/50 pl-4">{t('superficies.accionCita')}</p>
           <p className="text-slm-dark/85 font-helvetica-neue text-base leading-relaxed">{t('superficies.accionRemate')}</p>
         </div>
       </div>

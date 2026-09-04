@@ -140,7 +140,7 @@ export function LockInSection() {
           ))}
         </div>
 
-        <p className="max-w-[820px] font-helvetica-neue text-lg md:text-xl leading-relaxed text-slm-light/90 border-l border-slm-brand-light/50 pl-5">
+        <p className="max-w-[820px] font-interfaz text-lg md:text-xl leading-relaxed text-slm-light/90 border-l border-slm-brand-light/50 pl-5">
           {t('lockin.remate')}
         </p>
       </div>

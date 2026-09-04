@@ -43,9 +43,15 @@
   --color-slm-light: var(--slm-light);
   --color-slm-cabina: var(--slm-cabina);
   --color-slm-ambar: var(--slm-ambar);
+  /* Manual de marca: 1º Inter (sans) · 2º Zalando Sans Expanded (dato:
+     etiquetas, folios, datos, código) · 3º Montserrat Alternates, que es la
+     fuente por defecto de la interfaz — reemplaza el stack por defecto de
+     Tailwind. Los alias heredados (helvetica-neue, manrope) resuelven a Inter. */
   --font-sans: var(--font-sans);
-  /* Tipografía unificada a marca v2.0: Inter como sans. El alias heredado se
-     conserva pero ahora resuelve a Inter (no Helvetica Neue). */
+  --font-dato: var(--font-dato);
+  --font-interfaz: var(--font-interfaz);
+  --default-font-family: var(--font-interfaz), system-ui, sans-serif;
+  --font-mono: var(--font-dato), system-ui, sans-serif;
   --font-helvetica-neue: var(--font-sans), 'Inter', Arial, sans-serif;
 }
 
@@ -64,6 +70,9 @@ body {
 /* Aliases heredados → todos resuelven a Inter (sans de marca v2.0). */
 .font-manrope { font-family: var(--font-sans), 'Inter', sans-serif; }
 .font-helvetica-neue { font-family: var(--font-sans), 'Inter', Arial, sans-serif; }
+
+/* Bloques con barra (border-l): el texto va en Montserrat Alternates. */
+.font-interfaz, .font-interfaz * { font-family: var(--font-interfaz), system-ui, sans-serif; }
 
 /* ============================================================
    Hero canvas — fondo animado con gradientes
@@ -173,9 +182,10 @@ body {
 /* Sistema v2 — dibujo técnico: anotación, línea fina y el eje de −11° */
 /* ------------------------------------------------------------------ */
 
-/* Anotación técnica: monoespaciada, mayúsculas, con tracking. */
+/* Anotación técnica: fuente de dato (Zalando Sans Expanded), mayúsculas,
+   con tracking. */
 .rf-anot {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: var(--font-dato), system-ui, sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.16em;
   font-size: 0.6875rem;

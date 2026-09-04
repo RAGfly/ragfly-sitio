@@ -46,7 +46,7 @@ export function PrecisoSection() {
               {t('preciso.hibridaTitulo')}
             </h3>
             <p className="text-slm-gray font-helvetica-neue text-base leading-relaxed">{t('preciso.hibridaDesc')}</p>
-            <p className="font-mono text-xs md:text-sm text-slm-dark/70 border-l border-slm-brand/50 pl-4 mt-auto">
+            <p className="font-interfaz text-xs md:text-sm text-slm-dark/70 border-l border-slm-brand/50 pl-4 mt-auto">
               {t('preciso.degradacionNota')}
             </p>
           </div>

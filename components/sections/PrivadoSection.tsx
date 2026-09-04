@@ -38,7 +38,7 @@ export function PrivadoSection() {
               {t('privado.manifiestoTitulo')}
             </h3>
             <p className="text-slm-gray font-helvetica-neue text-base leading-relaxed">{t('privado.manifiestoDesc')}</p>
-            <div className="border-l border-slm-brand/50 pl-4 flex flex-col gap-1">
+            <div className="font-interfaz border-l border-slm-brand/50 pl-4 flex flex-col gap-1">
               <p className="font-mono text-xs md:text-[13px] text-slm-dark/70 leading-relaxed">
                 {t('privado.subeTitulo')}
               </p>
@@ -59,7 +59,7 @@ export function PrivadoSection() {
               {t('privado.cartaTitulo')}
             </h3>
             <p className="text-slm-gray-light font-helvetica-neue text-base leading-relaxed">{t('privado.cartaDesc')}</p>
-            <div className="border-l border-slm-brand/60 pl-4 flex flex-col gap-1">
+            <div className="font-interfaz border-l border-slm-brand/60 pl-4 flex flex-col gap-1">
               <p className="font-mono text-xs md:text-[13px] text-white/75 leading-relaxed">
                 {t('privado.cartaCierreTitulo')}
               </p>
@@ -76,7 +76,7 @@ export function PrivadoSection() {
               {t('privado.byokTitulo')}
             </h3>
             <p className="text-slm-gray font-helvetica-neue text-base leading-relaxed">{t('privado.byokDesc')}</p>
-            <div className="border-l border-slm-brand/50 pl-4 flex flex-col gap-1 mt-auto">
+            <div className="font-interfaz border-l border-slm-brand/50 pl-4 flex flex-col gap-1 mt-auto">
               <p className="font-mono text-xs md:text-[13px] text-slm-dark/70 leading-relaxed">
                 {t('privado.byokNotaTitulo')}
               </p>
@@ -90,7 +90,7 @@ export function PrivadoSection() {
             </h3>
             <p className="text-slm-gray font-helvetica-neue text-base leading-relaxed">{t('privado.pisoDesc')}</p>
             <p className="text-slm-gray font-helvetica-neue text-base leading-relaxed">{t('privado.pisoVerificacion')}</p>
-            <p className="font-mono text-xs md:text-[13px] text-slm-dark/70 leading-relaxed border-l border-slm-brand/50 pl-4 mt-auto">
+            <p className="font-interfaz text-xs md:text-[13px] text-slm-dark/70 leading-relaxed border-l border-slm-brand/50 pl-4 mt-auto">
               {t('privado.pisoHonestidad')}
             </p>
           </div>
