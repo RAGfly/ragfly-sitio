@@ -10,7 +10,7 @@ export function Hero() {
   const t = useTranslations()
   return (
     <div className="flex-1 flex flex-col items-center justify-between px-6 md:px-12 pb-12 md:pb-16 relative">
-      <div className="pt-6 md:pt-10 z-10">
+      <div className="pt-6 md:pt-10 pb-9 md:pb-10 z-10">
         <BlurIn className="inline-flex items-center gap-2 rounded-full bg-white/70 backdrop-blur-md border border-slm-dark/10 px-4 py-1.5">
           <span className="font-[family-name:var(--font-dato)] text-xs md:text-sm tracking-[0.04em] text-slm-dark/80">{t('hero.eyebrow')}</span>
         </BlurIn>
