@@ -192,6 +192,12 @@ body {
   line-height: 1.4;
 }
 
+/* Variante chica de la anotación: el tamaño original (chips del pipeline). */
+.rf-anot-sm { font-size: 0.6875rem; }
+
+/* Anotación en la fuente de interfaz (Montserrat): estados del cuadro PREFLIGHT. */
+.rf-anot-interfaz { font-family: var(--font-interfaz), system-ui, sans-serif; }
+
 /* Acento de sección: un trazo fino sobre el único eje declarado. */
 .rf-eje {
   display: inline-block;

@@ -42,11 +42,11 @@ export function SimpleSection() {
             className="w-full h-auto"
           />
           <div className="flex flex-col gap-3">
-            <span className="rf-anot text-slm-dark/45">{t('simple.pipelineTitulo')}</span>
+            <span className="rf-anot rf-anot-sm text-slm-dark/45">{t('simple.pipelineTitulo')}</span>
             <ol className="flex flex-wrap items-center gap-x-3 gap-y-2">
               {ESTADOS.map((e, i) => (
                 <li key={e} className="flex items-center gap-3">
-                  <span className="rf-anot text-slm-dark/80 border border-slm-dark/12 px-2.5 py-1.5">{e}</span>
+                  <span className="rf-anot rf-anot-sm text-slm-dark/80 border border-slm-dark/12 px-2.5 py-1.5">{e}</span>
                   {i < ESTADOS.length - 1 && <span className="text-slm-dark/25" aria-hidden="true">→</span>}
                 </li>
               ))}

@@ -43,7 +43,7 @@ export function NegativaSection() {
         <div className="border border-white/12 rounded-none p-7 md:p-9 flex flex-col gap-6 bg-white/[0.02]">
           <span className="rf-anot text-slm-brand-light/70">{t('negativa.listaTitulo')}</span>
 
-          <ul className="flex flex-col">
+          <ul className="font-interfaz flex flex-col">
             {chequeos.map((c, i) => {
               const delay = `${i * 1.1}s`
               return (
@@ -56,10 +56,10 @@ export function NegativaSection() {
                       <path d="M4 10 l4 4 l8 -10" stroke="#E8A33D" strokeWidth="1.5" strokeLinecap="round" />
                     </svg>
                   </span>
-                  <span className="flex-1 font-mono text-sm text-slm-light/90">{c}</span>
+                  <span className="flex-1 text-sm text-slm-light/90">{c}</span>
                   <span className="pf-stack">
-                    <span className="rf-anot text-slm-light/40 pf-fade-out" style={{ animationDelay: delay }}>{t('negativa.estadoPendiente')}</span>
-                    <span className="rf-anot text-slm-ambar/80 pf-fade-in" style={{ animationDelay: delay }}>{t('negativa.estadoOk')}</span>
+                    <span className="rf-anot rf-anot-interfaz text-slm-light/40 pf-fade-out" style={{ animationDelay: delay }}>{t('negativa.estadoPendiente')}</span>
+                    <span className="rf-anot rf-anot-interfaz text-slm-ambar/80 pf-fade-in" style={{ animationDelay: delay }}>{t('negativa.estadoOk')}</span>
                   </span>
                 </li>
               )
@@ -74,19 +74,19 @@ export function NegativaSection() {
                 </svg>
               </span>
               <span className="pf-stack flex-1">
-                <span className="font-mono text-sm text-slm-light/90 pf-fade-out" style={{ animationDelay: '3.3s' }}>{t('negativa.item3')}</span>
-                <span className="font-mono text-sm text-slm-light/55 line-through decoration-white/25 pf-fade-in" style={{ animationDelay: '3.3s' }}>{t('negativa.item3')}</span>
+                <span className="text-sm text-slm-light/90 pf-fade-out" style={{ animationDelay: '3.3s' }}>{t('negativa.item3')}</span>
+                <span className="text-sm text-slm-light/55 line-through decoration-white/25 pf-fade-in" style={{ animationDelay: '3.3s' }}>{t('negativa.item3')}</span>
               </span>
               <span className="pf-stack">
-                <span className="rf-anot text-slm-light/40 pf-fade-out" style={{ animationDelay: '3.3s' }}>{t('negativa.estadoPendiente')}</span>
-                <span className="rf-anot text-[#C08A3A] pf-fade-in" style={{ animationDelay: '3.3s' }}>{t('negativa.estadoBloqueado')}</span>
+                <span className="rf-anot rf-anot-interfaz text-slm-light/40 pf-fade-out" style={{ animationDelay: '3.3s' }}>{t('negativa.estadoPendiente')}</span>
+                <span className="rf-anot rf-anot-interfaz text-[#C08A3A] pf-fade-in" style={{ animationDelay: '3.3s' }}>{t('negativa.estadoBloqueado')}</span>
               </span>
             </li>
           </ul>
 
           <div className="font-interfaz flex flex-col gap-2 border-l border-slm-ambar/60 pl-4">
-            <span className="rf-anot text-slm-light/40">{t('negativa.respuestaTitulo')}</span>
-            <p className="font-mono text-sm md:text-base text-slm-light/90 leading-relaxed">
+            <span className="rf-anot rf-anot-interfaz text-slm-light/40">{t('negativa.respuestaTitulo')}</span>
+            <p className="text-sm md:text-base text-slm-light/90 leading-relaxed">
               “{t('negativa.respuesta')}”
             </p>
           </div>
