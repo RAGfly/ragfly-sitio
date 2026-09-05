@@ -27,7 +27,7 @@ export function SurfacesSection() {
     <section id="superficies" className="relative rf-corte px-6 md:px-12 lg:px-[60px] py-24 md:py-32 bg-slm-light overflow-hidden">
       <div className="max-w-[1200px] mx-auto flex flex-col gap-12">
         <div className="max-w-[720px] flex flex-col gap-6">
-          <span className="text-sm uppercase tracking-[0.18em] text-slm-brand">{t('superficies.eyebrow')}</span>
+          <span className="rf-anot text-slm-brand">{t('superficies.eyebrow')}</span>
           <BlurIn as="h2" className="text-slm-dark text-4xl md:text-5xl lg:text-6xl font-helvetica-neue font-medium leading-[1.05] tracking-[-0.03em]">
             {t('superficies.titulo1')}{' '}
             <span className="inline-block pb-[0.06em] bg-gradient-to-r from-slm-brand-dark via-slm-brand to-slm-brand-light bg-clip-text text-transparent">{t('superficies.tituloAccent')}</span>
@@ -54,7 +54,7 @@ export function SurfacesSection() {
         </div>
         <div className="rounded-[24px] bg-slm-dark text-slm-light p-6 md:p-8 flex flex-col gap-4">
           <div className="flex items-center justify-between">
-            <span className="text-xs uppercase tracking-[0.18em] text-slm-brand-light">{t('superficies.snippetTitulo')}</span>
+            <span className="rf-anot text-slm-brand-light">{t('superficies.snippetTitulo')}</span>
             <span className="text-xs text-slm-gray-light font-helvetica-neue">{t('superficies.snippetSub')}</span>
           </div>
           <pre className="overflow-x-auto font-mono text-sm leading-relaxed text-slm-light/90 bg-black/20 rounded-xl p-4"><code>{snippet}</code></pre>

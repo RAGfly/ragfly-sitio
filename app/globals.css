@@ -188,7 +188,7 @@ body {
   font-family: var(--font-dato), system-ui, sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  font-size: 0.6875rem;
+  font-size: 1.03125rem; /* 3/2 del 0.6875rem original */
   line-height: 1.4;
 }
 

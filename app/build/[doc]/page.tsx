@@ -90,7 +90,7 @@ export default async function DocPage({ params }: { params: Promise<{ doc: strin
 
         {/* Other docs */}
         <div className="mt-16 border-t border-slm-dark/8 pt-8">
-          <p className="mb-4 text-xs font-medium uppercase tracking-[0.18em] text-slm-brand">{t('otherDocs')}</p>
+          <p className="rf-anot mb-4 font-medium text-slm-brand">{t('otherDocs')}</p>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
             {order.filter((o) => o.slug !== d.slug).map((o) => (
               <Link key={o.slug} href={`/build/${o.slug}`} className="flex items-center gap-2 rounded-xl border border-slm-dark/8 px-3 py-2.5 text-sm transition-colors hover:border-slm-brand/40">

@@ -193,7 +193,7 @@ export default function DownloadPage() {
       <section className="px-6 md:px-12 py-16 md:py-24 bg-slm-light">
         <div className="max-w-[1100px] mx-auto flex flex-col gap-12">
           <div className="flex flex-col gap-4 max-w-[620px]">
-            <span className="text-sm uppercase tracking-[0.18em] text-slm-brand">{t('download.pasosEyebrow')}</span>
+            <span className="rf-anot text-slm-brand">{t('download.pasosEyebrow')}</span>
             <h2 className="font-helvetica-neue text-3xl md:text-4xl font-medium tracking-[-0.02em] text-slm-dark">
               {t('download.pasosTitulo')}
             </h2>

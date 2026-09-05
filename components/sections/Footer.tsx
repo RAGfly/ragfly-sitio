@@ -23,7 +23,7 @@ export function Footer() {
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-10">
           <div className="flex flex-col gap-3">
-            <span className="text-xs uppercase tracking-[0.18em] text-white/60">{t('footer.producto' as Parameters<typeof t>[0])}</span>
+            <span className="rf-anot text-white/60">{t('footer.producto' as Parameters<typeof t>[0])}</span>
             {/* Simple → Privado → Preciso: mismo orden del eslogan y del nav. */}
             <a href="#simple" className="font-helvetica-neue text-sm hover:text-white">{t('footer.capacidades')}</a>
             <a href="#privado" className="font-helvetica-neue text-sm hover:text-white">{t('footer.seguridadLink')}</a>
@@ -37,7 +37,7 @@ export function Footer() {
             <a href="/download" className="font-helvetica-neue text-sm hover:text-white">{t('footer.desktopLink')}</a>
           </div>
           <div className="flex flex-col gap-3">
-            <span className="text-xs uppercase tracking-[0.18em] text-white/60">{t('footer.empresa' as Parameters<typeof t>[0])}</span>
+            <span className="rf-anot text-white/60">{t('footer.empresa' as Parameters<typeof t>[0])}</span>
             <a href="#contacto" className="font-helvetica-neue text-sm hover:text-white">{t('footer.contacto')}</a>
             <a href="https://api.ragfly.ai/docs" target="_blank" rel="noopener noreferrer" className="font-helvetica-neue text-sm hover:text-white">Swagger API</a>
             <Link href="/build/quickstart" className="font-helvetica-neue text-sm hover:text-white">Quickstart</Link>
@@ -45,7 +45,7 @@ export function Footer() {
             <a href="/agents.json" className="font-helvetica-neue text-sm hover:text-white">agents.json</a>
           </div>
           <div className="flex flex-col gap-3">
-            <span className="text-xs uppercase tracking-[0.18em] text-white/60">{t('footer.legal')}</span>
+            <span className="rf-anot text-white/60">{t('footer.legal')}</span>
             <a href="/legal/terms" className="font-helvetica-neue text-sm hover:text-white">{t('footer.terminos')}</a>
             <a href="/legal/privacy" className="font-helvetica-neue text-sm hover:text-white">{t('footer.privacidad')}</a>
             <a href="/legal/refund" className="font-helvetica-neue text-sm hover:text-white">{t('footer.reembolsos')}</a>
