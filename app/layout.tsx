@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Lora, Manrope } from "next/font/google";
+import { Inter, Zalando_Sans_Expanded, Montserrat_Alternates } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages, getTranslations } from "next-intl/server";
 import "./globals.css";
@@ -9,16 +9,15 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-const lora = Lora({
-  variable: "--font-serif",
+const zalando = Zalando_Sans_Expanded({
+  variable: "--font-dato",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
 });
 
-const manrope = Manrope({
-  variable: "--font-manrope",
+const montserrat = Montserrat_Alternates({
+  variable: "--font-interfaz",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -144,7 +143,7 @@ export default async function RootLayout({
   );
 
   return (
-    <html lang={locale} className={`${inter.variable} ${lora.variable} ${manrope.variable} h-full antialiased`}>
+    <html lang={locale} className={`${inter.variable} ${zalando.variable} ${montserrat.variable} h-full antialiased`}>
       <head>
         <script
           type="application/ld+json"

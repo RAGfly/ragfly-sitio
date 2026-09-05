@@ -77,6 +77,6 @@
 
   /* ── Tipografía v1.0 ── */
   --ragfly-font-sans:  "Inter", sans-serif;     /* titulares y cuerpo */
-  --ragfly-font-serif: "Lora", serif;           /* lemas y citas (itálica) */
-  --ragfly-font-mono:  "Geist Mono", monospace; /* etiquetas, folios, datos */
+  --ragfly-font-dato:  "Zalando Sans Expanded", system-ui, sans-serif;   /* etiquetas, folios, datos, código */
+  --ragfly-font-interfaz: "Montserrat Alternates", system-ui, sans-serif; /* fuente por defecto de la interfaz */
 }
