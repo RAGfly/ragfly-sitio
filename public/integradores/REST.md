@@ -42,6 +42,7 @@ keeps its original language.
 | `GET` | `/v1/queue` | Processing queue (`process`, `status`, `limit`) |
 | `GET` | `/v1/runs` | Skill run history |
 | `GET` | `/v1/catalog` | RBAC-filtered functions and skills (`type`) |
+| `GET` | `/v1/functions/{function_code}` | Function detail: documentation and behaviours |
 | `GET` | `/v1/skills` | Skill catalog |
 | `GET` | `/v1/skills/{skill_code}` | Skill detail |
 | `POST` | `/v1/skills/{skill_code}/run` | Queue a skill (`space_id` or `document_code`) |
@@ -88,6 +89,60 @@ curl https://api.ragfly.ai/v1/ask \
 
 `stream=true` in SDKs is a compatibility iterator over this complete response;
 the public HTTP endpoint is JSON, not the internal Spanish SSE route.
+
+## Function detail
+
+`/v1/catalog` enumerates what the caller can reach; `/v1/functions/{function_code}`
+returns one of them in full, so an agent can learn what a RAGfly screen actually
+does before deciding whether it needs it.
+
+```bash
+curl https://api.ragfly.ai/v1/functions/PROCESS_PIPELINE \
+  -H 'Authorization: Bearer slm_live_xxxxxxxxxx'
+```
+
+```json
+{
+  "code": "PROCESS_PIPELINE",
+  "name": "Alimentación Documentos",
+  "alias": "Alimentación",
+  "description": "Long-form description of what the function does end to end.",
+  "summary": "One line written for an agent.",
+  "url": "/process-pipeline",
+  "documentation": "# Alimentación Documentos\n\n## Descripción\n…",
+  "behaviors": [
+    {
+      "class": "STOP",
+      "section": "Paso 2 — Detener el pipeline en curso",
+      "text": "Al pulsar el botón de detener durante una ejecución, el pipeline se interrumpe…"
+    }
+  ]
+}
+```
+
+`documentation` is the compiled Markdown of the function — the same text the
+in-product help shows. `behaviors` is that documentation in structured form: one
+entry per documented behaviour of the screen, each carrying a `class`.
+
+| `class` | What it describes |
+|---|---|
+| `NAVIGATION` | What loads on entry, or where the screen takes you |
+| `INTERACTION` | A gesture the user performs, and its effect |
+| `BACKGROUND` | What keeps happening without anyone acting |
+| `STOP` | How work in progress is interrupted |
+| `RECOVERY` | How an interrupted state is picked up again |
+
+Behaviours are **descriptions, not operations**. They tell an agent what a
+gesture does; they are not a way to perform it. To act on the corpus, use the
+routes above.
+
+Field names, `class` values and error codes are English like the rest of `/v1`.
+The descriptive `name`, `description`, `section` and `text` are product content
+and come back in the language they were authored in — today Spanish — the same
+way document content keeps its own language.
+
+A `404` means the function is outside the caller's catalog. It is the same RBAC
+that filters `/v1/catalog`: the contract is uniform, the visible surface is not.
 
 ## Errors
 
@@ -139,3 +194,11 @@ shape.
 Routes such as `/documentos`, `/espacios-trabajo` and `/interfaz` are internal
 implementation routes for Web/Desktop. Do not build external integrations on
 them; use `/v1`.
+
+`/v1` is not just a translation of those routes. The catalog it publishes
+(`/v1/catalog`, `/v1/skills`, `/v1/functions/{code}`) lists only what is meant
+for integrators: capabilities the system uses to operate itself are withheld,
+and calling one by name returns `404` rather than running it. The internal
+routes have no such boundary, so an integration built on them would depend on
+machinery that is not part of the public contract and can change without a
+version bump.
