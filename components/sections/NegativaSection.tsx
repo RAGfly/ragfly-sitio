@@ -23,7 +23,7 @@ export function NegativaSection() {
           <span className="rf-anot text-slm-brand-light/80">{t('negativa.eyebrow')}</span>
           <BlurIn as="h2" className="text-4xl md:text-5xl lg:text-[56px] font-helvetica-neue font-medium leading-[1.05] tracking-[-0.03em]">
             {t('negativa.titulo1')}{' '}
-            <span className="text-slm-ambar">{t('negativa.tituloAccent')}</span>
+            <span className="text-slm-gray-light">{t('negativa.tituloAccent')}</span>
           </BlurIn>
           <span className="rf-eje" aria-hidden="true" />
           <p className="text-slm-gray-light font-helvetica-neue text-base md:text-lg leading-relaxed max-w-[520px]">
@@ -58,8 +58,8 @@ export function NegativaSection() {
                   </span>
                   <span className="flex-1 text-sm text-slm-light/90">{c}</span>
                   <span className="pf-stack">
-                    <span className="rf-anot rf-anot-interfaz text-slm-light/40 pf-fade-out" style={{ animationDelay: delay }}>{t('negativa.estadoPendiente')}</span>
-                    <span className="rf-anot rf-anot-interfaz text-slm-ambar/80 pf-fade-in" style={{ animationDelay: delay }}>{t('negativa.estadoOk')}</span>
+                    <span className="rf-anot rf-anot-sm text-slm-light/40 pf-fade-out" style={{ animationDelay: delay }}>{t('negativa.estadoPendiente')}</span>
+                    <span className="rf-anot rf-anot-sm text-slm-ambar/80 pf-fade-in" style={{ animationDelay: delay }}>{t('negativa.estadoOk')}</span>
                   </span>
                 </li>
               )
@@ -78,8 +78,8 @@ export function NegativaSection() {
                 <span className="text-sm text-slm-light/55 line-through decoration-white/25 pf-fade-in" style={{ animationDelay: '3.3s' }}>{t('negativa.item3')}</span>
               </span>
               <span className="pf-stack">
-                <span className="rf-anot rf-anot-interfaz text-slm-light/40 pf-fade-out" style={{ animationDelay: '3.3s' }}>{t('negativa.estadoPendiente')}</span>
-                <span className="rf-anot rf-anot-interfaz text-[#C08A3A] pf-fade-in" style={{ animationDelay: '3.3s' }}>{t('negativa.estadoBloqueado')}</span>
+                <span className="rf-anot rf-anot-sm text-slm-light/40 pf-fade-out" style={{ animationDelay: '3.3s' }}>{t('negativa.estadoPendiente')}</span>
+                <span className="rf-anot rf-anot-sm text-[#C08A3A] pf-fade-in" style={{ animationDelay: '3.3s' }}>{t('negativa.estadoBloqueado')}</span>
               </span>
             </li>
           </ul>
