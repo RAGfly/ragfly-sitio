@@ -165,6 +165,35 @@ export default function DownloadPage() {
             </a>
           </div>
 
+          {/* Primera apertura en macOS. Mientras la firma Developer ID siga en
+              trámite, el DMG sale sin notarizar y Gatekeeper lo bloquea. El
+              atajo de clic derecho → Abrir dejó de funcionar en macOS 15, así
+              que el único camino es Ajustes del Sistema. Este bloque se retira
+              cuando el instalador salga firmado y notarizado. */}
+          {os !== 'windows' && (
+            <div className="mt-2 w-full max-w-[620px] rounded-2xl border border-slm-dark/10 bg-slm-light/70 px-5 py-4 text-left">
+              <p className="flex items-center gap-2 font-helvetica-neue text-sm font-medium text-slm-dark">
+                <AppleIcon />
+                {t('download.macAvisoTitulo')}
+              </p>
+              <p className="mt-1.5 font-helvetica-neue text-xs leading-relaxed text-slm-gray">
+                {t('download.macAvisoIntro')}
+              </p>
+              <ol className="mt-3 flex flex-col gap-1.5">
+                {[0, 1, 2].map((i) => (
+                  <li
+                    key={i}
+                    className="flex gap-2.5 font-helvetica-neue text-xs leading-relaxed text-slm-dark/80"
+                  >
+                    <span className="mt-px inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-slm-brand/10 text-[10px] font-medium text-slm-brand-dark">
+                      {i + 1}
+                    </span>
+                    {t(`download.macAvisoPaso${i}` as Parameters<typeof t>[0])}
+                  </li>
+                ))}
+              </ol>
+            </div>
+          )}
           <p className="text-xs text-slm-dark/50 font-helvetica-neue max-w-[560px] leading-relaxed">
             {t('download.notaInstalacion')}
           </p>
