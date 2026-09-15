@@ -50,13 +50,25 @@ export default function DownloadPage() {
   const [os] = useState<OS>(() => detectOS())
   const [version, setVersion] = useState<string | null>(null)
 
+  // La etiqueta muestra la versión del SOFTWARE, no la del instalador. Una release
+  // payload-only (sin cambio de shell) no trae .dmg/.exe: los botones siguen bajando
+  // el último instalador, que al abrirse se actualiza solo a esta versión por payload.
   useEffect(() => {
     const extension = os === 'windows' ? '.exe' : '.dmg'
     fetch('https://api.github.com/repos/RAGfly/ragfly-desktop-releases/releases?per_page=100')
       .then((r) => (r.ok ? r.json() : null))
       .then((releases) => {
         const release = Array.isArray(releases)
-          ? releases.find((item) => !item.draft && !item.prerelease && item.assets?.some((asset: { name: string }) => asset.name.endsWith(extension)))
+          ? releases.find(
+              (item) =>
+                !item.draft &&
+                !item.prerelease &&
+                item.assets?.some(
+                  (asset: { name: string }) =>
+                    (asset.name.startsWith('payload-') && asset.name.endsWith('.zip')) ||
+                    asset.name.endsWith(extension),
+                ),
+            )
           : null
         if (release?.tag_name) setVersion(release.tag_name)
       })
