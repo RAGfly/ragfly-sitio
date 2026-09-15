@@ -204,6 +204,11 @@ export default function DownloadPage() {
                   </li>
                 ))}
               </ol>
+              {/* Ajustes del Sistema no refresca el panel si ya estaba abierto, y
+                  el botón solo existe tras un intento bloqueado (dura ~1 hora). */}
+              <p className="mt-3 font-helvetica-neue text-xs leading-relaxed text-slm-gray">
+                {t('download.macAvisoNota')}
+              </p>
             </div>
           )}
           <p className="text-xs text-slm-dark/50 font-helvetica-neue max-w-[560px] leading-relaxed">
