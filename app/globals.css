@@ -413,7 +413,8 @@ body {
 .doc-prose ol li { list-style: decimal; }
 .doc-prose code {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: .85em;
+  /* .92em empareja a la vista la monoespaciada con el Inter que la rodea (a .85em se veía más chica). */
+  font-size: .92em;
   background: var(--slm-light);
   color: var(--slm-brand-dark);
   padding: .12em .4em;
@@ -426,7 +427,7 @@ body {
   border-radius: 14px;
   overflow-x: auto;
   margin: 1.1rem 0;
-  font-size: 13.5px;
+  font-size: .92em;
   line-height: 1.6;
 }
 .doc-prose pre code { background: transparent; color: inherit; padding: 0; font-size: inherit; }

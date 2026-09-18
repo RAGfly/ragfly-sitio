@@ -83,11 +83,11 @@ export default async function BuildPage() {
                 <a href="https://app.ragfly.ai/api-keys" className="text-slm-brand-dark underline underline-offset-2 hover:text-slm-brand" target="_blank" rel="noopener noreferrer">{chunks}</a>
               ),
               code: (chunks) => (
-                <code className="rounded border border-slm-dark/10 bg-white px-1.5 py-0.5 text-xs">{chunks}</code>
+                <code className="rounded border border-slm-dark/10 bg-white px-1.5 py-0.5 text-[0.92em]">{chunks}</code>
               ),
             })}
           </p>
-          <code className="block overflow-x-auto rounded-lg border border-slm-dark/10 bg-white px-3 py-2 font-mono text-xs text-slm-dark">
+          <code className="block overflow-x-auto rounded-lg border border-slm-dark/10 bg-white px-3 py-2 font-mono text-[13px] text-slm-dark">
             Authorization: Bearer slm_live_xxxxxxxxxxxxxxxxxxxxxxxx
           </code>
         </div>
