@@ -73,8 +73,8 @@ export function WaitlistForm({ variant = 'onDark' }: { variant?: 'onDark' | 'onL
     ? 'flex-1 min-w-0 rounded-full bg-white/95 text-slm-dark placeholder:text-slm-gray/70 px-5 py-3 text-base outline-none focus:ring-2 focus:ring-white/60'
     : 'flex-1 min-w-0 rounded-full bg-white text-slm-dark placeholder:text-slm-gray/70 px-5 py-3 text-base outline-none border border-slm-dark/15 focus:ring-2 focus:ring-slm-brand/40'
   const btnClass = onDark
-    ? 'rounded-full bg-white text-slm-dark px-6 py-3 font-medium text-base hover:opacity-90 transition-opacity disabled:opacity-60 whitespace-nowrap'
-    : 'rounded-full bg-slm-dark text-slm-light px-6 py-3 font-medium text-base hover:opacity-90 transition-opacity disabled:opacity-60 whitespace-nowrap'
+    ? 'rf-boton rounded-full bg-white text-slm-dark px-6 py-3 font-medium text-base hover:opacity-90 transition-opacity disabled:opacity-60 whitespace-nowrap'
+    : 'rf-boton rounded-full bg-slm-dark text-slm-light px-6 py-3 font-medium text-base hover:opacity-90 transition-opacity disabled:opacity-60 whitespace-nowrap'
 
   return (
     <div className="max-w-[480px] w-full">

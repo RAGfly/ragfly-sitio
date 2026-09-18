@@ -135,7 +135,7 @@ export async function PricingSection() {
               <article key={plan.codigo_plan} className={`rounded-[24px] p-8 flex flex-col gap-6 border ${featured ? 'bg-slm-dark text-slm-light border-slm-brand-dark' : 'bg-slm-light/60 border-slm-dark/10'}`}>
                 <div className="flex flex-col gap-1.5">
                   {featured ? (
-                    <span className="self-start text-[10px] uppercase tracking-[0.15em] bg-slm-brand-light/20 text-slm-brand-light px-2 py-1 rounded-full mb-1">{t('recomendado')}</span>
+                    <span className="rf-boton self-start text-[10px] uppercase tracking-[0.15em] bg-slm-brand-light/20 text-slm-brand-light px-2 py-1 rounded-full mb-1">{t('recomendado')}</span>
                   ) : <span className="mb-1 h-[22px]" aria-hidden="true" />}
                   <h3 className={`font-helvetica-neue text-2xl font-medium tracking-[-0.02em] ${featured ? 'text-white' : 'text-slm-dark'}`}>{plan.nombre}</h3>
                   <p className={`font-helvetica-neue text-sm ${featured ? 'text-slm-gray-light' : 'text-slm-gray'}`}>{plan.descripcion || t(`sub${plan.codigo_plan}`)}</p>
@@ -153,7 +153,7 @@ export async function PricingSection() {
                   <li className={`text-xs leading-relaxed ${featured ? 'text-slm-light/70' : 'text-slm-gray'}`}>{t('limitesSecundarios')}: {secundarios}</li>
                   {adicionales && <li className={`text-xs leading-relaxed ${featured ? 'text-slm-light/70' : 'text-slm-gray'}`}>{adicionales}</li>}
                 </ul>
-                <a href="https://app.ragfly.ai" className={`text-center font-medium text-sm px-5 py-3 rounded-full transition-opacity hover:opacity-90 ${featured ? 'bg-slm-brand-light text-slm-dark' : 'bg-slm-dark text-slm-light'}`}>
+                <a href="https://app.ragfly.ai" className={`rf-boton text-center font-medium text-sm px-5 py-3 rounded-full transition-opacity hover:opacity-90 ${featured ? 'bg-slm-brand-light text-slm-dark' : 'bg-slm-dark text-slm-light'}`}>
                   {enterprise ? t('ctaEmpresa') : free ? t('ctaGratis') : t('ctaEmpezar')}
                 </a>
               </article>

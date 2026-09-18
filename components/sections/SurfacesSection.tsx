@@ -46,7 +46,7 @@ export function SurfacesSection() {
             >
               <div className="flex items-center gap-2">
                 <h3 className="font-mono text-xl font-medium text-slm-dark">{s.h}</h3>
-                {s.feat && <span className="text-[10px] uppercase tracking-[0.15em] bg-slm-brand/10 text-slm-brand px-2 py-0.5 rounded-full">abrimos aquí</span>}
+                {s.feat && <span className="rf-boton text-[10px] uppercase tracking-[0.15em] bg-slm-brand/10 text-slm-brand px-2 py-0.5 rounded-full">abrimos aquí</span>}
               </div>
               <p className="text-slm-gray font-helvetica-neue text-base leading-relaxed">{s.d}</p>
             </Link>
@@ -59,10 +59,10 @@ export function SurfacesSection() {
           </div>
           <pre className="overflow-x-auto font-mono text-sm leading-relaxed text-slm-light/90 bg-black/20 rounded-xl p-4"><code>{snippet}</code></pre>
           <div className="flex flex-wrap gap-3">
-            <a href="/agents.json" className="bg-slm-brand-light text-slm-dark px-5 py-2.5 rounded-full font-medium text-sm hover:opacity-90 transition-opacity">agents.json</a>
-            <a href="/llms-full.txt" className="border border-white/30 text-slm-light px-5 py-2.5 rounded-full font-medium text-sm hover:bg-white/10 transition-colors">Catálogo (Markdown)</a>
-            <a href="https://api.ragfly.ai/docs" target="_blank" rel="noopener noreferrer" className="border border-white/30 text-slm-light px-5 py-2.5 rounded-full font-medium text-sm hover:bg-white/10 transition-colors">Swagger API</a>
-            <Link href="/build/quickstart" className="border border-white/30 text-slm-light px-5 py-2.5 rounded-full font-medium text-sm hover:bg-white/10 transition-colors">Quickstart →</Link>
+            <a href="/agents.json" className="rf-boton bg-slm-brand-light text-slm-dark px-5 py-2.5 rounded-full font-medium text-sm hover:opacity-90 transition-opacity">agents.json</a>
+            <a href="/llms-full.txt" className="rf-boton border border-white/30 text-slm-light px-5 py-2.5 rounded-full font-medium text-sm hover:bg-white/10 transition-colors">Catálogo (Markdown)</a>
+            <a href="https://api.ragfly.ai/docs" target="_blank" rel="noopener noreferrer" className="rf-boton border border-white/30 text-slm-light px-5 py-2.5 rounded-full font-medium text-sm hover:bg-white/10 transition-colors">Swagger API</a>
+            <Link href="/build/quickstart" className="rf-boton border border-white/30 text-slm-light px-5 py-2.5 rounded-full font-medium text-sm hover:bg-white/10 transition-colors">Quickstart →</Link>
           </div>
         </div>
 

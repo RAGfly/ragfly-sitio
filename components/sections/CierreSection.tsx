@@ -38,13 +38,13 @@ export function CierreSection() {
           <div className="flex flex-col sm:flex-row items-start gap-3">
             <a
               href="https://app.ragfly.ai"
-              className="bg-slm-dark text-slm-light px-7 py-3.5 rounded-full font-medium text-base hover:opacity-90 transition-opacity"
+              className="rf-boton bg-slm-dark text-slm-light px-7 py-3.5 rounded-full font-medium text-base hover:opacity-90 transition-opacity"
             >
               {t('cierre.ctaPrimario')}
             </a>
             <Link
               href="/build/mcp"
-              className="border border-slm-dark text-slm-dark px-7 py-3.5 rounded-full font-medium text-base hover:bg-white transition-colors"
+              className="rf-boton border border-slm-dark text-slm-dark px-7 py-3.5 rounded-full font-medium text-base hover:bg-white transition-colors"
             >
               {t('cierre.ctaSecundario')}
             </Link>

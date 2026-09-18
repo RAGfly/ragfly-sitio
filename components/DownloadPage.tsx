@@ -80,8 +80,8 @@ export default function DownloadPage() {
       href="/download/mac"
       className={
         primary
-          ? 'inline-flex items-center gap-2.5 bg-slm-dark text-slm-light px-7 py-3.5 rounded-full font-medium text-base hover:opacity-90 transition-opacity'
-          : 'inline-flex items-center gap-2.5 border border-slm-dark text-slm-dark px-7 py-3.5 rounded-full font-medium text-base hover:bg-gray-50 transition-colors'
+          ? 'rf-boton inline-flex items-center gap-2.5 bg-slm-dark text-slm-light px-7 py-3.5 rounded-full font-medium text-base hover:opacity-90 transition-opacity'
+          : 'rf-boton inline-flex items-center gap-2.5 border border-slm-dark text-slm-dark px-7 py-3.5 rounded-full font-medium text-base hover:bg-gray-50 transition-colors'
       }
     >
       <AppleIcon />
@@ -94,8 +94,8 @@ export default function DownloadPage() {
       href="/download/windows"
       className={
         primary
-          ? 'inline-flex items-center gap-2.5 bg-slm-dark text-slm-light px-7 py-3.5 rounded-full font-medium text-base hover:opacity-90 transition-opacity'
-          : 'inline-flex items-center gap-2.5 border border-slm-dark text-slm-dark px-7 py-3.5 rounded-full font-medium text-base hover:bg-gray-50 transition-colors'
+          ? 'rf-boton inline-flex items-center gap-2.5 bg-slm-dark text-slm-light px-7 py-3.5 rounded-full font-medium text-base hover:opacity-90 transition-opacity'
+          : 'rf-boton inline-flex items-center gap-2.5 border border-slm-dark text-slm-dark px-7 py-3.5 rounded-full font-medium text-base hover:bg-gray-50 transition-colors'
       }
     >
       <WindowsIcon />
@@ -130,7 +130,7 @@ export default function DownloadPage() {
       {/* Hero de descarga */}
       <section className="px-6 md:px-12 py-20 md:py-28 bg-gradient-to-b from-slm-light to-white border-b border-slm-dark/5">
         <div className="max-w-[860px] mx-auto flex flex-col items-center text-center gap-7">
-          <span className="inline-flex items-center gap-2 rounded-full bg-white/70 backdrop-blur-md border border-slm-dark/10 px-4 py-1.5">
+          <span className="rf-boton inline-flex items-center gap-2 rounded-full bg-white/70 backdrop-blur-md border border-slm-dark/10 px-4 py-1.5">
             <span className="inline-block w-1.5 h-1.5 rounded-full bg-gradient-to-br from-slm-brand-dark to-slm-brand-light" />
             <span className="text-xs md:text-sm tracking-[0.04em] text-slm-dark/80">{t('download.eyebrow')}</span>
           </span>
@@ -226,7 +226,7 @@ export default function DownloadPage() {
           {bullets.map((b) => (
             <span
               key={b}
-              className="inline-flex items-center gap-2 rounded-full bg-slm-light border border-slm-dark/8 px-4 py-2 text-sm text-slm-dark font-helvetica-neue"
+              className="rf-boton inline-flex items-center gap-2 rounded-full bg-slm-light border border-slm-dark/8 px-4 py-2 text-sm text-slm-dark"
             >
               <span className="inline-block w-1.5 h-1.5 rounded-full bg-slm-brand" />
               {b}

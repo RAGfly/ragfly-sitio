@@ -44,7 +44,7 @@ export default async function BuildPage() {
             <Link href="/build/rest" className="hidden transition-colors hover:text-slm-dark sm:inline">REST</Link>
             <Link href="/build/sdk" className="hidden transition-colors hover:text-slm-dark sm:inline">SDK</Link>
             <a href="https://api.ragfly.ai/docs" target="_blank" rel="noopener noreferrer" className="hidden transition-colors hover:text-slm-dark sm:inline">Swagger</a>
-            <a href="https://app.ragfly.ai" className="rounded-full bg-slm-dark px-4 py-1.5 text-xs font-medium text-slm-light transition-opacity hover:opacity-80">
+            <a href="https://app.ragfly.ai" className="rf-boton rounded-full bg-slm-dark px-4 py-1.5 text-xs font-medium text-slm-light transition-opacity hover:opacity-80">
               {t('navApp')}
             </a>
           </nav>
@@ -68,9 +68,9 @@ export default async function BuildPage() {
             {t('heroDesc')}
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <Link href="/build/quickstart" className="rounded-full bg-slm-dark px-5 py-2.5 text-sm font-medium text-slm-light transition-opacity hover:opacity-90">{t('ctaQuickstart')}</Link>
-            <a href="https://api.ragfly.ai/docs" target="_blank" rel="noopener noreferrer" className="rounded-full border border-slm-dark/15 px-5 py-2.5 text-sm font-medium text-slm-dark transition-colors hover:border-slm-brand">{t('ctaSwagger')}</a>
-            <a href="/agents.json" className="rounded-full border border-slm-dark/15 px-5 py-2.5 text-sm font-medium text-slm-dark transition-colors hover:border-slm-brand">{t('ctaAgents')}</a>
+            <Link href="/build/quickstart" className="rf-boton rounded-full bg-slm-dark px-5 py-2.5 text-sm font-medium text-slm-light transition-opacity hover:opacity-90">{t('ctaQuickstart')}</Link>
+            <a href="https://api.ragfly.ai/docs" target="_blank" rel="noopener noreferrer" className="rf-boton rounded-full border border-slm-dark/15 px-5 py-2.5 text-sm font-medium text-slm-dark transition-colors hover:border-slm-brand">{t('ctaSwagger')}</a>
+            <a href="/agents.json" className="rf-boton rounded-full border border-slm-dark/15 px-5 py-2.5 text-sm font-medium text-slm-dark transition-colors hover:border-slm-brand">{t('ctaAgents')}</a>
           </div>
         </div>
 
@@ -107,7 +107,7 @@ export default async function BuildPage() {
                   <div className="mb-2 flex items-center gap-2">
                     <span className="text-2xl">{d.icono}</span>
                     {d.destacado && (
-                      <span className="rounded-full bg-gradient-to-r from-slm-brand-dark to-slm-brand px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-white">
+                      <span className="rf-boton rounded-full bg-gradient-to-r from-slm-brand-dark to-slm-brand px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-white">
                         {t('startHere')}
                       </span>
                     )}

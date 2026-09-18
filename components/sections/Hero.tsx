@@ -39,7 +39,7 @@ export function Hero() {
         <BlurIn delay={0.3} className="flex flex-col sm:flex-row items-center gap-3">
           <a
             href="https://app.ragfly.ai"
-            className="bg-slm-dark text-slm-light px-7 py-3 rounded-full font-medium text-base hover:opacity-90 transition-opacity"
+            className="rf-boton bg-slm-dark text-slm-light px-7 py-3 rounded-full font-medium text-base hover:opacity-90 transition-opacity"
           >
             {t('hero.ctaPrimario')}
           </a>
@@ -47,7 +47,7 @@ export function Hero() {
             /* #pruebalo (ChatSection) salió del flujo: la demostración
                temprana ahora es S2 → S5 la precisión. */
             href="#negativa"
-            className="border border-slm-dark text-slm-dark px-7 py-3 rounded-full font-medium text-base hover:bg-gray-50 transition-colors"
+            className="rf-boton border border-slm-dark text-slm-dark px-7 py-3 rounded-full font-medium text-base hover:bg-gray-50 transition-colors"
           >
             {t('hero.ctaSecundario')}
           </a>

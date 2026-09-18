@@ -48,7 +48,7 @@ export function Header() {
         </a>
         <a
           href="https://app.ragfly.ai"
-          className="bg-slm-dark text-slm-light px-6 py-2.5 rounded-full font-medium text-base hover:opacity-90 transition-opacity"
+          className="rf-boton bg-slm-dark text-slm-light px-6 py-2.5 rounded-full font-medium text-base whitespace-nowrap hover:opacity-90 transition-opacity"
         >
           {t('nav.cta')}
         </a>
@@ -106,7 +106,7 @@ export function Header() {
               </a>
               <a
                 href="https://app.ragfly.ai"
-                className="bg-slm-dark text-slm-light px-6 py-2.5 rounded-full font-medium text-base text-center"
+                className="rf-boton bg-slm-dark text-slm-light px-6 py-2.5 rounded-full font-medium text-base text-center"
               >
                 {t('nav.cta')}
               </a>
