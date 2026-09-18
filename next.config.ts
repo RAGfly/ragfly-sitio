@@ -11,6 +11,8 @@ const nextConfig: NextConfig = {
       // Documentos legales reubicados al namespace /legal (ES -> EN).
       { source: "/terminos", destination: "/legal/terms", permanent: true },
       { source: "/privacidad", destination: "/legal/privacy", permanent: true },
+      // La página de reembolsos es /legal/refund (singular); el plural se usó en docs.
+      { source: "/legal/refunds", destination: "/legal/refund", permanent: true },
     ];
   },
 };
