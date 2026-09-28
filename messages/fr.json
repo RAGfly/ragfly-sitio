@@ -425,6 +425,10 @@
         "titulo": "Quickstart",
         "desc": "De zéro à la première requête sémantique : inscription → API Key → MCP → résultat."
       },
+      "operations": {
+        "titulo": "Operations reference",
+        "desc": "108 opérations sur REST, MCP, CLI et les deux SDK — type, profil minimum et quels écrans utilisent chacune."
+      },
       "integration": {
         "titulo": "Guide d'intégration",
         "desc": "Identifiants, rôles, types d'identité et le contrat commun à chaque interface."

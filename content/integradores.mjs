@@ -5,8 +5,20 @@
 // FUENTE ÚNICA de los documentos: el kit del repo producto en
 //   ../../ragfly/docs/integradores/*.md
 // Este archivo NO contiene el copy de los documentos — solo su CURADURÍA:
-// qué documento se publica, con qué slug de URL, título, descripción de
-// vitrina, ícono y a qué grupo pertenece en la página-cara.
+// qué documento se publica, con qué slug de URL, ícono y a qué grupo
+// pertenece en la página-cara.
+//
+// ⚠️ `titulo`/`desc` de abajo NO son lo que se muestra (salvo grupo
+// 'alimentacion'): app/build/page.tsx y app/build/[doc]/page.tsx resuelven
+// el título y la descripción de vitrina vía next-intl,
+// t(`cards.${slug}.titulo`) / t(`cards.${slug}.desc`), ignorando estos
+// campos. Al agregar un documento nuevo hay que agregar TAMBIÉN la clave
+// `build.cards.<slug>` en los 5 `messages/*.json` (en/es/de/fr/pt) — si
+// falta, el <title>, el hero de la subpágina, la portada /build y el pie
+// "otros docs" de cualquier otra subpágina muestran la clave cruda en vez
+// del texto (no se ve con un curl -> 200 ni leyendo el href del link; solo
+// navegando la página real). Bug real + fix: mecanismo-sync-docs-
+// integradores-a-sitio.md en la memoria del agente (2026-09-28).
 //
 // El copy real se sincroniza con `node scripts/build-integradores.mjs`
 // (o `npm run build:integradores`), que lee los .md y genera los artefactos.
