@@ -45,6 +45,7 @@ export const documentos = [
 
   // ── Guides & reference ────────────────────────────────────────────────
   { slug: 'quickstart',          archivo: 'QUICKSTART.md',          grupo: 'guias', icono: '🚀', titulo: 'Quickstart',           desc: 'From zero to first semantic query: sign up → API Key → MCP → result.' },
+  { slug: 'operations',          archivo: 'OPERATIONS.md',          grupo: 'guias', icono: '📋', titulo: 'Operations reference', desc: '108 operations across REST, MCP, CLI and both SDKs — kind, minimum profile and which screens use each one.' },
   { slug: 'runtime-hints',       archivo: 'RUNTIME_HINTS.md',       grupo: 'guias', icono: '🎛️', titulo: 'Runtime hints',         desc: 'Which tool to use per runtime: short-context agents, reasoners, IDEs, REST.' },
   { slug: 'env-vars',            archivo: 'ENV_VARS.md',            grupo: 'guias', icono: '🔧', titulo: 'Environment variables', desc: 'Every RAGFLY_ variable: canonical name, default, legacy aliases. One place, no surprises.' },
   { slug: 'agents-md',           archivo: 'AGENTS.md',              grupo: 'guias', icono: '📄', titulo: 'AGENTS.md',             desc: 'Drop it in the root of your agent workspace (Codex/Claude).' },

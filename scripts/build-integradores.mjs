@@ -63,8 +63,11 @@ const slugByArchivo = Object.fromEntries(documentos.map((d) => [d.archivo, d.slu
 
 // Reescribe enlaces markdown a otros .md del kit → /build/<slug>(#ancla).
 // Sin esto, `[X](INTEGRATION.md)` resolvería a /build/INTEGRATION.md (404).
+// [A-Za-z0-9_-]: sin el guión, `[X](SDK-TS.md)` no matcheaba y quedaba roto
+// (404 verificado en 5 docs del kit — AGENTS, INTEGRATION, QUICKSTART,
+// RUNTIME_HINTS, SDK — hasta esta corrección).
 function rewriteKitLinks(md) {
-  return md.replace(/\]\((?:\.\/)?([A-Za-z_]+\.md)(#[^)]*)?\)/g, (m, archivo, ancla = '') => {
+  return md.replace(/\]\((?:\.\/)?([A-Za-z0-9_-]+\.md)(#[^)]*)?\)/g, (m, archivo, ancla = '') => {
     const slug = slugByArchivo[archivo]
     return slug ? `](/build/${slug}${ancla})` : m
   })
