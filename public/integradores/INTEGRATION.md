@@ -6,6 +6,8 @@
 
 ## What you can do from outside
 
+- **Discover what a credential can do** before using it: `GET /v1/operations`
+  lists the operations its RBAC allows.
 - **Ask in natural language** over your group's documents (RAG with RBAC-filtered context).
 - **Search semantically** without going through an LLM (chunks + relevance scores).
 - **Operate on Workspaces**: list, compose, read their contents.
@@ -68,10 +70,10 @@ original binary is a separate capability:
 | **TypeScript SDK** | TypeScript/JavaScript code (Node, browser, edge) — `npm install @ragfly/sdk`. Same surface as Python. | [SDK-TS.md](SDK-TS.md) |
 | **MCP** | LLM agents (Claude Code, Cursor, Cline, etc.) — the agent discovers and calls RAGfly tools directly | [MCP.md](MCP.md) |
 | **CLI** | Scripts, automations, CI/CD pipelines, terminal diagnostics | [CLI.md](CLI.md) |
-| **REST + SSE** | Any language / platform (n8n, Make, Zapier, custom apps) | [REST.md](REST.md) |
+| **REST `/v1`** | Any language / platform (n8n, Make, Zapier, custom apps) | [REST.md](REST.md) |
 | **Web** | End users search, operate and feed documents from Files, Google Drive or Dropbox at [`app.ragfly.ai`](https://app.ragfly.ai) | [GOOGLE_DRIVE.md](GOOGLE_DRIVE.md) · [DROPBOX.md](DROPBOX.md) |
 
-The first five share the same RAGfly authentication contract and the same RBAC; what changes is the transport protocol. Both SDKs wrap the REST API. Google and Dropbox authorization is separate: it grants the Web app read-only access to a user's source account and is used only during ingestion.
+The first five share the same RAGfly authentication contract, the same public contract `/v1` and the same RBAC; what changes is the transport protocol. Both SDKs and the CLI call `/v1`, and the MCP tools return the same English shapes. Google and Dropbox authorization is separate: it grants the Web app read-only access to a user's source account and is used only during ingestion.
 
 ---
 
@@ -82,18 +84,36 @@ different purposes:
 
 | Credential class | Purpose | Examples | Where it lives |
 |---|---|---|---|
-| **RAGfly credential** | Authenticate an external system and enforce RAGfly RBAC | API Key, JWT | Integration secret store or interactive session |
+| **RAGfly credential** | Authenticate an external system and enforce RAGfly RBAC | API Key (`rf_`), JWT | Integration secret store or interactive session |
 | **Connector app credential** | Identify the customer's provider application | Google OAuth Client ID + restricted API Key; Dropbox App key | RAGfly Group Parameters, configured by a group administrator |
 | **User provider token** | Authorize read-only access to one user's Drive or Dropbox | Google access token; Dropbox PKCE token | Browser session only; never stored as a RAGfly API Key |
 
 The sections below describe RAGfly credentials. Connector setup is documented
 in [GOOGLE_DRIVE.md](GOOGLE_DRIVE.md) and [DROPBOX.md](DROPBOX.md).
 
-### API Key (recommended for integrations)
+### OAuth for MCP clients
 
-Long-lived, no expiry, revocable. Format: `slm_live_xxxxxxxx…`
+For an MCP client with browser-based authorization, connect it to the RAGfly
+Streamable HTTP endpoint and sign in to RAGfly when prompted. The consent screen
+lets the person choose the role and area within their own permissions. RAGfly
+creates the same `rf_` API key used by other integrations and delivers it
+directly to the MCP client; the person does not copy or paste the secret.
 
-**Who creates it**: any authenticated user can create **their own** API Key, from [`app.ragfly.ai/api-keys`](https://app.ragfly.ai/api-keys) or via REST. Only a **group administrator** (a user with `ADMINISTRADOR` access) can create a Key **for another user** — e.g. for a `PERFIL`/bot without email — by passing `codigo_usuario_destino`.
+The key is scoped to its owner, group, entity, role and area, and the server
+enforces those limits on every call. It appears in
+[`app.ragfly.ai/api-keys`](https://app.ragfly.ai/api-keys) with origin `OAUTH`,
+where it can be revoked. OAuth changes credential delivery, not what the key
+can access. See [MCP.md](MCP.md) for client-specific setup.
+
+**Delegating this to an AI agent?** See
+[MCP.md § Delegating this setup to an AI agent](MCP.md#delegating-this-setup-to-an-ai-agent) —
+it tells the agent exactly which single step needs a human, and nothing more.
+
+### API Key (manual and programmatic integrations)
+
+Long-lived, no expiry, revocable. Format: `rf_xxxxxxxx…`
+
+**Who creates it**: a person. Any signed-in user can create **their own** API Key, from [`app.ragfly.ai/api-keys`](https://app.ragfly.ai/api-keys) or with `POST /auth/api-key` and their web session (JWT). That route answers `403` to an API key: a key cannot mint, list or revoke keys. Only a **group administrator** (a user with `ADMINISTRADOR` access) can create a Key **for another user** — e.g. for a `PERFIL`/bot without email — by passing `codigo_usuario_destino`.
 
 A Key never grants more than its owner already has: the administrator governs each user's privilege envelope (**area, entity, role**), and a self-issued Key is capped to that envelope. Role, area and entity are validated server-side against what the target user actually holds — there is no privilege escalation:
 
@@ -102,25 +122,30 @@ A Key never grants more than its owner already has: the administrator governs ea
 curl -X POST https://api.ragfly.ai/auth/api-key \
   -H "Authorization: Bearer <JWT>" \
   -H "Content-Type: application/json" \
-  -d '{"nombre": "my-integration", "rol_solicitado": "DOC-ADMIN"}'
-# → {"api_key": "slm_live_...", ...}   # shown only once — store in a secrets manager
+  -d '{"nombre": "my-integration", "rol_solicitado": "DOCS-USUARIO-FINAL"}'
+# → {"api_key": "rf_...", ...}   # shown only once — store in a secrets manager
 ```
 
-**How to use it** — in SDK, MCP, CLI and REST integrations:
+**How to use it** — in SDK, MCP, CLI and REST `/v1` integrations:
 
 ```
-Authorization: Bearer slm_live_xxxxxxxxxx
+Authorization: Bearer rf_xxxxxxxxxx
 ```
 
-### JWT (interactive sessions / testing)
+An API key operates **only the public API `/v1`** (MCP, the SDKs and the CLI go
+through it). On any other route it gets `403` with "An API key can only operate
+through the public /v1 API": the internal routes belong to the web app.
 
-Expires in 1 hour. Valid for testing or integrations that already manage refresh.
+### JWT (a person's web session)
+
+Expires in 1 hour. It is the credential of a signed-in person: the web app, and
+minting or revoking API keys. It also works on `/v1`, which is handy for testing.
 
 ```bash
 curl -X POST https://api.ragfly.ai/auth/login \
   -H "Content-Type: application/json" \
   -d '{"email": "user@company.com", "password": "..."}'
-# → {"access_token": "eyJ...", "expires_in": 3600}
+# → {"access_token": "eyJ...", "token_type": "bearer", "expires_in": 3600, "mfa_required": false, ...}
 ```
 
 ### Credential identity
@@ -136,44 +161,54 @@ PERFIL users let the admin deliver credentials to integrations without exposing 
 
 ---
 
-## Available roles
+## Roles and what a key can do
 
-| Role | What it can do |
-|---|---|
-| `DOC-ADMIN` | Documents, workspaces, skills — read and write |
-| `DOCS-USUARIO-FINAL` | Read documents and workspaces |
-| `PROCESOS_RAGFLY` | Queue and pipeline process management |
-| `OPERADOR` | According to the functions assigned to the role in your group |
+A key acts with its owner's RBAC, resolved on the server from the key:
 
-Whoever creates the Key defines its role, capped at their own access level (the administrator sets each user's role, area and entity). Principle of least privilege: if your integration only reads, use `DOCS-USUARIO-FINAL`.
+- The **role**, filtered by the owner's access level, decides which actions it
+  can run. `rol_solicitado` must be a role the owner already holds in the group;
+  the key carries only that one. The same role can therefore reach more for an
+  administrator than for a standard user.
+- The owner's **group, entity and area** decide which data it sees. They are
+  never taken from the request body or the URL.
+
+Roles are configured per group by its administrator. `GET /v1/session` shows the
+roles a key carries (`roles`), and `GET /v1/operations` lists what it can
+actually do. Principle of least privilege: if your integration only reads, use
+`DOCS-USUARIO-FINAL`.
 
 ---
 
 ## Verify the connection
 
 ```bash
-curl https://api.ragfly.ai/auth/me \
-  -H "Authorization: Bearer slm_live_xxxxxxxxxx"
+curl https://api.ragfly.ai/v1/session \
+  -H "Authorization: Bearer rf_xxxxxxxxxx"
 ```
 
 Expected response:
 
 ```json
 {
-  "codigo_usuario": "bot-finance",
-  "rol_principal": "DOC-ADMIN",
-  "tipo_acceso": "USUARIO",
-  "grupo_activo": "COMPANY",
-  "entidad_activa": "COMPANY"
+  "authenticated": true,
+  "user": {"code": "bot-finance", "name": "Finance bot"},
+  "active_group": "COMPANY",
+  "active_entity": "COMPANY",
+  "profile": "USER",
+  "roles": ["DOCS-USUARIO-FINAL"],
+  "locale": "en"
 }
 ```
+
+Then ask the key what it can do: `GET /v1/operations`
+([REST.md § Discover what a key can do](REST.md#discover-what-a-key-can-do--v1operations)).
 
 ---
 
 ## Security
 
 - API Keys are stored hashed in the database — RAGfly cannot reveal the original value.
-- Each Key updates `ultimo_uso` in the database for auditing.
+- Each key records its last use, for auditing.
 - Revoke immediately if a leak is suspected: panel [`app.ragfly.ai/api-keys`](https://app.ragfly.ai/api-keys) or `DELETE /auth/api-key/{prefix}`.
 - One Key per integration: if one is revoked, the others keep working.
 - Do not include Keys in source code — use environment variables or secrets managers (1Password, Vault, AWS Secrets Manager, etc.).

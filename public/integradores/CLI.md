@@ -37,7 +37,7 @@ required by the public contract.
 ## Examples
 
 ```bash
-export RAGFLY_API_KEY=slm_live_xxxxxxxxxx
+export RAGFLY_API_KEY=rf_xxxxxxxxxx
 
 ragfly cloud document list --status VECTORIZED --limit 20 -o json
 ragfly cloud document show DOC-2024-001 -o json

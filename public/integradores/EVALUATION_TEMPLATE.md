@@ -17,14 +17,16 @@
 
 | Battery | Status | Notes |
 |---|---|---|
-| 1.1 JWT login | ✅ / ❌ / ⏭ skipped | |
-| 1.2 GET /auth/me | ✅ / ❌ / ⏭ | |
-| 1.3 Create API Key | ✅ / ❌ / ⏭ | |
-| 2.1 List documents | ✅ / ❌ / ⏭ | |
-| 2.2 Semantic search Tenant A | ✅ / ❌ / ⏭ | |
-| 2.2 Semantic search Tenant B | ✅ / ❌ / ⏭ | |
+| 1.1 JWT login (a person) | ✅ / ❌ / ⏭ skipped | |
+| 1.2 GET /v1/session with the API key | ✅ / ❌ / ⏭ | |
+| 1.3 Create API Key (with the JWT) | ✅ / ❌ / ⏭ | |
+| 1.4 GET /v1/operations — what the key can do | ✅ / ❌ / ⏭ | |
+| 1.5 API key on a route outside /v1 → 403 | ✅ / ❌ / ⏭ | |
+| 2.1 List documents (GET /v1/documents) | ✅ / ❌ / ⏭ | |
+| 2.2 Semantic search Tenant A (POST /v1/documents/search) | ✅ / ❌ / ⏭ | |
+| 2.2 Semantic search Tenant B (POST /v1/documents/search) | ✅ / ❌ / ⏭ | |
 | 3. Multi-tenant isolation | ✅ / ❌ / ⏭ | |
-| 4. Queue and workspaces | ✅ / ❌ / ⏭ | |
+| 4. Queue and workspaces (GET /v1/queue, GET /v1/spaces) | ✅ / ❌ / ⏭ | |
 | 5. MCP (Claude Code / Cursor) | ✅ / ❌ / ⏭ | |
 | 6. Codex (MCP) | ✅ / ❌ / ⏭ | |
 | 7. CLI | ✅ / ❌ / ⏭ | |
@@ -43,7 +45,7 @@
 
 **Request:**
 ```
-METHOD /endpoint
+METHOD /v1/endpoint
 Header: Authorization: Bearer [REDACTED]
 Body: { ... }
 ```
