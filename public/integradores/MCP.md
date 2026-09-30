@@ -160,37 +160,30 @@ do on its own.
 
 No installation required. Add to your MCP client:
 
-### Claude Code — `.mcp.json` (project) or `~/.mcp.json` (global)
+### Claude Code — `.mcp.json` in your project
 
-**SSE** (compatible with all clients):
+Export `RAGFLY_API_KEY` in the environment that starts Claude Code. Keep the
+key out of `.mcp.json` and version control. Claude Code expands variables in
+HTTP headers:
+
 ```json
 {
   "mcpServers": {
     "ragfly": {
-      "url": "https://api.ragfly.ai/mcp/sse",
-      "headers": {
-        "Authorization": "Bearer rf_xxxxxxxxxx"
-      }
-    }
-  }
-}
-```
-
-**streamable_http** (more efficient, better with HTTP/2 and proxies):
-```json
-{
-  "mcpServers": {
-    "ragfly": {
+      "type": "http",
       "url": "https://api.ragfly.ai/mcp-http",
       "headers": {
-        "Authorization": "Bearer rf_xxxxxxxxxx"
+        "Authorization": "Bearer ${RAGFLY_API_KEY}"
       }
     }
   }
 }
 ```
 
-Restart your client. Tools appear with the prefix `mcp__ragfly__`.
+For a user-wide installation, use `claude mcp add -s user` instead of placing
+the file in a home directory. Restart Claude Code and check `claude mcp list`;
+an unset key may leave the server configured but unable to authenticate.
+Tools appear with the prefix `mcp__ragfly__`.
 
 The Streamable HTTP endpoint is stateless: every request carries its own
 `Authorization` header and the server keeps no session, so a server redeploy does not
