@@ -36,7 +36,7 @@ then follows the same analysis, chunking and vectorization stages.
 
 | Source | Where users connect it | Administrator setup | Original file access |
 |---|---|---|---|
-| **Local folder — Web** | **Documents → Feed documents → Files** | None | The browser provides a relative path. A local agent can open it only when the same filesystem is available and `RAGFLY_ROOT` is configured. |
+| **Local folder — Web** | **Documents → Feed documents → Files** | None | The browser provides a relative path. A local agent resolves it with the per-document environment variable named by `fs.home_var` and `fs.relative_path`, when that root is available. |
 | **Local folder — RAGfly Desktop** | RAGfly Desktop | Install and sign in to the Desktop app | The document can carry an absolute local path that an agent on that machine can open directly. |
 | **Google Drive** | **Documents → Feed documents → Google Drive** | OAuth Client ID + API Key; the Google Drive source must be enabled for the group | Cloud-only originals stay in Drive and are not exposed as local files. See [GOOGLE_DRIVE.md](GOOGLE_DRIVE.md). |
 | **Dropbox** | **Documents → Feed documents → Dropbox** | Dropbox App key; the Dropbox source must be enabled for the group | Cloud-only originals stay in Dropbox and are not exposed as local files. See [DROPBOX.md](DROPBOX.md). |
@@ -48,19 +48,13 @@ Cloud never stores the original file.
 
 ### Opening an original file from an agent
 
-Indexed content is available through RAGfly regardless of source. Access to the
-original binary is a separate capability:
-
-- **Desktop path**: open the absolute path directly.
-- **Web local-folder path**: configure `RAGFLY_ROOT` as the parent of the folder
-  you fed, then resolve `RAGFLY_ROOT + fs.path`. See
-  [MCP.md § Setting up `RAGFLY_ROOT`](MCP.md#setting-up-ragfly_root--once-per-machine-in-3-steps).
-- **Google Drive or Dropbox**: do not use `RAGFLY_ROOT`; RAGfly indexed the
-  content but did not copy the original into the local filesystem or RAGfly
-  Cloud.
-- **Public URL**: open the URL directly when a document explicitly provides one.
-
----
+Indexed content is available through RAGfly regardless of source. Resolve the
+`fs` object in this order: cloud-only documents stay with their provider;
+public URLs open directly; absolute Desktop paths open directly; otherwise read
+the environment variable named by `fs.home_var` and join it with
+`fs.relative_path`. Each root has its own variable. If `home_var` is `null` or
+unset, there is no local path to resolve. See
+[MCP.md: Opening a document on disk](MCP.md#opening-a-document-on-disk-fs-block).
 
 ## The six interfaces
 
@@ -74,6 +68,24 @@ original binary is a separate capability:
 | **Web** | End users search, operate and feed documents from Files, Google Drive or Dropbox at [`app.ragfly.ai`](https://app.ragfly.ai) | [GOOGLE_DRIVE.md](GOOGLE_DRIVE.md) · [DROPBOX.md](DROPBOX.md) |
 
 The first five share the same RAGfly authentication contract, the same public contract `/v1` and the same RBAC; what changes is the transport protocol. Both SDKs and the CLI call `/v1`, and the MCP tools return the same English shapes. Google and Dropbox authorization is separate: it grants the Web app read-only access to a user's source account and is used only during ingestion.
+
+MCP tools and manifest operations are related but distinct catalogs: `tools/list`
+shows the tools provided by the MCP adapter, while `GET /v1/operations` shows
+the screen operations available to that credential after RBAC filtering. Their
+counts and names need not match; use each catalog for its own interface.
+
+Create and revoke manual API keys in the RAGfly web app's **API Keys** page.
+Integrations use the resulting key with `/v1` or MCP; account and credential
+management are not part of the integration API. MCP OAuth can issue the same
+kind of key through the browser consent flow.
+
+A key's entity scope is either **fixed** or **flexible**: a fixed key cannot
+change entity, while a flexible key can select an authorized entity or release
+its focus with `entity_code: null`. RAGfly stores that focus on the server, so it
+persists when a client is reconstructed with the same key. The key remains
+bounded by its owner's group, role and area. An administrator can create a
+separate bot identity in the web app when needed.
+
 
 ---
 
@@ -90,6 +102,20 @@ different purposes:
 
 The sections below describe RAGfly credentials. Connector setup is documented
 in [GOOGLE_DRIVE.md](GOOGLE_DRIVE.md) and [DROPBOX.md](DROPBOX.md).
+
+### Language and identifiers at the integration boundary
+
+REST `/v1`, MCP (including its OAuth protocol endpoints), and machine-readable
+CLI and SDK responses use a fixed English protocol: tool and field names,
+catalog identifiers, enum values, published schemas and defaults, validation
+details, and messages written by RAGfly do not change with a person's locale or
+`Accept-Language`. A catalog identifier comes from the English alias stored on
+that same catalog row; RAGfly does not translate an internal code or return it
+as a fallback. If the alias is missing, the response fails safely. Internal
+role identifiers are not returned;
+`profile` shows the English access level and `/v1/operations` lists available
+actions. Customer-authored names, descriptions, prompts and document content
+keep their original language. See [REST.md](REST.md) for the public contract.
 
 ### OAuth for MCP clients
 
@@ -109,22 +135,16 @@ can access. See [MCP.md](MCP.md) for client-specific setup.
 [MCP.md § Delegating this setup to an AI agent](MCP.md#delegating-this-setup-to-an-ai-agent) —
 it tells the agent exactly which single step needs a human, and nothing more.
 
-### API Key (manual and programmatic integrations)
+### API key (manual integrations)
 
-Long-lived, no expiry, revocable. Format: `rf_xxxxxxxx…`
+Create, inspect, renew and revoke keys in the web app's **API Keys** page.
+The key is shown once; store it in a secrets manager. Its default validity is
+three months. The page lets a person choose a validity period and an authorized
+role or bot identity. A key cannot create, list or revoke keys.
 
-**Who creates it**: a person. Any signed-in user can create **their own** API Key, from [`app.ragfly.ai/api-keys`](https://app.ragfly.ai/api-keys) or with `POST /auth/api-key` and their web session (JWT). That route answers `403` to an API key: a key cannot mint, list or revoke keys. Only a **group administrator** (a user with `ADMINISTRADOR` access) can create a Key **for another user** — e.g. for a `PERFIL`/bot without email — by passing `codigo_usuario_destino`.
-
-A Key never grants more than its owner already has: the administrator governs each user's privilege envelope (**area, entity, role**), and a self-issued Key is capped to that envelope. Role, area and entity are validated server-side against what the target user actually holds — there is no privilege escalation:
-
-```bash
-# With an active JWT:
-curl -X POST https://api.ragfly.ai/auth/api-key \
-  -H "Authorization: Bearer <JWT>" \
-  -H "Content-Type: application/json" \
-  -d '{"nombre": "my-integration", "rol_solicitado": "DOCS-USUARIO-FINAL"}'
-# → {"api_key": "rf_...", ...}   # shown only once — store in a secrets manager
-```
+A key never grants more access than its owner has. RAGfly checks role, area and
+entity server-side. A fixed-entity key cannot change entity; a flexible key can
+change or release focus only within the owner's authorized entities.
 
 **How to use it** — in SDK, MCP, CLI and REST `/v1` integrations:
 
@@ -136,17 +156,11 @@ An API key operates **only the public API `/v1`** (MCP, the SDKs and the CLI go
 through it). On any other route it gets `403` with "An API key can only operate
 through the public /v1 API": the internal routes belong to the web app.
 
-### JWT (a person's web session)
+### Human web session
 
-Expires in 1 hour. It is the credential of a signed-in person: the web app, and
-minting or revoking API keys. It also works on `/v1`, which is handy for testing.
-
-```bash
-curl -X POST https://api.ragfly.ai/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{"email": "user@company.com", "password": "..."}'
-# → {"access_token": "eyJ...", "token_type": "bearer", "expires_in": 3600, "mfa_required": false, ...}
-```
+A human session belongs to the web app and key-management flow. Do not give a
+person's password or session token to an integration; configure the integration
+with its API key or complete the MCP OAuth flow in the browser.
 
 ### Credential identity
 
@@ -165,17 +179,17 @@ PERFIL users let the admin deliver credentials to integrations without exposing 
 
 A key acts with its owner's RBAC, resolved on the server from the key:
 
-- The **role**, filtered by the owner's access level, decides which actions it
-  can run. `rol_solicitado` must be a role the owner already holds in the group;
-  the key carries only that one. The same role can therefore reach more for an
-  administrator than for a standard user.
+- The role, filtered by the owner's access level, decides which actions it can
+  run. Choose an authorized role in the web app. `GET /v1/operations` is the
+  source of truth for the actions available to a key.
 - The owner's **group, entity and area** decide which data it sees. They are
   never taken from the request body or the URL.
 
-Roles are configured per group by its administrator. `GET /v1/session` shows the
-roles a key carries (`roles`), and `GET /v1/operations` lists what it can
-actually do. Principle of least privilege: if your integration only reads, use
-`DOCS-USUARIO-FINAL`.
+Roles are configured per group by its administrator. `GET /v1/session` shows
+the authenticated identity, active context and English access-level label; it
+does not return internal role identifiers. `GET /v1/operations` lists the
+actions that identity can actually perform. Principle of least privilege:
+choose a role with only the access the integration needs.
 
 ---
 
@@ -195,7 +209,6 @@ Expected response:
   "active_group": "COMPANY",
   "active_entity": "COMPANY",
   "profile": "USER",
-  "roles": ["DOCS-USUARIO-FINAL"],
   "locale": "en"
 }
 ```
@@ -209,7 +222,8 @@ Then ask the key what it can do: `GET /v1/operations`
 
 - API Keys are stored hashed in the database — RAGfly cannot reveal the original value.
 - Each key records its last use, for auditing.
-- Revoke immediately if a leak is suspected: panel [`app.ragfly.ai/api-keys`](https://app.ragfly.ai/api-keys) or `DELETE /auth/api-key/{prefix}`.
+- Revoke immediately if a leak is suspected in the web app's
+  [API Keys](https://app.ragfly.ai/api-keys) page.
 - One Key per integration: if one is revoked, the others keep working.
 - Do not include Keys in source code — use environment variables or secrets managers (1Password, Vault, AWS Secrets Manager, etc.).
 

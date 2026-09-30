@@ -3,287 +3,197 @@
     "nombre": "ragfly",
     "endpointSSE": "https://api.ragfly.ai/mcp/sse",
     "endpointHTTP": "https://api.ragfly.ai/mcp-http/",
-    "auth": "Authorization: Bearer slm_live_xxxxxxxxxx  (API Key) o Bearer <JWT>",
-    "scope": "Todas las operaciones quedan acotadas al grupo y entidad activos del usuario autenticado (RBAC)."
+    "auth": "OAuth 2.1 or Authorization: Bearer rf_xxxxxxxxxx (API Key issued from a human session)",
+    "scope": "Every call is filtered by the key owner’s group, entity, area and role. Flexible entity focus is stored server-side."
   },
-  "familias": [
-    "Sesión",
-    "Consultar",
-    "Organizar",
-    "Producir",
-    "Monitorear"
-  ],
-  "operaciones": [
+  "tools": [
     {
-      "id": "estado_sesion",
-      "familia": "Sesión",
-      "cli": "ragfly cloud me",
-      "metodo": "GET",
-      "ruta": "/auth/me",
-      "tipo_acceso": "USUARIO",
-      "descripcion": "Verifica la sesión y devuelve el contexto del usuario (email, rol, grupo y entidad activos). Úsala antes de cualquier otra operación para confirmar que el JWT o API Key es válido.",
-      "params": []
+      "name": "session",
+      "description": "Verifies the connection and returns the user context",
+      "parameters": "—"
     },
     {
-      "id": "listar_documentos",
-      "familia": "Consultar",
-      "cli": "ragfly cloud documento listar",
-      "metodo": "GET",
-      "ruta": "/documentos/paginado",
-      "tipo_acceso": "USUARIO",
-      "descripcion": "Lista los documentos del grupo activo con su estado de procesamiento, ubicación, tamaño y número de chunks.",
-      "params": [
-        {
-          "nombre": "estado",
-          "tipo": "string",
-          "default": "todos",
-          "desc": "Filtra por estado: CARGADO, METADATA, ESCANEADO, CHUNKEADO, VECTORIZADO, NO_ESCANEABLE, REVISAR."
-        },
-        {
-          "nombre": "limite",
-          "tipo": "int",
-          "default": "20",
-          "desc": "Máximo de documentos (máx 100)."
-        },
-        {
-          "nombre": "pagina",
-          "tipo": "int",
-          "default": "1",
-          "desc": "Página de resultados."
-        }
-      ]
+      "name": "set_active_entity",
+      "description": "Sets an authorized entity for a flexible key or releases focus with null; fixed keys cannot change entity",
+      "parameters": "`entity_code` (string or null)"
     },
     {
-      "id": "ver_documento",
-      "familia": "Consultar",
-      "cli": "ragfly cloud documento ver",
-      "metodo": "GET",
-      "ruta": "/documentos/{codigo_documento}",
-      "tipo_acceso": "USUARIO",
-      "descripcion": "Detalle completo de un documento: metadatos, estado de procesamiento, chunks, resumen y características extraídas.",
-      "params": [
-        {
-          "nombre": "codigo_documento",
-          "tipo": "string",
-          "default": "—",
-          "desc": "Código del documento."
-        }
-      ]
+      "name": "list_operations",
+      "description": "What this key can do: every operation its RBAC allows, with `kind` and `confirm_required`",
+      "parameters": "—"
     },
     {
-      "id": "listar_espacios",
-      "familia": "Organizar",
-      "cli": "ragfly cloud espacio listar",
-      "metodo": "GET",
-      "ruta": "/espacios-trabajo/paginado",
-      "tipo_acceso": "USUARIO",
-      "descripcion": "Lista los Espacios de Trabajo del grupo activo: colecciones de documentos sobre las que se ejecutan habilidades LLM de forma masiva.",
-      "params": [
-        {
-          "nombre": "limite",
-          "tipo": "int",
-          "default": "20",
-          "desc": "Máximo de espacios."
-        }
-      ]
+      "name": "get_operation",
+      "description": "One operation with its `input_schema` and `output_schema`",
+      "parameters": "`code`"
     },
     {
-      "id": "ver_espacio",
-      "familia": "Organizar",
-      "cli": "ragfly cloud espacio ver",
-      "metodo": "GET",
-      "ruta": "/espacios-trabajo/{id_espacio}/documentos/paginado",
-      "tipo_acceso": "USUARIO",
-      "descripcion": "Detalle de un Espacio de Trabajo y sus documentos asociados, con el estado de la cola de procesamiento por documento.",
-      "params": [
-        {
-          "nombre": "id_espacio",
-          "tipo": "int",
-          "default": "—",
-          "desc": "ID del Espacio de Trabajo."
-        },
-        {
-          "nombre": "limite_docs",
-          "tipo": "int",
-          "default": "20",
-          "desc": "Máximo de documentos a devolver."
-        }
-      ]
+      "name": "run_operation",
+      "description": "Runs one operation. A `write_confirm` one only runs with `confirm=true`; otherwise it returns a preview",
+      "parameters": "`code`, `input?`, `confirm?`"
     },
     {
-      "id": "ver_cola",
-      "familia": "Monitorear",
-      "cli": "ragfly cloud cola ver",
-      "metodo": "GET",
-      "ruta": "/cola-estados-docs/paginado",
-      "tipo_acceso": "ADMINISTRADOR",
-      "descripcion": "Estado actual de la cola del pipeline (ANALIZAR → CHUNKEAR → VECTORIZAR). Útil para monitorear el avance de habilidades o de la ingesta.",
-      "params": [
-        {
-          "nombre": "proceso",
-          "tipo": "string",
-          "default": "todos",
-          "desc": "Filtra por proceso, ej. VECTORIZAR."
-        },
-        {
-          "nombre": "estado",
-          "tipo": "string",
-          "default": "todos",
-          "desc": "PENDIENTE, EN_PROCESO, COMPLETADO o ERROR."
-        },
-        {
-          "nombre": "limite",
-          "tipo": "int",
-          "default": "20",
-          "desc": "Máximo de items."
-        }
-      ]
+      "name": "list_documents",
+      "description": "Lists group documents with filters",
+      "parameters": "`status`, `limit`, `page`"
     },
     {
-      "id": "ver_ejecuciones",
-      "familia": "Monitorear",
-      "cli": "ragfly cloud cola ejecuciones",
-      "metodo": "GET",
-      "ruta": "/cola-estados-docs/ejecuciones",
-      "tipo_acceso": "ADMINISTRADOR",
-      "descripcion": "Historial de ejecuciones de habilidades: cuántos documentos procesó cada ejecución, cuántos con éxito y cuántos con error.",
-      "params": [
-        {
-          "nombre": "limite",
-          "tipo": "int",
-          "default": "10",
-          "desc": "Máximo de ejecuciones."
-        }
-      ]
+      "name": "get_document",
+      "description": "Full detail of a document",
+      "parameters": "`document_code`"
     },
     {
-      "id": "listar_habilidades",
-      "familia": "Consultar",
-      "cli": "ragfly cloud habilidad listar",
-      "metodo": "GET",
-      "ruta": "/habilidades",
-      "tipo_acceso": "USUARIO",
-      "descripcion": "Lista las habilidades LLM disponibles en el catálogo: unidades atómicas de procesamiento LLM sobre documentos.",
-      "params": []
+      "name": "document_edges",
+      "description": "Corpus-graph edges of a document: neighbors and documents at 2 hops",
+      "parameters": "`document_code`, `neighbor_limit?`"
     },
     {
-      "id": "ver_habilidad",
-      "familia": "Consultar",
-      "cli": "ragfly cloud habilidad ver",
-      "metodo": "GET",
-      "ruta": "/habilidades/{codigo_habilidad}",
-      "tipo_acceso": "USUARIO",
-      "descripcion": "Detalle de una habilidad: prompt, system prompt, modelo, tipo, salida y variables disponibles.",
-      "params": [
-        {
-          "nombre": "codigo_habilidad",
-          "tipo": "string",
-          "default": "—",
-          "desc": "Código de la habilidad."
-        }
-      ]
+      "name": "list_spaces",
+      "description": "Lists the group's Workspaces",
+      "parameters": "`limit`"
     },
     {
-      "id": "ejecutar_habilidad",
-      "familia": "Producir",
-      "cli": "ragfly cloud habilidad ejecutar",
-      "metodo": "POST",
-      "ruta": "/habilidades/{codigo_habilidad}/ejecutar",
-      "tipo_acceso": "USUARIO",
-      "descripcion": "Ejecuta una habilidad LLM sobre un Espacio de Trabajo o un documento. La tarea se encola y se procesa en background; el resultado se consulta con ver_cola.",
-      "params": [
-        {
-          "nombre": "codigo_habilidad",
-          "tipo": "string",
-          "default": "—",
-          "desc": "Código de la habilidad, ej. RESUMIR_DOCUMENTO."
-        },
-        {
-          "nombre": "id_espacio",
-          "tipo": "int",
-          "default": "0",
-          "desc": "ID del Espacio. Usar 0 si se indica documento."
-        },
-        {
-          "nombre": "codigo_documento",
-          "tipo": "string",
-          "default": "—",
-          "desc": "Código del documento. Vacío si se usa espacio."
-        }
-      ]
+      "name": "get_space",
+      "description": "Workspace detail: criteria + documents + queue",
+      "parameters": "`space_id`, `doc_limit`"
     },
     {
-      "id": "buscar_chunks",
-      "familia": "Consultar",
-      "cli": "ragfly cloud buscar",
-      "metodo": "POST",
-      "ruta": "/documentos/buscar-semantico",
-      "tipo_acceso": "USUARIO",
-      "descripcion": "Búsqueda semántica RAG sobre los chunks vectorizados del grupo activo. Devuelve los fragmentos más relevantes con su documento de origen, score coseno y rerank — contexto citable sin entrar al chat.",
-      "params": [
-        {
-          "nombre": "consulta",
-          "tipo": "string",
-          "default": "—",
-          "desc": "Pregunta o frase a buscar en lenguaje natural."
-        },
-        {
-          "nombre": "limite",
-          "tipo": "int",
-          "default": "10",
-          "desc": "Top-K final."
-        },
-        {
-          "nombre": "min_similitud",
-          "tipo": "float",
-          "default": "0.0",
-          "desc": "Umbral coseno mínimo."
-        },
-        {
-          "nombre": "codigo_entidad",
-          "tipo": "string",
-          "default": "todas",
-          "desc": "Filtra por entidad específica."
-        }
-      ]
+      "name": "compose_spaces",
+      "description": "Set algebra (COMPOSE) of two Workspaces → a new Workspace handle",
+      "parameters": "`operation`, `space_id_a`, `space_id_b`, `name?`, `space_type?`"
     },
     {
-      "id": "preguntar",
-      "familia": "Consultar",
-      "cli": "ragfly cloud chat preguntar",
-      "metodo": "POST",
-      "ruta": "/chat/conversaciones",
-      "tipo_acceso": "USUARIO",
-      "descripcion": "Pregunta al chat RAG y devuelve la respuesta completa con citas. Crea una conversación nueva o reutiliza una existente.",
-      "params": [
-        {
-          "nombre": "mensaje",
-          "tipo": "string",
-          "default": "—",
-          "desc": "Pregunta del usuario."
-        },
-        {
-          "nombre": "codigo_funcion",
-          "tipo": "string",
-          "default": "CHAT-USUARIO",
-          "desc": "Función de chat a usar."
-        },
-        {
-          "nombre": "id_conversacion",
-          "tipo": "int",
-          "default": "0",
-          "desc": "Reutilizar conversación; 0 crea una nueva."
-        },
-        {
-          "nombre": "titulo",
-          "tipo": "string",
-          "default": "—",
-          "desc": "Título al crear una conversación nueva."
-        }
-      ]
+      "name": "read_space",
+      "description": "Materialize a Workspace (READ) at a chosen resolution, paginated",
+      "parameters": "`space_id`, `resolution?`, `query?`, `limit?`"
+    },
+    {
+      "name": "refresh_space",
+      "description": "Re-applies the Workspace's natural-language criteria and re-materializes its set (picks up newly qualifying documents)",
+      "parameters": "`space_id`"
+    },
+    {
+      "name": "promote_space",
+      "description": "Promotes a temporary Workspace (AREA) to permanent (SPACE)",
+      "parameters": "`space_id`"
+    },
+    {
+      "name": "wiki_index",
+      "description": "Index of the compiled-knowledge pages visible from the active area. **Not available to integrator keys today (403)**",
+      "parameters": "`area_code?`"
+    },
+    {
+      "name": "wiki_page",
+      "description": "One compiled-knowledge page. **Not available to integrator keys today (403)**",
+      "parameters": "`document_code`"
+    },
+    {
+      "name": "compile_space",
+      "description": "Compiles a Workspace (background job). The leaf skill must be one your access can run; the default public code is `COMPILE_PAGE`",
+      "parameters": "`space_id`, `leaf_skill_code?`"
+    },
+    {
+      "name": "queue",
+      "description": "Current state of the processing pipeline",
+      "parameters": "`process`, `status`, `limit`"
+    },
+    {
+      "name": "list_runs",
+      "description": "Skill run history",
+      "parameters": "`limit`"
+    },
+    {
+      "name": "catalog",
+      "description": "User capabilities: available functions + LLM skills (RBAC-filtered)",
+      "parameters": "`type?` (`FUNCTIONS`|`SKILLS`|`ALL`)"
+    },
+    {
+      "name": "list_skills",
+      "description": "LLM skills available to you (the same list as `catalog`)",
+      "parameters": "—"
+    },
+    {
+      "name": "get_skill",
+      "description": "Skill detail: type and output; prompt and model only if your role administers skills",
+      "parameters": "`skill_code`"
+    },
+    {
+      "name": "run_skill",
+      "description": "Queues a run over a workspace or document",
+      "parameters": "`skill_code`, `space_id?`, `document_code?`"
+    },
+    {
+      "name": "search_documents",
+      "description": "Direct semantic search over the corpus",
+      "parameters": "`query`, `limit?`, `min_similarity?`, `entity_code?`"
+    },
+    {
+      "name": "ask",
+      "description": "Natural language question with full RAG (non-streaming)",
+      "parameters": "`message`, `function_code?`, `conversation_id?`, `title?`"
+    },
+    {
+      "name": "get_agent_context",
+      "description": "Authenticated layered prompt, identity, allowed tools and limits for Agentic Retrieval. Tool names are stable English identifiers; the available list and schemas depend on identity/profile",
+      "parameters": "`function_profile?` (`user_chat`|`support_chat`)"
+    },
+    {
+      "name": "run_agent_tool",
+      "description": "Runs one tool from the current authenticated AgentContext",
+      "parameters": "`public_name`, `arguments_json?`, `function_profile?`"
+    },
+    {
+      "name": "get_organization",
+      "description": "Reads this tenant's profile and what is still missing",
+      "parameters": "—"
+    },
+    {
+      "name": "update_organization",
+      "description": "Writes the profile. Needs an administrator of the group",
+      "parameters": "`group_description?`, `group_system_prompt?`, `entity_description?`, `entity_system_prompt?`"
+    },
+    {
+      "name": "draft_organization",
+      "description": "Proposes the four profile texts from a source text. Does **not** save",
+      "parameters": "`source_text`"
+    },
+    {
+      "name": "get_usage",
+      "description": "Plan quotas against what is already consumed",
+      "parameters": "—"
+    },
+    {
+      "name": "list_conversations",
+      "description": "Conversation history; its ids feed `ask`",
+      "parameters": "`function_code?`, `limit?`"
+    },
+    {
+      "name": "delete_conversation",
+      "description": "Deletes a conversation and its messages. Not reversible",
+      "parameters": "`conversation_id`"
+    },
+    {
+      "name": "list_processes",
+      "description": "Process instances: support, requests, workspace jobs",
+      "parameters": "`status?`, `process_type?`, `category?`, `mine?`, `only_open?`, `limit?`, `page?`"
+    },
+    {
+      "name": "get_process",
+      "description": "One process in full, with description and comments",
+      "parameters": "`process_code`"
+    },
+    {
+      "name": "update_process",
+      "description": "Updates the fields the \"My Processes\" screen lets a person edit",
+      "parameters": "`process_code`, `status?`, `priority?`, `name?`, `description?`, `comments?`, `assigned_to?`, `due_at?`, `finished_at?`"
     }
   ],
-  "recursos": [
+  "operations": {
+    "method": "GET",
+    "endpoint": "https://api.ragfly.ai/v1/operations",
+    "description": "Separate manifest catalog of screen operations allowed by the credential after RBAC filtering. Its entries are not MCP tools."
+  },
+  "resources": [
     {
       "id": "configurar_conectores_ingesta",
       "tipo": "GUIA_OPERATIVA",
@@ -314,5 +224,6 @@
       ]
     }
   ],
-  "actualizado": "2026-08-29"
+  "updated": "2026-09-30",
+  "actualizado": "2026-09-30"
 }

@@ -23,7 +23,7 @@ import { KIT_DIR, documentos } from '../content/integradores.mjs'
 
 const here = dirname(fileURLToPath(import.meta.url))
 const root = resolve(here, '..')
-const kit = resolve(root, KIT_DIR)
+const kit = process.env.RAGFLY_KIT_DIR ? resolve(process.env.RAGFLY_KIT_DIR) : resolve(root, KIT_DIR)
 const outMd = resolve(root, 'public/integradores')
 const fecha = new Date().toISOString().slice(0, 10)
 
@@ -109,15 +109,15 @@ writeFileSync(
 
 // Archivos no-.md del kit que también se sirven crudos (fetch de agentes /
 // referenciados por el README, p.ej. `.env.example`).
-const EXTRAS = ['.env.example']
+const EXTRAS = [{ source: '.env.example', target: '.env.example' }, { source: '.env.example', target: 'env.example' }]
 let extrasCopiados = 0
-for (const nombre of EXTRAS) {
+for (const extra of EXTRAS) {
   try {
-    const raw = readFileSync(resolve(kit, nombre), 'utf8')
-    writeFileSync(resolve(outMd, nombre), raw, 'utf8')
+    const raw = readFileSync(resolve(kit, extra.source), 'utf8')
+    writeFileSync(resolve(outMd, extra.target), raw, 'utf8')
     extrasCopiados++
   } catch {
-    console.warn(`⚠ extra no encontrado en el kit, se omite: ${nombre}`)
+    console.warn('Extra not found in the integration kit: ' + extra.source)
   }
 }
 

@@ -1,113 +1,111 @@
-// ─────────────────────────────────────────────────────────────────────────
-// build-agentes.mjs — compila content/agentes.mjs → public/agents.json + .txt
-// ─────────────────────────────────────────────────────────────────────────
-//
-//   node scripts/build-agentes.mjs       (o: npm run build:agentes)
-//
-// Lee la fuente única (content/agentes.mjs) y emite dos artefactos que un
-// agente de IA consume directamente desde el sitio:
-//
-//   public/agents.json   — catálogo estructurado, máquina-legible.
-//   public/llms-full.txt — el mismo catálogo en Markdown (estándar llmstxt.org).
-//
-// La sección visible "Para Agentes" de la landing importa content/agentes.mjs
-// directamente; este script solo genera los archivos estáticos públicos.
-// ─────────────────────────────────────────────────────────────────────────
-
-import { writeFileSync } from 'node:fs'
+// build-agentes.mjs — compile the public agent catalog from the integration kit.
+import { readFileSync, writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, resolve } from 'node:path'
-import { mcp, familias, capacidades, recursos } from '../content/agentes.mjs'
+import { mcp, recursos } from '../content/agentes.mjs'
+import { KIT_DIR } from '../content/integradores.mjs'
 
 const here = dirname(fileURLToPath(import.meta.url))
 const root = resolve(here, '..')
 const pub = resolve(root, 'public')
+const kit = process.env.RAGFLY_KIT_DIR ? resolve(process.env.RAGFLY_KIT_DIR) : resolve(root, KIT_DIR)
+const date = new Date().toISOString().slice(0, 10)
+const backtick = String.fromCharCode(96)
 
-const fecha = new Date().toISOString().slice(0, 10)
+function readMcpTools() {
+  const markdown = readFileSync(resolve(kit, 'MCP.md'), 'utf8')
+  const heading = markdown.indexOf('## Available tools')
+  const end = markdown.indexOf('### Setting up your organization', heading)
+  if (heading < 0 || end < 0) throw new Error('MCP tool table markers are missing')
+  const rows = markdown.slice(heading, end).split('\n').filter((line) => line.startsWith('|'))
+  const tools = []
+  for (const row of rows.slice(2)) {
+    const marker = '__ESCAPED_PIPE__'
+    const cells = row.replace(/\\\|/g, marker).split('|').slice(1, -1).map((cell) =>
+      cell.trim().replaceAll(marker, '|'),
+    )
+    if (cells.length < 3 || !cells[0] || /^-+$/.test(cells[0])) continue
+    tools.push({
+      name: cells[0].split(backtick).join(''),
+      description: cells[1],
+      parameters: cells[2],
+    })
+  }
+  if (tools.length === 0) throw new Error('No MCP tools found in the integration kit')
+  return tools
+}
 
-// ── agents.json ────────────────────────────────────────────────────────────
+const tools = readMcpTools()
+const operations = {
+  method: 'GET',
+  endpoint: 'https://api.ragfly.ai/v1/operations',
+  description: 'Separate manifest catalog of screen operations allowed by the credential after RBAC filtering. Its entries are not MCP tools.',
+}
 const json = {
-  nombre: 'RAGfly',
-  descripcion:
-    'Servicio de RAG multi-tenant. Entrega a un agente de IA el contexto documental exacto que necesita, filtrado por RBAC, vía MCP, CLI o API REST.',
-  sitio: 'https://ragfly.ai',
+  name: 'RAGfly',
+  description: 'Document retrieval for agents, exposed through MCP tools and a separate RBAC-filtered REST operations manifest.',
+  site: 'https://ragfly.ai',
   app: 'https://app.ragfly.ai',
-  actualizado: fecha,
+  updated: date,
   mcp,
-  total_operaciones: capacidades.length,
-  familias,
-  operaciones: capacidades,
-  total_recursos: recursos.length,
-  recursos,
+  total_mcp_tools: tools.length,
+  tools,
+  operations,
+  total_resources: recursos.length,
+  resources: recursos,
 }
 writeFileSync(resolve(pub, 'agents.json'), JSON.stringify(json, null, 2) + '\n', 'utf8')
-
-// content/agentes-data.json — consumido por app/page.tsx (sección "Para Agentes").
 writeFileSync(
   resolve(root, 'content/agentes-data.json'),
-  JSON.stringify({ mcp, familias, operaciones: capacidades, recursos, actualizado: fecha }, null, 2) + '\n',
+  JSON.stringify({ mcp, tools, operations, resources: recursos, updated: date, actualizado: date }, null, 2) + '\n',
   'utf8',
 )
 
-// ── llms-full.txt ────────────────────────────────────────────────────────
-const L = []
-L.push('# RAGfly — Catálogo para agentes')
-L.push('')
-L.push('> ' + json.descripcion)
-L.push('')
-L.push(`Actualizado: ${fecha}`)
-L.push('')
-L.push('## Conexión MCP')
-L.push('')
-L.push(`- Endpoint SSE: ${mcp.endpointSSE}`)
-L.push(`- Endpoint HTTP (streamable): ${mcp.endpointHTTP}`)
-L.push(`- Autenticación: ${mcp.auth}`)
-L.push(`- Alcance: ${mcp.scope}`)
-L.push('')
-L.push('También disponible vía la CLI de RAGfly Desktop: `ragfly cloud ...`')
-L.push('')
-L.push(`## Recursos operativos (${recursos.length}; no son tools)`)
-L.push('')
-for (const recurso of recursos) {
-  L.push(`### ${recurso.titulo}`)
-  L.push('')
-  L.push(recurso.descripcion)
-  L.push('')
-  L.push('Reglas de seguridad:')
-  for (const regla of recurso.reglas_seguridad) L.push(`- ${regla}`)
-  L.push('')
-  L.push('Documentación:')
-  for (const enlace of recurso.enlaces) L.push(`- [${enlace.titulo}](${enlace.url})`)
-  L.push('')
+const lines = [
+  '# RAGfly — Agent interface catalog',
+  '',
+  '> Discover MCP tools with tools/list. Discover the separate manifest operations with GET /v1/operations.',
+  '',
+  'Updated: ' + date,
+  '',
+  '## MCP connection',
+  '',
+  '- SSE endpoint: ' + mcp.endpointSSE,
+  '- Streamable HTTP endpoint: ' + mcp.endpointHTTP,
+  '- Authentication: ' + mcp.auth,
+  '- Scope: ' + mcp.scope,
+  '',
+  'API keys are issued through a signed-in human session. A fixed-entity key cannot change entity. A flexible key can select an authorized entity or release focus with entity_code: null; the server persists the focus for that key.',
+  '',
+  '## MCP tools (' + tools.length + ')',
+  '',
+]
+for (const tool of tools) {
+  lines.push('### ' + tool.name)
+  lines.push('')
+  lines.push(tool.description)
+  if (tool.parameters && tool.parameters !== '—') lines.push('Parameters: ' + tool.parameters)
+  lines.push('')
 }
-L.push(`## Operaciones (${capacidades.length})`)
-L.push('')
-for (const fam of familias) {
-  const items = capacidades.filter((c) => c.familia === fam)
-  if (!items.length) continue
-  L.push(`### ${fam}`)
-  L.push('')
-  for (const c of items) {
-    L.push(`#### ${c.id}`)
-    L.push('')
-    L.push(c.descripcion)
-    L.push('')
-    L.push(`- MCP tool: \`${c.id}\``)
-    L.push(`- CLI: \`${c.cli}\``)
-    L.push(`- REST: \`${c.metodo} ${c.ruta}\` (acceso ${c.tipo_acceso})`)
-    if (c.params.length) {
-      L.push(`- Parámetros:`)
-      for (const p of c.params) {
-        L.push(`  - \`${p.nombre}\` (${p.tipo}, def: ${p.default}) — ${p.desc}`)
-      }
-    }
-    L.push('')
-  }
+lines.push('## Manifest operations')
+lines.push('')
+lines.push(operations.description)
+lines.push('')
+lines.push('Endpoint: ' + operations.method + ' ' + operations.endpoint)
+lines.push('')
+lines.push('## Guidance resources (' + recursos.length + ')')
+lines.push('')
+for (const resource of recursos) {
+  lines.push('### ' + resource.titulo)
+  lines.push('')
+  lines.push(resource.descripcion)
+  lines.push('')
+  lines.push('Security rules:')
+  for (const rule of resource.reglas_seguridad) lines.push('- ' + rule)
+  lines.push('')
+  lines.push('Documentation:')
+  for (const link of resource.enlaces) lines.push('- [' + link.titulo + '](' + link.url + ')')
+  lines.push('')
 }
-writeFileSync(resolve(pub, 'llms-full.txt'), L.join('\n'), 'utf8')
-
-console.log(`✓ public/agents.json — ${capacidades.length} operaciones, ${recursos.length} recursos`)
-console.log(`✓ content/agentes-data.json — datos para page.tsx`)
-console.log(`✓ public/llms-full.txt — catálogo Markdown`)
-const porFam = familias.map((f) => `${f}:${capacidades.filter((c) => c.familia === f).length}`).join('  ')
-console.log(`  ${porFam}`)
+writeFileSync(resolve(pub, 'llms-full.txt'), lines.join('\n'), 'utf8')
+console.log('Generated agents.json and llms-full.txt from MCP.md: ' + tools.length + ' MCP tools; manifest operations remain separate.')

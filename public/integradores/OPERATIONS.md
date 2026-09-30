@@ -25,8 +25,12 @@ Kinds:
 - `write_confirm` (deletes, reverts, resets) does nothing unless `confirm` is true. Without
   it, the answer is `{"executed": false, "preview": …}`.
 
-Field names are English. Catalog values (statuses, types) still travel as the web app uses
-them: check `document_statuses.list` before filtering by status.
+Field names, catalog codes, enum values, published schema defaults, validation details,
+and API-authored messages are English. Catalog codes use the public English alias stored
+on the same row; read `document_statuses.list` for current status values.
+Internal role identifiers and fields without a public mapping are omitted. A catalog value
+without an English alias fails with a safe English error instead of exposing its internal code.
+Tenant-authored names, descriptions, prompts and document content keep their original language.
 
 ## Operations (108: 41 read, 50 write, 17 write_confirm)
 
@@ -118,7 +122,7 @@ the key's role must also include one of those screens.
 
 | Operation | Kind | Minimum profile | Screens |
 |---|---|---|---|
-| `functions.get` | read | USER | `AUDIT_USERS`, `CHAT-USER`, `DOCS_DASHBOARD`, `MANAGE_GROUP_PROCESSES`, `SECURITY-DASHBOARD`, `SUBSCRIPTION_CANCELLATIONS` |
+| `functions.get` | read | USER | `AUDIT_USERS`, `CHAT-FINAL-USER`, `CHAT-USER`, `DOCS_DASHBOARD`, `MANAGE_GROUP_PROCESSES`, `SECURITY-DASHBOARD`, `SUBSCRIPTION_CANCELLATIONS` |
 
 ### `group_processes`
 
@@ -163,7 +167,7 @@ the key's role must also include one of those screens.
 | `locations.delete` | write_confirm | ADMINISTRATOR | `DOC_LOCATIONS`, `PROCESS_PIPELINE` |
 | `locations.generate_md` | write | ADMINISTRATOR | `DOC_LOCATIONS` |
 | `locations.get_acquisition_skill` | read | ADMINISTRATOR | `DOC_LOCATIONS` |
-| `locations.list` | read | USER | `CHAT-USER`, `DOC_LOCATIONS`, `MANAGE_ENTITIES`, `PROCESS_DOCUMENTS`, `PROCESS_PIPELINE` |
+| `locations.list` | read | USER | `CHAT-FINAL-USER`, `CHAT-USER`, `DOC_LOCATIONS`, `MANAGE_ENTITIES`, `PROCESS_DOCUMENTS`, `PROCESS_PIPELINE` |
 | `locations.materialize_web` | write | ADMINISTRATOR | `DOC_LOCATIONS` |
 | `locations.preview_delete` | read | ADMINISTRATOR | `DOC_LOCATIONS`, `PROCESS_PIPELINE` |
 | `locations.rebuild_hierarchy` | write | ADMINISTRATOR | `DOC_LOCATIONS` |
@@ -238,7 +242,7 @@ the key's role must also include one of those screens.
 |---|---|---|---|
 | `spaces.create` | write | USER | `WORKSPACES` |
 | `spaces.delete` | write_confirm | USER | `WORKSPACES` |
-| `spaces.list` | read | USER | `CHAT-USER`, `WORKSPACES` |
+| `spaces.list` | read | USER | `CHAT-FINAL-USER`, `CHAT-USER`, `WORKSPACES` |
 | `spaces.list_documents` | read | USER | `WORKSPACES` |
 | `spaces.promote` | write | USER | `WORKSPACES` |
 | `spaces.reapply_skill` | write | USER | `WORKSPACES` |

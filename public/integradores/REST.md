@@ -23,17 +23,31 @@ Every `/v1` route requires:
 Authorization: Bearer <JWT-or-rf_API_key>
 ```
 
-- **API key** (`rf_...`): what integrations use. It operates only `/v1` (MCP, the
-  SDKs and the CLI go through it), with its owner's RBAC — the key's role,
+- **API key** (`rf_...`): what integrations use. Create and revoke it in the
+  [RAGfly web app](https://app.ragfly.ai/api-keys). It operates only `/v1` (MCP,
+  the SDKs and the CLI go through it), with its owner's RBAC — the key's role,
   filtered by the owner's access level, decides which actions; the owner's group,
   entity and area decide which data.
-- **JWT**: a person's web session from `POST /auth/login` (1 h). It is the only
-  credential that can mint or revoke keys: `POST /auth/api-key` and
-  `DELETE /auth/api-key/{prefix}` answer `403` to an API key.
+- **JWT**: an optional person's web session. A person can use it with `/v1`, but
+  key management belongs in the web app. The web application's `/auth/*` routes
+  are not part of the public integration contract.
 
-The public contract ignores `Accept-Language`: routes, field names, enums,
-catalog codes and standard messages are always English. User document content
-keeps its original language.
+The public contract ignores `Accept-Language`: field names, catalog codes, enum
+values, published schemas/defaults, validation details and standard success or
+error messages are always English. This applies to nested JSON too. User
+document content and other tenant-authored text keep their original language.
+The session's `locale`, when present, is a language preference tag; it does not
+localize the API protocol.
+
+## Entity focus
+
+An API key has either a fixed entity or a flexible entity focus. A fixed key
+cannot change its entity. A flexible key may select an authorized entity or
+release focus by sending `{"entity_code":null}` to
+`POST /v1/session/active-entity`. The request must include `entity_code`;
+`null` is the explicit release value. RAGfly stores the resulting focus for
+that key, so it remains after the client process is reconstructed. The key
+cannot select an entity outside its owner's authorized scope.
 
 ## Routes
 
@@ -155,15 +169,18 @@ after they agree. `write` and `write_confirm` runs are audited.
 | Answer | Meaning |
 |---|---|
 | `404 NOT_FOUND` | The code does not exist or is not visible to this key. The two cases are not told apart |
-| `422 VALIDATION_ERROR` with `details.unknown_fields` | The `input` carries a field the schema does not declare |
+| `422 VALIDATION_ERROR` with `details.unknown_field_count` | The `input` carries fields the schema does not declare; their names are not echoed |
 | `422 VALIDATION_ERROR` with `details.missing_fields` | A required field is missing |
 | `403 FORBIDDEN` | The key's RBAC does not reach the concrete route |
 
-Field names in `input` and `result` are English. Catalog values inside them
-(document statuses, type codes) currently travel as the web app uses them —for
-example `document_statuses.list` returns `VECTORIZADO`, not `VECTORIZED`— so take
-those values from an operation's own `result`, not from the English lists in this
-guide.
+Field names, catalog codes, enum values, defaults, validation details and
+messages written by the API in `input`, schemas, errors and `result` are
+English. Catalog codes use the English alias
+stored for their catalog row; for example, document status is `VECTORIZED`.
+`document_statuses.list` is the source for the current allowed values. The API
+never returns the internal database code. Tenant-authored names, descriptions,
+prompts and document content keep the language in which they were written; they
+are content, not protocol messages.
 
 ## Set up your organization first
 
@@ -174,7 +191,7 @@ is the whole ingestion pipeline and not only chat, so a tenant that leaves them 
 answers worse than one that filled them in. Do it before your first load.
 
 These routes need a key whose role can manage the organization profile, normally
-a group administrator's; a `DOCS-USUARIO-FINAL` key gets `403` on the read and
+a group administrator's; a key without profile-management access gets `403` on the read and
 on the draft.
 
 ```bash
@@ -247,7 +264,7 @@ Response fields are English:
       {"text": "...", "page": 21, "extra": {"chunk_number": 26, "similarity": 0.5497}},
       {"text": "...", "page": 22, "extra": {"chunk_number": 28, "similarity": 0.544}}
     ],
-    "fs": {"path": "/Contracts/2024/Maintenance contract 2024.pdf", "origin": "WEB", "is_absolute": false, "is_cloud_only": false, "how_to_open": "Web-upload relative path: open $RAGFLY_ROOT + `path`."}
+    "fs": {"home_var": "RAGFLY_HOME_442681", "relative_path": "Contracts/2024/Maintenance contract 2024.pdf", "path": "/Contracts/2024/Maintenance contract 2024.pdf", "origin": "WEB", "is_absolute": false, "is_public_url": false, "is_cloud_only": false}
   }],
   "total_documents": 1,
   "total_chunks": 2,
@@ -290,10 +307,14 @@ chat for this identity: the layered `system_prompt` with its hashes, `identity`,
 `limits` and `tools`, the list of tools that `POST /v1/agent/tools/{public_name}`
 runs.
 
-Those tools are the web chat's own. Their names and parameters follow the chat
-—today in Spanish— and can change: they are not a stable contract. Read them
-from `/v1/agent/context` at run time instead of hard-coding them. For stable
-names, use the `/v1` routes above and `/v1/operations`.
+Agent tools have stable English public names. Names backed by catalog entries
+derive from the catalog's English aliases (`codigo_habilidad_en` or
+`codigo_funcion_en`); fixed tools use explicit English names. The context only
+lists tools allowed for the authenticated identity and selected profile, so
+read its `tools` and `input_schema` at run time. Pass `public_name` unchanged to
+`POST /v1/agent/tools/{public_name}`; internal chat tool names are not part of
+the public contract. For stable REST operations, use the `/v1` routes above
+and `/v1/operations`.
 
 ## Function detail
 
@@ -375,30 +396,34 @@ A catalog value without an English public mapping fails closed with
 
 ## File locations (`fs`)
 
-Document responses may include an English `fs` block:
+Document responses can include these filesystem hints:
 
 ```json
-{"path":"/MyDocuments/contract.pdf","origin":"WEB","is_absolute":false,"is_public_url":false,"relative_folder":"MyDocuments","file_name":"contract.pdf","how_to_open":"Open $RAGFLY_ROOT + path."}
+{
+  "home_var": "RAGFLY_HOME_442681",
+  "relative_path": "MyDocuments/contract.pdf",
+  "path": "/MyDocuments/contract.pdf",
+  "origin": "WEB",
+  "is_absolute": false,
+  "is_public_url": false,
+  "is_cloud_only": false
+}
 ```
 
-`DESKTOP` paths are absolute and open directly. `WEB` paths are relative and
-resolve as `$RAGFLY_ROOT + path`; `PUBLIC` paths are URLs and open directly.
-RAGfly never reads or stores `RAGFLY_ROOT`.
+Resolve in this order: if `is_cloud_only` is true, the original remains with
+its provider and the logical path is not local; if `is_public_url` is true or
+`origin` is `PUBLIC`, open the URL directly; if `is_absolute` is true, open
+`path` directly; otherwise read the environment variable named by `home_var`
+and join its value with `relative_path`. The `home_var` name is per-root, so
+documents may refer to different variables.
 
-Documents ingested via a cloud connector (Google Drive, Dropbox) carry
-`is_cloud_only: true` instead — `path` is a logical citation path, never
-resolvable with `RAGFLY_ROOT`. When the connector captured the provider's
-stable id at ingestion time, the block also carries `source_id` /
-`source_path` / `source_url`, fetchable with **your own** provider
-credentials (never RAGfly's):
+If `home_var` is `null`, empty, or unset, there is no local root available for
+that document. Do not guess a root or construct a path from `path`. For
+cloud-only documents, `source_id` and `source_url` may be present; provider
+access requires the integrator's own credentials.
 
-```json
-{"path":"/CompanyDocs/finance/tax-2026.pdf","origin":"WEB","is_cloud_only":true,"ingestion_source":"DROPBOX","source_id":"id:a1B2c3D4e5F6","source_path":"/team/finance/tax-2026.pdf","source_url":"https://www.dropbox.com/home/team/finance?preview=tax-2026.pdf","how_to_open":"The original lives in Dropbox. Fetch it with your OWN Dropbox credentials…"}
-```
-
-See [MCP.md § Cloud connector originals](MCP.md#cloud-connector-originals-source_id--source_path--source_url)
-for the full field reference — this REST surface returns the identical `fs`
-shape.
+See [MCP.md: Opening a document on disk](MCP.md#opening-a-document-on-disk-fs-block)
+for examples with multiple roots and cloud-provider details.
 
 ## What `/v1` does not return
 

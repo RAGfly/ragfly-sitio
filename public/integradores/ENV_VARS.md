@@ -1,8 +1,9 @@
 # RAGfly — Environment Variables Reference
 
 The single source of truth for every environment variable an integrator sets.
-Naming convention (fixed): **English, UPPERCASE, `RAGFLY_` prefix.** If a doc
-elsewhere uses a different name, this table wins.
+Canonical fixed variables use English, UPPERCASE names with the `RAGFLY_`
+prefix. Filesystem root variables are generated per root and identified by
+`fs.home_var`; they are not one fixed variable name.
 
 There are **two independent setups**. You use one or the other depending on how
 you connect — they do **not** share variables.
@@ -19,45 +20,44 @@ you connect — they do **not** share variables.
 | Variable | Canonical | What it is | Default | Where you set it |
 |---|---|---|---|---|
 | `RAGFLY_API_URL` | ✅ | Backend base URL. | `https://api.ragfly.ai` | `.env`, shell, MCP `env` block |
-| `RAGFLY_API_KEY` | ✅ | **The only operational credential.** API key (`rf_…`), sent as `Authorization: Bearer …`. No expiry until revoked. | — | `.env`, shell, MCP `env` block |
-| `RAGFLY_EMAIL` | ✅ | **Bootstrap only.** Your account email — used once to log in and mint the API key. | — | `.env` (can be deleted after) |
-| `RAGFLY_PASSWORD` | ✅ | **Bootstrap only.** Your account password — used once with `RAGFLY_EMAIL`. | — | `.env` (can be deleted after) |
-| `RAGFLY_ROOT` | ✅ | **Optional.** Lets your agent open the *original file on disk* for web-uploaded documents. Parent folder of what you uploaded. RAGfly never reads nor stores it. | — | shell (`~/.zshrc`), `CLAUDE.md`/`AGENTS.md`, MCP `env` block |
+| `RAGFLY_API_KEY` | ✅ | **The only operational credential.** API key (`rf_…`), sent as `Authorization: Bearer …`. Default validity is 3 months; renewal or revocation needs a human session. | — | `.env`, shell, MCP `env` block |
+| Per-root variable named by `fs.home_var` (for example `RAGFLY_HOME_442681`) | Generated | **Optional.** Points to the local root for that document. Read the name from each document's `fs` object and join its value with `fs.relative_path`. | — | Environment of the agent or MCP client |
 
-### How the API key is minted (why EMAIL/PASSWORD are "bootstrap only")
-
-1. `POST /auth/login` with `RAGFLY_EMAIL` + `RAGFLY_PASSWORD` → returns a **JWT** (short-lived).
-2. `POST /auth/api-key` with that JWT → returns **`RAGFLY_API_KEY`** (`rf_…`, shown once).
-3. From then on, **every call uses `RAGFLY_API_KEY`**. Email/password are no longer needed.
+Create and revoke API keys in the RAGfly web app's **API Keys** page. The
+integration receives only `RAGFLY_API_KEY`; never put a person's password or
+web-session token in an agent's environment. Web sign-in variables belong only
+to the separate Desktop setup below.
 
 Full walkthrough: [QUICKSTART.md](QUICKSTART.md).
 
-### `RAGFLY_ROOT` — when you actually need it
+### Resolving an original file from `fs`
 
-RAGfly returns each document with fields that describe how its original can be accessed:
+The document response supplies an `fs` object. Resolve it in this order:
 
-- `path` — the stored location.
-- `is_absolute` — whether `path` is an OS path. **RAGfly determines it at upload time; the agent does not decide it.**
-- `is_cloud_only` — whether the original remains in a cloud connector and must
-  not be resolved locally.
+1. If `is_cloud_only` is `true`, do not resolve a local path. The original
+   remains with Google Drive or Dropbox; use provider details in `fs` when
+   available.
+2. If `is_public_url` is `true` (or `origin` is `PUBLIC`), open the public URL
+   directly.
+3. If `is_absolute` is `true`, open `fs.path` directly on that machine.
+4. Otherwise, read the environment variable whose **name** is `fs.home_var` and
+   join its value with `fs.relative_path`. Each document can name a different
+   root variable.
 
-The single rule the agent follows:
+Example with two roots:
 
-- `is_cloud_only: true` (fed by **Google Drive** or **Dropbox**) → do not use
-  `path` or `RAGFLY_ROOT`; the original stays with the provider.
-- `is_absolute: true` (uploaded via **RAGfly Desktop**) → open `path` directly. **No `RAGFLY_ROOT` needed.**
-- `origin: WEB` and `is_cloud_only: false` (uploaded from a **web local folder**) → open `RAGFLY_ROOT + path`.
+| Document | `fs.home_var` | `fs.relative_path` | Local root variable |
+|---|---|---|---|
+| A | `RAGFLY_HOME_442681` | `Contracts/2026/a.pdf` | `RAGFLY_HOME_442681=/Users/ana/Dropbox` |
+| B | `RAGFLY_HOME_991203` | `Legal/b.pdf` | `RAGFLY_HOME_991203=/Volumes/Archive` |
 
-The browser never exposes your real disk path, so web-uploaded files carry only a
-*relative* path. `RAGFLY_ROOT` is the parent folder of what you uploaded (e.g. you
-uploaded `/Users/ana/Dropbox/MisDocumentos` → `RAGFLY_ROOT=/Users/ana/Dropbox`).
-Because it never leaves your machine, the same document resolves anywhere — each
-machine sets its own `RAGFLY_ROOT`. You do **not** need it just to search, ask or
-cite (that content is served from the cloud) — only to open the original file.
+If `home_var` is `null`, empty, or names an unset variable, there is no local
+root available for that document. Do not guess a root or construct a path from
+`fs.path`; continue with the indexed content or the public/provider URL if
+available. RAGfly does not read or store these machine-local root values.
 
-Step-by-step: [MCP.md § Setting up `RAGFLY_ROOT`](MCP.md#setting-up-ragfly_root--once-per-machine-in-3-steps).
-
----
+Searching, asking and citing do not require local path resolution; it is only
+needed when an agent must open the original file.
 
 ## B · RAGfly Desktop (`~/.ragfly/config.env`)
 
@@ -74,8 +74,8 @@ Configured by `ragfly setup` or by editing `~/.ragfly/config.env` directly.
 | Variable | Canonical | What it is | Default |
 |---|---|---|---|
 | `RAGFLY_ENV` | ✅ | Environment: `prod` \| `test` \| `corp`. Picks backend + frontend URLs and an isolated local DB per env. End users leave it at `prod`. | `prod` |
-| `RAGFLY_EMAIL` | ✅ | Account email for login. | — |
-| `RAGFLY_PASSWORD` | ✅ | Account password for login. | — |
+| `RAGFLY_EMAIL` | ✅ | Account email for signing in to RAGfly Desktop. | — |
+| `RAGFLY_PASSWORD` | ✅ | Account password for signing in to RAGfly Desktop. | — |
 | `RAGFLY_CODIGO_GRUPO` | ✅ | Active multi-tenant group code. | — |
 | `RAGFLY_CODIGO_ENTIDAD` | ✅ | Active entity code within the group (optional). | — |
 | `RAGFLY_DOCUMENTS_ROOT` | ✅ | Local folder holding the documents to upload (all docs must live under it). | — |
@@ -105,8 +105,8 @@ Configured by `ragfly setup` or by editing `~/.ragfly/config.env` directly.
 
 - **Naming:** English, UPPERCASE, `RAGFLY_` prefix. No Spanish names in new variables.
 - **Secrets:** always from environment variables — never hardcoded. Add `.env` /
-  `config.env` to `.gitignore`. Revoke a compromised key immediately
-  (`DELETE /auth/api-key/{prefix}`).
+  `config.env` to `.gitignore`. Revoke a compromised API key immediately in
+  the web app's **API Keys** page.
 - **This file is canonical.** Any change to a variable name or meaning is made
   here first, then replicated to `.env.example`, the per-interface docs and the
   support portal.

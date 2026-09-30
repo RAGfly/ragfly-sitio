@@ -2,17 +2,54 @@
 
 Connect any MCP-compatible agent to your RAGfly group's documents and capabilities. RAGfly uses the same MCP endpoint and OAuth authorization flow across clients; setup instructions differ only where each client exposes its own MCP settings. A bearer API key remains available for clients and scripts that need manual credentials.
 
-> **Opening original files from disk?** Searching, asking and citing need zero
-> extra config. Only if your agent must open the **original file** on disk
-> (web-uploaded documents) you set one variable, `RAGFLY_ROOT`, once per machine.
-> Clear walkthrough with an example:
-> [§ Setting up `RAGFLY_ROOT`](#setting-up-ragfly_root--once-per-machine-in-3-steps).
-
----
+> **Opening original files from disk?** Searching, asking and citing need no
+> extra setup. To resolve a local original, use the per-document `fs.home_var`
+> and `fs.relative_path` fields. The root variable can differ for each document;
+> `home_var: null` means there is no local root to resolve. See
+> [Opening a document on disk](#opening-a-document-on-disk-fs-block).
 
 ## Prerequisite
 
 For the recommended OAuth setup, sign in to RAGfly during the client authorization flow; you do not need to copy an API key into the MCP client. For clients that do not support MCP OAuth, use an API key for your group. See [INTEGRATION.md § Credentials](INTEGRATION.md).
+
+Create and revoke manual API keys in the RAGfly web app's **API Keys** page. A
+**fixed-entity**
+key cannot change its entity through MCP. A **flexible** key can select an
+authorized entity with `set_active_entity` or release focus by passing `null`;
+RAGfly stores that focus on the server, so a new client using the same key sees
+it. MCP `tools/list` discovers MCP tools; `list_operations` reports the separate
+manifest operations allowed to the key.
+
+MCP uses the same fixed English protocol as REST `/v1`: tool names, argument
+and result fields, public catalog codes, fixed enums, and API-authored messages
+and errors are English. OAuth discovery and protocol errors are English too;
+the browser consent screen is a human flow and may use the person's locale.
+Catalog values use their stored English aliases; if an alias is missing, the
+adapter returns a safe English error instead of the internal value or exception
+text. Document and tenant-authored content keeps its original language.
+
+---
+
+## ChatGPT web — private TEST pilot
+
+RAGfly's dedicated ChatGPT MCP endpoint currently runs in TEST. It exposes only
+`session` and `search_documents`; the server rejects other tools. A production
+ChatGPT connection is not available yet. Do not configure the general
+`/mcp-http/` endpoint in ChatGPT: that endpoint also offers write-capable tools.
+
+The private pilot requires an eligible ChatGPT account, OAuth consent and a
+synthetic TEST document approved for the trial. The pilot operator verifies
+**Scan Tools** shows exactly the two read tools, checks a cited result and
+revocation, and only then prepares production availability and a public setup
+guide. Ask your RAGfly contact to join the pilot rather than entering a
+production endpoint that has not been released.
+
+When the pilot is available, a question sent through ChatGPT reaches RAGfly and
+matching excerpts, document names and citations return to the ChatGPT
+conversation. RAGfly may send the query and candidate excerpts to the configured
+reranking provider. Revoking OAuth stops future requests but cannot remove text
+already returned to ChatGPT. Review your workspace's data controls and the
+provider terms before connecting sensitive documents.
 
 ---
 
@@ -26,11 +63,15 @@ https://api.ragfly.ai/mcp-http
 ```
 
 The client discovers OAuth metadata, opens the RAGfly sign-in and consent page,
-then stores the credential for later MCP calls. The resulting credential is a
-normal RAGfly `rf_` API key with the role, area and entity you selected; it is
-recorded with origin `OAUTH` and can be reviewed or revoked at
-[`app.ragfly.ai/api-keys`](https://app.ragfly.ai/api-keys). OAuth changes how the
-credential is delivered. It does not change the MCP tools or their RBAC.
+then stores the credential for later MCP calls. RAGfly records a revocable API
+key with origin `OAUTH` and the role, area and entity you selected; review or
+revoke it at [`app.ragfly.ai/api-keys`](https://app.ragfly.ai/api-keys). When a
+client sends an OAuth `resource`, it receives an opaque bearer token bound to
+that MCP endpoint. The client does not need to inspect or transform it. OAuth
+does not change the tools or RBAC available at the selected endpoint. The
+credential follows its configured validity; RAGfly reports `expires_in` when
+it has an expiration. OAuth refresh tokens are not currently issued, so the
+client may need a new sign-in after expiration.
 
 | Client | Add the server | Sign in |
 |---|---|---|
@@ -99,12 +140,12 @@ sees your password or the resulting key.
 
 **Manual API key** (a client without OAuth, or an unattended process — a
 scheduled job, a personal agent running headless): minting a key needs a live
-human web session (`POST /auth/api-key` requires one), so the agent cannot do
-this one step. It should say so plainly rather than ask for your password.
+human action in the web app, so the agent cannot do this one step. It should say
+so plainly rather than ask for your password.
 Your part:
 
 1. Sign in at [app.ragfly.ai/api-keys](https://app.ragfly.ai/api-keys).
-2. **New key.** Pick a role (`DOCS-USUARIO-FINAL` if it only reads). For a bot
+2. **New key.** Pick a role that grants only the actions it needs. For a bot
    identity instead of your own account, ask an administrator to create a
    `PERFIL` user for it first — that's the owner field in the same form.
 3. Copy the `rf_…` value shown (once) and hand it to the agent.
@@ -151,9 +192,11 @@ No installation required. Add to your MCP client:
 
 Restart your client. Tools appear with the prefix `mcp__ragfly__`.
 
-The streamable session lives in the server process. If a call answers `404` for the
-session (the server was redeployed), open a new session; compliant MCP clients do it
-on their own.
+The Streamable HTTP endpoint is stateless: every request carries its own
+`Authorization` header and the server keeps no session, so a server redeploy does not
+drop your connection. It speaks MCP `2026-07-28` (one self-contained request, no
+`initialize` handshake) and the earlier handshake revisions (`2025-11-25` and older);
+the client picks.
 
 ### Cursor / Cline / other MCP clients
 
@@ -169,6 +212,7 @@ the exact config format.
 | Tool | Description | Parameters |
 |---|---|---|
 | `session` | Verifies the connection and returns the user context | — |
+| `set_active_entity` | Sets an authorized entity for a flexible key or releases focus with null; fixed keys cannot change entity | `entity_code` (string or null) |
 | `list_operations` | What this key can do: every operation its RBAC allows, with `kind` and `confirm_required` | — |
 | `get_operation` | One operation with its `input_schema` and `output_schema` | `code` |
 | `run_operation` | Runs one operation. A `write_confirm` one only runs with `confirm=true`; otherwise it returns a preview | `code`, `input?`, `confirm?` |
@@ -183,7 +227,7 @@ the exact config format.
 | `promote_space` | Promotes a temporary Workspace (AREA) to permanent (SPACE) | `space_id` |
 | `wiki_index` | Index of the compiled-knowledge pages visible from the active area. **Not available to integrator keys today (403)** | `area_code?` |
 | `wiki_page` | One compiled-knowledge page. **Not available to integrator keys today (403)** | `document_code` |
-| `compile_space` | Compiles a Workspace (background job). The leaf skill must be one your role can run; the default page compiler is internal and answers 404 | `space_id`, `leaf_skill_code?` |
+| `compile_space` | Compiles a Workspace (background job). The leaf skill must be one your access can run; the default public code is `COMPILE_PAGE` | `space_id`, `leaf_skill_code?` |
 | `queue` | Current state of the processing pipeline | `process`, `status`, `limit` |
 | `list_runs` | Skill run history | `limit` |
 | `catalog` | User capabilities: available functions + LLM skills (RBAC-filtered) | `type?` (`FUNCTIONS`\|`SKILLS`\|`ALL`) |
@@ -192,7 +236,7 @@ the exact config format.
 | `run_skill` | Queues a run over a workspace or document | `skill_code`, `space_id?`, `document_code?` |
 | `search_documents` | Direct semantic search over the corpus | `query`, `limit?`, `min_similarity?`, `entity_code?` |
 | `ask` | Natural language question with full RAG (non-streaming) | `message`, `function_code?`, `conversation_id?`, `title?` |
-| `get_agent_context` | Authenticated layered prompt, identity, allowed tools and limits for Agentic Retrieval. The tools it lists follow the web chat and can change | `function_profile?` (`user_chat`\|`support_chat`) |
+| `get_agent_context` | Authenticated layered prompt, identity, allowed tools and limits for Agentic Retrieval. Tool names are stable English identifiers; the available list and schemas depend on identity/profile | `function_profile?` (`user_chat`\|`support_chat`) |
 | `run_agent_tool` | Runs one tool from the current authenticated AgentContext | `public_name`, `arguments_json?`, `function_profile?` |
 | `get_organization` | Reads this tenant's profile and what is still missing | — |
 | `update_organization` | Writes the profile. Needs an administrator of the group | `group_description?`, `group_system_prompt?`, `entity_description?`, `entity_system_prompt?` |
@@ -221,9 +265,8 @@ And before a large ingestion, `get_usage` says how much of each quota is left.
 
 ### Tool names
 
-Only the English names in the table exist. The transitional aliases
-(`session_status`, `get_queue`, `search_chunks`) and the Spanish ones were
-removed: calling them returns `Unknown tool`. The minimum compatible clients are
+Only the English names in the table exist. Retired tool aliases are not part of
+the public contract: calling one returns `Unknown tool`. The minimum compatible clients are
 Python SDK `0.3.0`, TypeScript SDK `0.3.0` and CLI `2.0.0`.
 
 **Always call `session` first** to confirm the connection is valid, then
@@ -235,11 +278,12 @@ returns a preview (`executed: false`) until you repeat the call with
 For **Retrieval**, call `search_documents` and let your agent reason over the
 returned evidence. For **Agentic Retrieval**, call `get_agent_context`, use its
 `system_prompt` and limits, and invoke only tools declared in `tools` through
-`run_agent_tool`. Those tools are the web chat's own: their names and
-parameters follow the chat and can change, so read them from the context at run
-time instead of hard-coding them. Never cache or persist the prompt or
-credentials; campaign artifacts should retain only `system_prompt_hash` and the
-per-layer hashes.
+`run_agent_tool`. Tool names are stable English public identifiers; names
+backed by catalog entries derive from their `*_en` aliases. The available list
+and argument schemas vary by identity/profile, so read them from the context at
+run time and pass the returned `public_name` unchanged. Never cache or persist
+the prompt or credentials; campaign artifacts should retain only
+`system_prompt_hash` and the per-layer hashes.
 
 ### Document `status` values
 
@@ -247,177 +291,62 @@ per-layer hashes.
 
 ### Opening a document on disk (`fs` block)
 
-`list_documents` and `get_document` return an `fs` block so an agent that
-runs **on the same machine where the documents live** can open the file on disk.
-The `how_to_open` field tells the agent exactly what to do — read it and follow it.
+Document and search results may include an `fs` object. Do not infer how to
+open the source from `origin` or the shape of `path` alone. Follow this order:
 
-The same `fs` block is attached **per document** when you retrieve *many* at once:
-`read_space(space_id, resolution="manifest")` and the `space://{id}`
-resource enumerate the documents of a Working Space (the set that indexes them),
-and every item in the manifest carries its own `fs`. Retrieving one document or a
-whole set follows the identical rule below. (Only the `manifest` resolution lists
-files; `chunks`/`text` return fragments, not file locations.)
+1. `is_cloud_only: true`: the original remains in Google Drive or Dropbox.
+   Never resolve the logical `path` locally. Use provider fields such as
+   `source_id` or `source_url` when present and only with your own provider
+   credentials.
+2. `is_public_url: true` or `origin: "PUBLIC"`: open the public URL directly.
+3. `is_absolute: true`: open `path` directly on the machine where it exists.
+4. Otherwise, when `home_var` names an environment variable, read that
+   variable and join its value with `relative_path`. The variable is generated
+   per root, so a corpus with multiple roots can return different names.
+
+Example: two documents can resolve against separate local roots:
 
 ```json
-"fs": {
-  "path": "/Users/you/Dropbox/RUFINO/CONCERTS/poster.pdf",
-  "origin": "DESKTOP",
-  "is_absolute": true,
-  "is_public_url": false,
-  "relative_folder": "RUFINO/CONCERTS",
-  "file_name": "poster.pdf",
-  "how_to_open": "Open `path` directly (it is already absolute)."
+{
+  "documents": [
+    {"fs": {"home_var": "RAGFLY_HOME_442681", "relative_path": "Contracts/2026/a.pdf"}},
+    {"fs": {"home_var": "RAGFLY_HOME_991203", "relative_path": "Legal/b.pdf"}}
+  ]
 }
 ```
 
-**Why these cases exist** — it depends on how the documents were loaded. Check
-`is_cloud_only` first, then read `origin`; never guess from the shape of the string:
-
-| Loaded via | `origin` | `path` | Agent action |
-|---|---|---|---|
-| **RAGfly Desktop** | `DESKTOP` | real OS path (`/Users/...`, `C:\...`) | open it directly |
-| **Web upload** (browser) | `WEB` | logical path `/​<root_folder>/sub/file` | prepend `$RAGFLY_ROOT` |
-| **Public source** | `PUBLIC` | full URL (`https://...`) | open the URL as-is |
-| **Google Drive** | usually `WEB` | connector logical path | `is_cloud_only: true`; fetch with `source_id` instead of `RAGFLY_ROOT` |
-| **Dropbox** | usually `WEB` | connector logical path | `is_cloud_only: true`; fetch with `source_id` instead of `RAGFLY_ROOT` |
-
-The browser's File System Access API never exposes the real disk path, so a
-web-uploaded document is stored relative to the folder the user picked, with that
-folder's name as the first segment (`/MyDocuments/lyrics/song.txt`).
-
-A **public source** is a document captured from an official public URL (a law, a
-regulation, an agency circular). Its location *is* the citable address of the
-original, so it needs no local disk access at all — and prepending `$RAGFLY_ROOT`
-to it would break it.
-
-**The single rule the agent follows:** Check `is_cloud_only` before `origin`.
-
-1. `is_cloud_only: true` → never open `path` and never prepend `RAGFLY_ROOT`
-   (it is only a logical citation path, not resolvable to a real one). The
-   original lives with the named `ingestion_source` (`GOOGLE_DRIVE` or
-   `DROPBOX`). Two sub-cases, both read from `how_to_open`:
-   - **`source_id` present** (document indexed after the connector started
-     capturing provider ids) → the original is fetchable with **your own**
-     provider credentials — `files/download` with `{"path": source_id}` for
-     Dropbox (the id survives renames), `files.get(fileId=source_id,
-     alt='media')` for Drive — or by opening `source_url` in a browser
-     session that has access to it. RAGfly never sees or stores that
-     credential; its own indexed content and citations remain usable without
-     one.
-   - **`source_id` absent** (document indexed before that, or the connector
-     scan hasn't re-run) → no original to fetch; rely on RAGfly's indexed
-     content and citations.
-2. `origin: "PUBLIC"` (or `is_public_url: true`) → open `path` as-is. It is a
-   URL, not a file path. Never prepend anything.
-3. `origin: "DESKTOP"` (`is_absolute: true`) → open `path` as-is. Done. (No
-   config needed.)
-4. `origin: "WEB"` and `is_cloud_only: false` → open `$RAGFLY_ROOT + path`.
-   That's the web-local-folder upload case —
-   set up `RAGFLY_ROOT` once, as follows.
-
-#### Cloud connector originals (`source_id` / `source_path` / `source_url`)
-
-```json
-"fs": {
-  "path": "/CompanyDocs/finance/tax-2026.pdf",
-  "origin": "WEB",
-  "is_absolute": false,
-  "is_public_url": false,
-  "is_cloud_only": true,
-  "ingestion_source": "DROPBOX",
-  "source_id": "id:a1B2c3D4e5F6",
-  "source_path": "/team/finance/tax-2026.pdf",
-  "source_url": "https://www.dropbox.com/home/team/finance?preview=tax-2026.pdf",
-  "how_to_open": "The original lives in Dropbox. Fetch it with your OWN Dropbox credentials: `files/download` with `{\"path\": source_id}` (the id survives renames), or open `source_url` in a browser session with access. RAGfly's indexed content and citations remain available without any provider credential."
-}
-```
-
-`source_id` is the provider's **stable** id (Dropbox `id:…`, Drive `fileId`) —
-unlike `source_path`, it survives renames and moves. It is only present for
-documents ingested after the connector started capturing it; older rows omit
-all three `source_*` fields and `how_to_open` falls back to the no-original text
-above. No RAGfly credential unlocks the original — fetching it always requires
-**your own** Dropbox/Drive credential, kept entirely on your side. This is the
-cloud-connector counterpart of `RAGFLY_ROOT`: instead of a path prefix you
-configure once, it is a provider id RAGfly hands you per document.
-
-> `is_absolute` means "already an openable OS path". A public URL is **not**
-> absolute in that sense: it comes as `is_absolute: false` **and**
-> `is_public_url: true`. Check `origin` first — it is unambiguous.
-
-#### Setting up `RAGFLY_ROOT` — once per machine, in 3 steps
-
-`RAGFLY_ROOT` is a variable **you** define on the machine where the agent runs.
-RAGfly never reads it and never stores it — it only tells *your agent* how to
-turn the relative path RAGfly returns into a real path on *your* disk.
-
-**Step 1 — find the value.** It is the **parent folder** of the folder you
-selected when you uploaded your documents to RAGfly. Concrete example — Ana
-uploaded the folder `MyDocuments` from the web app:
-
-```
-/Users/ana/Dropbox            ← RAGFLY_ROOT = the PARENT of what she uploaded
-└── MyDocuments               ← the folder Ana picked in the web upload
-    └── lyrics
-        └── song.txt          ← RAGfly returns "/MyDocuments/lyrics/song.txt"
-```
-
-So on Ana's machine:
-
-```
-RAGFLY_ROOT=/Users/ana/Dropbox
-```
-
-and the composition works out to:
-
-```
-RAGFLY_ROOT      +  path                          =  real path on disk
-/Users/ana/Dropbox  /MyDocuments/lyrics/song.txt     /Users/ana/Dropbox/MyDocuments/lyrics/song.txt
-```
-
-**Step 2 — put it where your agent can read it.** Anywhere the agent can see the
-value works; pick what matches your setup:
-
-| Where your agent lives | Where to set it |
-|---|---|
-| Terminal, scripts, SDKs, CLI | Shell profile: `echo 'export RAGFLY_ROOT="/Users/ana/Dropbox"' >> ~/.zshrc` (macOS) or `~/.bashrc` (Linux) · Windows: `setx RAGFLY_ROOT "C:\Users\ana\Dropbox"` |
-| Coding agent that reads a context file (Claude Code, Codex, Cursor…) | One line in your project's `CLAUDE.md` / `AGENTS.md`: ``RAGFLY_ROOT=/Users/ana/Dropbox`` |
-| MCP client whose config supports env vars | The `env` block of the RAGfly entry in your MCP config |
-
-**Step 3 — verify.** Take any document whose `fs` block says
-`is_absolute: false` and check the composed path exists:
+Set each named variable on the machine running the agent:
 
 ```bash
-ls "$RAGFLY_ROOT/MyDocuments/lyrics/song.txt"   # should list the file
+export RAGFLY_HOME_442681="/Users/ana/Dropbox"
+export RAGFLY_HOME_991203="/Volumes/Archive"
 ```
 
-**When you DON'T need `RAGFLY_ROOT`:**
+If `home_var` is `null`, empty, or its named variable is unset, there is no
+local root for that document. Do not fall back to a global root or guess from
+`path`. The document's indexed content remains available through RAGfly; use a
+public URL or provider access when the `fs` object supplies one.
 
-- Documents loaded via **RAGfly Desktop** — their paths are already absolute.
-- Documents fed through **Google Drive or Dropbox** — their originals remain
-  with the provider. `is_cloud_only: true` means never resolve their logical
-  path against a local root.
-- Agents that only **search, ask and cite** — the indexed content is served from
-  the cloud; `RAGFLY_ROOT` is only for opening the *original file* on disk.
-- Agents running on a machine that doesn't have the files at all.
+A local path example:
 
-**Why it works this way:** the browser never exposes your real disk path, so
-RAGfly stores only the relative path and never learns your disk layout
-(privacy). And because the root stays out of the cloud, the same document
-resolves on any machine — each one just sets its own `RAGFLY_ROOT`
-(portability).
+```json
+{
+  "fs": {
+    "home_var": "RAGFLY_HOME_442681",
+    "relative_path": "MyDocuments/lyrics/song.txt",
+    "path": "/MyDocuments/lyrics/song.txt",
+    "origin": "WEB",
+    "is_absolute": false,
+    "is_public_url": false,
+    "is_cloud_only": false
+  }
+}
+```
 
-> Always `exists()`-check the resolved path before reading: Dropbox/cloud-synced
-> folders or a different machine may not have the file present.
-
-#### What to put in the client manual
-
-- **Clients who load with RAGfly Desktop:** nothing. The agent opens files
-  directly (`is_absolute: true`). No `RAGFLY_ROOT`, no instructions.
-- **Clients who upload via the browser:** one line — *"Set `RAGFLY_ROOT` to the
-  parent folder of the folder you selected when uploading your documents (e.g.
-  you uploaded `/Users/ana/Dropbox/MyDocuments` → `RAGFLY_ROOT=/Users/ana/Dropbox`)."*
-  That's the only special instruction the manual needs.
+For this result, read `RAGFLY_HOME_442681` and append
+`MyDocuments/lyrics/song.txt`. Check that the resolved path exists before
+opening it. Keep this variable local to the agent's environment; RAGfly does
+not read or store its value. See [ENV_VARS.md](ENV_VARS.md).
 
 ### Queue `status` values
 
@@ -433,7 +362,7 @@ A document's queue lifecycle: `PENDING` → `IN_PROGRESS` → `COMPLETED` / `ERR
 # 1. Verify connection
 session()
 → {"authenticated": true, "user": {"code": "bot-finance", "name": "Finance bot"},
-   "active_group": "COMPANY", "active_entity": "COMPANY", "roles": ["DOCS-USUARIO-FINAL"], ...}
+   "active_group": "COMPANY", "active_entity": "COMPANY", "profile": "USER", ...}
 
 # 2. What can this key do?
 list_operations()
@@ -457,7 +386,7 @@ queue(status="IN_PROGRESS")
 
 ## Permissions
 
-Each tool operates in the context of the API Key's user — same RBAC as the web interface. `list_operations` and `catalog` show what the key can reach; a tool outside that reach fails with a `403` in the tool error. For instance, a `DOCS-USUARIO-FINAL` key of a standard user cannot read the processing queue.
+Each tool operates in the context of the API key's user — same RBAC as the web interface. `list_operations` and `catalog` show what the key can reach; a tool outside that reach fails with a `403` in the tool error. Role identifiers are not returned by the public interface; use the available operations to understand the key's access.
 
 ---
 
@@ -468,8 +397,8 @@ Each tool operates in the context of the API Key's user — same RBAC as the web
 | `HTTP 401` before handshake | Invalid or revoked API Key | Check the key at [`app.ragfly.ai/api-keys`](https://app.ragfly.ai/api-keys) |
 | Tools don't appear | Client not restarted | Restart the MCP client |
 | `HTTP 403` on a tool | Role lacks permission for that operation | Check `list_operations`; ask the admin for a role with more permissions |
-| `Unknown tool: …` | An old tool name (`estado_sesion`, `search_chunks`, …) | Use the names in the table above |
-| `HTTP 404` on a request of an open session | The MCP session expired or was lost | Reconnect. Clients that follow the MCP spec start a new session on their own |
+| `Unknown tool: …` | The requested name is not in the current public tool list | Use the names in the table above |
+| `HTTP 404` on a request of an open session | Only on the legacy SSE URL (`/mcp/sse`): its session lives in the server process and is lost on a redeploy | Reconnect, or switch to the Streamable HTTP URL, which keeps no session |
 
 ---
 
