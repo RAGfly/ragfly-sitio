@@ -30,6 +30,8 @@ text. Document and tenant-authored content keeps its original language.
 
 ---
 
+<a id="chatgpt-web"></a>
+
 ## ChatGPT web — private TEST pilot
 
 RAGfly's dedicated ChatGPT MCP endpoint currently runs in TEST. It exposes only
