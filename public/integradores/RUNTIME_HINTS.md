@@ -77,10 +77,12 @@ parameter to filter at source.
 does what you need.
 
 **Agent context:** `get_agent_context` / `GET /v1/agent/context` returns the
-chat's layered prompt, identity, limits and tool list, and `run_agent_tool` /
-`POST /v1/agent/tools/{public_name}` runs one of those tools. The tool names and
-parameters follow the web chat and can change: read them from the context at run
-time and do not hard-code them.
+chat's layered prompt, identity, limits and allowed tools, and `run_agent_tool` /
+`POST /v1/agent/tools/{public_name}` runs one of them. Tool names are stable
+English public identifiers; catalog-backed names derive from the English
+`*_en` aliases. The available list and argument schemas vary by identity and
+profile, so read them from the context at run time. Send the returned
+`public_name` unchanged; internal chat names are not accepted as public names.
 
 ---
 
@@ -123,7 +125,7 @@ check with `list_documents` — it may be in the pipeline (`LOADED`, `SCANNED`,
 **Minimum flow:**
 
 ```
-(once, a person)  POST /auth/login → POST /auth/api-key → store RAGFLY_API_KEY
+(once, a person)  Create an API key in app.ragfly.ai/api-keys → store RAGFLY_API_KEY
 GET  /v1/session            →  verify active_group
 GET  /v1/operations         →  what this key can do
 POST /v1/documents/search   →  documents with chunks and scores

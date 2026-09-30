@@ -1,98 +1,42 @@
 # RAGfly — Integration Quickstart
 
-Full walkthrough from scratch: sign up → API key → `/v1` session → what the key
-can do → MCP → first semantic query.
+Full walkthrough: create an account and API key in the web app → `/v1` session
+→ what the key can do → MCP → first semantic query.
 
 > **MCP OAuth is the recommended setup for supported clients.** Step 5 shows the Codex desktop UI and CLI; a bearer API key remains available for clients without MCP OAuth and for direct REST/API use.
 
-> **Two credentials.** Your *web session* (a JWT from `POST /auth/login`) belongs
-> to a person, and here it is used only to mint the API key: `POST /auth/api-key`
-> requires a signed-in person and answers `403` to an API key. The *API key* is
-> what your agent uses. It operates **only the public API `/v1`** (MCP, the SDKs
-> and the CLI go through it) with its owner's RBAC: the key's role, filtered by
-> the owner's access level, decides which actions it can run, and the owner's
-> group, entity and area decide which data it sees. Any route outside `/v1`
-> answers `403` to a key.
+> **One integration credential.** Create an API key in the
+> [RAGfly web app](https://app.ragfly.ai/api-keys). Your agent uses that key
+> only with the public English API `/v1` or MCP. Its owner's role and data
+> access decide which operations and records are available. Web-only account
+> and key-management routes are outside the integration contract.
 
 ---
 
 ## Prerequisites
 
 - Python 3.11+ and `pip install httpx` (this walkthrough uses curl + Python), **or** Node 18+ for the TypeScript path
-- RAGfly account (see step 1)
+- RAGfly account (create one at [app.ragfly.ai](https://app.ragfly.ai))
 
 > Prefer an official SDK? `pip install ragfly` ([SDK.md](SDK.md)) or `npm i @ragfly/sdk` ([SDK-TS.md](SDK-TS.md)) — both wrap `/v1` into `client.ask()` / `client.search()`.
 
 ---
 
-## Step 1 — Sign up
+## Step 1 — Create an account and API key
+
+Create an account at [app.ragfly.ai](https://app.ragfly.ai), confirm the email,
+then create an API key in [API Keys](https://app.ragfly.ai/api-keys). The app
+shows the secret once; copy it into a secrets manager or a local `.env` file.
+Choose the role and validity in the app. The key cannot receive more access than
+its owner.
 
 ```bash
-curl -X POST https://api.ragfly.ai/auth/registro \
-  -H "Content-Type: application/json" -H "Accept-Language: en" \
-  -d '{"email": "you@company.com", "nombre": "Your Name", "empresa": "Your Company"}'
+export RAGFLY_API_URL="https://api.ragfly.ai"
+export RAGFLY_API_KEY="rf_..."
 ```
 
-Expected response (the same whether or not the email already had an account):
-```json
-{
-  "mensaje": "We received your sign-up. If the email had no account, we sent you an invitation to confirm it; if you already have an account, sign in or reset your password.",
-  "ya_confirmado": false,
-  "email": "you@company.com"
-}
-```
-
-Confirm the link received by email. Then continue with step 2.
-
----
-
-## Step 2 — Sign in and mint the API key
-
-```bash
-# 2a. Sign in (a person's web session, expires in 1 h)
-source .env   # loads RAGFLY_API_URL, RAGFLY_EMAIL, RAGFLY_PASSWORD
-
-JWT=$(curl -s -X POST $RAGFLY_API_URL/auth/login \
-  -H "Content-Type: application/json" \
-  -d "{\"email\": \"$RAGFLY_EMAIL\", \"password\": \"$RAGFLY_PASSWORD\"}" \
-  | python3 -c "import sys,json; print(json.load(sys.stdin)['access_token'])")
-
-echo "JWT obtained"
-
-# 2b. Mint the API key with that session (persists until revoked)
-curl -X POST $RAGFLY_API_URL/auth/api-key \
-  -H "Authorization: Bearer $JWT" \
-  -H "Content-Type: application/json" \
-  -d '{"nombre": "quickstart-eval", "rol_solicitado": "DOCS-USUARIO-FINAL"}'
-```
-
-`/auth/*` is the web app's sign-in surface, so its field names are Spanish. The
-response:
-```json
-{
-  "api_key": "rf_...",
-  "prefijo": "rf_1a2b3c4d5e6f7",
-  "nombre": "quickstart-eval",
-  "codigo_usuario": "you@company.com",
-  "codigo_rol": "DOCS-USUARIO-FINAL",
-  "codigo_area": null,
-  "codigo_grupo": "<your group>",
-  "codigo_estacion": null,
-  "creada_en": "2026-09-18T12:00:00"
-}
-```
-
-Save `api_key` in `.env` as `RAGFLY_API_KEY`. **Shown only once.** Keep
-`prefijo`: it is what you revoke the key by. `rol_solicitado` must be a role you
-already hold. A key never gets more than its owner has.
-
-```bash
-echo 'RAGFLY_API_KEY=rf_...' >> .env
-source .env
-```
-
-You can also mint and revoke keys from the web app:
-[`app.ragfly.ai/api-keys`](https://app.ragfly.ai/api-keys).
+Create, renew and revoke keys in the web app. Its account-management routes are
+not part of the public integration API.
 
 ---
 
@@ -113,13 +57,12 @@ Expected result:
   "active_group": "<your group>",
   "active_entity": "<your entity>",
   "profile": "USER",
-  "roles": ["DOCS-USUARIO-FINAL"],
   "locale": "en"
 }
 ```
 
-If `active_group` has a value, the API key works. `roles` is the role the key
-carries.
+If `active_group` has a value, the API key works. `profile` is its access level;
+use `/v1/operations` to discover the actions the key can run.
 
 ### 3b. What can this key do?
 
@@ -155,7 +98,7 @@ skill with organization scope**, which is the whole ingestion pipeline and not o
 that leaves them empty ingests and answers worse than one that filled them in.
 
 This step needs a key whose role can manage the organization profile, normally a
-group administrator's. A `DOCS-USUARIO-FINAL` key gets `403` on
+group administrator's. A read-only key gets `403` on
 `GET /v1/organization` and on the draft: ask your administrator, or go on to
 step 5.
 
@@ -339,46 +282,34 @@ curl "$RAGFLY_API_URL/v1/queue?limit=10" \
   -H "Authorization: Bearer $RAGFLY_API_KEY"
 ```
 
-The queue needs access to the processing pipeline. A `DOCS-USUARIO-FINAL` key
-of a standard user gets `403`; follow progress instead with
+The queue needs access to the processing pipeline. A read-only key gets `403`;
+follow progress instead with
 `GET /v1/documents?status=SCANNED` (or any other status) and read `total`.
 
 ---
 
 ## Step 8 — Open a document on disk (optional)
 
-If your agent runs on the same machine where the documents live and needs to open
-the actual file (not just search it), every document from `GET /v1/documents`,
-`GET /v1/documents/{document_code}` and `POST /v1/documents/search` (and the
-`list_documents` / `get_document` MCP tools) carries an `fs` block:
+If the agent needs the original file, use the document's `fs` object and apply
+this order:
 
-```json
-"fs": {
-  "path": "/MyDocs/contracts/2024.pdf",
-  "origin": "WEB",
-  "is_absolute": false,
-  "is_public_url": false,
-  "is_cloud_only": false,
-  "file_name": "2024.pdf",
-  "how_to_open": "Web-upload relative path: open $RAGFLY_ROOT + `path`."
-}
-```
+1. `is_cloud_only: true`: the original stays with Google Drive or Dropbox; do
+   not resolve its logical path locally.
+2. `is_public_url: true` or `origin: "PUBLIC"`: open the URL directly.
+3. `is_absolute: true`: open `path` directly on the machine where it exists.
+4. Otherwise, read the environment variable named by `home_var` and join its
+   value with `relative_path`.
 
-- `is_cloud_only: true` (Google Drive or Dropbox) → never open `path`; the original
-  stays with the provider. Read `how_to_open`.
-- `is_absolute: true` (loaded via RAGfly Desktop) → open `path` directly.
-- `origin: "WEB"` (web upload) → set `RAGFLY_ROOT` to the **parent folder**
-  of the folder you selected when uploading, then open `$RAGFLY_ROOT + path`.
-  Example: you uploaded `/Users/ana/Dropbox/MyDocs` →
-  `RAGFLY_ROOT=/Users/ana/Dropbox`, so `/MyDocs/contracts/2024.pdf` resolves to
-  `/Users/ana/Dropbox/MyDocs/contracts/2024.pdf`.
+For example, if `home_var` is `RAGFLY_HOME_442681` and
+`relative_path` is `MyDocs/contracts/2024.pdf`, set
+`RAGFLY_HOME_442681=/Users/ana/Dropbox` on the agent's machine. A second root
+may use a separate variable such as `RAGFLY_HOME_991203`. If `home_var` is
+`null` or unset, there is no local root to resolve; do not guess from `path`.
+Check that a resolved path exists before opening it. RAGfly never reads or
+stores the local root values.
 
-RAGfly never reads `RAGFLY_ROOT` nor stores your absolute disk root — configure
-it once per machine (shell profile, agent context file, or MCP client config).
-Step-by-step walkthrough:
-[MCP.md § Setting up `RAGFLY_ROOT`](MCP.md#setting-up-ragfly_root--once-per-machine-in-3-steps).
-
----
+See [MCP.md: Opening a document on disk](MCP.md#opening-a-document-on-disk-fs-block)
+and [ENV_VARS.md](ENV_VARS.md).
 
 ## Full test script
 
@@ -412,7 +343,7 @@ ok("HTTP 200", r.status_code == 200, str(r.status_code))
 if r.status_code == 200:
     ctx = r.json()
     ok("active_group present", bool(ctx.get("active_group")), ctx.get("active_group") or "")
-    ok("roles present", bool(ctx.get("roles")), ", ".join(ctx.get("roles") or []))
+    ok("agent context available", bool(ctx.get("identity")), "identity returned")
 
 # ── 2. What the key can do ────────────────────────────────────────────────────
 print("\n2. Operations available to this key")
@@ -512,13 +443,9 @@ git check-ignore -v .env
 In CI/CD: use the provider's environment variables (GitHub Secrets, GitLab CI Variables, etc.)  
 **Never** include `RAGFLY_API_KEY` in source code, logs, or issues.
 
-To revoke a compromised key, use a person's session (`$JWT` from step 2a) — an
-API key cannot revoke keys:
-
-```bash
-curl -X DELETE $RAGFLY_API_URL/auth/api-key/<prefijo> \
-  -H "Authorization: Bearer $JWT"
-```
+To revoke a compromised key, open **API Keys** in the
+[RAGfly web app](https://app.ragfly.ai/api-keys) and revoke it there. An API key
+cannot revoke credentials.
 
 ---
 
@@ -537,10 +464,9 @@ curl -X DELETE $RAGFLY_API_URL/auth/api-key/<prefijo> \
 
 | Error | Cause | Solution |
 |---|---|---|
-| `401` `UNAUTHORIZED` | Invalid or revoked API key | Mint a new one at `app.ragfly.ai/api-keys` or with `POST /auth/api-key` (a person's session) |
+| `401` `UNAUTHORIZED` | Invalid or revoked API key | Create a replacement in [API Keys](https://app.ragfly.ai/api-keys) |
 | `403` "An API key can only operate through the public /v1 API" | The call went to a route outside `/v1`, for example an old `/auth/me` or `/documentos/...` snippet | Use the `/v1` equivalent: `GET /v1/session`, `GET /v1/documents`, `POST /v1/documents/search` |
 | `403` `FORBIDDEN` on a `/v1` route | The key's role does not reach that action or that data | Check `GET /v1/operations`; ask your administrator for a role that includes it |
-| `403` on `POST /auth/api-key` | Called with an API key | Mint keys with a person's session (JWT) or from the web app |
 | `400` `INVALID_REQUEST` on search | Empty `query` | Send a non-empty `query` |
 | Empty `documents` on search | No vectorized documents visible to the key | Upload docs from `app.ragfly.ai` and wait for the pipeline |
 | `RAGFLY_API_KEY` not defined | `.env` not loaded | `source .env` |

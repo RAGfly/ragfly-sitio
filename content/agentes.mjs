@@ -1,25 +1,8 @@
 // ─────────────────────────────────────────────────────────────────────────
-// FUENTE ÚNICA DE VERDAD — CATÁLOGO DE OPERACIONES PARA AGENTES
-// ─────────────────────────────────────────────────────────────────────────
-//
-// Espejo curado de la superficie agent-facing de RAGfly: las tools MCP
-// (backend/app/routers/mcp_server.py) y su comando CLI equivalente
-// (cliente/ragfly/cli.py). Cada operación corresponde a un api_endpoint
-// con tipo_acceso USUARIO o ADMINISTRADOR (los SISTEMA no se exponen).
-//
-// Editas SOLO este archivo. Luego corres:
-//
-//     npm run build:agentes
-//
-// Eso regenera public/agents.json y public/llms-full.txt, que son los
-// artefactos que un agente consume para descubrir qué puede hacer.
-//
-// REGLAS:
-//   - "id" = nombre exacto de la tool MCP (no traducir).
-//   - "cli" = comando CLI equivalente (no traducir).
-//   - "metodo"/"ruta" = endpoint REST subyacente (no traducir).
-//   - "descripcion" SÍ se describe en español (fuente para traducción).
-//   - Mantener sincronizado con mcp_server.py al agregar/quitar tools.
+// Public agent catalog metadata and non-executable guidance resources.
+// The MCP tool list is generated from the canonical Available tools table in
+// producto/desarrollo/ragfly/docs/integradores/MCP.md. Manifest operations
+// are discovered separately through GET /v1/operations.
 // ─────────────────────────────────────────────────────────────────────────
 
 const BACKEND = 'https://api.ragfly.ai'
@@ -29,168 +12,13 @@ export const mcp = {
   // Transportes remotos: SSE y Streamable HTTP. Sin instalar nada local.
   endpointSSE: `${BACKEND}/mcp/sse`,
   endpointHTTP: `${BACKEND}/mcp-http/`,
-  auth: 'Authorization: Bearer slm_live_xxxxxxxxxx  (API Key) o Bearer <JWT>',
-  scope: 'Todas las operaciones quedan acotadas al grupo y entidad activos del usuario autenticado (RBAC).',
+  auth: 'OAuth 2.1 or Authorization: Bearer rf_xxxxxxxxxx (API Key issued from a human session)',
+  scope: 'Every call is filtered by the key owner’s group, entity, area and role. Flexible entity focus is stored server-side.',
 }
 
-// Familias de capacidades (alineadas con la sección "Capacidades" de la landing).
-export const familias = ['Sesión', 'Consultar', 'Organizar', 'Producir', 'Monitorear']
-
-export const capacidades = [
-  {
-    id: 'estado_sesion',
-    familia: 'Sesión',
-    cli: 'ragfly cloud me',
-    metodo: 'GET',
-    ruta: '/auth/me',
-    tipo_acceso: 'USUARIO',
-    descripcion: 'Verifica la sesión y devuelve el contexto del usuario (email, rol, grupo y entidad activos). Úsala antes de cualquier otra operación para confirmar que el JWT o API Key es válido.',
-    params: [],
-  },
-  {
-    id: 'listar_documentos',
-    familia: 'Consultar',
-    cli: 'ragfly cloud documento listar',
-    metodo: 'GET',
-    ruta: '/documentos/paginado',
-    tipo_acceso: 'USUARIO',
-    descripcion: 'Lista los documentos del grupo activo con su estado de procesamiento, ubicación, tamaño y número de chunks.',
-    params: [
-      { nombre: 'estado', tipo: 'string', default: 'todos', desc: 'Filtra por estado: CARGADO, METADATA, ESCANEADO, CHUNKEADO, VECTORIZADO, NO_ESCANEABLE, REVISAR.' },
-      { nombre: 'limite', tipo: 'int', default: '20', desc: 'Máximo de documentos (máx 100).' },
-      { nombre: 'pagina', tipo: 'int', default: '1', desc: 'Página de resultados.' },
-    ],
-  },
-  {
-    id: 'ver_documento',
-    familia: 'Consultar',
-    cli: 'ragfly cloud documento ver',
-    metodo: 'GET',
-    ruta: '/documentos/{codigo_documento}',
-    tipo_acceso: 'USUARIO',
-    descripcion: 'Detalle completo de un documento: metadatos, estado de procesamiento, chunks, resumen y características extraídas.',
-    params: [
-      { nombre: 'codigo_documento', tipo: 'string', default: '—', desc: 'Código del documento.' },
-    ],
-  },
-  {
-    id: 'listar_espacios',
-    familia: 'Organizar',
-    cli: 'ragfly cloud espacio listar',
-    metodo: 'GET',
-    ruta: '/espacios-trabajo/paginado',
-    tipo_acceso: 'USUARIO',
-    descripcion: 'Lista los Espacios de Trabajo del grupo activo: colecciones de documentos sobre las que se ejecutan habilidades LLM de forma masiva.',
-    params: [
-      { nombre: 'limite', tipo: 'int', default: '20', desc: 'Máximo de espacios.' },
-    ],
-  },
-  {
-    id: 'ver_espacio',
-    familia: 'Organizar',
-    cli: 'ragfly cloud espacio ver',
-    metodo: 'GET',
-    ruta: '/espacios-trabajo/{id_espacio}/documentos/paginado',
-    tipo_acceso: 'USUARIO',
-    descripcion: 'Detalle de un Espacio de Trabajo y sus documentos asociados, con el estado de la cola de procesamiento por documento.',
-    params: [
-      { nombre: 'id_espacio', tipo: 'int', default: '—', desc: 'ID del Espacio de Trabajo.' },
-      { nombre: 'limite_docs', tipo: 'int', default: '20', desc: 'Máximo de documentos a devolver.' },
-    ],
-  },
-  {
-    id: 'ver_cola',
-    familia: 'Monitorear',
-    cli: 'ragfly cloud cola ver',
-    metodo: 'GET',
-    ruta: '/cola-estados-docs/paginado',
-    tipo_acceso: 'ADMINISTRADOR',
-    descripcion: 'Estado actual de la cola del pipeline (ANALIZAR → CHUNKEAR → VECTORIZAR). Útil para monitorear el avance de habilidades o de la ingesta.',
-    params: [
-      { nombre: 'proceso', tipo: 'string', default: 'todos', desc: 'Filtra por proceso, ej. VECTORIZAR.' },
-      { nombre: 'estado', tipo: 'string', default: 'todos', desc: 'PENDIENTE, EN_PROCESO, COMPLETADO o ERROR.' },
-      { nombre: 'limite', tipo: 'int', default: '20', desc: 'Máximo de items.' },
-    ],
-  },
-  {
-    id: 'ver_ejecuciones',
-    familia: 'Monitorear',
-    cli: 'ragfly cloud cola ejecuciones',
-    metodo: 'GET',
-    ruta: '/cola-estados-docs/ejecuciones',
-    tipo_acceso: 'ADMINISTRADOR',
-    descripcion: 'Historial de ejecuciones de habilidades: cuántos documentos procesó cada ejecución, cuántos con éxito y cuántos con error.',
-    params: [
-      { nombre: 'limite', tipo: 'int', default: '10', desc: 'Máximo de ejecuciones.' },
-    ],
-  },
-  {
-    id: 'listar_habilidades',
-    familia: 'Consultar',
-    cli: 'ragfly cloud habilidad listar',
-    metodo: 'GET',
-    ruta: '/habilidades',
-    tipo_acceso: 'USUARIO',
-    descripcion: 'Lista las habilidades LLM disponibles en el catálogo: unidades atómicas de procesamiento LLM sobre documentos.',
-    params: [],
-  },
-  {
-    id: 'ver_habilidad',
-    familia: 'Consultar',
-    cli: 'ragfly cloud habilidad ver',
-    metodo: 'GET',
-    ruta: '/habilidades/{codigo_habilidad}',
-    tipo_acceso: 'USUARIO',
-    descripcion: 'Detalle de una habilidad: prompt, system prompt, modelo, tipo, salida y variables disponibles.',
-    params: [
-      { nombre: 'codigo_habilidad', tipo: 'string', default: '—', desc: 'Código de la habilidad.' },
-    ],
-  },
-  {
-    id: 'ejecutar_habilidad',
-    familia: 'Producir',
-    cli: 'ragfly cloud habilidad ejecutar',
-    metodo: 'POST',
-    ruta: '/habilidades/{codigo_habilidad}/ejecutar',
-    tipo_acceso: 'USUARIO',
-    descripcion: 'Ejecuta una habilidad LLM sobre un Espacio de Trabajo o un documento. La tarea se encola y se procesa en background; el resultado se consulta con ver_cola.',
-    params: [
-      { nombre: 'codigo_habilidad', tipo: 'string', default: '—', desc: 'Código de la habilidad, ej. RESUMIR_DOCUMENTO.' },
-      { nombre: 'id_espacio', tipo: 'int', default: '0', desc: 'ID del Espacio. Usar 0 si se indica documento.' },
-      { nombre: 'codigo_documento', tipo: 'string', default: '—', desc: 'Código del documento. Vacío si se usa espacio.' },
-    ],
-  },
-  {
-    id: 'buscar_chunks',
-    familia: 'Consultar',
-    cli: 'ragfly cloud buscar',
-    metodo: 'POST',
-    ruta: '/documentos/buscar-semantico',
-    tipo_acceso: 'USUARIO',
-    descripcion: 'Búsqueda semántica RAG sobre los chunks vectorizados del grupo activo. Devuelve los fragmentos más relevantes con su documento de origen, score coseno y rerank — contexto citable sin entrar al chat.',
-    params: [
-      { nombre: 'consulta', tipo: 'string', default: '—', desc: 'Pregunta o frase a buscar en lenguaje natural.' },
-      { nombre: 'limite', tipo: 'int', default: '10', desc: 'Top-K final.' },
-      { nombre: 'min_similitud', tipo: 'float', default: '0.0', desc: 'Umbral coseno mínimo.' },
-      { nombre: 'codigo_entidad', tipo: 'string', default: 'todas', desc: 'Filtra por entidad específica.' },
-    ],
-  },
-  {
-    id: 'preguntar',
-    familia: 'Consultar',
-    cli: 'ragfly cloud chat preguntar',
-    metodo: 'POST',
-    ruta: '/chat/conversaciones',
-    tipo_acceso: 'USUARIO',
-    descripcion: 'Pregunta al chat RAG y devuelve la respuesta completa con citas. Crea una conversación nueva o reutiliza una existente.',
-    params: [
-      { nombre: 'mensaje', tipo: 'string', default: '—', desc: 'Pregunta del usuario.' },
-      { nombre: 'codigo_funcion', tipo: 'string', default: 'CHAT-USUARIO', desc: 'Función de chat a usar.' },
-      { nombre: 'id_conversacion', tipo: 'int', default: '0', desc: 'Reutilizar conversación; 0 crea una nueva.' },
-      { nombre: 'titulo', tipo: 'string', default: '—', desc: 'Título al crear una conversación nueva.' },
-    ],
-  },
-]
+// Agent-facing MCP tools are sourced from the Available tools table in
+// producto/desarrollo/ragfly/docs/integradores/MCP.md by build-agentes.mjs.
+// Manifest operations are discovered independently through GET /v1/operations.
 
 // Recursos de orientación que un agente puede consultar, pero no ejecutar.
 // No pertenecen a la superficie MCP/CLI/REST/SDK y, por tanto, se publican

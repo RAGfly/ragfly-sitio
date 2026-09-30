@@ -4,7 +4,11 @@
 (RAG service). It speaks only the English REST `/v1` contract: each method calls
 one `/v1` route, and three generic methods run any operation of the RAGfly app
 that your key can run. It mirrors the [Python SDK](SDK.md) method for method,
-and both run the same parity cases.
+and both run the same parity cases. Response fields, public catalog codes, enum
+values, published schemas/defaults, validation details, and API-authored error
+messages use English; tenant-authored content keeps its original language.
+Catalog identifiers use their stored English aliases, and unmapped internal
+identifiers are never returned.
 
 Source: [github.com/RAGfly/ragfly-typescript](https://github.com/RAGfly/ragfly-typescript).
 
@@ -83,7 +87,7 @@ snake_case keys. The server checks the bounds noted under each table and answers
 
 | Method | Defaults | Route | Resolves to |
 |---|---|---|---|
-| `session()` | — | `GET /v1/session` | `Json`: `authenticated`, `user` (`code`, `name`), `active_group`, `active_entity`, `profile`, `roles`, `locale` |
+| `session()` | — | `GET /v1/session` | `Json`: `authenticated`, `user` (`code`, `name`), `active_group`, `active_entity`, `profile`, `locale`; role identifiers are not exposed |
 | `setActiveEntity(entityCode)` | — | `POST /v1/session/active-entity` | Set an authorized entity; pass `null` to release the focus |
 | `listDocuments({ status?, limit?, page? } = {})` | `limit: 20`, `page: 1` | `GET /v1/documents` | `Json`: `documents` (each with its `fs` block), `total`, `page`, `limit` |
 | `getDocument({ documentCode })` | — | `GET /v1/documents/{document_code}` | `Json`: the document, with its `fs` block |
@@ -92,6 +96,12 @@ snake_case keys. The server checks the bounds noted under each table and answers
 `status` takes an English document status such as `VECTORIZED` (the list is in
 [MCP.md](MCP.md#document-status-values)). Bounds: `limit` 1–100, `page` 1 or
 more, `neighborLimit` 1–500.
+
+Entity focus is stored with the API key on the server. A flexible key keeps its
+selected entity when you create another `RAGfly` client with the same key; pass
+`null` to `setActiveEntity()` to release that focus. A fixed-entity key cannot
+change or release its entity. Only an authenticated human session can issue API
+keys; the SDK uses its key for `/v1` calls and does not mint keys.
 
 ### Search
 
@@ -175,8 +185,10 @@ administers skills. `runSkill()` needs `spaceId` or `documentCode`
   model; it is used when the call opens a new conversation.
 - `functionProfile` is a `FunctionProfile`: `"user_chat"` or `"support_chat"`.
 - `runAgentTool()` runs one of the tools that `agentContext()` lists. Tool names
-  and parameters follow the web chat and can change, so read them from
-  `agentContext()` at run time
+  are stable English public identifiers; catalog-backed names derive from the
+  catalog's `*_en` aliases. The available tools and argument schemas vary by
+  identity and profile, so read them from `agentContext()` at run time and pass
+  `publicName` unchanged
   ([REST.md § Agent context](REST.md#agent-context-and-agent-tools)).
 
 ### Organization
@@ -334,7 +346,7 @@ interface OperationResult {
 | `Document.fs` | How to open the original file, in `fs.how_to_open` (snake_case, as the API sends it) |
 | `SearchResult.query` | The query you passed, set by the client |
 | `AskResponse.extra` | The other fields of the `/v1/ask` response: `message_id` and `user_message_id` |
-| `AgentContext.identity` | `user_alias`, `group`, `entity`, `area`, `profile`, `roles` |
+| `AgentContext.identity` | `user_alias`, `group`, `entity`, `area`, `profile`; role identifiers are not exposed |
 | `AgentContext.limits` | `max_iterations`, `max_retrieval_calls`, `timeout_seconds` |
 
 The SDK maps search, ask and agent-context fields to camelCase. The nested JSON
@@ -363,7 +375,7 @@ try {
 
 | Property | Where it comes from |
 |---|---|
-| `message` | The envelope's `message`. Without one: the raw body text, or `HTTP <status>` when the body is empty |
+| `message` | The envelope's `message`. The documented `/v1` contract always supplies the fixed English envelope; if a custom endpoint or intermediary violates it, the SDK may fall back to its response text |
 | `statusCode` | The HTTP status; `undefined` when there was no response |
 | `code` | The envelope's public `code`, `undefined` when the body has none |
 | `details` | The envelope's `details`, `{}` when absent |
@@ -387,7 +399,8 @@ echoing the request's `X-Request-Id` header, and the SDK does not send one.
 
 - `message` is a fixed English sentence per code, not the specific cause, and
   `details` is usually `{}`. The operations executor fills `details` on `422`
-  with `missing_fields`, `unknown_fields` or `fields`.
+  with `missing_fields`, `unknown_field_count` or the mapped `fields`; unknown
+  request keys are never echoed.
 - A response the API cannot represent without leaking internals fails closed
   with HTTP 500 and the code `PUBLIC_CODE_MAPPING_MISSING` or
   `PUBLIC_FIELD_MAPPING_MISSING`.
@@ -404,15 +417,14 @@ echoing the request's `X-Request-Id` header, and the SDK does not send one.
 import { RAGfly } from "@ragfly/sdk";
 
 const client = new RAGfly({ apiKey: process.env.RAGFLY_API_KEY! });
-console.log(await client.session()); // who the key acts as: user, group, entity, roles
+console.log(await client.session()); // identity and active tenant context
 ```
 
 - The key travels as `Authorization: Bearer <apiKey>` on every request.
 - An API key only works on `/v1` routes: any other route answers `403` to it.
   Every method of this SDK calls a `/v1` route.
-- A signed-in person creates API keys in the RAGfly web app (API Keys), or with
-  `POST /auth/api-key` from their session. An API key cannot create or revoke
-  keys.
+- A signed-in person creates and revokes API keys in the RAGfly web app (API
+  Keys). An API key cannot create or revoke keys.
 - The key acts with its owner's permissions: a route its role does not reach
   answers `403 FORBIDDEN`. More in [REST.md § Authentication](REST.md#authentication).
 - In browser code the key is visible to anyone who loads the page. Keep

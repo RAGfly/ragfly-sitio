@@ -12,12 +12,14 @@ RAGfly es un servicio de RAG para agentes: apuntas a un directorio de documentos
 
 ## Para agentes
 
-- [Catálogo para agentes (Markdown)](https://ragfly.ai/llms-full.txt): las operaciones MCP/CLI invocables y recursos operativos no automatizables.
+- [Catálogo para agentes (Markdown)](https://ragfly.ai/llms-full.txt): las tools MCP vigentes y los recursos informativos. Las operaciones del manifiesto REST se descubren aparte.
 - [Catálogo para agentes (JSON)](https://ragfly.ai/agents.json): el mismo catálogo, máquina-legible, con endpoint MCP, autenticación y recursos de orientación.
 - Conexión MCP (SSE): https://api.ragfly.ai/mcp/sse
 - Conexión MCP (HTTP streamable): https://api.ragfly.ai/mcp-http/
-- Autenticación: `Authorization: Bearer slm_live_xxxxxxxxxx` (API Key, larga duración) o `Bearer <JWT>` (sesión interactiva, 1 h).
-- Alcance: cada credencial está anclada a un usuario, un grupo y un rol — los datos de otros grupos son invisibles por construcción.
+- Autenticación: OAuth 2.1 (recomendado) o `Authorization: Bearer rf_xxxxxxxxxx` (API Key).
+- Emisión: una persona autenticada emite la API key. Alcance: usuario, grupo, entidad, área y rol; el backend filtra cada llamada.
+- Entidad: una key fija no cambia de entidad; una flexible guarda el foco en el servidor y puede liberarlo con entity_code: null.
+- Operaciones: GET /v1/operations descubre el manifiesto filtrado por RBAC; ese catálogo es distinto de las tools MCP.
 - Swagger interactivo: https://api.ragfly.ai/docs
 
 ### Conectores de ingesta

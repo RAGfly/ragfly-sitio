@@ -19,7 +19,7 @@ export function SurfacesSection() {
   "mcpServers": {
     "ragfly": {
       "url": "https://api.ragfly.ai/mcp/sse",
-      "headers": { "Authorization": "Bearer slm_live_xxxxxxxxxx" }
+      "headers": { "Authorization": "Bearer rf_xxxxxxxxxx" }
     }
   }
 }`

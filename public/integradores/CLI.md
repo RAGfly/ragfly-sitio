@@ -6,6 +6,8 @@ Install `ragfly-cli` 2.0.0 to operate RAGfly from a terminal or CI job:
 pip install ragfly-cli
 ragfly login
 ragfly cloud me
+ragfly cloud entity set 000057
+ragfly cloud entity set --clear
 ```
 
 Cloud commands call `/v1`; JSON output is the same English contract as REST and
@@ -19,6 +21,7 @@ ragfly
 └── cloud
     ├── me
     ├── group       list | switch | clear
+    ├── entity      set [ENTITY_CODE] | set --clear
     ├── api-key     create | list | revoke
     ├── document    list | show | edges
     ├── space       list | show
@@ -30,9 +33,9 @@ ragfly
     └── agent       context | tool
 ```
 
-Spanish command and flag spellings remain input-only compatibility aliases (for
-example `documento listar` and `--estado`). They are not emitted in JSON or
-required by the public contract.
+Legacy command and flag spellings, where still accepted, are input-only
+compatibility aliases. They are not part of the published contract, examples or
+machine-readable output; use the English command and flag names shown here.
 
 ## Examples
 
@@ -55,4 +58,10 @@ the English REST error envelope.
 
 Interactive login stores a JWT in the OS keyring. CI should use an API key via
 `RAGFLY_API_KEY`. See [REST.md](REST.md) for the authorization header and
-[MCP.md](MCP.md) for the optional `RAGFLY_ROOT` file-opening rule.
+[MCP.md](MCP.md) for `fs.home_var` / `fs.relative_path` and local-file resolution.
+
+A signed-in person issues API keys. A fixed-entity key cannot change focus.
+A flexible key can select an authorized entity or clear focus with
+`ragfly cloud entity set --clear`; `--release` remains a compatibility alias.
+The server stores focus, so it persists across CLI invocations. See
+[INTEGRATION.md](INTEGRATION.md#credentials) for the shared key contract.

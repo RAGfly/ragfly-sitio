@@ -88,7 +88,7 @@ export default async function BuildPage() {
             })}
           </p>
           <code className="block overflow-x-auto rounded-lg border border-slm-dark/10 bg-white px-3 py-2 font-mono text-[13px] text-slm-dark">
-            Authorization: Bearer slm_live_xxxxxxxxxxxxxxxxxxxxxxxx
+            Authorization: Bearer rf_xxxxxxxxxxxxxxxxxxxxxxxx
           </code>
         </div>
 

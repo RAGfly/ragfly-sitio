@@ -8,6 +8,16 @@ A multi-tenant RAG service. It indexes an organization's documents and serves
 them to AI agents through the public REST API `/v1` and MCP, with tenant
 isolation (group → entity → area) and role-based access control.
 
+## Language and public codes
+
+REST `/v1`, MCP (including OAuth protocol responses), and machine-readable CLI
+and SDK responses use a fixed English protocol regardless of locale. This
+includes schemas/defaults, enums, validation details, and every message written
+by RAGfly. Catalog codes come from the English alias on the same catalog row;
+never translate an internal code or return it as a fallback. If the alias is
+missing, fail with a safe English error. Tenant-authored content keeps its
+original language.
+
 **Base URL:** `$RAGFLY_API_URL` — public contract under `/v1`  
 **MCP server:** `https://api.ragfly.ai/mcp-http/`  
 **OpenAPI docs:** `$RAGFLY_API_URL/docs`
@@ -15,7 +25,7 @@ isolation (group → entity → area) and role-based access control.
 ## Safe order for an agent
 
 1. **Confirm who you are.** `session` (MCP) or `GET /v1/session`: the active
-   group and entity, and the roles the key carries.
+   group and entity, and the English access-level label.
 2. **Discover what you can do.** `list_operations` (MCP) or `GET /v1/operations`
    lists every operation this key's RBAC allows; `get_operation` /
    `GET /v1/operations/{code}` gives its input and output schema. What is not
@@ -61,22 +71,23 @@ is in [MCP.md](MCP.md).
 
 ## Required environment variables
 
-```
+```dotenv
 RAGFLY_API_URL=https://api.ragfly.ai
 RAGFLY_API_KEY=rf_...
-RAGFLY_ROOT=/Users/you/Dropbox      # only if you open documents on disk — see below
 ```
 
-`RAGFLY_ROOT` lets you open web-uploaded documents on disk. It's the **parent
-folder** of the folder the user selected when uploading — e.g. the user uploaded
-`/Users/ana/Dropbox/MisDocumentos` → `RAGFLY_ROOT=/Users/ana/Dropbox`, and the
-relative path `/MisDocumentos/letras/cancion.txt` resolves to
-`/Users/ana/Dropbox/MisDocumentos/letras/cancion.txt`. RAGfly never reads it —
-it lives only on this machine (env var or one line in `CLAUDE.md`/`AGENTS.md`).
-Skip it if documents were loaded via RAGfly Desktop (`fs.is_absolute` is `true`)
-or Google Drive/Dropbox (`fs.is_cloud_only` is `true`; originals remain with the
-provider). Step-by-step walkthrough:
-[MCP.md § Setting up `RAGFLY_ROOT`](MCP.md#setting-up-ragfly_root--once-per-machine-in-3-steps).
+When opening a local original, inspect that document's `fs.home_var` and
+`fs.relative_path`. The value of `home_var` is the name of a per-root
+environment variable (for example `RAGFLY_HOME_442681`); configure that name
+on the machine running the agent and join its value with `relative_path`.
+Different documents can use different roots. If `home_var` is `null`, empty,
+or unset, no local root is available.
+
+Resolve `fs` in this order: cloud-only means the source stays with Google
+Drive/Dropbox; public URL opens directly; absolute Desktop path opens directly;
+otherwise use the variable named by `home_var` with `relative_path`. Do not
+invent or fall back to a global root. Full rules:
+[MCP.md: Opening a document on disk](MCP.md#opening-a-document-on-disk-fs-block).
 
 ## Authentication
 
@@ -86,10 +97,10 @@ Include in every request:
 Authorization: Bearer <RAGFLY_API_KEY>
 ```
 
-The API key operates only the public API `/v1` (and MCP), with its owner's
-RBAC. A person mints it with a web session (`POST /auth/login`, then
-`POST /auth/api-key`); an agent never needs that session, and a key cannot mint
-other keys.
+The API key operates only the public API `/v1` and MCP, with its owner's RBAC.
+A person creates it in the RAGfly web app's **API Keys** page; the integration
+never needs a person's password or web session. A key cannot create or revoke
+other keys. Use `GET /v1/operations` to discover the actions the key can run.
 
 ## Main endpoints
 
@@ -97,8 +108,9 @@ other keys.
 ```
 GET /v1/session
 ```
-Returns `user`, `active_group`, `active_entity`, `profile` and `roles`.
-Always call first to confirm the API key is valid.
+Returns the user and active tenant context plus an English `profile` access
+level. Role identifiers are not exposed; use `/v1/operations` to discover
+allowed actions. Always call first to confirm the API key is valid.
 
 ### What this key can do
 ```
@@ -138,14 +150,12 @@ GET /v1/documents/{document_code}
 ```
 
 ### Open a document on disk
-Documents from `GET /v1/documents`, `GET /v1/documents/{document_code}` and the
-search (MCP: `list_documents`, `get_document`, `search_documents`) carry an `fs`
-block with `how_to_open` (literal instruction). When `fs.is_cloud_only` is
-`true`, never open `fs.path` or prepend `RAGFLY_ROOT`: the original remains in
-Drive or Dropbox. Otherwise, if `fs.is_absolute` is `true`, open `fs.path`
-directly; if `origin` is `WEB`, open `$RAGFLY_ROOT + fs.path`. Always
-`exists()`-check local paths first. Full rules:
-[MCP.md § Opening a document on disk](MCP.md).
+
+Follow the `fs` resolution order above. Use `fs.home_var` plus
+`fs.relative_path` for a local relative path, and check that the resolved file
+exists. If `home_var` is null or unset, rely on indexed content or an available
+public/provider URL; do not guess a filesystem root. See
+[MCP.md: Opening a document on disk](MCP.md#opening-a-document-on-disk-fs-block).
 
 ### List workspaces
 ```
