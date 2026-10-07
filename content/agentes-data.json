@@ -125,12 +125,27 @@
     {
       "name": "search_documents",
       "description": "Direct semantic search over the corpus",
-      "parameters": "`query`, `limit?`, `min_similarity?`, `entity_code?`"
+      "parameters": "`query`, `limit?`, `min_similarity?`, `entity_code?`, `location_code?`"
     },
     {
       "name": "ask",
-      "description": "Natural language question with full RAG (non-streaming)",
-      "parameters": "`message`, `function_code?`, `conversation_id?`, `title?`"
+      "description": "Natural language question with full RAG (non-streaming). `mode: \"help\"` answers questions about RAGfly itself instead, without links to web screens",
+      "parameters": "`message`, `function_code?`, `conversation_id?`, `title?`, `location_code?`, `mode?`"
+    },
+    {
+      "name": "set_active_area",
+      "description": "Set or release an organizational area focus",
+      "parameters": "`area_code` (required; `null` releases)"
+    },
+    {
+      "name": "list_areas",
+      "description": "List visible organizational areas",
+      "parameters": "`entity_code?`, `parent_code?`, `query?`, `limit?`, `cursor?`"
+    },
+    {
+      "name": "list_locations",
+      "description": "List visible document folders",
+      "parameters": "`entity_code?`, `parent_code?`, `query?`, `limit?`, `cursor?`"
     },
     {
       "name": "get_agent_context",
@@ -224,6 +239,6 @@
       ]
     }
   ],
-  "updated": "2026-09-30",
-  "actualizado": "2026-09-30"
+  "updated": "2026-10-07",
+  "actualizado": "2026-10-07"
 }

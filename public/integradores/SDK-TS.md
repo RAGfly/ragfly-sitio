@@ -1,6 +1,6 @@
 # RAGfly TypeScript/JavaScript SDK
 
-`@ragfly/sdk` 0.3.0 is the official TypeScript/JavaScript SDK of RAGfly
+`@ragfly/sdk` 0.4.0 is the official TypeScript/JavaScript SDK of RAGfly
 (RAG service). It speaks only the English REST `/v1` contract: each method calls
 one `/v1` route, and three generic methods run any operation of the RAGfly app
 that your key can run. It mirrors the [Python SDK](SDK.md) method for method,
@@ -22,7 +22,7 @@ No runtime dependencies: the SDK uses the native `fetch`, so it runs on Node 18+
 browsers, Vercel Edge and Cloudflare Workers. The package is ESM only (`import`,
 not `require`).
 
-It exports `RAGfly`, `RAGflyError`, `CLIENT_HEADER` and `VERSION` (`"0.3.0"`),
+It exports `RAGfly`, `RAGflyError`, `CLIENT_HEADER` and `VERSION` (`"0.4.0"`),
 plus the types `RAGflyOptions`, `SearchResult`, `Document`, `Chunk`,
 `AskResponse`, `AgentContext`, `AgentLayer`, `AgentTool`, `FunctionProfile`,
 `OperationKind`, `OperationSummary`, `OperationDetail`, `OperationResult` and
@@ -107,7 +107,8 @@ keys; the SDK uses its key for `/v1` calls and does not mint keys.
 
 | Method | Defaults | Route | Resolves to |
 |---|---|---|---|
-| `search({ query, limit?, minSimilarity?, entityCode? })` | `limit: 10`, `minSimilarity: 0` | `POST /v1/documents/search` | [`SearchResult`](#models) |
+| `search({ query, limit?, minSimilarity?, entityCode?, spaceId? })` | `limit: 10`, `minSimilarity: 0` | `POST /v1/documents/search` | [`SearchResult`](#models) |
+| `searchFiltered({ query, filter, limit?, minSimilarity?, entityCode?, spaceId? })` | — | `POST /v1/documents/search` | [`SearchResult`](#models); `filter` is an object with `document_types`, `attributes` and `characteristics`. Take its codes from `listDocumentTypes()` and `listCharacteristics()` |
 
 - Hybrid search: vector and keyword results fused by rank into `rrfScore`. It is
   simple retrieval without reranking, so `rerankScore` comes back `null`.
@@ -160,6 +161,8 @@ In `readSpace`, `resolution` is `count`, `manifest`, `chunks` or `text`, and
 | Method | Defaults | Route | Resolves to |
 |---|---|---|---|
 | `catalog({ type? } = {})` | `type: "ALL"` | `GET /v1/catalog` | `Json`: `functions`, `skills`, `total_functions`, `total_skills` |
+| `listDocumentTypes({ entityCode? } = {})` | — | `GET /v1/catalog/document-types` | `Json`: `document_types` (each with `code`, `name`, `parent_code`), the codes `filter.document_types` takes |
+| `listCharacteristics({ documentTypes?, entityCode? } = {})` | — | `GET /v1/catalog/characteristics` | `Json`: `characteristics` (each with `category_code`, `code`), for those types and their more specific ones |
 | `getFunction({ functionCode })` | — | `GET /v1/functions/{function_code}` | `Json`: `code`, `name`, `alias`, `description`, `summary`, `url`, `documentation`, `behaviors`, `operations` |
 | `listSkills()` | — | `GET /v1/skills` | `Json`: `skills` |
 | `getSkill({ skillCode })` | — | `GET /v1/skills/{skill_code}` | `Json`: the skill |
@@ -175,7 +178,7 @@ administers skills. `runSkill()` needs `spaceId` or `documentCode`
 
 | Method | Defaults | Route | Resolves to |
 |---|---|---|---|
-| `ask({ question, conversationId?, functionCode? })` | `functionCode: "CHAT-USER"` | `POST /v1/ask` | [`AskResponse`](#models) |
+| `ask({ question, conversationId?, functionCode?, mode? })` | `functionCode: "CHAT-USER"` | `POST /v1/ask` | [`AskResponse`](#models); `mode: "help"` answers questions about RAGfly itself (how to use or integrate it) with no links to web screens; it does not search your documents |
 | `agentContext({ functionProfile? } = {})` | `functionProfile: "user_chat"` | `GET /v1/agent/context` | [`AgentContext`](#models) |
 | `runAgentTool({ publicName, arguments, functionProfile? })` | `functionProfile: "user_chat"` | `POST /v1/agent/tools/{public_name}` | `unknown`: the tool's JSON result |
 

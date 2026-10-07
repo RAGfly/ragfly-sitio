@@ -229,8 +229,11 @@ the exact config format.
 | `list_skills` | LLM skills available to you (the same list as `catalog`) | — |
 | `get_skill` | Skill detail: type and output; prompt and model only if your role administers skills | `skill_code` |
 | `run_skill` | Queues a run over a workspace or document | `skill_code`, `space_id?`, `document_code?` |
-| `search_documents` | Direct semantic search over the corpus | `query`, `limit?`, `min_similarity?`, `entity_code?` |
-| `ask` | Natural language question with full RAG (non-streaming) | `message`, `function_code?`, `conversation_id?`, `title?` |
+| `search_documents` | Direct semantic search over the corpus | `query`, `limit?`, `min_similarity?`, `entity_code?`, `location_code?` |
+| `ask` | Natural language question with full RAG (non-streaming). `mode: "help"` answers questions about RAGfly itself instead, without links to web screens | `message`, `function_code?`, `conversation_id?`, `title?`, `location_code?`, `mode?` |
+| `set_active_area` | Set or release an organizational area focus | `area_code` (required; `null` releases) |
+| `list_areas` | List visible organizational areas | `entity_code?`, `parent_code?`, `query?`, `limit?`, `cursor?` |
+| `list_locations` | List visible document folders | `entity_code?`, `parent_code?`, `query?`, `limit?`, `cursor?` |
 | `get_agent_context` | Authenticated layered prompt, identity, allowed tools and limits for Agentic Retrieval. Tool names are stable English identifiers; the available list and schemas depend on identity/profile | `function_profile?` (`user_chat`\|`support_chat`) |
 | `run_agent_tool` | Runs one tool from the current authenticated AgentContext | `public_name`, `arguments_json?`, `function_profile?` |
 | `get_organization` | Reads this tenant's profile and what is still missing | — |
@@ -262,7 +265,7 @@ And before a large ingestion, `get_usage` says how much of each quota is left.
 
 Only the English names in the table exist. Retired tool aliases are not part of
 the public contract: calling one returns `Unknown tool`. The minimum compatible clients are
-Python SDK `0.3.0`, TypeScript SDK `0.3.0` and CLI `2.0.0`.
+Python SDK `0.4.0`, TypeScript SDK `0.4.0` and CLI `1.20.0`.
 
 **Always call `session` first** to confirm the connection is valid, then
 `list_operations` to see what this key can do. Use `get_operation` for an

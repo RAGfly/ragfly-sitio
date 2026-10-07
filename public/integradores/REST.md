@@ -49,19 +49,44 @@ release focus by sending `{"entity_code":null}` to
 that key, so it remains after the client process is reconstructed. The key
 cannot select an entity outside its owner's authorized scope.
 
+An **area** is an organizational access focus inside an entity; a **location**
+is a document folder used as a temporary filter for one request. An area focus
+is persistent for an API key and can be released without releasing the entity.
+Selecting an area selects its entity as well. `location_code` only filters the
+current request and its folder descendants; it never changes the session.
+
+`GET /v1/session` includes `active_area`, `effective_area`,
+`authorized_area_root`, and `area_focus_is_explicit`. Use
+`POST /v1/session/active-area` with `{"area_code":"FINANCE"}` to set an area
+or `{"area_code":null}` to release it. `GET /v1/areas` and
+`GET /v1/locations` return visible, paginated trees; both accept `entity_code`,
+`parent_code`, `query`, `limit` (1–200, default 50), and `cursor`.
+
+Pass `location_code` to `GET /v1/documents`, `POST /v1/documents/search`, or
+`POST /v1/ask` to narrow that request to a visible folder and its descendants.
+An invisible or unknown location returns `404 NOT_FOUND`.
+If no entity can be resolved for an area listing, the response is
+`400 INVALID_CONTEXT`. If a saved area focus or fixed key area is no longer
+inside the owner's current permission, the response is `409 CONTEXT_CONFLICT`.
+Release or replace a stale focus; if the key's fixed area root itself lost
+permission, issue a newly scoped key before requesting documents again.
+
 ## Routes
 
 | Method | Route | Purpose |
 |---|---|---|
 | `GET` | `/v1/session` | Authenticated identity and active context |
 | `POST` | `/v1/session/active-entity` | Set `{"entity_code":"000057"}` or release with `{"entity_code":null}` |
+| `POST` | `/v1/session/active-area` | Set `{"area_code":"FINANCE"}` or release with `{"area_code":null}` |
+| `GET` | `/v1/areas` | Paginated organizational areas visible in the current context |
+| `GET` | `/v1/locations` | Paginated document folders visible in the current context |
 | `GET` | `/v1/operations` | Operations this key can run (RBAC-filtered) |
 | `GET` | `/v1/operations/{code}` | One operation with its `input_schema` and `output_schema` |
 | `POST` | `/v1/operations/{code}:execute` | Run an operation: `{"input": {...}, "confirm": false}` |
-| `GET` | `/v1/documents` | Paginated corpus documents (`status`, `limit`, `page`) |
+| `GET` | `/v1/documents` | Paginated corpus documents (`status`, `limit`, `page`, `location_code`) |
 | `GET` | `/v1/documents/{document_code}` | Document detail |
 | `GET` | `/v1/documents/{document_code}/edges` | Document graph edges (`neighbor_limit`) |
-| `POST` | `/v1/documents/search` | Hybrid search: vector + lexical, fused with RRF |
+| `POST` | `/v1/documents/search` | Hybrid search: vector + lexical, fused with RRF (`location_code?`) |
 | `GET` | `/v1/spaces` | List workspaces |
 | `GET` | `/v1/spaces/{space_id}` | Workspace and its documents (`document_limit`) |
 | `POST` | `/v1/spaces/{space_id}/refresh` | Re-materialize a workspace |
@@ -75,7 +100,7 @@ cannot select an entity outside its owner's authorized scope.
 | `GET` | `/v1/skills` | Skills available to you (the same list as `/v1/catalog`) |
 | `GET` | `/v1/skills/{skill_code}` | Skill detail. Prompt and model come only if your role administers skills |
 | `POST` | `/v1/skills/{skill_code}/run` | Queue a skill (`space_id` or `document_code`) |
-| `POST` | `/v1/ask` | Complete RAG answer |
+| `POST` | `/v1/ask` | Complete RAG answer (`location_code?`, `mode?`, one request only) |
 | `GET` | `/v1/agent/context` | Layered prompt, identity, tools and limits |
 | `POST` | `/v1/agent/tools/{public_name}` | Run one tool listed by `/v1/agent/context` |
 | `GET` | `/v1/organization` | This tenant's profile: description and system prompt |
@@ -300,6 +325,26 @@ curl https://api.ragfly.ai/v1/ask \
 `conversation_id` to continue the same thread. The endpoint answers once the whole
 answer is ready, as JSON; it does not stream, and neither do the SDKs.
 
+### Help mode
+
+`mode` is optional. `"default"` answers from your documents. `"help"` answers
+questions about RAGfly itself — how to use it, how to connect an agent, which
+operation does something, how to pin or release the entity focus of a key — written
+for a program: it names screens instead of linking to them and points to the exact
+routes, tools and operations of this guide.
+
+```bash
+curl https://api.ragfly.ai/v1/ask \
+  -H 'Authorization: Bearer rf_xxxxxxxxxx' \
+  -H 'Content-Type: application/json' \
+  -d '{"question":"How do I release the entity focus of my key?","mode":"help"}'
+```
+
+Help mode does not search your documents: for that, call `/v1/ask` without `mode`.
+When the question cannot be settled by answering, it can register a support request.
+It answers `409` if help is not enabled for your group and `400` for any other
+`mode` value.
+
 ## Agent context and agent tools
 
 `GET /v1/agent/context` returns what an agent needs to reason like the RAGfly
@@ -388,9 +433,11 @@ All public errors use one English envelope. `request_id` is echoed when supplied
 }
 ```
 
-Known codes include `INVALID_REQUEST`, `UNAUTHORIZED`, `QUOTA_EXCEEDED` (the plan
-quota for the operation is used up), `FORBIDDEN`, `NOT_FOUND`, `VALIDATION_ERROR`,
-`CONFLICT`, `RATE_LIMITED` and `INTERNAL_ERROR`.
+Known codes include `INVALID_REQUEST`, `INVALID_CONTEXT` (an active entity or an
+`entity_code` is required), `UNAUTHORIZED`, `QUOTA_EXCEEDED` (the plan quota for
+the operation is used up), `FORBIDDEN`, `NOT_FOUND`, `VALIDATION_ERROR`, `CONFLICT`,
+`CONTEXT_CONFLICT` (a saved area scope no longer matches current permissions),
+`RATE_LIMITED` and `INTERNAL_ERROR`.
 A catalog value without an English public mapping fails closed with
 `PUBLIC_CODE_MAPPING_MISSING`; it is never emitted as an internal Spanish code.
 

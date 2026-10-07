@@ -1,6 +1,6 @@
 # RAGfly CLI
 
-Install `ragfly-cli` 2.0.0 to operate RAGfly from a terminal or CI job:
+Install `ragfly-cli` 1.20.0 to operate RAGfly from a terminal or CI job:
 
 ```bash
 pip install ragfly-cli
@@ -24,10 +24,12 @@ ragfly
     ├── entity      set [ENTITY_CODE] | set --clear
     ├── api-key     create | list | revoke
     ├── document    list | show | edges
-    ├── space       list | show
+    ├── space       list | show | compose | read | refresh | promote
     ├── queue       show | runs
     ├── skill       list | show | run
     ├── catalog
+    ├── document-type  list
+    ├── characteristic list
     ├── search
     ├── chat        ask
     └── agent       context | tool
@@ -48,6 +50,10 @@ ragfly cloud search "active maintenance contracts" -o json
 ragfly cloud skill run SUMMARIZE_DOCUMENT --space 42 -o json
 ragfly cloud agent context --profile user_chat -o json
 ragfly cloud chat ask "What is the renewal date?" -o json
+ragfly cloud chat ask "How do I release the entity focus of my key?" --mode help
+ragfly cloud document-type list -o json
+ragfly cloud search "statements" --filter @filter.json --space 42 -o json
+ragfly cloud space compose difference 12 15 --name "Only in 12"
 ```
 
 Machine-readable output uses public keys such as `code`, `name`, `status`,

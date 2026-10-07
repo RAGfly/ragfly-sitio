@@ -62,6 +62,9 @@ Confirms the connection and returns the active tenant context.
 - `mcp__ragfly__list_operations()` — what this key can do
 - `mcp__ragfly__get_operation(code)` / `mcp__ragfly__run_operation(code, input, confirm)` — schema and run
 - `mcp__ragfly__search_documents(query, limit)` — semantic search
+- `mcp__ragfly__set_active_area(area_code)` — set or release an organizational area focus
+- `mcp__ragfly__list_areas(...)` / `mcp__ragfly__list_locations(...)` — discover visible areas and document folders
+- Include `location_code` in search or ask to apply a temporary folder filter to that request.
 - `mcp__ragfly__list_documents(status, limit)` — list documents
 - `mcp__ragfly__get_document(document_code)` — one document
 - `mcp__ragfly__ask(message)` — full RAG question

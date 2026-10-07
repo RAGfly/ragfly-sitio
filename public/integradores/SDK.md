@@ -1,6 +1,6 @@
 # RAGfly Python SDK
 
-`ragfly` 0.3.0 is the official Python SDK of RAGfly (RAG service). It speaks only
+`ragfly` 0.4.0 is the official Python SDK of RAGfly (RAG service). It speaks only
 the English REST `/v1` contract: each method calls one `/v1` route, and three
 generic methods run any operation of the RAGfly app that your key can run.
 Methods, parameters, response fields, public catalog codes, enum values,
@@ -21,7 +21,7 @@ Python 3.10 or later. The only dependency is `httpx` (0.27 or later).
 
 The package exports `RAGfly`, `RAGflyError`, `SearchResult`, `AskResponse`,
 `Document`, `Chunk`, `AgentContext` and `AgentLayer`. `ragfly.__version__` is
-`"0.3.0"`.
+`"0.4.0"`.
 
 ## Quick start
 
@@ -93,7 +93,8 @@ keys; the SDK uses its key for `/v1` calls and does not mint keys.
 
 | Method | Route | Returns |
 |---|---|---|
-| `search(query, *, limit=10, min_similarity=0.0, entity_code=None)` | `POST /v1/documents/search` | [`SearchResult`](#models) |
+| `search(query, *, limit=10, min_similarity=0.0, entity_code=None, space_id=None)` | `POST /v1/documents/search` | [`SearchResult`](#models) |
+| `search_filtered(query, *, filter, limit=None, min_similarity=None, entity_code=None, space_id=None)` | `POST /v1/documents/search` | [`SearchResult`](#models); `filter` is an object with `document_types`, `attributes` and `characteristics`. Take its codes from `list_document_types()` and `list_characteristics()` |
 
 - Hybrid search: vector and keyword results fused by rank into `rrf_score`. It
   is simple retrieval without reranking, so `rerank_score` comes back `None`.
@@ -146,6 +147,8 @@ In `read_space`, `resolution` is `count`, `manifest`, `chunks` or `text`, and
 | Method | Route | Returns |
 |---|---|---|
 | `catalog(*, type="ALL")` | `GET /v1/catalog` | `dict`: `functions`, `skills`, `total_functions`, `total_skills` |
+| `list_document_types(*, entity_code=None)` | `GET /v1/catalog/document-types` | `dict`: `document_types` (each with `code`, `name`, `parent_code`), the codes `filter.document_types` takes |
+| `list_characteristics(*, document_types=None, entity_code=None)` | `GET /v1/catalog/characteristics` | `dict`: `characteristics` (each with `category_code`, `code`), for those types and their more specific ones |
 | `get_function(function_code)` | `GET /v1/functions/{function_code}` | `dict`: `code`, `name`, `alias`, `description`, `summary`, `url`, `documentation`, `behaviors`, `operations` |
 | `list_skills()` | `GET /v1/skills` | `dict`: `skills` |
 | `get_skill(skill_code)` | `GET /v1/skills/{skill_code}` | `dict`: the skill |
@@ -161,7 +164,7 @@ neither is given).
 
 | Method | Route | Returns |
 |---|---|---|
-| `ask(question, *, conversation_id=None, function_code="CHAT-USER")` | `POST /v1/ask` | [`AskResponse`](#models) |
+| `ask(question, *, conversation_id=None, function_code="CHAT-USER", mode=None)` | `POST /v1/ask` | [`AskResponse`](#models); `mode="help"` answers questions about RAGfly itself (how to use or integrate it) with no links to web screens; it does not search your documents |
 | `agent_context(*, function_profile="user_chat")` | `GET /v1/agent/context` | [`AgentContext`](#models) |
 | `run_agent_tool(public_name, arguments, *, function_profile="user_chat")` | `POST /v1/agent/tools/{public_name}` | The tool's JSON result |
 

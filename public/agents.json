@@ -3,7 +3,7 @@
   "description": "Document retrieval for agents, exposed through MCP tools and a separate RBAC-filtered REST operations manifest.",
   "site": "https://ragfly.ai",
   "app": "https://app.ragfly.ai",
-  "updated": "2026-09-30",
+  "updated": "2026-10-07",
   "mcp": {
     "nombre": "ragfly",
     "endpointSSE": "https://api.ragfly.ai/mcp/sse",
@@ -11,7 +11,7 @@
     "auth": "OAuth 2.1 or Authorization: Bearer rf_xxxxxxxxxx (API Key issued from a human session)",
     "scope": "Every call is filtered by the key owner’s group, entity, area and role. Flexible entity focus is stored server-side."
   },
-  "total_mcp_tools": 36,
+  "total_mcp_tools": 39,
   "tools": [
     {
       "name": "session",
@@ -131,12 +131,27 @@
     {
       "name": "search_documents",
       "description": "Direct semantic search over the corpus",
-      "parameters": "`query`, `limit?`, `min_similarity?`, `entity_code?`"
+      "parameters": "`query`, `limit?`, `min_similarity?`, `entity_code?`, `location_code?`"
     },
     {
       "name": "ask",
-      "description": "Natural language question with full RAG (non-streaming)",
-      "parameters": "`message`, `function_code?`, `conversation_id?`, `title?`"
+      "description": "Natural language question with full RAG (non-streaming). `mode: \"help\"` answers questions about RAGfly itself instead, without links to web screens",
+      "parameters": "`message`, `function_code?`, `conversation_id?`, `title?`, `location_code?`, `mode?`"
+    },
+    {
+      "name": "set_active_area",
+      "description": "Set or release an organizational area focus",
+      "parameters": "`area_code` (required; `null` releases)"
+    },
+    {
+      "name": "list_areas",
+      "description": "List visible organizational areas",
+      "parameters": "`entity_code?`, `parent_code?`, `query?`, `limit?`, `cursor?`"
+    },
+    {
+      "name": "list_locations",
+      "description": "List visible document folders",
+      "parameters": "`entity_code?`, `parent_code?`, `query?`, `limit?`, `cursor?`"
     },
     {
       "name": "get_agent_context",

@@ -2,7 +2,7 @@
 
 > Discover MCP tools with tools/list. Discover the separate manifest operations with GET /v1/operations.
 
-Updated: 2026-09-30
+Updated: 2026-10-07
 
 ## MCP connection
 
@@ -13,7 +13,7 @@ Updated: 2026-09-30
 
 API keys are issued through a signed-in human session. A fixed-entity key cannot change entity. A flexible key can select an authorized entity or release focus with entity_code: null; the server persists the focus for that key.
 
-## MCP tools (36)
+## MCP tools (39)
 
 ### session
 
@@ -130,12 +130,27 @@ Parameters: `skill_code`, `space_id?`, `document_code?`
 ### search_documents
 
 Direct semantic search over the corpus
-Parameters: `query`, `limit?`, `min_similarity?`, `entity_code?`
+Parameters: `query`, `limit?`, `min_similarity?`, `entity_code?`, `location_code?`
 
 ### ask
 
-Natural language question with full RAG (non-streaming)
-Parameters: `message`, `function_code?`, `conversation_id?`, `title?`
+Natural language question with full RAG (non-streaming). `mode: "help"` answers questions about RAGfly itself instead, without links to web screens
+Parameters: `message`, `function_code?`, `conversation_id?`, `title?`, `location_code?`, `mode?`
+
+### set_active_area
+
+Set or release an organizational area focus
+Parameters: `area_code` (required; `null` releases)
+
+### list_areas
+
+List visible organizational areas
+Parameters: `entity_code?`, `parent_code?`, `query?`, `limit?`, `cursor?`
+
+### list_locations
+
+List visible document folders
+Parameters: `entity_code?`, `parent_code?`, `query?`, `limit?`, `cursor?`
 
 ### get_agent_context
 
