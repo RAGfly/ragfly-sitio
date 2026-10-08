@@ -1,6 +1,6 @@
 # RAGfly CLI
 
-Install `ragfly-cli` 1.20.0 to operate RAGfly from a terminal or CI job:
+Install `ragfly-cli` 1.21.0 to operate RAGfly from a terminal or CI job:
 
 ```bash
 pip install ragfly-cli
@@ -8,6 +8,8 @@ ragfly login
 ragfly cloud me
 ragfly cloud entity set 000057
 ragfly cloud entity set --clear
+ragfly cloud area set FINANCE
+ragfly cloud area set --release
 ```
 
 Cloud commands call `/v1`; JSON output is the same English contract as REST and
@@ -22,6 +24,8 @@ ragfly
     ├── me
     ├── group       list | switch | clear
     ├── entity      set [ENTITY_CODE] | set --clear
+    ├── area        set [AREA_CODE] | set --release | list
+    ├── location    list
     ├── api-key     create | list | revoke
     ├── document    list | show | edges
     ├── space       list | show | compose | read | refresh | promote
@@ -46,10 +50,12 @@ export RAGFLY_API_KEY=rf_xxxxxxxxxx
 
 ragfly cloud document list --status VECTORIZED --limit 20 -o json
 ragfly cloud document show DOC-2024-001 -o json
-ragfly cloud search "active maintenance contracts" -o json
+ragfly cloud area list --limit 50 -o json
+ragfly cloud location list --limit 50 -o json
+ragfly cloud search "active maintenance contracts" --location LOC-DOCUMENTS -o json
 ragfly cloud skill run SUMMARIZE_DOCUMENT --space 42 -o json
 ragfly cloud agent context --profile user_chat -o json
-ragfly cloud chat ask "What is the renewal date?" -o json
+ragfly cloud chat ask "What is the renewal date?" --location LOC-DOCUMENTS -o json
 ragfly cloud chat ask "How do I release the entity focus of my key?" --mode help
 ragfly cloud document-type list -o json
 ragfly cloud search "statements" --filter @filter.json --space 42 -o json
@@ -71,3 +77,7 @@ A flexible key can select an authorized entity or clear focus with
 `ragfly cloud entity set --clear`; `--release` remains a compatibility alias.
 The server stores focus, so it persists across CLI invocations. See
 [INTEGRATION.md](INTEGRATION.md#credentials) for the shared key contract.
+
+Area focus is also stored for API keys; releasing it keeps the current entity.
+Locations are temporary request filters. The `--location` flag on `search`,
+`document list`, and `chat ask` narrows that request to a visible folder tree.

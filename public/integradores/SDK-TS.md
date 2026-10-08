@@ -1,6 +1,6 @@
 # RAGfly TypeScript/JavaScript SDK
 
-`@ragfly/sdk` 0.4.0 is the official TypeScript/JavaScript SDK of RAGfly
+`@ragfly/sdk` 0.5.0 is the official TypeScript/JavaScript SDK of RAGfly
 (RAG service). It speaks only the English REST `/v1` contract: each method calls
 one `/v1` route, and three generic methods run any operation of the RAGfly app
 that your key can run. It mirrors the [Python SDK](SDK.md) method for method,
@@ -22,7 +22,7 @@ No runtime dependencies: the SDK uses the native `fetch`, so it runs on Node 18+
 browsers, Vercel Edge and Cloudflare Workers. The package is ESM only (`import`,
 not `require`).
 
-It exports `RAGfly`, `RAGflyError`, `CLIENT_HEADER` and `VERSION` (`"0.4.0"`),
+It exports `RAGfly`, `RAGflyError`, `CLIENT_HEADER` and `VERSION` (`"0.5.0"`),
 plus the types `RAGflyOptions`, `SearchResult`, `Document`, `Chunk`,
 `AskResponse`, `AgentContext`, `AgentLayer`, `AgentTool`, `FunctionProfile`,
 `OperationKind`, `OperationSummary`, `OperationDetail`, `OperationResult` and
@@ -87,9 +87,12 @@ snake_case keys. The server checks the bounds noted under each table and answers
 
 | Method | Defaults | Route | Resolves to |
 |---|---|---|---|
-| `session()` | — | `GET /v1/session` | `Json`: `authenticated`, `user` (`code`, `name`), `active_group`, `active_entity`, `profile`, `locale`; role identifiers are not exposed |
-| `setActiveEntity(entityCode)` | — | `POST /v1/session/active-entity` | Set an authorized entity; pass `null` to release the focus |
-| `listDocuments({ status?, limit?, page? } = {})` | `limit: 20`, `page: 1` | `GET /v1/documents` | `Json`: `documents` (each with its `fs` block), `total`, `page`, `limit` |
+| `session()` | — | `GET /v1/session` | `Json`: includes active entity/area, effective area and authorized area root |
+| `setActiveEntity({ entityCode })` | — | `POST /v1/session/active-entity` | Set an authorized entity; pass `null` to release the focus |
+| `setActiveArea({ areaCode })` | — | `POST /v1/session/active-area` | Set an authorized area; pass `null` to release area focus |
+| `listAreas({ entityCode?, parentCode?, query?, limit?, cursor? } = {})` | `limit: 50` | `GET /v1/areas` | Visible organizational areas |
+| `listLocations({ entityCode?, parentCode?, query?, limit?, cursor? } = {})` | `limit: 50` | `GET /v1/locations` | Visible document folders, separate from organizational areas |
+| `listDocuments({ status?, limit?, page?, locationCode? } = {})` | `limit: 20`, `page: 1` | `GET /v1/documents` | `Json`: paginated documents, optionally narrowed to a folder subtree |
 | `getDocument({ documentCode })` | — | `GET /v1/documents/{document_code}` | `Json`: the document, with its `fs` block |
 | `documentEdges({ documentCode, neighborLimit? })` | `neighborLimit: 50` | `GET /v1/documents/{document_code}/edges` | `Json`: `document`, `type_path`, `location_path`, `features`, `neighbors_two_hops` |
 
@@ -107,8 +110,8 @@ keys; the SDK uses its key for `/v1` calls and does not mint keys.
 
 | Method | Defaults | Route | Resolves to |
 |---|---|---|---|
-| `search({ query, limit?, minSimilarity?, entityCode?, spaceId? })` | `limit: 10`, `minSimilarity: 0` | `POST /v1/documents/search` | [`SearchResult`](#models) |
-| `searchFiltered({ query, filter, limit?, minSimilarity?, entityCode?, spaceId? })` | — | `POST /v1/documents/search` | [`SearchResult`](#models); `filter` is an object with `document_types`, `attributes` and `characteristics`. Take its codes from `listDocumentTypes()` and `listCharacteristics()` |
+| `search({ query, limit?, minSimilarity?, entityCode?, spaceId?, locationCode? })` | `limit: 10`, `minSimilarity: 0` | `POST /v1/documents/search` | [`SearchResult`](#models); `locationCode` only narrows this request |
+| `searchFiltered({ query, filter, limit?, minSimilarity?, entityCode?, spaceId?, locationCode? })` | — | `POST /v1/documents/search` | [`SearchResult`](#models); `filter` is an object with `document_types`, `attributes` and `characteristics`. Take its codes from `listDocumentTypes()` and `listCharacteristics()` |
 
 - Hybrid search: vector and keyword results fused by rank into `rrfScore`. It is
   simple retrieval without reranking, so `rerankScore` comes back `null`.
@@ -178,7 +181,7 @@ administers skills. `runSkill()` needs `spaceId` or `documentCode`
 
 | Method | Defaults | Route | Resolves to |
 |---|---|---|---|
-| `ask({ question, conversationId?, functionCode?, mode? })` | `functionCode: "CHAT-USER"` | `POST /v1/ask` | [`AskResponse`](#models); `mode: "help"` answers questions about RAGfly itself (how to use or integrate it) with no links to web screens; it does not search your documents |
+| `ask({ question, conversationId?, functionCode?, locationCode?, mode? })` | `functionCode: "CHAT-USER"` | `POST /v1/ask` | [`AskResponse`](#models); `locationCode` narrows only this request. `mode: "help"` answers questions about RAGfly itself (how to use or integrate it) with no links to web screens; it does not search your documents |
 | `agentContext({ functionProfile? } = {})` | `functionProfile: "user_chat"` | `GET /v1/agent/context` | [`AgentContext`](#models) |
 | `runAgentTool({ publicName, arguments, functionProfile? })` | `functionProfile: "user_chat"` | `POST /v1/agent/tools/{public_name}` | `unknown`: the tool's JSON result |
 
@@ -349,7 +352,7 @@ interface OperationResult {
 | `Document.fs` | How to open the original file, in `fs.how_to_open` (snake_case, as the API sends it) |
 | `SearchResult.query` | The query you passed, set by the client |
 | `AskResponse.extra` | The other fields of the `/v1/ask` response: `message_id` and `user_message_id` |
-| `AgentContext.identity` | `user_alias`, `group`, `entity`, `area`, `profile`; role identifiers are not exposed |
+| `AgentContext.identity` | `user_alias`, `group`, `entity`, `area`, `active_area`, `effective_area`, `authorized_area_root`, `area_focus_is_explicit`, `profile`; role identifiers are not exposed |
 | `AgentContext.limits` | `max_iterations`, `max_retrieval_calls`, `timeout_seconds` |
 
 The SDK maps search, ask and agent-context fields to camelCase. The nested JSON
@@ -390,12 +393,12 @@ echoing the request's `X-Request-Id` header, and the SDK does not send one.
 
 | HTTP status | `code` |
 |---|---|
-| 400 | `INVALID_REQUEST` |
+| 400 | `INVALID_REQUEST`; `INVALID_CONTEXT` when an active entity or `entity_code` is required |
 | 401 | `UNAUTHORIZED` |
 | 402 | `QUOTA_EXCEEDED`: the plan quota for the operation is used up |
 | 403 | `FORBIDDEN` |
 | 404 | `NOT_FOUND` |
-| 409 | `CONFLICT` |
+| 409 | `CONFLICT`; `CONTEXT_CONFLICT` when a saved area scope no longer matches current permissions |
 | 422 | `VALIDATION_ERROR` |
 | 429 | `RATE_LIMITED` |
 | 500, and any status not listed | `INTERNAL_ERROR` |

@@ -1,6 +1,6 @@
 # RAGfly Python SDK
 
-`ragfly` 0.4.0 is the official Python SDK of RAGfly (RAG service). It speaks only
+`ragfly` 0.5.0 is the official Python SDK of RAGfly (RAG service). It speaks only
 the English REST `/v1` contract: each method calls one `/v1` route, and three
 generic methods run any operation of the RAGfly app that your key can run.
 Methods, parameters, response fields, public catalog codes, enum values,
@@ -21,7 +21,7 @@ Python 3.10 or later. The only dependency is `httpx` (0.27 or later).
 
 The package exports `RAGfly`, `RAGflyError`, `SearchResult`, `AskResponse`,
 `Document`, `Chunk`, `AgentContext` and `AgentLayer`. `ragfly.__version__` is
-`"0.4.0"`.
+`"0.5.0"`.
 
 ## Quick start
 
@@ -73,9 +73,12 @@ bounds noted under each table and answers `422 VALIDATION_ERROR` outside them.
 
 | Method | Route | Returns |
 |---|---|---|
-| `session()` | `GET /v1/session` | `dict`: `authenticated`, `user` (`code`, `name`), `active_group`, `active_entity`, `profile`, `locale`; role identifiers are not exposed |
+| `session()` | `GET /v1/session` | `dict`: includes active entity/area, effective area and authorized area root; role identifiers are not exposed |
 | `set_active_entity(entity_code)` | `POST /v1/session/active-entity` | Set an authorized entity; pass `None` to release the focus |
-| `list_documents(*, status=None, limit=20, page=1)` | `GET /v1/documents` | `dict`: `documents` (each with its `fs` block), `total`, `page`, `limit` |
+| `set_active_area(area_code)` | `POST /v1/session/active-area` | Set an authorized area; pass `None` to release area focus |
+| `list_areas(*, entity_code=None, parent_code=None, query=None, limit=50, cursor=None)` | `GET /v1/areas` | Visible areas and next-page cursor |
+| `list_locations(*, entity_code=None, parent_code=None, query=None, limit=50, cursor=None)` | `GET /v1/locations` | Visible document folders and next-page cursor |
+| `list_documents(*, status=None, limit=20, page=1, location_code=None)` | `GET /v1/documents` | `dict`: `documents` (each with its `fs` block), `total`, `page`, `limit` |
 | `get_document(document_code)` | `GET /v1/documents/{document_code}` | `dict`: the document, with its `fs` block |
 | `document_edges(document_code, *, neighbor_limit=50)` | `GET /v1/documents/{document_code}/edges` | `dict`: `document`, `type_path`, `location_path`, `features`, `neighbors_two_hops` |
 
@@ -93,8 +96,8 @@ keys; the SDK uses its key for `/v1` calls and does not mint keys.
 
 | Method | Route | Returns |
 |---|---|---|
-| `search(query, *, limit=10, min_similarity=0.0, entity_code=None, space_id=None)` | `POST /v1/documents/search` | [`SearchResult`](#models) |
-| `search_filtered(query, *, filter, limit=None, min_similarity=None, entity_code=None, space_id=None)` | `POST /v1/documents/search` | [`SearchResult`](#models); `filter` is an object with `document_types`, `attributes` and `characteristics`. Take its codes from `list_document_types()` and `list_characteristics()` |
+| `search(query, *, limit=10, min_similarity=0.0, entity_code=None, space_id=None, location_code=None)` | `POST /v1/documents/search` | [`SearchResult`](#models); `location_code` narrows this request to a visible folder subtree |
+| `search_filtered(query, *, filter, limit=None, min_similarity=None, entity_code=None, space_id=None, location_code=None)` | `POST /v1/documents/search` | [`SearchResult`](#models); `filter` is an object with `document_types`, `attributes` and `characteristics`. Take its codes from `list_document_types()` and `list_characteristics()` |
 
 - Hybrid search: vector and keyword results fused by rank into `rrf_score`. It
   is simple retrieval without reranking, so `rerank_score` comes back `None`.
@@ -164,7 +167,7 @@ neither is given).
 
 | Method | Route | Returns |
 |---|---|---|
-| `ask(question, *, conversation_id=None, function_code="CHAT-USER", mode=None)` | `POST /v1/ask` | [`AskResponse`](#models); `mode="help"` answers questions about RAGfly itself (how to use or integrate it) with no links to web screens; it does not search your documents |
+| `ask(question, *, conversation_id=None, function_code="CHAT-USER", location_code=None, mode=None)` | `POST /v1/ask` | [`AskResponse`](#models); `location_code` narrows only this request. `mode="help"` answers questions about RAGfly itself (how to use or integrate it) with no links to web screens; it does not search your documents |
 | `agent_context(*, function_profile="user_chat")` | `GET /v1/agent/context` | [`AgentContext`](#models) |
 | `run_agent_tool(public_name, arguments, *, function_profile="user_chat")` | `POST /v1/agent/tools/{public_name}` | The tool's JSON result |
 
@@ -309,7 +312,7 @@ class AgentContext:
 | `Document.fs` | How to open the original file, in `fs["how_to_open"]` |
 | `SearchResult.query` | The query you passed, set by the client |
 | `AskResponse.extra` | The other fields of the `/v1/ask` response: `message_id` and `user_message_id` |
-| `AgentContext.identity` | `user_alias`, `group`, `entity`, `area`, `profile`; role identifiers are not exposed |
+| `AgentContext.identity` | `user_alias`, `group`, `entity`, `area`, `active_area`, `effective_area`, `authorized_area_root`, `area_focus_is_explicit`, `profile`; role identifiers are not exposed |
 | `AgentContext.tools` | Tool contracts as the API sends them: `operation`, `public_name`, `input_schema`, `read_only` |
 | `AgentContext.limits` | `max_iterations`, `max_retrieval_calls`, `timeout_seconds` |
 
@@ -343,12 +346,12 @@ echoing the request's `X-Request-Id` header, and the SDK does not send one.
 
 | HTTP status | `code` |
 |---|---|
-| 400 | `INVALID_REQUEST` |
+| 400 | `INVALID_REQUEST`; `INVALID_CONTEXT` when an active entity or `entity_code` is required |
 | 401 | `UNAUTHORIZED` |
 | 402 | `QUOTA_EXCEEDED`: the plan quota for the operation is used up |
 | 403 | `FORBIDDEN` |
 | 404 | `NOT_FOUND` |
-| 409 | `CONFLICT` |
+| 409 | `CONFLICT`; `CONTEXT_CONFLICT` when a saved area scope no longer matches current permissions |
 | 422 | `VALIDATION_ERROR` |
 | 429 | `RATE_LIMITED` |
 | 500, and any status not listed | `INTERNAL_ERROR` |
