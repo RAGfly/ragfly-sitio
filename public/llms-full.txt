@@ -2,7 +2,7 @@
 
 > Discover MCP tools with tools/list. Discover the separate manifest operations with GET /v1/operations.
 
-Updated: 2026-10-07
+Updated: 2026-10-09
 
 ## MCP connection
 
@@ -13,7 +13,7 @@ Updated: 2026-10-07
 
 API keys are issued through a signed-in human session. A fixed-entity key cannot change entity. A flexible key can select an authorized entity or release focus with entity_code: null; the server persists the focus for that key.
 
-## MCP tools (39)
+## MCP tools (41)
 
 ### session
 
@@ -129,8 +129,18 @@ Parameters: `skill_code`, `space_id?`, `document_code?`
 
 ### search_documents
 
-Direct semantic search over the corpus
-Parameters: `query`, `limit?`, `min_similarity?`, `entity_code?`, `location_code?`
+Direct semantic search over the corpus. `filter` narrows by document type, file attributes and content characteristics (codes from `list_document_types` and `list_characteristics`); a valid filter answers `filter_not_available` until structured filters are enabled for the group
+Parameters: `query`, `limit?`, `min_similarity?`, `entity_code?`, `space_id?`, `filter?`, `location_code?`
+
+### list_document_types
+
+Document types of the entity as a tree, with parent, synonyms and document counts. Picking a type also covers its more specific types
+Parameters: `entity_code?`
+
+### list_characteristics
+
+Content characteristics (a date, an amount, an ID, a person…) available for the given types and their more specific ones
+Parameters: `document_types?`, `entity_code?`
 
 ### ask
 

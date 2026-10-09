@@ -86,7 +86,7 @@ permission, issue a newly scoped key before requesting documents again.
 | `GET` | `/v1/documents` | Paginated corpus documents (`status`, `limit`, `page`, `location_code`) |
 | `GET` | `/v1/documents/{document_code}` | Document detail |
 | `GET` | `/v1/documents/{document_code}/edges` | Document graph edges (`neighbor_limit`) |
-| `POST` | `/v1/documents/search` | Hybrid search: vector + lexical, fused with RRF (`location_code?`) |
+| `POST` | `/v1/documents/search` | Hybrid search: vector + lexical, fused with RRF (`location_code?`, `space_id?`, `filter?`) |
 | `GET` | `/v1/spaces` | List workspaces |
 | `GET` | `/v1/spaces/{space_id}` | Workspace and its documents (`document_limit`) |
 | `POST` | `/v1/spaces/{space_id}/refresh` | Re-materialize a workspace |
@@ -96,6 +96,8 @@ permission, issue a newly scoped key before requesting documents again.
 | `GET` | `/v1/queue` | Processing queue (`process`, `status`, `limit`) |
 | `GET` | `/v1/runs` | Skill run history |
 | `GET` | `/v1/catalog` | RBAC-filtered functions and skills (`type`) |
+| `GET` | `/v1/catalog/document-types` | Document types of the entity as a tree (`entity_code?`): the codes `filter.document_types` takes |
+| `GET` | `/v1/catalog/characteristics` | Content characteristics for given types and their more specific ones (`document_types?`, `entity_code?`): the codes `filter.characteristics` takes |
 | `GET` | `/v1/functions/{function_code}` | Function detail: documentation and behaviours |
 | `GET` | `/v1/skills` | Skills available to you (the same list as `/v1/catalog`) |
 | `GET` | `/v1/skills/{skill_code}` | Skill detail. Prompt and model come only if your role administers skills |
@@ -265,7 +267,17 @@ curl https://api.ragfly.ai/v1/documents/search \
 
 Body: `query` (required, non-empty), `limit` (1–100, default 10: the maximum
 number of **documents**), `min_similarity` (0–1, default 0) and `entity_code`
-(optional, one of your own entities).
+(optional, one of your own entities). Optional narrowing: `space_id` (restrict to
+one workspace you can see; an unknown or foreign one answers `404`), `location_code`
+(a visible folder and its descendants) and `filter`.
+
+`filter` narrows by `document_types` (codes from `GET /v1/catalog/document-types`;
+a type also covers its more specific types), `attributes` (`field` one of `location`,
+`name`, `format`, `language`, `origin`, `modified`; `operator` `EQ`, `CONTAINS` or
+`RANGE`, with `value` or `from`/`to` dates) and `characteristics` (codes from
+`GET /v1/catalog/characteristics`). A malformed or unknown code answers `400` with
+`details.reason`; a valid filter answers `409 filter_not_available` until structured
+filters are enabled for the group.
 
 The search is hybrid (semantic + keyword). With `min_similarity` above 0, a document
 is returned only if its best chunk reaches that similarity; keyword-only matches carry

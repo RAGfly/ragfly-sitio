@@ -124,8 +124,18 @@
     },
     {
       "name": "search_documents",
-      "description": "Direct semantic search over the corpus",
-      "parameters": "`query`, `limit?`, `min_similarity?`, `entity_code?`, `location_code?`"
+      "description": "Direct semantic search over the corpus. `filter` narrows by document type, file attributes and content characteristics (codes from `list_document_types` and `list_characteristics`); a valid filter answers `filter_not_available` until structured filters are enabled for the group",
+      "parameters": "`query`, `limit?`, `min_similarity?`, `entity_code?`, `space_id?`, `filter?`, `location_code?`"
+    },
+    {
+      "name": "list_document_types",
+      "description": "Document types of the entity as a tree, with parent, synonyms and document counts. Picking a type also covers its more specific types",
+      "parameters": "`entity_code?`"
+    },
+    {
+      "name": "list_characteristics",
+      "description": "Content characteristics (a date, an amount, an ID, a person…) available for the given types and their more specific ones",
+      "parameters": "`document_types?`, `entity_code?`"
     },
     {
       "name": "ask",
@@ -239,6 +249,6 @@
       ]
     }
   ],
-  "updated": "2026-10-07",
-  "actualizado": "2026-10-07"
+  "updated": "2026-10-09",
+  "actualizado": "2026-10-09"
 }

@@ -3,7 +3,7 @@
   "description": "Document retrieval for agents, exposed through MCP tools and a separate RBAC-filtered REST operations manifest.",
   "site": "https://ragfly.ai",
   "app": "https://app.ragfly.ai",
-  "updated": "2026-10-07",
+  "updated": "2026-10-09",
   "mcp": {
     "nombre": "ragfly",
     "endpointSSE": "https://api.ragfly.ai/mcp/sse",
@@ -11,7 +11,7 @@
     "auth": "OAuth 2.1 or Authorization: Bearer rf_xxxxxxxxxx (API Key issued from a human session)",
     "scope": "Every call is filtered by the key owner’s group, entity, area and role. Flexible entity focus is stored server-side."
   },
-  "total_mcp_tools": 39,
+  "total_mcp_tools": 41,
   "tools": [
     {
       "name": "session",
@@ -130,8 +130,18 @@
     },
     {
       "name": "search_documents",
-      "description": "Direct semantic search over the corpus",
-      "parameters": "`query`, `limit?`, `min_similarity?`, `entity_code?`, `location_code?`"
+      "description": "Direct semantic search over the corpus. `filter` narrows by document type, file attributes and content characteristics (codes from `list_document_types` and `list_characteristics`); a valid filter answers `filter_not_available` until structured filters are enabled for the group",
+      "parameters": "`query`, `limit?`, `min_similarity?`, `entity_code?`, `space_id?`, `filter?`, `location_code?`"
+    },
+    {
+      "name": "list_document_types",
+      "description": "Document types of the entity as a tree, with parent, synonyms and document counts. Picking a type also covers its more specific types",
+      "parameters": "`entity_code?`"
+    },
+    {
+      "name": "list_characteristics",
+      "description": "Content characteristics (a date, an amount, an ID, a person…) available for the given types and their more specific ones",
+      "parameters": "`document_types?`, `entity_code?`"
     },
     {
       "name": "ask",

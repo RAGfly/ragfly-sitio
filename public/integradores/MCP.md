@@ -85,6 +85,24 @@ client may need a new sign-in after expiration.
 | **VS Code with GitHub Copilot** | Add an HTTP server to `.vscode/mcp.json` (example below), or use **MCP: Add Server** from the Command Palette. | Start the server and complete its OAuth prompt. This MCP path does not require an OpenAPI document. |
 | **Cursor** | Add an HTTP server to `mcp.json` with the pre-registered client id shown below. | Start the server and complete the RAGfly browser flow. |
 
+### Client compatibility evidence
+
+The following results are from specific client versions and RAGfly environments. They are
+observations, not a blanket compatibility guarantee. A successful connection in TEST or CORP
+does not establish behavior in PROD or in another product from the same vendor.
+
+| Client | Environment and observed result | Not established by this check |
+|---|---|---|
+| **VS Code 1.139.1 + GitHub Copilot Chat 0.67.0** | RAGfly TEST, `/mcp-http`: OAuth callback and reconnect succeeded; MCP `initialize` negotiated protocol `2025-11-25`; `session` and a prepared search returned the expected fixture. Revoking the grant caused a later request to return HTTP 401. | PROD behavior; Microsoft 365 Copilot and Copilot Studio; other VS Code or extension versions. |
+| **Claude Desktop** (version not recorded in the connection evidence) | RAGfly CORP, `/mcp-http`: OAuth callback completed and `Ragfly-Corp Session` returned a session. After the grant was revoked, Claude asked to reconnect. | A Claude HTTP 401 was not captured; document retrieval, protocol version, tenant/environment isolation and PROD behavior were not tested. |
+| **Gemini CLI / Antigravity** | No RAGfly connection was observed for either client during this compatibility check. | RAGfly OAuth or MCP compatibility for either client. |
+| **ChatGPT web** | The private TEST pilot has not been run. | A completed ChatGPT connection, citations, revocation behavior or production availability. |
+
+The setup instructions for other clients in this guide are configuration references; this table does
+not claim that every listed client/version has passed an end-to-end test. After OAuth, verify the
+connection with `session` and review the saved OAuth entry's displayed role and expiry in **API
+Keys**. If the saved values differ from the consent you approved, revoke that grant and reconnect.
+
 VS Code workspace example:
 
 ```json
@@ -229,7 +247,9 @@ the exact config format.
 | `list_skills` | LLM skills available to you (the same list as `catalog`) | — |
 | `get_skill` | Skill detail: type and output; prompt and model only if your role administers skills | `skill_code` |
 | `run_skill` | Queues a run over a workspace or document | `skill_code`, `space_id?`, `document_code?` |
-| `search_documents` | Direct semantic search over the corpus | `query`, `limit?`, `min_similarity?`, `entity_code?`, `location_code?` |
+| `search_documents` | Direct semantic search over the corpus. `filter` narrows by document type, file attributes and content characteristics (codes from `list_document_types` and `list_characteristics`); a valid filter answers `filter_not_available` until structured filters are enabled for the group | `query`, `limit?`, `min_similarity?`, `entity_code?`, `space_id?`, `filter?`, `location_code?` |
+| `list_document_types` | Document types of the entity as a tree, with parent, synonyms and document counts. Picking a type also covers its more specific types | `entity_code?` |
+| `list_characteristics` | Content characteristics (a date, an amount, an ID, a person…) available for the given types and their more specific ones | `document_types?`, `entity_code?` |
 | `ask` | Natural language question with full RAG (non-streaming). `mode: "help"` answers questions about RAGfly itself instead, without links to web screens | `message`, `function_code?`, `conversation_id?`, `title?`, `location_code?`, `mode?` |
 | `set_active_area` | Set or release an organizational area focus | `area_code` (required; `null` releases) |
 | `list_areas` | List visible organizational areas | `entity_code?`, `parent_code?`, `query?`, `limit?`, `cursor?` |
