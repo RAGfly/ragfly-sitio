@@ -1,6 +1,6 @@
 # RAGfly CLI
 
-Install `ragfly-cli` 1.21.0 to operate RAGfly from a terminal or CI job:
+Install `ragfly-cli` 1.21.1 to operate RAGfly from a terminal or CI job:
 
 ```bash
 pip install ragfly-cli
