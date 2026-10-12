@@ -31,7 +31,7 @@ export const planes = [
     cta: 'Empezar gratis',
     limites: {
       tokens: '1.000 páginas de corpus activo',
-      vectores: '2 entidades (entornos aislados)',
+      vectores: '2 workspaces',
     },
     features: [
       '1.500 Retrieval simple/mes',
@@ -48,7 +48,7 @@ export const planes = [
     cta: 'Empezar',
     limites: {
       tokens: '10.000 páginas de corpus activo',
-      vectores: '5 entidades (entornos aislados)',
+      vectores: '5 workspaces',
     },
     features: [
       '5.000 Retrieval simple/mes',
@@ -67,7 +67,7 @@ export const planes = [
     cta: 'Empezar',
     limites: {
       tokens: '50.000 páginas de corpus activo',
-      vectores: '25 entidades (entornos aislados)',
+      vectores: '25 workspaces',
     },
     featuresIniciales: ['Todo lo de Starter'],
     features: [
@@ -87,7 +87,7 @@ export const planes = [
     cta: 'Empezar',
     limites: {
       tokens: '250.000 páginas de corpus activo',
-      vectores: '150 entidades (entornos aislados)',
+      vectores: '150 workspaces',
     },
     featuresIniciales: ['Todo lo de Growth'],
     features: [

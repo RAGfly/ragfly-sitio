@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 // Imagen social (Open Graph / Twitter) generada en build.
 // Paleta de marca: dark #0F1729, gradiente #1E4A82 → #4089CD → #7AB4DD.
-export const alt = "RAGfly — Servicio de RAG multi-tenant para agentes de IA";
+export const alt = "RAGfly — Servicio de RAG para agentes de IA. Acceso por workspace, área, rol y agente.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -55,7 +55,7 @@ export default function Image() {
               color: "#7AB4DD",
             }}
           >
-            Servicio de RAG multi-tenant
+            Acceso por workspace, área, rol y agente
           </div>
           <div
             style={{
@@ -68,7 +68,7 @@ export default function Image() {
               maxWidth: 980,
             }}
           >
-            Recuperación aumentada para tus agentes de IA, aislada por cliente y con privacidad verificable.
+            Recuperación aumentada para tus agentes de IA, aislada por workspace y con privacidad verificable.
           </div>
         </div>
 

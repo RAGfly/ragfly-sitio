@@ -31,6 +31,10 @@ export function Hero() {
         <BlurIn delay={0.09} className="font-helvetica-neue text-sm md:text-base text-slm-dark/75 tracking-[0.01em] max-w-2xl text-center leading-snug">
           {t('hero.lineaApoyo')}
         </BlurIn>
+        {/* Definición de workspace — MENSAJE-CANONICO §7.1 (literal) */}
+        <BlurIn delay={0.095} className="font-helvetica-neue text-sm md:text-base text-slm-dark/75 tracking-[0.01em] max-w-2xl text-center leading-snug">
+          {t('hero.definicionContexto')}
+        </BlurIn>
         <BlurIn delay={0.1} className="font-[family-name:var(--font-interfaz)] text-xs md:text-sm text-slm-gray tracking-[0.01em] max-w-2xl text-center leading-relaxed">
           {t('hero.tagline')}
         </BlurIn>

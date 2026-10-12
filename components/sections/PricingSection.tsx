@@ -39,9 +39,9 @@ const FALLBACK: Catalogo = {
     { codigo_caracteristica: 'RETRIEVALS', nombre: 'Retrieval simple', tipo_caracteristica: 'CUPO', unidad: 'retrievals' },
     { codigo_caracteristica: 'RECUP_INTELIGENTE', nombre: 'RAG Aumentado', tipo_caracteristica: 'CUPO', unidad: 'consultas', unidades_pack: 500, precio_pack_usd: 35 },
     { codigo_caracteristica: 'RAG_AGENTICO', nombre: 'RAG Agéntico', tipo_caracteristica: 'CUPO', unidad: 'operaciones', unidades_pack: 50, precio_pack_usd: 59 },
-    { codigo_caracteristica: 'ENTIDADES', nombre: 'Entidades (entornos aislados)', tipo_caracteristica: 'CUPO', unidad: null },
+    { codigo_caracteristica: 'ENTIDADES', nombre: 'Workspaces', tipo_caracteristica: 'CUPO', unidad: null },
     { codigo_caracteristica: 'AREAS', nombre: 'Áreas', tipo_caracteristica: 'CUPO', unidad: null },
-    { codigo_caracteristica: 'ESPACIOS_TRABAJO', nombre: 'Espacios de Trabajo', tipo_caracteristica: 'CUPO', unidad: null },
+    { codigo_caracteristica: 'ESPACIOS_TRABAJO', nombre: 'Collections', tipo_caracteristica: 'CUPO', unidad: null },
     { codigo_caracteristica: 'SINTESIS', nombre: 'Síntesis', tipo_caracteristica: 'CUPO', unidad: 'páginas' },
     { codigo_caracteristica: 'ASISTENCIAS', nombre: 'Asistencias', tipo_caracteristica: 'CUPO', unidad: null },
   ],
@@ -112,7 +112,11 @@ export async function PricingSection() {
             const featured = plan.codigo_plan === 'GROWTH'
             const secundarios = SECUNDARIOS.map((codigo) => {
               const cantidad = valores[codigo]?.cantidad_incluida
-              const nombre = porCodigo.get(codigo)?.nombre || codigo
+              const nombre = codigo === 'ENTIDADES'
+                ? t('limiteWorkspaces')
+                : codigo === 'ESPACIOS_TRABAJO'
+                  ? t('limiteCollections')
+                  : porCodigo.get(codigo)?.nombre || codigo
               return `${nombre}: ${cantidad == null ? t('aMedida') : numero(Number(cantidad), locale)}`
             }).join(' · ')
             const principales = PRINCIPALES.map((codigo) => {

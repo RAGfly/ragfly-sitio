@@ -1,13 +1,13 @@
 # RAGfly
 
-> Servicio de RAG multi-tenant para agentes de IA. Convierte cualquier corpus de documentos en una base de recuperación segura, aislada por contexto y lista para producción — sin construir ni mantener un pipeline RAG. Vía MCP, REST y CLI.
+> Servicio de RAG para agentes de IA. Acceso por workspace, área, rol y agente. Convierte cualquier corpus de documentos en una base de recuperación segura, aislada por workspace y lista para producción — sin construir ni mantener un pipeline RAG. Vía MCP, REST y CLI.
 
-RAGfly es un servicio de RAG para agentes: apuntas a un directorio de documentos y el sistema los escanea, vectoriza e indexa automáticamente. Tu agente obtiene respuestas con citas a la fuente, a escala y aislado por contexto.
+RAGfly es un servicio de RAG para agentes: apuntas a un directorio de documentos y el sistema los escanea, vectoriza e indexa automáticamente. Tu agente obtiene respuestas con citas a la fuente, a escala y aislado por workspace.
 
-- Qué ofrece: retrieval semántico con citas + capa de acción (habilidades LLM sobre documentos) + multi-tenant de fábrica.
-- Para quién: primero, el dev que opera agentes propios y necesita que no crucen información entre sus contextos (proyectos, vida personal, memoria del agente); después, consultoras e integradores que construyen agentes sobre documentos privados de varios clientes, y productos SaaS que meten RAG adentro.
+- Qué ofrece: retrieval semántico con citas + capa de acción (habilidades LLM sobre documentos) + multi-tenant de fábrica (un workspace por cliente, proyecto o parte de tu vida; dentro, acceso por área, rol y agente).
+- Para quién: primero, el dev que opera agentes propios y necesita que no crucen información entre sus workspaces (proyectos, vida personal, memoria del agente); después, consultoras e integradores que construyen agentes sobre documentos privados de varios clientes, y productos SaaS que meten RAG adentro.
 - Cómo funciona: apunta a un directorio → ingesta, vectorización e indexado automáticos → tu agente consulta por significado vía MCP, REST o CLI con citas a la fuente.
-- Precios (USD): Free $0 (2 Entities, 500 Pages totales, 25 Retrievals/día, 50 Verified Answers totales) · Starter $39/mes (5 Entities, 2.000 Pages/mes, 5.000 Retrievals/mes, 300 Verified Answers/mes) · Growth $149/mes (10 Entities, 10.000 Pages/mes, 25.000 Retrievals/mes, 1.500 Verified Answers/mes, Control por Área · parsing-BYOK · embedding-BYOK) · Scale $590/mes (25 Entities, 40.000 Pages/mes, 100.000 Retrievals/mes, 5.000 Verified Answers/mes, BYO vectorial/LLM) · Enterprise/Soberano custom.
+- Precios (USD): Free $0 (2 Workspaces, 500 Pages totales, 25 Retrievals/día, 50 Verified Answers totales) · Starter $39/mes (5 Workspaces, 2.000 Pages/mes, 5.000 Retrievals/mes, 300 Verified Answers/mes) · Growth $149/mes (10 Workspaces, 10.000 Pages/mes, 25.000 Retrievals/mes, 1.500 Verified Answers/mes, Control por Área · parsing-BYOK · embedding-BYOK) · Scale $590/mes (25 Workspaces, 40.000 Pages/mes, 100.000 Retrievals/mes, 5.000 Verified Answers/mes, BYO vectorial/LLM) · Enterprise/Soberano custom.
 - Privacidad por modo: Cloud procesa el original pero no lo conserva después de la ingesta; Desktop procesa el original localmente y puede sincronizar derivados; en soberano la BD y los derivados en reposo son del cliente, mientras RAGfly accede a chunks para recuperar contexto.
 
 ## Para agentes
@@ -17,8 +17,8 @@ RAGfly es un servicio de RAG para agentes: apuntas a un directorio de documentos
 - Conexión MCP (SSE): https://api.ragfly.ai/mcp/sse
 - Conexión MCP (HTTP streamable): https://api.ragfly.ai/mcp-http/
 - Autenticación: OAuth 2.1 (recomendado) o `Authorization: Bearer rf_xxxxxxxxxx` (API Key).
-- Emisión: una persona autenticada emite la API key. Alcance: usuario, grupo, entidad, área y rol; el backend filtra cada llamada.
-- Entidad: una key fija no cambia de entidad; una flexible guarda el foco en el servidor y puede liberarlo con entity_code: null.
+- Emisión: una persona autenticada emite la API key. Alcance: usuario, cuenta, workspace, área y rol; el backend filtra cada llamada.
+- Workspace: una key fija no cambia de workspace; una flexible guarda el foco en el servidor y puede liberarlo con entity_code: null (en la API el workspace se llama `entity`).
 - Operaciones: GET /v1/operations descubre el manifiesto filtrado por RBAC; ese catálogo es distinto de las tools MCP.
 - Swagger interactivo: https://api.ragfly.ai/docs
 
