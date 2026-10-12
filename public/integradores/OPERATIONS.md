@@ -30,7 +30,7 @@ and API-authored messages are English. Catalog codes use the public English alia
 on the same row; read `document_statuses.list` for current status values.
 Internal role identifiers and fields without a public mapping are omitted. A catalog value
 without an English alias fails with a safe English error instead of exposing its internal code.
-Tenant-authored names, descriptions, prompts and document content keep their original language.
+Organization-authored names, descriptions, prompts and document content keep their original language.
 
 ## Operations (108: 41 read, 50 write, 17 write_confirm)
 
@@ -47,19 +47,33 @@ the key's role must also include one of those screens.
 
 | Operation | Kind | Minimum profile | Screens |
 |---|---|---|---|
-| `areas.add_location` | write | ADMINISTRATOR | `MANAGE_ENTITIES` |
-| `areas.create` | write | ADMINISTRATOR | `MANAGE_ENTITIES` |
-| `areas.delete` | write_confirm | ADMINISTRATOR | `MANAGE_ENTITIES` |
-| `areas.list` | read | USER | `API_KEYS`, `MANAGE_ENTITIES`, `MANAGE_USERS`, `WORKSPACES` |
-| `areas.list_locations` | read | ADMINISTRATOR | `MANAGE_ENTITIES` |
-| `areas.remove_location` | write_confirm | ADMINISTRATOR | `MANAGE_ENTITIES` |
-| `areas.update` | write | ADMINISTRATOR | `MANAGE_ENTITIES` |
+| `areas.add_location` | write | ADMINISTRATOR | `MANAGE_WORKSPACES` |
+| `areas.create` | write | ADMINISTRATOR | `MANAGE_WORKSPACES` |
+| `areas.delete` | write_confirm | ADMINISTRATOR | `MANAGE_WORKSPACES` |
+| `areas.list` | read | USER | `API_KEYS`, `COLLECTIONS`, `MANAGE_USERS`, `MANAGE_WORKSPACES` |
+| `areas.list_locations` | read | ADMINISTRATOR | `MANAGE_WORKSPACES` |
+| `areas.remove_location` | write_confirm | ADMINISTRATOR | `MANAGE_WORKSPACES` |
+| `areas.update` | write | ADMINISTRATOR | `MANAGE_WORKSPACES` |
 
 ### `audit`
 
 | Operation | Kind | Minimum profile | Screens |
 |---|---|---|---|
 | `audit.list` | read | ADMINISTRATOR | `AUDIT_USERS`, `SECURITY-DASHBOARD` |
+
+### `collections`
+
+| Operation | Kind | Minimum profile | Screens |
+|---|---|---|---|
+| `collections.create` | write | USER | `COLLECTIONS` |
+| `collections.delete` | write_confirm | USER | `COLLECTIONS` |
+| `collections.list` | read | USER | `CHAT-FINAL-USER`, `CHAT-USER`, `COLLECTIONS` |
+| `collections.list_documents` | read | USER | `COLLECTIONS` |
+| `collections.reapply_skill` | write | USER | `COLLECTIONS` |
+| `collections.refresh` | write | USER | `COLLECTIONS` |
+| `collections.save` | write | USER | `COLLECTIONS` |
+| `collections.set_criteria` | write | USER | `COLLECTIONS` |
+| `collections.update` | write | USER | `COLLECTIONS` |
 
 ### `document_statuses`
 
@@ -83,7 +97,7 @@ the key's role must also include one of those screens.
 | `document_types.remove_category` | write_confirm | ADMINISTRATOR | `DOC_FEATURE_CATEGORIES` |
 | `document_types.remove_feature` | write_confirm | ADMINISTRATOR | `DOC_FEATURE_CATEGORIES` |
 | `document_types.set_boundary` | write | ADMINISTRATOR | `DOC_FEATURE_CATEGORIES` |
-| `document_types.summary_by_entity` | read | ADMINISTRATOR | `GROUP_DOCUMENT_TYPES` |
+| `document_types.summary_by_workspace` | read | ADMINISTRATOR | `GROUP_DOCUMENT_TYPES` |
 | `document_types.update` | write | ADMINISTRATOR | `DOC_FEATURE_CATEGORIES`, `GROUP_DOCUMENT_TYPES` |
 | `document_types.update_category` | write | ADMINISTRATOR | `DOC_FEATURE_CATEGORIES` |
 | `document_types.update_feature` | write | ADMINISTRATOR | `DOC_FEATURE_CATEGORIES` |
@@ -101,16 +115,6 @@ the key's role must also include one of those screens.
 | `documents.report_missing` | write_confirm | ADMINISTRATOR | `PROCESS_DOCUMENTS` |
 | `documents.revert` | write_confirm | USER | `DOCUMENTS`, `PROCESS_DOCUMENTS` |
 | `documents.set_ingestion_order` | write | ADMINISTRATOR | `PROCESS_DOCUMENTS` |
-
-### `entities`
-
-| Operation | Kind | Minimum profile | Screens |
-|---|---|---|---|
-| `entities.create` | write | ADMINISTRATOR | `MANAGE_ENTITIES` |
-| `entities.delete` | write_confirm | ADMINISTRATOR | `MANAGE_ENTITIES` |
-| `entities.get_dependencies` | read | ADMINISTRATOR | `MANAGE_ENTITIES` |
-| `entities.list` | read | ADMINISTRATOR | `MANAGE_ENTITIES`, `MANAGE_USERS`, `SECURITY-DASHBOARD` |
-| `entities.update` | write | ADMINISTRATOR | `MANAGE_ENTITIES` |
 
 ### `feature_categories`
 
@@ -148,8 +152,8 @@ the key's role must also include one of those screens.
 
 | Operation | Kind | Minimum profile | Screens |
 |---|---|---|---|
-| `groups.update` | write | ADMINISTRATOR | `MANAGE_ENTITIES` |
-| `groups.update_parameters` | write | ADMINISTRATOR | `MANAGE_ENTITIES` |
+| `groups.update` | write | ADMINISTRATOR | `MANAGE_WORKSPACES` |
+| `groups.update_parameters` | write | ADMINISTRATOR | `MANAGE_WORKSPACES` |
 
 ### `ingestion_runs`
 
@@ -167,7 +171,7 @@ the key's role must also include one of those screens.
 | `locations.delete` | write_confirm | ADMINISTRATOR | `DOC_LOCATIONS`, `PROCESS_PIPELINE` |
 | `locations.generate_md` | write | ADMINISTRATOR | `DOC_LOCATIONS` |
 | `locations.get_acquisition_skill` | read | ADMINISTRATOR | `DOC_LOCATIONS` |
-| `locations.list` | read | USER | `CHAT-FINAL-USER`, `CHAT-USER`, `DOC_LOCATIONS`, `MANAGE_ENTITIES`, `PROCESS_DOCUMENTS`, `PROCESS_PIPELINE` |
+| `locations.list` | read | USER | `CHAT-FINAL-USER`, `CHAT-USER`, `DOC_LOCATIONS`, `MANAGE_WORKSPACES`, `PROCESS_DOCUMENTS`, `PROCESS_PIPELINE` |
 | `locations.materialize_web` | write | ADMINISTRATOR | `DOC_LOCATIONS` |
 | `locations.preview_delete` | read | ADMINISTRATOR | `DOC_LOCATIONS`, `PROCESS_PIPELINE` |
 | `locations.rebuild_hierarchy` | write | ADMINISTRATOR | `DOC_LOCATIONS` |
@@ -234,36 +238,32 @@ the key's role must also include one of those screens.
 
 | Operation | Kind | Minimum profile | Screens |
 |---|---|---|---|
-| `session.set_active_entity` | write | USER | `SESSION` |
-
-### `spaces`
-
-| Operation | Kind | Minimum profile | Screens |
-|---|---|---|---|
-| `spaces.create` | write | USER | `WORKSPACES` |
-| `spaces.delete` | write_confirm | USER | `WORKSPACES` |
-| `spaces.list` | read | USER | `CHAT-FINAL-USER`, `CHAT-USER`, `WORKSPACES` |
-| `spaces.list_documents` | read | USER | `WORKSPACES` |
-| `spaces.promote` | write | USER | `WORKSPACES` |
-| `spaces.reapply_skill` | write | USER | `WORKSPACES` |
-| `spaces.refresh` | write | USER | `WORKSPACES` |
-| `spaces.set_criteria` | write | USER | `WORKSPACES` |
-| `spaces.update` | write | USER | `WORKSPACES` |
+| `session.set_active_workspace` | write | USER | `SESSION` |
 
 ### `users`
 
 | Operation | Kind | Minimum profile | Screens |
 |---|---|---|---|
-| `users.add_entity` | write | ADMINISTRATOR | `MANAGE_USERS` |
 | `users.add_role` | write | ADMINISTRATOR | `MANAGE_USERS` |
+| `users.add_workspace` | write | ADMINISTRATOR | `MANAGE_USERS` |
 | `users.create` | write | ADMINISTRATOR | `MANAGE_USERS` |
 | `users.delete` | write_confirm | ADMINISTRATOR | `MANAGE_USERS` |
 | `users.list` | read | ADMINISTRATOR | `MANAGE_USERS` |
-| `users.list_entities` | read | ADMINISTRATOR | `MANAGE_USERS` |
 | `users.list_roles` | read | ADMINISTRATOR | `MANAGE_USERS` |
-| `users.remove_entity` | write_confirm | ADMINISTRATOR | `MANAGE_USERS` |
+| `users.list_workspaces` | read | ADMINISTRATOR | `MANAGE_USERS` |
+| `users.remove_workspace` | write_confirm | ADMINISTRATOR | `MANAGE_USERS` |
 | `users.reorder_roles` | write | ADMINISTRATOR | `MANAGE_USERS` |
 | `users.update` | write | ADMINISTRATOR | `MANAGE_USERS` |
+
+### `workspaces`
+
+| Operation | Kind | Minimum profile | Screens |
+|---|---|---|---|
+| `workspaces.create` | write | ADMINISTRATOR | `MANAGE_WORKSPACES` |
+| `workspaces.delete` | write_confirm | ADMINISTRATOR | `MANAGE_WORKSPACES` |
+| `workspaces.get_dependencies` | read | ADMINISTRATOR | `MANAGE_WORKSPACES` |
+| `workspaces.list` | read | ADMINISTRATOR | `MANAGE_USERS`, `MANAGE_WORKSPACES`, `SECURITY-DASHBOARD` |
+| `workspaces.update` | write | ADMINISTRATOR | `MANAGE_WORKSPACES` |
 
 ## Not published, and why (34)
 
@@ -276,11 +276,11 @@ or they are already available under another name.
 | An agent credential does not manage credentials (API keys). | `API_KEYS`, `SECURITY-DASHBOARD` | 5 |
 | Connector secrets need a person's session. | — | 4 |
 | Ingestion steps driven by the web app's session. How an agent drives them is still to be decided. | `PROCESS_DOCUMENTS`, `PROCESS_PIPELINE` | 4 |
-| Already published as `GET /v1/organization`. | `MANAGE_ENTITIES` | 1 |
+| Already published as `GET /v1/organization`. | `MANAGE_WORKSPACES` | 1 |
 | Already published as `GET /v1/skills`. | `PROCESS_PIPELINE` | 1 |
 | Already published as `GET /v1/usage`. | `LLM_COSTS_GROUP` | 1 |
 | Already published as `POST /v1/ask`. | `CHAT-HISTORY` | 1 |
-| Already published as `parameters.list_group`. | `MANAGE_ENTITIES` | 1 |
+| Already published as `parameters.list_group`. | `MANAGE_WORKSPACES` | 1 |
 | Internal machinery (LLM model registry), outside the DOCS application. | `DOC_FEATURE_CATEGORIES` | 1 |
 | Internal machinery (prompt engine), outside the DOCS application. | `DOC_FEATURE_CATEGORIES`, `DOC_LOCATIONS` | 1 |
 | Internal machinery (translation engine), outside the DOCS application. | `DOC_FEATURE_CATEGORIES` | 1 |

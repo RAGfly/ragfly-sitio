@@ -54,8 +54,8 @@ Expected result:
 {
   "authenticated": true,
   "user": {"code": "you@company.com", "name": "Your Name"},
-  "active_group": "<your group>",
-  "active_entity": "<your entity>",
+  "active_group": "<your organization>",
+  "active_workspace": "<your workspace>",
   "profile": "USER",
   "locale": "en"
 }
@@ -75,7 +75,7 @@ curl $RAGFLY_API_URL/v1/operations \
 {
   "operations": [
     {"code": "documents.get", "kind": "read", "confirm_required": false, "functions": ["DOCUMENTS"]},
-    {"code": "spaces.delete", "kind": "write_confirm", "confirm_required": true, "functions": ["WORKSPACES"]}
+    {"code": "collections.delete", "kind": "write_confirm", "confirm_required": true, "functions": ["COLLECTIONS"]}
   ],
   "total": 18
 }
@@ -92,13 +92,13 @@ nothing until you repeat the call with `"confirm": true`. Details:
 
 ## Step 4 — Tell RAGfly who you are
 
-Before the first load. Four texts —a `description` and a `system_prompt`, at group and at entity
+Before the first load. Four texts —a `description` and a `system_prompt`, at organization and at workspace
 level— are what situate RAGfly inside your organization. The system prompt is injected into **every
-skill with organization scope**, which is the whole ingestion pipeline and not only chat: a tenant
+skill with organization scope**, which is the whole ingestion pipeline and not only chat: an organization
 that leaves them empty ingests and answers worse than one that filled them in.
 
 This step needs a key whose role can manage the organization profile, normally a
-group administrator's. A read-only key gets `403` on
+organization administrator's. A read-only key gets `403` on
 `GET /v1/organization` and on the draft: ask your administrator, or go on to
 step 5.
 
@@ -106,7 +106,7 @@ step 5.
 # What is still missing?
 curl $RAGFLY_API_URL/v1/organization \
   -H "Authorization: Bearer $RAGFLY_API_KEY"
-# → { "group": {...}, "entity": {...}, "missing": ["group.description", ...] }
+# → { "group": {...}, "workspace": {...}, "missing": ["group.description", ...] }
 ```
 
 Your agent can do this for you. Give it the text of your own "about us" page —RAGfly does not fetch

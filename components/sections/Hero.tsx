@@ -34,6 +34,10 @@ export function Hero() {
         <BlurIn delay={0.1} className="font-[family-name:var(--font-interfaz)] text-xs md:text-sm text-slm-gray tracking-[0.01em] max-w-2xl text-center leading-relaxed">
           {t('hero.tagline')}
         </BlurIn>
+        {/* §7.1 MENSAJE-CANONICO: definición de workspace (literal), bajo el hero */}
+        <BlurIn delay={0.11} className="font-[family-name:var(--font-interfaz)] text-xs md:text-sm text-slm-dark/70 tracking-[0.01em] max-w-2xl text-center leading-relaxed">
+          {t('hero.definicionContexto')}
+        </BlurIn>
       </div>
       <div className="z-10 flex flex-col items-center gap-7 max-w-xl text-center pt-8 md:pt-10">
         <BlurIn delay={0.3} className="flex flex-col sm:flex-row items-center gap-3">

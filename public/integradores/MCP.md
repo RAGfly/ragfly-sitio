@@ -1,6 +1,6 @@
 # RAGfly — MCP Interface
 
-Connect any MCP-compatible agent to your RAGfly group's documents and capabilities. RAGfly uses the same MCP endpoint and OAuth authorization flow across clients; setup instructions differ only where each client exposes its own MCP settings. A bearer API key remains available for clients and scripts that need manual credentials.
+Connect any MCP-compatible agent to your RAGfly organization's documents and capabilities. RAGfly uses the same MCP endpoint and OAuth authorization flow across clients; setup instructions differ only where each client exposes its own MCP settings. A bearer API key remains available for clients and scripts that need manual credentials.
 
 > **Opening original files from disk?** Searching, asking and citing need no
 > extra setup. To resolve a local original, use the per-document `fs.home_var`
@@ -10,12 +10,12 @@ Connect any MCP-compatible agent to your RAGfly group's documents and capabiliti
 
 ## Prerequisite
 
-For the recommended OAuth setup, sign in to RAGfly during the client authorization flow; you do not need to copy an API key into the MCP client. For clients that do not support MCP OAuth, use an API key for your group. See [INTEGRATION.md § Credentials](INTEGRATION.md).
+For the recommended OAuth setup, sign in to RAGfly during the client authorization flow; you do not need to copy an API key into the MCP client. For clients that do not support MCP OAuth, use an API key for your organization. See [INTEGRATION.md § Credentials](INTEGRATION.md).
 
 Create and revoke manual API keys in the RAGfly web app's **API Keys** page. A
-**fixed-entity**
-key cannot change its entity through MCP. A **flexible** key can select an
-authorized entity with `set_active_entity` or release focus by passing `null`;
+**fixed-workspace**
+key cannot change its workspace through MCP. A **flexible** key can select an
+authorized workspace with `set_active_workspace` or release focus by passing `null`;
 RAGfly stores that focus on the server, so a new client using the same key sees
 it. MCP `tools/list` discovers MCP tools; `list_operations` reports the separate
 manifest operations allowed to the key.
@@ -26,7 +26,7 @@ and errors are English. OAuth discovery and protocol errors are English too;
 the browser consent screen is a human flow and may use the person's locale.
 Catalog values use their stored English aliases; if an alias is missing, the
 adapter returns a safe English error instead of the internal value or exception
-text. Document and tenant-authored content keeps its original language.
+text. Document and organization-authored content keeps its original language.
 
 ---
 
@@ -66,7 +66,7 @@ https://api.ragfly.ai/mcp-http
 
 The client discovers OAuth metadata, opens the RAGfly sign-in and consent page,
 then stores the credential for later MCP calls. RAGfly records a revocable API
-key with origin `OAUTH` and the role, area and entity you selected; review or
+key with origin `OAUTH` and the role, area and workspace you selected; review or
 revoke it at [`app.ragfly.ai/api-keys`](https://app.ragfly.ai/api-keys). When a
 client sends an OAuth `resource`, it receives an opaque bearer token bound to
 that MCP endpoint. The client does not need to inspect or transform it. OAuth
@@ -94,7 +94,7 @@ does not establish behavior in PROD or in another product from the same vendor.
 | Client | Environment and observed result | Not established by this check |
 |---|---|---|
 | **VS Code 1.139.1 + GitHub Copilot Chat 0.67.0** | RAGfly TEST, `/mcp-http`: OAuth callback and reconnect succeeded; MCP `initialize` negotiated protocol `2025-11-25`; `session` and a prepared search returned the expected fixture. Revoking the grant caused a later request to return HTTP 401. | PROD behavior; Microsoft 365 Copilot and Copilot Studio; other VS Code or extension versions. |
-| **Claude Desktop** (version not recorded in the connection evidence) | RAGfly CORP, `/mcp-http`: OAuth callback completed and `Ragfly-Corp Session` returned a session. After the grant was revoked, Claude asked to reconnect. | A Claude HTTP 401 was not captured; document retrieval, protocol version, tenant/environment isolation and PROD behavior were not tested. |
+| **Claude Desktop** (version not recorded in the connection evidence) | RAGfly CORP, `/mcp-http`: OAuth callback completed and `Ragfly-Corp Session` returned a session. After the grant was revoked, Claude asked to reconnect. | A Claude HTTP 401 was not captured; document retrieval, protocol version, workspace/environment isolation and PROD behavior were not tested. |
 | **Gemini CLI / Antigravity** | No RAGfly connection was observed for either client during this compatibility check. | RAGfly OAuth or MCP compatibility for either client. |
 | **ChatGPT web** | The private TEST pilot has not been run. | A completed ChatGPT connection, citations, revocation behavior or production availability. |
 
@@ -224,53 +224,53 @@ the exact config format.
 
 | Tool | Description | Parameters |
 |---|---|---|
-| `session` | Verifies the connection and returns the user context | — |
-| `set_active_entity` | Sets an authorized entity for a flexible key or releases focus with null; fixed keys cannot change entity | `entity_code` (string or null) |
+| `session` | Verifies the connection and returns the identity and the active organization, workspace and area | — |
+| `set_active_workspace` | Sets an authorized workspace for a flexible key or releases focus with null; fixed keys cannot change workspace | `workspace_code` (string or null) |
 | `list_operations` | What this key can do: every operation its RBAC allows, with `kind` and `confirm_required` | — |
 | `get_operation` | One operation with its `input_schema` and `output_schema` | `code` |
 | `run_operation` | Runs one operation. A `write_confirm` one only runs with `confirm=true`; otherwise it returns a preview | `code`, `input?`, `confirm?` |
-| `list_documents` | Lists group documents with filters | `status`, `limit`, `page` |
+| `list_documents` | Lists organization documents with filters | `status`, `limit`, `page` |
 | `get_document` | Full detail of a document | `document_code` |
 | `document_edges` | Corpus-graph edges of a document: neighbors and documents at 2 hops | `document_code`, `neighbor_limit?` |
-| `list_spaces` | Lists the group's Workspaces | `limit` |
-| `get_space` | Workspace detail: criteria + documents + queue | `space_id`, `doc_limit` |
-| `compose_spaces` | Set algebra (COMPOSE) of two Workspaces → a new Workspace handle | `operation`, `space_id_a`, `space_id_b`, `name?`, `space_type?` |
-| `read_space` | Materialize a Workspace (READ) at a chosen resolution, paginated | `space_id`, `resolution?`, `query?`, `limit?` |
-| `refresh_space` | Re-applies the Workspace's natural-language criteria and re-materializes its set (picks up newly qualifying documents) | `space_id` |
-| `promote_space` | Promotes a temporary Workspace (AREA) to permanent (SPACE) | `space_id` |
+| `list_collections` | Lists the organization's Collections | `limit` |
+| `get_collection` | Collection detail: criteria + documents + queue | `collection_id`, `doc_limit` |
+| `compose_collections` | Set algebra (COMPOSE) of two Collections → a new Collection handle | `operation`, `collection_id_a`, `collection_id_b`, `name?`, `collection_type?` (`TEMPORARY`\|`SAVED`) |
+| `read_collection` | Materialize a Collection (READ) at a chosen resolution, paginated | `collection_id`, `resolution?`, `query?`, `limit?` |
+| `refresh_collection` | Re-applies the Collection's natural-language criteria and re-materializes its set (picks up newly qualifying documents) | `collection_id` |
+| `save_collection` | Saves a temporary Collection (`TEMPORARY`) as a saved one (`SAVED`) | `collection_id` |
 | `wiki_index` | Index of the compiled-knowledge pages visible from the active area. **Not available to integrator keys today (403)** | `area_code?` |
 | `wiki_page` | One compiled-knowledge page. **Not available to integrator keys today (403)** | `document_code` |
-| `compile_space` | Compiles a Workspace (background job). The leaf skill must be one your access can run; the default public code is `COMPILE_PAGE` | `space_id`, `leaf_skill_code?` |
+| `compile_collection` | Compiles a Collection (background job). The leaf skill must be one your access can run; the default public code is `COMPILE_PAGE` | `collection_id`, `leaf_skill_code?` |
 | `queue` | Current state of the processing pipeline | `process`, `status`, `limit` |
 | `list_runs` | Skill run history | `limit` |
 | `catalog` | User capabilities: available functions + LLM skills (RBAC-filtered) | `type?` (`FUNCTIONS`\|`SKILLS`\|`ALL`) |
 | `list_skills` | LLM skills available to you (the same list as `catalog`) | — |
 | `get_skill` | Skill detail: type and output; prompt and model only if your role administers skills | `skill_code` |
-| `run_skill` | Queues a run over a workspace or document | `skill_code`, `space_id?`, `document_code?` |
-| `search_documents` | Direct semantic search over the corpus. `filter` narrows by document type, file attributes and content characteristics (codes from `list_document_types` and `list_characteristics`); a valid filter answers `filter_not_available` until structured filters are enabled for the group | `query`, `limit?`, `min_similarity?`, `entity_code?`, `space_id?`, `filter?`, `location_code?` |
-| `list_document_types` | Document types of the entity as a tree, with parent, synonyms and document counts. Picking a type also covers its more specific types | `entity_code?` |
-| `list_characteristics` | Content characteristics (a date, an amount, an ID, a person…) available for the given types and their more specific ones | `document_types?`, `entity_code?` |
+| `run_skill` | Queues a run over a collection or document | `skill_code`, `collection_id?`, `document_code?` |
+| `search_documents` | Direct semantic search over the corpus. `filter` narrows by document type, file attributes and content characteristics (codes from `list_document_types` and `list_characteristics`); a valid filter answers `filter_not_available` until structured filters are enabled for the organization | `query`, `limit?`, `min_similarity?`, `workspace_code?`, `collection_id?`, `filter?`, `location_code?` |
+| `list_document_types` | Document types of the workspace as a tree, with parent, synonyms and document counts. Picking a type also covers its more specific types | `workspace_code?` |
+| `list_characteristics` | Content characteristics (a date, an amount, an ID, a person…) available for the given types and their more specific ones | `document_types?`, `workspace_code?` |
 | `ask` | Natural language question with full RAG (non-streaming). `mode: "help"` answers questions about RAGfly itself instead, without links to web screens | `message`, `function_code?`, `conversation_id?`, `title?`, `location_code?`, `mode?` |
 | `set_active_area` | Set or release an organizational area focus | `area_code` (required; `null` releases) |
-| `list_areas` | List visible organizational areas | `entity_code?`, `parent_code?`, `query?`, `limit?`, `cursor?` |
-| `list_locations` | List visible document folders | `entity_code?`, `parent_code?`, `query?`, `limit?`, `cursor?` |
+| `list_areas` | List visible organizational areas | `workspace_code?`, `parent_code?`, `query?`, `limit?`, `cursor?` |
+| `list_locations` | List visible document folders | `workspace_code?`, `parent_code?`, `query?`, `limit?`, `cursor?` |
 | `get_agent_context` | Authenticated layered prompt, identity, allowed tools and limits for Agentic Retrieval. Tool names are stable English identifiers; the available list and schemas depend on identity/profile | `function_profile?` (`user_chat`\|`support_chat`) |
 | `run_agent_tool` | Runs one tool from the current authenticated AgentContext | `public_name`, `arguments_json?`, `function_profile?` |
-| `get_organization` | Reads this tenant's profile and what is still missing | — |
-| `update_organization` | Writes the profile. Needs an administrator of the group | `group_description?`, `group_system_prompt?`, `entity_description?`, `entity_system_prompt?` |
+| `get_organization` | Reads this organization's profile and what is still missing | — |
+| `update_organization` | Writes the profile. Needs an administrator of the organization | `group_description?`, `group_system_prompt?`, `workspace_description?`, `workspace_system_prompt?` |
 | `draft_organization` | Proposes the four profile texts from a source text. Does **not** save | `source_text` |
 | `get_usage` | Plan quotas against what is already consumed | — |
 | `list_conversations` | Conversation history; its ids feed `ask` | `function_code?`, `limit?` |
 | `delete_conversation` | Deletes a conversation and its messages. Not reversible | `conversation_id` |
-| `list_processes` | Process instances: support, requests, workspace jobs | `status?`, `process_type?`, `category?`, `mine?`, `only_open?`, `limit?`, `page?` |
+| `list_processes` | Process instances: support, requests, collection jobs | `status?`, `process_type?`, `category?`, `mine?`, `only_open?`, `limit?`, `page?` |
 | `get_process` | One process in full, with description and comments | `process_code` |
 | `update_process` | Updates the fields the "My Processes" screen lets a person edit | `process_code`, `status?`, `priority?`, `name?`, `description?`, `comments?`, `assigned_to?`, `due_at?`, `finished_at?` |
 
 ### Setting up your organization — do this first
 
-Four texts decide how well RAGfly serves you: a `description` and a `system_prompt`, at group and
-at entity level. The system prompt is injected into **every skill with organization scope** — the
-whole ingestion pipeline, not only chat — so a tenant that leaves them empty ingests and answers
+Four texts decide how well RAGfly serves you: a `description` and a `system_prompt`, at organization and
+at workspace level. The system prompt is injected into **every skill with organization scope** — the
+whole ingestion pipeline, not only chat — so an organization that leaves them empty ingests and answers
 worse than one that filled them in. Before the first load:
 
 1. `get_organization` → if `missing` is not empty, there is work to do.
@@ -380,7 +380,7 @@ A document's queue lifecycle: `PENDING` → `IN_PROGRESS` → `COMPLETED` / `ERR
 # 1. Verify connection
 session()
 → {"authenticated": true, "user": {"code": "bot-finance", "name": "Finance bot"},
-   "active_group": "COMPANY", "active_entity": "COMPANY", "profile": "USER", ...}
+   "active_group": "COMPANY", "active_workspace": "COMPANY", "profile": "USER", ...}
 
 # 2. What can this key do?
 list_operations()
@@ -393,8 +393,8 @@ ask(message="What are the penalty clauses in the 2024 contracts?")
 # 4. List vectorized documents
 list_documents(status="VECTORIZED", limit=10)
 
-# 5. Run a skill over a workspace
-run_skill(skill_code="SUMMARIZE_DOCUMENT", space_id=42)
+# 5. Run a skill over a collection
+run_skill(skill_code="SUMMARIZE_DOCUMENT", collection_id=42)
 
 # 6. Monitor progress
 queue(status="IN_PROGRESS")

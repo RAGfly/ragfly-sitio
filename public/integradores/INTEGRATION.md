@@ -8,10 +8,10 @@
 
 - **Discover what a credential can do** before using it: `GET /v1/operations`
   lists the operations its RBAC allows.
-- **Ask in natural language** over your group's documents (RAG with RBAC-filtered context).
+- **Ask in natural language** over your organization's documents (RAG with RBAC-filtered context).
 - **Search semantically** without going through an LLM (chunks + relevance scores).
-- **Operate on Workspaces**: list, compose, read their contents.
-- **Execute LLM Skills** over documents or workspaces (summarize, extract, analyze).
+- **Operate on Collections**: list, compose, read their contents.
+- **Execute LLM Skills** over documents or collections (summarize, extract, analyze).
 - **Monitor the ingestion pipeline** (states, queue, executions).
 - **Feed documents** from a local folder, Google Drive or Dropbox in the Web
   app, or from the local filesystem with RAGfly Desktop, and trigger
@@ -22,9 +22,23 @@
   their original bytes remain in the provider.
 
 Every RAGfly request respects the multi-tenant model: its RAGfly credential is
-anchored to a user, a group and a role, so other groups' data is invisible by
-design. Connector configuration belongs to the group, while each provider
+anchored to a user, an organization and a role, so other organizations' data is invisible by
+design. Connector configuration belongs to the organization, while each provider
 authorization belongs to the Google or Dropbox user who grants it.
+
+### Vocabulary
+
+| Term | What it is |
+|---|---|
+| **Organization** | The account that owns the plan, the users and the connectors. |
+| **Workspace** | The boundary you draw: personal and business, or one workspace per client. Nothing crosses it. Public codes: `workspace_code`, `set_active_workspace`. |
+| **Area** | Which subtree of documents each identity sees inside a workspace. |
+| **Role** | What each identity can do. |
+| **User or agent** | Who queries. An agent enters with a profile, like a person. |
+| **Collection** | A set of documents chosen by criteria to work on. It is either `TEMPORARY` or `SAVED` (`save_collection`). Public codes: `collection_id`, `list_collections`. |
+
+*Context* in this kit refers only to what RAGfly hands to an agent (for example
+`get_agent_context`), never to the boundary: that is the workspace.
 
 ---
 
@@ -38,8 +52,8 @@ then follows the same analysis, chunking and vectorization stages.
 |---|---|---|---|
 | **Local folder — Web** | **Documents → Feed documents → Files** | None | The browser provides a relative path. A local agent resolves it with the per-document environment variable named by `fs.home_var` and `fs.relative_path`, when that root is available. |
 | **Local folder — RAGfly Desktop** | RAGfly Desktop | Install and sign in to the Desktop app | The document can carry an absolute local path that an agent on that machine can open directly. |
-| **Google Drive** | **Documents → Feed documents → Google Drive** | OAuth Client ID + API Key; the Google Drive source must be enabled for the group | Cloud-only originals stay in Drive and are not exposed as local files. See [GOOGLE_DRIVE.md](GOOGLE_DRIVE.md). |
-| **Dropbox** | **Documents → Feed documents → Dropbox** | Dropbox App key; the Dropbox source must be enabled for the group | Cloud-only originals stay in Dropbox and are not exposed as local files. See [DROPBOX.md](DROPBOX.md). |
+| **Google Drive** | **Documents → Feed documents → Google Drive** | OAuth Client ID + API Key; the Google Drive source must be enabled for the organization | Cloud-only originals stay in Drive and are not exposed as local files. See [GOOGLE_DRIVE.md](GOOGLE_DRIVE.md). |
+| **Dropbox** | **Documents → Feed documents → Dropbox** | Dropbox App key; the Dropbox source must be enabled for the organization | Cloud-only originals stay in Dropbox and are not exposed as local files. See [DROPBOX.md](DROPBOX.md). |
 
 For Web ingestion — local folders, Google Drive and Dropbox — extraction runs
 in the browser. For cloud connectors, file bytes travel from the provider to
@@ -79,11 +93,11 @@ Integrations use the resulting key with `/v1` or MCP; account and credential
 management are not part of the integration API. MCP OAuth can issue the same
 kind of key through the browser consent flow.
 
-A key's entity scope is either **fixed** or **flexible**: a fixed key cannot
-change entity, while a flexible key can select an authorized entity or release
-its focus with `entity_code: null`. RAGfly stores that focus on the server, so it
+A key's workspace scope is either **fixed** or **flexible**: a fixed key cannot
+change workspace, while a flexible key can select an authorized workspace or release
+its focus with `workspace_code: null`. RAGfly stores that focus on the server, so it
 persists when a client is reconstructed with the same key. The key remains
-bounded by its owner's group, role and area. An administrator can create a
+bounded by its owner's organization, role and area. An administrator can create a
 separate bot identity in the web app when needed.
 
 
@@ -97,7 +111,7 @@ different purposes:
 | Credential class | Purpose | Examples | Where it lives |
 |---|---|---|---|
 | **RAGfly credential** | Authenticate an external system and enforce RAGfly RBAC | API Key (`rf_`), JWT | Integration secret store or interactive session |
-| **Connector app credential** | Identify the customer's provider application | Google OAuth Client ID + restricted API Key; Dropbox App key | RAGfly Group Parameters, configured by a group administrator |
+| **Connector app credential** | Identify the customer's provider application | Google OAuth Client ID + restricted API Key; Dropbox App key | RAGfly Organization Parameters, configured by an organization administrator |
 | **User provider token** | Authorize read-only access to one user's Drive or Dropbox | Google access token; Dropbox PKCE token | Browser session only; never stored as a RAGfly API Key |
 
 The sections below describe RAGfly credentials. Connector setup is documented
@@ -125,7 +139,7 @@ lets the person choose the role and area within their own permissions. RAGfly
 creates the same `rf_` API key used by other integrations and delivers it
 directly to the MCP client; the person does not copy or paste the secret.
 
-The key is scoped to its owner, group, entity, role and area, and the server
+The key is scoped to its owner, organization, workspace, role and area, and the server
 enforces those limits on every call. It appears in
 [`app.ragfly.ai/api-keys`](https://app.ragfly.ai/api-keys) with origin `OAUTH`,
 where it can be revoked. OAuth changes credential delivery, not what the key
@@ -143,8 +157,8 @@ three months. The page lets a person choose a validity period and an authorized
 role or bot identity. A key cannot create, list or revoke keys.
 
 A key never grants more access than its owner has. RAGfly checks role, area and
-entity server-side. A fixed-entity key cannot change entity; a flexible key can
-change or release focus only within the owner's authorized entities.
+workspace server-side. A fixed-workspace key cannot change workspace; a flexible key can
+change or release focus only within the owner's authorized workspaces.
 
 **How to use it** — in SDK, MCP, CLI and REST `/v1` integrations:
 
@@ -164,7 +178,7 @@ with its API key or complete the MCP OAuth flow in the browser.
 
 ### Credential identity
 
-Each API Key acts **on behalf of a user** in the group. RAGfly has two user types:
+Each API Key acts **on behalf of a user** in the organization. RAGfly has two user types:
 
 | Type | Description |
 |---|---|
@@ -182,11 +196,11 @@ A key acts with its owner's RBAC, resolved on the server from the key:
 - The role, filtered by the owner's access level, decides which actions it can
   run. Choose an authorized role in the web app. `GET /v1/operations` is the
   source of truth for the actions available to a key.
-- The owner's **group, entity and area** decide which data it sees. They are
+- The owner's **organization, workspace and area** decide which data it sees. They are
   never taken from the request body or the URL.
 
-Roles are configured per group by its administrator. `GET /v1/session` shows
-the authenticated identity, active context and English access-level label; it
+Roles are configured per organization by its administrator. `GET /v1/session` shows
+the authenticated identity, active workspace and English access-level label; it
 does not return internal role identifiers. `GET /v1/operations` lists the
 actions that identity can actually perform. Principle of least privilege:
 choose a role with only the access the integration needs.
@@ -207,7 +221,7 @@ Expected response:
   "authenticated": true,
   "user": {"code": "bot-finance", "name": "Finance bot"},
   "active_group": "COMPANY",
-  "active_entity": "COMPANY",
+  "active_workspace": "COMPANY",
   "profile": "USER",
   "locale": "en"
 }

@@ -75,7 +75,7 @@ const lines = [
   '- Authentication: ' + mcp.auth,
   '- Scope: ' + mcp.scope,
   '',
-  'API keys are issued through a signed-in human session. A fixed-entity key cannot change entity. A flexible key can select an authorized entity or release focus with entity_code: null; the server persists the focus for that key.',
+  'API keys are issued through a signed-in human session. A fixed-workspace key cannot change workspace. A flexible key can select an authorized workspace or release focus with workspace_code: null; the server persists the focus for that key.',
   '',
   '## MCP tools (' + tools.length + ')',
   '',

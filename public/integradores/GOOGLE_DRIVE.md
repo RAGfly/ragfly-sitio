@@ -3,10 +3,10 @@
 RAGfly can read documents **straight from Google Drive** — no local sync, no
 downloads, no copying folders to disk.
 
-This guide is for the **workspace administrator** who enables the connector once.
-After that, every user in the group just picks a folder and RAGfly indexes it.
+This guide is for the **organization administrator** who enables the connector once.
+After that, every user in the organization just picks a folder and RAGfly indexes it.
 
-> **One-time setup, ~10 minutes.** You do it once per RAGfly group. Your users
+> **One-time setup, ~10 minutes.** You do it once per RAGfly organization. Your users
 > never see any of this.
 
 ---
@@ -39,7 +39,7 @@ delete.
 You need:
 
 - A **Google Cloud** account (free) — https://console.cloud.google.com
-- **Administrator** access to your RAGfly group (to edit Group Parameters)
+- **Administrator** access to your RAGfly organization (to edit Organization Parameters)
 - The **domain** where you use RAGfly: `https://app.ragfly.ai` (or your own)
 
 ---
@@ -124,7 +124,7 @@ Click **Save**.
 
 ## Part 2 — Enable the connector in RAGfly
 
-Sign in to RAGfly as a group administrator and go to **Group Parameters**.
+Sign in to RAGfly as an organization administrator and go to **Organization Parameters**.
 
 ### 2.1 Load the credentials
 
@@ -135,22 +135,22 @@ Under **Ingestion connectors**, paste what you copied:
 | `Google Drive — OAuth Client ID` | the Client ID from step 1.4 |
 | `Google Drive — API Key` | the API key from step 1.5 |
 
-These are normally stored as a **group override**: each customer can use its own
+These are normally stored as a **organization override**: each customer can use its own
 Google project, and credentials are shown masked. A RAGfly platform operator can
-instead set a general value inherited by groups; a non-empty group value takes
+instead set a general value inherited by organizations; a non-empty organization value takes
 precedence over that default.
 
 ### 2.2 Confirm the source is enabled
 
 There is **no Google Drive feature flag**. The connector appears when:
 
-- the **Google Drive** ingestion source is enabled for the group, and
-- both credentials above are available (from the group override or a general
+- the **Google Drive** ingestion source is enabled for the organization, and
+- both credentials above are available (from the organization override or a general
   inherited value).
 
-New groups normally receive the source already enabled. If it is absent after
+New organizations normally receive the source already enabled. If it is absent after
 you save the credentials and reload, ask your RAGfly platform operator to enable
-the **Google Drive** source for the group.
+the **Google Drive** source for the organization.
 
 ---
 
@@ -195,7 +195,7 @@ apply changes.
 
 ### The connector doesn't appear at all in the source selector
 
-The **Google Drive** source must be enabled for the group and both credentials
+The **Google Drive** source must be enabled for the organization and both credentials
 must be available. First reload the page after saving. If it is still absent,
 ask your RAGfly platform operator to enable the source or verify its inherited
 credentials; there is no feature flag to switch on.
@@ -228,9 +228,9 @@ No. Everything goes through Drive's API — that's the point. Files that only
 exist in the cloud work fine.
 
 **Can each user connect their own Drive?**
-Yes. Credentials are per group (the app), but each user authorizes their own
+Yes. Credentials are per organization (the app), but each user authorizes their own
 Google account and picks their own folder.
 
 **Do I have to repeat this per environment?**
-The credentials are per group. If you use more than one RAGfly environment, add
+The credentials are per organization. If you use more than one RAGfly environment, add
 each origin in step 1.4 and each website in step 1.5.

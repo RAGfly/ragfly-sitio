@@ -76,8 +76,8 @@ Configured by `ragfly setup` or by editing `~/.ragfly/config.env` directly.
 | `RAGFLY_ENV` | ✅ | Environment: `prod` \| `test` \| `corp`. Picks backend + frontend URLs and an isolated local DB per env. End users leave it at `prod`. | `prod` |
 | `RAGFLY_EMAIL` | ✅ | Account email for signing in to RAGfly Desktop. | — |
 | `RAGFLY_PASSWORD` | ✅ | Account password for signing in to RAGfly Desktop. | — |
-| `RAGFLY_CODIGO_GRUPO` | ✅ | Active multi-tenant group code. | — |
-| `RAGFLY_CODIGO_ENTIDAD` | ✅ | Active entity code within the group (optional). | — |
+| `RAGFLY_CODIGO_GRUPO` | ✅ | Active multi-tenant organization code. | — |
+| `RAGFLY_CODIGO_ENTIDAD` | ✅ | Active workspace code within the organization (optional). | — |
 | `RAGFLY_DOCUMENTS_ROOT` | ✅ | Local folder holding the documents to upload (all docs must live under it). | — |
 | `RAGFLY_DB_PATH` | ✅ | Advanced override: local SQLite path. Setting it breaks per-env isolation — not recommended. | derived from `RAGFLY_ENV` (`~/.ragfly/data.db`) |
 | `RAGFLY_DEBUG` | ✅ | Debug mode. | `false` |
@@ -90,8 +90,8 @@ Configured by `ragfly setup` or by editing `~/.ragfly/config.env` directly.
 > `RAGFLY_ANTHROPIC_API_KEY` or `RAGFLY_OLLAMA_URL` you may see in old templates is
 > **no longer read** and can be removed.
 
-> **`RAGFLY_DOCUMENTS_ROOT` is reset automatically when the active group changes.**
-> Switching groups from the Web header wipes the entire local corpus (not just a
+> **`RAGFLY_DOCUMENTS_ROOT` is reset automatically when the active organization changes.**
+> Switching organizations from the Web header wipes the entire local corpus (not just a
 > drain — see [ARQ-11 §8](../arquitectura/ARQ-11-RAGFLY-DESKTOP.md#cambio-de-grupo-activo-reset-duro-no-drenaje))
 > and clears this variable. Since v1.18.107 (2026-09-24) it does so by **removing
 > the line** from `config.env`, not by leaving it as `=` empty — a `.env` file has

@@ -29,7 +29,7 @@ curl "$RAGFLY_API_URL/v1/operations" \
 The web app manages account sessions and API keys. Those web-only routes are
 outside the integration contract; integrations use `/v1` or MCP. Their fields,
 catalog codes, enums, published schemas, validation details and API-authored
-messages are English. Catalog codes use their same-row English alias; tenant
+messages are English. Catalog codes use their same-row English alias; organization
 content keeps its original language.
 
 ---
@@ -49,8 +49,8 @@ content keeps its original language.
 | **`SDK-TS.md`** | TypeScript/JavaScript SDK |
 | **`RUNTIME_HINTS.md`** | Hints by agent/runtime type (Codex, Claude, IDEs, REST) |
 | **`ENV_VARS.md`** | **Every environment variable — canonical names, defaults, legacy aliases** |
-| **`GOOGLE_DRIVE.md`** | Workspace administrators — feed documents directly from Google Drive |
-| **`DROPBOX.md`** | Workspace administrators — feed documents directly from Dropbox |
+| **`GOOGLE_DRIVE.md`** | Organization administrators — feed documents directly from Google Drive |
+| **`DROPBOX.md`** | Organization administrators — feed documents directly from Dropbox |
 | **`EVALUATION_TEMPLATE.md`** | Template for reporting findings |
 | **`.env.example`** | Environment variables template |
 
@@ -84,8 +84,8 @@ The integration uses one credential:
   "An API key can only operate through the public /v1 API". The internal routes
   belong to the web app and are not part of the contract.
 - **A key carries its owner's RBAC.** The key's **role**, filtered by its
-  owner's access level, decides which actions it can run; the owner's **group,
-  entity and area** decide which data it sees. The server resolves all of it from
+  owner's access level, decides which actions it can run; the owner's **organization,
+  workspace and area** decide which data it sees. The server resolves all of it from
   the key. It is never read from the request body or the URL.
 - **Ask the key what it can do.** `GET /v1/operations` lists the operations its
   RBAC allows. See [REST.md § Discover what a key can do](REST.md#discover-what-a-key-can-do--v1operations).

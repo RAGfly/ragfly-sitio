@@ -3,25 +3,25 @@
   "description": "Document retrieval for agents, exposed through MCP tools and a separate RBAC-filtered REST operations manifest.",
   "site": "https://ragfly.ai",
   "app": "https://app.ragfly.ai",
-  "updated": "2026-10-09",
+  "updated": "2026-10-12",
   "mcp": {
     "nombre": "ragfly",
     "endpointSSE": "https://api.ragfly.ai/mcp/sse",
     "endpointHTTP": "https://api.ragfly.ai/mcp-http/",
     "auth": "OAuth 2.1 or Authorization: Bearer rf_xxxxxxxxxx (API Key issued from a human session)",
-    "scope": "Every call is filtered by the key owner’s group, entity, area and role. Flexible entity focus is stored server-side."
+    "scope": "Every call is filtered by the key owner’s organization, workspace, area and role. Flexible workspace focus is stored server-side."
   },
   "total_mcp_tools": 41,
   "tools": [
     {
       "name": "session",
-      "description": "Verifies the connection and returns the user context",
+      "description": "Verifies the connection and returns the identity and the active organization, workspace and area",
       "parameters": "—"
     },
     {
-      "name": "set_active_entity",
-      "description": "Sets an authorized entity for a flexible key or releases focus with null; fixed keys cannot change entity",
-      "parameters": "`entity_code` (string or null)"
+      "name": "set_active_workspace",
+      "description": "Sets an authorized workspace for a flexible key or releases focus with null; fixed keys cannot change workspace",
+      "parameters": "`workspace_code` (string or null)"
     },
     {
       "name": "list_operations",
@@ -40,7 +40,7 @@
     },
     {
       "name": "list_documents",
-      "description": "Lists group documents with filters",
+      "description": "Lists organization documents with filters",
       "parameters": "`status`, `limit`, `page`"
     },
     {
@@ -54,34 +54,34 @@
       "parameters": "`document_code`, `neighbor_limit?`"
     },
     {
-      "name": "list_spaces",
-      "description": "Lists the group's Workspaces",
+      "name": "list_collections",
+      "description": "Lists the organization's Collections",
       "parameters": "`limit`"
     },
     {
-      "name": "get_space",
-      "description": "Workspace detail: criteria + documents + queue",
-      "parameters": "`space_id`, `doc_limit`"
+      "name": "get_collection",
+      "description": "Collection detail: criteria + documents + queue",
+      "parameters": "`collection_id`, `doc_limit`"
     },
     {
-      "name": "compose_spaces",
-      "description": "Set algebra (COMPOSE) of two Workspaces → a new Workspace handle",
-      "parameters": "`operation`, `space_id_a`, `space_id_b`, `name?`, `space_type?`"
+      "name": "compose_collections",
+      "description": "Set algebra (COMPOSE) of two Collections → a new Collection handle",
+      "parameters": "`operation`, `collection_id_a`, `collection_id_b`, `name?`, `collection_type?` (`TEMPORARY`|`SAVED`)"
     },
     {
-      "name": "read_space",
-      "description": "Materialize a Workspace (READ) at a chosen resolution, paginated",
-      "parameters": "`space_id`, `resolution?`, `query?`, `limit?`"
+      "name": "read_collection",
+      "description": "Materialize a Collection (READ) at a chosen resolution, paginated",
+      "parameters": "`collection_id`, `resolution?`, `query?`, `limit?`"
     },
     {
-      "name": "refresh_space",
-      "description": "Re-applies the Workspace's natural-language criteria and re-materializes its set (picks up newly qualifying documents)",
-      "parameters": "`space_id`"
+      "name": "refresh_collection",
+      "description": "Re-applies the Collection's natural-language criteria and re-materializes its set (picks up newly qualifying documents)",
+      "parameters": "`collection_id`"
     },
     {
-      "name": "promote_space",
-      "description": "Promotes a temporary Workspace (AREA) to permanent (SPACE)",
-      "parameters": "`space_id`"
+      "name": "save_collection",
+      "description": "Saves a temporary Collection (`TEMPORARY`) as a saved one (`SAVED`)",
+      "parameters": "`collection_id`"
     },
     {
       "name": "wiki_index",
@@ -94,9 +94,9 @@
       "parameters": "`document_code`"
     },
     {
-      "name": "compile_space",
-      "description": "Compiles a Workspace (background job). The leaf skill must be one your access can run; the default public code is `COMPILE_PAGE`",
-      "parameters": "`space_id`, `leaf_skill_code?`"
+      "name": "compile_collection",
+      "description": "Compiles a Collection (background job). The leaf skill must be one your access can run; the default public code is `COMPILE_PAGE`",
+      "parameters": "`collection_id`, `leaf_skill_code?`"
     },
     {
       "name": "queue",
@@ -125,23 +125,23 @@
     },
     {
       "name": "run_skill",
-      "description": "Queues a run over a workspace or document",
-      "parameters": "`skill_code`, `space_id?`, `document_code?`"
+      "description": "Queues a run over a collection or document",
+      "parameters": "`skill_code`, `collection_id?`, `document_code?`"
     },
     {
       "name": "search_documents",
-      "description": "Direct semantic search over the corpus. `filter` narrows by document type, file attributes and content characteristics (codes from `list_document_types` and `list_characteristics`); a valid filter answers `filter_not_available` until structured filters are enabled for the group",
-      "parameters": "`query`, `limit?`, `min_similarity?`, `entity_code?`, `space_id?`, `filter?`, `location_code?`"
+      "description": "Direct semantic search over the corpus. `filter` narrows by document type, file attributes and content characteristics (codes from `list_document_types` and `list_characteristics`); a valid filter answers `filter_not_available` until structured filters are enabled for the organization",
+      "parameters": "`query`, `limit?`, `min_similarity?`, `workspace_code?`, `collection_id?`, `filter?`, `location_code?`"
     },
     {
       "name": "list_document_types",
-      "description": "Document types of the entity as a tree, with parent, synonyms and document counts. Picking a type also covers its more specific types",
-      "parameters": "`entity_code?`"
+      "description": "Document types of the workspace as a tree, with parent, synonyms and document counts. Picking a type also covers its more specific types",
+      "parameters": "`workspace_code?`"
     },
     {
       "name": "list_characteristics",
       "description": "Content characteristics (a date, an amount, an ID, a person…) available for the given types and their more specific ones",
-      "parameters": "`document_types?`, `entity_code?`"
+      "parameters": "`document_types?`, `workspace_code?`"
     },
     {
       "name": "ask",
@@ -156,12 +156,12 @@
     {
       "name": "list_areas",
       "description": "List visible organizational areas",
-      "parameters": "`entity_code?`, `parent_code?`, `query?`, `limit?`, `cursor?`"
+      "parameters": "`workspace_code?`, `parent_code?`, `query?`, `limit?`, `cursor?`"
     },
     {
       "name": "list_locations",
       "description": "List visible document folders",
-      "parameters": "`entity_code?`, `parent_code?`, `query?`, `limit?`, `cursor?`"
+      "parameters": "`workspace_code?`, `parent_code?`, `query?`, `limit?`, `cursor?`"
     },
     {
       "name": "get_agent_context",
@@ -175,13 +175,13 @@
     },
     {
       "name": "get_organization",
-      "description": "Reads this tenant's profile and what is still missing",
+      "description": "Reads this organization's profile and what is still missing",
       "parameters": "—"
     },
     {
       "name": "update_organization",
-      "description": "Writes the profile. Needs an administrator of the group",
-      "parameters": "`group_description?`, `group_system_prompt?`, `entity_description?`, `entity_system_prompt?`"
+      "description": "Writes the profile. Needs an administrator of the organization",
+      "parameters": "`group_description?`, `group_system_prompt?`, `workspace_description?`, `workspace_system_prompt?`"
     },
     {
       "name": "draft_organization",
@@ -205,7 +205,7 @@
     },
     {
       "name": "list_processes",
-      "description": "Process instances: support, requests, workspace jobs",
+      "description": "Process instances: support, requests, collection jobs",
       "parameters": "`status?`, `process_type?`, `category?`, `mine?`, `only_open?`, `limit?`, `page?`"
     },
     {

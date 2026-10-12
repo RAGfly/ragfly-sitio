@@ -60,7 +60,7 @@ threshold above 0, keyword-only matches (no similarity) are left out.
 | Free natural language query | `ask` — full RAG answer |
 | You already have a document `code` | `get_document` — detail without search |
 | You need raw chunks (for own reranking, score calculation, manual synthesis) | `search_documents` |
-| You need cross-document synthesis over a workspace | `run_skill` with a summarize or analyze skill |
+| You need cross-document synthesis over a collection | `run_skill` with a summarize or analyze skill |
 | You want to know what documents are available before asking | `list_documents(status="VECTORIZED")` |
 | You want to act like the RAGfly chat, with its prompt and limits | `get_agent_context`, then `run_agent_tool` |
 
@@ -72,7 +72,7 @@ indicate the corpus does not contain the answer — better to respond "no eviden
 found" than to force a response with irrelevant chunks. Use the `min_similarity`
 parameter to filter at source.
 
-**LLM skills:** RAGfly has skills configured per group (see `list_skills` or
+**LLM skills:** RAGfly has skills configured per organization (see `list_skills` or
 `catalog`). Before implementing your own synthesis, check whether a skill already
 does what you need.
 

@@ -7,7 +7,7 @@ Methods, parameters, response fields, public catalog codes, enum values,
 published schemas/defaults, validation details, and API-authored error messages
 use English. Catalog identifiers use their stored English aliases; unmapped
 internal identifiers are never returned. Document content and other
-tenant-authored text keep their original language.
+organization-authored text keep their original language.
 
 Source: [github.com/RAGfly/ragfly-python](https://github.com/RAGfly/ragfly-python).
 
@@ -73,11 +73,11 @@ bounds noted under each table and answers `422 VALIDATION_ERROR` outside them.
 
 | Method | Route | Returns |
 |---|---|---|
-| `session()` | `GET /v1/session` | `dict`: includes active entity/area, effective area and authorized area root; role identifiers are not exposed |
-| `set_active_entity(entity_code)` | `POST /v1/session/active-entity` | Set an authorized entity; pass `None` to release the focus |
+| `session()` | `GET /v1/session` | `dict`: includes active workspace/area, effective area and authorized area root; role identifiers are not exposed |
+| `set_active_workspace(workspace_code)` | `POST /v1/session/active-workspace` | Set an authorized workspace; pass `None` to release the focus |
 | `set_active_area(area_code)` | `POST /v1/session/active-area` | Set an authorized area; pass `None` to release area focus |
-| `list_areas(*, entity_code=None, parent_code=None, query=None, limit=50, cursor=None)` | `GET /v1/areas` | Visible areas and next-page cursor |
-| `list_locations(*, entity_code=None, parent_code=None, query=None, limit=50, cursor=None)` | `GET /v1/locations` | Visible document folders and next-page cursor |
+| `list_areas(*, workspace_code=None, parent_code=None, query=None, limit=50, cursor=None)` | `GET /v1/areas` | Visible areas and next-page cursor |
+| `list_locations(*, workspace_code=None, parent_code=None, query=None, limit=50, cursor=None)` | `GET /v1/locations` | Visible document folders and next-page cursor |
 | `list_documents(*, status=None, limit=20, page=1, location_code=None)` | `GET /v1/documents` | `dict`: `documents` (each with its `fs` block), `total`, `page`, `limit` |
 | `get_document(document_code)` | `GET /v1/documents/{document_code}` | `dict`: the document, with its `fs` block |
 | `document_edges(document_code, *, neighbor_limit=50)` | `GET /v1/documents/{document_code}/edges` | `dict`: `document`, `type_path`, `location_path`, `features`, `neighbors_two_hops` |
@@ -86,24 +86,24 @@ bounds noted under each table and answers `422 VALIDATION_ERROR` outside them.
 [MCP.md](MCP.md#document-status-values)). Bounds: `limit` 1–100, `page` 1 or
 more, `neighbor_limit` 1–500.
 
-Entity focus is stored with the API key on the server. A flexible key keeps its
-selected entity when you create another `RAGfly` client with the same key; pass
-`None` to `set_active_entity()` to release that focus. A fixed-entity key cannot
-change or release its entity. Only an authenticated human session can issue API
+Workspace focus is stored with the API key on the server. A flexible key keeps its
+selected workspace when you create another `RAGfly` client with the same key; pass
+`None` to `set_active_workspace()` to release that focus. A fixed-workspace key cannot
+change or release its workspace. Only an authenticated human session can issue API
 keys; the SDK uses its key for `/v1` calls and does not mint keys.
 
 ### Search
 
 | Method | Route | Returns |
 |---|---|---|
-| `search(query, *, limit=10, min_similarity=0.0, entity_code=None, space_id=None, location_code=None)` | `POST /v1/documents/search` | [`SearchResult`](#models); `location_code` narrows this request to a visible folder subtree |
-| `search_filtered(query, *, filter, limit=None, min_similarity=None, entity_code=None, space_id=None, location_code=None)` | `POST /v1/documents/search` | [`SearchResult`](#models); `filter` is an object with `document_types`, `attributes` and `characteristics`. Take its codes from `list_document_types()` and `list_characteristics()` |
+| `search(query, *, limit=10, min_similarity=0.0, workspace_code=None, collection_id=None, location_code=None)` | `POST /v1/documents/search` | [`SearchResult`](#models); `location_code` narrows this request to a visible folder subtree |
+| `search_filtered(query, *, filter, limit=None, min_similarity=None, workspace_code=None, collection_id=None, location_code=None)` | `POST /v1/documents/search` | [`SearchResult`](#models); `filter` is an object with `document_types`, `attributes` and `characteristics`. Take its codes from `list_document_types()` and `list_characteristics()` |
 
 - Hybrid search: vector and keyword results fused by rank into `rrf_score`. It
   is simple retrieval without reranking, so `rerank_score` comes back `None`.
 - `query` cannot be empty (`400 INVALID_REQUEST`). `limit` (1–100) is the
   maximum number of documents. `min_similarity` goes from 0 to 1.
-  `entity_code` searches one of your own entities.
+  `workspace_code` searches one of your own workspaces.
 - With `min_similarity` above 0, a document comes back only if its best chunk
   reaches that similarity. Keyword-only matches carry no similarity, so they are
   dropped.
@@ -115,24 +115,24 @@ keys; the SDK uses its key for `/v1` calls and does not mint keys.
 - `location` and `fs` say where the original file lives. See
   [REST.md § File locations](REST.md#file-locations-fs).
 
-### Workspaces
+### Collections
 
 | Method | Route | Returns |
 |---|---|---|
-| `list_spaces(*, limit=20)` | `GET /v1/spaces` | `dict`: `spaces`, `total` |
-| `get_space(space_id, *, document_limit=20)` | `GET /v1/spaces/{space_id}` | `dict`: `space`, `documents`, `total_documents` |
-| `refresh_space(space_id)` | `POST /v1/spaces/{space_id}/refresh` | `dict`: the space |
-| `promote_space(space_id)` | `POST /v1/spaces/{space_id}/promote` | `dict`: the space |
-| `compose_spaces(operation, space_id_a, space_id_b, *, name="", space_type="AREA")` | `POST /v1/spaces/compose` | `dict`: the new space |
-| `read_space(space_id, *, resolution="manifest", query="", limit=50)` | `POST /v1/spaces/{space_id}/read` | `dict`: `resolution`, `total`, `items` |
+| `list_collections(*, limit=20)` | `GET /v1/collections` | `dict`: `collections`, `total` |
+| `get_collection(collection_id, *, document_limit=20)` | `GET /v1/collections/{collection_id}` | `dict`: `collection`, `documents`, `total_documents` |
+| `refresh_collection(collection_id)` | `POST /v1/collections/{collection_id}/refresh` | `dict`: the collection |
+| `save_collection(collection_id)` | `POST /v1/collections/{collection_id}/save` | `dict`: the collection |
+| `compose_collections(operation, collection_id_a, collection_id_b, *, name="", collection_type="TEMPORARY")` | `POST /v1/collections/compose` | `dict`: the new collection |
+| `read_collection(collection_id, *, resolution="manifest", query="", limit=50)` | `POST /v1/collections/{collection_id}/read` | `dict`: `resolution`, `total`, `items` |
 
-`refresh_space` re-materializes a workspace and `promote_space` turns an `AREA`
-into a `SPACE`. In `compose_spaces`, `operation` is `union`, `intersection`,
-`difference` or `symmetric_difference`, and `space_type` is `AREA` or `SPACE`.
-In `read_space`, `resolution` is `count`, `manifest`, `chunks` or `text`, and
+`refresh_collection` re-materializes a collection and `save_collection` turns a `TEMPORARY`
+collection into a `SAVED` one. In `compose_collections`, `operation` is `union`, `intersection`,
+`difference` or `symmetric_difference`, and `collection_type` is `TEMPORARY` or `SAVED`.
+In `read_collection`, `resolution` is `count`, `manifest`, `chunks` or `text`, and
 `chunks` needs a `query`. Other values answer `400 INVALID_REQUEST`. Bounds:
-`limit` 1–200 in `list_spaces`, `document_limit` 1–200, `limit` 1–500 in
-`read_space`.
+`limit` 1–200 in `list_collections`, `document_limit` 1–200, `limit` 1–500 in
+`read_collection`.
 
 ### Queue and runs
 
@@ -150,17 +150,17 @@ In `read_space`, `resolution` is `count`, `manifest`, `chunks` or `text`, and
 | Method | Route | Returns |
 |---|---|---|
 | `catalog(*, type="ALL")` | `GET /v1/catalog` | `dict`: `functions`, `skills`, `total_functions`, `total_skills` |
-| `list_document_types(*, entity_code=None)` | `GET /v1/catalog/document-types` | `dict`: `document_types` (each with `code`, `name`, `parent_code`), the codes `filter.document_types` takes |
-| `list_characteristics(*, document_types=None, entity_code=None)` | `GET /v1/catalog/characteristics` | `dict`: `characteristics` (each with `category_code`, `code`), for those types and their more specific ones |
+| `list_document_types(*, workspace_code=None)` | `GET /v1/catalog/document-types` | `dict`: `document_types` (each with `code`, `name`, `parent_code`), the codes `filter.document_types` takes |
+| `list_characteristics(*, document_types=None, workspace_code=None)` | `GET /v1/catalog/characteristics` | `dict`: `characteristics` (each with `category_code`, `code`), for those types and their more specific ones |
 | `get_function(function_code)` | `GET /v1/functions/{function_code}` | `dict`: `code`, `name`, `alias`, `description`, `summary`, `url`, `documentation`, `behaviors`, `operations` |
 | `list_skills()` | `GET /v1/skills` | `dict`: `skills` |
 | `get_skill(skill_code)` | `GET /v1/skills/{skill_code}` | `dict`: the skill |
-| `run_skill(skill_code, *, space_id=None, document_code=None)` | `POST /v1/skills/{skill_code}/run` | `dict`: the queued run |
+| `run_skill(skill_code, *, collection_id=None, document_code=None)` | `POST /v1/skills/{skill_code}/run` | `dict`: the queued run |
 
 `type` is `ALL`, `FUNCTIONS` or `SKILLS`; any other value is read as `ALL`.
 `list_skills()` returns the same list as `catalog()["skills"]`. `get_skill()`
 includes the prompt and the model only when the key's role administers skills.
-`run_skill()` needs `space_id` or `document_code` (`400 INVALID_REQUEST` when
+`run_skill()` needs `collection_id` or `document_code` (`400 INVALID_REQUEST` when
 neither is given).
 
 ### Ask and agent
@@ -187,9 +187,9 @@ neither is given).
 
 | Method | Route | Returns |
 |---|---|---|
-| `get_organization(*, entity_code=None)` | `GET /v1/organization` | `dict`: `group`, `entity`, `missing` |
-| `update_organization(*, group_description=None, group_system_prompt=None, entity_description=None, entity_system_prompt=None, entity_code=None)` | `PUT /v1/organization` | `dict`: `group`, `entity`, `missing`, `applied` |
-| `draft_organization(*, source_text="", entity_code=None)` | `POST /v1/organization/draft` | `dict`: `generated`, `group`, `entity`, `notice` |
+| `get_organization(*, workspace_code=None)` | `GET /v1/organization` | `dict`: `group`, `workspace`, `missing` |
+| `update_organization(*, group_description=None, group_system_prompt=None, workspace_description=None, workspace_system_prompt=None, workspace_code=None)` | `PUT /v1/organization` | `dict`: `group`, `workspace`, `missing`, `applied` |
+| `draft_organization(*, source_text="", workspace_code=None)` | `POST /v1/organization/draft` | `dict`: `generated`, `group`, `workspace`, `notice` |
 
 `update_organization()` writes only the fields you pass. `draft_organization()`
 proposes the texts from your `source_text` and saves nothing. Why these texts
@@ -312,7 +312,7 @@ class AgentContext:
 | `Document.fs` | How to open the original file, in `fs["how_to_open"]` |
 | `SearchResult.query` | The query you passed, set by the client |
 | `AskResponse.extra` | The other fields of the `/v1/ask` response: `message_id` and `user_message_id` |
-| `AgentContext.identity` | `user_alias`, `group`, `entity`, `area`, `active_area`, `effective_area`, `authorized_area_root`, `area_focus_is_explicit`, `profile`; role identifiers are not exposed |
+| `AgentContext.identity` | `user_alias`, `group`, `workspace`, `area`, `active_area`, `effective_area`, `authorized_area_root`, `area_focus_is_explicit`, `profile`; role identifiers are not exposed |
 | `AgentContext.tools` | Tool contracts as the API sends them: `operation`, `public_name`, `input_schema`, `read_only` |
 | `AgentContext.limits` | `max_iterations`, `max_retrieval_calls`, `timeout_seconds` |
 
@@ -346,7 +346,7 @@ echoing the request's `X-Request-Id` header, and the SDK does not send one.
 
 | HTTP status | `code` |
 |---|---|
-| 400 | `INVALID_REQUEST`; `INVALID_CONTEXT` when an active entity or `entity_code` is required |
+| 400 | `INVALID_REQUEST`; `INVALID_CONTEXT` when an active workspace or `workspace_code` is required |
 | 401 | `UNAUTHORIZED` |
 | 402 | `QUOTA_EXCEEDED`: the plan quota for the operation is used up |
 | 403 | `FORBIDDEN` |
@@ -376,7 +376,7 @@ import os
 from ragfly import RAGfly
 
 client = RAGfly(api_key=os.environ["RAGFLY_API_KEY"])
-print(client.session())  # identity and active tenant context
+print(client.session())  # identity and active workspace
 ```
 
 - The key travels as `Authorization: Bearer <api_key>` on every request.

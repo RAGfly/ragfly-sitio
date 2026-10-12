@@ -26,8 +26,8 @@ Authorization: Bearer <JWT-or-rf_API_key>
 - **API key** (`rf_...`): what integrations use. Create and revoke it in the
   [RAGfly web app](https://app.ragfly.ai/api-keys). It operates only `/v1` (MCP,
   the SDKs and the CLI go through it), with its owner's RBAC — the key's role,
-  filtered by the owner's access level, decides which actions; the owner's group,
-  entity and area decide which data.
+  filtered by the owner's access level, decides which actions; the owner's organization,
+  workspace and area decide which data.
 - **JWT**: an optional person's web session. A person can use it with `/v1`, but
   key management belongs in the web app. The web application's `/auth/*` routes
   are not part of the public integration contract.
@@ -35,37 +35,37 @@ Authorization: Bearer <JWT-or-rf_API_key>
 The public contract ignores `Accept-Language`: field names, catalog codes, enum
 values, published schemas/defaults, validation details and standard success or
 error messages are always English. This applies to nested JSON too. User
-document content and other tenant-authored text keep their original language.
+document content and other organization-authored text keep their original language.
 The session's `locale`, when present, is a language preference tag; it does not
 localize the API protocol.
 
-## Entity focus
+## Workspace focus
 
-An API key has either a fixed entity or a flexible entity focus. A fixed key
-cannot change its entity. A flexible key may select an authorized entity or
-release focus by sending `{"entity_code":null}` to
-`POST /v1/session/active-entity`. The request must include `entity_code`;
+An API key has either a fixed workspace or a flexible workspace focus. A fixed key
+cannot change its workspace. A flexible key may select an authorized workspace or
+release focus by sending `{"workspace_code":null}` to
+`POST /v1/session/active-workspace`. The request must include `workspace_code`;
 `null` is the explicit release value. RAGfly stores the resulting focus for
 that key, so it remains after the client process is reconstructed. The key
-cannot select an entity outside its owner's authorized scope.
+cannot select a workspace outside its owner's authorized scope.
 
-An **area** is an organizational access focus inside an entity; a **location**
+An **area** is an organizational access focus inside a workspace; a **location**
 is a document folder used as a temporary filter for one request. An area focus
-is persistent for an API key and can be released without releasing the entity.
-Selecting an area selects its entity as well. `location_code` only filters the
+is persistent for an API key and can be released without releasing the workspace.
+Selecting an area selects its workspace as well. `location_code` only filters the
 current request and its folder descendants; it never changes the session.
 
 `GET /v1/session` includes `active_area`, `effective_area`,
 `authorized_area_root`, and `area_focus_is_explicit`. Use
 `POST /v1/session/active-area` with `{"area_code":"FINANCE"}` to set an area
 or `{"area_code":null}` to release it. `GET /v1/areas` and
-`GET /v1/locations` return visible, paginated trees; both accept `entity_code`,
+`GET /v1/locations` return visible, paginated trees; both accept `workspace_code`,
 `parent_code`, `query`, `limit` (1–200, default 50), and `cursor`.
 
 Pass `location_code` to `GET /v1/documents`, `POST /v1/documents/search`, or
 `POST /v1/ask` to narrow that request to a visible folder and its descendants.
 An invisible or unknown location returns `404 NOT_FOUND`.
-If no entity can be resolved for an area listing, the response is
+If no workspace can be resolved for an area listing, the response is
 `400 INVALID_CONTEXT`. If a saved area focus or fixed key area is no longer
 inside the owner's current permission, the response is `409 CONTEXT_CONFLICT`.
 Release or replace a stale focus; if the key's fixed area root itself lost
@@ -75,48 +75,48 @@ permission, issue a newly scoped key before requesting documents again.
 
 | Method | Route | Purpose |
 |---|---|---|
-| `GET` | `/v1/session` | Authenticated identity and active context |
-| `POST` | `/v1/session/active-entity` | Set `{"entity_code":"000057"}` or release with `{"entity_code":null}` |
+| `GET` | `/v1/session` | Authenticated identity and active workspace |
+| `POST` | `/v1/session/active-workspace` | Set `{"workspace_code":"000057"}` or release with `{"workspace_code":null}` |
 | `POST` | `/v1/session/active-area` | Set `{"area_code":"FINANCE"}` or release with `{"area_code":null}` |
-| `GET` | `/v1/areas` | Paginated organizational areas visible in the current context |
-| `GET` | `/v1/locations` | Paginated document folders visible in the current context |
+| `GET` | `/v1/areas` | Paginated organizational areas visible in the current workspace |
+| `GET` | `/v1/locations` | Paginated document folders visible in the current workspace |
 | `GET` | `/v1/operations` | Operations this key can run (RBAC-filtered) |
 | `GET` | `/v1/operations/{code}` | One operation with its `input_schema` and `output_schema` |
 | `POST` | `/v1/operations/{code}:execute` | Run an operation: `{"input": {...}, "confirm": false}` |
 | `GET` | `/v1/documents` | Paginated corpus documents (`status`, `limit`, `page`, `location_code`) |
 | `GET` | `/v1/documents/{document_code}` | Document detail |
 | `GET` | `/v1/documents/{document_code}/edges` | Document graph edges (`neighbor_limit`) |
-| `POST` | `/v1/documents/search` | Hybrid search: vector + lexical, fused with RRF (`location_code?`, `space_id?`, `filter?`) |
-| `GET` | `/v1/spaces` | List workspaces |
-| `GET` | `/v1/spaces/{space_id}` | Workspace and its documents (`document_limit`) |
-| `POST` | `/v1/spaces/{space_id}/refresh` | Re-materialize a workspace |
-| `POST` | `/v1/spaces/{space_id}/promote` | Promote an AREA to a SPACE |
-| `POST` | `/v1/spaces/compose` | Set operation over two workspaces |
-| `POST` | `/v1/spaces/{space_id}/read` | Read a workspace (`count`, `manifest`, `chunks`, `text`) |
+| `POST` | `/v1/documents/search` | Hybrid search: vector + lexical, fused with RRF (`location_code?`, `collection_id?`, `filter?`) |
+| `GET` | `/v1/collections` | List collections |
+| `GET` | `/v1/collections/{collection_id}` | Collection and its documents (`document_limit`) |
+| `POST` | `/v1/collections/{collection_id}/refresh` | Re-materialize a collection |
+| `POST` | `/v1/collections/{collection_id}/save` | Save a `TEMPORARY` collection as `SAVED` |
+| `POST` | `/v1/collections/compose` | Set operation over two collections |
+| `POST` | `/v1/collections/{collection_id}/read` | Read a collection (`count`, `manifest`, `chunks`, `text`) |
 | `GET` | `/v1/queue` | Processing queue (`process`, `status`, `limit`) |
 | `GET` | `/v1/runs` | Skill run history |
 | `GET` | `/v1/catalog` | RBAC-filtered functions and skills (`type`) |
-| `GET` | `/v1/catalog/document-types` | Document types of the entity as a tree (`entity_code?`): the codes `filter.document_types` takes |
-| `GET` | `/v1/catalog/characteristics` | Content characteristics for given types and their more specific ones (`document_types?`, `entity_code?`): the codes `filter.characteristics` takes |
+| `GET` | `/v1/catalog/document-types` | Document types of the workspace as a tree (`workspace_code?`): the codes `filter.document_types` takes |
+| `GET` | `/v1/catalog/characteristics` | Content characteristics for given types and their more specific ones (`document_types?`, `workspace_code?`): the codes `filter.characteristics` takes |
 | `GET` | `/v1/functions/{function_code}` | Function detail: documentation and behaviours |
 | `GET` | `/v1/skills` | Skills available to you (the same list as `/v1/catalog`) |
 | `GET` | `/v1/skills/{skill_code}` | Skill detail. Prompt and model come only if your role administers skills |
-| `POST` | `/v1/skills/{skill_code}/run` | Queue a skill (`space_id` or `document_code`) |
+| `POST` | `/v1/skills/{skill_code}/run` | Queue a skill (`collection_id` or `document_code`) |
 | `POST` | `/v1/ask` | Complete RAG answer (`location_code?`, `mode?`, one request only) |
 | `GET` | `/v1/agent/context` | Layered prompt, identity, tools and limits |
 | `POST` | `/v1/agent/tools/{public_name}` | Run one tool listed by `/v1/agent/context` |
-| `GET` | `/v1/organization` | This tenant's profile: description and system prompt |
-| `PUT` | `/v1/organization` | Write the profile (group and/or entity) |
+| `GET` | `/v1/organization` | This organization's profile: description and system prompt |
+| `PUT` | `/v1/organization` | Write the profile (organization and/or workspace) |
 | `POST` | `/v1/organization/draft` | Propose the four profile texts. Does not save |
 | `GET` | `/v1/usage` | Plan quotas against what is already consumed |
 | `GET` | `/v1/conversations` | Conversation history (`function_code`, `limit`) |
 | `DELETE` | `/v1/conversations/{conversation_id}` | Delete a conversation and its messages |
-| `GET` | `/v1/processes` | Process instances: support, requests, workspace jobs |
+| `GET` | `/v1/processes` | Process instances: support, requests, collection jobs |
 | `GET` | `/v1/processes/{process_code}` | One process in full |
 | `PATCH` | `/v1/processes/{process_code}` | Update status, priority, title, description, comments, assignee, dates or cost |
 
 Every route applies the key's RBAC. A route the key's role does not reach answers
-`403 FORBIDDEN`; a document outside its group, entity or area answers `404`, the
+`403 FORBIDDEN`; a document outside its organization, workspace or area answers `404`, the
 same as one that does not exist.
 
 ## Discover what a key can do — `/v1/operations`
@@ -134,7 +134,7 @@ curl https://api.ragfly.ai/v1/operations -H "Authorization: Bearer $RAGFLY_API_K
 {
   "operations": [
     {"code": "documents.get", "kind": "read", "confirm_required": false, "functions": ["DOCUMENTS"]},
-    {"code": "spaces.delete", "kind": "write_confirm", "confirm_required": true, "functions": ["WORKSPACES"]}
+    {"code": "collections.delete", "kind": "write_confirm", "confirm_required": true, "functions": ["COLLECTIONS"]}
   ],
   "total": 18
 }
@@ -205,26 +205,26 @@ messages written by the API in `input`, schemas, errors and `result` are
 English. Catalog codes use the English alias
 stored for their catalog row; for example, document status is `VECTORIZED`.
 `document_statuses.list` is the source for the current allowed values. The API
-never returns the internal database code. Tenant-authored names, descriptions,
+never returns the internal database code. Organization-authored names, descriptions,
 prompts and document content keep the language in which they were written; they
 are content, not protocol messages.
 
 ## Set up your organization first
 
-Two texts per level —group and entity— decide how well RAGfly serves you: `description` is prose
+Two texts per level —organization and workspace— decide how well RAGfly serves you: `description` is prose
 about who you are, and `system_prompt` is the instruction the model follows when answering about
 **your** documents. The system prompt is injected into every skill with organization scope, which
-is the whole ingestion pipeline and not only chat, so a tenant that leaves them empty ingests and
+is the whole ingestion pipeline and not only chat, so an organization that leaves them empty ingests and
 answers worse than one that filled them in. Do it before your first load.
 
 These routes need a key whose role can manage the organization profile, normally
-a group administrator's; a key without profile-management access gets `403` on the read and
+an organization administrator's; a key without profile-management access gets `403` on the read and
 on the draft.
 
 ```bash
 # What is missing?
 curl https://api.ragfly.ai/v1/organization -H "Authorization: Bearer $RAGFLY_API_KEY"
-# → { "group": {...}, "entity": {...}, "missing": ["group.description", ...] }
+# → { "group": {...}, "workspace": {...}, "missing": ["group.description", ...] }
 
 # Propose from a source text you bring (your "about us" page, for instance).
 # RAGfly does not fetch URLs: read the page yourself and pass the text.
@@ -249,12 +249,12 @@ curl https://api.ragfly.ai/v1/usage -H "Authorization: Bearer $RAGFLY_API_KEY"
   "plan_code": "Growth", "period_start": "2026-09-05", "period_end": "2026-10-05",
   "quotas": [
     { "feature": "ACTIVE_CORPUS", "unit": "pages", "included": 5000, "used": 1508,
-      "on_limit": "BLOCK", "by_entity": [{ "entity_code": "000024", "used": 1508 }] }
+      "on_limit": "BLOCK", "by_workspace": [{ "workspace_code": "000024", "used": 1508 }] }
   ]
 }
 ```
 
-`included: null` means unlimited. Check it before a large ingestion or a batch of retrievals.
+`included: null` means unlimited. Count quotas such as `WORKSPACES` and `COLLECTIONS` use the same shape, with `unit` `workspaces` and `collections`. Check your quotas before a large ingestion or a batch of retrievals.
 
 ## Search example
 
@@ -266,9 +266,9 @@ curl https://api.ragfly.ai/v1/documents/search \
 ```
 
 Body: `query` (required, non-empty), `limit` (1–100, default 10: the maximum
-number of **documents**), `min_similarity` (0–1, default 0) and `entity_code`
-(optional, one of your own entities). Optional narrowing: `space_id` (restrict to
-one workspace you can see; an unknown or foreign one answers `404`), `location_code`
+number of **documents**), `min_similarity` (0–1, default 0) and `workspace_code`
+(optional, one of your own workspaces). Optional narrowing: `collection_id` (restrict to
+one collection you can see; an unknown or foreign one answers `404`), `location_code`
 (a visible folder and its descendants) and `filter`.
 
 `filter` narrows by `document_types` (codes from `GET /v1/catalog/document-types`;
@@ -277,7 +277,7 @@ a type also covers its more specific types), `attributes` (`field` one of `locat
 `RANGE`, with `value` or `from`/`to` dates) and `characteristics` (codes from
 `GET /v1/catalog/characteristics`). A malformed or unknown code answers `400` with
 `details.reason`; a valid filter answers `409 filter_not_available` until structured
-filters are enabled for the group.
+filters are enabled for the organization.
 
 The search is hybrid (semantic + keyword). With `min_similarity` above 0, a document
 is returned only if its best chunk reaches that similarity; keyword-only matches carry
@@ -341,7 +341,7 @@ answer is ready, as JSON; it does not stream, and neither do the SDKs.
 
 `mode` is optional. `"default"` answers from your documents. `"help"` answers
 questions about RAGfly itself — how to use it, how to connect an agent, which
-operation does something, how to pin or release the entity focus of a key — written
+operation does something, how to pin or release the workspace focus of a key — written
 for a program: it names screens instead of linking to them and points to the exact
 routes, tools and operations of this guide.
 
@@ -349,12 +349,12 @@ routes, tools and operations of this guide.
 curl https://api.ragfly.ai/v1/ask \
   -H 'Authorization: Bearer rf_xxxxxxxxxx' \
   -H 'Content-Type: application/json' \
-  -d '{"question":"How do I release the entity focus of my key?","mode":"help"}'
+  -d '{"question":"How do I release the workspace focus of my key?","mode":"help"}'
 ```
 
 Help mode does not search your documents: for that, call `/v1/ask` without `mode`.
 When the question cannot be settled by answering, it can register a support request.
-It answers `409` if help is not enabled for your group and `400` for any other
+It answers `409` if help is not enabled for your organization and `400` for any other
 `mode` value.
 
 ## Agent context and agent tools
@@ -445,8 +445,8 @@ All public errors use one English envelope. `request_id` is echoed when supplied
 }
 ```
 
-Known codes include `INVALID_REQUEST`, `INVALID_CONTEXT` (an active entity or an
-`entity_code` is required), `UNAUTHORIZED`, `QUOTA_EXCEEDED` (the plan quota for
+Known codes include `INVALID_REQUEST`, `INVALID_CONTEXT` (an active workspace or an
+`workspace_code` is required), `UNAUTHORIZED`, `QUOTA_EXCEEDED` (the plan quota for
 the operation is used up), `FORBIDDEN`, `NOT_FOUND`, `VALIDATION_ERROR`, `CONFLICT`,
 `CONTEXT_CONFLICT` (a saved area scope no longer matches current permissions),
 `RATE_LIMITED` and `INTERNAL_ERROR`.

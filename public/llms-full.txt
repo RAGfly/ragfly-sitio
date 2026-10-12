@@ -2,27 +2,27 @@
 
 > Discover MCP tools with tools/list. Discover the separate manifest operations with GET /v1/operations.
 
-Updated: 2026-10-09
+Updated: 2026-10-12
 
 ## MCP connection
 
 - SSE endpoint: https://api.ragfly.ai/mcp/sse
 - Streamable HTTP endpoint: https://api.ragfly.ai/mcp-http/
 - Authentication: OAuth 2.1 or Authorization: Bearer rf_xxxxxxxxxx (API Key issued from a human session)
-- Scope: Every call is filtered by the key owner’s group, entity, area and role. Flexible entity focus is stored server-side.
+- Scope: Every call is filtered by the key owner’s organization, workspace, area and role. Flexible workspace focus is stored server-side.
 
-API keys are issued through a signed-in human session. A fixed-entity key cannot change entity. A flexible key can select an authorized entity or release focus with entity_code: null; the server persists the focus for that key.
+API keys are issued through a signed-in human session. A fixed-workspace key cannot change workspace. A flexible key can select an authorized workspace or release focus with workspace_code: null; the server persists the focus for that key.
 
 ## MCP tools (41)
 
 ### session
 
-Verifies the connection and returns the user context
+Verifies the connection and returns the identity and the active organization, workspace and area
 
-### set_active_entity
+### set_active_workspace
 
-Sets an authorized entity for a flexible key or releases focus with null; fixed keys cannot change entity
-Parameters: `entity_code` (string or null)
+Sets an authorized workspace for a flexible key or releases focus with null; fixed keys cannot change workspace
+Parameters: `workspace_code` (string or null)
 
 ### list_operations
 
@@ -40,7 +40,7 @@ Parameters: `code`, `input?`, `confirm?`
 
 ### list_documents
 
-Lists group documents with filters
+Lists organization documents with filters
 Parameters: `status`, `limit`, `page`
 
 ### get_document
@@ -53,35 +53,35 @@ Parameters: `document_code`
 Corpus-graph edges of a document: neighbors and documents at 2 hops
 Parameters: `document_code`, `neighbor_limit?`
 
-### list_spaces
+### list_collections
 
-Lists the group's Workspaces
+Lists the organization's Collections
 Parameters: `limit`
 
-### get_space
+### get_collection
 
-Workspace detail: criteria + documents + queue
-Parameters: `space_id`, `doc_limit`
+Collection detail: criteria + documents + queue
+Parameters: `collection_id`, `doc_limit`
 
-### compose_spaces
+### compose_collections
 
-Set algebra (COMPOSE) of two Workspaces → a new Workspace handle
-Parameters: `operation`, `space_id_a`, `space_id_b`, `name?`, `space_type?`
+Set algebra (COMPOSE) of two Collections → a new Collection handle
+Parameters: `operation`, `collection_id_a`, `collection_id_b`, `name?`, `collection_type?` (`TEMPORARY`|`SAVED`)
 
-### read_space
+### read_collection
 
-Materialize a Workspace (READ) at a chosen resolution, paginated
-Parameters: `space_id`, `resolution?`, `query?`, `limit?`
+Materialize a Collection (READ) at a chosen resolution, paginated
+Parameters: `collection_id`, `resolution?`, `query?`, `limit?`
 
-### refresh_space
+### refresh_collection
 
-Re-applies the Workspace's natural-language criteria and re-materializes its set (picks up newly qualifying documents)
-Parameters: `space_id`
+Re-applies the Collection's natural-language criteria and re-materializes its set (picks up newly qualifying documents)
+Parameters: `collection_id`
 
-### promote_space
+### save_collection
 
-Promotes a temporary Workspace (AREA) to permanent (SPACE)
-Parameters: `space_id`
+Saves a temporary Collection (`TEMPORARY`) as a saved one (`SAVED`)
+Parameters: `collection_id`
 
 ### wiki_index
 
@@ -93,10 +93,10 @@ Parameters: `area_code?`
 One compiled-knowledge page. **Not available to integrator keys today (403)**
 Parameters: `document_code`
 
-### compile_space
+### compile_collection
 
-Compiles a Workspace (background job). The leaf skill must be one your access can run; the default public code is `COMPILE_PAGE`
-Parameters: `space_id`, `leaf_skill_code?`
+Compiles a Collection (background job). The leaf skill must be one your access can run; the default public code is `COMPILE_PAGE`
+Parameters: `collection_id`, `leaf_skill_code?`
 
 ### queue
 
@@ -124,23 +124,23 @@ Parameters: `skill_code`
 
 ### run_skill
 
-Queues a run over a workspace or document
-Parameters: `skill_code`, `space_id?`, `document_code?`
+Queues a run over a collection or document
+Parameters: `skill_code`, `collection_id?`, `document_code?`
 
 ### search_documents
 
-Direct semantic search over the corpus. `filter` narrows by document type, file attributes and content characteristics (codes from `list_document_types` and `list_characteristics`); a valid filter answers `filter_not_available` until structured filters are enabled for the group
-Parameters: `query`, `limit?`, `min_similarity?`, `entity_code?`, `space_id?`, `filter?`, `location_code?`
+Direct semantic search over the corpus. `filter` narrows by document type, file attributes and content characteristics (codes from `list_document_types` and `list_characteristics`); a valid filter answers `filter_not_available` until structured filters are enabled for the organization
+Parameters: `query`, `limit?`, `min_similarity?`, `workspace_code?`, `collection_id?`, `filter?`, `location_code?`
 
 ### list_document_types
 
-Document types of the entity as a tree, with parent, synonyms and document counts. Picking a type also covers its more specific types
-Parameters: `entity_code?`
+Document types of the workspace as a tree, with parent, synonyms and document counts. Picking a type also covers its more specific types
+Parameters: `workspace_code?`
 
 ### list_characteristics
 
 Content characteristics (a date, an amount, an ID, a person…) available for the given types and their more specific ones
-Parameters: `document_types?`, `entity_code?`
+Parameters: `document_types?`, `workspace_code?`
 
 ### ask
 
@@ -155,12 +155,12 @@ Parameters: `area_code` (required; `null` releases)
 ### list_areas
 
 List visible organizational areas
-Parameters: `entity_code?`, `parent_code?`, `query?`, `limit?`, `cursor?`
+Parameters: `workspace_code?`, `parent_code?`, `query?`, `limit?`, `cursor?`
 
 ### list_locations
 
 List visible document folders
-Parameters: `entity_code?`, `parent_code?`, `query?`, `limit?`, `cursor?`
+Parameters: `workspace_code?`, `parent_code?`, `query?`, `limit?`, `cursor?`
 
 ### get_agent_context
 
@@ -174,12 +174,12 @@ Parameters: `public_name`, `arguments_json?`, `function_profile?`
 
 ### get_organization
 
-Reads this tenant's profile and what is still missing
+Reads this organization's profile and what is still missing
 
 ### update_organization
 
-Writes the profile. Needs an administrator of the group
-Parameters: `group_description?`, `group_system_prompt?`, `entity_description?`, `entity_system_prompt?`
+Writes the profile. Needs an administrator of the organization
+Parameters: `group_description?`, `group_system_prompt?`, `workspace_description?`, `workspace_system_prompt?`
 
 ### draft_organization
 
@@ -202,7 +202,7 @@ Parameters: `conversation_id`
 
 ### list_processes
 
-Process instances: support, requests, workspace jobs
+Process instances: support, requests, collection jobs
 Parameters: `status?`, `process_type?`, `category?`, `mine?`, `only_open?`, `limit?`, `page?`
 
 ### get_process

@@ -1,13 +1,15 @@
 # RAGfly
 
-> Servicio de RAG multi-tenant para agentes de IA. Convierte cualquier corpus de documentos en una base de recuperación segura, aislada por contexto y lista para producción — sin construir ni mantener un pipeline RAG. Vía MCP, REST y CLI.
+> Servicio de RAG multi-tenant para agentes de IA. Convierte cualquier corpus de documentos en una base de recuperación segura, aislada por workspace y lista para producción — sin construir ni mantener un pipeline RAG. Vía MCP, REST y CLI.
 
-RAGfly es un servicio de RAG para agentes: apuntas a un directorio de documentos y el sistema los escanea, vectoriza e indexa automáticamente. Tu agente obtiene respuestas con citas a la fuente, a escala y aislado por contexto.
+RAGfly es un servicio de RAG para agentes: apuntas a un directorio de documentos y el sistema los escanea, vectoriza e indexa automáticamente. Tu agente obtiene respuestas con citas a la fuente, a escala y aislado por workspace.
 
-- Qué ofrece: retrieval semántico con citas + capa de acción (habilidades LLM sobre documentos) + multi-tenant de fábrica.
-- Para quién: primero, el dev que opera agentes propios y necesita que no crucen información entre sus contextos (proyectos, vida personal, memoria del agente); después, consultoras e integradores que construyen agentes sobre documentos privados de varios clientes, y productos SaaS que meten RAG adentro.
+- Eslogan: Simple, privado y preciso. Acceso por workspace, área, rol y agente.
+- Vocabulario: Organización → Workspace → Área. Un workspace es lo que tú decides que no debe mezclarse: tu vida personal y tu negocio dentro de un mismo agente, o cada cliente de tu estudio contable. Tú trazas la frontera. Nada la cruza. Dentro de cada workspace, decides quién ve qué por área, rol y agente. Una colección es un conjunto de documentos elegido por criterio para trabajar sobre él (temporal o guardada).
+- Qué ofrece: retrieval semántico con citas + capa de acción (habilidades LLM sobre documentos y colecciones) + multi-tenant de fábrica.
+- Para quién: primero, el dev que opera agentes propios y necesita que no crucen información entre sus workspaces (proyectos, vida personal, memoria del agente); después, consultoras e integradores que construyen agentes sobre documentos privados de varios clientes, y productos SaaS que meten RAG adentro.
 - Cómo funciona: apunta a un directorio → ingesta, vectorización e indexado automáticos → tu agente consulta por significado vía MCP, REST o CLI con citas a la fuente.
-- Precios (USD): Free $0 (2 Entities, 500 Pages totales, 25 Retrievals/día, 50 Verified Answers totales) · Starter $39/mes (5 Entities, 2.000 Pages/mes, 5.000 Retrievals/mes, 300 Verified Answers/mes) · Growth $149/mes (10 Entities, 10.000 Pages/mes, 25.000 Retrievals/mes, 1.500 Verified Answers/mes, Control por Área · parsing-BYOK · embedding-BYOK) · Scale $590/mes (25 Entities, 40.000 Pages/mes, 100.000 Retrievals/mes, 5.000 Verified Answers/mes, BYO vectorial/LLM) · Enterprise/Soberano custom.
+- Precios (USD; cupos vivos en https://api.ragfly.ai/pagos/catalogo-publico): Free $0 (corpus activo 1.000 páginas; por mes 1.500 Retrieval simple, 30 RAG Aumentado, 5 RAG Agéntico; 2 workspaces, 5 colecciones) · Starter $39/mes (10.000 páginas; 5.000 Retrieval simple, 300 RAG Aumentado, 50 RAG Agéntico; 5 workspaces, 10 colecciones) · Growth $149/mes (50.000 páginas; 25.000 Retrieval simple, 1.500 RAG Aumentado, 150 RAG Agéntico; 25 workspaces, 50 colecciones; operaciones entre colecciones, parsing-BYOK, embedding-BYOK y agentic-BYOK) · Scale $590/mes (250.000 páginas; 100.000 Retrieval simple, 5.000 RAG Aumentado, 500 RAG Agéntico; 150 workspaces, 200 colecciones; además Supabase vectorial propio) · Enterprise/Soberano a convenir (BYO LLM, despliegue soberano, DPA y SLA). Control por área, MCP, REST, CLI, SDK y RAGfly Desktop están desde Free. Adicionales manuales en planes pagados: +500 RAG Aumentado por US$35, +50 RAG Agéntico por US$59, +10.000 páginas de corpus activo por US$10/mes; sin sobreconsumo automático.
 - Privacidad por modo: Cloud procesa el original pero no lo conserva después de la ingesta; Desktop procesa el original localmente y puede sincronizar derivados; en soberano la BD y los derivados en reposo son del cliente, mientras RAGfly accede a chunks para recuperar contexto.
 
 ## Para agentes
@@ -17,15 +19,15 @@ RAGfly es un servicio de RAG para agentes: apuntas a un directorio de documentos
 - Conexión MCP (SSE): https://api.ragfly.ai/mcp/sse
 - Conexión MCP (HTTP streamable): https://api.ragfly.ai/mcp-http/
 - Autenticación: OAuth 2.1 (recomendado) o `Authorization: Bearer rf_xxxxxxxxxx` (API Key).
-- Emisión: una persona autenticada emite la API key. Alcance: usuario, grupo, entidad, área y rol; el backend filtra cada llamada.
-- Entidad: una key fija no cambia de entidad; una flexible guarda el foco en el servidor y puede liberarlo con entity_code: null.
+- Emisión: una persona autenticada emite la API key. Alcance: usuario, organización, workspace, área y rol; el backend filtra cada llamada.
+- Workspace: una key fija no cambia de workspace; una flexible guarda el foco en el servidor (set_active_workspace) y puede liberarlo con workspace_code: null.
 - Operaciones: GET /v1/operations descubre el manifiesto filtrado por RBAC; ese catálogo es distinto de las tools MCP.
 - Swagger interactivo: https://api.ragfly.ai/docs
 
 ### Conectores de ingesta
 
 - [Guía de Google Drive](https://ragfly.ai/build/google-drive) y [guía de Dropbox](https://ragfly.ai/build/dropbox): acompañamiento paso a paso para administradores y usuarios.
-- Configurar un conector no es una operación disponible por MCP, CLI, REST ni SDK. Un administrador carga las credenciales de aplicación directamente en Parámetros de Grupo de RAGfly; cada usuario autoriza su cuenta y selecciona una carpeta en el navegador.
+- Configurar un conector no es una operación disponible por MCP, CLI, REST ni SDK. Un administrador carga las credenciales de aplicación directamente en Parámetros de Organización de RAGfly; cada usuario autoriza su cuenta y selecciona una carpeta en el navegador.
 - Un agente no debe pedir, recibir, almacenar ni repetir secretos de cliente, tokens, contraseñas, cookies ni códigos OAuth. Solo puede orientar y comprobar requisitos no sensibles.
 
 ## Tipos de identidad
@@ -53,5 +55,5 @@ RAGfly es un servicio de RAG para agentes: apuntas a un directorio de documentos
 - [Variables de entorno](https://ragfly.ai/integradores/ENV_VARS.md): referencia única de todas las variables RAGFLY_ (nombre canónico, default, sin aliases).
 - [AGENTS.md](https://ragfly.ai/integradores/AGENTS.md): para soltar en la raíz del workspace del agente.
 - [TypeScript SDK](https://ragfly.ai/integradores/SDK-TS.md): `npm i @ragfly/sdk`.
-- [Google Drive](https://ragfly.ai/integradores/GOOGLE_DRIVE.md): habilitar el conector de Drive para un espacio de trabajo (credenciales Google Cloud + configuración del grupo).
-- [Dropbox](https://ragfly.ai/integradores/DROPBOX.md): habilitar el conector de Dropbox para un espacio de trabajo (app key OAuth PKCE + configuración del grupo).
+- [Google Drive](https://ragfly.ai/integradores/GOOGLE_DRIVE.md): habilitar el conector de Drive para tu organización (credenciales Google Cloud + configuración de la organización).
+- [Dropbox](https://ragfly.ai/integradores/DROPBOX.md): habilitar el conector de Dropbox para tu organización (app key OAuth PKCE + configuración de la organización).
