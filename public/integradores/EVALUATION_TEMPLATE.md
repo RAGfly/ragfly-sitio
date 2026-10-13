@@ -3,7 +3,7 @@
 **Integrator:** [name / organization]  
 **Date:** [YYYY-MM-DD]  
 **Environment tested:** production (api.ragfly.ai)  
-**Tenant(s) used:** A / B / both
+**Workspace(s) used:** A / B / both
 
 ---
 
@@ -23,10 +23,10 @@
 | 1.4 GET /v1/operations — what the key can do | ✅ / ❌ / ⏭ | |
 | 1.5 API key on a route outside /v1 → 403 | ✅ / ❌ / ⏭ | |
 | 2.1 List documents (GET /v1/documents) | ✅ / ❌ / ⏭ | |
-| 2.2 Semantic search Tenant A (POST /v1/documents/search) | ✅ / ❌ / ⏭ | |
-| 2.2 Semantic search Tenant B (POST /v1/documents/search) | ✅ / ❌ / ⏭ | |
-| 3. Multi-tenant isolation | ✅ / ❌ / ⏭ | |
-| 4. Queue and workspaces (GET /v1/queue, GET /v1/spaces) | ✅ / ❌ / ⏭ | |
+| 2.2 Semantic search Workspace A (POST /v1/documents/search) | ✅ / ❌ / ⏭ | |
+| 2.2 Semantic search Workspace B (POST /v1/documents/search) | ✅ / ❌ / ⏭ | |
+| 3. Multi-workspace isolation | ✅ / ❌ / ⏭ | |
+| 4. Queue and collections (GET /v1/queue, GET /v1/collections) | ✅ / ❌ / ⏭ | |
 | 5. MCP (Claude Code / Cursor) | ✅ / ❌ / ⏭ | |
 | 6. Codex (MCP) | ✅ / ❌ / ⏭ | |
 | 7. CLI | ✅ / ❌ / ⏭ | |
@@ -41,7 +41,7 @@
 
 **Severity:** Critical / High / Medium / Low / Info  
 **Battery:** [guide section number]  
-**Tenant:** A / B / both  
+**Workspace:** A / B / both  
 
 **Request:**
 ```

@@ -13,7 +13,7 @@ export const mcp = {
   endpointSSE: `${BACKEND}/mcp/sse`,
   endpointHTTP: `${BACKEND}/mcp-http/`,
   auth: 'OAuth 2.1 or Authorization: Bearer rf_xxxxxxxxxx (API Key issued from a human session)',
-  scope: 'Every call is filtered by the key owner’s group, entity, area and role. Flexible entity focus is stored server-side.',
+  scope: 'Every call is filtered by the key owner’s organization, workspace, area and role. Flexible workspace focus is stored server-side.',
 }
 
 // Agent-facing MCP tools are sourced from the Available tools table in

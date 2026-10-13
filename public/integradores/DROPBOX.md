@@ -3,10 +3,10 @@
 RAGfly can read documents **straight from Dropbox's API** — no local sync
 client, no downloads, no copying folders to disk.
 
-This guide is for the **workspace administrator** who enables the connector once.
-After that, every user in the group just picks a folder and RAGfly indexes it.
+This guide is for the **organization administrator** who enables the connector once.
+After that, every user in the organization just picks a folder and RAGfly indexes it.
 
-> **One-time setup, ~5 minutes.** You do it once per RAGfly group. Your users
+> **One-time setup, ~5 minutes.** You do it once per RAGfly organization. Your users
 > never see any of this.
 
 ---
@@ -39,7 +39,7 @@ RAGfly requests **read-only** permissions (`files.metadata.read` and
 You need:
 
 - A **Dropbox** account — https://www.dropbox.com/developers/apps
-- **Administrator** access to your RAGfly group (to edit Group Parameters)
+- **Administrator** access to your RAGfly organization (to edit Organization Parameters)
 - The **domain** where you use RAGfly: `https://app.ragfly.ai` (or your own)
 
 ---
@@ -101,7 +101,7 @@ the App secret — the PKCE flow doesn't use it.
 
 ## Part 2 — Enable the connector in RAGfly
 
-Sign in to RAGfly as a group administrator and go to **Group Parameters**.
+Sign in to RAGfly as an organization administrator and go to **Organization Parameters**.
 
 ### 2.1 Load the credential
 
@@ -111,7 +111,7 @@ Under **Ingestion connectors**, paste it:
 |---|---|
 | `Dropbox — App key` | the App key from step 1.5 |
 
-It is stored **per group**: each customer uses their own Dropbox app, and the
+It is stored **per organization**: each customer uses their own Dropbox app, and the
 value is shown masked.
 
 ### 2.2 Turn the connector on
@@ -171,7 +171,7 @@ Allow popups for your RAGfly domain and click **Connect folder…** again.
 
 ### The connector doesn't appear at all in the source selector
 
-Both conditions must hold, in Group Parameters:
+Both conditions must hold, in Organization Parameters:
 
 - the flag `Dropbox connector` is `true`, and
 - the `Dropbox — App key` credential is loaded.
@@ -213,9 +213,9 @@ No. Everything goes through Dropbox's API. Files that only exist in the cloud
 work fine.
 
 **Can each user connect their own Dropbox?**
-Yes. The App key is per group (the app), but each user authorizes their own
+Yes. The App key is per organization (the app), but each user authorizes their own
 Dropbox account and picks their own folder.
 
 **Do I have to repeat this per environment?**
-The credential is per group. If you use more than one RAGfly environment, add
+The credential is per organization. If you use more than one RAGfly environment, add
 each `/dropbox-callback` redirect URI in step 1.3.

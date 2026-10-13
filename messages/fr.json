@@ -267,7 +267,7 @@
     "item0Titulo": "Le service de RAG, résolu",
     "item0Desc": "Ingestion, mise à l'échelle, multi-tenancy et sécurité arrivent résolus. Vous construisez la logique de l'agent, pas l'infrastructure.",
     "item1Titulo": "Un workspace par client",
-    "item1Desc": "Des clients isolés depuis un seul panneau — ce que les cloud-first n'offrent pas.",
+    "item1Desc": "Un workspace par client, depuis un seul panneau — ce que les cloud-first n'offrent pas.",
     "item2Titulo": "Confidentialité explicite selon le mode",
     "item2Desc": "Le Cloud ne conserve pas l'original ; Desktop le traite localement ; dans les offres souveraines, la base appartient au client. RAGfly traite des chunks pour récupérer le contexte.",
     "item3Titulo": "Sans lock-in",

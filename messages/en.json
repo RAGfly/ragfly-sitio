@@ -266,7 +266,7 @@
     "item0Titulo": "The RAG service, solved",
     "item0Desc": "Ingestion, scale, multi-tenancy and security come solved. You build the agent logic, not the infrastructure.",
     "item1Titulo": "One workspace per client",
-    "item1Desc": "Isolated clients from a single panel — what cloud-first vendors don't offer.",
+    "item1Desc": "One workspace per client, from a single panel — what cloud-first vendors don't offer.",
     "item2Titulo": "Explicit privacy by deployment mode",
     "item2Desc": "Cloud does not retain the original; Desktop processes it locally; on sovereign plans the customer owns the database. RAGfly processes chunks to retrieve context.",
     "item3Titulo": "No lock-in",

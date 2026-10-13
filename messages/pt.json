@@ -267,7 +267,7 @@
     "item0Titulo": "A infraestrutura de RAG, resolvida",
     "item0Desc": "Ingestão, escala, multi-tenancy e segurança já vêm resolvidos. Você constrói a lógica do agente, não a infraestrutura.",
     "item1Titulo": "Um workspace por cliente",
-    "item1Desc": "Clientes isolados a partir de um único painel — o que os cloud-first não oferecem.",
+    "item1Desc": "Um workspace por cliente, a partir de um único painel — o que os cloud-first não oferecem.",
     "item2Titulo": "Privacidade explícita por modo",
     "item2Desc": "A Cloud não conserva o original; o Desktop o processa localmente; nos planos soberanos o banco é do cliente. O RAGfly processa chunks para recuperar contexto.",
     "item3Titulo": "Sem lock-in",

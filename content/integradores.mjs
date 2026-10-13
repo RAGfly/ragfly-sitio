@@ -43,8 +43,8 @@ export const grupos = [
 export const documentos = [
   // ── Feed your corpus ──────────────────────────────────────────────────
   { slug: 'integration',         archivo: 'INTEGRATION.md',         grupo: 'alimentacion', icono: '🧭', titulo: 'Feed your corpus', desc: 'Choose local files, Google Drive or Dropbox; learn credentials, privacy and how agents access indexed content.', destacado: true },
-  { slug: 'google-drive',        archivo: 'GOOGLE_DRIVE.md',        grupo: 'alimentacion', icono: '📁', titulo: 'Google Drive',     desc: 'Enable the Drive connector for your workspace: Google Cloud credentials and group setup.' },
-  { slug: 'dropbox',             archivo: 'DROPBOX.md',             grupo: 'alimentacion', icono: '📦', titulo: 'Dropbox',          desc: 'Enable the Dropbox connector for your workspace: app key, redirect URI and group setup.' },
+  { slug: 'google-drive',        archivo: 'GOOGLE_DRIVE.md',        grupo: 'alimentacion', icono: '📁', titulo: 'Google Drive',     desc: 'Enable the Drive connector for your organization: Google Cloud credentials and organization setup.' },
+  { slug: 'dropbox',             archivo: 'DROPBOX.md',             grupo: 'alimentacion', icono: '📦', titulo: 'Dropbox',          desc: 'Enable the Dropbox connector for your organization: app key, redirect URI and organization setup.' },
 
   // ── The six interfaces ────────────────────────────────────────────────
   // Orden = camino del integrador: MCP (por donde abrimos) → SDK → REST → CLI.

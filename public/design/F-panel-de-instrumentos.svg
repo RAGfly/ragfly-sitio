@@ -37,7 +37,7 @@
         <g font-family="'RFDato', ui-sans-serif, system-ui, sans-serif">
           <g><text x="34" y="52" font-size="9" fill="#4a708a" letter-spacing="1.6">DOCUMENTOS</text>
              <text x="34" y="88" font-size="30" fill="#D5ECF8">42.180</text></g>
-          <g><text x="196" y="52" font-size="9" fill="#4a708a" letter-spacing="1.6">ENTIDADES</text>
+          <g><text x="196" y="52" font-size="9" fill="#4a708a" letter-spacing="1.6">WORKSPACES</text>
              <text x="196" y="88" font-size="30" fill="#D5ECF8">21</text></g>
           <g><text x="330" y="52" font-size="9" fill="#4a708a" letter-spacing="1.6">TIPIFICADOS</text>
              <text x="330" y="88" font-size="30" fill="#D5ECF8">98,4<tspan font-size="16">%</tspan></text></g>

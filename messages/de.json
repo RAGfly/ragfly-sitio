@@ -266,7 +266,7 @@
     "item0Titulo": "Der RAG-Dienst, gelöst",
     "item0Desc": "Ingestion, Skalierung, Multi-tenancy und Sicherheit kommen gelöst. Du baust die Logik des Agenten, nicht die Infrastruktur.",
     "item1Titulo": "Ein Workspace pro Kunde",
-    "item1Desc": "Isolierte Kunden von einem einzigen Panel aus — was die Cloud-first-Anbieter nicht bieten.",
+    "item1Desc": "Ein Workspace pro Mandant, von einem einzigen Panel aus — was die Cloud-first-Anbieter nicht bieten.",
     "item2Titulo": "Expliziter Datenschutz je Modus",
     "item2Desc": "Die Cloud bewahrt das Original nicht auf; Desktop verarbeitet es lokal; in souveränen Tarifen gehört die Datenbank dem Kunden. RAGfly verarbeitet Chunks für den Kontextabruf.",
     "item3Titulo": "Ohne Lock-in",

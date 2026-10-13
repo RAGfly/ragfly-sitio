@@ -5,8 +5,8 @@ Place this file in the root of the agent's workspace.
 ## What is RAGfly
 
 A multi-tenant RAG service. It indexes an organization's documents and serves
-them to AI agents through the public REST API `/v1` and MCP, with tenant
-isolation (group → entity → area) and role-based access control.
+them to AI agents through the public REST API `/v1` and MCP, with workspace
+isolation (organization → workspace → area) and role-based access control.
 
 ## Language and public codes
 
@@ -15,7 +15,7 @@ and SDK responses use a fixed English protocol regardless of locale. This
 includes schemas/defaults, enums, validation details, and every message written
 by RAGfly. Catalog codes come from the English alias on the same catalog row;
 never translate an internal code or return it as a fallback. If the alias is
-missing, fail with a safe English error. Tenant-authored content keeps its
+missing, fail with a safe English error. Organization-authored content keeps its
 original language.
 
 **Base URL:** `$RAGFLY_API_URL` — public contract under `/v1`  
@@ -25,7 +25,7 @@ original language.
 ## Safe order for an agent
 
 1. **Confirm who you are.** `session` (MCP) or `GET /v1/session`: the active
-   group and entity, and the English access-level label.
+   organization and workspace, and the English access-level label.
 2. **Discover what you can do.** `list_operations` (MCP) or `GET /v1/operations`
    lists every operation this key's RBAC allows; `get_operation` /
    `GET /v1/operations/{code}` gives its input and output schema. What is not
@@ -55,7 +55,7 @@ codex mcp add ragfly \
 ```
 mcp__ragfly__session()
 ```
-Confirms the connection and returns the active tenant context.
+Confirms the connection and returns the active organization and workspace.
 
 **Main tools:**
 - `mcp__ragfly__session()` — verify connection
@@ -111,7 +111,7 @@ other keys. Use `GET /v1/operations` to discover the actions the key can run.
 ```
 GET /v1/session
 ```
-Returns the user and active tenant context plus an English `profile` access
+Returns the user and the active organization and workspace plus an English `profile` access
 level. Role identifiers are not exposed; use `/v1/operations` to discover
 allowed actions. Always call first to confirm the API key is valid.
 
@@ -139,13 +139,13 @@ Content-Type: application/json
   "query": "<natural language question>",  # required, non-empty
   "limit": 5,                              # max documents, 1–100 (default 10)
   "min_similarity": 0.0,                   # threshold 0–1 (optional)
-  "entity_code": null                      # one of your entities (optional)
+  "workspace_code": null                      # one of your workspaces (optional)
 }
 ```
 Returns `documents[]` with `code`, `name`, `summary`, `location`, `url`, `fs`,
 `rrf_score`, `max_similarity`, `rerank_score` and `chunks[]` (`text`, `page`,
-`extra.chunk_number`, `extra.similarity`). To search inside one workspace, use
-`POST /v1/spaces/{space_id}/read` with `{"resolution": "chunks", "query": "..."}`.
+`extra.chunk_number`, `extra.similarity`). To search inside one collection, use
+`POST /v1/collections/{collection_id}/read` with `{"resolution": "chunks", "query": "..."}`.
 
 ### View a document
 ```
@@ -160,9 +160,9 @@ exists. If `home_var` is null or unset, rely on indexed content or an available
 public/provider URL; do not guess a filesystem root. See
 [MCP.md: Opening a document on disk](MCP.md#opening-a-document-on-disk-fs-block).
 
-### List workspaces
+### List collections
 ```
-GET /v1/spaces?limit=10
+GET /v1/collections?limit=10
 ```
 
 ### Pipeline state
@@ -235,10 +235,10 @@ const listDocs = (limit = 20) =>
 
 ## Security invariants
 
-- The API key operates exclusively on the corpus of the tenant that issued it.
-- RBAC (group, entity, area and role) is resolved from the key on the server —
+- The API key operates exclusively on the corpus of the organization that issued it.
+- RBAC (organization, workspace, area and role) is resolved from the key on the server —
   never sent in the body or the URL.
-- A document outside the key's group, entity or area answers `404`, exactly like
+- A document outside the key's organization, workspace or area answers `404`, exactly like
   one that does not exist.
 - `/v1` never returns the full text of a document: the agent gets the summary,
   the relevant chunks and the location.

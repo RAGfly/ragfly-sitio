@@ -6,7 +6,7 @@ one `/v1` route, and three generic methods run any operation of the RAGfly app
 that your key can run. It mirrors the [Python SDK](SDK.md) method for method,
 and both run the same parity cases. Response fields, public catalog codes, enum
 values, published schemas/defaults, validation details, and API-authored error
-messages use English; tenant-authored content keeps its original language.
+messages use English; organization-authored content keeps its original language.
 Catalog identifiers use their stored English aliases, and unmapped internal
 identifiers are never returned.
 
@@ -87,11 +87,11 @@ snake_case keys. The server checks the bounds noted under each table and answers
 
 | Method | Defaults | Route | Resolves to |
 |---|---|---|---|
-| `session()` | — | `GET /v1/session` | `Json`: includes active entity/area, effective area and authorized area root |
-| `setActiveEntity({ entityCode })` | — | `POST /v1/session/active-entity` | Set an authorized entity; pass `null` to release the focus |
+| `session()` | — | `GET /v1/session` | `Json`: includes active workspace/area, effective area and authorized area root |
+| `setActiveWorkspace({ workspaceCode })` | — | `POST /v1/session/active-workspace` | Set an authorized workspace; pass `null` to release the focus |
 | `setActiveArea({ areaCode })` | — | `POST /v1/session/active-area` | Set an authorized area; pass `null` to release area focus |
-| `listAreas({ entityCode?, parentCode?, query?, limit?, cursor? } = {})` | `limit: 50` | `GET /v1/areas` | Visible organizational areas |
-| `listLocations({ entityCode?, parentCode?, query?, limit?, cursor? } = {})` | `limit: 50` | `GET /v1/locations` | Visible document folders, separate from organizational areas |
+| `listAreas({ workspaceCode?, parentCode?, query?, limit?, cursor? } = {})` | `limit: 50` | `GET /v1/areas` | Visible organizational areas |
+| `listLocations({ workspaceCode?, parentCode?, query?, limit?, cursor? } = {})` | `limit: 50` | `GET /v1/locations` | Visible document folders, separate from organizational areas |
 | `listDocuments({ status?, limit?, page?, locationCode? } = {})` | `limit: 20`, `page: 1` | `GET /v1/documents` | `Json`: paginated documents, optionally narrowed to a folder subtree |
 | `getDocument({ documentCode })` | — | `GET /v1/documents/{document_code}` | `Json`: the document, with its `fs` block |
 | `documentEdges({ documentCode, neighborLimit? })` | `neighborLimit: 50` | `GET /v1/documents/{document_code}/edges` | `Json`: `document`, `type_path`, `location_path`, `features`, `neighbors_two_hops` |
@@ -100,24 +100,24 @@ snake_case keys. The server checks the bounds noted under each table and answers
 [MCP.md](MCP.md#document-status-values)). Bounds: `limit` 1–100, `page` 1 or
 more, `neighborLimit` 1–500.
 
-Entity focus is stored with the API key on the server. A flexible key keeps its
-selected entity when you create another `RAGfly` client with the same key; pass
-`null` to `setActiveEntity()` to release that focus. A fixed-entity key cannot
-change or release its entity. Only an authenticated human session can issue API
+Workspace focus is stored with the API key on the server. A flexible key keeps its
+selected workspace when you create another `RAGfly` client with the same key; pass
+`null` to `setActiveWorkspace()` to release that focus. A fixed-workspace key cannot
+change or release its workspace. Only an authenticated human session can issue API
 keys; the SDK uses its key for `/v1` calls and does not mint keys.
 
 ### Search
 
 | Method | Defaults | Route | Resolves to |
 |---|---|---|---|
-| `search({ query, limit?, minSimilarity?, entityCode?, spaceId?, locationCode? })` | `limit: 10`, `minSimilarity: 0` | `POST /v1/documents/search` | [`SearchResult`](#models); `locationCode` only narrows this request |
-| `searchFiltered({ query, filter, limit?, minSimilarity?, entityCode?, spaceId?, locationCode? })` | — | `POST /v1/documents/search` | [`SearchResult`](#models); `filter` is an object with `document_types`, `attributes` and `characteristics`. Take its codes from `listDocumentTypes()` and `listCharacteristics()` |
+| `search({ query, limit?, minSimilarity?, workspaceCode?, collectionId?, locationCode? })` | `limit: 10`, `minSimilarity: 0` | `POST /v1/documents/search` | [`SearchResult`](#models); `locationCode` only narrows this request |
+| `searchFiltered({ query, filter, limit?, minSimilarity?, workspaceCode?, collectionId?, locationCode? })` | — | `POST /v1/documents/search` | [`SearchResult`](#models); `filter` is an object with `document_types`, `attributes` and `characteristics`. Take its codes from `listDocumentTypes()` and `listCharacteristics()` |
 
 - Hybrid search: vector and keyword results fused by rank into `rrfScore`. It is
   simple retrieval without reranking, so `rerankScore` comes back `null`.
 - `query` cannot be empty (`400 INVALID_REQUEST`). `limit` (1–100) is the
-  maximum number of documents. `minSimilarity` goes from 0 to 1. `entityCode`
-  searches one of your own entities.
+  maximum number of documents. `minSimilarity` goes from 0 to 1. `workspaceCode`
+  searches one of your own workspaces.
 - With `minSimilarity` above 0, a document comes back only if its best chunk
   reaches that similarity. Keyword-only matches carry no similarity, so they are
   dropped.
@@ -129,24 +129,24 @@ keys; the SDK uses its key for `/v1` calls and does not mint keys.
 - `location` and `fs` say where the original file lives. See
   [REST.md § File locations](REST.md#file-locations-fs).
 
-### Workspaces
+### Collections
 
 | Method | Defaults | Route | Resolves to |
 |---|---|---|---|
-| `listSpaces({ limit? } = {})` | `limit: 20` | `GET /v1/spaces` | `Json`: `spaces`, `total` |
-| `getSpace({ spaceId, documentLimit? })` | `documentLimit: 20` | `GET /v1/spaces/{space_id}` | `Json`: `space`, `documents`, `total_documents` |
-| `refreshSpace({ spaceId })` | — | `POST /v1/spaces/{space_id}/refresh` | `Json`: the space |
-| `promoteSpace({ spaceId })` | — | `POST /v1/spaces/{space_id}/promote` | `Json`: the space |
-| `composeSpaces({ operation, spaceIdA, spaceIdB, name?, spaceType? })` | `name: ""`, `spaceType: "AREA"` | `POST /v1/spaces/compose` | `Json`: the new space |
-| `readSpace({ spaceId, resolution?, query?, limit? })` | `resolution: "manifest"`, `query: ""`, `limit: 50` | `POST /v1/spaces/{space_id}/read` | `Json`: `resolution`, `total`, `items` |
+| `listCollections({ limit? } = {})` | `limit: 20` | `GET /v1/collections` | `Json`: `collections`, `total` |
+| `getCollection({ collectionId, documentLimit? })` | `documentLimit: 20` | `GET /v1/collections/{collection_id}` | `Json`: `collection`, `documents`, `total_documents` |
+| `refreshCollection({ collectionId })` | — | `POST /v1/collections/{collection_id}/refresh` | `Json`: the collection |
+| `saveCollection({ collectionId })` | — | `POST /v1/collections/{collection_id}/save` | `Json`: the collection |
+| `composeCollections({ operation, collectionIdA, collectionIdB, name?, collectionType? })` | `name: ""`, `collectionType: "TEMPORARY"` | `POST /v1/collections/compose` | `Json`: the new collection |
+| `readCollection({ collectionId, resolution?, query?, limit? })` | `resolution: "manifest"`, `query: ""`, `limit: 50` | `POST /v1/collections/{collection_id}/read` | `Json`: `resolution`, `total`, `items` |
 
-`refreshSpace` re-materializes a workspace and `promoteSpace` turns an `AREA`
-into a `SPACE`. In `composeSpaces`, `operation` is `union`, `intersection`,
-`difference` or `symmetric_difference`, and `spaceType` is `AREA` or `SPACE`.
-In `readSpace`, `resolution` is `count`, `manifest`, `chunks` or `text`, and
+`refreshCollection` re-materializes a collection and `saveCollection` turns a `TEMPORARY`
+collection into a `SAVED` one. In `composeCollections`, `operation` is `union`, `intersection`,
+`difference` or `symmetric_difference`, and `collectionType` is `TEMPORARY` or `SAVED`.
+In `readCollection`, `resolution` is `count`, `manifest`, `chunks` or `text`, and
 `chunks` needs a `query`. Other values answer `400 INVALID_REQUEST`. Bounds:
-`limit` 1–200 in `listSpaces`, `documentLimit` 1–200, `limit` 1–500 in
-`readSpace`.
+`limit` 1–200 in `listCollections`, `documentLimit` 1–200, `limit` 1–500 in
+`readCollection`.
 
 ### Queue and runs
 
@@ -164,17 +164,17 @@ In `readSpace`, `resolution` is `count`, `manifest`, `chunks` or `text`, and
 | Method | Defaults | Route | Resolves to |
 |---|---|---|---|
 | `catalog({ type? } = {})` | `type: "ALL"` | `GET /v1/catalog` | `Json`: `functions`, `skills`, `total_functions`, `total_skills` |
-| `listDocumentTypes({ entityCode? } = {})` | — | `GET /v1/catalog/document-types` | `Json`: `document_types` (each with `code`, `name`, `parent_code`), the codes `filter.document_types` takes |
-| `listCharacteristics({ documentTypes?, entityCode? } = {})` | — | `GET /v1/catalog/characteristics` | `Json`: `characteristics` (each with `category_code`, `code`), for those types and their more specific ones |
+| `listDocumentTypes({ workspaceCode? } = {})` | — | `GET /v1/catalog/document-types` | `Json`: `document_types` (each with `code`, `name`, `parent_code`), the codes `filter.document_types` takes |
+| `listCharacteristics({ documentTypes?, workspaceCode? } = {})` | — | `GET /v1/catalog/characteristics` | `Json`: `characteristics` (each with `category_code`, `code`), for those types and their more specific ones |
 | `getFunction({ functionCode })` | — | `GET /v1/functions/{function_code}` | `Json`: `code`, `name`, `alias`, `description`, `summary`, `url`, `documentation`, `behaviors`, `operations` |
 | `listSkills()` | — | `GET /v1/skills` | `Json`: `skills` |
 | `getSkill({ skillCode })` | — | `GET /v1/skills/{skill_code}` | `Json`: the skill |
-| `runSkill({ skillCode, spaceId?, documentCode? })` | — | `POST /v1/skills/{skill_code}/run` | `Json`: the queued run |
+| `runSkill({ skillCode, collectionId?, documentCode? })` | — | `POST /v1/skills/{skill_code}/run` | `Json`: the queued run |
 
 `type` is `ALL`, `FUNCTIONS` or `SKILLS`; any other value is read as `ALL`.
 `listSkills()` returns the same list as the `skills` of `catalog()`.
 `getSkill()` includes the prompt and the model only when the key's role
-administers skills. `runSkill()` needs `spaceId` or `documentCode`
+administers skills. `runSkill()` needs `collectionId` or `documentCode`
 (`400 INVALID_REQUEST` when neither is given).
 
 ### Ask and agent
@@ -201,9 +201,9 @@ administers skills. `runSkill()` needs `spaceId` or `documentCode`
 
 | Method | Defaults | Route | Resolves to |
 |---|---|---|---|
-| `getOrganization({ entityCode? } = {})` | — | `GET /v1/organization` | `Json`: `group`, `entity`, `missing` |
-| `updateOrganization({ groupDescription?, groupSystemPrompt?, entityDescription?, entitySystemPrompt?, entityCode? })` | — | `PUT /v1/organization` | `Json`: `group`, `entity`, `missing`, `applied` |
-| `draftOrganization({ sourceText?, entityCode? } = {})` | `sourceText: ""` | `POST /v1/organization/draft` | `Json`: `generated`, `group`, `entity`, `notice` |
+| `getOrganization({ workspaceCode? } = {})` | — | `GET /v1/organization` | `Json`: `group`, `workspace`, `missing` |
+| `updateOrganization({ groupDescription?, groupSystemPrompt?, workspaceDescription?, workspaceSystemPrompt?, workspaceCode? })` | — | `PUT /v1/organization` | `Json`: `group`, `workspace`, `missing`, `applied` |
+| `draftOrganization({ sourceText?, workspaceCode? } = {})` | `sourceText: ""` | `POST /v1/organization/draft` | `Json`: `generated`, `group`, `workspace`, `notice` |
 
 `updateOrganization()` needs an options object and writes only the fields you
 pass. `draftOrganization()` proposes the texts from your `sourceText` and saves
@@ -352,7 +352,7 @@ interface OperationResult {
 | `Document.fs` | How to open the original file, in `fs.how_to_open` (snake_case, as the API sends it) |
 | `SearchResult.query` | The query you passed, set by the client |
 | `AskResponse.extra` | The other fields of the `/v1/ask` response: `message_id` and `user_message_id` |
-| `AgentContext.identity` | `user_alias`, `group`, `entity`, `area`, `active_area`, `effective_area`, `authorized_area_root`, `area_focus_is_explicit`, `profile`; role identifiers are not exposed |
+| `AgentContext.identity` | `user_alias`, `group`, `workspace`, `area`, `active_area`, `effective_area`, `authorized_area_root`, `area_focus_is_explicit`, `profile`; role identifiers are not exposed |
 | `AgentContext.limits` | `max_iterations`, `max_retrieval_calls`, `timeout_seconds` |
 
 The SDK maps search, ask and agent-context fields to camelCase. The nested JSON
@@ -393,7 +393,7 @@ echoing the request's `X-Request-Id` header, and the SDK does not send one.
 
 | HTTP status | `code` |
 |---|---|
-| 400 | `INVALID_REQUEST`; `INVALID_CONTEXT` when an active entity or `entity_code` is required |
+| 400 | `INVALID_REQUEST`; `INVALID_CONTEXT` when an active workspace or `workspace_code` is required |
 | 401 | `UNAUTHORIZED` |
 | 402 | `QUOTA_EXCEEDED`: the plan quota for the operation is used up |
 | 403 | `FORBIDDEN` |
@@ -423,7 +423,7 @@ echoing the request's `X-Request-Id` header, and the SDK does not send one.
 import { RAGfly } from "@ragfly/sdk";
 
 const client = new RAGfly({ apiKey: process.env.RAGFLY_API_KEY! });
-console.log(await client.session()); // identity and active tenant context
+console.log(await client.session()); // identity and active workspace
 ```
 
 - The key travels as `Authorization: Bearer <apiKey>` on every request.
