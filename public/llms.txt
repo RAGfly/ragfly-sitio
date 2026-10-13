@@ -17,7 +17,7 @@ RAGfly es un servicio de RAG para agentes: apuntas a un directorio de documentos
 - Conexión MCP (SSE): https://api.ragfly.ai/mcp/sse
 - Conexión MCP (HTTP streamable): https://api.ragfly.ai/mcp-http/
 - Autenticación: OAuth 2.1 (recomendado) o `Authorization: Bearer rf_xxxxxxxxxx` (API Key).
-- Emisión: una persona autenticada emite la API key. Alcance: usuario, cuenta, workspace, área y rol; el backend filtra cada llamada.
+- Emisión: una persona autenticada emite la API key. Alcance: usuario, organización, workspace, área y rol; el backend filtra cada llamada.
 - Workspace: una key fija no cambia de workspace; una flexible guarda el foco en el servidor y puede liberarlo con entity_code: null (en la API el workspace se llama `entity`).
 - Operaciones: GET /v1/operations descubre el manifiesto filtrado por RBAC; ese catálogo es distinto de las tools MCP.
 - Swagger interactivo: https://api.ragfly.ai/docs
@@ -25,7 +25,7 @@ RAGfly es un servicio de RAG para agentes: apuntas a un directorio de documentos
 ### Conectores de ingesta
 
 - [Guía de Google Drive](https://ragfly.ai/build/google-drive) y [guía de Dropbox](https://ragfly.ai/build/dropbox): acompañamiento paso a paso para administradores y usuarios.
-- Configurar un conector no es una operación disponible por MCP, CLI, REST ni SDK. Un administrador carga las credenciales de aplicación directamente en Parámetros de Grupo de RAGfly; cada usuario autoriza su cuenta y selecciona una carpeta en el navegador.
+- Configurar un conector no es una operación disponible por MCP, CLI, REST ni SDK. Un administrador carga las credenciales de aplicación directamente en los Parámetros de la organización en RAGfly; cada usuario autoriza su cuenta y selecciona una carpeta en el navegador.
 - Un agente no debe pedir, recibir, almacenar ni repetir secretos de cliente, tokens, contraseñas, cookies ni códigos OAuth. Solo puede orientar y comprobar requisitos no sensibles.
 
 ## Tipos de identidad
