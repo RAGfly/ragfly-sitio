@@ -1,6 +1,6 @@
 {
   "title": "Nutzungsbedingungen",
-  "subtitle": "Zuletzt aktualisiert: 30/08/2026 · Version 1.1",
+  "subtitle": "Zuletzt aktualisiert: 13/10/2026 · Version 1.2",
   "intro": [
     {
       "kind": "p",
@@ -86,7 +86,7 @@
             "**Eigentum.** Sie behalten das Eigentum an Ihren Kundendaten, einschließlich der Originaldokumente und der daraus erzeugten Indizes, Vektoren und abgeleiteten Inhalte. Wir erwerben keine Eigentumsrechte an Ihren Kundendaten.",
             "**Begrenzte Lizenz an uns.** Sie gewähren uns eine begrenzte, nicht ausschließliche, widerrufliche Lizenz zum Hosten, Verarbeiten, Übertragen, Indexieren und Anzeigen Ihrer Kundendaten ausschließlich zur Bereitstellung und Aufrechterhaltung des Dienstes für Sie. Diese Lizenz berechtigt zu keiner anderen Nutzung.",
             "**Keine sekundären Zwecke von RAGfly.** Wir verkaufen Kundendaten nicht und verwenden sie weder für Werbung noch zum Training RAGfly-eigener Modelle. Die Verarbeitung durch Drittmodelle unterliegt den Richtlinien des jeweiligen Anbieters; bei Free werden die aktiven Economy-Anbieter offengelegt und müssen vor der Verarbeitung ausdrücklich akzeptiert werden.",
-            "**Isolierung.** Kundendaten sind strukturell von denen anderer Kunden isoliert. Keine Gruppe, Einheit oder Kunde kann auf die Daten eines anderen zugreifen.",
+            "**Isolierung.** Kundendaten sind strukturell von denen anderer Kunden isoliert. Keine Organisation, kein Workspace und kein Kunde kann auf die Daten eines anderen zugreifen.",
             "**Übertragbarkeit und Rückgabe.** Sie können Ihre Kundendaten jederzeit während der Laufzeit und während der in Abschnitt 12 beschriebenen Nachfrist nach Kündigung exportieren oder deren Rückgabe verlangen.",
             "**Löschung.** Auf Ihre Anfrage oder nach Kündigung und Ablauf der geltenden Nachfrist löschen wir Ihre Kundendaten aus unseren Systemen, außer wenn eine Aufbewahrung gesetzlich vorgeschrieben ist.",
             "**Optionale lokale Verarbeitung.** Bei unterstützten Tarifen verarbeitet RAGfly Desktop die Originaldatei und deren Extraktion in Ihrem Netzwerk. Je nach Bereitstellung können Chunks, Embeddings und Metadaten synchronisiert werden; RAGfly verarbeitet die für den Kontextabruf erforderlichen Chunks."

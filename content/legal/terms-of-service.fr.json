@@ -1,6 +1,6 @@
 {
   "title": "Conditions d'utilisation",
-  "subtitle": "Dernière mise à jour : 30/08/2026 · Version 1.1",
+  "subtitle": "Dernière mise à jour : 13/10/2026 · Version 1.2",
   "intro": [
     {
       "kind": "p",
@@ -86,7 +86,7 @@
             "**Propriété.** Vous conservez la propriété de vos Données du Client, y compris les documents originaux et les index, vecteurs et contenus dérivés générés à partir de ceux-ci. Nous n'acquérons aucun droit de propriété sur vos Données du Client.",
             "**Licence limitée en notre faveur.** Vous nous accordez une licence limitée, non exclusive et révocable pour héberger, traiter, transmettre, indexer et afficher vos Données du Client uniquement afin de vous fournir et de maintenir le Service. Cette licence n'autorise aucun autre usage.",
             "**Aucune finalité secondaire de RAGfly.** Nous ne vendons pas les Données du Client et ne les utilisons ni pour la publicité ni pour entraîner des modèles appartenant à RAGfly. Le traitement par des modèles tiers est soumis aux politiques du fournisseur concerné ; avec Free, les fournisseurs économiques actifs sont publiés et exigent une acceptation explicite avant traitement.",
-            "**Isolement.** Les Données du Client sont structurellement isolées de celles des autres clients. Aucun groupe, entité ou client ne peut accéder aux données d'un autre.",
+            "**Isolement.** Les Données du Client sont structurellement isolées de celles des autres clients. Aucune organisation, aucun workspace ni aucun client ne peut accéder aux données d'un autre.",
             "**Portabilité et restitution.** Vous pouvez exporter ou demander la restitution de vos Données du Client à tout moment pendant la durée du Contrat et pendant le délai de grâce postérieur à la résiliation décrit à la Section 12.",
             "**Suppression.** À votre demande, ou après la résiliation et le délai de grâce applicable, nous supprimerons vos Données du Client de nos systèmes, sauf lorsque la loi en impose la conservation.",
             "**Traitement local optionnel.** Sur les forfaits compatibles, RAGfly Desktop traite le fichier original et son extraction dans votre réseau. Selon le déploiement, des chunks, embeddings et métadonnées peuvent être synchronisés ; RAGfly traite les chunks nécessaires à la récupération du contexte."

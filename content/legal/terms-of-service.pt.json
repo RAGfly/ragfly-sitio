@@ -1,6 +1,6 @@
 {
   "title": "Termos de Serviço",
-  "subtitle": "Última atualização: 30/08/2026 · Versão 1.1",
+  "subtitle": "Última atualização: 13/10/2026 · Versão 1.2",
   "intro": [
     {
       "kind": "p",
@@ -86,7 +86,7 @@
             "**Propriedade.** Você mantém a propriedade dos seus Dados do Cliente, incluindo os documentos originais e os índices, vetores e conteúdos derivados gerados a partir deles. Não adquirimos quaisquer direitos de propriedade sobre seus Dados do Cliente.",
             "**Licença limitada a nosso favor.** Você nos concede uma licença limitada, não exclusiva e revogável para hospedar, processar, transmitir, indexar e exibir seus Dados do Cliente unicamente para prestar e manter o Serviço para você. Esta licença não autoriza nenhum outro uso.",
             "**Sem fins secundários do RAGfly.** Não vendemos os Dados do Cliente nem os usamos para publicidade ou para treinar modelos próprios do RAGfly. O processamento por modelos de terceiros fica sujeito às políticas do provedor aplicável; no Free, os provedores econômicos ativos são divulgados e exigem aceitação explícita antes do processamento.",
-            "**Isolamento.** Os Dados do Cliente são estruturalmente isolados dos de outros clientes. Nenhum grupo, entidade ou cliente pode acessar os dados de outro.",
+            "**Isolamento.** Os Dados do Cliente são estruturalmente isolados dos de outros clientes. Nenhuma organização, workspace ou cliente pode acessar os dados de outro.",
             "**Portabilidade e devolução.** Você pode exportar ou solicitar a devolução dos seus Dados do Cliente a qualquer momento durante a vigência e durante o período de carência posterior ao encerramento descrito na Seção 12.",
             "**Exclusão.** A seu pedido, ou após o encerramento e o período de carência aplicável, excluiremos seus Dados do Cliente dos nossos sistemas, exceto quando a retenção for exigida por lei.",
             "**Processamento local opcional.** Nos planos compatíveis, o RAGfly Desktop processa o arquivo original e sua extração dentro da sua rede. Dependendo da implantação, chunks, embeddings e metadados podem ser sincronizados; o RAGfly processa os chunks necessários para recuperar contexto."

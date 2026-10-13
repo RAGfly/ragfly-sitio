@@ -1,6 +1,6 @@
 {
   "title": "Terms of Service",
-  "subtitle": "Last updated: 30/08/2026 · Version 1.1",
+  "subtitle": "Last updated: 13/10/2026 · Version 1.2",
   "intro": [
     {
       "kind": "p",
@@ -86,7 +86,7 @@
             "**Ownership.** You retain ownership of your Customer Data, including original documents and the indexes, vectors, and derived content generated from them. We acquire no ownership rights in your Customer Data.",
             "**Limited license to us.** You grant us a limited, non-exclusive, revocable license to host, process, transmit, index, and display your Customer Data solely to provide and maintain the Service for you. This license authorizes no other use.",
             "**No RAGfly secondary purposes.** We do not sell Customer Data or use it for advertising or to train RAGfly-owned models. Processing by third-party models is subject to the applicable provider's policies; on Free, the active economy providers are disclosed and require explicit acceptance before content is processed.",
-            "**Isolation.** Customer Data is structurally isolated from that of other customers. No group, entity, or customer can access another's data.",
+            "**Isolation.** Customer Data is structurally isolated from that of other customers. No organization, workspace, or customer can access another's data.",
             "**Portability and return.** You may export or request the return of your Customer Data at any time during the term and during the post-termination grace period described in Section 12.",
             "**Deletion.** Upon your request, or after termination and the applicable grace period, we will delete your Customer Data from our systems, except where retention is required by law.",
             "**Optional local processing.** On supported plans, RAGfly Desktop processes the original file and its extraction within your network. Depending on the deployment, chunks, embeddings, and metadata may be synchronized; RAGfly processes the chunks required to retrieve context."
