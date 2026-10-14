@@ -3,32 +3,21 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { BotonEmpezar } from '../../../components/apertura/BotonEmpezar'
-import {
-  COMUN,
-  FAQ,
-  PAGINAS,
-  PENDIENTES,
-  PROVEEDORES,
-  PUBLICADA,
-  URL_APP,
-  URL_GUIA_MCP,
-  type Dolor,
-} from '../../../content/apertura'
+import { COMUN, PAGINAS, PUBLICADA, URL_APP, URL_GUIA_MCP, type Dolor } from '../../../content/apertura'
 
 /* ------------------------------------------------------------------ */
 /* /start/[dolor] — páginas de destino de la apertura controlada        */
 /*                                                                     */
 /* Una por dolor (plan v2.5 §5.1): /start/context y /start/memory.      */
-/* Bloques del doc de piezas: 1 título = gancho del aviso · 2 eslogan   */
-/* literal · 3 video 1 · 4 cómo empieza · 5 con qué funciona ·          */
-/* 6 workspaces · 7 línea de Free y planes pagados · 8 cierre + FAQ.    */
+/* Versión B (Víctor, 14-oct): 1 gancho + eslogan literal · 2 video 1 · */
+/* 3 bajada · 4 cómo empieza · 5 con qué funciona · 6 workspaces ·      */
+/* 7 privado · 8 cierre. Sin FAQ, sin precios y sin cifras.             */
 /*                                                                     */
 /* Solo inglés: no usa next-intl. Sin índice en buscadores: son destino */
 /* de campaña, no páginas del sitio.                                    */
 /* ------------------------------------------------------------------ */
 
 const ES_PRODUCCION = process.env.VERCEL_ENV === 'production'
-const MOSTRAR_PENDIENTES = !ES_PRODUCCION
 
 export const dynamicParams = false
 
@@ -49,17 +38,20 @@ export async function generateMetadata({ params }: { params: Promise<{ dolor: st
   }
 }
 
-function Pendiente({ clave }: { clave: keyof typeof PENDIENTES }) {
-  if (!MOSTRAR_PENDIENTES) return null
-  return (
-    <span className="mt-2 inline-block rounded border border-dashed border-slm-ambar bg-slm-ambar/10 px-2 py-0.5 font-[family-name:var(--font-interfaz)] text-xs text-[#7A4E0E]">
-      {PENDIENTES[clave]}
-    </span>
-  )
-}
-
 function Etiqueta({ children }: { children: React.ReactNode }) {
   return <span className="rf-anot text-slm-brand">{children}</span>
+}
+
+function Etiquetas({ items }: { items: string[] }) {
+  return (
+    <div className="flex flex-wrap gap-2">
+      {items.map((s) => (
+        <span key={s} className="rounded border border-slm-brand-light px-3 py-1.5 font-[family-name:var(--font-dato)] text-xs tracking-[0.04em]">
+          {s}
+        </span>
+      ))}
+    </div>
+  )
 }
 
 export default async function PaginaDolor({
@@ -81,6 +73,7 @@ export default async function PaginaDolor({
 
   const titulo2 = 'text-slm-dark text-2xl md:text-[30px] font-helvetica-neue font-medium leading-tight tracking-[-0.02em] text-balance'
   const bloque = 'px-6 md:px-12 py-12 md:py-14 border-t border-slm-brand-light'
+  const texto = 'font-helvetica-neue text-base md:text-lg leading-relaxed text-slm-gray'
 
   return (
     <div lang="en" className="min-h-screen bg-white text-slm-dark">
@@ -100,7 +93,7 @@ export default async function PaginaDolor({
       </header>
 
       <main>
-        {/* 1–2 · Gancho del aviso + eslogan literal */}
+        {/* 1 · Gancho del aviso + eslogan literal */}
         <section className="px-6 md:px-12 pt-8 pb-8 md:pt-14">
           <div className="mx-auto flex max-w-[760px] flex-col gap-5">
             <Etiqueta>RAG service for agents</Etiqueta>
@@ -114,7 +107,7 @@ export default async function PaginaDolor({
           </div>
         </section>
 
-        {/* 3 · Video 1 del dolor */}
+        {/* 2 · Video 1 del dolor */}
         <section className="px-6 md:px-12 pb-6">
           <div className="mx-auto max-w-[980px]">
             {p.video.src ? (
@@ -130,7 +123,7 @@ export default async function PaginaDolor({
             ) : (
               <div
                 role="img"
-                aria-label={`Video ${p.video.id}, pending recording`}
+                aria-label="Product video"
                 className="grid aspect-video w-full max-w-full place-items-center rounded-md bg-slm-cabina px-6 text-center text-slm-light"
               >
                 <div className="flex max-w-[30ch] flex-col items-center gap-4">
@@ -138,15 +131,13 @@ export default async function PaginaDolor({
                     <svg width="20" height="22" viewBox="0 0 20 22" aria-hidden="true"><path d="M2 1 L19 11 L2 21 Z" fill="#55B2E4" /></svg>
                   </span>
                   <p className="font-helvetica-neue text-lg md:text-2xl font-medium leading-snug text-balance">{p.video.apertura}</p>
-                  <span className="font-[family-name:var(--font-dato)] text-xs uppercase tracking-[0.06em] text-[#55B2E4]">
-                    Video {p.video.id} · {p.video.duracion}
-                  </span>
                 </div>
               </div>
             )}
-            {!p.video.src && <Pendiente clave="video1" />}
           </div>
         </section>
+
+        {/* 3 · Bajada del dolor */}
         <section className="px-6 md:px-12 pb-12">
           <p className="mx-auto max-w-[760px] font-helvetica-neue text-lg md:text-xl leading-relaxed">{p.bajada}</p>
         </section>
@@ -155,26 +146,19 @@ export default async function PaginaDolor({
         <section id="start" className={bloque}>
           <div className="mx-auto flex max-w-[760px] flex-col gap-5">
             <Etiqueta>How it starts</Etiqueta>
-            <h2 className={titulo2}>Three steps, and your agent does the third.</h2>
+            <h2 className={titulo2}>{COMUN.pasosTitulo}</h2>
             <ol className="flex flex-col gap-4">
               {COMUN.pasos.map((paso, i) => (
-                <li key={paso.texto} className="grid grid-cols-[40px_1fr] items-baseline gap-3">
+                <li key={paso} className="grid grid-cols-[40px_1fr] items-baseline gap-3">
                   <span className="grid h-8 w-8 place-items-center rounded-full border border-slm-brand-light font-[family-name:var(--font-dato)] text-sm text-slm-brand">
                     {i + 1}
                   </span>
-                  <div className="min-w-0 font-helvetica-neue text-base md:text-lg">
-                    {paso.texto}
-                    {paso.nota && <span className="block text-base text-slm-gray">{paso.nota}</span>}
-                    {i === 2 && (
-                      <span className="block text-base text-slm-gray">
-                        <Link href={URL_GUIA_MCP} className="text-slm-brand underline underline-offset-2">Connection guide</Link>
-                      </span>
-                    )}
-                    {i === 2 && <Pendiente clave="video2" />}
-                  </div>
+                  <span className="min-w-0 font-helvetica-neue text-base md:text-lg">{paso}</span>
                 </li>
               ))}
             </ol>
+            <p className="font-helvetica-neue text-base md:text-lg">{COMUN.despuesPasos}</p>
+            <p className="font-helvetica-neue text-base text-slm-gray">{COMUN.recomendado}</p>
           </div>
         </section>
 
@@ -183,14 +167,8 @@ export default async function PaginaDolor({
           <div className="mx-auto flex max-w-[760px] flex-col gap-4">
             <Etiqueta>Works with</Etiqueta>
             <h2 className={titulo2}>{COMUN.conQueFunciona}</h2>
-            <p className="font-helvetica-neue text-base md:text-lg text-slm-gray">{COMUN.interfaces}</p>
-            <div className="flex flex-wrap gap-2">
-              {['MCP', 'REST', 'SDK', 'CLI'].map((s) => (
-                <span key={s} className="rounded border border-slm-brand-light px-3 py-1.5 font-[family-name:var(--font-dato)] text-xs tracking-[0.04em]">
-                  {s}
-                </span>
-              ))}
-            </div>
+            <p className={texto}>{COMUN.interfaces}</p>
+            <Etiquetas items={['MCP', 'REST', 'SDK', 'CLI']} />
           </div>
         </section>
 
@@ -198,77 +176,33 @@ export default async function PaginaDolor({
         <section className={bloque}>
           <div className="mx-auto flex max-w-[760px] flex-col gap-4">
             <Etiqueta>Workspaces</Etiqueta>
-            <h2 className={titulo2}>You draw the line. Nothing crosses it.</h2>
-            <p className="font-helvetica-neue text-base md:text-lg leading-relaxed text-slm-gray">{COMUN.workspace}</p>
+            <h2 className={titulo2}>{COMUN.workspaceTitulo}</h2>
+            <p className={texto}>{COMUN.workspace}</p>
+            <p className="font-helvetica-neue text-lg md:text-xl font-medium leading-snug">{COMUN.granular}</p>
+            <Etiquetas items={['Area', 'Role', 'Agent']} />
           </div>
         </section>
 
-        {/* 7 · Free y planes pagados — visible sin clic, antes del consentimiento */}
-        <section id="free" className={bloque}>
+        {/* 7 · Privado (fondo suave) */}
+        <section className={`${bloque} bg-slm-light`}>
           <div className="mx-auto flex max-w-[760px] flex-col gap-4">
-            <Etiqueta>Free and paid plans</Etiqueta>
-            <h2 className={titulo2}>Know who processes your documents before you upload them.</h2>
-            <div className="border-l-[3px] border-slm-ambar bg-slm-ambar/10 px-5 py-4">
-              <p className="font-helvetica-neue text-base md:text-lg leading-relaxed">
-                <strong className="block font-medium">{COMUN.freeTitulo}</strong>
-                {COMUN.freeTexto}
-              </p>
-            </div>
-            <Pendiente clave="proveedores" />
-          </div>
-        </section>
-
-        {/* FAQ — acordeón nativo, mismo patrón que CierreSection */}
-        <section id="faq" className={bloque}>
-          <div className="mx-auto flex max-w-[760px] flex-col gap-4">
-            <Etiqueta>FAQ</Etiqueta>
-            <h2 className={titulo2}>Free and providers</h2>
-            <div>
-              {FAQ.map((item) => (
-                <details key={item.q} className="group border-b border-slm-brand-light">
-                  <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-4 font-helvetica-neue text-base md:text-lg font-medium">
-                    <span>{item.q}</span>
-                    <span className="flex-none text-xl leading-none text-slm-brand group-open:hidden" aria-hidden="true">+</span>
-                    <span className="hidden flex-none text-xl leading-none text-slm-brand group-open:inline" aria-hidden="true">−</span>
-                  </summary>
-                  <div className="pb-5">
-                    <p className="font-helvetica-neue text-base leading-relaxed text-slm-gray">{item.a}</p>
-                    {item.pendiente && <Pendiente clave={item.pendiente} />}
-                  </div>
-                </details>
-              ))}
-            </div>
-
-            {/* Proveedores por clase — al final de la FAQ, no en las respuestas */}
-            <div id="providers" className="mt-4 flex flex-col gap-4">
-              <h3 className="font-helvetica-neue text-lg font-medium">Providers</h3>
-              <dl className="grid gap-4 sm:grid-cols-2">
-                {[PROVEEDORES.claseA, PROVEEDORES.claseB].map((c) => (
-                  <div key={c.titulo} className="min-w-0 rounded-md border border-slm-brand-light p-4">
-                    <dt className="font-helvetica-neue text-base font-medium">{c.titulo}</dt>
-                    <dd className="mt-1 font-[family-name:var(--font-dato)] text-xs uppercase tracking-[0.06em] text-slm-brand">{c.uso}</dd>
-                    <dd className="mt-2 font-helvetica-neue text-base text-slm-gray">{c.nombres.join(' · ')}</dd>
-                  </div>
-                ))}
-              </dl>
-              <p className="font-helvetica-neue text-sm text-slm-gray">{PROVEEDORES.nota}</p>
-              <Pendiente clave="proveedores" />
-            </div>
+            <Etiqueta>Private</Etiqueta>
+            <h2 className="max-w-[26ch] font-helvetica-neue text-2xl md:text-4xl font-medium leading-tight tracking-[-0.02em] text-balance">
+              {COMUN.privadoTitulo}
+            </h2>
+            <p className="font-helvetica-neue text-base md:text-lg leading-relaxed">{COMUN.privado}</p>
           </div>
         </section>
 
         {/* 8 · Cierre */}
         <section className={bloque}>
-          <div className="mx-auto flex max-w-[760px] flex-wrap items-center gap-3">
+          <div className="mx-auto max-w-[760px]">
             <BotonEmpezar
               destino={URL_APP}
-              className="rf-boton rounded-full bg-slm-dark px-7 py-3.5 text-base font-medium text-slm-light hover:opacity-90"
+              className="rf-boton inline-block rounded-full bg-slm-dark px-7 py-3.5 text-base font-medium text-slm-light hover:opacity-90"
             >
               Start free
             </BotonEmpezar>
-            <a href="#faq" className="rf-boton rounded-full border border-slm-dark px-7 py-3.5 text-base font-medium text-slm-dark hover:bg-slm-light">
-              Read the FAQ
-            </a>
           </div>
         </section>
       </main>
