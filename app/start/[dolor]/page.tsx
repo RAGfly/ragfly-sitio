@@ -251,6 +251,7 @@ export default async function PaginaDolor({
                   </div>
                 ))}
               </dl>
+              <p className="font-helvetica-neue text-sm text-slm-gray">{PROVEEDORES.nota}</p>
               <Pendiente clave="proveedores" />
             </div>
           </div>

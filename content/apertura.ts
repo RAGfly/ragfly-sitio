@@ -20,7 +20,7 @@ export const PUBLICADA = false
 /** Notas de revisión: se muestran fuera de producción, junto al texto afectado. */
 export const PENDIENTES = {
   proveedores:
-    'Validate both provider lists (Class A and Class B) against PROD on publishing day. Cohere appears in both: confirm.',
+    'Validate both provider lists (Class A and Class B) against PROD on publishing day.',
   precioStarter: 'Confirm the Starter price in PROD on publishing day.',
   video1: 'Video 1 pending: record only with the onboarding probe green.',
   video2: 'Video 2 pending: clean take with Claude and Codex, case 382049 closed.',
@@ -150,8 +150,14 @@ export const FAQ: PreguntaFaq[] = [
  * Clase A: cláusula de no entrenamiento conocida; todos los planes pagados.
  * Clase B: cláusula no verificada; solo Free (carril B).
  * Validar ambas listas contra la BD de PROD el día de publicar.
+ *
+ * Solo se listan proveedores cuyos modelos tocan el documento del cliente.
+ * Los que se usan en tareas que no lo tocan (p. ej. JEV, Clase A) no van.
+ * Cohere está en las dos clases a propósito: cada tarea usa dos modelos
+ * por respaldo, y para ranking no hay cuatro modelos buenos.
  */
 export const PROVEEDORES = {
+  nota: 'These lists name only the providers whose models touch your documents. A provider can appear in both: each step runs two models, one as backup.',
   claseA: {
     titulo: 'Class A — no-training clause in their terms',
     uso: 'Paid plans',
