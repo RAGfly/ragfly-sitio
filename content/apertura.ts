@@ -20,11 +20,7 @@ export const PUBLICADA = false
 /** Notas de revisión: se muestran fuera de producción, junto al texto afectado. */
 export const PENDIENTES = {
   proveedores:
-    'Validate the provider list (lane B) against PROD on publishing day.',
-  queVeCadaProveedor:
-    'Product to confirm in PROD which provider sees which part (extracted text, chunks, embeddings or queries).',
-  entrenamiento:
-    'Product to confirm what can be said about training on the high-privacy lane (🔴 #7). Hold this answer until then.',
+    'Validate both provider lists (Class A and Class B) against PROD on publishing day. Cohere appears in both: confirm.',
   precioStarter: 'Confirm the Starter price in PROD on publishing day.',
   video1: 'Video 1 pending: record only with the onboarding probe green.',
   video2: 'Video 2 pending: clean take with Claude and Codex, case 382049 closed.',
@@ -128,8 +124,7 @@ export type PreguntaFaq = {
 export const FAQ: PreguntaFaq[] = [
   {
     q: 'Who processes my documents on Free?',
-    a: 'On Free, documents are processed on our economy lane. Today that lane uses Alibaba, DeepSeek, Zhipu, Cohere, Jina and Voyage. Each provider handles a specific step.',
-    pendiente: 'queVeCadaProveedor',
+    a: 'On Free, documents are processed on our economy lane, by Class B providers. From Starter, processing moves to our high-privacy lane, with Class A providers only. The current lists are at the end of this FAQ.',
   },
   {
     q: 'Why do I have to accept providers before my first upload?',
@@ -137,8 +132,7 @@ export const FAQ: PreguntaFaq[] = [
   },
   {
     q: 'Do these providers train on my documents?',
-    a: "RAGfly doesn't use your documents to train models of its own. On Free, each provider's own policy applies, and we link to it next to its name.",
-    pendiente: 'entrenamiento',
+    a: "RAGfly doesn't use your documents to train models of its own. On paid plans, every model that touches your documents comes from a Class A provider: its terms include a no-training clause. On Free, providers are Class B: we haven't verified that clause, so each provider's own policy applies. That's why Free is for trying RAGfly, not for sensitive documents.",
   },
   {
     q: 'What changes when I upgrade?',
@@ -150,6 +144,25 @@ export const FAQ: PreguntaFaq[] = [
     a: 'We never store your document in the cloud. And if you want, the document never leaves your network. In the cloud, the original is processed and not kept; what persists are encrypted derivatives such as chunks, embeddings and metadata. With RAGfly Desktop, the original is processed inside your network.',
   },
 ]
+
+/*
+ * Proveedores por clase (Víctor, 14-oct), al final de la FAQ.
+ * Clase A: cláusula de no entrenamiento conocida; todos los planes pagados.
+ * Clase B: cláusula no verificada; solo Free (carril B).
+ * Validar ambas listas contra la BD de PROD el día de publicar.
+ */
+export const PROVEEDORES = {
+  claseA: {
+    titulo: 'Class A — no-training clause in their terms',
+    uso: 'Paid plans',
+    nombres: ['Anthropic', 'OpenAI', 'Google', 'Cohere'],
+  },
+  claseB: {
+    titulo: 'Class B — no-training clause not verified',
+    uso: 'Free',
+    nombres: ['Alibaba', 'DeepSeek', 'Zhipu', 'Cohere', 'Jina', 'Voyage'],
+  },
+} as const
 
 export const URL_APP = 'https://app.ragfly.ai'
 export const URL_GUIA_MCP = '/build/mcp'

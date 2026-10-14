@@ -8,6 +8,7 @@ import {
   FAQ,
   PAGINAS,
   PENDIENTES,
+  PROVEEDORES,
   PUBLICADA,
   URL_APP,
   URL_GUIA_MCP,
@@ -236,6 +237,21 @@ export default async function PaginaDolor({
                   </div>
                 </details>
               ))}
+            </div>
+
+            {/* Proveedores por clase — al final de la FAQ, no en las respuestas */}
+            <div id="providers" className="mt-4 flex flex-col gap-4">
+              <h3 className="font-helvetica-neue text-lg font-medium">Providers</h3>
+              <dl className="grid gap-4 sm:grid-cols-2">
+                {[PROVEEDORES.claseA, PROVEEDORES.claseB].map((c) => (
+                  <div key={c.titulo} className="min-w-0 rounded-md border border-slm-brand-light p-4">
+                    <dt className="font-helvetica-neue text-base font-medium">{c.titulo}</dt>
+                    <dd className="mt-1 font-[family-name:var(--font-dato)] text-xs uppercase tracking-[0.06em] text-slm-brand">{c.uso}</dd>
+                    <dd className="mt-2 font-helvetica-neue text-base text-slm-gray">{c.nombres.join(' · ')}</dd>
+                  </div>
+                ))}
+              </dl>
+              <Pendiente clave="proveedores" />
             </div>
           </div>
         </section>
