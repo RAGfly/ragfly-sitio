@@ -61,11 +61,22 @@ function Etiqueta({ children }: { children: React.ReactNode }) {
   return <span className="rf-anot text-slm-brand">{children}</span>
 }
 
-export default async function PaginaDolor({ params }: { params: Promise<{ dolor: string }> }) {
+export default async function PaginaDolor({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ dolor: string }>
+  searchParams: Promise<{ h?: string | string[] }>
+}) {
   const { dolor } = await params
   const p = PAGINAS[dolor as Dolor]
   if (!p) notFound()
   if (!PUBLICADA && ES_PRODUCCION) notFound()
+
+  // Título = gancho del aviso por el que llegó (?h=c1); por defecto, el vigente.
+  const { h } = await searchParams
+  const clave = (Array.isArray(h) ? h[0] : h)?.toLowerCase() ?? ''
+  const gancho = p.ganchosAlternos[clave] ?? p.gancho
 
   const titulo2 = 'text-slm-dark text-2xl md:text-[30px] font-helvetica-neue font-medium leading-tight tracking-[-0.02em] text-balance'
   const bloque = 'px-6 md:px-12 py-12 md:py-14 border-t border-slm-brand-light'
@@ -93,7 +104,7 @@ export default async function PaginaDolor({ params }: { params: Promise<{ dolor:
           <div className="mx-auto flex max-w-[760px] flex-col gap-5">
             <Etiqueta>RAG service for agents</Etiqueta>
             <h1 className="font-helvetica-neue text-4xl md:text-6xl font-medium leading-[1.06] tracking-[-0.035em] text-balance">
-              {p.gancho}
+              {gancho}
             </h1>
             <div className="flex flex-col gap-1">
               <p className="font-helvetica-neue text-lg md:text-xl font-medium">{COMUN.eslogan}</p>

@@ -36,6 +36,12 @@ export type PaginaDolor = {
   /** Gancho del aviso: el mismo título que la persona vio en Reddit. */
   gancho: string
   idGancho: string
+  /**
+   * Ganchos del par de Reddit Ads que llegan a esta misma página
+   * (?h=c1). Dentro de un par solo cambia el título (plan §6), así que la
+   * página repite el título del aviso por el que entró la persona.
+   */
+  ganchosAlternos: Record<string, string>
   /** Bajada vigente del dolor (MENSAJE-CANONICO §7.3). */
   bajada: string
   video: {
@@ -54,6 +60,7 @@ export const PAGINAS: Record<Dolor, PaginaDolor> = {
   context: {
     gancho: 'Is your second brain burning too many tokens?',
     idGancho: 'C4',
+    ganchosAlternos: { c1: 'Still pasting the same files into every new session?' },
     bajada:
       "Your agent doesn't need to load everything. It asks for what the task needs, with the source.",
     video: {
@@ -68,6 +75,7 @@ export const PAGINAS: Record<Dolor, PaginaDolor> = {
   memory: {
     gancho: 'When your second brain outgrows its links.',
     idGancho: 'M4',
+    ganchosAlternos: { m1: 'Every new session, your agent starts from zero.' },
     bajada:
       'A memory your agent queries, not a file that grows out of control. One workspace for each part of your life.',
     video: {
