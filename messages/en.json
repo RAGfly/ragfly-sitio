@@ -256,9 +256,7 @@
     "subGROWTH": "For teams needing control and operations",
     "subSCALE": "For production at scale",
     "subENTERPRISE": "Sovereignty and custom terms",
-    "anotacion": "PRICES & QUOTAS · USD/MONTH · LIVE SOURCE",
-    "limiteWorkspaces": "Workspaces",
-    "limiteCollections": "Collections"
+    "anotacion": "PRICES & QUOTAS · USD/MONTH · LIVE SOURCE"
   },
   "porQue": {
     "eyebrow": "Why RAGfly",

@@ -257,9 +257,7 @@
     "subGROWTH": "Para equipos con control y operaciones",
     "subSCALE": "Para producción a escala",
     "subENTERPRISE": "Soberanía y condiciones a medida",
-    "anotacion": "PRECIOS Y CUPOS · USD/MES · FUENTE VIVA",
-    "limiteWorkspaces": "Workspaces",
-    "limiteCollections": "Collections"
+    "anotacion": "PRECIOS Y CUPOS · USD/MES · FUENTE VIVA"
   },
   "porQue": {
     "eyebrow": "Por qué RAGfly",

@@ -3,6 +3,7 @@ import { Inter, Zalando_Sans_Expanded, Montserrat_Alternates } from "next/font/g
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages, getTranslations } from "next-intl/server";
 import "./globals.css";
+import { cargarCatalogo, resumenPlanEs, type Catalogo } from "../lib/catalogo-planes";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -60,14 +61,18 @@ export async function generateMetadata(): Promise<Metadata> {
 
 // JSON-LD: señales estructuradas para agentes y buscadores de IA.
 // Mantener en español (mercado primario); los agentes lo parsean igual.
-// Precios/cupos visibles = GET /pagos/catalogo-publico (BD); este JSON-LD es
-// un snapshot semántico que debe acompañar la oferta canónica PROD_08.
+// Precios y cupos = GET /pagos/catalogo-publico (BD), vía lib/catalogo-planes.ts:
+// las ofertas del JSON-LD se arman del catálogo vivo, no se escriben a mano.
 // FAQ: fuente única en comercial/comercial-operativo/RAGfly_FAQ.md (bloque A).
 // Vive en i18n (namespace `faq`, claves q0/a0…qN/aN + `total`) en los 5 idiomas,
 // para que el FAQPage estructurado hable el mismo idioma que la página.
 type FaqEntry = { q: string; a: string };
 
-const buildJsonLd = (faq: FaqEntry[]) => ({
+const buildJsonLd = (faq: FaqEntry[], catalogo: Catalogo) => {
+  const precios = catalogo.planes
+    .map((plan) => plan.precio_mensual_usd)
+    .filter((precio): precio is number => precio != null);
+  return ({
   "@context": "https://schema.org",
   "@graph": [
     {
@@ -98,22 +103,21 @@ const buildJsonLd = (faq: FaqEntry[]) => ({
       offers: {
         "@type": "AggregateOffer",
         priceCurrency: "USD",
-        lowPrice: "0",
-        highPrice: "590",
-        offerCount: "5",
+        lowPrice: String(Math.min(...precios)),
+        highPrice: String(Math.max(...precios)),
+        offerCount: String(catalogo.planes.length),
       },
     },
     {
       "@type": "OfferCatalog",
       "@id": "https://ragfly.ai/#planes",
       name: "Planes de RAGfly",
-      itemListElement: [
-        { "@type": "Offer", name: "Free", price: "0", priceCurrency: "USD", url: "https://ragfly.ai/#planes", description: "Free permanente — corpus activo 1.000 páginas, 1.500 Retrieval simple, 30 RAG Aumentado y 5 RAG Agéntico por mes." },
-        { "@type": "Offer", name: "Starter", price: "39", priceCurrency: "USD", url: "https://ragfly.ai/#planes", description: "Corpus activo 10.000 páginas, 5.000 Retrieval simple, 300 RAG Aumentado y 50 RAG Agéntico por mes." },
-        { "@type": "Offer", name: "Growth", price: "149", priceCurrency: "USD", url: "https://ragfly.ai/#planes", description: "Corpus activo 50.000 páginas, 25.000 Retrieval simple, 1.500 RAG Aumentado y 150 RAG Agéntico por mes." },
-        { "@type": "Offer", name: "Scale", price: "590", priceCurrency: "USD", url: "https://ragfly.ai/#planes", description: "Corpus activo 250.000 páginas, 100.000 Retrieval simple, 5.000 RAG Aumentado y 500 RAG Agéntico por mes." },
-        { "@type": "Offer", name: "Enterprise / Soberano", url: "https://ragfly.ai/#planes", description: "Plan a medida con DPA/SLA y despliegue dedicado si aplica." },
-      ],
+      itemListElement: catalogo.planes.map((plan) => {
+        const resumen = resumenPlanEs(catalogo, plan.codigo_plan);
+        return plan.precio_mensual_usd == null || resumen == null
+          ? { "@type": "Offer", name: plan.nombre, url: "https://ragfly.ai/#planes", description: "Plan a medida con DPA/SLA y despliegue dedicado si aplica." }
+          : { "@type": "Offer", name: plan.nombre, price: String(plan.precio_mensual_usd), priceCurrency: "USD", url: "https://ragfly.ai/#planes", description: `${plan.descripcion ? plan.descripcion + " " : ""}Cupos: ${resumen}.` };
+      }),
     },
     {
       "@type": "FAQPage",
@@ -125,7 +129,8 @@ const buildJsonLd = (faq: FaqEntry[]) => ({
       })),
     },
   ],
-});
+  });
+};
 
 export default async function RootLayout({
   children,
@@ -140,6 +145,7 @@ export default async function RootLayout({
       q: tFaq(`q${i}` as Parameters<typeof tFaq>[0]),
       a: tFaq(`a${i}` as Parameters<typeof tFaq>[0]),
     })),
+    await cargarCatalogo("es"),
   );
 
   return (

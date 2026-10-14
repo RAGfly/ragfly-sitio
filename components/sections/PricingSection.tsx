@@ -1,87 +1,6 @@
 import { getLocale, getTranslations } from 'next-intl/server'
 import { BlurIn } from './shared'
-
-type Valor = { cantidad_incluida: number | null; incluido: boolean | null }
-type Caracteristica = {
-  codigo_caracteristica: string
-  nombre: string
-  tipo_caracteristica: string
-  unidad: string | null
-  unidades_pack?: number | null
-  precio_pack_usd?: number | null
-  unidades_adicional_recurrente?: number | null
-  precio_adicional_recurrente_usd?: number | null
-}
-type Catalogo = {
-  planes: Array<{
-    codigo_plan: string
-    nombre: string
-    precio_mensual_usd: number | null
-    descripcion: string | null
-  }>
-  caracteristicas: Caracteristica[]
-  valores: Record<string, Record<string, Valor>>
-}
-
-const PRINCIPALES = ['CORPUS_ACTIVO', 'RETRIEVALS', 'RECUP_INTELIGENTE', 'RAG_AGENTICO']
-const SECUNDARIOS = ['ENTIDADES', 'AREAS', 'ESPACIOS_TRABAJO', 'SINTESIS', 'ASISTENCIAS']
-
-const FALLBACK: Catalogo = {
-  planes: [
-    { codigo_plan: 'FREE', nombre: 'Free', precio_mensual_usd: 0, descripcion: null },
-    { codigo_plan: 'STARTER', nombre: 'Starter', precio_mensual_usd: 39, descripcion: null },
-    { codigo_plan: 'GROWTH', nombre: 'Growth', precio_mensual_usd: 149, descripcion: null },
-    { codigo_plan: 'SCALE', nombre: 'Scale', precio_mensual_usd: 590, descripcion: null },
-    { codigo_plan: 'ENTERPRISE', nombre: 'Enterprise', precio_mensual_usd: null, descripcion: null },
-  ],
-  caracteristicas: [
-    { codigo_caracteristica: 'CORPUS_ACTIVO', nombre: 'Corpus activo', tipo_caracteristica: 'CUPO', unidad: 'páginas', unidades_adicional_recurrente: 10000, precio_adicional_recurrente_usd: 10 },
-    { codigo_caracteristica: 'RETRIEVALS', nombre: 'Retrieval simple', tipo_caracteristica: 'CUPO', unidad: 'retrievals' },
-    { codigo_caracteristica: 'RECUP_INTELIGENTE', nombre: 'RAG Aumentado', tipo_caracteristica: 'CUPO', unidad: 'consultas', unidades_pack: 500, precio_pack_usd: 35 },
-    { codigo_caracteristica: 'RAG_AGENTICO', nombre: 'RAG Agéntico', tipo_caracteristica: 'CUPO', unidad: 'operaciones', unidades_pack: 50, precio_pack_usd: 59 },
-    { codigo_caracteristica: 'ENTIDADES', nombre: 'Workspaces', tipo_caracteristica: 'CUPO', unidad: null },
-    { codigo_caracteristica: 'AREAS', nombre: 'Áreas', tipo_caracteristica: 'CUPO', unidad: null },
-    { codigo_caracteristica: 'ESPACIOS_TRABAJO', nombre: 'Collections', tipo_caracteristica: 'CUPO', unidad: null },
-    { codigo_caracteristica: 'SINTESIS', nombre: 'Síntesis', tipo_caracteristica: 'CUPO', unidad: 'páginas' },
-    { codigo_caracteristica: 'ASISTENCIAS', nombre: 'Asistencias', tipo_caracteristica: 'CUPO', unidad: null },
-  ],
-  valores: Object.fromEntries([
-    ['FREE', [1000, 1500, 30, 5, 2, 4, 5, 1500, 10]],
-    ['STARTER', [10000, 5000, 300, 50, 5, 12, 10, 10000, 30]],
-    ['GROWTH', [50000, 25000, 1500, 150, 25, 50, 50, 50000, 100]],
-    ['SCALE', [250000, 100000, 5000, 500, 150, 200, 200, 200000, 250]],
-    ['ENTERPRISE', [null, null, null, null, null, null, null, null, null]],
-  ].map(([codigo, cantidades]) => [
-    codigo,
-    Object.fromEntries([...PRINCIPALES, ...SECUNDARIOS].map((car, i) => [
-      car, { cantidad_incluida: (cantidades as Array<number | null>)[i], incluido: null },
-    ])),
-  ])),
-}
-
-function numero(valor: number, locale: string) {
-  return new Intl.NumberFormat(locale).format(valor)
-}
-
-function usd(valor: number, locale: string) {
-  return new Intl.NumberFormat(locale, {
-    style: 'currency', currency: 'USD', maximumFractionDigits: 0,
-  }).format(valor)
-}
-
-async function cargarCatalogo(locale: string): Promise<Catalogo> {
-  const base = process.env.RAGFLY_API_URL || 'https://api.ragfly.ai'
-  try {
-    const respuesta = await fetch(
-      `${base}/pagos/catalogo-publico?locale=${encodeURIComponent(locale)}`,
-      { next: { revalidate: 300 } },
-    )
-    if (!respuesta.ok) return FALLBACK
-    return await respuesta.json() as Catalogo
-  } catch {
-    return FALLBACK
-  }
-}
+import { cargarCatalogo, numero, PRINCIPALES, SECUNDARIOS, usd } from '../../lib/catalogo-planes'
 
 export async function PricingSection() {
   const locale = await getLocale()
@@ -112,11 +31,7 @@ export async function PricingSection() {
             const featured = plan.codigo_plan === 'GROWTH'
             const secundarios = SECUNDARIOS.map((codigo) => {
               const cantidad = valores[codigo]?.cantidad_incluida
-              const nombre = codigo === 'ENTIDADES'
-                ? t('limiteWorkspaces')
-                : codigo === 'ESPACIOS_TRABAJO'
-                  ? t('limiteCollections')
-                  : porCodigo.get(codigo)?.nombre || codigo
+              const nombre = porCodigo.get(codigo)?.nombre || codigo
               return `${nombre}: ${cantidad == null ? t('aMedida') : numero(Number(cantidad), locale)}`
             }).join(' · ')
             const principales = PRINCIPALES.map((codigo) => {
