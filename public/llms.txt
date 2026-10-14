@@ -18,7 +18,7 @@ RAGfly es un servicio de RAG para agentes: apuntas a un directorio de documentos
 - Conexión MCP (HTTP streamable): https://api.ragfly.ai/mcp-http/
 - Autenticación: OAuth 2.1 (recomendado) o `Authorization: Bearer rf_xxxxxxxxxx` (API Key).
 - Emisión: una persona autenticada emite la API key. Alcance: usuario, organización, workspace, área y rol; el backend filtra cada llamada.
-- Workspace: una key fija no cambia de workspace; una flexible guarda el foco en el servidor y puede liberarlo con entity_code: null (en la API el workspace se llama `entity`).
+- Workspace: una key fija no cambia de workspace; una flexible guarda el foco en el servidor y puede liberarlo con `workspace_code: null`.
 - Operaciones: GET /v1/operations descubre el manifiesto filtrado por RBAC; ese catálogo es distinto de las tools MCP.
 - Swagger interactivo: https://api.ragfly.ai/docs
 
