@@ -104,13 +104,6 @@ export default async function PaginaDolor({ params }: { params: Promise<{ dolor:
           </div>
         </section>
 
-        {/* Video del Quickstart: bajo el titular y el registro; carga al clic */}
-        <section className="px-6 md:px-12 pb-12">
-          <div className="mx-auto max-w-[760px]">
-            <VideoYouTube id={VIDEO_YOUTUBE_ID} etiqueta={c.reproducirVideo} />
-          </div>
-        </section>
-
         {/* 2 · Cómo empieza */}
         <section id="start" className={bloque}>
           <div className="mx-auto flex max-w-[760px] flex-col gap-5">
@@ -130,6 +123,13 @@ export default async function PaginaDolor({ params }: { params: Promise<{ dolor:
               ))}
             </ol>
             <p className="font-helvetica-neue text-base md:text-lg">{c.despuesPasos}</p>
+          </div>
+        </section>
+
+        {/* Video del Quickstart: después de «Cómo empieza» (Víctor, 15-oct); carga al clic */}
+        <section className="px-6 md:px-12 pb-12 md:pb-14">
+          <div className="mx-auto max-w-[760px]">
+            <VideoYouTube id={VIDEO_YOUTUBE_ID} etiqueta={c.reproducirVideo} />
           </div>
         </section>
 
