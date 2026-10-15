@@ -107,7 +107,7 @@ export const COMUN = {
     {
       nombre: 'Private',
       texto:
-        "We don't store your documents. With RAGfly Desktop, they never leave your network. Your document data is encrypted.",
+        "We don't store your documents. With RAGfly Desktop, they never leave your network. Your document data is encrypted. We only use models from providers whose terms exclude training on your data.",
     },
     {
       nombre: 'Precise',
