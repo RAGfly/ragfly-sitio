@@ -123,7 +123,10 @@ export const COMUN = {
   yaTienesCuenta: 'Already have an account?',
 } as const
 
-/* El registro y el login viven en la app (el sitio solo vuelca al Login). */
-export const URL_APP = 'https://app.ragfly.ai'
+/* El registro y el login viven en la app (el sitio solo vuelca al Login,
+   decisión de Víctor del 15-oct). `?registro=1` abre directo el formulario de
+   alta en app.ragfly.ai/login; las utm_* que reenvía BotonEmpezar las guarda la
+   app y viajan con el alta (pendiente 413943, en PROD desde el 15-oct). */
+export const URL_REGISTRO = 'https://app.ragfly.ai/login?registro=1'
 export const URL_LOGIN = 'https://app.ragfly.ai/login'
 export const URL_GUIA_MCP = '/build/mcp'

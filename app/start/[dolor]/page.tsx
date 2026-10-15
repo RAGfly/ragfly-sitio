@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { BotonEmpezar } from '../../../components/apertura/BotonEmpezar'
-import { COMUN, PAGINAS, PUBLICADA, URL_APP, URL_GUIA_MCP, URL_LOGIN, type Dolor } from '../../../content/apertura'
+import { COMUN, PAGINAS, PUBLICADA, URL_GUIA_MCP, URL_LOGIN, URL_REGISTRO, type Dolor } from '../../../content/apertura'
 
 /* ------------------------------------------------------------------ */
 /* /start/[dolor] — páginas de destino de la apertura controlada        */
@@ -47,7 +47,7 @@ function Registro({ grande = false }: { grande?: boolean }) {
   return (
     <div className="flex flex-col items-start gap-3">
       <BotonEmpezar
-        destino={URL_APP}
+        destino={URL_REGISTRO}
         className={`rf-boton inline-block rounded-full bg-slm-dark font-medium text-slm-light hover:opacity-90 ${
           grande ? 'px-7 py-3.5 text-base' : 'px-6 py-3 text-base'
         }`}
@@ -94,7 +94,7 @@ export default async function PaginaDolor({
             <span className="font-manrope text-2xl font-semibold tracking-tight">RAGfly</span>
           </Link>
           <BotonEmpezar
-            destino={URL_APP}
+            destino={URL_REGISTRO}
             className="rf-boton hidden sm:inline-block rounded-full bg-slm-dark px-6 py-2.5 text-base font-medium text-slm-light hover:opacity-90"
           >
             Start free
