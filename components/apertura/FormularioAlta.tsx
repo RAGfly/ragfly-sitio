@@ -14,7 +14,7 @@
 /* Las utm_* de la URL viajan siempre (plan §6: fuente de cada cuenta). */
 /* ------------------------------------------------------------------ */
 import { useState } from 'react'
-import { COMUN, URL_LOGIN } from '../../content/apertura'
+import { URL_LOGIN, type TextosComunes } from '../../content/apertura'
 
 const CLAVES_UTM = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'] as const
 
@@ -55,9 +55,9 @@ function LogoMicrosoft() {
   )
 }
 
-export function FormularioAlta({ id }: { id?: string }) {
+export function FormularioAlta({ id, textos }: { id?: string; textos: TextosComunes }) {
   const [correo, setCorreo] = useState('')
-  const a = COMUN.alta
+  const a = textos.alta
 
   function ir(e: React.MouseEvent<HTMLAnchorElement>, extra: Record<string, string>) {
     e.currentTarget.href = urlLogin(extra)
@@ -104,7 +104,7 @@ export function FormularioAlta({ id }: { id?: string }) {
       </form>
       <p className="font-helvetica-neue text-sm text-slm-gray">{a.nota}</p>
       <p className="font-helvetica-neue text-sm text-slm-gray">
-        {COMUN.yaTienesCuenta}{' '}
+        {textos.yaTienesCuenta}{' '}
         <a href={URL_LOGIN} onClick={(e) => ir(e, {})} className="font-medium text-slm-dark underline underline-offset-2">
           {a.entrar}
         </a>
