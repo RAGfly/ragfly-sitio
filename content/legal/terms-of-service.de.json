@@ -1,6 +1,6 @@
 {
   "title": "Nutzungsbedingungen",
-  "subtitle": "Zuletzt aktualisiert: 13/10/2026 · Version 1.2",
+  "subtitle": "Zuletzt aktualisiert: 15/10/2026 · Version 1.3",
   "intro": [
     {
       "kind": "p",
@@ -85,8 +85,8 @@
           "items": [
             "**Eigentum.** Sie behalten das Eigentum an Ihren Kundendaten, einschließlich der Originaldokumente und der daraus erzeugten Indizes, Vektoren und abgeleiteten Inhalte. Wir erwerben keine Eigentumsrechte an Ihren Kundendaten.",
             "**Begrenzte Lizenz an uns.** Sie gewähren uns eine begrenzte, nicht ausschließliche, widerrufliche Lizenz zum Hosten, Verarbeiten, Übertragen, Indexieren und Anzeigen Ihrer Kundendaten ausschließlich zur Bereitstellung und Aufrechterhaltung des Dienstes für Sie. Diese Lizenz berechtigt zu keiner anderen Nutzung.",
-            "**Keine sekundären Zwecke von RAGfly.** Wir verkaufen Kundendaten nicht und verwenden sie weder für Werbung noch zum Training RAGfly-eigener Modelle. Die Verarbeitung durch Drittmodelle unterliegt den Richtlinien des jeweiligen Anbieters; bei Free werden die aktiven Economy-Anbieter offengelegt und müssen vor der Verarbeitung ausdrücklich akzeptiert werden.",
-            "**Isolierung.** Kundendaten sind strukturell von denen anderer Kunden isoliert. Keine Organisation, kein Workspace und kein Kunde kann auf die Daten eines anderen zugreifen.",
+            "**Keine sekundären Zwecke von RAGfly.** Wir verkaufen Kundendaten nicht und verwenden sie weder für Werbung noch zum Training RAGfly-eigener Modelle. Die Drittmodelle, die Ihre Dokumente verarbeiten, stammen von Anbietern, deren Bedingungen ein Training mit Ihren Daten ausschließen; wenn Sie eigene Anbieter auswählen oder bereitstellen, gelten deren Richtlinien.",
+            "**Isolierung.** Kundendaten sind logisch von denen anderer Kunden isoliert: Keine andere Organisation und kein anderer Kunde kann auf sie zugreifen. Innerhalb Ihrer Organisation ist jeder Workspace nur für die Nutzer und Agenten zugänglich, die Sie dafür autorisieren.",
             "**Übertragbarkeit und Rückgabe.** Sie können Ihre Kundendaten jederzeit während der Laufzeit und während der in Abschnitt 12 beschriebenen Nachfrist nach Kündigung exportieren oder deren Rückgabe verlangen.",
             "**Löschung.** Auf Ihre Anfrage oder nach Kündigung und Ablauf der geltenden Nachfrist löschen wir Ihre Kundendaten aus unseren Systemen, außer wenn eine Aufbewahrung gesetzlich vorgeschrieben ist.",
             "**Optionale lokale Verarbeitung.** Bei unterstützten Tarifen verarbeitet RAGfly Desktop die Originaldatei und deren Extraktion in Ihrem Netzwerk. Je nach Bereitstellung können Chunks, Embeddings und Metadaten synchronisiert werden; RAGfly verarbeitet die für den Kontextabruf erforderlichen Chunks."
@@ -125,7 +125,7 @@
       "blocks": [
         {
           "kind": "p",
-          "text": "Der Dienst integriert Anbieter von KI-Modellen, die sich im Laufe der Zeit ändern können. In konfigurierbaren Tarifen können Sie Anbieter auswählen oder bereitstellen; bei Free werden die aktiven Economy-Anbieter in Mein Konto veröffentlicht und vor der ersten Verarbeitung ausdrücklich akzeptiert. Die Verarbeitung jedes Anbieters unterliegt zusätzlich dessen Bedingungen und Datenschutzrichtlinie. KI-generierte Antworten können Ungenauigkeiten enthalten und müssen überprüft werden."
+          "text": "Der Dienst integriert Anbieter von KI-Modellen, die sich im Laufe der Zeit ändern können. In konfigurierbaren Tarifen können Sie Anbieter auswählen oder bereitstellen; in den übrigen Tarifen wählt RAGfly die aktiven Anbieter gemäß Punkt 3 von Abschnitt 5 aus. Die Verarbeitung jedes Anbieters unterliegt zusätzlich dessen Bedingungen und Datenschutzrichtlinie. KI-generierte Antworten können Ungenauigkeiten enthalten und müssen überprüft werden."
         }
       ]
     },
@@ -145,7 +145,7 @@
       "blocks": [
         {
           "kind": "p",
-          "text": "Unsere Erhebung und Nutzung personenbezogener Daten ist in unserer Datenschutzrichtlinie beschrieben. Wir wenden angemessene technische und organisatorische Maßnahmen zum Schutz der Kundendaten an, einschließlich Verschlüsselung der Dokumentendaten im Ruhezustand, verschlüsselter Kommunikation (HTTPS), rollenbasierter Zugriffskontrolle (RBAC), Mehr-Faktor-Authentifizierung, struktureller Datenisolierung und Audit-Protokollierung. Kein System ist vollständig sicher; wir garantieren keine absolute Sicherheit, werden Sie aber unverzüglich über jede Sicherheitsverletzung informieren, die Ihre Kundendaten betrifft."
+          "text": "Unsere Erhebung und Nutzung personenbezogener Daten ist in unserer Datenschutzrichtlinie beschrieben. Wir wenden angemessene technische und organisatorische Maßnahmen zum Schutz der Kundendaten an, einschließlich Verschlüsselung der Dokumentendaten im Ruhezustand, verschlüsselter Kommunikation (HTTPS), rollenbasierter Zugriffskontrolle (RBAC), Mehr-Faktor-Authentifizierung, logischer Datenisolierung und Audit-Protokollierung. Kein System ist vollständig sicher; wir garantieren keine absolute Sicherheit, werden Sie aber unverzüglich über jede Sicherheitsverletzung informieren, die Ihre Kundendaten betrifft."
         }
       ]
     },

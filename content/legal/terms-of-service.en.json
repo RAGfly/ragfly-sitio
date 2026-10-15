@@ -1,6 +1,6 @@
 {
   "title": "Terms of Service",
-  "subtitle": "Last updated: 13/10/2026 · Version 1.2",
+  "subtitle": "Last updated: 15/10/2026 · Version 1.3",
   "intro": [
     {
       "kind": "p",
@@ -85,8 +85,8 @@
           "items": [
             "**Ownership.** You retain ownership of your Customer Data, including original documents and the indexes, vectors, and derived content generated from them. We acquire no ownership rights in your Customer Data.",
             "**Limited license to us.** You grant us a limited, non-exclusive, revocable license to host, process, transmit, index, and display your Customer Data solely to provide and maintain the Service for you. This license authorizes no other use.",
-            "**No RAGfly secondary purposes.** We do not sell Customer Data or use it for advertising or to train RAGfly-owned models. Processing by third-party models is subject to the applicable provider's policies; on Free, the active economy providers are disclosed and require explicit acceptance before content is processed.",
-            "**Isolation.** Customer Data is structurally isolated from that of other customers. No organization, workspace, or customer can access another's data.",
+            "**No RAGfly secondary purposes.** We do not sell Customer Data or use it for advertising or to train RAGfly-owned models. The third-party models that process your documents come from providers whose terms exclude training on your data; if you select or supply your own providers, those providers' policies apply.",
+            "**Isolation.** Customer Data is logically isolated from that of other customers: no other organization or customer can access it. Within your organization, each workspace is accessible only to the users and agents you authorize for it.",
             "**Portability and return.** You may export or request the return of your Customer Data at any time during the term and during the post-termination grace period described in Section 12.",
             "**Deletion.** Upon your request, or after termination and the applicable grace period, we will delete your Customer Data from our systems, except where retention is required by law.",
             "**Optional local processing.** On supported plans, RAGfly Desktop processes the original file and its extraction within your network. Depending on the deployment, chunks, embeddings, and metadata may be synchronized; RAGfly processes the chunks required to retrieve context."
@@ -125,7 +125,7 @@
       "blocks": [
         {
           "kind": "p",
-          "text": "The Service integrates with AI model providers that may change over time. On configurable plans you may select or supply providers; on Free, the active economy providers are published in My Account and explicit acceptance is requested before the first processing. Each provider's processing is also subject to its own terms and privacy policy. AI-generated responses may contain inaccuracies; you are responsible for verifying information before relying on it. The Service does not constitute legal, financial, medical, or other professional advice."
+          "text": "The Service integrates with AI model providers that may change over time. On configurable plans you may select or supply providers; on other plans, RAGfly selects the active providers in accordance with item 3 of Section 5. Each provider's processing is also subject to its own terms and privacy policy. AI-generated responses may contain inaccuracies; you are responsible for verifying information before relying on it. The Service does not constitute legal, financial, medical, or other professional advice."
         }
       ]
     },
@@ -145,7 +145,7 @@
       "blocks": [
         {
           "kind": "p",
-          "text": "Our collection and use of personal information is described in our Privacy Policy. We apply reasonable technical and organizational measures to protect Customer Data, including encryption of document data at rest, encrypted communications (HTTPS), role-based access control (RBAC), multi-factor authentication, structural data isolation, and audit logging. No system is completely secure; we do not guarantee absolute security, but we will notify you without undue delay of any security breach affecting your Customer Data."
+          "text": "Our collection and use of personal information is described in our Privacy Policy. We apply reasonable technical and organizational measures to protect Customer Data, including encryption of document data at rest, encrypted communications (HTTPS), role-based access control (RBAC), multi-factor authentication, logical data isolation, and audit logging. No system is completely secure; we do not guarantee absolute security, but we will notify you without undue delay of any security breach affecting your Customer Data."
         }
       ]
     },

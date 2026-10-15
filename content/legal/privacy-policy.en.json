@@ -1,6 +1,6 @@
 {
   "title": "Privacy Policy",
-  "subtitle": "Last updated: 30/08/2026 · Version 1.1",
+  "subtitle": "Last updated: 15/10/2026 · Version 1.2",
   "intro": [
     {
       "kind": "p",
@@ -98,7 +98,7 @@
           "kind": "list",
           "items": [
             "**Subprocessors and service providers** — such as cloud hosting, database, and infrastructure providers — bound by confidentiality and data-protection obligations.",
-            "**AI model providers** — content strictly required for an operation may be processed by the configured provider. Providers and models may change. On Free, the active list is shown in My Account and requires explicit acceptance before first processing; other plans support the selection or configuration available to that plan.",
+            "**AI model providers** — content strictly required for an operation may be processed by the configured provider. Providers and models may change. RAGfly selects providers whose terms exclude training on your data; plans that allow it support selecting or supplying your own providers, whose policies then apply.",
             "**Identity providers** — to authenticate your sign-in (for example, Microsoft Entra ID).",
             "**Legal and safety** — when required by law or to protect rights, safety, and the integrity of the Service.",
             "**Business transfers** — in connection with a merger, acquisition, or reorganization, with the protections of this policy preserved."

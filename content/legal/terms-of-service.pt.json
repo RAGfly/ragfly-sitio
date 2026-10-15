@@ -1,6 +1,6 @@
 {
   "title": "Termos de Serviço",
-  "subtitle": "Última atualização: 13/10/2026 · Versão 1.2",
+  "subtitle": "Última atualização: 15/10/2026 · Versão 1.3",
   "intro": [
     {
       "kind": "p",
@@ -85,8 +85,8 @@
           "items": [
             "**Propriedade.** Você mantém a propriedade dos seus Dados do Cliente, incluindo os documentos originais e os índices, vetores e conteúdos derivados gerados a partir deles. Não adquirimos quaisquer direitos de propriedade sobre seus Dados do Cliente.",
             "**Licença limitada a nosso favor.** Você nos concede uma licença limitada, não exclusiva e revogável para hospedar, processar, transmitir, indexar e exibir seus Dados do Cliente unicamente para prestar e manter o Serviço para você. Esta licença não autoriza nenhum outro uso.",
-            "**Sem fins secundários do RAGfly.** Não vendemos os Dados do Cliente nem os usamos para publicidade ou para treinar modelos próprios do RAGfly. O processamento por modelos de terceiros fica sujeito às políticas do provedor aplicável; no Free, os provedores econômicos ativos são divulgados e exigem aceitação explícita antes do processamento.",
-            "**Isolamento.** Os Dados do Cliente são estruturalmente isolados dos de outros clientes. Nenhuma organização, workspace ou cliente pode acessar os dados de outro.",
+            "**Sem fins secundários do RAGfly.** Não vendemos os Dados do Cliente nem os usamos para publicidade ou para treinar modelos próprios do RAGfly. Os modelos de terceiros que processam seus documentos vêm de provedores cujos termos excluem o treinamento com seus dados; se você selecionar ou fornecer seus próprios provedores, aplicam-se as políticas desses provedores.",
+            "**Isolamento.** Os Dados do Cliente são logicamente isolados dos de outros clientes: nenhuma outra organização ou cliente pode acessá-los. Dentro da sua organização, cada workspace só é acessível aos usuários e agentes que você autorizar nele.",
             "**Portabilidade e devolução.** Você pode exportar ou solicitar a devolução dos seus Dados do Cliente a qualquer momento durante a vigência e durante o período de carência posterior ao encerramento descrito na Seção 12.",
             "**Exclusão.** A seu pedido, ou após o encerramento e o período de carência aplicável, excluiremos seus Dados do Cliente dos nossos sistemas, exceto quando a retenção for exigida por lei.",
             "**Processamento local opcional.** Nos planos compatíveis, o RAGfly Desktop processa o arquivo original e sua extração dentro da sua rede. Dependendo da implantação, chunks, embeddings e metadados podem ser sincronizados; o RAGfly processa os chunks necessários para recuperar contexto."
@@ -125,7 +125,7 @@
       "blocks": [
         {
           "kind": "p",
-          "text": "O Serviço integra provedores de modelos de IA que podem mudar ao longo do tempo. Em planos configuráveis, você pode selecionar ou fornecer provedores; no Free, os provedores econômicos ativos são publicados em Minha Conta e exigem aceitação explícita antes do primeiro processamento. O tratamento de cada provedor também está sujeito aos seus termos e política de privacidade. As respostas geradas por IA podem conter imprecisões; você deve verificá-las antes de confiar nelas."
+          "text": "O Serviço integra provedores de modelos de IA que podem mudar ao longo do tempo. Em planos configuráveis, você pode selecionar ou fornecer provedores; nos demais planos, a RAGfly seleciona os provedores ativos conforme o item 3 da Seção 5. O tratamento de cada provedor também está sujeito aos seus termos e política de privacidade. As respostas geradas por IA podem conter imprecisões; você deve verificá-las antes de confiar nelas."
         }
       ]
     },
@@ -145,7 +145,7 @@
       "blocks": [
         {
           "kind": "p",
-          "text": "Nossa coleta e uso de informações pessoais estão descritos em nossa Política de Privacidade. Aplicamos medidas técnicas e organizacionais razoáveis para proteger os Dados do Cliente, incluindo criptografia dos dados documentais em repouso, comunicações criptografadas (HTTPS), controle de acesso baseado em funções (RBAC), autenticação multifator, isolamento estrutural dos dados e registro de auditoria. Nenhum sistema é completamente seguro; não garantimos segurança absoluta, mas notificaremos você sem demora indevida sobre qualquer violação de segurança que afete seus Dados do Cliente."
+          "text": "Nossa coleta e uso de informações pessoais estão descritos em nossa Política de Privacidade. Aplicamos medidas técnicas e organizacionais razoáveis para proteger os Dados do Cliente, incluindo criptografia dos dados documentais em repouso, comunicações criptografadas (HTTPS), controle de acesso baseado em funções (RBAC), autenticação multifator, isolamento lógico dos dados e registro de auditoria. Nenhum sistema é completamente seguro; não garantimos segurança absoluta, mas notificaremos você sem demora indevida sobre qualquer violação de segurança que afete seus Dados do Cliente."
         }
       ]
     },

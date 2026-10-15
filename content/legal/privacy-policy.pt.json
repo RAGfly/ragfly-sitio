@@ -1,6 +1,6 @@
 {
   "title": "Política de Privacidade",
-  "subtitle": "Última atualização: 30/08/2026 · Versão 1.1",
+  "subtitle": "Última atualização: 15/10/2026 · Versão 1.2",
   "intro": [
     {
       "kind": "p",
@@ -98,7 +98,7 @@
           "kind": "list",
           "items": [
             "**Suboperadores e prestadores de serviços** — como provedores de hospedagem em nuvem, banco de dados e infraestrutura — vinculados por obrigações de confidencialidade e proteção de dados.",
-            "**Provedores de modelos de IA** — o conteúdo estritamente necessário pode ser processado pelo provedor configurado. Provedores e modelos podem mudar. No Free, a lista ativa aparece em Minha Conta e exige aceitação explícita antes do primeiro processamento; outros planos oferecem a seleção ou configuração disponível.",
+            "**Provedores de modelos de IA** — o conteúdo estritamente necessário pode ser processado pelo provedor configurado. Provedores e modelos podem mudar. A RAGfly seleciona provedores cujos termos excluem o treinamento com seus dados; os planos que o permitem aceitam selecionar ou fornecer provedores próprios, cujas políticas se aplicam nesse caso.",
             "**Provedores de identidade** — para autenticar o seu login (por exemplo, Microsoft Entra ID).",
             "**Aspectos legais e de segurança** — quando exigido por lei ou para proteger direitos, a segurança e a integridade do Serviço.",
             "**Transferências empresariais** — em conexão com uma fusão, aquisição ou reorganização, preservando as proteções desta política."

@@ -512,8 +512,8 @@
     "manifiestoTag": "ISOLATION",
     "manifiestoTitulo": "Es ist nicht so, dass du es nicht siehst. Es ist gar nicht an Bord.",
     "manifiestoDesc": "Der Workspace-Filter sitzt in der Suchmaschine selbst: Vektoren aus einem anderen Workspace werden nicht einmal bewertet. Es ist kein nachträglich angewendeter Filter — sie sind nie in die Suche gelangt. Das gilt in allen Plänen, auch im kostenlosen.",
-    "subeTitulo": "Dass vektorisierter Inhalt hochgeht, heißt nicht, dass das Dokument hochgeht.",
-    "subeDesc": "Hoch geht extrahierter Text, in Fragmenten, verschlüsselt. Die Datei nicht. Ist das Dokument zum Beispiel signiert, geht die Signatur nicht mit hoch.",
+    "subeTitulo": "Mit Desktop werden abgeleitete Daten synchronisiert, nicht die Originaldatei.",
+    "subeDesc": "Je nach Bereitstellung können verschlüsselte Textabschnitte, Embeddings und Metadaten synchronisiert werden. RAGfly verarbeitet die Textabschnitte, die für den Abruf von Kontext nötig sind.",
     "cartaTag": "MI-PASS",
     "cartaTitulo": "Workspace → Bereich → Rolle → Agent",
     "cartaDesc": "Der Workspace ist die Grenze, die du ziehst: dein Privatleben und dein Geschäft, oder ein Kunde pro Workspace. Nichts überschreitet sie. Darin legt der Bereich fest, welchen Dokumenten-Teilbaum jede Identität sieht — mit hierarchischer Vererbung: Wer darüber steht, sieht den Inhalt der untergeordneten Bereiche —, die Rolle legt fest, was sie tun darf, und Nutzer oder Agent treten mit eigenen Berechtigungen ein.",
@@ -522,7 +522,7 @@
     "byokDesc": "Die fünf Aufrufe der Pipeline —Lesen, Typisierung, Zusammenfassung, Merkmale und Vektorisierung— laufen mit deinen Zugangsdaten, gegen Anthropic, OpenAI oder Google, unter deinem Vertrag und deiner Rechnung.",
     "pisoTag": "DATENSCHUTZ",
     "pisoTitulo": "Eine Garantie des Dienstes, kein Häkchen.",
-    "pisoDesc": "Alle Tarife lösen ausschließlich gegen Modellanbieter auf, die vertraglich verpflichtet sind, nicht mit den gesendeten Inhalten zu trainieren — kein Häkchen, das jemand falsch stehen lassen kann.",
+    "pisoDesc": "In allen Tarifen wählt RAGfly Anbieter, deren Bedingungen das Training mit deinen Daten ausschließen. Wenn du eigene Anbieter auswählst oder einbindest, gelten deren Richtlinien.",
     "pildorasTitulo": "INSTRUMENTE",
     "pildora0": "AES-256-GCM · Anwendungsverschlüsselung mit Schlüsselhierarchie",
     "pildora1": "TLS 1.3 im Transit",
@@ -603,7 +603,7 @@
     "card2Titulo": "Deine Dokumente",
     "card2Desc": "Du verlierst nie die Kontrolle über deine Dokumente: Wir speichern sie nie.",
     "dueno": "EIGENTÜMER · DU",
-    "remate": "Deine Modelle sehen das Dokument nicht und deine Vektoren liegen auf deiner Infrastruktur."
+    "remate": "Mit parsing-BYOK und embedding-BYOK werden Inhalte mit deinen Zugangsdaten verarbeitet. In souveränen Tarifen werden Vektoren in deiner eigenen Datenbank gespeichert."
   },
   "cierre": {
     "eyebrow": "ABSCHLUSS",

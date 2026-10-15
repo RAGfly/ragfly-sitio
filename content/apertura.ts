@@ -103,7 +103,8 @@ export const COMUN = {
   privadoTitulo:
     'We never store your documents. And with RAGfly Desktop, they never leave your network.',
   /* Asume Free en Clase A: condición para publicar (ver PUBLICADA). */
-  privado: "The models that touch your documents don't train on your data.",
+  privado:
+    "RAGfly selects model providers whose terms exclude training on your data. If you choose or supply your own providers, their policies apply.",
 } as const
 
 export const URL_APP = 'https://app.ragfly.ai'

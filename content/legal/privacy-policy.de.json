@@ -1,6 +1,6 @@
 {
   "title": "Datenschutzrichtlinie",
-  "subtitle": "Zuletzt aktualisiert: 30/08/2026 · Version 1.1",
+  "subtitle": "Zuletzt aktualisiert: 15/10/2026 · Version 1.2",
   "intro": [
     {
       "kind": "p",
@@ -98,7 +98,7 @@
           "kind": "list",
           "items": [
             "**Unterauftragsverarbeiter und Dienstleister** — wie Anbieter von Cloud-Hosting, Datenbanken und Infrastruktur — gebunden durch Vertraulichkeits- und Datenschutzpflichten.",
-            "**KI-Modellanbieter** — nur für eine Operation notwendige Inhalte dürfen vom konfigurierten Anbieter verarbeitet werden. Anbieter und Modelle können wechseln. Bei Free wird die aktive Liste in Mein Konto angezeigt und muss vor der ersten Verarbeitung ausdrücklich akzeptiert werden; andere Tarife bieten die jeweils verfügbare Auswahl oder Konfiguration.",
+            "**KI-Modellanbieter** — nur für eine Operation notwendige Inhalte dürfen vom konfigurierten Anbieter verarbeitet werden. Anbieter und Modelle können wechseln. RAGfly wählt Anbieter aus, deren Bedingungen ein Training mit Ihren Daten ausschließen; Tarife, die es erlauben, unterstützen die Auswahl oder Bereitstellung eigener Anbieter, deren Richtlinien dann gelten.",
             "**Identitätsanbieter** — zur Authentifizierung Ihrer Anmeldung (zum Beispiel Microsoft Entra ID).",
             "**Recht und Sicherheit** — wenn gesetzlich vorgeschrieben oder zum Schutz von Rechten, Sicherheit und Integrität des Dienstes.",
             "**Unternehmensübertragungen** — im Zusammenhang mit einer Fusion, Übernahme oder Umstrukturierung, wobei der Schutz dieser Richtlinie gewahrt bleibt."

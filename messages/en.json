@@ -512,8 +512,8 @@
     "manifiestoTag": "ISOLATION",
     "manifiestoTitulo": "It's not that you can't see it. It's that it isn't on board.",
     "manifiestoDesc": "The workspace filter lives inside the search engine itself: vectors from another workspace are never even scored. It isn't a filter applied afterwards — they never entered the search. It holds on every plan, the free one included.",
-    "subeTitulo": "Uploading vectorized content is not uploading the document.",
-    "subeDesc": "Extracted text goes up, in chunks, encrypted. The file doesn't. For example, if the document is signed, the signature doesn't go up.",
+    "subeTitulo": "With Desktop, derivatives are synchronized, not the original file.",
+    "subeDesc": "Depending on the deployment, encrypted chunks, embeddings and metadata may be synchronized. RAGfly processes the chunks needed to retrieve context.",
     "cartaTag": "MI-PASS",
     "cartaTitulo": "Workspace → Area → Role → Agent",
     "cartaDesc": "The workspace is the line you draw: your personal life and your business, or one client per workspace. Nothing crosses it. Inside, the area defines which document subtree each identity sees — with hierarchical inheritance: whoever sits above sees what their descendant areas hold —, the role defines what it can do, and the user or agent comes in with its own permissions.",
@@ -522,7 +522,7 @@
     "byokDesc": "The five pipeline calls —reading, typing, summary, attributes and vectorization— run on your credentials, against Anthropic, OpenAI or Google, under your contract and your invoice.",
     "pisoTag": "PRIVACY",
     "pisoTitulo": "A service guarantee, not a checkbox.",
-    "pisoDesc": "Every plan resolves only against model providers contractually bound not to train on the content sent — not a checkbox someone can leave in the wrong position.",
+    "pisoDesc": "On every plan, RAGfly selects providers whose terms exclude training on your data. If you choose or supply your own providers, their policies apply.",
     "pildorasTitulo": "INSTRUMENTS",
     "pildora0": "AES-256-GCM · application-level encryption with key hierarchy",
     "pildora1": "TLS 1.3 in transit",
@@ -603,7 +603,7 @@
     "card2Titulo": "Your documents",
     "card2Desc": "You never lose control of your documents: we never store them.",
     "dueno": "OWNER · YOU",
-    "remate": "Your models never see the document and your vectors live on your infrastructure."
+    "remate": "With parsing-BYOK and embedding-BYOK, content is processed using your credentials. On sovereign plans, vectors are stored in your own database."
   },
   "cierre": {
     "eyebrow": "CLOSING",

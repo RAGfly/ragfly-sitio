@@ -513,8 +513,8 @@
     "manifiestoTag": "ISOLAMENTO",
     "manifiestoTitulo": "Não é que você não veja. É que não está a bordo.",
     "manifiestoDesc": "O filtro por workspace fica dentro do próprio motor de busca: os vetores de outro workspace nunca chegam a ser pontuados. Não é um filtro aplicado depois — eles nunca entraram na busca. Vale em todos os planos, incluindo o gratuito.",
-    "subeTitulo": "Subir o conteúdo vetorizado não é subir o documento.",
-    "subeDesc": "Sobe texto extraído, em fragmentos, criptografado. O arquivo não. Por exemplo, se o documento está assinado, a assinatura não sobe.",
+    "subeTitulo": "Com o Desktop, são sincronizados os derivados, não o arquivo original.",
+    "subeDesc": "Dependendo da implantação, fragmentos, embeddings e metadados criptografados podem ser sincronizados. A RAGfly processa os fragmentos necessários para recuperar contexto.",
     "cartaTag": "MI-PASS",
     "cartaTitulo": "Workspace → Área → Papel → Agente",
     "cartaDesc": "O workspace é a fronteira que você traça: sua vida pessoal e seu negócio, ou um cliente por workspace. Nada a atravessa. Dentro dele, a área define qual subárvore de documentos cada identidade vê — com herança hierárquica: quem está acima vê o que há nas áreas descendentes —, o papel define o que pode fazer, e o usuário ou agente entra com suas próprias permissões.",
@@ -523,7 +523,7 @@
     "byokDesc": "As cinco chamadas do pipeline —leitura, tipificação, resumo, características e vetorização— rodam com as suas credenciais, contra Anthropic, OpenAI ou Google, sob o seu contrato e a sua fatura.",
     "pisoTag": "PRIVACIDADE",
     "pisoTitulo": "Uma garantia do serviço, não uma caixinha.",
-    "pisoDesc": "Todos os planos resolvem apenas contra provedores de modelos contratualmente obrigados a não treinar com o conteúdo enviado — não uma caixinha que alguém possa deixar marcada errado.",
+    "pisoDesc": "Em todos os planos, a RAGfly seleciona provedores cujos termos excluem o treinamento com seus dados. Se você escolher ou fornecer seus próprios provedores, as políticas deles se aplicam.",
     "pildorasTitulo": "INSTRUMENTOS",
     "pildora0": "AES-256-GCM · criptografia de aplicação com hierarquia de chaves",
     "pildora1": "TLS 1.3 em trânsito",
@@ -604,7 +604,7 @@
     "card2Titulo": "Seus documentos",
     "card2Desc": "Você não perde o controle dos seus documentos: nunca os armazenamos.",
     "dueno": "DONO · VOCÊ",
-    "remate": "Seus modelos não veem o documento e seus vetores vivem na sua infraestrutura."
+    "remate": "Com parsing-BYOK e embedding-BYOK, o conteúdo é processado com suas credenciais. Nos planos soberanos, os vetores são armazenados no seu próprio banco de dados."
   },
   "cierre": {
     "eyebrow": "FECHAMENTO",

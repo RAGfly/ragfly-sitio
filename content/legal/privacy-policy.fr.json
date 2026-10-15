@@ -1,6 +1,6 @@
 {
   "title": "Politique de confidentialité",
-  "subtitle": "Dernière mise à jour : 30/08/2026 · Version 1.1",
+  "subtitle": "Dernière mise à jour : 15/10/2026 · Version 1.2",
   "intro": [
     {
       "kind": "p",
@@ -98,7 +98,7 @@
           "kind": "list",
           "items": [
             "**Sous-traitants ultérieurs et prestataires de services** — tels que les fournisseurs d'hébergement cloud, de bases de données et d'infrastructure — liés par des obligations de confidentialité et de protection des données.",
-            "**Fournisseurs de modèles d'IA** — le contenu strictement nécessaire peut être traité par le fournisseur configuré. Les fournisseurs et modèles peuvent changer. Avec Free, la liste active figure dans Mon compte et exige une acceptation explicite avant le premier traitement ; les autres forfaits proposent la sélection ou configuration disponible.",
+            "**Fournisseurs de modèles d'IA** — le contenu strictement nécessaire peut être traité par le fournisseur configuré. Les fournisseurs et modèles peuvent changer. RAGfly sélectionne des fournisseurs dont les conditions excluent l'entraînement sur vos données ; les forfaits qui le permettent autorisent la sélection ou la fourniture de vos propres prestataires, dont les politiques s'appliquent alors.",
             "**Fournisseurs d'identité** — pour authentifier votre connexion (par exemple Microsoft Entra ID).",
             "**Aspects juridiques et de sécurité** — lorsque la loi l'exige ou pour protéger les droits, la sécurité et l'intégrité du Service.",
             "**Transferts d'entreprise** — dans le cadre d'une fusion, d'une acquisition ou d'une réorganisation, en préservant les protections de la présente politique."
