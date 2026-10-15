@@ -42,23 +42,16 @@ type TextosDolor = {
 
 export type PaginaDolor = {
   idGancho: string
-  video: {
-    id: string
-    /** URL del video publicado; vacío = no se muestra. */
-    src: string
-    poster?: string
-  }
   textos: Record<Locale, TextosDolor>
 }
 
 export const PAGINAS: Record<Dolor, PaginaDolor> = {
   context: {
     idGancho: 'C4',
-    video: { id: '1A', src: '' },
     textos: {
       en: {
         gancho: 'Is your second brain burning too many tokens?',
-        ganchosAlternos: { c1: 'Still pasting the same files into every new session?' },
+        ganchosAlternos: { c1: 'Still pasting the same files into every new session?', c3: "Your context window is not a filing cabinet." },
         bajada: "Your agent doesn't need to load everything. It asks for what the task needs, with the source.",
         aperturaVideo: 'Your agent read the whole folder. Then it lost track of what you asked.',
         metaDescripcion:
@@ -66,7 +59,7 @@ export const PAGINAS: Record<Dolor, PaginaDolor> = {
       },
       es: {
         gancho: '¿Tu segundo cerebro está gastando demasiados tokens?',
-        ganchosAlternos: { c1: '¿Sigues pegando los mismos archivos en cada sesión nueva?' },
+        ganchosAlternos: { c1: '¿Sigues pegando los mismos archivos en cada sesión nueva?', c3: "Tu ventana de contexto no es un archivador." },
         bajada: 'Tu agente no necesita cargarlo todo. Consulta solo lo que la tarea pide, con la cita.',
         aperturaVideo: 'Tu agente leyó la carpeta entera. Y después perdió el hilo de lo que le pediste.',
         metaDescripcion:
@@ -74,7 +67,7 @@ export const PAGINAS: Record<Dolor, PaginaDolor> = {
       },
       pt: {
         gancho: 'Seu segundo cérebro está gastando tokens demais?',
-        ganchosAlternos: { c1: 'Ainda colando os mesmos arquivos em cada nova sessão?' },
+        ganchosAlternos: { c1: 'Ainda colando os mesmos arquivos em cada nova sessão?', c3: "Sua janela de contexto não é um armário de arquivos." },
         bajada: 'Seu agente não precisa carregar tudo. Ele consulta só o que a tarefa pede, com a fonte.',
         aperturaVideo: 'Seu agente leu a pasta inteira. Depois perdeu o fio do que você pediu.',
         metaDescripcion:
@@ -82,7 +75,7 @@ export const PAGINAS: Record<Dolor, PaginaDolor> = {
       },
       fr: {
         gancho: 'Votre second cerveau brûle-t-il trop de tokens ?',
-        ganchosAlternos: { c1: 'Vous collez encore les mêmes fichiers à chaque nouvelle session ?' },
+        ganchosAlternos: { c1: 'Vous collez encore les mêmes fichiers à chaque nouvelle session ?', c3: "Votre fenêtre de contexte n'est pas un classeur." },
         bajada: "Votre agent n'a pas besoin de tout charger. Il demande ce dont la tâche a besoin, avec la source.",
         aperturaVideo: "Votre agent a lu tout le dossier. Puis il a perdu le fil de votre demande.",
         metaDescripcion:
@@ -90,7 +83,7 @@ export const PAGINAS: Record<Dolor, PaginaDolor> = {
       },
       de: {
         gancho: 'Verbrennt dein zweites Gehirn zu viele Tokens?',
-        ganchosAlternos: { c1: 'Fügst du immer noch in jede neue Sitzung dieselben Dateien ein?' },
+        ganchosAlternos: { c1: 'Fügst du immer noch in jede neue Sitzung dieselben Dateien ein?', c3: "Dein Kontextfenster ist kein Aktenschrank." },
         bajada: 'Dein Agent muss nicht alles laden. Er fragt nur ab, was die Aufgabe braucht, mit Quelle.',
         aperturaVideo: 'Dein Agent hat den ganzen Ordner gelesen. Dann hat er den Faden verloren.',
         metaDescripcion:
@@ -100,11 +93,10 @@ export const PAGINAS: Record<Dolor, PaginaDolor> = {
   },
   memory: {
     idGancho: 'M4',
-    video: { id: '1B', src: '' },
     textos: {
       en: {
         gancho: 'When your second brain outgrows its links.',
-        ganchosAlternos: { m1: 'Every new session, your agent starts from zero.' },
+        ganchosAlternos: { m1: 'Every new session, your agent starts from zero.', m2: "Your second brain is losing its memory." },
         bajada:
           'A memory your agent queries, not a file that grows out of control. One workspace for each part of your life.',
         aperturaVideo: "Your agent's memory folder started with a few notes. Now it mixes every project you have.",
@@ -112,7 +104,7 @@ export const PAGINAS: Record<Dolor, PaginaDolor> = {
       },
       es: {
         gancho: 'Cuando tu segundo cerebro ya no cabe en sus enlaces.',
-        ganchosAlternos: { m1: 'En cada sesión nueva, tu agente parte de cero.' },
+        ganchosAlternos: { m1: 'En cada sesión nueva, tu agente parte de cero.', m2: "Tu segundo cerebro está perdiendo la memoria." },
         bajada:
           'Una memoria que tu agente consulta, no un archivo que crece sin control. Un workspace para cada parte de tu vida.',
         aperturaVideo: 'La carpeta de memoria de tu agente empezó con unas pocas notas. Hoy mezcla todos tus proyectos.',
@@ -121,7 +113,7 @@ export const PAGINAS: Record<Dolor, PaginaDolor> = {
       },
       pt: {
         gancho: 'Quando seu segundo cérebro não cabe mais nos seus links.',
-        ganchosAlternos: { m1: 'A cada nova sessão, seu agente começa do zero.' },
+        ganchosAlternos: { m1: 'A cada nova sessão, seu agente começa do zero.', m2: "Seu segundo cérebro está perdendo a memória." },
         bajada:
           'Uma memória que seu agente consulta, não um arquivo que cresce sem controle. Um workspace para cada parte da sua vida.',
         aperturaVideo: 'A pasta de memória do seu agente começou com poucas notas. Hoje mistura todos os seus projetos.',
@@ -130,7 +122,7 @@ export const PAGINAS: Record<Dolor, PaginaDolor> = {
       },
       fr: {
         gancho: 'Quand votre second cerveau déborde de ses liens.',
-        ganchosAlternos: { m1: 'À chaque nouvelle session, votre agent repart de zéro.' },
+        ganchosAlternos: { m1: 'À chaque nouvelle session, votre agent repart de zéro.', m2: "Votre second cerveau perd la mémoire." },
         bajada:
           "Une mémoire que votre agent interroge, pas un fichier qui grossit sans contrôle. Un workspace pour chaque partie de votre vie.",
         aperturaVideo:
@@ -140,7 +132,7 @@ export const PAGINAS: Record<Dolor, PaginaDolor> = {
       },
       de: {
         gancho: 'Wenn dein zweites Gehirn über seine Links hinauswächst.',
-        ganchosAlternos: { m1: 'Bei jeder neuen Sitzung fängt dein Agent bei null an.' },
+        ganchosAlternos: { m1: 'Bei jeder neuen Sitzung fängt dein Agent bei null an.', m2: "Dein zweites Gehirn verliert sein Gedächtnis." },
         bajada:
           'Ein Gedächtnis, das dein Agent abfragt, keine Datei, die unkontrolliert wächst. Ein Workspace für jeden Teil deines Lebens.',
         aperturaVideo: 'Der Gedächtnisordner deines Agenten begann mit ein paar Notizen. Heute mischt er all deine Projekte.',
@@ -157,7 +149,7 @@ export type TextosComunes = {
   empezar: string
   pasosEtiqueta: string
   pasosTitulo: string
-  videoPasos: string
+  reproducirVideo: string
   pasos: { titulo: string; detalle: string }[]
   despuesPasos: string
   /* Qué es un RAG, antes de los pilares (Víctor, 15-oct). */
@@ -187,9 +179,10 @@ export type TextosComunes = {
   }
 }
 
-/* Video del Quickstart en YouTube (Víctor, 15-oct), el mismo en todos los
-   idiomas. Sin el parámetro `si` del enlace compartido. */
-export const URL_VIDEO_PASOS = 'https://youtu.be/EfhvUpb80FI'
+/* Video del Quickstart en YouTube (Víctor, 15-oct), el mismo en las dos
+   páginas y en todos los idiomas. Va incrustado bajo el hero; el iframe se
+   carga al hacer clic (components/apertura/VideoYouTube.tsx). */
+export const VIDEO_YOUTUBE_ID = 'EfhvUpb80FI'
 
 export const COMUN: Record<Locale, TextosComunes> = {
   en: {
@@ -198,7 +191,7 @@ export const COMUN: Record<Locale, TextosComunes> = {
     empezar: 'Start free',
     pasosEtiqueta: 'How it starts',
     pasosTitulo: 'Three steps. Then your agent takes it from there.',
-    videoPasos: 'Watch the video',
+    reproducirVideo: 'Play video',
     pasos: [
       { titulo: 'Create a free account.', detalle: 'With Google, Microsoft or your email.' },
       {
@@ -281,7 +274,7 @@ export const COMUN: Record<Locale, TextosComunes> = {
     empezar: 'Empieza gratis',
     pasosEtiqueta: 'Cómo empieza',
     pasosTitulo: 'Tres pasos. Desde ahí sigue tu agente.',
-    videoPasos: 'Ver el video',
+    reproducirVideo: 'Reproducir video',
     pasos: [
       { titulo: 'Crea una cuenta gratis.', detalle: 'Con Google, Microsoft o tu correo.' },
       {
@@ -364,7 +357,7 @@ export const COMUN: Record<Locale, TextosComunes> = {
     empezar: 'Comece grátis',
     pasosEtiqueta: 'Como começa',
     pasosTitulo: 'Três passos. Depois, seu agente segue sozinho.',
-    videoPasos: 'Ver o vídeo',
+    reproducirVideo: 'Reproduzir vídeo',
     pasos: [
       { titulo: 'Crie uma conta gratuita.', detalle: 'Com Google, Microsoft ou seu e-mail.' },
       {
@@ -447,7 +440,7 @@ export const COMUN: Record<Locale, TextosComunes> = {
     empezar: 'Commencer gratuitement',
     pasosEtiqueta: 'Comment ça commence',
     pasosTitulo: 'Trois étapes. Ensuite, votre agent prend le relais.',
-    videoPasos: 'Voir la vidéo',
+    reproducirVideo: 'Lire la vidéo',
     pasos: [
       { titulo: 'Créez un compte gratuit.', detalle: 'Avec Google, Microsoft ou votre e-mail.' },
       {
@@ -530,7 +523,7 @@ export const COMUN: Record<Locale, TextosComunes> = {
     empezar: 'Kostenlos starten',
     pasosEtiqueta: 'So geht es los',
     pasosTitulo: 'Drei Schritte. Danach übernimmt dein Agent.',
-    videoPasos: 'Video ansehen',
+    reproducirVideo: 'Video abspielen',
     pasos: [
       { titulo: 'Erstelle ein kostenloses Konto.', detalle: 'Mit Google, Microsoft oder deiner E-Mail.' },
       {

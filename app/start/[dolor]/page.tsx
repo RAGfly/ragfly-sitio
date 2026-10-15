@@ -5,8 +5,9 @@ import { notFound } from 'next/navigation'
 import { getLocale } from 'next-intl/server'
 import { BotonEmpezar } from '../../../components/apertura/BotonEmpezar'
 import { FormularioAlta } from '../../../components/apertura/FormularioAlta'
+import { VideoYouTube } from '../../../components/apertura/VideoYouTube'
 import { SelectorIdioma } from '../../../components/SelectorIdioma'
-import { COMUN, PAGINAS, PUBLICADA, URL_GUIA_MCP, URL_REGISTRO, URL_VIDEO_PASOS, type Dolor } from '../../../content/apertura'
+import { COMUN, PAGINAS, PUBLICADA, URL_GUIA_MCP, URL_REGISTRO, VIDEO_YOUTUBE_ID, type Dolor } from '../../../content/apertura'
 import { locales, type Locale } from '../../../i18n/config'
 
 /* ------------------------------------------------------------------ */
@@ -14,7 +15,7 @@ import { locales, type Locale } from '../../../i18n/config'
 /*                                                                     */
 /* Una por dolor: /start/context y /start/memory. Estructura vigente   */
 /* (plan v2.8 §11, Víctor 14 y 15-oct): 1 hero (gancho, bajada del      */
-/* dolor, eslogan, registro + login) · video 1 cuando exista · 2 cómo   */
+/* dolor, eslogan, registro + login) · video del Quickstart · 2 cómo   */
 /* empieza · 3 pilares · 4 cierre (Free + registro + login) · 5 FAQ,  */
 /* sin precios, sin cifras y sin proveedores por plan.                  */
 /*                                                                     */
@@ -113,37 +114,18 @@ export default async function PaginaDolor({
           </div>
         </section>
 
-        {/* Video 1 del dolor: solo cuando está publicado */}
-        {p.video.src && (
-          <section className="px-6 md:px-12 pb-12">
-            <div className="mx-auto max-w-[980px]">
-              <video
-                controls
-                playsInline
-                preload="metadata"
-                poster={p.video.poster}
-                className="aspect-video w-full max-w-full rounded-md bg-slm-cabina"
-              >
-                <source src={p.video.src} />
-              </video>
-            </div>
-          </section>
-        )}
+        {/* Video del Quickstart: bajo el titular y el registro; carga al clic */}
+        <section className="px-6 md:px-12 pb-12">
+          <div className="mx-auto max-w-[760px]">
+            <VideoYouTube id={VIDEO_YOUTUBE_ID} etiqueta={c.reproducirVideo} />
+          </div>
+        </section>
 
         {/* 2 · Cómo empieza */}
         <section id="start" className={bloque}>
           <div className="mx-auto flex max-w-[760px] flex-col gap-5">
             <Etiqueta>{c.pasosEtiqueta}</Etiqueta>
             <h2 className={titulo2}>{c.pasosTitulo}</h2>
-            <a
-              href={URL_VIDEO_PASOS}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex w-fit items-center gap-2 font-helvetica-neue text-base md:text-lg font-medium text-slm-brand-dark underline underline-offset-4 hover:text-slm-dark"
-            >
-              <svg width="14" height="16" viewBox="0 0 20 22" aria-hidden="true"><path d="M2 1 L19 11 L2 21 Z" fill="currentColor" /></svg>
-              {c.videoPasos}
-            </a>
             <ol className="flex flex-col gap-5">
               {c.pasos.map((paso, i) => (
                 <li key={paso.titulo} className="grid grid-cols-[40px_1fr] items-baseline gap-3">
