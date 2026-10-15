@@ -15,7 +15,7 @@ import { locales, type Locale } from '../../../i18n/config'
 /* Una por dolor: /start/context y /start/memory. Estructura vigente   */
 /* (plan v2.8 §11, Víctor 14 y 15-oct): 1 hero (gancho, bajada del      */
 /* dolor, eslogan, registro + login) · video 1 cuando exista · 2 cómo   */
-/* empieza · 3 pilares · 4 cierre (Free + registro + login). Sin FAQ,   */
+/* empieza · 3 pilares · 4 cierre (Free + registro + login) · 5 FAQ,  */
 /* sin precios, sin cifras y sin proveedores por plan.                  */
 /*                                                                     */
 /* Multilingüe (Víctor, 15-oct): el idioma sale de getLocale(), la     */
@@ -178,6 +178,25 @@ export default async function PaginaDolor({
           <div className="mx-auto flex max-w-[760px] flex-col gap-6">
             <h2 className={titulo2}>{c.cierre}</h2>
             <FormularioAlta id="signup-cierre" textos={c} />
+          </div>
+        </section>
+
+        {/* 5 · Preguntas frecuentes: cerradas, la persona abre la que quiera */}
+        <section className={bloque}>
+          <div className="mx-auto flex max-w-[760px] flex-col gap-5">
+            <Etiqueta>FAQ</Etiqueta>
+            <h2 className={titulo2}>{c.faq.titulo}</h2>
+            <div className="flex flex-col border-t border-slm-brand-light">
+              {c.faq.preguntas.map((p) => (
+                <details key={p.q} className="group border-b border-slm-brand-light">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-4 font-helvetica-neue text-base md:text-lg font-medium [&::-webkit-details-marker]:hidden">
+                    <span className="min-w-0">{p.q}</span>
+                    <span aria-hidden="true" className="shrink-0 text-xl leading-none text-slm-brand transition-transform group-open:rotate-45">+</span>
+                  </summary>
+                  <p className="pb-5 font-helvetica-neue text-base md:text-lg leading-relaxed text-slm-gray">{p.a}</p>
+                </details>
+              ))}
+            </div>
           </div>
         </section>
       </main>

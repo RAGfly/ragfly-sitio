@@ -11,7 +11,7 @@
 /* Eslogan, descriptor y bajadas: literales de MENSAJE-CANONICO §6 y   */
 /* §7.3 en cada idioma. FR, PT y DE están pendientes de validación     */
 /* nativa, igual que en el canónico. Nada en 🔴 del semáforo ni cifras */
-/* no medidas. Sin FAQ, sin precios, sin línea de proveedores ni       */
+/* no medidas. FAQ cerrada al final; sin precios, sin proveedores ni     */
 /* diferencias de privacidad por plan (todos en carril A).             */
 /* ------------------------------------------------------------------ */
 
@@ -173,6 +173,11 @@ export type TextosComunes = {
     entrar: string
   }
   pie: { guiaMcp: string; privacidad: string; terminos: string }
+  /* Preguntas frecuentes al final de la página, cerradas: la persona abre la
+     que quiera (Víctor, 15-oct). Sin precios ni proveedores por plan, y sin
+     decir que los fragmentos van cifrados: embeddings_chunks.texto se guarda
+     en claro por decisión (ARQ-14), para la búsqueda por palabras. */
+  faq: { titulo: string; preguntas: { q: string; a: string }[] }
 }
 
 /* Video del Quickstart en YouTube (Víctor, 15-oct), el mismo en todos los
@@ -235,6 +240,16 @@ export const COMUN: Record<Locale, TextosComunes> = {
       entrar: 'Log in',
     },
     pie: { guiaMcp: 'MCP guide', privacidad: 'Privacy', terminos: 'Terms' },
+    faq: {
+      titulo: "Frequently asked questions",
+      preguntas: [
+        { q: "Do you store my documents?", a: "We don't keep your original files. To answer your agent, RAGfly stores what search needs: text fragments, their embeddings and the document's metadata. With RAGfly Desktop, the original file never leaves your network." },
+        { q: "Who processes my documents?", a: "Models from providers whose terms exclude training on your data, on every plan, Free included. RAGfly doesn't use your documents to train models of its own." },
+        { q: "Can other people or agents see my documents?", a: "Only the workspaces, areas, roles and agents you allow. Each workspace is isolated: a search in one never returns documents from another." },
+        { q: "Do I need to build an agent to use RAGfly?", a: "No. Connect the agent you already use, like Claude or GPT, over MCP, or use REST, the SDK or the CLI. Your agent can help with setup." },
+        { q: "What's the difference between Free and paid plans?", a: "Limits and capacity. Privacy is the same on every plan. Free is permanent, with monthly limits, and needs no credit card." },
+      ],
+    },
   },
   es: {
     etiqueta: 'Servicio de RAG para agentes',
@@ -291,6 +306,16 @@ export const COMUN: Record<Locale, TextosComunes> = {
       entrar: 'Inicia sesión',
     },
     pie: { guiaMcp: 'Guía MCP', privacidad: 'Privacidad', terminos: 'Términos' },
+    faq: {
+      titulo: "Preguntas frecuentes",
+      preguntas: [
+        { q: "¿Guardan mis documentos?", a: "No guardamos tus archivos originales. Para responderle a tu agente, RAGfly guarda lo que la búsqueda necesita: fragmentos del texto, sus embeddings y los metadatos del documento. Con RAGfly Desktop, el archivo original nunca sale de tu red." },
+        { q: "¿Quién procesa mis documentos?", a: "Modelos de proveedores cuyos términos excluyen entrenar con tus datos, en todos los planes, también en Free. RAGfly no usa tus documentos para entrenar modelos propios." },
+        { q: "¿Otras personas o agentes pueden ver mis documentos?", a: "Solo los workspaces, áreas, roles y agentes que tú autorizas. Cada workspace queda aislado: una búsqueda en uno nunca devuelve documentos de otro." },
+        { q: "¿Tengo que construir un agente para usar RAGfly?", a: "No. Conecta el agente que ya usas, como Claude o GPT, por MCP, o usa REST, el SDK o la CLI. Tu agente puede ayudarte con la configuración." },
+        { q: "¿Qué cambia entre Free y los planes pagados?", a: "Los límites y la capacidad. La privacidad es la misma en todos los planes. Free es permanente, con límites mensuales, y no pide tarjeta de crédito." },
+      ],
+    },
   },
   pt: {
     etiqueta: 'Serviço de RAG para agentes',
@@ -347,6 +372,16 @@ export const COMUN: Record<Locale, TextosComunes> = {
       entrar: 'Entrar',
     },
     pie: { guiaMcp: 'Guia MCP', privacidad: 'Privacidade', terminos: 'Termos' },
+    faq: {
+      titulo: "Perguntas frequentes",
+      preguntas: [
+        { q: "Vocês armazenam meus documentos?", a: "Não guardamos seus arquivos originais. Para responder ao seu agente, o RAGfly guarda o que a busca precisa: fragmentos do texto, seus embeddings e os metadados do documento. Com o RAGfly Desktop, o arquivo original nunca sai da sua rede." },
+        { q: "Quem processa meus documentos?", a: "Modelos de provedores cujos termos excluem o treinamento com seus dados, em todos os planos, inclusive no Free. O RAGfly não usa seus documentos para treinar modelos próprios." },
+        { q: "Outras pessoas ou agentes podem ver meus documentos?", a: "Só os workspaces, áreas, papéis e agentes que você autoriza. Cada workspace fica isolado: uma busca em um nunca traz documentos de outro." },
+        { q: "Preciso construir um agente para usar o RAGfly?", a: "Não. Conecte o agente que você já usa, como Claude ou GPT, por MCP, ou use REST, o SDK ou a CLI. Seu agente pode ajudar na configuração." },
+        { q: "O que muda entre o Free e os planos pagos?", a: "Os limites e a capacidade. A privacidade é a mesma em todos os planos. O Free é permanente, com limites mensais, e não pede cartão de crédito." },
+      ],
+    },
   },
   fr: {
     etiqueta: 'Service de RAG pour agents',
@@ -403,6 +438,16 @@ export const COMUN: Record<Locale, TextosComunes> = {
       entrar: 'Se connecter',
     },
     pie: { guiaMcp: 'Guide MCP', privacidad: 'Confidentialité', terminos: 'Conditions' },
+    faq: {
+      titulo: "Questions fréquentes",
+      preguntas: [
+        { q: "Stockez-vous mes documents ?", a: "Nous ne conservons pas vos fichiers originaux. Pour répondre à votre agent, RAGfly garde ce dont la recherche a besoin : des fragments du texte, leurs embeddings et les métadonnées du document. Avec RAGfly Desktop, le fichier original ne quitte jamais votre réseau." },
+        { q: "Qui traite mes documents ?", a: "Des modèles de fournisseurs dont les conditions excluent l'entraînement sur vos données, sur tous les plans, Free compris. RAGfly n'utilise pas vos documents pour entraîner ses propres modèles." },
+        { q: "D'autres personnes ou agents peuvent-ils voir mes documents ?", a: "Seulement les workspaces, zones, rôles et agents que vous autorisez. Chaque workspace est isolé : une recherche dans l'un ne renvoie jamais de documents d'un autre." },
+        { q: "Dois-je créer un agent pour utiliser RAGfly ?", a: "Non. Connectez l'agent que vous utilisez déjà, comme Claude ou GPT, via MCP, ou utilisez REST, le SDK ou la CLI. Votre agent peut vous aider à la configuration." },
+        { q: "Qu'est-ce qui change entre Free et les plans payants ?", a: "Les limites et la capacité. La confidentialité est la même sur tous les plans. Free est permanent, avec des limites mensuelles, et ne demande pas de carte bancaire." },
+      ],
+    },
   },
   de: {
     etiqueta: 'RAG-Dienst für Agenten',
@@ -459,6 +504,16 @@ export const COMUN: Record<Locale, TextosComunes> = {
       entrar: 'Anmelden',
     },
     pie: { guiaMcp: 'MCP-Leitfaden', privacidad: 'Datenschutz', terminos: 'AGB' },
+    faq: {
+      titulo: "Häufige Fragen",
+      preguntas: [
+        { q: "Speichert ihr meine Dokumente?", a: "Deine Originaldateien bewahren wir nicht auf. Um deinem Agenten zu antworten, speichert RAGfly, was die Suche braucht: Textfragmente, ihre Embeddings und die Metadaten des Dokuments. Mit RAGfly Desktop verlässt die Originaldatei nie dein Netzwerk." },
+        { q: "Wer verarbeitet meine Dokumente?", a: "Modelle von Anbietern, deren Bedingungen das Training mit deinen Daten ausschließen, in allen Plänen, auch im Free-Plan. RAGfly nutzt deine Dokumente nicht, um eigene Modelle zu trainieren." },
+        { q: "Können andere Personen oder Agenten meine Dokumente sehen?", a: "Nur die Workspaces, Bereiche, Rollen und Agenten, die du freigibst. Jeder Workspace ist isoliert: Eine Suche in einem liefert nie Dokumente aus einem anderen." },
+        { q: "Muss ich einen Agenten bauen, um RAGfly zu nutzen?", a: "Nein. Verbinde den Agenten, den du schon nutzt, etwa Claude oder GPT, über MCP, oder nutze REST, das SDK oder die CLI. Dein Agent kann bei der Einrichtung helfen." },
+        { q: "Was ist der Unterschied zwischen Free und den bezahlten Plänen?", a: "Limits und Kapazität. Der Datenschutz ist in allen Plänen gleich. Der Free-Plan ist dauerhaft, mit monatlichen Limits, und braucht keine Kreditkarte." },
+      ],
+    },
   },
 }
 
