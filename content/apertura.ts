@@ -115,7 +115,7 @@ export const COMUN = {
     },
     {
       nombre: 'Workspaces',
-      texto: 'Personal, professional, family. In business: different companies, different clients, different projects. Each workspace stays isolated from the others.',
+      texto: 'One workspace for your personal life, one for your business, one per client or company. Each stays isolated from the others.',
     },
     { nombre: 'Granular security', texto: 'Access by workspace, area, role and agent.' },
   ],
