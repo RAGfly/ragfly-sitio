@@ -618,7 +618,7 @@
     "faqTitulo": "Lo que nos preguntan antes de empezar"
   },
   "faq": {
-    "total": "12",
+    "total": "15",
     "q0": "¿Qué es RAGfly?",
     "a0": "Un servicio de RAG para agentes de IA: convierte cualquier corpus de documentos —miles o decenas de miles, incluidos escaneados— en una base de recuperación segura, organizada en workspaces aislados y lista para producción, sin construir ni mantener un pipeline RAG.",
     "q1": "¿Para quién es?",
@@ -642,6 +642,12 @@
     "q10": "¿Puedo usarlo con datos regulados (legal, salud, gobierno)?",
     "a10": "Sí. Desktop procesa el archivo original y su extracción dentro de la red del cliente. En planes soberanos, el cliente es dueño de la base donde persisten los derivados. RAGfly sigue procesando chunks en la salida para producir la recuperación; un runtime in-situ completo es el modo que mantiene también ese procesamiento dentro de infraestructura del cliente.",
     "q11": "¿En cuánto tiempo paso de un directorio a un agente respondiendo con citas?",
-    "a11": "Apuntas RAGfly a un directorio y, con ingesta, vectorización e indexado automáticos, puedes tener un agente respondiendo con citas en poco tiempo, sin ayuda humana — sin construir ni mantener un pipeline RAG a escala."
+    "a11": "Apuntas RAGfly a un directorio y, con ingesta, vectorización e indexado automáticos, puedes tener un agente respondiendo con citas en poco tiempo, sin ayuda humana — sin construir ni mantener un pipeline RAG a escala.",
+    "q12": "¿Quién procesa mis documentos?",
+    "a12": "Modelos de proveedores cuyos términos excluyen entrenar con tus datos, en todos los planes, también en Free. RAGfly no usa tus documentos para entrenar modelos propios.",
+    "q13": "¿Tengo que construir un agente para usar RAGfly?",
+    "a13": "No. Conecta el agente que ya usas, como Claude o GPT, por MCP, o usa REST, el SDK o la CLI. Tu agente puede ayudarte con la configuración.",
+    "q14": "¿Qué cambia entre Free y los planes pagados?",
+    "a14": "Los límites y la capacidad. La privacidad es la misma en todos los planes. Free es permanente, con límites mensuales, y no pide tarjeta de crédito."
   }
 }

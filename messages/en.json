@@ -617,7 +617,7 @@
     "faqTitulo": "What people ask us before starting"
   },
   "faq": {
-    "total": "12",
+    "total": "15",
     "q0": "What is RAGfly?",
     "a0": "A RAG service for AI agents: it turns any document corpus —thousands or tens of thousands, scans included— into a secure retrieval base, organized in isolated workspaces, that's ready for production, without building or maintaining a RAG pipeline.",
     "q1": "Who is it for?",
@@ -641,6 +641,12 @@
     "q10": "Can I use it with regulated data (legal, healthcare, government)?",
     "a10": "Yes. Desktop processes the original file and its extraction inside the customer's network. On sovereign plans, the customer owns the database where the derivatives persist. RAGfly still processes chunks on the way out to produce retrieval; a full in-situ runtime is the mode that keeps that processing inside the customer's infrastructure too.",
     "q11": "How long does it take to go from a directory to an agent answering with citations?",
-    "a11": "You point RAGfly at a directory and, with automatic ingestion, vectorization and indexing, you can have an agent answering with citations in a short time, with no human help — and without building or maintaining a RAG pipeline at scale."
+    "a11": "You point RAGfly at a directory and, with automatic ingestion, vectorization and indexing, you can have an agent answering with citations in a short time, with no human help — and without building or maintaining a RAG pipeline at scale.",
+    "q12": "Who processes my documents?",
+    "a12": "Models from providers whose terms exclude training on your data, on every plan, Free included. RAGfly doesn't use your documents to train models of its own.",
+    "q13": "Do I need to build an agent to use RAGfly?",
+    "a13": "No. Connect the agent you already use, like Claude or GPT, over MCP, or use REST, the SDK or the CLI. Your agent can help with setup.",
+    "q14": "What's the difference between Free and paid plans?",
+    "a14": "Limits and capacity. Privacy is the same on every plan. Free is permanent, with monthly limits, and needs no credit card."
   }
 }

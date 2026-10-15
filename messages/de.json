@@ -617,7 +617,7 @@
     "faqTitulo": "Was uns vor dem Start gefragt wird"
   },
   "faq": {
-    "total": "12",
+    "total": "15",
     "q0": "Was ist RAGfly?",
     "a0": "Ein RAG-Dienst für KI-Agenten: er verwandelt jeden Dokumentenkorpus —Tausende oder Zehntausende, Scans inklusive— in eine sichere, mandantenfähige und produktionsreife Retrieval-Basis, ohne dass du eine RAG-Pipeline bauen oder pflegen musst.",
     "q1": "Für wen ist es?",
@@ -641,6 +641,12 @@
     "q10": "Kann ich es mit regulierten Daten nutzen (Recht, Gesundheit, Behörden)?",
     "a10": "Ja. Desktop verarbeitet die Originaldatei und ihre Extraktion im Netz des Kunden. In souveränen Tarifen gehört dem Kunden die Datenbank, in der die Derivate liegen. RAGfly verarbeitet weiterhin Chunks am Ausgang, um den Abruf zu erzeugen; eine vollständige In-situ-Laufzeit ist der Modus, der auch diese Verarbeitung in der Infrastruktur des Kunden hält.",
     "q11": "Wie lange dauert es von einem Verzeichnis bis zu einem Agenten, der mit Zitaten antwortet?",
-    "a11": "Du richtest RAGfly auf ein Verzeichnis und kannst mit automatischer Aufnahme, Vektorisierung und Indexierung in kurzer Zeit einen Agenten haben, der mit Zitaten antwortet — ohne menschliche Hilfe und ohne eine RAG-Pipeline im großen Maßstab zu bauen oder zu pflegen."
+    "a11": "Du richtest RAGfly auf ein Verzeichnis und kannst mit automatischer Aufnahme, Vektorisierung und Indexierung in kurzer Zeit einen Agenten haben, der mit Zitaten antwortet — ohne menschliche Hilfe und ohne eine RAG-Pipeline im großen Maßstab zu bauen oder zu pflegen.",
+    "q12": "Wer verarbeitet meine Dokumente?",
+    "a12": "Modelle von Anbietern, deren Bedingungen das Training mit deinen Daten ausschließen, in allen Plänen, auch im Free-Plan. RAGfly nutzt deine Dokumente nicht, um eigene Modelle zu trainieren.",
+    "q13": "Muss ich einen Agenten bauen, um RAGfly zu nutzen?",
+    "a13": "Nein. Verbinde den Agenten, den du schon nutzt, etwa Claude oder GPT, über MCP, oder nutze REST, das SDK oder die CLI. Dein Agent kann bei der Einrichtung helfen.",
+    "q14": "Was ist der Unterschied zwischen Free und den bezahlten Plänen?",
+    "a14": "Limits und Kapazität. Der Datenschutz ist in allen Plänen gleich. Der Free-Plan ist dauerhaft, mit monatlichen Limits, und braucht keine Kreditkarte."
   }
 }

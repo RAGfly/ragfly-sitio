@@ -618,7 +618,7 @@
     "faqTitulo": "Ce qu'on nous demande avant de commencer"
   },
   "faq": {
-    "total": "12",
+    "total": "15",
     "q0": "Qu'est-ce que RAGfly ?",
     "a0": "Un service de RAG pour agents d'IA : il transforme n'importe quel corpus documentaire —des milliers ou des dizaines de milliers de documents, scans compris— en une base de récupération sécurisée, organisée en workspaces isolés et prête pour la production, sans construire ni maintenir un pipeline RAG.",
     "q1": "À qui s'adresse-t-il ?",
@@ -642,6 +642,12 @@
     "q10": "Puis-je l'utiliser avec des données réglementées (juridique, santé, secteur public) ?",
     "a10": "Oui. Desktop traite le fichier original et son extraction au sein du réseau du client. Dans les offres souveraines, le client est propriétaire de la base où persistent les dérivés. RAGfly traite toujours des chunks à la sortie pour produire la récupération ; un runtime in-situ complet est le mode qui maintient aussi ce traitement dans l'infrastructure du client.",
     "q11": "En combien de temps passe-t-on d'un répertoire à un agent qui répond avec des citations ?",
-    "a11": "Vous pointez RAGfly vers un répertoire et, avec l'ingestion, la vectorisation et l'indexation automatiques, vous pouvez avoir un agent qui répond avec des citations en peu de temps, sans aide humaine — et sans construire ni maintenir un pipeline RAG à l'échelle."
+    "a11": "Vous pointez RAGfly vers un répertoire et, avec l'ingestion, la vectorisation et l'indexation automatiques, vous pouvez avoir un agent qui répond avec des citations en peu de temps, sans aide humaine — et sans construire ni maintenir un pipeline RAG à l'échelle.",
+    "q12": "Qui traite mes documents ?",
+    "a12": "Des modèles de fournisseurs dont les conditions excluent l'entraînement sur vos données, sur tous les plans, Free compris. RAGfly n'utilise pas vos documents pour entraîner ses propres modèles.",
+    "q13": "Dois-je créer un agent pour utiliser RAGfly ?",
+    "a13": "Non. Connectez l'agent que vous utilisez déjà, comme Claude ou GPT, via MCP, ou utilisez REST, le SDK ou la CLI. Votre agent peut vous aider à la configuration.",
+    "q14": "Qu'est-ce qui change entre Free et les plans payants ?",
+    "a14": "Les limites et la capacité. La confidentialité est la même sur tous les plans. Free est permanent, avec des limites mensuelles, et ne demande pas de carte bancaire."
   }
 }

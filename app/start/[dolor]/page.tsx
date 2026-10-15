@@ -163,6 +163,10 @@ export default async function PaginaDolor({
 
         {/* 3 · Pilares */}
         <section className={`${bloque} bg-slm-light`}>
+          <div className="mx-auto mb-10 flex max-w-[760px] flex-col gap-3">
+            <h2 className={titulo2}>{c.queEsRag.titulo}</h2>
+            <p className="font-helvetica-neue text-base md:text-lg leading-relaxed">{c.queEsRag.texto}</p>
+          </div>
           <div className="mx-auto grid max-w-[760px] gap-x-10 gap-y-8 sm:grid-cols-2">
             {c.pilares.map((pilar) => (
               <div key={pilar.nombre} className="flex min-w-0 flex-col gap-2">

@@ -160,6 +160,8 @@ export type TextosComunes = {
   videoPasos: string
   pasos: { titulo: string; detalle: string }[]
   despuesPasos: string
+  /* Qué es un RAG, antes de los pilares (Víctor, 15-oct). */
+  queEsRag: { titulo: string; texto: string }
   pilares: { nombre: string; texto: string }[]
   cierre: string
   yaTienesCuenta: string
@@ -206,6 +208,10 @@ export const COMUN: Record<Locale, TextosComunes> = {
       },
     ],
     despuesPasos: 'From there, your agent works with your documents on its own.',
+    queEsRag: {
+      titulo: "What is RAG?",
+      texto: "RAG stands for retrieval-augmented generation: before answering, your agent looks up the passages it needs in your documents and answers from them, citing the source. RAGfly handles that retrieval for you.",
+    },
     pilares: [
       {
         nombre: 'Simple',
@@ -272,6 +278,10 @@ export const COMUN: Record<Locale, TextosComunes> = {
       },
     ],
     despuesPasos: 'Desde ahí, tu agente trabaja solo con tus documentos.',
+    queEsRag: {
+      titulo: "¿Qué es un RAG?",
+      texto: "RAG significa recuperación aumentada: antes de responder, tu agente busca en tus documentos los pasajes que necesita y responde con ellos, citando la fuente. RAGfly se encarga de esa búsqueda por ti.",
+    },
     pilares: [
       {
         nombre: 'Simple',
@@ -338,6 +348,10 @@ export const COMUN: Record<Locale, TextosComunes> = {
       },
     ],
     despuesPasos: 'A partir daí, seu agente trabalha com seus documentos por conta própria.',
+    queEsRag: {
+      titulo: "O que é RAG?",
+      texto: "RAG significa geração aumentada por recuperação: antes de responder, seu agente busca nos seus documentos os trechos de que precisa e responde com base neles, citando a fonte. O RAGfly cuida dessa busca para você.",
+    },
     pilares: [
       {
         nombre: 'Simples',
@@ -404,6 +418,10 @@ export const COMUN: Record<Locale, TextosComunes> = {
       },
     ],
     despuesPasos: 'Ensuite, votre agent travaille seul avec vos documents.',
+    queEsRag: {
+      titulo: "Qu'est-ce que le RAG ?",
+      texto: "RAG signifie génération augmentée par la recherche : avant de répondre, votre agent cherche dans vos documents les passages dont il a besoin et répond à partir d'eux, en citant la source. RAGfly s'occupe de cette recherche pour vous.",
+    },
     pilares: [
       {
         nombre: 'Simple',
@@ -470,6 +488,10 @@ export const COMUN: Record<Locale, TextosComunes> = {
       },
     ],
     despuesPasos: 'Ab dann arbeitet dein Agent selbstständig mit deinen Dokumenten.',
+    queEsRag: {
+      titulo: "Was ist RAG?",
+      texto: "RAG steht für Retrieval-Augmented Generation: Bevor dein Agent antwortet, sucht er in deinen Dokumenten die Passagen, die er braucht, und antwortet darauf gestützt, mit Quellenangabe. RAGfly übernimmt diese Suche für dich.",
+    },
     pilares: [
       {
         nombre: 'Einfach',
