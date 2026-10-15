@@ -1,14 +1,15 @@
 /* ------------------------------------------------------------------ */
 /* Apertura controlada — textos de las páginas de destino              */
 /*                                                                     */
-/* Fuente: versión B aprobada (Víctor, 14-oct-2026) y Plan de Apertura */
-/* Controlada v2.5 (§1, §4, §5.1). Captación SOLO en inglés: estas     */
+/* Fuente: estructura vigente del Plan de Apertura Controlada v2.8 §11 */
+/* (Víctor, 14 y 15-oct-2026). Captación SOLO en inglés: estas         */
 /* páginas no pasan por next-intl a propósito.                         */
 /*                                                                     */
 /* Regla de las piezas: gancho arriba, eslogan EN literal abajo, nada  */
-/* en 🔴 del semáforo ni cifras no medidas. Sin FAQ, sin precios y sin */
-/* listas de proveedores (Víctor, 14-oct: asustan y no venden). Los    */
-/* cambios de gancho se hacen acá y en MENSAJE-CANONICO §7.3.          */
+/* en 🔴 del semáforo ni cifras no medidas. Sin FAQ, sin precios, sin  */
+/* línea de proveedores ni diferencias de privacidad por plan (todos   */
+/* en carril A). Los cambios de gancho van acá y en MENSAJE-CANONICO   */
+/* §7.3.                                                               */
 /* ------------------------------------------------------------------ */
 
 /**
@@ -77,35 +78,52 @@ export const PAGINAS: Record<Dolor, PaginaDolor> = {
   },
 }
 
-/* Texto común de la versión B (eslogan: MENSAJE-CANONICO §6, §6.bis — literal). */
+/* Texto común (estructura vigente 14-oct, Plan de Apertura §11). El eslogan
+   es literal de MENSAJE-CANONICO §6 / §6.bis; los pilares, del plan §11. */
 export const COMUN = {
   eslogan: 'Simple, private, and precise. Access by workspace, area, role and agent.',
   bajadaProducto: 'Augmented retrieval for your agents.',
   pasosTitulo: 'Three steps. Then your agent takes it from there.',
   pasos: [
-    'Create a free account with Google, Microsoft or your email.',
-    "Choose the folders RAGfly should index, with the desktop app. Only you can do this: your agent doesn't get that permission.",
-    'Connect your agent over MCP. In Claude or ChatGPT, add a custom connector and paste the RAGfly URL.',
+    { titulo: 'Create a free account.', detalle: 'With Google, Microsoft or your email.' },
+    {
+      titulo: 'Choose a location and load its content.',
+      detalle:
+        "A folder on your computer with RAGfly Desktop, or your Google Drive or Dropbox. Only you can do this: your agent doesn't get that permission.",
+    },
+    {
+      titulo: 'Connect your agent over MCP.',
+      detalle:
+        'In Claude or ChatGPT, add a custom connector with the RAGfly URL and sign in. Other agents use an API key. Your agent can help with setup.',
+    },
   ],
   despuesPasos: 'From there, your agent works with your documents on its own.',
-  /* Opcionales pero recomendados para una operación óptima; no son pasos
-     (Víctor, 14-oct). */
-  recomendado:
-    "Recommended: set up your workspace and your organization's details, so your searches return the most relevant results.",
-  conQueFunciona:
-    'Works with the agents you already use — over MCP — and with the ones you build.',
-  interfaces:
-    'Connect over MCP, REST, the SDK or the CLI — and use it with agents like Claude or GPT.',
-  workspaceTitulo: 'You draw the line. Nothing crosses it.',
-  workspace:
-    'A workspace is whatever you decide must never mix: your personal life and your business inside the same agent, or each client of your accounting practice.',
-  granular: 'Behind each workspace, you get granular security by area, role and agent.',
-  privadoTitulo:
-    'We never store your documents. And with RAGfly Desktop, they never leave your network.',
-  /* Asume Free en Clase A: condición para publicar (ver PUBLICADA). */
-  privado:
-    "RAGfly selects model providers whose terms exclude training on your data. If you choose or supply your own providers, their policies apply.",
+  pilares: [
+    {
+      nombre: 'Simple',
+      texto:
+        'Connect through MCP, REST, SDK or CLI. Your agent can help with setup. Choose a location, load its content, and let RAGfly handle the rest.',
+    },
+    {
+      nombre: 'Private',
+      texto:
+        "We don't store your documents. With RAGfly Desktop, they never leave your network. Your document data is encrypted.",
+    },
+    {
+      nombre: 'Precise',
+      texto: 'We enrich your content and refine retrieval to deliver the most relevant results.',
+    },
+    {
+      nombre: 'Workspaces',
+      texto: 'Personal, professional, family: each workspace stays isolated from the others.',
+    },
+    { nombre: 'Granular security', texto: 'Access by workspace, area, role and agent.' },
+  ],
+  cierre: 'Try RAGfly with the Free plan.',
+  yaTienesCuenta: 'Already have an account?',
 } as const
 
+/* El registro y el login viven en la app (el sitio solo vuelca al Login). */
 export const URL_APP = 'https://app.ragfly.ai'
+export const URL_LOGIN = 'https://app.ragfly.ai/login'
 export const URL_GUIA_MCP = '/build/mcp'

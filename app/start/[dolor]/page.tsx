@@ -3,15 +3,16 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { BotonEmpezar } from '../../../components/apertura/BotonEmpezar'
-import { COMUN, PAGINAS, PUBLICADA, URL_APP, URL_GUIA_MCP, type Dolor } from '../../../content/apertura'
+import { COMUN, PAGINAS, PUBLICADA, URL_APP, URL_GUIA_MCP, URL_LOGIN, type Dolor } from '../../../content/apertura'
 
 /* ------------------------------------------------------------------ */
 /* /start/[dolor] — páginas de destino de la apertura controlada        */
 /*                                                                     */
-/* Una por dolor (plan v2.5 §5.1): /start/context y /start/memory.      */
-/* Versión B (Víctor, 14-oct): 1 gancho + eslogan literal · 2 video 1 · */
-/* 3 bajada · 4 cómo empieza · 5 con qué funciona · 6 workspaces ·      */
-/* 7 privado · 8 cierre. Sin FAQ, sin precios y sin cifras.             */
+/* Una por dolor: /start/context y /start/memory. Estructura vigente   */
+/* (plan v2.8 §11, Víctor 14 y 15-oct): 1 hero (gancho, bajada del      */
+/* dolor, eslogan, registro + login) · video 1 cuando exista · 2 cómo   */
+/* empieza · 3 pilares · 4 cierre (Free + registro + login). Sin FAQ,   */
+/* sin precios, sin cifras y sin proveedores por plan.                  */
 /*                                                                     */
 /* Solo inglés: no usa next-intl. Sin índice en buscadores: son destino */
 /* de campaña, no páginas del sitio.                                    */
@@ -42,14 +43,23 @@ function Etiqueta({ children }: { children: React.ReactNode }) {
   return <span className="rf-anot text-slm-brand">{children}</span>
 }
 
-function Etiquetas({ items }: { items: string[] }) {
+function Registro({ grande = false }: { grande?: boolean }) {
   return (
-    <div className="flex flex-wrap gap-2">
-      {items.map((s) => (
-        <span key={s} className="rounded border border-slm-brand-light px-3 py-1.5 font-[family-name:var(--font-dato)] text-xs tracking-[0.04em]">
-          {s}
-        </span>
-      ))}
+    <div className="flex flex-col items-start gap-3">
+      <BotonEmpezar
+        destino={URL_APP}
+        className={`rf-boton inline-block rounded-full bg-slm-dark font-medium text-slm-light hover:opacity-90 ${
+          grande ? 'px-7 py-3.5 text-base' : 'px-6 py-3 text-base'
+        }`}
+      >
+        Start free
+      </BotonEmpezar>
+      <p className="font-helvetica-neue text-sm text-slm-gray">
+        {COMUN.yaTienesCuenta}{' '}
+        <a href={URL_LOGIN} className="text-slm-brand-dark underline underline-offset-2 hover:text-slm-dark">
+          Log in
+        </a>
+      </p>
     </div>
   )
 }
@@ -93,24 +103,23 @@ export default async function PaginaDolor({
       </header>
 
       <main>
-        {/* 1 · Gancho del aviso + eslogan literal */}
-        <section className="px-6 md:px-12 pt-8 pb-8 md:pt-14">
-          <div className="mx-auto flex max-w-[760px] flex-col gap-5">
+        {/* 1 · Hero: gancho del aviso, bajada del dolor, eslogan y registro */}
+        <section className="px-6 md:px-12 pt-8 pb-12 md:pt-14">
+          <div className="mx-auto flex max-w-[760px] flex-col gap-6">
             <Etiqueta>RAG service for agents</Etiqueta>
             <h1 className="font-helvetica-neue text-4xl md:text-6xl font-medium leading-[1.06] tracking-[-0.035em] text-balance">
               {gancho}
             </h1>
-            <div className="flex flex-col gap-1">
-              <p className="font-helvetica-neue text-lg md:text-xl font-medium">{COMUN.eslogan}</p>
-              <p className="font-helvetica-neue text-lg md:text-xl text-slm-brand-dark">{COMUN.bajadaProducto}</p>
-            </div>
+            <p className="font-helvetica-neue text-lg md:text-xl leading-relaxed">{p.bajada}</p>
+            <p className="font-helvetica-neue text-lg md:text-xl font-medium text-slm-brand-dark">{COMUN.eslogan}</p>
+            <Registro />
           </div>
         </section>
 
-        {/* 2 · Video 1 del dolor */}
-        <section className="px-6 md:px-12 pb-6">
-          <div className="mx-auto max-w-[980px]">
-            {p.video.src ? (
+        {/* Video 1 del dolor: solo cuando está publicado */}
+        {p.video.src && (
+          <section className="px-6 md:px-12 pb-12">
+            <div className="mx-auto max-w-[980px]">
               <video
                 controls
                 playsInline
@@ -120,89 +129,49 @@ export default async function PaginaDolor({
               >
                 <source src={p.video.src} />
               </video>
-            ) : (
-              <div
-                role="img"
-                aria-label="Product video"
-                className="grid aspect-video w-full max-w-full place-items-center rounded-md bg-slm-cabina px-6 text-center text-slm-light"
-              >
-                <div className="flex max-w-[30ch] flex-col items-center gap-4">
-                  <span className="grid h-16 w-16 place-items-center rounded-full border border-[#55B2E4]">
-                    <svg width="20" height="22" viewBox="0 0 20 22" aria-hidden="true"><path d="M2 1 L19 11 L2 21 Z" fill="#55B2E4" /></svg>
-                  </span>
-                  <p className="font-helvetica-neue text-lg md:text-2xl font-medium leading-snug text-balance">{p.video.apertura}</p>
-                </div>
-              </div>
-            )}
-          </div>
-        </section>
+            </div>
+          </section>
+        )}
 
-        {/* 3 · Bajada del dolor */}
-        <section className="px-6 md:px-12 pb-12">
-          <p className="mx-auto max-w-[760px] font-helvetica-neue text-lg md:text-xl leading-relaxed">{p.bajada}</p>
-        </section>
-
-        {/* 4 · Cómo empieza */}
+        {/* 2 · Cómo empieza */}
         <section id="start" className={bloque}>
           <div className="mx-auto flex max-w-[760px] flex-col gap-5">
             <Etiqueta>How it starts</Etiqueta>
             <h2 className={titulo2}>{COMUN.pasosTitulo}</h2>
-            <ol className="flex flex-col gap-4">
+            <ol className="flex flex-col gap-5">
               {COMUN.pasos.map((paso, i) => (
-                <li key={paso} className="grid grid-cols-[40px_1fr] items-baseline gap-3">
+                <li key={paso.titulo} className="grid grid-cols-[40px_1fr] items-baseline gap-3">
                   <span className="grid h-8 w-8 place-items-center rounded-full border border-slm-brand-light font-[family-name:var(--font-dato)] text-sm text-slm-brand">
                     {i + 1}
                   </span>
-                  <span className="min-w-0 font-helvetica-neue text-base md:text-lg">{paso}</span>
+                  <span className="min-w-0 flex flex-col gap-1">
+                    <span className="font-helvetica-neue text-base md:text-lg font-medium">{paso.titulo}</span>
+                    <span className="font-helvetica-neue text-base text-slm-gray">{paso.detalle}</span>
+                  </span>
                 </li>
               ))}
             </ol>
             <p className="font-helvetica-neue text-base md:text-lg">{COMUN.despuesPasos}</p>
-            <p className="font-helvetica-neue text-base text-slm-gray">{COMUN.recomendado}</p>
           </div>
         </section>
 
-        {/* 5 · Con qué funciona */}
-        <section className={bloque}>
-          <div className="mx-auto flex max-w-[760px] flex-col gap-4">
-            <Etiqueta>Works with</Etiqueta>
-            <h2 className={titulo2}>{COMUN.conQueFunciona}</h2>
-            <p className={texto}>{COMUN.interfaces}</p>
-            <Etiquetas items={['MCP', 'REST', 'SDK', 'CLI']} />
-          </div>
-        </section>
-
-        {/* 6 · Workspaces */}
-        <section className={bloque}>
-          <div className="mx-auto flex max-w-[760px] flex-col gap-4">
-            <Etiqueta>Workspaces</Etiqueta>
-            <h2 className={titulo2}>{COMUN.workspaceTitulo}</h2>
-            <p className={texto}>{COMUN.workspace}</p>
-            <p className="font-helvetica-neue text-lg md:text-xl font-medium leading-snug">{COMUN.granular}</p>
-            <Etiquetas items={['Area', 'Role', 'Agent']} />
-          </div>
-        </section>
-
-        {/* 7 · Privado (fondo suave) */}
+        {/* 3 · Pilares */}
         <section className={`${bloque} bg-slm-light`}>
-          <div className="mx-auto flex max-w-[760px] flex-col gap-4">
-            <Etiqueta>Private</Etiqueta>
-            <h2 className="max-w-[26ch] font-helvetica-neue text-2xl md:text-4xl font-medium leading-tight tracking-[-0.02em] text-balance">
-              {COMUN.privadoTitulo}
-            </h2>
-            <p className="font-helvetica-neue text-base md:text-lg leading-relaxed">{COMUN.privado}</p>
+          <div className="mx-auto grid max-w-[760px] gap-x-10 gap-y-8 sm:grid-cols-2">
+            {COMUN.pilares.map((pilar) => (
+              <div key={pilar.nombre} className="flex min-w-0 flex-col gap-2">
+                <h2 className="font-helvetica-neue text-xl md:text-2xl font-medium tracking-[-0.01em]">{pilar.nombre}</h2>
+                <p className={texto}>{pilar.texto}</p>
+              </div>
+            ))}
           </div>
         </section>
 
-        {/* 8 · Cierre */}
+        {/* 4 · Cierre */}
         <section className={bloque}>
-          <div className="mx-auto max-w-[760px]">
-            <BotonEmpezar
-              destino={URL_APP}
-              className="rf-boton inline-block rounded-full bg-slm-dark px-7 py-3.5 text-base font-medium text-slm-light hover:opacity-90"
-            >
-              Start free
-            </BotonEmpezar>
+          <div className="mx-auto flex max-w-[760px] flex-col gap-6">
+            <h2 className={titulo2}>{COMUN.cierre}</h2>
+            <Registro grande />
           </div>
         </section>
       </main>
