@@ -90,9 +90,6 @@ export function PrivadoSection() {
             </h3>
             <p className="text-slm-gray font-helvetica-neue text-base leading-relaxed">{t('privado.pisoDesc')}</p>
             <p className="text-slm-gray font-helvetica-neue text-base leading-relaxed">{t('privado.pisoVerificacion')}</p>
-            <p className="font-interfaz text-xs md:text-[13px] text-slm-dark/70 leading-relaxed border-l border-slm-brand/50 pl-4 mt-auto">
-              {t('privado.pisoHonestidad')}
-            </p>
           </div>
         </div>
 
