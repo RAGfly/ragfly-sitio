@@ -523,7 +523,6 @@
     "pisoTag": "PRIVACY",
     "pisoTitulo": "A service guarantee, not a checkbox.",
     "pisoDesc": "Every plan resolves only against model providers contractually bound not to train on the content sent — not a checkbox someone can leave in the wrong position.",
-    "pisoVerificacion": "Verified by an automated suite that mirrors the resolution across all 462 plan × skill combinations, with a positive control.",
     "pildorasTitulo": "INSTRUMENTS",
     "pildora0": "AES-256-GCM · application-level encryption with key hierarchy",
     "pildora1": "TLS 1.3 in transit",

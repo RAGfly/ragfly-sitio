@@ -89,7 +89,6 @@ export function PrivadoSection() {
               {t('privado.pisoTitulo')}
             </h3>
             <p className="text-slm-gray font-helvetica-neue text-base leading-relaxed">{t('privado.pisoDesc')}</p>
-            <p className="text-slm-gray font-helvetica-neue text-base leading-relaxed">{t('privado.pisoVerificacion')}</p>
           </div>
         </div>
 

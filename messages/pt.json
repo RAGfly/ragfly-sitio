@@ -524,7 +524,6 @@
     "pisoTag": "PRIVACIDADE",
     "pisoTitulo": "Uma garantia do serviço, não uma caixinha.",
     "pisoDesc": "Todos os planos resolvem apenas contra provedores de modelos contratualmente obrigados a não treinar com o conteúdo enviado — não uma caixinha que alguém possa deixar marcada errado.",
-    "pisoVerificacion": "Verificado por uma bateria automática que espelha a resolução nas 462 combinações de plano × habilidade, com controle positivo.",
     "pildorasTitulo": "INSTRUMENTOS",
     "pildora0": "AES-256-GCM · criptografia de aplicação com hierarquia de chaves",
     "pildora1": "TLS 1.3 em trânsito",

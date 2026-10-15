@@ -523,7 +523,6 @@
     "pisoTag": "DATENSCHUTZ",
     "pisoTitulo": "Eine Garantie des Dienstes, kein Häkchen.",
     "pisoDesc": "Alle Tarife lösen ausschließlich gegen Modellanbieter auf, die vertraglich verpflichtet sind, nicht mit den gesendeten Inhalten zu trainieren — kein Häkchen, das jemand falsch stehen lassen kann.",
-    "pisoVerificacion": "Verifiziert durch eine automatische Testreihe, die die Auflösung über alle 462 Kombinationen aus Tarif × Fähigkeit spiegelt, mit Positivkontrolle.",
     "pildorasTitulo": "INSTRUMENTE",
     "pildora0": "AES-256-GCM · Anwendungsverschlüsselung mit Schlüsselhierarchie",
     "pildora1": "TLS 1.3 im Transit",
