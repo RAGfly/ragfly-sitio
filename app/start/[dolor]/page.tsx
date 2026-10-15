@@ -189,11 +189,12 @@ export default async function PaginaDolor({
         <section className={bloque}>
           <div className="mx-auto flex max-w-[760px] flex-col gap-5">
             <Etiqueta>FAQ</Etiqueta>
-            <h2 className={titulo2}>{c.faq.titulo}</h2>
+            {/* Mismo tamaño que los títulos de los pilares (Víctor, 15-oct). */}
+            <h2 className="font-helvetica-neue text-xl md:text-2xl font-medium tracking-[-0.01em]">{c.faq.titulo}</h2>
             <div className="flex flex-col border-t border-slm-brand-light">
               {c.faq.preguntas.map((p) => (
                 <details key={p.q} className="group border-b border-slm-brand-light">
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-4 font-helvetica-neue text-base md:text-lg font-medium [&::-webkit-details-marker]:hidden">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-4 font-helvetica-neue text-base md:text-lg [&::-webkit-details-marker]:hidden">
                     <span className="min-w-0">{p.q}</span>
                     <span aria-hidden="true" className="shrink-0 text-xl leading-none text-slm-brand transition-transform group-open:rotate-45">+</span>
                   </summary>
