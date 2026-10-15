@@ -94,7 +94,7 @@ const buildJsonLd = (faq: FaqEntry[], catalogo: Catalogo) => {
         "Servicio de RAG para agentes de IA: convierte cualquier corpus de documentos en una base de recuperación segura, con acceso por workspace, área, rol y agente, y lista para producción. Cloud no conserva el archivo original; Desktop lo procesa localmente; en planes soberanos la base de datos es del cliente.",
       featureList: [
         "De cero a producción apuntando a un directorio (ingesta, vectorización e indexado automáticos)",
-        "Multi-tenant de fábrica: un corpus aislado por workspace (Organización → Workspaces → Áreas), con acceso por área, rol y agente",
+        "Workspaces aislados de fábrica: un corpus aislado por workspace (Organización → Workspaces → Áreas), con acceso por área, rol y agente",
         "Privacidad por modo: original no conservado en Cloud, procesamiento local en Desktop y BD propia en planes soberanos",
         "Recuperación con citas y permisos (RBAC para personas y para agentes vía perfiles)",
         "DB-agnóstico y BYO: trae tu propia base vectorial y tu propio LLM",

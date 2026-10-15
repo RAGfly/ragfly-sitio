@@ -1,7 +1,7 @@
 [
   {
     "q": "¿Qué es RAGfly?",
-    "a": "Un servicio de RAG para agentes de IA: convierte cualquier corpus de documentos —miles o decenas de miles, incluidos escaneados— en una base de recuperación segura, multi-tenant y lista para producción, sin construir ni mantener un pipeline RAG."
+    "a": "Un servicio de RAG para agentes de IA: convierte cualquier corpus de documentos —miles o decenas de miles, incluidos escaneados— en una base de recuperación segura, organizada en workspaces aislados y lista para producción, sin construir ni mantener un pipeline RAG."
   },
   {
     "q": "¿Para quién es?",
@@ -25,7 +25,7 @@
   },
   {
     "q": "¿Cómo se aíslan los datos de un cliente respecto de otro?",
-    "a": "Multi-tenant de fábrica: cada workspace vive en un corpus aislado desde la base de datos, con una estructura de Organizaciones → Workspaces → Áreas. Un workspace es lo que tú decides que no debe mezclarse: tu vida personal y tu negocio dentro de un mismo agente, o cada cliente de tu estudio contable. Tú trazas la frontera. Nada la cruza. Dentro de cada workspace, decides quién ve qué por área, rol y agente. Una consultora o integrador puede servir a decenas de clientes desde una sola plataforma sin que un dato cruce de uno a otro."
+    "a": "Workspaces aislados de fábrica: cada workspace vive en un corpus aislado desde la base de datos, con una estructura de Organizaciones → Workspaces → Áreas. Un workspace es lo que tú decides que no debe mezclarse: tu vida personal y tu negocio dentro de un mismo agente, o cada cliente de tu estudio contable. Tú trazas la frontera. Nada la cruza. Dentro de cada workspace, decides quién ve qué por área, rol y agente. Una consultora o integrador puede servir a decenas de clientes desde una sola plataforma sin que un dato cruce de uno a otro."
   },
   {
     "q": "¿Puedo usar mi propia base vectorial y mi propio modelo?",
