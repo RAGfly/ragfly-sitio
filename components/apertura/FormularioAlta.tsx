@@ -31,7 +31,7 @@ function urlLogin(extra: Record<string, string>, correo?: string): string {
 }
 
 const botonClaro =
-  'rf-boton flex w-full items-center justify-center gap-3 rounded-full border border-slm-brand-light bg-white px-6 py-3 text-base font-medium text-slm-dark hover:border-slm-brand'
+  'font-helvetica-neue flex w-full items-center justify-center gap-3 rounded-full border border-slm-brand-light bg-white px-6 py-3 text-base font-medium text-slm-dark hover:border-slm-brand'
 
 function LogoGoogle() {
   return (
@@ -97,7 +97,7 @@ export function FormularioAlta({ id }: { id?: string }) {
         />
         <button
           type="submit"
-          className="rf-boton w-full rounded-full bg-slm-dark px-6 py-3 text-base font-medium text-slm-light hover:opacity-90"
+          className="font-helvetica-neue w-full rounded-full bg-slm-dark px-6 py-3 text-base font-medium text-slm-light hover:opacity-90"
         >
           {a.crear}
         </button>
