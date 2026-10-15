@@ -198,6 +198,42 @@ export default async function PaginaDolor({
                     <span aria-hidden="true" className="shrink-0 text-xl leading-none text-slm-brand transition-transform group-open:rotate-45">+</span>
                   </summary>
                   <p className="pb-5 font-helvetica-neue text-base md:text-lg leading-relaxed text-slm-gray">{p.a}</p>
+                  {p.tabla && (
+                    <div className="mb-6 overflow-x-auto">
+                      <table className="w-full table-fixed border-collapse font-helvetica-neue text-sm md:text-base">
+                        <thead>
+                          <tr>
+                            {p.tabla.columnas.map((col, i) => (
+                              <th
+                                key={i}
+                                scope="col"
+                                className={`border-b border-slm-brand-light px-2 md:px-3 py-2 text-left font-medium ${i === 2 ? 'text-slm-brand-dark' : 'text-slm-dark'}`}
+                              >
+                                {col}
+                              </th>
+                            ))}
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {p.tabla.filas.map((fila) => (
+                            <tr key={fila[0]}>
+                              {fila.map((celda, i) =>
+                                i === 0 ? (
+                                  <th key={i} scope="row" className="border-b border-slm-brand-light px-2 md:px-3 py-2 text-left align-top font-medium text-slm-dark">
+                                    {celda}
+                                  </th>
+                                ) : (
+                                  <td key={i} className={`border-b border-slm-brand-light px-2 md:px-3 py-2 align-top break-words ${i === 2 ? 'text-slm-dark' : 'text-slm-gray'}`}>
+                                    {celda}
+                                  </td>
+                                ),
+                              )}
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
                 </details>
               ))}
             </div>
