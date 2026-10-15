@@ -3,7 +3,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { BotonEmpezar } from '../../../components/apertura/BotonEmpezar'
-import { COMUN, PAGINAS, PUBLICADA, URL_GUIA_MCP, URL_LOGIN, URL_REGISTRO, type Dolor } from '../../../content/apertura'
+import { FormularioAlta } from '../../../components/apertura/FormularioAlta'
+import { COMUN, PAGINAS, PUBLICADA, URL_GUIA_MCP, URL_REGISTRO, type Dolor } from '../../../content/apertura'
 
 /* ------------------------------------------------------------------ */
 /* /start/[dolor] — páginas de destino de la apertura controlada        */
@@ -41,27 +42,6 @@ export async function generateMetadata({ params }: { params: Promise<{ dolor: st
 
 function Etiqueta({ children }: { children: React.ReactNode }) {
   return <span className="rf-anot text-slm-brand">{children}</span>
-}
-
-function Registro({ grande = false }: { grande?: boolean }) {
-  return (
-    <div className="flex flex-col items-start gap-3">
-      <BotonEmpezar
-        destino={URL_REGISTRO}
-        className={`rf-boton inline-block rounded-full bg-slm-dark font-medium text-slm-light hover:opacity-90 ${
-          grande ? 'px-7 py-3.5 text-base' : 'px-6 py-3 text-base'
-        }`}
-      >
-        Start free
-      </BotonEmpezar>
-      <p className="font-helvetica-neue text-sm text-slm-gray">
-        {COMUN.yaTienesCuenta}{' '}
-        <a href={URL_LOGIN} className="text-slm-brand-dark underline underline-offset-2 hover:text-slm-dark">
-          Log in
-        </a>
-      </p>
-    </div>
-  )
 }
 
 export default async function PaginaDolor({
@@ -112,7 +92,7 @@ export default async function PaginaDolor({
             </h1>
             <p className="font-helvetica-neue text-lg md:text-xl leading-relaxed">{p.bajada}</p>
             <p className="font-helvetica-neue text-lg md:text-xl font-medium text-slm-brand-dark">{COMUN.eslogan}</p>
-            <Registro />
+            <FormularioAlta id="signup" />
           </div>
         </section>
 
@@ -171,7 +151,7 @@ export default async function PaginaDolor({
         <section className={bloque}>
           <div className="mx-auto flex max-w-[760px] flex-col gap-6">
             <h2 className={titulo2}>{COMUN.cierre}</h2>
-            <Registro grande />
+            <FormularioAlta id="signup-cierre" />
           </div>
         </section>
       </main>

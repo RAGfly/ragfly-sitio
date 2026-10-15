@@ -121,6 +121,17 @@ export const COMUN = {
   ],
   cierre: 'Try RAGfly with the Free plan.',
   yaTienesCuenta: 'Already have an account?',
+  /* Formulario de alta en la página (Víctor, 15-oct): Google y Microsoft
+     lanzan el OAuth directo y el correo llega precargado al registro de la app. */
+  alta: {
+    google: 'Continue with Google',
+    microsoft: 'Continue with Microsoft',
+    o: 'or',
+    correo: 'Work or personal email',
+    crear: 'Create free account',
+    nota: 'Free plan. No credit card.',
+    entrar: 'Log in',
+  },
 } as const
 
 /* El registro y el login viven en la app (el sitio solo vuelca al Login,
