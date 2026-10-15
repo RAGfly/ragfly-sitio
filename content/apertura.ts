@@ -18,7 +18,7 @@
  * frase de privacidad lo asume), videos 1A/1B grabados con la sonda de
  * onboarding en verde, utm_* llegando a la cuenta y los 3 pasos probados.
  */
-export const PUBLICADA = false
+export const PUBLICADA = true
 
 export type Dolor = 'context' | 'memory'
 
