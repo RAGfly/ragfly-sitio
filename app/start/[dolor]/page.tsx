@@ -118,6 +118,15 @@ export default async function PaginaDolor({
           <div className="mx-auto flex max-w-[760px] flex-col gap-5">
             <Etiqueta>How it starts</Etiqueta>
             <h2 className={titulo2}>{COMUN.pasosTitulo}</h2>
+            <a
+              href={COMUN.videoPasos.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex w-fit items-center gap-2 font-helvetica-neue text-base md:text-lg font-medium text-slm-brand-dark underline underline-offset-4 hover:text-slm-dark"
+            >
+              <svg width="14" height="16" viewBox="0 0 20 22" aria-hidden="true"><path d="M2 1 L19 11 L2 21 Z" fill="currentColor" /></svg>
+              {COMUN.videoPasos.texto}
+            </a>
             <ol className="flex flex-col gap-5">
               {COMUN.pasos.map((paso, i) => (
                 <li key={paso.titulo} className="grid grid-cols-[40px_1fr] items-baseline gap-3">

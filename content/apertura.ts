@@ -84,6 +84,9 @@ export const COMUN = {
   eslogan: 'Simple, private, and precise. Access by workspace, area, role and agent.',
   bajadaProducto: 'Augmented retrieval for your agents.',
   pasosTitulo: 'Three steps. Then your agent takes it from there.',
+  /* Video del Quickstart en YouTube (Víctor, 15-oct). Sin el parámetro
+     `si` del enlace compartido: identifica a quien compartió. */
+  videoPasos: { texto: 'Watch the video', url: 'https://youtu.be/EfhvUpb80FI' },
   pasos: [
     { titulo: 'Create a free account.', detalle: 'With Google, Microsoft or your email.' },
     {
