@@ -215,7 +215,7 @@ export const COMUN: Record<Locale, TextosComunes> = {
       {
         nombre: 'Private',
         texto:
-          "We don't store your documents. With RAGfly Desktop, they never leave your network. Your document data is encrypted. We only use models from providers whose terms exclude training on your data.",
+          "We don't store your documents. With RAGfly Desktop, they never leave your network. We only use models from providers whose terms exclude training on your data.",
       },
       {
         nombre: 'Precise',
@@ -281,7 +281,7 @@ export const COMUN: Record<Locale, TextosComunes> = {
       {
         nombre: 'Privado',
         texto:
-          'No guardamos tus documentos. Con RAGfly Desktop, nunca salen de tu red. Los datos de tus documentos van cifrados. Solo usamos modelos de proveedores cuyos términos excluyen entrenar con tus datos.',
+          'No guardamos tus documentos. Con RAGfly Desktop, nunca salen de tu red. Solo usamos modelos de proveedores cuyos términos excluyen entrenar con tus datos.',
       },
       {
         nombre: 'Preciso',
@@ -347,7 +347,7 @@ export const COMUN: Record<Locale, TextosComunes> = {
       {
         nombre: 'Privado',
         texto:
-          'Não armazenamos seus documentos. Com o RAGfly Desktop, eles nunca saem da sua rede. Os dados dos seus documentos são criptografados. Só usamos modelos de provedores cujos termos excluem o treinamento com seus dados.',
+          'Não armazenamos seus documentos. Com o RAGfly Desktop, eles nunca saem da sua rede. Só usamos modelos de provedores cujos termos excluem o treinamento com seus dados.',
       },
       {
         nombre: 'Preciso',
@@ -413,7 +413,7 @@ export const COMUN: Record<Locale, TextosComunes> = {
       {
         nombre: 'Privé',
         texto:
-          "Nous ne stockons pas vos documents. Avec RAGfly Desktop, ils ne quittent jamais votre réseau. Les données de vos documents sont chiffrées. Nous n'utilisons que des modèles de fournisseurs dont les conditions excluent l'entraînement sur vos données.",
+          "Nous ne stockons pas vos documents. Avec RAGfly Desktop, ils ne quittent jamais votre réseau. Nous n'utilisons que des modèles de fournisseurs dont les conditions excluent l'entraînement sur vos données.",
       },
       {
         nombre: 'Précis',
@@ -479,7 +479,7 @@ export const COMUN: Record<Locale, TextosComunes> = {
       {
         nombre: 'Privat',
         texto:
-          'Wir speichern deine Dokumente nicht. Mit RAGfly Desktop verlassen sie nie dein Netzwerk. Die Daten deiner Dokumente sind verschlüsselt. Wir nutzen nur Modelle von Anbietern, deren Bedingungen das Training mit deinen Daten ausschließen.',
+          'Wir speichern deine Dokumente nicht. Mit RAGfly Desktop verlassen sie nie dein Netzwerk. Wir nutzen nur Modelle von Anbietern, deren Bedingungen das Training mit deinen Daten ausschließen.',
       },
       {
         nombre: 'Präzise',
