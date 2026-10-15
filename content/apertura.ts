@@ -26,13 +26,8 @@ export const PUBLICADA = true
 export type Dolor = 'context' | 'memory'
 
 type TextosDolor = {
-  /** Gancho del aviso: el mismo título que la persona vio en el aviso. */
-  gancho: string
-  /**
-   * Ganchos del par de Reddit Ads que llegan a esta misma página (?h=c1).
-   * Dentro de un par solo cambia el título (plan §6).
-   */
-  ganchosAlternos: Record<string, string>
+  /** Titular fijo de la página (Víctor, 15-oct): no depende del aviso. */
+  titulo: string
   /** Bajada vigente del dolor (MENSAJE-CANONICO §7.3). */
   bajada: string
   /** Primera frase del video 1 (abre con el dolor). */
@@ -41,49 +36,42 @@ type TextosDolor = {
 }
 
 export type PaginaDolor = {
-  idGancho: string
   textos: Record<Locale, TextosDolor>
 }
 
 export const PAGINAS: Record<Dolor, PaginaDolor> = {
   context: {
-    idGancho: 'C4',
     textos: {
       en: {
-        gancho: 'Is your second brain burning too many tokens?',
-        ganchosAlternos: { c1: 'Still pasting the same files into every new session?', c3: "Your context window is not a filing cabinet." },
+        titulo: "Optimize your agent's context.",
         bajada: "Your agent doesn't need to load everything. It asks for what the task needs, with the source.",
         aperturaVideo: 'Your agent read the whole folder. Then it lost track of what you asked.',
         metaDescripcion:
           'RAGfly is a RAG service for your agents. Your documents are indexed once; the agent asks for what the task needs, with the source.',
       },
       es: {
-        gancho: '¿Tu segundo cerebro está gastando demasiados tokens?',
-        ganchosAlternos: { c1: '¿Sigues pegando los mismos archivos en cada sesión nueva?', c3: "Tu ventana de contexto no es un archivador." },
+        titulo: "Optimiza el contexto de tu agente.",
         bajada: 'Tu agente no necesita cargarlo todo. Consulta solo lo que la tarea pide, con la cita.',
         aperturaVideo: 'Tu agente leyó la carpeta entera. Y después perdió el hilo de lo que le pediste.',
         metaDescripcion:
           'RAGfly es un servicio de RAG para tus agentes. Tus documentos se indexan una vez; el agente consulta lo que la tarea pide, con la cita.',
       },
       pt: {
-        gancho: 'Seu segundo cérebro está gastando tokens demais?',
-        ganchosAlternos: { c1: 'Ainda colando os mesmos arquivos em cada nova sessão?', c3: "Sua janela de contexto não é um armário de arquivos." },
+        titulo: "Otimize o contexto do seu agente.",
         bajada: 'Seu agente não precisa carregar tudo. Ele consulta só o que a tarefa pede, com a fonte.',
         aperturaVideo: 'Seu agente leu a pasta inteira. Depois perdeu o fio do que você pediu.',
         metaDescripcion:
           'O RAGfly é um serviço de RAG para seus agentes. Seus documentos são indexados uma vez; o agente consulta o que a tarefa pede, com a fonte.',
       },
       fr: {
-        gancho: 'Votre second cerveau brûle-t-il trop de tokens ?',
-        ganchosAlternos: { c1: 'Vous collez encore les mêmes fichiers à chaque nouvelle session ?', c3: "Votre fenêtre de contexte n'est pas un classeur." },
+        titulo: "Optimisez le contexte de votre agent.",
         bajada: "Votre agent n'a pas besoin de tout charger. Il demande ce dont la tâche a besoin, avec la source.",
         aperturaVideo: "Votre agent a lu tout le dossier. Puis il a perdu le fil de votre demande.",
         metaDescripcion:
           "RAGfly est un service de RAG pour vos agents. Vos documents sont indexés une fois ; l'agent demande ce dont la tâche a besoin, avec la source.",
       },
       de: {
-        gancho: 'Verbrennt dein zweites Gehirn zu viele Tokens?',
-        ganchosAlternos: { c1: 'Fügst du immer noch in jede neue Sitzung dieselben Dateien ein?', c3: "Dein Kontextfenster ist kein Aktenschrank." },
+        titulo: "Optimiere den Kontext deines Agenten.",
         bajada: 'Dein Agent muss nicht alles laden. Er fragt nur ab, was die Aufgabe braucht, mit Quelle.',
         aperturaVideo: 'Dein Agent hat den ganzen Ordner gelesen. Dann hat er den Faden verloren.',
         metaDescripcion:
@@ -92,19 +80,16 @@ export const PAGINAS: Record<Dolor, PaginaDolor> = {
     },
   },
   memory: {
-    idGancho: 'M4',
     textos: {
       en: {
-        gancho: 'When your second brain outgrows its links.',
-        ganchosAlternos: { m1: 'Every new session, your agent starts from zero.', m2: "Your second brain is losing its memory." },
+        titulo: "Optimize your second brain.",
         bajada:
           'A memory your agent queries, not a file that grows out of control. One workspace for each part of your life.',
         aperturaVideo: "Your agent's memory folder started with a few notes. Now it mixes every project you have.",
         metaDescripcion: "Turn your agent's documentation into memory it queries, split into workspaces you define.",
       },
       es: {
-        gancho: 'Cuando tu segundo cerebro ya no cabe en sus enlaces.',
-        ganchosAlternos: { m1: 'En cada sesión nueva, tu agente parte de cero.', m2: "Tu segundo cerebro está perdiendo la memoria." },
+        titulo: "Optimiza tu segundo cerebro.",
         bajada:
           'Una memoria que tu agente consulta, no un archivo que crece sin control. Un workspace para cada parte de tu vida.',
         aperturaVideo: 'La carpeta de memoria de tu agente empezó con unas pocas notas. Hoy mezcla todos tus proyectos.',
@@ -112,8 +97,7 @@ export const PAGINAS: Record<Dolor, PaginaDolor> = {
           'Convierte la documentación de tu agente en una memoria que consulta, separada en los workspaces que tú defines.',
       },
       pt: {
-        gancho: 'Quando seu segundo cérebro não cabe mais nos seus links.',
-        ganchosAlternos: { m1: 'A cada nova sessão, seu agente começa do zero.', m2: "Seu segundo cérebro está perdendo a memória." },
+        titulo: "Otimize seu segundo cérebro.",
         bajada:
           'Uma memória que seu agente consulta, não um arquivo que cresce sem controle. Um workspace para cada parte da sua vida.',
         aperturaVideo: 'A pasta de memória do seu agente começou com poucas notas. Hoje mistura todos os seus projetos.',
@@ -121,8 +105,7 @@ export const PAGINAS: Record<Dolor, PaginaDolor> = {
           'Transforme a documentação do seu agente em uma memória que ele consulta, separada nos workspaces que você define.',
       },
       fr: {
-        gancho: 'Quand votre second cerveau déborde de ses liens.',
-        ganchosAlternos: { m1: 'À chaque nouvelle session, votre agent repart de zéro.', m2: "Votre second cerveau perd la mémoire." },
+        titulo: "Optimisez votre second cerveau.",
         bajada:
           "Une mémoire que votre agent interroge, pas un fichier qui grossit sans contrôle. Un workspace pour chaque partie de votre vie.",
         aperturaVideo:
@@ -131,8 +114,7 @@ export const PAGINAS: Record<Dolor, PaginaDolor> = {
           "Transformez la documentation de votre agent en une mémoire qu'il interroge, répartie dans les workspaces que vous définissez.",
       },
       de: {
-        gancho: 'Wenn dein zweites Gehirn über seine Links hinauswächst.',
-        ganchosAlternos: { m1: 'Bei jeder neuen Sitzung fängt dein Agent bei null an.', m2: "Dein zweites Gehirn verliert sein Gedächtnis." },
+        titulo: "Optimiere dein zweites Gehirn.",
         bajada:
           'Ein Gedächtnis, das dein Agent abfragt, keine Datei, die unkontrolliert wächst. Ein Workspace für jeden Teil deines Lebens.',
         aperturaVideo: 'Der Gedächtnisordner deines Agenten begann mit ein paar Notizen. Heute mischt er all deine Projekte.',
@@ -223,7 +205,7 @@ export const COMUN: Record<Locale, TextosComunes> = {
       },
       {
         nombre: 'Precise',
-        texto: 'We enrich your content and refine retrieval to deliver the most relevant results.',
+        texto: 'We enrich your content and refine retrieval to deliver the most relevant results. We combine search by meaning and by keywords (hybrid), rerank the results, and when RAGfly answers, it checks each claim against your documents.',
       },
       {
         nombre: 'Workspaces',
@@ -306,7 +288,7 @@ export const COMUN: Record<Locale, TextosComunes> = {
       },
       {
         nombre: 'Preciso',
-        texto: 'Enriquecemos tu contenido y afinamos la recuperación para entregar los resultados más relevantes.',
+        texto: 'Enriquecemos tu contenido y afinamos la recuperación para entregar los resultados más relevantes. Combinamos búsqueda por significado y por palabras clave (híbrida), reordenamos los resultados y, cuando RAGfly responde, verifica cada afirmación contra tus documentos.',
       },
       {
         nombre: 'Workspaces',
@@ -389,7 +371,7 @@ export const COMUN: Record<Locale, TextosComunes> = {
       },
       {
         nombre: 'Preciso',
-        texto: 'Enriquecemos seu conteúdo e refinamos a recuperação para entregar os resultados mais relevantes.',
+        texto: 'Enriquecemos seu conteúdo e refinamos a recuperação para entregar os resultados mais relevantes. Combinamos busca por significado e por palavras-chave (híbrida), reordenamos os resultados e, quando o RAGfly responde, ele verifica cada afirmação contra seus documentos.',
       },
       {
         nombre: 'Workspaces',
@@ -472,7 +454,7 @@ export const COMUN: Record<Locale, TextosComunes> = {
       },
       {
         nombre: 'Précis',
-        texto: 'Nous enrichissons votre contenu et affinons la recherche pour fournir les résultats les plus pertinents.',
+        texto: 'Nous enrichissons votre contenu et affinons la recherche pour fournir les résultats les plus pertinents. Nous combinons la recherche par le sens et par mots-clés (hybride), réordonnons les résultats et, quand RAGfly répond, il vérifie chaque affirmation dans vos documents.',
       },
       {
         nombre: 'Workspaces',
@@ -555,7 +537,7 @@ export const COMUN: Record<Locale, TextosComunes> = {
       },
       {
         nombre: 'Präzise',
-        texto: 'Wir reichern deine Inhalte an und verfeinern die Suche, um die relevantesten Ergebnisse zu liefern.',
+        texto: 'Wir reichern deine Inhalte an und verfeinern die Suche, um die relevantesten Ergebnisse zu liefern. Wir kombinieren Suche nach Bedeutung und nach Schlüsselwörtern (hybrid), ordnen die Ergebnisse neu, und wenn RAGfly antwortet, prüft es jede Aussage an deinen Dokumenten.',
       },
       {
         nombre: 'Workspaces',

@@ -14,7 +14,7 @@ import { locales, type Locale } from '../../../i18n/config'
 /* /start/[dolor] — páginas de destino de la apertura controlada        */
 /*                                                                     */
 /* Una por dolor: /start/context y /start/memory. Estructura vigente   */
-/* (plan v2.8 §11, Víctor 14 y 15-oct): 1 hero (gancho, bajada del      */
+/* (plan v2.8 §11, Víctor 14 y 15-oct): 1 hero (titular, bajada del     */
 /* dolor, eslogan, registro + login) · video del Quickstart · 2 cómo   */
 /* empieza · 3 pilares · 4 cierre (Free + registro + login) · 5 FAQ,  */
 /* sin precios, sin cifras y sin proveedores por plan.                  */
@@ -43,11 +43,11 @@ export async function generateMetadata({ params }: { params: Promise<{ dolor: st
   if (!p) return {}
   const t = p.textos[await idioma()]
   return {
-    title: `${t.gancho} — RAGfly`,
+    title: `${t.titulo} — RAGfly`,
     description: t.metaDescripcion,
     robots: { index: false, follow: false },
     alternates: { canonical: `/start/${dolor}` },
-    openGraph: { title: t.gancho, description: t.metaDescripcion, url: `https://ragfly.ai/start/${dolor}` },
+    openGraph: { title: t.titulo, description: t.metaDescripcion, url: `https://ragfly.ai/start/${dolor}` },
   }
 }
 
@@ -55,13 +55,7 @@ function Etiqueta({ children }: { children: React.ReactNode }) {
   return <span className="rf-anot text-slm-brand">{children}</span>
 }
 
-export default async function PaginaDolor({
-  params,
-  searchParams,
-}: {
-  params: Promise<{ dolor: string }>
-  searchParams: Promise<{ h?: string | string[] }>
-}) {
+export default async function PaginaDolor({ params }: { params: Promise<{ dolor: string }> }) {
   const { dolor } = await params
   const p = PAGINAS[dolor as Dolor]
   if (!p) notFound()
@@ -71,10 +65,6 @@ export default async function PaginaDolor({
   const t = p.textos[locale]
   const c = COMUN[locale]
 
-  // Título = gancho del aviso por el que llegó (?h=c1); por defecto, el vigente.
-  const { h } = await searchParams
-  const clave = (Array.isArray(h) ? h[0] : h)?.toLowerCase() ?? ''
-  const gancho = t.ganchosAlternos[clave] ?? t.gancho
 
   const titulo2 = 'text-slm-dark text-2xl md:text-[30px] font-helvetica-neue font-medium leading-tight tracking-[-0.02em] text-balance'
   const bloque = 'px-6 md:px-12 py-12 md:py-14 border-t border-slm-brand-light'
@@ -101,12 +91,12 @@ export default async function PaginaDolor({
       </header>
 
       <main>
-        {/* 1 · Hero: gancho del aviso, bajada del dolor, eslogan y registro */}
+        {/* 1 · Hero: titular fijo de la página, bajada, eslogan y registro */}
         <section className="px-6 md:px-12 pt-8 pb-12 md:pt-14">
           <div className="mx-auto flex max-w-[760px] flex-col gap-6">
             <Etiqueta>{c.etiqueta}</Etiqueta>
             <h1 className="font-helvetica-neue text-4xl md:text-6xl font-medium leading-[1.06] tracking-[-0.035em] text-balance">
-              {gancho}
+              {t.titulo}
             </h1>
             <p className="font-helvetica-neue text-lg md:text-xl leading-relaxed">{t.bajada}</p>
             <p className="font-helvetica-neue text-lg md:text-xl font-medium text-slm-brand-dark">{c.eslogan}</p>
