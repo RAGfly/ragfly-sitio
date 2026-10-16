@@ -23,7 +23,7 @@ export async function PricingSection() {
           <span className="rf-anot text-slm-dark/45">{t('anotacion')}</span>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {catalogo.planes.map((plan) => {
             const valores = catalogo.valores[plan.codigo_plan] || {}
             const enterprise = plan.codigo_plan === 'ENTERPRISE'

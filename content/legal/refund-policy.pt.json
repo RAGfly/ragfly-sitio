@@ -1,6 +1,6 @@
 {
   "title": "Política de Reembolso",
-  "subtitle": "Última atualização: 30/08/2026 · Versão 1.1",
+  "subtitle": "Última atualização: 16/10/2026 · Versão 1.2",
   "intro": [
     {
       "kind": "p",
@@ -28,7 +28,7 @@
       "blocks": [
         {
           "kind": "p",
-          "text": "Nossos planos pagos (**Starter**, **Growth** e **Scale**) são assinaturas mensais recorrentes cobradas antecipadamente a partir da data da compra. Não incluem teste com vencimento; o plano Free permanente permite avaliar o Serviço antes de assinar."
+          "text": "Nossos planos pagos (**Starter**, **Growth**, **Scale** e **Business**) são assinaturas mensais recorrentes cobradas antecipadamente a partir da data da compra. Não incluem teste com vencimento; o plano Free permanente permite avaliar o Serviço antes de assinar."
         },
         {
           "kind": "list",

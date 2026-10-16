@@ -35,6 +35,7 @@ export const FALLBACK: Catalogo = {
     { codigo_plan: 'STARTER', nombre: 'Starter', precio_mensual_usd: 39, descripcion: null },
     { codigo_plan: 'GROWTH', nombre: 'Growth', precio_mensual_usd: 149, descripcion: null },
     { codigo_plan: 'SCALE', nombre: 'Scale', precio_mensual_usd: 590, descripcion: null },
+    { codigo_plan: 'BUSINESS', nombre: 'Business', precio_mensual_usd: 1990, descripcion: null },
     { codigo_plan: 'ENTERPRISE', nombre: 'Enterprise / Soberano', precio_mensual_usd: null, descripcion: null },
   ],
   caracteristicas: [
@@ -53,6 +54,7 @@ export const FALLBACK: Catalogo = {
     ['STARTER', [10000, 5000, 300, 50, 5, 12, 10, 10000, 30]],
     ['GROWTH', [50000, 25000, 1500, 150, 25, 50, 50, 50000, 100]],
     ['SCALE', [250000, 100000, 5000, 500, 150, 200, 200, 200000, 250]],
+    ['BUSINESS', [1000000, 1000000, 12500, 1250, 500, 1000, 1000, 750000, 1000]],
     ['ENTERPRISE', [null, null, null, null, null, null, null, null, null]],
   ].map(([codigo, cantidades]) => [
     codigo,
@@ -76,13 +78,14 @@ export async function cargarCatalogo(locale: string): Promise<Catalogo> {
   }
 }
 
+// useGrouping 'always': en es el CLDR no agrupa las cifras de 4 dígitos («1990 US$», «1000»).
 export function numero(valor: number, locale: string) {
-  return new Intl.NumberFormat(locale).format(valor)
+  return new Intl.NumberFormat(locale, { useGrouping: 'always' }).format(valor)
 }
 
 export function usd(valor: number, locale: string) {
   return new Intl.NumberFormat(locale, {
-    style: 'currency', currency: 'USD', maximumFractionDigits: 0,
+    style: 'currency', currency: 'USD', maximumFractionDigits: 0, useGrouping: 'always',
   }).format(valor)
 }
 

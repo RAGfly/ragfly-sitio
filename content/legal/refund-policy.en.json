@@ -1,6 +1,6 @@
 {
   "title": "Refund Policy",
-  "subtitle": "Last updated: 30/08/2026 · Version 1.1",
+  "subtitle": "Last updated: 16/10/2026 · Version 1.2",
   "intro": [
     {
       "kind": "p",
@@ -28,7 +28,7 @@
       "blocks": [
         {
           "kind": "p",
-          "text": "Our paid plans (**Starter**, **Growth**, and **Scale**) are recurring monthly subscriptions billed in advance from the purchase date. They do not include an expiring trial; the permanent Free plan lets you evaluate the Service before subscribing."
+          "text": "Our paid plans (**Starter**, **Growth**, **Scale**, and **Business**) are recurring monthly subscriptions billed in advance from the purchase date. They do not include an expiring trial; the permanent Free plan lets you evaluate the Service before subscribing."
         },
         {
           "kind": "list",

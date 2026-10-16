@@ -9,7 +9,7 @@
   },
   {
     "q": "¿Cuánto cuesta?",
-    "a": "Planes en USD: Free $0, Starter $39/mes, Growth $149/mes, Scale $590/mes y Enterprise a convenir. Cada plan muestra corpus activo, Retrieval simple, RAG Aumentado, RAG Agéntico y workspaces; los planes pagados permiten adicionales manuales y no tienen sobreconsumo automático. MCP, REST, CLI y SDK están disponibles en todos los planes."
+    "a": "Planes en USD: Free $0, Starter $39/mes, Growth $149/mes, Scale $590/mes, Business $1.990/mes y Enterprise a convenir. Cada plan muestra corpus activo, Retrieval simple, RAG Aumentado, RAG Agéntico y workspaces; los planes pagados permiten adicionales manuales y no tienen sobreconsumo automático. MCP, REST, CLI y SDK están disponibles en todos los planes."
   },
   {
     "q": "¿Cómo funciona?",

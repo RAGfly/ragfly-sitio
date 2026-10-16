@@ -1,6 +1,6 @@
 {
   "title": "Rückerstattungsrichtlinie",
-  "subtitle": "Zuletzt aktualisiert: 30.08.2026 · Version 1.1",
+  "subtitle": "Zuletzt aktualisiert: 16.10.2026 · Version 1.2",
   "intro": [
     {
       "kind": "p",
@@ -28,7 +28,7 @@
       "blocks": [
         {
           "kind": "p",
-          "text": "Unsere kostenpflichtigen Tarife (**Starter**, **Growth** und **Scale**) sind monatlich wiederkehrende Abonnements, die ab Kaufdatum im Voraus berechnet werden. Sie enthalten keinen befristeten Test; mit dem dauerhaften Free-Tarif kann der Dienst vor dem Abonnement bewertet werden."
+          "text": "Unsere kostenpflichtigen Tarife (**Starter**, **Growth**, **Scale** und **Business**) sind monatlich wiederkehrende Abonnements, die ab Kaufdatum im Voraus berechnet werden. Sie enthalten keinen befristeten Test; mit dem dauerhaften Free-Tarif kann der Dienst vor dem Abonnement bewertet werden."
         },
         {
           "kind": "list",

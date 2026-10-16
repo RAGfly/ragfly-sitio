@@ -255,6 +255,7 @@
     "subSTARTER": "Start in production",
     "subGROWTH": "For teams needing control and operations",
     "subSCALE": "For production at scale",
+    "subBUSINESS": "For high volume at a fixed price",
     "subENTERPRISE": "Sovereignty and custom terms",
     "anotacion": "PRICES & QUOTAS · USD/MONTH · LIVE SOURCE"
   },
@@ -624,7 +625,7 @@
     "q2": "Who is it for?",
     "a2": "For developers, consultancies and integrators building AI agents on private documents —sometimes for many different clients— who don't want to build or maintain a RAG pipeline at scale.",
     "q3": "How much does it cost?",
-    "a3": "Plans in USD: Free $0, Starter $39/month, Growth $149/month, Scale $590/month and Enterprise by agreement. Each plan shows active corpus, Simple Retrieval, Augmented RAG, Agentic RAG and workspaces; paid plans support manual add-ons and have no automatic overage. MCP, REST, CLI and SDK are available on every plan.",
+    "a3": "Plans in USD: Free $0, Starter $39/month, Growth $149/month, Scale $590/month, Business $1,990/month and Enterprise by agreement. Each plan shows active corpus, Simple Retrieval, Augmented RAG, Agentic RAG and workspaces; paid plans support manual add-ons and have no automatic overage. MCP, REST, CLI and SDK are available on every plan.",
     "q4": "How does it work?",
     "a4": "You point RAGfly at your documents directory; the system scans, vectorizes and indexes them automatically. Then your agent retrieves by meaning and gets answers with citations to the source via MCP, REST or CLI, isolated by workspace and with the data handling that matches the deployment mode.",
     "q5": "How does an AI agent consume RAGfly?",

@@ -255,6 +255,7 @@
     "subSTARTER": "Für den Produktionsstart",
     "subGROWTH": "Für Teams mit Kontrolle und Operationen",
     "subSCALE": "Für Produktion im großen Maßstab",
+    "subBUSINESS": "Für hohes Volumen zum Festpreis",
     "subENTERPRISE": "Souveränität und individuelle Bedingungen",
     "anotacion": "PREISE UND KONTINGENTE · USD/MONAT · LEBENDE QUELLE"
   },
@@ -624,7 +625,7 @@
     "q2": "Für wen ist es?",
     "a2": "Für Entwickler, Beratungen und Integratoren, die KI-Agenten auf privaten Dokumenten bauen —manchmal für viele verschiedene Kunden— und die RAG-Pipeline nicht selbst in großem Maßstab bauen und pflegen wollen.",
     "q3": "Was kostet es?",
-    "a3": "Pläne in USD: Free 0 $, Starter 39 $/Monat, Growth 149 $/Monat, Scale 590 $/Monat und Enterprise nach Vereinbarung. Jeder Plan zeigt aktiven Korpus, Simple Retrieval, Augmented RAG, Agentic RAG und Workspaces; bezahlte Pläne erlauben manuelle Zusatzpakete und haben keine automatische Mehrnutzung. MCP, REST, CLI und SDK sind in allen Plänen verfügbar.",
+    "a3": "Pläne in USD: Free 0 $, Starter 39 $/Monat, Growth 149 $/Monat, Scale 590 $/Monat, Business 1.990 $/Monat und Enterprise nach Vereinbarung. Jeder Plan zeigt aktiven Korpus, Simple Retrieval, Augmented RAG, Agentic RAG und Workspaces; bezahlte Pläne erlauben manuelle Zusatzpakete und haben keine automatische Mehrnutzung. MCP, REST, CLI und SDK sind in allen Plänen verfügbar.",
     "q4": "Wie funktioniert es?",
     "a4": "Du richtest RAGfly auf das Verzeichnis deiner Dokumente; das System scannt, vektorisiert und indexiert sie automatisch. Danach ruft dein Agent nach Bedeutung ab und erhält Antworten mit Quellenangaben über MCP, REST oder CLI, isoliert nach Workspace und mit der Datenbehandlung, die zum Bereitstellungsmodus passt.",
     "q5": "Wie greift ein KI-Agent auf RAGfly zu?",

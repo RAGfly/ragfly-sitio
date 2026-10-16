@@ -256,6 +256,7 @@
     "subSTARTER": "Commencer en production",
     "subGROWTH": "Pour les équipes avec contrôle et opérations",
     "subSCALE": "Pour la production à grande échelle",
+    "subBUSINESS": "Pour les gros volumes à prix fixe",
     "subENTERPRISE": "Souveraineté et conditions sur mesure",
     "anotacion": "PRIX ET QUOTAS · USD/MOIS · SOURCE VIVE"
   },
@@ -625,7 +626,7 @@
     "q2": "À qui s'adresse-t-il ?",
     "a2": "Aux développeurs, cabinets de conseil et intégrateurs qui construisent des agents d'IA sur des documents privés —parfois pour de nombreux clients différents— et qui ne veulent ni construire ni maintenir le pipeline de RAG à l'échelle.",
     "q3": "Combien ça coûte ?",
-    "a3": "Offres en USD : Free 0 $, Starter 39 $/mois, Growth 149 $/mois, Scale 590 $/mois et Enterprise sur devis. Chaque offre indique le corpus actif, le Retrieval simple, le RAG Augmenté, le RAG Agentique et les workspaces ; les offres payantes permettent des compléments manuels et n'ont pas de dépassement automatique. MCP, REST, CLI et SDK sont disponibles dans toutes les offres.",
+    "a3": "Offres en USD : Free 0 $, Starter 39 $/mois, Growth 149 $/mois, Scale 590 $/mois, Business 1 990 $/mois et Enterprise sur devis. Chaque offre indique le corpus actif, le Retrieval simple, le RAG Augmenté, le RAG Agentique et les workspaces ; les offres payantes permettent des compléments manuels et n'ont pas de dépassement automatique. MCP, REST, CLI et SDK sont disponibles dans toutes les offres.",
     "q4": "Comment ça marche ?",
     "a4": "Vous pointez RAGfly vers le répertoire de vos documents ; le système les analyse, les vectorise et les indexe automatiquement. Ensuite, votre agent récupère par le sens et obtient des réponses avec citations de la source via MCP, REST ou CLI, isolé par workspace et avec le traitement des données correspondant au mode de déploiement.",
     "q5": "Comment un agent d'IA consomme-t-il RAGfly ?",

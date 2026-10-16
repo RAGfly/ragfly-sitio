@@ -256,6 +256,7 @@
     "subSTARTER": "Para empezar en producción",
     "subGROWTH": "Para equipos con control y operaciones",
     "subSCALE": "Para producción a escala",
+    "subBUSINESS": "Para volumen alto con precio fijo",
     "subENTERPRISE": "Soberanía y condiciones a medida",
     "anotacion": "PRECIOS Y CUPOS · USD/MES · FUENTE VIVA"
   },
@@ -625,7 +626,7 @@
     "q2": "¿Para quién es?",
     "a2": "Para desarrolladores, consultoras e integradores que construyen agentes de IA sobre documentos privados —a veces de muchos clientes distintos— y no quieren construir ni mantener el pipeline de RAG a escala.",
     "q3": "¿Cuánto cuesta?",
-    "a3": "Planes en USD: Free $0, Starter $39/mes, Growth $149/mes, Scale $590/mes y Enterprise a convenir. Cada plan muestra corpus activo, Retrieval simple, RAG Aumentado, RAG Agéntico y workspaces; los planes pagados permiten adicionales manuales y no tienen sobreconsumo automático. MCP, REST, CLI y SDK están disponibles en todos los planes.",
+    "a3": "Planes en USD: Free $0, Starter $39/mes, Growth $149/mes, Scale $590/mes, Business $1.990/mes y Enterprise a convenir. Cada plan muestra corpus activo, Retrieval simple, RAG Aumentado, RAG Agéntico y workspaces; los planes pagados permiten adicionales manuales y no tienen sobreconsumo automático. MCP, REST, CLI y SDK están disponibles en todos los planes.",
     "q4": "¿Cómo funciona?",
     "a4": "Apuntas RAGfly al directorio de tus documentos; el sistema los escanea, vectoriza e indexa automáticamente. Luego tu agente recupera por significado y obtiene respuestas con citas a la fuente vía MCP, REST o CLI, aislado por workspace y con el tratamiento de datos correspondiente al modo de despliegue.",
     "q5": "¿Cómo consume un agente de IA a RAGfly?",

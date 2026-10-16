@@ -1,6 +1,6 @@
 {
   "title": "Política de Reembolsos",
-  "subtitle": "Última actualización: 30/08/2026 · Versión 1.1",
+  "subtitle": "Última actualización: 16/10/2026 · Versión 1.2",
   "intro": [
     {
       "kind": "p",
@@ -28,7 +28,7 @@
       "blocks": [
         {
           "kind": "p",
-          "text": "Nuestros planes de pago (**Starter**, **Growth** y **Scale**) son suscripciones mensuales recurrentes facturadas por adelantado desde la fecha de compra. No incluyen prueba con vencimiento; el plan Free permanente permite evaluar el Servicio antes de suscribirte."
+          "text": "Nuestros planes de pago (**Starter**, **Growth**, **Scale** y **Business**) son suscripciones mensuales recurrentes facturadas por adelantado desde la fecha de compra. No incluyen prueba con vencimiento; el plan Free permanente permite evaluar el Servicio antes de suscribirte."
         },
         {
           "kind": "list",

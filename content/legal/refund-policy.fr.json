@@ -1,6 +1,6 @@
 {
   "title": "Politique de Remboursement",
-  "subtitle": "Dernière mise à jour : 30/08/2026 · Version 1.1",
+  "subtitle": "Dernière mise à jour : 16/10/2026 · Version 1.2",
   "intro": [
     {
       "kind": "p",
@@ -28,7 +28,7 @@
       "blocks": [
         {
           "kind": "p",
-          "text": "Nos offres payantes (**Starter**, **Growth** et **Scale**) sont des abonnements mensuels récurrents facturés à l'avance à compter de la date d'achat. Elles ne comportent pas d'essai à durée limitée ; l'offre Free permanente permet d'évaluer le Service avant de souscrire."
+          "text": "Nos offres payantes (**Starter**, **Growth**, **Scale** et **Business**) sont des abonnements mensuels récurrents facturés à l'avance à compter de la date d'achat. Elles ne comportent pas d'essai à durée limitée ; l'offre Free permanente permet d'évaluer le Service avant de souscrire."
         },
         {
           "kind": "list",
