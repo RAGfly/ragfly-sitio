@@ -89,6 +89,36 @@ export function usd(valor: number, locale: string) {
   }).format(valor)
 }
 
+/** Bajada de un plan en el idioma de la página. La BD guarda `descripcion` solo en
+ *  español (aunque se pida otro locale): fuera de es manda `sub` (messages/*.json). */
+export function bajadaPlan(plan: Plan, locale: string, sub: string): string {
+  return (locale === 'es' && plan.descripcion) || sub
+}
+
+/** Cupos de un plan como los muestra la grilla: principales («1,000 Active corpus/month»)
+ *  y secundarios en una línea («Workspaces: 2 · Areas: 4 · …»). */
+export function cuposPlan(
+  catalogo: Catalogo,
+  codigoPlan: string,
+  locale: string,
+  textos: { aMedida: string; porMesCorto: string },
+): { principales: string[]; secundarios: string } {
+  const valores = catalogo.valores[codigoPlan] || {}
+  const nombre = (codigo: string) =>
+    catalogo.caracteristicas.find((c) => c.codigo_caracteristica === codigo)?.nombre || codigo
+  const principales = PRINCIPALES.map((codigo) => {
+    const cantidad = valores[codigo]?.cantidad_incluida
+    return cantidad == null
+      ? `${textos.aMedida} ${nombre(codigo)}`
+      : `${numero(Number(cantidad), locale)} ${nombre(codigo)}${textos.porMesCorto}`
+  })
+  const secundarios = SECUNDARIOS.map((codigo) => {
+    const cantidad = valores[codigo]?.cantidad_incluida
+    return `${nombre(codigo)}: ${cantidad == null ? textos.aMedida : numero(Number(cantidad), locale)}`
+  }).join(' · ')
+  return { principales, secundarios }
+}
+
 // En español, Intl no agrupa los números de 4 cifras («1500» junto a «10.000»).
 function entero(valor: number) {
   return new Intl.NumberFormat('es', { useGrouping: 'always' }).format(valor)

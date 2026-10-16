@@ -3,7 +3,7 @@ import { Inter, Zalando_Sans, Zalando_Sans_Expanded, Montserrat_Alternates } fro
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages, getTranslations } from "next-intl/server";
 import "./globals.css";
-import { cargarCatalogo, resumenPlanEs, type Catalogo } from "../lib/catalogo-planes";
+import { bajadaPlan, cargarCatalogo, cuposPlan, type Catalogo } from "../lib/catalogo-planes";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -72,7 +72,11 @@ export async function generateMetadata(): Promise<Metadata> {
 // para que el FAQPage estructurado hable el mismo idioma que la página.
 type FaqEntry = { q: string; a: string };
 
-const buildJsonLd = (faq: FaqEntry[], catalogo: Catalogo) => {
+// Planes: catálogo vivo en el idioma de la página, con la misma bajada y los mismos
+// cupos que la grilla (PricingSection), para que el OfferCatalog no quede en español.
+type TextosPlanes = { titulo: string; aMedida: string; porMesCorto: string; otrosLimites: string; sub: (codigo: string) => string };
+
+const buildJsonLd = (faq: FaqEntry[], catalogo: Catalogo, locale: string, tp: TextosPlanes) => {
   const precios = catalogo.planes
     .map((plan) => plan.precio_mensual_usd)
     .filter((precio): precio is number => precio != null);
@@ -115,12 +119,13 @@ const buildJsonLd = (faq: FaqEntry[], catalogo: Catalogo) => {
     {
       "@type": "OfferCatalog",
       "@id": "https://ragfly.ai/#planes",
-      name: "Planes de RAGfly",
+      name: `RAGfly — ${tp.titulo}`,
       itemListElement: catalogo.planes.map((plan) => {
-        const resumen = resumenPlanEs(catalogo, plan.codigo_plan);
-        return plan.precio_mensual_usd == null || resumen == null
-          ? { "@type": "Offer", name: plan.nombre, url: "https://ragfly.ai/#planes", description: "Plan a medida con DPA/SLA y despliegue dedicado si aplica." }
-          : { "@type": "Offer", name: plan.nombre, price: String(plan.precio_mensual_usd), priceCurrency: "USD", url: "https://ragfly.ai/#planes", description: `${plan.descripcion ? plan.descripcion + " " : ""}Cupos: ${resumen}.` };
+        const bajada = bajadaPlan(plan, locale, tp.sub(plan.codigo_plan));
+        if (plan.precio_mensual_usd == null)
+          return { "@type": "Offer", name: plan.nombre, url: "https://ragfly.ai/#planes", description: bajada };
+        const { principales, secundarios } = cuposPlan(catalogo, plan.codigo_plan, locale, tp);
+        return { "@type": "Offer", name: plan.nombre, price: String(plan.precio_mensual_usd), priceCurrency: "USD", url: "https://ragfly.ai/#planes", description: `${bajada.replace(/\.?$/, ".")} ${principales.join(", ")}. ${tp.otrosLimites}: ${secundarios}.` };
       }),
     },
     {
@@ -144,12 +149,21 @@ export default async function RootLayout({
   const locale = await getLocale();
   const messages = await getMessages();
   const tFaq = await getTranslations("faq");
+  const tPlanes = await getTranslations("planes");
   const jsonLd = buildJsonLd(
     Array.from({ length: Number(tFaq("total")) }, (_, i) => ({
       q: tFaq(`q${i}` as Parameters<typeof tFaq>[0]),
       a: tFaq(`a${i}` as Parameters<typeof tFaq>[0]),
     })),
-    await cargarCatalogo("es"),
+    await cargarCatalogo(locale),
+    locale,
+    {
+      titulo: tPlanes("eyebrow"),
+      aMedida: tPlanes("aMedida"),
+      porMesCorto: tPlanes("porMesCorto"),
+      otrosLimites: tPlanes("limitesSecundarios"),
+      sub: (codigo) => tPlanes(`sub${codigo}` as Parameters<typeof tPlanes>[0]),
+    },
   );
 
   return (

@@ -1,7 +1,7 @@
 import { getLocale, getTranslations } from 'next-intl/server'
 import { BlurIn } from './shared'
 import { BotonEmpezar } from '../apertura/BotonEmpezar'
-import { cargarCatalogo, numero, PRINCIPALES, SECUNDARIOS, usd } from '../../lib/catalogo-planes'
+import { bajadaPlan, cargarCatalogo, cuposPlan, numero, usd } from '../../lib/catalogo-planes'
 
 /* `locale` y `destino` los fija /start/[dolor]: el idioma puede venir del mensaje
    de campaña (utm_content) y el botón reenvía las utm_* al registro. */
@@ -28,21 +28,12 @@ export async function PricingSection({ locale: localeFijo, destino }: { locale?:
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {catalogo.planes.map((plan) => {
-            const valores = catalogo.valores[plan.codigo_plan] || {}
             const enterprise = plan.codigo_plan === 'ENTERPRISE'
             const free = plan.codigo_plan === 'FREE'
             const featured = plan.codigo_plan === 'GROWTH'
-            // La BD guarda `descripcion` solo en español (aunque se pida otro locale):
-            // fuera de es manda la bajada traducida de messages/*.json.
-            const secundarios = SECUNDARIOS.map((codigo) => {
-              const cantidad = valores[codigo]?.cantidad_incluida
-              const nombre = porCodigo.get(codigo)?.nombre || codigo
-              return `${nombre}: ${cantidad == null ? t('aMedida') : numero(Number(cantidad), locale)}`
-            }).join(' · ')
-            const principales = PRINCIPALES.map((codigo) => {
-              const cantidad = valores[codigo]?.cantidad_incluida
-              const car = porCodigo.get(codigo)
-              return `${cantidad == null ? t('aMedida') : numero(Number(cantidad), locale)} ${car?.nombre || codigo}${cantidad == null ? '' : t('porMesCorto')}`
+            const { principales, secundarios } = cuposPlan(catalogo, plan.codigo_plan, locale, {
+              aMedida: t('aMedida'),
+              porMesCorto: t('porMesCorto'),
             })
             const adicionales = !free && !enterprise && corpus && aumentado && agentico
               ? t('adicionalesLinea', {
@@ -62,7 +53,7 @@ export async function PricingSection({ locale: localeFijo, destino }: { locale?:
                     <span className="rf-boton self-start text-[10px] uppercase tracking-[0.15em] bg-slm-brand-light/20 text-slm-brand-light px-2 py-1 rounded-full mb-1">{t('recomendado')}</span>
                   ) : <span className="mb-1 h-[22px]" aria-hidden="true" />}
                   <h3 className={`font-helvetica-neue text-2xl font-medium tracking-[-0.02em] ${featured ? 'text-white' : 'text-slm-dark'}`}>{plan.nombre}</h3>
-                  <p className={`font-helvetica-neue text-sm ${featured ? 'text-slm-gray-light' : 'text-slm-gray'}`}>{(locale === 'es' && plan.descripcion) || t(`sub${plan.codigo_plan}`)}</p>
+                  <p className={`font-helvetica-neue text-sm ${featured ? 'text-slm-gray-light' : 'text-slm-gray'}`}>{bajadaPlan(plan, locale, t(`sub${plan.codigo_plan}`))}</p>
                 </div>
                 <div className={`font-helvetica-neue text-lg font-medium ${featured ? 'text-white' : 'text-slm-dark'}`}>
                   {plan.precio_mensual_usd == null ? t('aMedida') : plan.precio_mensual_usd === 0 ? t('gratis') : `${usd(Number(plan.precio_mensual_usd), locale)}${t('porMes')}`}
