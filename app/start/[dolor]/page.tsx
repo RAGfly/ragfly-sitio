@@ -34,16 +34,29 @@ export function generateStaticParams() {
   return [...Object.keys(PAGINAS), 'marketing'].map((dolor) => ({ dolor }))
 }
 
+const GENERICOS: Record<Locale, [string, string]> = {
+    en: ['Your documents. Your agents. Your rules.', 'Connect your agents to your documents with access by workspace, area, role and agent.'],
+    es: ['Tus documentos. Tus agentes. Tus reglas.', 'Conecta tus agentes a tus documentos con acceso por workspace, área, rol y agente.'],
+    pt: ['Seus documentos. Seus agentes. Suas regras.', 'Conecte seus agentes aos seus documentos com acesso por workspace, área, função e agente.'],
+    fr: ['Vos documents. Vos agents. Vos règles.', 'Connectez vos agents à vos documents avec un accès par workspace, domaine, rôle et agent.'],
+    de: ['Deine Dokumente. Deine Agenten. Deine Regeln.', 'Verbinde deine Agenten mit deinen Dokumenten, mit Zugriff nach Workspace, Bereich, Rolle und Agent.'],
+  }
+
 async function idioma(): Promise<Locale> {
   const l = (await getLocale()) as Locale
   return locales.includes(l) ? l : 'en'
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ dolor: string }> }): Promise<Metadata> {
+export async function generateMetadata({ params, searchParams }: { params: Promise<{ dolor: string }>; searchParams: Promise<Record<string, string | string[] | undefined>> }): Promise<Metadata> {
   const { dolor } = await params
   const p = PAGINAS[(dolor === 'marketing' ? 'memory' : dolor) as Dolor]
   if (!p) return {}
-  const t = p.textos[await idioma()]
+  const mensaje = await cargarMensajeMarketing((await searchParams).utm_content)
+  const locale = mensaje ? mensaje.idioma : await idioma()
+  const base = p.textos[locale]
+  const t = mensaje
+    ? { titulo: mensaje.titulo.map(f => f.texto).join(''), metaDescripcion: mensaje.cuerpo }
+    : dolor === 'marketing' ? { titulo: GENERICOS[locale][0], metaDescripcion: GENERICOS[locale][1] } : base
   return {
     title: `${t.titulo} — RAGfly`,
     description: t.metaDescripcion,
@@ -67,14 +80,8 @@ export default async function PaginaDolor({ params, searchParams }: { params: Pr
   const mensaje = await cargarMensajeMarketing(query.utm_content)
   const locale = mensaje ? mensaje.idioma : await idioma()
   const base = p.textos[locale]
-  const genericos = {
-    en: ['Your documents. Your agents. Your rules.', 'Connect your agents to your documents with access by workspace, area, role and agent.'],
-    es: ['Tus documentos. Tus agentes. Tus reglas.', 'Conecta tus agentes a tus documentos con acceso por workspace, área, rol y agente.'],
-    pt: ['Seus documentos. Seus agentes. Suas regras.', 'Conecte seus agentes aos seus documentos com acesso por workspace, área, função e agente.'],
-    fr: ['Vos documents. Vos agents. Vos règles.', 'Connectez vos agents à vos documents avec un accès par workspace, domaine, rôle et agent.'],
-    de: ['Deine Dokumente. Deine Agenten. Deine Regeln.', 'Verbinde deine Agenten mit deinen Dokumenten, mit Zugriff nach Workspace, Bereich, Rolle und Agent.'],
-  }
-  const t = dolor === 'marketing' ? {...base, titulo: genericos[locale][0], bajada: genericos[locale][1]} : base
+
+  const t = dolor === 'marketing' ? {...base, titulo: GENERICOS[locale][0], bajada: GENERICOS[locale][1]} : base
   const c = COMUN[locale]
 
 
