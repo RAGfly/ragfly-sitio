@@ -651,5 +651,16 @@
     "q15": "Was ist der Unterschied zwischen Free und den bezahlten Plänen?",
     "a15": "Limits und Kapazität. Der Datenschutz ist in allen Plänen gleich. Der Free-Plan ist dauerhaft, mit monatlichen Limits, und braucht keine Kreditkarte.",
     "total": "16"
+  },
+  "jsonLd": {
+    "descripcion": "RAG-Service für KI-Agenten: macht aus jedem Dokumentenkorpus eine sichere, produktionsreife Retrieval-Basis, mit Zugriff nach Workspace, Bereich, Rolle und Agent. Cloud bewahrt die Originaldatei nicht auf; Desktop verarbeitet sie lokal; in souveränen Plänen gehört die Datenbank dem Kunden.",
+    "funciones": [
+      "Von null auf Produktion, indem du auf ein Verzeichnis zeigst (automatische Aufnahme, Vektorisierung und Indexierung)",
+      "Ab Werk isolierte Workspaces: ein isolierter Korpus pro Workspace (Organisation → Workspaces → Bereiche), mit Zugriff nach Bereich, Rolle und Agent",
+      "Datenschutz je nach Modus: Original wird in Cloud nicht aufbewahrt, lokale Verarbeitung in Desktop und eigene Datenbank in souveränen Plänen",
+      "Retrieval mit Quellenangaben und Berechtigungen (RBAC für Personen und für Agenten über Profile)",
+      "Datenbankunabhängig und BYO: bring deine eigene Vektordatenbank und dein eigenes LLM mit",
+      "MCP-, REST-, CLI- und SDK-Schnittstellen in allen Plänen"
+    ]
   }
 }

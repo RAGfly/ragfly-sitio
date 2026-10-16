@@ -76,7 +76,10 @@ type FaqEntry = { q: string; a: string };
 // cupos que la grilla (PricingSection), para que el OfferCatalog no quede en español.
 type TextosPlanes = { titulo: string; aMedida: string; porMesCorto: string; otrosLimites: string; sub: (codigo: string) => string };
 
-const buildJsonLd = (faq: FaqEntry[], catalogo: Catalogo, locale: string, tp: TextosPlanes) => {
+// Descripción y funcionalidades del SoftwareApplication: namespace `jsonLd` en los 5 idiomas.
+type TextosApp = { descripcion: string; funciones: string[] };
+
+const buildJsonLd = (faq: FaqEntry[], catalogo: Catalogo, locale: string, tp: TextosPlanes, app: TextosApp) => {
   const precios = catalogo.planes
     .map((plan) => plan.precio_mensual_usd)
     .filter((precio): precio is number => precio != null);
@@ -98,16 +101,8 @@ const buildJsonLd = (faq: FaqEntry[], catalogo: Catalogo, locale: string, tp: Te
       operatingSystem: "Web, macOS, Windows",
       url: "https://ragfly.ai",
       publisher: { "@id": "https://ragfly.ai/#organization" },
-      description:
-        "Servicio de RAG para agentes de IA: convierte cualquier corpus de documentos en una base de recuperación segura, con acceso por workspace, área, rol y agente, y lista para producción. Cloud no conserva el archivo original; Desktop lo procesa localmente; en planes soberanos la base de datos es del cliente.",
-      featureList: [
-        "De cero a producción apuntando a un directorio (ingesta, vectorización e indexado automáticos)",
-        "Workspaces aislados de fábrica: un corpus aislado por workspace (Organización → Workspaces → Áreas), con acceso por área, rol y agente",
-        "Privacidad por modo: original no conservado en Cloud, procesamiento local en Desktop y BD propia en planes soberanos",
-        "Recuperación con citas y permisos (RBAC para personas y para agentes vía perfiles)",
-        "DB-agnóstico y BYO: trae tu propia base vectorial y tu propio LLM",
-        "Superficies MCP, REST, CLI y SDK en todos los planes",
-      ],
+      description: app.descripcion,
+      featureList: app.funciones,
       offers: {
         "@type": "AggregateOffer",
         priceCurrency: "USD",
@@ -150,6 +145,7 @@ export default async function RootLayout({
   const messages = await getMessages();
   const tFaq = await getTranslations("faq");
   const tPlanes = await getTranslations("planes");
+  const tJsonLd = await getTranslations("jsonLd");
   const jsonLd = buildJsonLd(
     Array.from({ length: Number(tFaq("total")) }, (_, i) => ({
       q: tFaq(`q${i}` as Parameters<typeof tFaq>[0]),
@@ -164,6 +160,7 @@ export default async function RootLayout({
       otrosLimites: tPlanes("limitesSecundarios"),
       sub: (codigo) => tPlanes(`sub${codigo}` as Parameters<typeof tPlanes>[0]),
     },
+    { descripcion: tJsonLd("descripcion"), funciones: tJsonLd.raw("funciones") as string[] },
   );
 
   return (

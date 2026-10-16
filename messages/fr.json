@@ -652,5 +652,16 @@
     "q15": "Qu'est-ce qui change entre Free et les plans payants ?",
     "a15": "Les limites et la capacité. La confidentialité est la même sur tous les plans. Free est permanent, avec des limites mensuelles, et ne demande pas de carte bancaire.",
     "total": "16"
+  },
+  "jsonLd": {
+    "descripcion": "Service de RAG pour agents d'IA : transforme n'importe quel corpus de documents en une base de recherche sécurisée et prête pour la production, avec un accès par workspace, domaine, rôle et agent. Le Cloud ne conserve pas le fichier original ; Desktop le traite localement ; dans les plans souverains, la base de données appartient au client.",
+    "funciones": [
+      "De zéro à la production en pointant un répertoire (ingestion, vectorisation et indexation automatiques)",
+      "Workspaces isolés d'origine : un corpus isolé par workspace (Organisation → Workspaces → Domaines), avec un accès par domaine, rôle et agent",
+      "Confidentialité selon le mode : original non conservé dans le Cloud, traitement local dans Desktop et base de données propre dans les plans souverains",
+      "Recherche avec citations et permissions (RBAC pour les personnes et pour les agents via des profils)",
+      "Agnostique de la base de données et BYO : apportez votre propre base vectorielle et votre propre LLM",
+      "Interfaces MCP, REST, CLI et SDK sur tous les plans"
+    ]
   }
 }

@@ -651,5 +651,16 @@
     "q15": "What's the difference between Free and paid plans?",
     "a15": "Limits and capacity. Privacy is the same on every plan. Free is permanent, with monthly limits, and needs no credit card.",
     "total": "16"
+  },
+  "jsonLd": {
+    "descripcion": "RAG service for AI agents: turns any document corpus into a secure, production-ready retrieval base, with access by workspace, area, role and agent. Cloud does not keep the original file; Desktop processes it locally; on sovereign plans the database belongs to the customer.",
+    "funciones": [
+      "From zero to production by pointing at a directory (automatic ingestion, vectorization and indexing)",
+      "Workspaces isolated out of the box: one isolated corpus per workspace (Organization → Workspaces → Areas), with access by area, role and agent",
+      "Privacy by mode: original not kept in Cloud, local processing in Desktop and your own database on sovereign plans",
+      "Retrieval with citations and permissions (RBAC for people and for agents through profiles)",
+      "DB-agnostic and BYO: bring your own vector database and your own LLM",
+      "MCP, REST, CLI and SDK surfaces on every plan"
+    ]
   }
 }

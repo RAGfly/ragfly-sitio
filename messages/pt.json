@@ -652,5 +652,16 @@
     "q15": "O que muda entre o Free e os planos pagos?",
     "a15": "Os limites e a capacidade. A privacidade é a mesma em todos os planos. O Free é permanente, com limites mensais, e não pede cartão de crédito.",
     "total": "16"
+  },
+  "jsonLd": {
+    "descripcion": "Serviço de RAG para agentes de IA: transforma qualquer corpus de documentos em uma base de recuperação segura e pronta para produção, com acesso por workspace, área, função e agente. O Cloud não guarda o arquivo original; o Desktop o processa localmente; nos planos soberanos o banco de dados é do cliente.",
+    "funciones": [
+      "Do zero à produção apontando para um diretório (ingestão, vetorização e indexação automáticas)",
+      "Workspaces isolados de fábrica: um corpus isolado por workspace (Organização → Workspaces → Áreas), com acesso por área, função e agente",
+      "Privacidade por modo: original não guardado no Cloud, processamento local no Desktop e banco de dados próprio nos planos soberanos",
+      "Recuperação com citações e permissões (RBAC para pessoas e para agentes via perfis)",
+      "Agnóstico de banco de dados e BYO: traga seu próprio banco vetorial e seu próprio LLM",
+      "Interfaces MCP, REST, CLI e SDK em todos os planos"
+    ]
   }
 }
