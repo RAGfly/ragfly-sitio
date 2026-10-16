@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import { cargarMensajeMarketing } from '../../../lib/mensajes-marketing'
+import { TituloMarketing } from '../../../components/apertura/TituloMarketing'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -29,7 +31,7 @@ const ES_PRODUCCION = process.env.VERCEL_ENV === 'production'
 export const dynamicParams = false
 
 export function generateStaticParams() {
-  return (Object.keys(PAGINAS) as Dolor[]).map((dolor) => ({ dolor }))
+  return [...Object.keys(PAGINAS), 'marketing'].map((dolor) => ({ dolor }))
 }
 
 async function idioma(): Promise<Locale> {
@@ -39,7 +41,7 @@ async function idioma(): Promise<Locale> {
 
 export async function generateMetadata({ params }: { params: Promise<{ dolor: string }> }): Promise<Metadata> {
   const { dolor } = await params
-  const p = PAGINAS[dolor as Dolor]
+  const p = PAGINAS[(dolor === 'marketing' ? 'memory' : dolor) as Dolor]
   if (!p) return {}
   const t = p.textos[await idioma()]
   return {
@@ -55,14 +57,24 @@ function Etiqueta({ children }: { children: React.ReactNode }) {
   return <span className="rf-anot text-slm-brand">{children}</span>
 }
 
-export default async function PaginaDolor({ params }: { params: Promise<{ dolor: string }> }) {
+export default async function PaginaDolor({ params, searchParams }: { params: Promise<{ dolor: string }>; searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   const { dolor } = await params
-  const p = PAGINAS[dolor as Dolor]
+  const p = PAGINAS[(dolor === 'marketing' ? 'memory' : dolor) as Dolor]
   if (!p) notFound()
   if (!PUBLICADA && ES_PRODUCCION) notFound()
 
-  const locale = await idioma()
-  const t = p.textos[locale]
+  const query = await searchParams
+  const mensaje = await cargarMensajeMarketing(query.utm_content)
+  const locale = mensaje ? mensaje.idioma : await idioma()
+  const base = p.textos[locale]
+  const genericos = {
+    en: ['Your documents. Your agents. Your rules.', 'Connect your agents to your documents with access by workspace, area, role and agent.'],
+    es: ['Tus documentos. Tus agentes. Tus reglas.', 'Conecta tus agentes a tus documentos con acceso por workspace, área, rol y agente.'],
+    pt: ['Seus documentos. Seus agentes. Suas regras.', 'Conecte seus agentes aos seus documentos com acesso por workspace, área, função e agente.'],
+    fr: ['Vos documents. Vos agents. Vos règles.', 'Connectez vos agents à vos documents avec un accès par workspace, domaine, rôle et agent.'],
+    de: ['Deine Dokumente. Deine Agenten. Deine Regeln.', 'Verbinde deine Agenten mit deinen Dokumenten, mit Zugriff nach Workspace, Bereich, Rolle und Agent.'],
+  }
+  const t = dolor === 'marketing' ? {...base, titulo: genericos[locale][0], bajada: genericos[locale][1]} : base
   const c = COMUN[locale]
 
 
@@ -96,9 +108,9 @@ export default async function PaginaDolor({ params }: { params: Promise<{ dolor:
           <div className="mx-auto flex max-w-[760px] flex-col gap-6">
             <Etiqueta>{c.etiqueta}</Etiqueta>
             <h1 className="font-helvetica-neue text-4xl md:text-6xl font-medium leading-[1.06] tracking-[-0.035em] text-balance">
-              {t.titulo}
+              {mensaje ? <TituloMarketing fragmentos={mensaje.titulo} /> : t.titulo}
             </h1>
-            <p className="font-helvetica-neue text-lg md:text-xl leading-relaxed">{t.bajada}</p>
+            <p className="font-helvetica-neue text-lg md:text-xl leading-relaxed">{mensaje?.cuerpo ?? t.bajada}</p>
             <p className="font-helvetica-neue text-lg md:text-xl font-medium text-slm-brand-dark">{c.eslogan}</p>
             <FormularioAlta id="signup" textos={c} />
           </div>

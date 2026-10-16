@@ -458,3 +458,6 @@ body {
 .doc-prose td { color: var(--slm-gray); }
 .doc-prose hr { border: none; border-top: 1px solid #EAEAEA; margin: 2rem 0; }
 .doc-prose img { max-width: 100%; border-radius: 8px; }
+
+/* Énfasis de mensajes de campaña: estilo cerrado, independiente del contenido. */
+.marketing-enfasis { font-family: var(--font-marketing-enfasis), sans-serif; font-style: italic; font-weight: 600; }

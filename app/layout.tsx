@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Zalando_Sans_Expanded, Montserrat_Alternates } from "next/font/google";
+import { Inter, Zalando_Sans, Zalando_Sans_Expanded, Montserrat_Alternates } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages, getTranslations } from "next-intl/server";
 import "./globals.css";
@@ -13,6 +13,10 @@ const inter = Inter({
 const zalando = Zalando_Sans_Expanded({
   variable: "--font-dato",
   subsets: ["latin"],
+});
+
+const zalandoMarketing = Zalando_Sans({
+  variable: "--font-marketing-enfasis", subsets: ["latin"], style: ["italic"], weight: ["600"],
 });
 
 const montserrat = Montserrat_Alternates({
@@ -149,7 +153,7 @@ export default async function RootLayout({
   );
 
   return (
-    <html lang={locale} className={`${inter.variable} ${zalando.variable} ${montserrat.variable} h-full antialiased`}>
+    <html lang={locale} className={`${inter.variable} ${zalando.variable} ${montserrat.variable} ${zalandoMarketing.variable} h-full antialiased`}>
       <head>
         <script
           type="application/ld+json"
