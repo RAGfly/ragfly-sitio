@@ -8,6 +8,7 @@ import { getLocale } from 'next-intl/server'
 import { BotonEmpezar } from '../../../components/apertura/BotonEmpezar'
 import { FormularioAlta } from '../../../components/apertura/FormularioAlta'
 import { VideoYouTube } from '../../../components/apertura/VideoYouTube'
+import { PricingSection } from '../../../components/sections/PricingSection'
 import { SelectorIdioma } from '../../../components/SelectorIdioma'
 import { COMUN, PAGINAS, PUBLICADA, URL_GUIA_MCP, URL_REGISTRO, VIDEO_YOUTUBE_ID, type Dolor } from '../../../content/apertura'
 import { locales, type Locale } from '../../../i18n/config'
@@ -18,8 +19,10 @@ import { locales, type Locale } from '../../../i18n/config'
 /* Una por dolor: /start/context y /start/memory. Estructura vigente   */
 /* (plan v2.8 §11, Víctor 14 y 15-oct): 1 hero (titular, bajada del     */
 /* dolor, eslogan, registro + login) · video del Quickstart · 2 cómo   */
-/* empieza · 3 pilares · 4 cierre (Free + registro + login) · 5 FAQ,  */
-/* sin precios, sin cifras y sin proveedores por plan.                  */
+/* empieza · 3 pilares · 4 cierre (Free + registro + login) · 5 FAQ · */
+/* 6 planes (Víctor, 16-oct: «pruebo gratis, pero luego ¿cuánto        */
+/* pagaré?»). La grilla es la misma de la home, desde el catálogo vivo; */
+/* cada registro Free enlaza a ella con «Ver precios ↓».                */
 /*                                                                     */
 /* Multilingüe (Víctor, 15-oct): el idioma sale de getLocale(), la     */
 /* misma cadena del resto del sitio, y se cambia con SelectorIdioma.    */
@@ -231,6 +234,9 @@ export default async function PaginaDolor({ params, searchParams }: { params: Pr
             </div>
           </div>
         </section>
+
+        {/* 6 · Planes: al final; el registro Free enlaza aquí (#planes) */}
+        <PricingSection locale={locale} destino={URL_REGISTRO} />
       </main>
 
       <footer className="border-t border-slm-brand-light px-6 md:px-12 py-8 font-helvetica-neue text-sm text-slm-gray">

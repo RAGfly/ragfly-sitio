@@ -102,7 +102,12 @@ export function FormularioAlta({ id, textos }: { id?: string; textos: TextosComu
           {a.crear}
         </button>
       </form>
-      <p className="font-helvetica-neue text-sm text-slm-gray">{a.nota}</p>
+      <p className="font-helvetica-neue text-sm text-slm-gray">
+        {a.nota}{' '}
+        <a href="#planes" className="font-medium text-slm-dark underline underline-offset-2 whitespace-nowrap">
+          {a.verPrecios} ↓
+        </a>
+      </p>
       <p className="font-helvetica-neue text-sm text-slm-gray">
         {textos.yaTienesCuenta}{' '}
         <a href={URL_LOGIN} onClick={(e) => ir(e, {})} className="font-medium text-slm-dark underline underline-offset-2">

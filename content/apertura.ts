@@ -11,8 +11,9 @@
 /* Eslogan, descriptor y bajadas: literales de MENSAJE-CANONICO §6 y   */
 /* §7.3 en cada idioma. FR, PT y DE están pendientes de validación     */
 /* nativa, igual que en el canónico. Nada en 🔴 del semáforo ni cifras */
-/* no medidas. FAQ cerrada al final; sin precios, sin proveedores ni     */
-/* diferencias de privacidad por plan (todos en carril A).             */
+/* no medidas. FAQ cerrada y luego la grilla de planes (catálogo vivo, */
+/* Víctor 16-oct); sin proveedores ni diferencias de privacidad por    */
+/* plan (todos en carril A).                                           */
 /* ------------------------------------------------------------------ */
 
 import type { Locale } from '../i18n/config'
@@ -146,6 +147,8 @@ export type TextosComunes = {
     correo: string
     crear: string
     nota: string
+    /* Enlace a la grilla de planes al final de la página (Víctor, 16-oct). */
+    verPrecios: string
     entrar: string
   }
   pie: { guiaMcp: string; privacidad: string; terminos: string }
@@ -223,6 +226,7 @@ export const COMUN: Record<Locale, TextosComunes> = {
       correo: 'Work or personal email',
       crear: 'Create free account',
       nota: 'Free plan. No credit card.',
+      verPrecios: 'See pricing',
       entrar: 'Log in',
     },
     pie: { guiaMcp: 'MCP guide', privacidad: 'Privacy', terminos: 'Terms' },
@@ -306,6 +310,7 @@ export const COMUN: Record<Locale, TextosComunes> = {
       correo: 'Correo personal o de trabajo',
       crear: 'Crear cuenta gratis',
       nota: 'Plan Free. Sin tarjeta de crédito.',
+      verPrecios: 'Ver precios',
       entrar: 'Inicia sesión',
     },
     pie: { guiaMcp: 'Guía MCP', privacidad: 'Privacidad', terminos: 'Términos' },
@@ -389,6 +394,7 @@ export const COMUN: Record<Locale, TextosComunes> = {
       correo: 'E-mail pessoal ou de trabalho',
       crear: 'Criar conta grátis',
       nota: 'Plano Free. Sem cartão de crédito.',
+      verPrecios: 'Ver preços',
       entrar: 'Entrar',
     },
     pie: { guiaMcp: 'Guia MCP', privacidad: 'Privacidade', terminos: 'Termos' },
@@ -472,6 +478,7 @@ export const COMUN: Record<Locale, TextosComunes> = {
       correo: 'E-mail personnel ou professionnel',
       crear: 'Créer un compte gratuit',
       nota: 'Plan Free. Sans carte bancaire.',
+      verPrecios: 'Voir les tarifs',
       entrar: 'Se connecter',
     },
     pie: { guiaMcp: 'Guide MCP', privacidad: 'Confidentialité', terminos: 'Conditions' },
@@ -555,6 +562,7 @@ export const COMUN: Record<Locale, TextosComunes> = {
       correo: 'Private oder geschäftliche E-Mail',
       crear: 'Kostenloses Konto erstellen',
       nota: 'Free-Plan. Keine Kreditkarte.',
+      verPrecios: 'Preise ansehen',
       entrar: 'Anmelden',
     },
     pie: { guiaMcp: 'MCP-Leitfaden', privacidad: 'Datenschutz', terminos: 'AGB' },

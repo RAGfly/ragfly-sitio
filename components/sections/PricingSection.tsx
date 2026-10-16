@@ -1,10 +1,13 @@
 import { getLocale, getTranslations } from 'next-intl/server'
 import { BlurIn } from './shared'
+import { BotonEmpezar } from '../apertura/BotonEmpezar'
 import { cargarCatalogo, numero, PRINCIPALES, SECUNDARIOS, usd } from '../../lib/catalogo-planes'
 
-export async function PricingSection() {
-  const locale = await getLocale()
-  const t = await getTranslations('planes')
+/* `locale` y `destino` los fija /start/[dolor]: el idioma puede venir del mensaje
+   de campaña (utm_content) y el botón reenvía las utm_* al registro. */
+export async function PricingSection({ locale: localeFijo, destino }: { locale?: string; destino?: string } = {}) {
+  const locale = localeFijo ?? await getLocale()
+  const t = await getTranslations({ locale, namespace: 'planes' })
   const catalogo = await cargarCatalogo(locale)
   const porCodigo = new Map(catalogo.caracteristicas.map((c) => [c.codigo_caracteristica, c]))
   const corpus = porCodigo.get('CORPUS_ACTIVO')
@@ -29,6 +32,8 @@ export async function PricingSection() {
             const enterprise = plan.codigo_plan === 'ENTERPRISE'
             const free = plan.codigo_plan === 'FREE'
             const featured = plan.codigo_plan === 'GROWTH'
+            // La BD guarda `descripcion` solo en español (aunque se pida otro locale):
+            // fuera de es manda la bajada traducida de messages/*.json.
             const secundarios = SECUNDARIOS.map((codigo) => {
               const cantidad = valores[codigo]?.cantidad_incluida
               const nombre = porCodigo.get(codigo)?.nombre || codigo
@@ -57,7 +62,7 @@ export async function PricingSection() {
                     <span className="rf-boton self-start text-[10px] uppercase tracking-[0.15em] bg-slm-brand-light/20 text-slm-brand-light px-2 py-1 rounded-full mb-1">{t('recomendado')}</span>
                   ) : <span className="mb-1 h-[22px]" aria-hidden="true" />}
                   <h3 className={`font-helvetica-neue text-2xl font-medium tracking-[-0.02em] ${featured ? 'text-white' : 'text-slm-dark'}`}>{plan.nombre}</h3>
-                  <p className={`font-helvetica-neue text-sm ${featured ? 'text-slm-gray-light' : 'text-slm-gray'}`}>{plan.descripcion || t(`sub${plan.codigo_plan}`)}</p>
+                  <p className={`font-helvetica-neue text-sm ${featured ? 'text-slm-gray-light' : 'text-slm-gray'}`}>{(locale === 'es' && plan.descripcion) || t(`sub${plan.codigo_plan}`)}</p>
                 </div>
                 <div className={`font-helvetica-neue text-lg font-medium ${featured ? 'text-white' : 'text-slm-dark'}`}>
                   {plan.precio_mensual_usd == null ? t('aMedida') : plan.precio_mensual_usd === 0 ? t('gratis') : `${usd(Number(plan.precio_mensual_usd), locale)}${t('porMes')}`}
@@ -72,9 +77,9 @@ export async function PricingSection() {
                   <li className={`text-xs leading-relaxed ${featured ? 'text-slm-light/70' : 'text-slm-gray'}`}>{t('limitesSecundarios')}: {secundarios}</li>
                   {adicionales && <li className={`text-xs leading-relaxed ${featured ? 'text-slm-light/70' : 'text-slm-gray'}`}>{adicionales}</li>}
                 </ul>
-                <a href="https://app.ragfly.ai" className={`rf-boton text-center font-medium text-sm px-5 py-3 rounded-full transition-opacity hover:opacity-90 ${featured ? 'bg-slm-brand-light text-slm-dark' : 'bg-slm-dark text-slm-light'}`}>
+                <BotonEmpezar destino={destino ?? 'https://app.ragfly.ai'} className={`rf-boton text-center font-medium text-sm px-5 py-3 rounded-full transition-opacity hover:opacity-90 ${featured ? 'bg-slm-brand-light text-slm-dark' : 'bg-slm-dark text-slm-light'}`}>
                   {enterprise ? t('ctaEmpresa') : free ? t('ctaGratis') : t('ctaEmpezar')}
-                </a>
+                </BotonEmpezar>
               </article>
             )
           })}
