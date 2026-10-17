@@ -1,5 +1,7 @@
 'use client'
 
+import { track } from '@vercel/analytics'
+
 /* ------------------------------------------------------------------ */
 /* BotonEmpezar — «Start free» que conserva la atribución               */
 /*                                                                     */
@@ -27,6 +29,8 @@ export function BotonEmpezar({
       if (v) url.searchParams.set(k, v)
     }
     e.currentTarget.href = url.toString()
+    // Paso landing → registro: sin esto, un clic de aviso que no se registra no deja huella.
+    track('cta_empezar', { utm_source: actual.get('utm_source') ?? '', utm_content: actual.get('utm_content') ?? '' })
   }
 
   return (

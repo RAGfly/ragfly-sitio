@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Zalando_Sans, Zalando_Sans_Expanded, Montserrat_Alternates } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages, getTranslations } from "next-intl/server";
 import "./globals.css";
@@ -179,6 +180,8 @@ export default async function RootLayout({
         <NextIntlClientProvider locale={locale} messages={messages}>
           {children}
         </NextIntlClientProvider>
+        {/* Medición sin cookies (Vercel Web Analytics): visitas, origen y utm_* de los avisos. No guarda identificadores en el navegador. */}
+        <Analytics />
       </body>
     </html>
   );
