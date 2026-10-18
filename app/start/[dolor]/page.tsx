@@ -38,11 +38,11 @@ export function generateStaticParams() {
 }
 
 const GENERICOS: Record<Locale, [string, string]> = {
-    en: ['Your documents. Your agents. Your rules.', 'Connect your agents to your documents with access by workspace, area, role and agent.'],
-    es: ['Tus documentos. Tus agentes. Tus reglas.', 'Conecta tus agentes a tus documentos con acceso por workspace, área, rol y agente.'],
-    pt: ['Seus documentos. Seus agentes. Suas regras.', 'Conecte seus agentes aos seus documentos com acesso por workspace, área, função e agente.'],
-    fr: ['Vos documents. Vos agents. Vos règles.', 'Connectez vos agents à vos documents avec un accès par workspace, domaine, rôle et agent.'],
-    de: ['Deine Dokumente. Deine Agenten. Deine Regeln.', 'Verbinde deine Agenten mit deinen Dokumenten, mit Zugriff nach Workspace, Bereich, Rolle und Agent.'],
+    en: ['Make your documents available to your agents.', 'RAGfly is a RAG service. You connect your documents once, and the agents you already use query them over MCP, with the source and with access by workspace, area, role and agent.'],
+    es: ['Disponibiliza tus documentos a tus agentes.', 'RAGfly es un servicio de RAG. Conectas tus documentos una vez y los agentes que ya usas los consultan por MCP, con la fuente y con acceso por workspace, área, rol y agente.'],
+    pt: ['Disponibilize seus documentos para seus agentes.', 'O RAGfly é um serviço de RAG. Você conecta seus documentos uma vez e os agentes que você já usa os consultam por MCP, com a fonte e com acesso por workspace, área, papel e agente.'],
+    fr: ['Mettez vos documents à la disposition de vos agents.', 'RAGfly est un service de RAG. Vous connectez vos documents une fois, et les agents que vous utilisez déjà les interrogent via MCP, avec la source et avec un accès par workspace, zone, rôle et agent.'],
+    de: ['Stelle deine Dokumente deinen Agenten bereit.', 'RAGfly ist ein RAG-Dienst. Du verbindest deine Dokumente einmal, und die Agenten, die du bereits nutzt, fragen sie über MCP ab – mit Quelle und mit Zugriff nach Workspace, Bereich, Rolle und Agent.'],
   }
 
 async function idioma(): Promise<Locale> {
@@ -123,6 +123,7 @@ export default async function PaginaDolor({ params, searchParams }: { params: Pr
                 {mensaje ? <TituloMarketing fragmentos={mensaje.titulo} /> : t.titulo}
               </h1>
               <p className="font-helvetica-neue text-lg md:text-xl leading-relaxed">{mensaje?.cuerpo ?? t.bajada}</p>
+              <p className="font-helvetica-neue text-base md:text-lg leading-relaxed text-slm-gray">{c.lineaProducto}</p>
               <p className="font-helvetica-neue text-lg md:text-xl font-medium text-slm-brand-dark">{c.eslogan}</p>
             </div>
             <FormularioAlta id="signup" textos={c} compacto />

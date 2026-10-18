@@ -129,6 +129,8 @@ export const PAGINAS: Record<Dolor, PaginaDolor> = {
 export type TextosComunes = {
   etiqueta: string
   eslogan: string
+  /** Qué es y qué hace RAGfly, en una línea (descriptor §3 + línea de apoyo §6.bis; aprobada por Víctor, 18-oct). */
+  lineaProducto: string
   empezar: string
   pasosEtiqueta: string
   pasosTitulo: string
@@ -173,6 +175,7 @@ export const COMUN: Record<Locale, TextosComunes> = {
   en: {
     etiqueta: 'RAG service for agents',
     eslogan: 'Simple, private, and precise. Access by workspace, area, role and agent.',
+    lineaProducto: 'Augmented retrieval for your agents. Connect your documents once; the agents you already use query them over MCP, with the source and only what each role may see.',
     empezar: 'Start free',
     pasosEtiqueta: 'How it starts',
     pasosTitulo: 'Three steps. Then your agent takes it from there.',
@@ -257,6 +260,7 @@ export const COMUN: Record<Locale, TextosComunes> = {
   es: {
     etiqueta: 'Servicio de RAG para agentes',
     eslogan: 'Simple, privado y preciso. Acceso por workspace, área, rol y agente.',
+    lineaProducto: 'Recuperación aumentada para tus agentes. Conectas tus documentos una vez; los agentes que ya usas los consultan por MCP, con la fuente y solo lo que cada rol puede ver.',
     empezar: 'Empieza gratis',
     pasosEtiqueta: 'Cómo empieza',
     pasosTitulo: 'Tres pasos. Desde ahí sigue tu agente.',
@@ -341,6 +345,7 @@ export const COMUN: Record<Locale, TextosComunes> = {
   pt: {
     etiqueta: 'Serviço de RAG para agentes',
     eslogan: 'Simples, privado e preciso. Acesso por workspace, área, papel e agente.',
+    lineaProducto: 'Recuperação aumentada para seus agentes. Você conecta seus documentos uma vez; os agentes que você já usa os consultam por MCP, com a fonte e somente o que cada papel pode ver.',
     empezar: 'Comece grátis',
     pasosEtiqueta: 'Como começa',
     pasosTitulo: 'Três passos. Depois, seu agente segue sozinho.',
@@ -425,6 +430,7 @@ export const COMUN: Record<Locale, TextosComunes> = {
   fr: {
     etiqueta: 'Service de RAG pour agents',
     eslogan: 'Simple, privé et précis. Accès par workspace, zone, rôle et agent.',
+    lineaProducto: 'Récupération augmentée pour vos agents. Vous connectez vos documents une fois ; les agents que vous utilisez déjà les interrogent via MCP, avec la source et uniquement ce que chaque rôle peut voir.',
     empezar: 'Commencer gratuitement',
     pasosEtiqueta: 'Comment ça commence',
     pasosTitulo: 'Trois étapes. Ensuite, votre agent prend le relais.',
@@ -509,6 +515,7 @@ export const COMUN: Record<Locale, TextosComunes> = {
   de: {
     etiqueta: 'RAG-Dienst für Agenten',
     eslogan: 'Einfach, privat und präzise. Zugriff nach Workspace, Bereich, Rolle und Agent.',
+    lineaProducto: 'Angereicherte Suche für deine Agenten. Du verbindest deine Dokumente einmal; die Agenten, die du bereits nutzt, fragen sie über MCP ab – mit Quelle und nur das, was jede Rolle sehen darf.',
     empezar: 'Kostenlos starten',
     pasosEtiqueta: 'So geht es los',
     pasosTitulo: 'Drei Schritte. Danach übernimmt dein Agent.',
