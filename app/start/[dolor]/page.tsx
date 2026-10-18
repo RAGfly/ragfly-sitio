@@ -113,16 +113,19 @@ export default async function PaginaDolor({ params, searchParams }: { params: Pr
       </header>
 
       <main>
-        {/* 1 · Hero: titular fijo de la página, bajada, eslogan y registro */}
+        {/* 1 · Hero en dos columnas (Víctor, 17-oct): titular y bajada a la izquierda,
+            registro + login compacto a la derecha; en móvil se apilan. */}
         <section className="px-6 md:px-12 pt-8 pb-12 md:pt-14">
-          <div className="mx-auto flex max-w-[760px] flex-col gap-6">
-            <Etiqueta>{c.etiqueta}</Etiqueta>
-            <h1 className="font-helvetica-neue text-4xl md:text-6xl font-medium leading-[1.06] tracking-[-0.035em] text-balance">
-              {mensaje ? <TituloMarketing fragmentos={mensaje.titulo} /> : t.titulo}
-            </h1>
-            <p className="font-helvetica-neue text-lg md:text-xl leading-relaxed">{mensaje?.cuerpo ?? t.bajada}</p>
-            <p className="font-helvetica-neue text-lg md:text-xl font-medium text-slm-brand-dark">{c.eslogan}</p>
-            <FormularioAlta id="signup" textos={c} />
+          <div className="mx-auto grid max-w-[980px] items-start gap-8 md:grid-cols-[minmax(0,1fr)_340px] md:gap-12">
+            <div className="flex min-w-0 flex-col gap-6">
+              <Etiqueta>{c.etiqueta}</Etiqueta>
+              <h1 className="font-helvetica-neue text-4xl md:text-5xl font-medium leading-[1.06] tracking-[-0.035em] text-balance">
+                {mensaje ? <TituloMarketing fragmentos={mensaje.titulo} /> : t.titulo}
+              </h1>
+              <p className="font-helvetica-neue text-lg md:text-xl leading-relaxed">{mensaje?.cuerpo ?? t.bajada}</p>
+              <p className="font-helvetica-neue text-lg md:text-xl font-medium text-slm-brand-dark">{c.eslogan}</p>
+            </div>
+            <FormularioAlta id="signup" textos={c} compacto />
           </div>
         </section>
 

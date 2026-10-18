@@ -55,9 +55,13 @@ function LogoMicrosoft() {
   )
 }
 
-export function FormularioAlta({ id, textos }: { id?: string; textos: TextosComunes }) {
+export function FormularioAlta({ id, textos, compacto = false }: { id?: string; textos: TextosComunes; compacto?: boolean }) {
   const [correo, setCorreo] = useState('')
   const a = textos.alta
+  /* compacto: la tarjeta de la columna derecha del hero (Víctor, 17-oct) */
+  const boton = compacto ? botonClaro.replace('px-6 py-3 text-base', 'px-5 py-2.5 text-sm') : botonClaro
+  const campo = compacto ? 'px-4 py-2.5 text-sm' : 'px-5 py-3 text-base'
+  const enviar = compacto ? 'px-5 py-2.5 text-sm' : 'px-6 py-3 text-base'
 
   function ir(e: React.MouseEvent<HTMLAnchorElement>, extra: Record<string, string>) {
     e.currentTarget.href = urlLogin(extra)
@@ -69,12 +73,12 @@ export function FormularioAlta({ id, textos }: { id?: string; textos: TextosComu
   }
 
   return (
-    <div id={id} className="flex w-full max-w-[420px] flex-col gap-3">
-      <a href={`${URL_LOGIN}?proveedor=google`} onClick={(e) => ir(e, { proveedor: 'google' })} className={botonClaro}>
+    <div id={id} className={compacto ? 'flex w-full flex-col gap-2.5 rounded-2xl border border-slm-brand-light bg-white p-5 shadow-sm' : 'flex w-full max-w-[420px] flex-col gap-3'}>
+      <a href={`${URL_LOGIN}?proveedor=google`} onClick={(e) => ir(e, { proveedor: 'google' })} className={boton}>
         <LogoGoogle />
         {a.google}
       </a>
-      <a href={`${URL_LOGIN}?proveedor=microsoft`} onClick={(e) => ir(e, { proveedor: 'microsoft' })} className={botonClaro}>
+      <a href={`${URL_LOGIN}?proveedor=microsoft`} onClick={(e) => ir(e, { proveedor: 'microsoft' })} className={boton}>
         <LogoMicrosoft />
         {a.microsoft}
       </a>
@@ -83,7 +87,7 @@ export function FormularioAlta({ id, textos }: { id?: string; textos: TextosComu
         {a.o}
         <span className="h-px flex-1 bg-slm-brand-light" />
       </div>
-      <form onSubmit={crear} className="flex flex-col gap-3">
+      <form onSubmit={crear} className={compacto ? 'flex flex-col gap-2.5' : 'flex flex-col gap-3'}>
         <label className="sr-only" htmlFor={`${id ?? 'alta'}-correo`}>{a.correo}</label>
         <input
           id={`${id ?? 'alta'}-correo`}
@@ -93,22 +97,22 @@ export function FormularioAlta({ id, textos }: { id?: string; textos: TextosComu
           placeholder={a.correo}
           value={correo}
           onChange={(e) => setCorreo(e.target.value)}
-          className="w-full min-w-0 rounded-full border border-slm-brand-light px-5 py-3 font-helvetica-neue text-base text-slm-dark outline-none focus:border-slm-brand"
+          className={`w-full min-w-0 rounded-full border border-slm-brand-light ${campo} font-helvetica-neue text-slm-dark outline-none focus:border-slm-brand`}
         />
         <button
           type="submit"
-          className="font-helvetica-neue w-full rounded-full bg-slm-dark px-6 py-3 text-base font-medium text-slm-light hover:opacity-90"
+          className={`font-helvetica-neue w-full rounded-full bg-slm-dark ${enviar} font-medium text-slm-light hover:opacity-90`}
         >
           {a.crear}
         </button>
       </form>
-      <p className="font-helvetica-neue text-sm text-slm-gray">
+      <p className={`font-helvetica-neue ${compacto ? 'text-xs' : 'text-sm'} text-slm-gray`}>
         {a.nota}{' '}
         <a href="#planes" className="font-medium text-slm-dark underline underline-offset-2 whitespace-nowrap">
           {a.verPrecios} ↓
         </a>
       </p>
-      <p className="font-helvetica-neue text-sm text-slm-gray">
+      <p className={`font-helvetica-neue ${compacto ? 'text-xs' : 'text-sm'} text-slm-gray`}>
         {textos.yaTienesCuenta}{' '}
         <a href={URL_LOGIN} onClick={(e) => ir(e, {})} className="font-medium text-slm-dark underline underline-offset-2">
           {a.entrar}
