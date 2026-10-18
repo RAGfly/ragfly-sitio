@@ -1,6 +1,6 @@
 {
   "title": "Política de Privacidade",
-  "subtitle": "Última atualização: 15/10/2026 · Versão 1.2",
+  "subtitle": "Última atualização: 18/10/2026 · Versão 1.2",
   "intro": [
     {
       "kind": "p",
@@ -157,6 +157,10 @@
         {
           "kind": "p",
           "text": "O Serviço usa cookies e tecnologias semelhantes necessários para autenticação e segurança e, quando aplicável, cookies analíticos opcionais sujeitos ao seu consentimento. Você pode gerenciar os cookies por meio das configurações do seu navegador."
+        },
+        {
+          "kind": "p",
+          "text": "Nosso site (ragfly.ai) também mede as visitas de forma agregada por meio do serviço de análise web do nosso provedor de hospedagem. Essa medição não usa cookies nem armazena identificadores no seu navegador, e registra apenas a página visitada, o país aproximado, o tipo de dispositivo e de navegador, e o link ou a campanha que levou você até lá (por exemplo, os parâmetros UTM). Usamos isso para entender quais páginas e campanhas funcionam. Se depois você criar uma conta, salvamos a campanha que levou você até lá (seus parâmetros UTM) no registro de cadastro dessa conta."
         }
       ]
     },

@@ -1,6 +1,6 @@
 {
   "title": "Datenschutzrichtlinie",
-  "subtitle": "Zuletzt aktualisiert: 15/10/2026 · Version 1.2",
+  "subtitle": "Zuletzt aktualisiert: 18/10/2026 · Version 1.2",
   "intro": [
     {
       "kind": "p",
@@ -157,6 +157,10 @@
         {
           "kind": "p",
           "text": "Der Dienst verwendet Cookies und ähnliche Technologien, die für Authentifizierung und Sicherheit erforderlich sind, sowie gegebenenfalls optionale Analyse-Cookies, die Ihrer Einwilligung unterliegen. Sie können Cookies über die Einstellungen Ihres Browsers verwalten."
+        },
+        {
+          "kind": "p",
+          "text": "Unsere Website (ragfly.ai) misst Besuche außerdem aggregiert über den Webanalysedienst unseres Hosting-Anbieters. Diese Messung verwendet keine Cookies und speichert keine Kennungen in Ihrem Browser; sie erfasst nur die besuchte Seite, das ungefähre Land, den Geräte- und Browsertyp sowie den Link oder die Kampagne, über die Sie gekommen sind (z. B. UTM-Parameter). Wir nutzen sie, um zu verstehen, welche Seiten und Kampagnen funktionieren. Wenn Sie anschließend ein Konto erstellen, speichern wir die Kampagne, über die Sie gekommen sind (ihre UTM-Parameter), im Anmeldedatensatz dieses Kontos."
         }
       ]
     },
