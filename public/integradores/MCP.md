@@ -79,7 +79,7 @@ client may need a new sign-in after expiration.
 |---|---|---|
 | **Codex desktop app** | Settings → **Complementos** → **MCP** → **Agregar** → **Conectar con un MCP personalizado**. Enter a name, choose **HTTP secuenciable** (Streamable HTTP), and use the URL above. Labels may appear in English depending on the app language. | Continue and finish the browser sign-in and consent at RAGfly. |
 | **Codex CLI** | `codex mcp add ragfly --url https://api.ragfly.ai/mcp-http` | `codex mcp login ragfly`; complete the browser flow. Check with `codex mcp list`. |
-| **Claude.ai / Claude Desktop** | Settings → Connectors → Add custom connector; enter a name and the URL above. | Select **Connect** and finish the RAGfly browser flow. |
+| **Claude.ai / Claude Desktop** | Settings → Connectors → Add custom connector; enter a name and the URL above. | Select **Connect** and finish the RAGfly browser flow. No sign-in available? Use an API key instead: [Claude Desktop chat — API key](#claude-desktop-chat--api-key-no-browser-sign-in). |
 | **Claude Code** | `claude mcp add --transport http ragfly https://api.ragfly.ai/mcp-http` | Run `/mcp` and follow the sign-in prompt. |
 | **Gemini CLI** | `gemini mcp add --transport http ragfly https://api.ragfly.ai/mcp-http` | Run `/mcp auth ragfly` and follow the browser flow. |
 | **VS Code with GitHub Copilot** | Add an HTTP server to `.vscode/mcp.json` (example below), or use **MCP: Add Server** from the Command Palette. | Start the server and complete its OAuth prompt. This MCP path does not require an OpenAPI document. |
@@ -95,6 +95,7 @@ does not establish behavior in PROD or in another product from the same vendor.
 |---|---|---|
 | **VS Code 1.139.1 + GitHub Copilot Chat 0.67.0** | RAGfly TEST, `/mcp-http`: OAuth callback and reconnect succeeded; MCP `initialize` negotiated protocol `2025-11-25`; `session` and a prepared search returned the expected fixture. Revoking the grant caused a later request to return HTTP 401. | PROD behavior; Microsoft 365 Copilot and Copilot Studio; other VS Code or extension versions. |
 | **Claude Desktop** (version not recorded in the connection evidence) | RAGfly CORP, `/mcp-http`: OAuth callback completed and `Ragfly-Corp Session` returned a session. After the grant was revoked, Claude asked to reconnect. | A Claude HTTP 401 was not captured; document retrieval, protocol version, workspace/environment isolation and PROD behavior were not tested. |
+| **Claude Desktop chat, macOS, API key** (version not recorded) | RAGfly TEST, `/mcp-http/` through `mcp-remote` 0.14.3 with an `rf_…` key: the local server connected and answered in the chat when started through a launcher script kept outside Dropbox (reported by the operator). The direct `npx` form in this guide was verified outside the app with a minimal environment — MCP `initialize` plus a `session` call returned `authenticated: true` — but not yet run inside Claude Desktop. A launcher inside Dropbox failed with `Operation not permitted`. | Windows and Linux; PROD; the direct `npx` form inside the app; document retrieval from the chat. |
 | **Gemini CLI / Antigravity** | No RAGfly connection was observed for either client during this compatibility check. | RAGfly OAuth or MCP compatibility for either client. |
 | **ChatGPT web** | The private TEST pilot has not been run. | A completed ChatGPT connection, citations, revocation behavior or production availability. |
 
@@ -174,6 +175,37 @@ Everything else from here — client config, role/area choice,
 `session()`/`list_operations()` verification, troubleshooting — the agent can
 do on its own.
 
+### Agent runbook: connect Claude Desktop with an API key
+
+For an agent that has been handed an `rf_…` key and a machine running Claude
+Desktop (macOS). Never print the key, never put it on a command line that other
+processes can list, and never write it anywhere but the config file below.
+
+1. **Node.** `command -v npx` and `command -v node` must both succeed and `node -v`
+   must be 18 or newer. If not, tell the person to install Node.js and stop.
+2. **Check the key before touching anything.** Read it from a variable, not from the
+   command text, and call the environment's `/v1/session`:
+   `curl -s -o /dev/null -w '%{http_code}' https://api.ragfly.ai/v1/session -H "Authorization: Bearer $RAGFLY_API_KEY"`.
+   Expect `200`. `401` means a wrong, revoked or other-environment key: stop and say so.
+3. **Back up and merge the config.** Copy `claude_desktop_config.json` to
+   `claude_desktop_config.json.bak-ragfly`, then add `mcpServers.ragfly` as shown in
+   [Claude Desktop chat — API key](#claude-desktop-chat--api-key-no-browser-sign-in)
+   without removing other keys (load the JSON, set one key, write it back with
+   2-space indentation, `chmod 600`). `command` is the absolute `npx` path and
+   `PATH` starts with the folder of `node`. Never point `command` into Dropbox,
+   iCloud Drive, Documents or Desktop.
+4. **Restart.** Claude Desktop only reads the file at startup. Ask the person to quit
+   it with Cmd+Q and reopen it — this also ends any session running inside the app,
+   so finish other work first.
+5. **Verify.** Before asking the person, run the same command outside the app with a
+   minimal environment (`env -i HOME="$HOME" RAGFLY_API_KEY=… PATH=…`) and send an
+   MCP `initialize` followed by a `tools/call` of `session`; it must return
+   `"authenticated": true`. After the restart, ask the person to open a new
+   conversation and request `session`.
+6. **If it fails**, ask for the last lines of **Settings → Developer → Local MCP
+   servers → View logs** and use the troubleshooting table above. Do not retry the
+   same configuration unchanged.
+
 ---
 
 ## Quick setup (manual API key)
@@ -210,6 +242,69 @@ The Streamable HTTP endpoint is stateless: every request carries its own
 drop your connection. It speaks MCP `2026-07-28` (one self-contained request, no
 `initialize` handshake) and the earlier handshake revisions (`2025-11-25` and older);
 the client picks.
+
+### Claude Desktop chat — API key, no browser sign-in
+
+Use this when you have an API key and want to talk to your documents from the
+Claude Desktop chat without signing in with an email (the **Connectors** screen only
+accepts a URL and OAuth; it has no field for a header). Claude Desktop starts a small
+local program, [`mcp-remote`](https://www.npmjs.com/package/mcp-remote), that forwards
+every call to RAGfly with your key in the `Authorization` header.
+
+You need **Node.js 18 or newer** (`node -v`) and your `rf_…` key. Open the config file
+(Claude Desktop → Settings → Developer → **Edit config**; on macOS it is
+`~/Library/Application Support/Claude/claude_desktop_config.json`) and add the server
+under `mcpServers`, keeping whatever else is already in the file:
+
+```json
+{
+  "mcpServers": {
+    "ragfly": {
+      "command": "/absolute/path/to/npx",
+      "args": [
+        "-y", "mcp-remote@0.14.3",
+        "https://api.ragfly.ai/mcp-http/",
+        "--transport", "http-only",
+        "--header", "Authorization:Bearer ${RAGFLY_API_KEY}",
+        "--silent"
+      ],
+      "env": {
+        "RAGFLY_API_KEY": "rf_xxxxxxxxxx",
+        "PATH": "/absolute/path/to/node-folder:/usr/bin:/bin"
+      }
+    }
+  }
+}
+```
+
+- `command` must be the **absolute** path printed by `command -v npx`, and the first
+  entry of `PATH` must be the folder that contains `node` (`dirname "$(command -v node)"`).
+  A desktop app does not inherit your shell's `PATH`, so a Node installed through
+  nvm, Volta, `~/local` or similar is otherwise invisible to it.
+- Write the header as `Authorization:Bearer ${RAGFLY_API_KEY}` — no space after the
+  colon; `mcp-remote` expands the variable from `env`.
+- The key sits in that file in plain text. Keep the file readable only by you
+  (`chmod 600` on macOS/Linux) and never copy it into a shared project or repository.
+- Use the endpoint of your own environment. Keys are per environment: a key
+  created in the TEST web app does not work against `api.ragfly.ai`, and the reverse.
+
+Quit Claude Desktop completely (Cmd+Q on macOS) and reopen it. Check **Settings →
+Developer → Local MCP servers**: `ragfly` should not show **Failed**. Then open a new
+conversation and ask Claude to call `session`; it should answer with your user, the
+active workspace and your access profile. From there, ask your questions in plain
+language — Claude picks `search_documents`, `ask` or the other tools by itself.
+
+To rotate the key, edit `RAGFLY_API_KEY` in the same file and restart the app.
+
+| Symptom | Cause and fix |
+|---|---|
+| `bash: …: Operation not permitted` in **View logs** | `command` points to a script inside a folder macOS protects from the app (Dropbox, iCloud Drive, Documents, Desktop). Point `command` straight at `npx`, or keep any launcher script outside those folders (for example `~/.ragfly/bin`). |
+| `spawn … ENOENT`, or `env: node: No such file or directory` | `command` is not an absolute path, or `PATH` does not start with the folder that holds `node`. |
+| Server starts and the first call answers `401` | The key was revoked, mistyped, or belongs to another environment than the URL. Check it with `curl -H "Authorization: Bearer $RAGFLY_API_KEY" https://api.ragfly.ai/v1/session`. |
+| **Failed** with no useful log | The file is not valid JSON (a trailing comma is the usual cause), or Claude Desktop was not fully restarted. |
+
+This configuration was verified on macOS. It has not been verified on Windows or
+Linux, where the file location and the way `npx` is launched differ.
 
 ### Cursor / Cline / other MCP clients
 
