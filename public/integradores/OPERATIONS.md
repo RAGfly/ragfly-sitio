@@ -32,7 +32,7 @@ Internal role identifiers and fields without a public mapping are omitted. A cat
 without an English alias fails with a safe English error instead of exposing its internal code.
 Organization-authored names, descriptions, prompts and document content keep their original language.
 
-## Operations (108: 41 read, 50 write, 17 write_confirm)
+## Operations (80: 34 read, 35 write, 11 write_confirm)
 
 *Minimum profile* is the lowest access level of the screens that use the operation;
 the key's role must also include one of those screens.
@@ -47,12 +47,10 @@ the key's role must also include one of those screens.
 
 | Operation | Kind | Minimum profile | Screens |
 |---|---|---|---|
-| `areas.add_location` | write | ADMINISTRATOR | `MANAGE_WORKSPACES` |
 | `areas.create` | write | ADMINISTRATOR | `MANAGE_WORKSPACES` |
 | `areas.delete` | write_confirm | ADMINISTRATOR | `MANAGE_WORKSPACES` |
 | `areas.list` | read | USER | `API_KEYS`, `COLLECTIONS`, `MANAGE_USERS`, `MANAGE_WORKSPACES` |
 | `areas.list_locations` | read | ADMINISTRATOR | `MANAGE_WORKSPACES` |
-| `areas.remove_location` | write_confirm | ADMINISTRATOR | `MANAGE_WORKSPACES` |
 | `areas.update` | write | ADMINISTRATOR | `MANAGE_WORKSPACES` |
 
 ### `audit`
@@ -128,26 +126,6 @@ the key's role must also include one of those screens.
 |---|---|---|---|
 | `functions.get` | read | USER | `AUDIT_USERS`, `CHAT-FINAL-USER`, `CHAT-USER`, `DOCS_DASHBOARD`, `MANAGE_GROUP_PROCESSES`, `SECURITY-DASHBOARD`, `SUBSCRIPTION_CANCELLATIONS` |
 
-### `group_processes`
-
-| Operation | Kind | Minimum profile | Screens |
-|---|---|---|---|
-| `group_processes.create` | write | ADMINISTRATOR | `MANAGE_GROUP_PROCESSES` |
-| `group_processes.delete` | write_confirm | ADMINISTRATOR | `MANAGE_GROUP_PROCESSES` |
-| `group_processes.list` | read | ADMINISTRATOR | `MANAGE_GROUP_PROCESSES` |
-| `group_processes.reorder` | write | ADMINISTRATOR | `MANAGE_GROUP_PROCESSES` |
-| `group_processes.update` | write | ADMINISTRATOR | `MANAGE_GROUP_PROCESSES` |
-
-### `group_tasks`
-
-| Operation | Kind | Minimum profile | Screens |
-|---|---|---|---|
-| `group_tasks.create` | write | ADMINISTRATOR | `MANAGE_GROUP_TASKS` |
-| `group_tasks.delete` | write_confirm | ADMINISTRATOR | `MANAGE_GROUP_TASKS` |
-| `group_tasks.list` | read | ADMINISTRATOR | `MANAGE_GROUP_TASKS` |
-| `group_tasks.reorder` | write | ADMINISTRATOR | `MANAGE_GROUP_TASKS` |
-| `group_tasks.update` | write | ADMINISTRATOR | `MANAGE_GROUP_TASKS` |
-
 ### `groups`
 
 | Operation | Kind | Minimum profile | Screens |
@@ -162,23 +140,6 @@ the key's role must also include one of those screens.
 | `ingestion_runs.advance` | write | ADMINISTRATOR | `PROCESS_PIPELINE` |
 | `ingestion_runs.cancel` | write_confirm | ADMINISTRATOR | `PROCESS_PIPELINE` |
 | `ingestion_runs.start` | write | ADMINISTRATOR | `PROCESS_PIPELINE` |
-
-### `locations`
-
-| Operation | Kind | Minimum profile | Screens |
-|---|---|---|---|
-| `locations.create` | write | ADMINISTRATOR | `DOC_LOCATIONS` |
-| `locations.delete` | write_confirm | ADMINISTRATOR | `DOC_LOCATIONS`, `PROCESS_PIPELINE` |
-| `locations.generate_md` | write | ADMINISTRATOR | `DOC_LOCATIONS` |
-| `locations.get_acquisition_skill` | read | ADMINISTRATOR | `DOC_LOCATIONS` |
-| `locations.list` | read | USER | `CHAT-FINAL-USER`, `CHAT-USER`, `DOC_LOCATIONS`, `MANAGE_WORKSPACES`, `PROCESS_DOCUMENTS`, `PROCESS_PIPELINE` |
-| `locations.materialize_web` | write | ADMINISTRATOR | `DOC_LOCATIONS` |
-| `locations.preview_delete` | read | ADMINISTRATOR | `DOC_LOCATIONS`, `PROCESS_PIPELINE` |
-| `locations.rebuild_hierarchy` | write | ADMINISTRATOR | `DOC_LOCATIONS` |
-| `locations.research_web` | write | ADMINISTRATOR | `DOC_LOCATIONS` |
-| `locations.review_web` | write | ADMINISTRATOR | `DOC_LOCATIONS` |
-| `locations.sync` | write | ADMINISTRATOR | `DOC_LOCATIONS`, `PROCESS_PIPELINE` |
-| `locations.update` | write | ADMINISTRATOR | `DOC_LOCATIONS`, `PROCESS_PIPELINE` |
 
 ### `parameter_categories`
 
@@ -210,18 +171,14 @@ the key's role must also include one of those screens.
 
 | Operation | Kind | Minimum profile | Screens |
 |---|---|---|---|
-| `processes.delete` | write_confirm | USER | `PROFILE_PROCESS` |
-| `processes.get` | read | USER | `PROFILE_PROCESS` |
 | `processes.list` | read | USER | `PROFILE_PROCESS` |
 | `processes.profile_dashboard` | read | USER | `PROFILE_PROCESS` |
-| `processes.reorder` | write | USER | `PROFILE_PROCESS` |
 | `processes.update` | write | USER | `PROFILE_PROCESS` |
 
 ### `queue`
 
 | Operation | Kind | Minimum profile | Screens |
 |---|---|---|---|
-| `queue.batch_status` | read | ADMINISTRATOR | `PROCESS_DOCUMENTS` |
 | `queue.list_orphans` | read | ADMINISTRATOR | `PROCESS_PIPELINE` |
 | `queue.list_run` | read | ADMINISTRATOR | `PROCESS_DOCUMENTS` |
 | `queue.pipeline_summary` | read | ADMINISTRATOR | `DOCS_DASHBOARD`, `PROCESS_PIPELINE` |
@@ -239,6 +196,7 @@ the key's role must also include one of those screens.
 | Operation | Kind | Minimum profile | Screens |
 |---|---|---|---|
 | `session.set_active_workspace` | write | USER | `SESSION` |
+| `session.unset_active_workspace` | write | USER | `SESSION` |
 
 ### `users`
 
@@ -260,27 +218,29 @@ the key's role must also include one of those screens.
 | Operation | Kind | Minimum profile | Screens |
 |---|---|---|---|
 | `workspaces.create` | write | ADMINISTRATOR | `MANAGE_WORKSPACES` |
-| `workspaces.delete` | write_confirm | ADMINISTRATOR | `MANAGE_WORKSPACES` |
 | `workspaces.get_dependencies` | read | ADMINISTRATOR | `MANAGE_WORKSPACES` |
 | `workspaces.list` | read | ADMINISTRATOR | `MANAGE_USERS`, `MANAGE_WORKSPACES`, `SECURITY-DASHBOARD` |
 | `workspaces.update` | write | ADMINISTRATOR | `MANAGE_WORKSPACES` |
 
-## Not published, and why (34)
+## Not published, and why (48)
 
 These parts of the application do not cross to agents. A person does them in the web app,
 or they are already available under another name.
 
 | Why | Screens | Operations |
 |---|---|---|
-| Plan changes, purchases and cancellations move money or a contract: a person does them in the web app. | `PAYMENT_METHODS`, `SUBSCRIPTION_CANCELLATIONS` | 10 |
+| Managing the locations documents are loaded from (creating, editing, syncing, removing and assigning them to an area, or reviewing their method and impact) is done by a person in the web app. Agents can list folders with `GET /v1/locations`. | `DOC_LOCATIONS`, `MANAGE_WORKSPACES`, `PROCESS_PIPELINE` | 13 |
+| Plan changes, purchases and cancellations move money or a contract: a person does them in the web app. | `PAYMENT_METHODS`, `SUBSCRIPTION_CANCELLATIONS` | 9 |
 | An agent credential does not manage credentials (API keys). | `API_KEYS`, `SECURITY-DASHBOARD` | 5 |
 | Connector secrets need a person's session. | — | 4 |
 | Ingestion steps driven by the web app's session. How an agent drives them is still to be decided. | `PROCESS_DOCUMENTS`, `PROCESS_PIPELINE` | 4 |
+| Already published as `GET /v1/locations`. | `CHAT-FINAL-USER`, `CHAT-USER`, `DOC_LOCATIONS`, `MANAGE_WORKSPACES`, `PROCESS_DOCUMENTS`, `PROCESS_PIPELINE` | 1 |
 | Already published as `GET /v1/organization`. | `MANAGE_WORKSPACES` | 1 |
 | Already published as `GET /v1/skills`. | `PROCESS_PIPELINE` | 1 |
 | Already published as `GET /v1/usage`. | `LLM_COSTS_GROUP` | 1 |
 | Already published as `POST /v1/ask`. | `CHAT-HISTORY` | 1 |
 | Already published as `parameters.list_group`. | `MANAGE_WORKSPACES` | 1 |
+| Deleting a workspace is decided by a person in the web app. | `MANAGE_WORKSPACES` | 1 |
 | Internal machinery (LLM model registry), outside the DOCS application. | `DOC_FEATURE_CATEGORIES` | 1 |
 | Internal machinery (prompt engine), outside the DOCS application. | `DOC_FEATURE_CATEGORIES`, `DOC_LOCATIONS` | 1 |
 | Internal machinery (translation engine), outside the DOCS application. | `DOC_FEATURE_CATEGORIES` | 1 |

@@ -19,6 +19,11 @@
       "parameters": "`workspace_code` (string or null)"
     },
     {
+      "name": "unset_active_workspace",
+      "description": "Releases the workspace focus (same as `set_active_workspace` with null): back to the identity's default workspace scope",
+      "parameters": "—"
+    },
+    {
       "name": "list_operations",
       "description": "What this key can do: every operation its RBAC allows, with `kind` and `confirm_required`",
       "parameters": "—"

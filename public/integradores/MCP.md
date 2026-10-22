@@ -15,7 +15,8 @@ For the recommended OAuth setup, sign in to RAGfly during the client authorizati
 Create and revoke manual API keys in the RAGfly web app's **API Keys** page. A
 **fixed-workspace**
 key cannot change its workspace through MCP. A **flexible** key can select an
-authorized workspace with `set_active_workspace` or release focus by passing `null`;
+authorized workspace with `set_active_workspace` or release focus with `unset_active_workspace`
+(or by passing `null` to `set_active_workspace`);
 RAGfly stores that focus on the server, so a new client using the same key sees
 it. MCP `tools/list` discovers MCP tools; `list_operations` reports the separate
 manifest operations allowed to the key.
@@ -372,6 +373,7 @@ is lost on a redeploy.
 |---|---|---|
 | `session` | Verifies the connection and returns the identity and the active organization, workspace and area | — |
 | `set_active_workspace` | Sets an authorized workspace for a flexible key or releases focus with null; fixed keys cannot change workspace | `workspace_code` (string or null) |
+| `unset_active_workspace` | Releases the workspace focus (same as `set_active_workspace` with null): back to the identity's default workspace scope | — |
 | `list_operations` | What this key can do: every operation its RBAC allows, with `kind` and `confirm_required` | — |
 | `get_operation` | One operation with its `input_schema` and `output_schema` | `code` |
 | `run_operation` | Runs one operation. A `write_confirm` one only runs with `confirm=true`; otherwise it returns a preview | `code`, `input?`, `confirm?` |

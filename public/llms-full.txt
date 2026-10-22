@@ -14,7 +14,7 @@ Updated: 2026-10-22
 
 API keys are issued through a signed-in human session. A fixed-workspace key cannot change workspace. A flexible key can select an authorized workspace or release focus with workspace_code: null; the server persists the focus for that key.
 
-## MCP tools (41)
+## MCP tools (42)
 
 ### session
 
@@ -24,6 +24,10 @@ Verifies the connection and returns the identity and the active organization, wo
 
 Sets an authorized workspace for a flexible key or releases focus with null; fixed keys cannot change workspace
 Parameters: `workspace_code` (string or null)
+
+### unset_active_workspace
+
+Releases the workspace focus (same as `set_active_workspace` with null): back to the identity's default workspace scope
 
 ### list_operations
 

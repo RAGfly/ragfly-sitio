@@ -12,7 +12,7 @@
     "auth": "OAuth 2.1 or Authorization: Bearer rf_xxxxxxxxxx (API Key issued from a human session)",
     "scope": "Every call is filtered by the key owner’s organization, workspace, area and role. Flexible workspace focus is stored server-side."
   },
-  "total_mcp_tools": 41,
+  "total_mcp_tools": 42,
   "tools": [
     {
       "name": "session",
@@ -23,6 +23,11 @@
       "name": "set_active_workspace",
       "description": "Sets an authorized workspace for a flexible key or releases focus with null; fixed keys cannot change workspace",
       "parameters": "`workspace_code` (string or null)"
+    },
+    {
+      "name": "unset_active_workspace",
+      "description": "Releases the workspace focus (same as `set_active_workspace` with null): back to the identity's default workspace scope",
+      "parameters": "—"
     },
     {
       "name": "list_operations",

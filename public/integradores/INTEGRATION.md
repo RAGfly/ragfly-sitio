@@ -31,7 +31,7 @@ authorization belongs to the Google or Dropbox user who grants it.
 | Term | What it is |
 |---|---|
 | **Organization** | The account that owns the plan, the users and the connectors. |
-| **Workspace** | The boundary you draw: personal and business, or one workspace per client. Nothing crosses it. Public codes: `workspace_code`, `set_active_workspace`. |
+| **Workspace** | The boundary you draw: personal and business, or one workspace per client. Nothing crosses it. Public codes: `workspace_code`, `set_active_workspace`, `unset_active_workspace`. |
 | **Area** | Which subtree of documents each identity sees inside a workspace. |
 | **Role** | What each identity can do. |
 | **User or agent** | Who queries. An agent enters with a profile, like a person. |

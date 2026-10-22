@@ -77,6 +77,7 @@ permission, issue a newly scoped key before requesting documents again.
 |---|---|---|
 | `GET` | `/v1/session` | Authenticated identity and active workspace |
 | `POST` | `/v1/session/active-workspace` | Set `{"workspace_code":"000057"}` or release with `{"workspace_code":null}` |
+| `DELETE` | `/v1/session/active-workspace` | Release the workspace focus (same as `{"workspace_code":null}`); a fixed-workspace key cannot |
 | `POST` | `/v1/session/active-area` | Set `{"area_code":"FINANCE"}` or release with `{"area_code":null}` |
 | `GET` | `/v1/areas` | Paginated organizational areas visible in the current workspace |
 | `GET` | `/v1/locations` | Paginated document folders visible in the current workspace |
