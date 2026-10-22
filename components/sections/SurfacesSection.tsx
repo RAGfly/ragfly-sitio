@@ -18,8 +18,9 @@ export function SurfacesSection() {
   const snippet = `{
   "mcpServers": {
     "ragfly": {
-      "url": "https://api.ragfly.ai/mcp/sse",
-      "headers": { "Authorization": "Bearer rf_xxxxxxxxxx" }
+      "type": "http",
+      "url": "https://api.ragfly.ai/mcp-http",
+      "headers": { "Authorization": "Bearer \${RAGFLY_API_KEY}" }
     }
   }
 }`

@@ -40,6 +40,19 @@ not part of the public integration API.
 
 ---
 
+## Step 2 — Keep the key out of your project
+
+The key is a secret: it goes in your environment, never in a repository, a project
+config or a chat. Two common places:
+
+- **MCP clients (Claude Code, Codex, Claude Desktop, Cursor…).** Run the setup script of
+  step 5. It checks the key, stores it in `~/.ragfly/ragfly-mcp.env` (mode 600) and
+  registers a launcher in your client, so no client config ever holds the key.
+- **REST, SDKs, CLI and scripts.** Keep `RAGFLY_API_KEY` in a local `.env` that is in your
+  `.gitignore`, or in your CI/CD secret store (see [Secure secrets handling](#secure-secrets-handling)).
+
+---
+
 ## Step 3 — Verify the session and discover what the key can do
 
 ### 3a. Session
@@ -186,30 +199,35 @@ codex mcp list
 Then ask Codex to call `session` to confirm the connection, and `list_operations`
 to see what the key can do.
 
-### Claude Code / Cursor / Cline
+### One command for any key-based client (recommended)
 
-Add to `~/.mcp.json` or `.mcp.json` in the project:
+The same script wires Claude Code, Codex or Claude Desktop, and gives any other MCP
+client a launcher to point at. Download it, read it, run it:
 
-```json
-{
-  "mcpServers": {
-    "ragfly": {
-      "url": "https://api.ragfly.ai/mcp/sse",
-      "headers": {
-        "Authorization": "Bearer <RAGFLY_API_KEY>"
-      }
-    }
-  }
-}
+```bash
+curl -fsSL https://ragfly.ai/integradores/ragfly-mcp-setup.sh -o ragfly-mcp-setup.sh
+bash ragfly-mcp-setup.sh --client claude-code --test     # or: codex | claude-desktop
 ```
 
-Restart the client. Verify:
+It asks for the key without echoing it (or reads it with `--key-stdin`, which is how an
+agent does it for you), checks it against `/v1/session`, stores it in
+`~/.ragfly/ragfly-mcp.env`, installs `~/.ragfly/bin/ragfly-mcp.sh` and registers it.
+Then, in the client:
 
 ```
 mcp__ragfly__session()
 ```
 
-Expected result: the same JSON as `GET /v1/session`.
+Expected result: the same JSON as `GET /v1/session`. Full details, options and the
+runbook for an agent that sets this up for you: [MCP.md](MCP.md#set-up-with-one-command-api-key).
+
+### Claude Code with browser sign-in (no key)
+
+```bash
+claude mcp add --transport http ragfly https://api.ragfly.ai/mcp-http
+```
+
+Then run `/mcp` in Claude Code and finish the sign-in in the browser.
 
 ---
 

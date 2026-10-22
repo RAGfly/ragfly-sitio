@@ -9,9 +9,13 @@ const BACKEND = 'https://api.ragfly.ai'
 
 export const mcp = {
   nombre: 'ragfly',
-  // Transportes remotos: SSE y Streamable HTTP. Sin instalar nada local.
-  endpointSSE: `${BACKEND}/mcp/sse`,
+  // Transporte recomendado: Streamable HTTP (sin sesión en el servidor). SSE queda
+  // solo por compatibilidad: su sesión se pierde en cada redeploy.
   endpointHTTP: `${BACKEND}/mcp-http/`,
+  endpointSSE: `${BACKEND}/mcp/sse`,
+  // Setup de un paso para clientes que usan API key: valida la key, la guarda en
+  // ~/.ragfly/ragfly-mcp.env y registra el cliente. Se descarga, se lee y se corre.
+  setupScript: 'https://ragfly.ai/integradores/ragfly-mcp-setup.sh',
   auth: 'OAuth 2.1 or Authorization: Bearer rf_xxxxxxxxxx (API Key issued from a human session)',
   scope: 'Every call is filtered by the key owner’s organization, workspace, area and role. Flexible workspace focus is stored server-side.',
 }

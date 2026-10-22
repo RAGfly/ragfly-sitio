@@ -109,7 +109,12 @@ writeFileSync(
 
 // Archivos no-.md del kit que también se sirven crudos (fetch de agentes /
 // referenciados por el README, p.ej. `.env.example`).
-const EXTRAS = [{ source: '.env.example', target: '.env.example' }, { source: '.env.example', target: 'env.example' }]
+const EXTRAS = [
+  { source: '.env.example', target: '.env.example' },
+  { source: '.env.example', target: 'env.example' },
+  // Setup de un paso para clientes MCP con API key: se descarga, se lee y se corre.
+  { source: 'ragfly-mcp-setup.sh', target: 'ragfly-mcp-setup.sh' },
+]
 let extrasCopiados = 0
 for (const extra of EXTRAS) {
   try {

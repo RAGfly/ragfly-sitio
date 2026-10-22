@@ -3,11 +3,12 @@
   "description": "Document retrieval for agents, exposed through MCP tools and a separate RBAC-filtered REST operations manifest.",
   "site": "https://ragfly.ai",
   "app": "https://app.ragfly.ai",
-  "updated": "2026-10-13",
+  "updated": "2026-10-22",
   "mcp": {
     "nombre": "ragfly",
-    "endpointSSE": "https://api.ragfly.ai/mcp/sse",
     "endpointHTTP": "https://api.ragfly.ai/mcp-http/",
+    "endpointSSE": "https://api.ragfly.ai/mcp/sse",
+    "setupScript": "https://ragfly.ai/integradores/ragfly-mcp-setup.sh",
     "auth": "OAuth 2.1 or Authorization: Bearer rf_xxxxxxxxxx (API Key issued from a human session)",
     "scope": "Every call is filtered by the key owner’s organization, workspace, area and role. Flexible workspace focus is stored server-side."
   },

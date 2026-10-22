@@ -53,13 +53,14 @@ content keeps its original language.
 | **`DROPBOX.md`** | Organization administrators — feed documents directly from Dropbox |
 | **`EVALUATION_TEMPLATE.md`** | Template for reporting findings |
 | **`.env.example`** | Environment variables template |
+| **`ragfly-mcp-setup.sh`** | One-command setup for key-based MCP clients and agents: validates the key, stores it in `~/.ragfly/ragfly-mcp.env`, registers Claude Code / Codex / Claude Desktop |
 
 ---
 
 ## Where to start
 
 **Codex** → `QUICKSTART.md` (MCP via `codex mcp add`)<br>
-**Claude Code / Cursor / Cline** → `MCP.md`, then `QUICKSTART.md` step 5<br>
+**Claude Code / Cursor / Cline** → `MCP.md` (OAuth, or `ragfly-mcp-setup.sh` with a key), then `QUICKSTART.md` step 5<br>
 **REST / backend** → `REST.md`<br>
 **CLI** → `CLI.md`<br>
 **Python** → `SDK.md` (`pip install ragfly`)<br>

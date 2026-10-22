@@ -72,6 +72,30 @@ Confirms the connection and returns the active organization and workspace.
 If MCP is not available, use the REST routes documented below. The full tool list
 is in [MCP.md](MCP.md).
 
+### If the person asks you to connect to RAGfly
+
+You can do it for them; only the key itself needs a human (an API key is created in a
+signed-in browser at <https://app.ragfly.ai/api-keys> and shown once).
+
+1. Ask the person to create the key and hand it to you. Do not ask for a password.
+2. Never print the key, never put it on a command line (arguments show up in `ps`),
+   never write it into a project file. Download and read the setup script, then run
+   it with the key on standard input:
+
+   ```bash
+   curl -fsSL https://ragfly.ai/integradores/ragfly-mcp-setup.sh -o ragfly-mcp-setup.sh
+   printf '%s\n' "$RAGFLY_KEY" | bash ragfly-mcp-setup.sh --key-stdin --client claude-code --test
+   ```
+
+   Use `--client codex` or `--client claude-desktop` as appropriate, or omit `--client`
+   for any other MCP client (its server `command` is `~/.ragfly/bin/ragfly-mcp.sh`).
+3. The script validates the key first (`401` = wrong, revoked or other-environment key:
+   stop and say so), keeps it only in `~/.ragfly/ragfly-mcp.env` (mode 600), and
+   registers a launcher that holds no secret. Ask the person to restart the client if it
+   needs it (Claude Desktop: quit with Cmd+Q and reopen), then call `session` to confirm.
+
+Full runbook and troubleshooting: [MCP.md](MCP.md#agent-runbook-connect-a-client-with-an-api-key).
+
 ## Required environment variables
 
 ```dotenv
