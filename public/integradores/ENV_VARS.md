@@ -36,10 +36,9 @@ For MCP clients that cannot do the browser sign-in, `ragfly-mcp-setup.sh`
 ([MCP.md](MCP.md#set-up-with-one-command-api-key)) keeps the key in one private file
 instead of in each client's config:
 
-| Line in `~/.ragfly/ragfly-mcp.env` | Meaning |
-|---|---|
-| `RAGFLY_MCP_ENVIRONMENT=prod` | Environment the launcher connects to. The script only writes production. |
-| `RAGFLY_API_KEY_PROD=rf_…` | The API key (mode 600). The launcher `~/.ragfly/bin/ragfly-mcp.sh` reads it and exports it as `RAGFLY_API_KEY` to the MCP bridge. |
+The script writes that file (mode 600) and installs the launcher
+`~/.ragfly/bin/ragfly-mcp.sh`, which reads it and starts the MCP bridge with your key.
+You never edit the file by hand and no client config contains the key.
 
 `RAGFLY_API_URL` (above) still overrides the backend URL, and `RAGFLY_MCP_ENV_FILE`
 points the launcher at another file. This file is not `config.env`, which belongs

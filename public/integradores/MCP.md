@@ -333,8 +333,8 @@ under `mcpServers`, keeping whatever else is already in the file:
   colon; `mcp-remote` expands the variable from `env`.
 - The key sits in that file in plain text. Keep the file readable only by you
   (`chmod 600` on macOS/Linux) and never copy it into a shared project or repository.
-- Use the endpoint of your own environment. Keys are per environment: a key
-  created in the TEST web app does not work against `api.ragfly.ai`, and the reverse.
+- Use the key with the endpoint shown above (`api.ragfly.ai`), the same service where
+  you created it in the web app.
 
 Quit Claude Desktop completely (Cmd+Q on macOS) and reopen it. Check **Settings →
 Developer → Local MCP servers**: `ragfly` should not show **Failed**. Then open a new
