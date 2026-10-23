@@ -87,8 +87,16 @@ signed-in browser at <https://app.ragfly.ai/api-keys> and shown once).
    printf '%s\n' "$RAGFLY_KEY" | bash ragfly-mcp-setup.sh --key-stdin --client claude-code --test
    ```
 
+   On Windows use the PowerShell version instead (nothing else to install):
+
+   ```powershell
+   Invoke-WebRequest https://ragfly.ai/integradores/ragfly-mcp-setup.ps1 -OutFile ragfly-mcp-setup.ps1
+   $RAGFLY_KEY | powershell -NoProfile -ExecutionPolicy Bypass -File .\ragfly-mcp-setup.ps1 -KeyStdin -Client claude-code -Test
+   ```
+
    Use `--client codex` or `--client claude-desktop` as appropriate, or omit `--client`
-   for any other MCP client (its server `command` is `~/.ragfly/bin/ragfly-mcp.sh`).
+   for any other MCP client (its server `command` is `~/.ragfly/bin/ragfly-mcp.sh`; on
+   Windows, `powershell.exe -NoProfile -ExecutionPolicy Bypass -File <path to ragfly-mcp.ps1>`).
 3. The script validates the key first (`401` = wrong, revoked or other-environment key:
    stop and say so), keeps it only in `~/.ragfly/ragfly-mcp.env` (mode 600), and
    registers a launcher that holds no secret. Ask the person to restart the client if it

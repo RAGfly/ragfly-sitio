@@ -2,7 +2,7 @@
 
 > Discover MCP tools with tools/list. Discover the separate manifest operations with GET /v1/operations.
 
-Updated: 2026-10-22
+Updated: 2026-10-23
 
 ## MCP connection
 

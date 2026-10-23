@@ -114,6 +114,7 @@ const EXTRAS = [
   { source: '.env.example', target: 'env.example' },
   // Setup de un paso para clientes MCP con API key: se descarga, se lee y se corre.
   { source: 'ragfly-mcp-setup.sh', target: 'ragfly-mcp-setup.sh' },
+  { source: 'ragfly-mcp-setup.ps1', target: 'ragfly-mcp-setup.ps1' },
 ]
 let extrasCopiados = 0
 for (const extra of EXTRAS) {

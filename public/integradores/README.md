@@ -53,7 +53,7 @@ content keeps its original language.
 | **`DROPBOX.md`** | Organization administrators — feed documents directly from Dropbox |
 | **`EVALUATION_TEMPLATE.md`** | Template for reporting findings |
 | **`.env.example`** | Environment variables template |
-| **`ragfly-mcp-setup.sh`** | One-command setup for key-based MCP clients and agents: validates the key, stores it in `~/.ragfly/ragfly-mcp.env`, registers Claude Code / Codex / Claude Desktop |
+| **`ragfly-mcp-setup.sh`** / **`ragfly-mcp-setup.ps1`** | One-command setup for key-based MCP clients and agents (macOS / Linux, and Windows): validates the key, stores it in `~/.ragfly/ragfly-mcp.env`, registers Claude Code / Codex / Claude Desktop. No Node.js needed |
 
 ---
 

@@ -154,45 +154,60 @@ its own secret store. Do not put a personal API key in a shared project config.
 
 For a client that cannot do the browser sign-in, or for an agent that has to be
 wired up unattended, one script does the whole setup and keeps the key out of
-every client configuration. Download it, read it (it is short), and run it:
+every client configuration. It needs no Node.js and no Python. Download it, read it
+(it is short), and run it.
+
+**macOS / Linux** (needs `bash` and `curl`):
 
 ```bash
 curl -fsSL https://ragfly.ai/integradores/ragfly-mcp-setup.sh -o ragfly-mcp-setup.sh
 bash ragfly-mcp-setup.sh --client claude-code --test   # asks for the key, no echo
 ```
 
-It needs `bash`, `curl` and **Node.js 18 or newer**. It does four things:
+**Windows** (Windows PowerShell 5.1 or later, already on Windows 10/11):
+
+```powershell
+Invoke-WebRequest https://ragfly.ai/integradores/ragfly-mcp-setup.ps1 -OutFile ragfly-mcp-setup.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File .\ragfly-mcp-setup.ps1 -Client claude-code -Test
+```
+
+It does four things:
 
 1. Checks the key against `GET /v1/session`. A key that is rejected writes nothing.
-2. Stores it in `~/.ragfly/ragfly-mcp.env` (mode 600, folder 700). Only the
-   production environment is written. If the file already exists it is backed up
-   and any other lines are kept.
-3. Installs a launcher, `~/.ragfly/bin/ragfly-mcp.sh`, that reads that file and starts the
-   MCP bridge (`mcp-remote`). The launcher holds no secret, and it lives outside the
-   folders macOS protects from desktop apps (Dropbox, iCloud Drive, Documents, Desktop).
-4. With `--client`, registers the launcher in your client: `claude-code`, `codex` or
-   `claude-desktop` (it merges one entry into `claude_desktop_config.json` and keeps
-   the rest). Without `--client` it prints the one line to add by hand, which is all
-   any other MCP client needs: its server `command` is `~/.ragfly/bin/ragfly-mcp.sh`.
+2. Stores it in `~/.ragfly/ragfly-mcp.env` (on Windows `%USERPROFILE%\.ragfly\ragfly-mcp.env`),
+   readable only by you (mode 600 / a user-only ACL). Only the production environment is
+   written. If the file already exists it is backed up and any other lines are kept.
+3. Installs a launcher, `~/.ragfly/bin/ragfly-mcp.sh` (Windows: `ragfly-mcp.ps1`), that reads
+   that file and bridges the client's stdio to `https://api.ragfly.ai/mcp-http/`. The launcher
+   holds no secret, and it lives outside the folders macOS protects from desktop apps
+   (Dropbox, iCloud Drive, Documents, Desktop).
+4. With `--client` (Windows: `-Client`), registers the launcher in your client:
+   `claude-code`, `codex` or `claude-desktop` (it merges one entry into
+   `claude_desktop_config.json` and keeps the rest). Without it the script prints the one
+   line to add by hand, which is all any other MCP client needs: a stdio server whose
+   `command` is the launcher (Windows: `powershell.exe -NoProfile -ExecutionPolicy Bypass -File <launcher>`).
 
 So the key exists in exactly one place, `ragfly-mcp.env`. No client config, project
 file or command line ever carries it.
 
-| Option | Use |
+| Option (bash / PowerShell) | Use |
 |---|---|
-| `--key-stdin` | Read the key from standard input (for agents): `printf '%s\n' "$KEY" \| bash ragfly-mcp-setup.sh --key-stdin --client claude-code` |
-| `--verify` | Only check the key already stored; writes nothing. |
-| `--test` | After setup, call the MCP `session` tool through the launcher and report `authenticated`. |
+| `--key-stdin` / `-KeyStdin` | Read the key from standard input (for agents): `printf '%s\n' "$KEY" \| bash ragfly-mcp-setup.sh --key-stdin --client claude-code` |
+| `--verify` / `-Verify` | Only check the key already stored; writes nothing. |
+| `--test` / `-Test` | After setup, call the MCP `session` tool through the launcher and report `authenticated`. |
+
+The key can also be given in the `RAGFLY_API_KEY` environment variable for the single run
+of the script (never as an argument, which other processes can read).
 
 To rotate the key, run the script again with the new one. To remove the connection,
 revoke the key at [`app.ragfly.ai/api-keys`](https://app.ragfly.ai/api-keys) and delete
 `~/.ragfly/ragfly-mcp.env`.
 
-Verified on macOS: the Claude Code registration (`claude mcp list` shows `ragfly`
-connected) and the end-to-end `session` call through the launcher with a minimal
-environment. The Claude Desktop entry is written in the format that client documents and
-the Codex registration uses `codex mcp add … -- <command>`; neither was run end to end
-inside its app. Windows is not supported by the script.
+**What has been verified.** On macOS: the Claude Code registration (`claude mcp list`
+shows `ragfly` connected), and the end-to-end `session` and `tools/list` calls through the
+launcher with a minimal environment and no Node.js installed. The Windows script was run end to end under PowerShell 7 on macOS against the real service (key check, storage, the launcher bridge, `session` returning `authenticated: true`, and the Claude Desktop config merge). It has not yet been run on a Windows machine, so three things are unverified there: the user-only file permissions (`icacls`), registering `powershell.exe` in each client, and the location of Claude Desktop's config on your install. The Claude Desktop entry is written in the format that client
+documents and the Codex registration uses `codex mcp add … -- <command>`; neither was run
+end to end inside its app.
 
 ---
 
@@ -224,18 +239,21 @@ do on its own.
 
 ### Agent runbook: connect a client with an API key
 
-For an agent that has been handed an `rf_…` key on a machine (macOS or Linux) that has
-Node.js 18+. Never print the key, never put it on a command line that other processes
-can list, and never write it anywhere but `~/.ragfly/ragfly-mcp.env` — the setup
-script does exactly that.
+For an agent that has been handed an `rf_…` key on a macOS, Linux or Windows machine.
+Nothing else needs to be installed (no Node.js). Never print the key, never put it on a
+command line that other processes can list, and never write it anywhere but
+`~/.ragfly/ragfly-mcp.env` — the setup script does exactly that.
 
-1. **Node.** `node -v` must print 18 or newer. If not, tell the person to install
-   Node.js and stop.
-2. **Download and read the script:**
-   `curl -fsSL https://ragfly.ai/integradores/ragfly-mcp-setup.sh -o ragfly-mcp-setup.sh`.
+1. **Pick the script for the machine.** macOS / Linux: `ragfly-mcp-setup.sh` (needs
+   `bash` and `curl`). Windows: `ragfly-mcp-setup.ps1` (Windows PowerShell 5.1+, already
+   installed).
+2. **Download and read it:**
+   `curl -fsSL https://ragfly.ai/integradores/ragfly-mcp-setup.sh -o ragfly-mcp-setup.sh`
+   (Windows: `Invoke-WebRequest https://ragfly.ai/integradores/ragfly-mcp-setup.ps1 -OutFile ragfly-mcp-setup.ps1`).
 3. **Run it with the key on standard input**, choosing the person's client:
    `printf '%s\n' "$RAGFLY_KEY" | bash ragfly-mcp-setup.sh --key-stdin --client claude-code --test`
-   (`codex`, `claude-desktop`, or omit `--client` for any other client). The script
+   (Windows: `$RAGFLY_KEY | powershell -NoProfile -ExecutionPolicy Bypass -File .\ragfly-mcp-setup.ps1 -KeyStdin -Client claude-code -Test`;
+   `codex`, `claude-desktop`, or omit the client option for any other client). The script
    validates the key first: a `401` means a wrong, revoked or other-environment key —
    stop and say so. A "could not reach" error is the machine's network or sandbox,
    not the key.
@@ -294,10 +312,12 @@ accepts a URL and OAuth; it has no field for a header). Claude Desktop starts a 
 local program, [`mcp-remote`](https://www.npmjs.com/package/mcp-remote), that forwards
 every call to RAGfly with your key in the `Authorization` header.
 
-> **Recommended:** `bash ragfly-mcp-setup.sh --client claude-desktop` does all of this
-> for you and keeps the key out of the config file (see
+> **Recommended:** `bash ragfly-mcp-setup.sh --client claude-desktop` (Windows:
+> `ragfly-mcp-setup.ps1 -Client claude-desktop`) does all of this for you, needs no
+> Node.js, and keeps the key out of the config file (see
 > [Set up with one command](#set-up-with-one-command-api-key)). What follows is the
-> manual form, which stores the key in plain text inside `claude_desktop_config.json`.
+> manual form, which needs Node.js and stores the key in plain text inside
+> `claude_desktop_config.json`.
 
 You need **Node.js 18 or newer** (`node -v`) and your `rf_…` key. Open the config file
 (Claude Desktop → Settings → Developer → **Edit config**; on macOS it is
@@ -358,7 +378,7 @@ Linux, where the file location and the way `npx` is launched differ.
 
 For an OAuth-capable HTTP client, use the Streamable HTTP URL above and follow
 its authorization prompt. For an API-key setup, run
-[`ragfly-mcp-setup.sh`](#set-up-with-one-command-api-key) and register its launcher,
+[`ragfly-mcp-setup.sh`](#set-up-with-one-command-api-key) (Windows: `ragfly-mcp-setup.ps1`) and register its launcher,
 `~/.ragfly/bin/ragfly-mcp.sh`, as the server `command` (a stdio server, no key in
 the config). If the client can only talk HTTP and lets you set a header, use
 `https://api.ragfly.ai/mcp-http` with `Authorization: Bearer <key>`; keep that key out

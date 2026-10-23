@@ -209,9 +209,19 @@ curl -fsSL https://ragfly.ai/integradores/ragfly-mcp-setup.sh -o ragfly-mcp-setu
 bash ragfly-mcp-setup.sh --client claude-code --test     # or: codex | claude-desktop
 ```
 
-It asks for the key without echoing it (or reads it with `--key-stdin`, which is how an
-agent does it for you), checks it against `/v1/session`, stores it in
-`~/.ragfly/ragfly-mcp.env`, installs `~/.ragfly/bin/ragfly-mcp.sh` and registers it.
+On Windows (PowerShell 5.1+, already installed):
+
+```powershell
+Invoke-WebRequest https://ragfly.ai/integradores/ragfly-mcp-setup.ps1 -OutFile ragfly-mcp-setup.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File .\ragfly-mcp-setup.ps1 -Client claude-code -Test
+```
+
+Neither needs Node.js.
+
+It asks for the key without echoing it (or reads it with `--key-stdin` / `-KeyStdin`, which is
+how an agent does it for you), checks it against `/v1/session`, stores it in
+`~/.ragfly/ragfly-mcp.env`, installs the launcher `~/.ragfly/bin/ragfly-mcp.sh` (Windows:
+`ragfly-mcp.ps1`) and registers it.
 Then, in the client:
 
 ```
