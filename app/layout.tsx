@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Zalando_Sans, Zalando_Sans_Expanded, Montserrat_Alternates } from "next/font/google";
+import { GoogleAcquisition } from '../lib/GoogleAcquisition'
 import { Analytics } from "@vercel/analytics/next";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages, getTranslations } from "next-intl/server";
@@ -182,6 +183,7 @@ export default async function RootLayout({
         </NextIntlClientProvider>
         {/* Medición sin cookies (Vercel Web Analytics): visitas, origen y utm_* de los avisos. No guarda identificadores en el navegador. */}
         <Analytics />
+        <GoogleAcquisition locale={locale} />
       </body>
     </html>
   );

@@ -14,6 +14,7 @@
 /* Las utm_* de la URL viajan siempre (plan §6: fuente de cada cuenta). */
 /* ------------------------------------------------------------------ */
 import { useState } from 'react'
+import { medirGoogle } from '../../lib/google-analytics'
 import { track } from '@vercel/analytics'
 import { URL_LOGIN, type TextosComunes } from '../../content/apertura'
 
@@ -65,6 +66,7 @@ export function FormularioAlta({ id, textos, compacto = false }: { id?: string; 
   const enviar = compacto ? 'px-5 py-2.5 text-sm' : 'px-6 py-3 text-base'
 
   function medirRegistro(metodo: string) {
+    medirGoogle('signup_start', metodo)
     // Dos propiedades, sin correo ni otros datos personales. Es intención, no alta completada.
     track('signup_intent', { metodo, utm_content: new URLSearchParams(window.location.search).get('utm_content') ?? '' })
   }

@@ -1,5 +1,6 @@
 'use client'
 
+import { medirGoogle } from '../../lib/google-analytics'
 import { track } from '@vercel/analytics'
 
 /* ------------------------------------------------------------------ */
@@ -29,6 +30,7 @@ export function BotonEmpezar({
       if (v) url.searchParams.set(k, v)
     }
     e.currentTarget.href = url.toString()
+    medirGoogle('signup_start')
     // Paso landing → registro: sin esto, un clic de aviso que no se registra no deja huella.
     track('cta_empezar', { utm_source: actual.get('utm_source') ?? '', utm_content: actual.get('utm_content') ?? '' })
   }
