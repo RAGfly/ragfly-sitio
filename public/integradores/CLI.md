@@ -8,6 +8,7 @@ ragfly login
 ragfly cloud me
 ragfly cloud workspace set 000057
 ragfly cloud workspace set --clear
+ragfly cloud workspace unset
 ragfly cloud area set FINANCE
 ragfly cloud area set --release
 ```
@@ -23,7 +24,7 @@ ragfly
 └── cloud
     ├── me
     ├── group       list | switch | clear
-    ├── workspace   set [WORKSPACE_CODE] | set --clear
+    ├── workspace   set [WORKSPACE_CODE] | set --clear | unset
     ├── area        set [AREA_CODE] | set --release | list
     ├── location    list
     ├── api-key     create | list | revoke
@@ -74,7 +75,8 @@ Interactive login stores a JWT in the OS keyring. CI should use an API key via
 
 A signed-in person issues API keys. A fixed-workspace key cannot change focus.
 A flexible key can select an authorized workspace or clear focus with
-`ragfly cloud workspace set --clear`; `--release` remains a compatibility alias.
+`ragfly cloud workspace set --clear` or `ragfly cloud workspace unset` (needs `ragfly-cli` 2.1.0 or newer);
+`--release` remains a compatibility alias.
 The server stores focus, so it persists across CLI invocations. See
 [INTEGRATION.md](INTEGRATION.md#credentials) for the shared key contract.
 

@@ -75,6 +75,7 @@ bounds noted under each table and answers `422 VALIDATION_ERROR` outside them.
 |---|---|---|
 | `session()` | `GET /v1/session` | `dict`: includes active workspace/area, effective area and authorized area root; role identifiers are not exposed |
 | `set_active_workspace(workspace_code)` | `POST /v1/session/active-workspace` | Set an authorized workspace; pass `None` to release the focus |
+| `unset_active_workspace()` | `DELETE /v1/session/active-workspace` | Release the workspace focus (same as `set_active_workspace(None)`); needs `ragfly` 0.7.0 or newer |
 | `set_active_area(area_code)` | `POST /v1/session/active-area` | Set an authorized area; pass `None` to release area focus |
 | `list_areas(*, workspace_code=None, parent_code=None, query=None, limit=50, cursor=None)` | `GET /v1/areas` | Visible areas and next-page cursor |
 | `list_locations(*, workspace_code=None, parent_code=None, query=None, limit=50, cursor=None)` | `GET /v1/locations` | Visible document folders and next-page cursor |
@@ -88,7 +89,7 @@ more, `neighbor_limit` 1–500.
 
 Workspace focus is stored with the API key on the server. A flexible key keeps its
 selected workspace when you create another `RAGfly` client with the same key; pass
-`None` to `set_active_workspace()` to release that focus. A fixed-workspace key cannot
+`None` to `set_active_workspace()` (or call `unset_active_workspace()`) to release that focus. A fixed-workspace key cannot
 change or release its workspace. Only an authenticated human session can issue API
 keys; the SDK uses its key for `/v1` calls and does not mint keys.
 

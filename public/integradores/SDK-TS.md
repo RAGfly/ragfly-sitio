@@ -89,6 +89,7 @@ snake_case keys. The server checks the bounds noted under each table and answers
 |---|---|---|---|
 | `session()` | — | `GET /v1/session` | `Json`: includes active workspace/area, effective area and authorized area root |
 | `setActiveWorkspace({ workspaceCode })` | — | `POST /v1/session/active-workspace` | Set an authorized workspace; pass `null` to release the focus |
+| `unsetActiveWorkspace()` | — | `DELETE /v1/session/active-workspace` | Release the workspace focus (same as `setActiveWorkspace({ workspaceCode: null })`); needs `@ragfly/sdk` 0.7.0 or newer |
 | `setActiveArea({ areaCode })` | — | `POST /v1/session/active-area` | Set an authorized area; pass `null` to release area focus |
 | `listAreas({ workspaceCode?, parentCode?, query?, limit?, cursor? } = {})` | `limit: 50` | `GET /v1/areas` | Visible organizational areas |
 | `listLocations({ workspaceCode?, parentCode?, query?, limit?, cursor? } = {})` | `limit: 50` | `GET /v1/locations` | Visible document folders, separate from organizational areas |
@@ -102,7 +103,7 @@ more, `neighborLimit` 1–500.
 
 Workspace focus is stored with the API key on the server. A flexible key keeps its
 selected workspace when you create another `RAGfly` client with the same key; pass
-`null` to `setActiveWorkspace()` to release that focus. A fixed-workspace key cannot
+`null` to `setActiveWorkspace()` (or call `unsetActiveWorkspace()`) to release that focus. A fixed-workspace key cannot
 change or release its workspace. Only an authenticated human session can issue API
 keys; the SDK uses its key for `/v1` calls and does not mint keys.
 
