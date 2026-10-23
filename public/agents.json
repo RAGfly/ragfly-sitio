@@ -9,6 +9,7 @@
     "endpointHTTP": "https://api.ragfly.ai/mcp-http/",
     "endpointSSE": "https://api.ragfly.ai/mcp/sse",
     "setupScript": "https://ragfly.ai/integradores/ragfly-mcp-setup.sh",
+    "setupScriptWindows": "https://ragfly.ai/integradores/ragfly-mcp-setup.ps1",
     "auth": "OAuth 2.1 or Authorization: Bearer rf_xxxxxxxxxx (API Key issued from a human session)",
     "scope": "Every call is filtered by the key owner’s organization, workspace, area and role. Flexible workspace focus is stored server-side."
   },

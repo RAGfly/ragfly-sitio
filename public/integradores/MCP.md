@@ -2,6 +2,11 @@
 
 Connect any MCP-compatible agent to your RAGfly organization's documents and capabilities. RAGfly uses the same MCP endpoint and OAuth authorization flow across clients; setup instructions differ only where each client exposes its own MCP settings. A bearer API key remains available for clients and scripts that need manual credentials.
 
+> **An agent that has been handed an `rf_…` API key?** Skip to the
+> [Agent runbook](#agent-runbook-connect-a-client-with-an-api-key): download the setup
+> script, read it, run it with the key on standard input, and ask the person to restart
+> their client. The key and that restart are the only steps that need a human.
+
 > **Opening original files from disk?** Searching, asking and citing need no
 > extra setup. To resolve a local original, use the per-document `fs.home_var`
 > and `fs.relative_path` fields. The root variable can differ for each document;

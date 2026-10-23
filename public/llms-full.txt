@@ -11,6 +11,7 @@ Updated: 2026-10-23
 - Authentication: OAuth 2.1 or Authorization: Bearer rf_xxxxxxxxxx (API Key issued from a human session)
 - Scope: Every call is filtered by the key owner’s organization, workspace, area and role. Flexible workspace focus is stored server-side.
 - Key-based setup script (validates the key, stores it in ~/.ragfly/ragfly-mcp.env, registers Claude Code / Codex / Claude Desktop; download, read, then run): https://ragfly.ai/integradores/ragfly-mcp-setup.sh
+- Same setup for Windows PowerShell 5.1+ (not yet run on a Windows machine; see MCP.md): https://ragfly.ai/integradores/ragfly-mcp-setup.ps1
 
 API keys are issued through a signed-in human session. A fixed-workspace key cannot change workspace. A flexible key can select an authorized workspace or release focus with workspace_code: null; the server persists the focus for that key.
 

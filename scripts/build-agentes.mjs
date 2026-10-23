@@ -75,6 +75,7 @@ const lines = [
   '- Authentication: ' + mcp.auth,
   '- Scope: ' + mcp.scope,
   '- Key-based setup script (validates the key, stores it in ~/.ragfly/ragfly-mcp.env, registers Claude Code / Codex / Claude Desktop; download, read, then run): ' + mcp.setupScript,
+  '- Same setup for Windows PowerShell 5.1+ (not yet run on a Windows machine; see MCP.md): ' + mcp.setupScriptWindows,
   '',
   'API keys are issued through a signed-in human session. A fixed-workspace key cannot change workspace. A flexible key can select an authorized workspace or release focus with workspace_code: null; the server persists the focus for that key.',
   '',
