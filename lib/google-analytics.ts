@@ -28,6 +28,7 @@ export function ubicacionPublica(raw: string): string {
 }
 export function iniciarGoogle(): boolean {
   if (typeof window === 'undefined' || !HOSTS.includes(window.location.hostname) || consentimientoGoogle() !== 'accepted') return false
+  try {
   if (window.ragflyGaReady) return true
   window.dataLayer = window.dataLayer || []
   window.gtag = function () {
@@ -51,6 +52,10 @@ export function iniciarGoogle(): boolean {
   document.head.appendChild(script)
   window.ragflyGaReady = true
   return true
+  } catch {
+    // La analítica nunca interrumpe el alta ni la navegación.
+    return false
+  }
 }
 export function medirGoogle(evento: Evento, metodo?: string): boolean {
   if (!iniciarGoogle()) return false
