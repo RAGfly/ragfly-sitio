@@ -49,7 +49,7 @@ the key's role must also include one of those screens.
 |---|---|---|---|
 | `areas.create` | write | ADMINISTRATOR | `MANAGE_WORKSPACES` |
 | `areas.delete` | write_confirm | ADMINISTRATOR | `MANAGE_WORKSPACES` |
-| `areas.list` | read | USER | `API_KEYS`, `COLLECTIONS`, `MANAGE_USERS`, `MANAGE_WORKSPACES` |
+| `areas.list` | read | USER | `COLLECTIONS`, `MANAGE_USERS`, `MANAGE_WORKSPACES` |
 | `areas.list_locations` | read | ADMINISTRATOR | `MANAGE_WORKSPACES` |
 | `areas.update` | write | ADMINISTRATOR | `MANAGE_WORKSPACES` |
 
@@ -189,7 +189,7 @@ the key's role must also include one of those screens.
 
 | Operation | Kind | Minimum profile | Screens |
 |---|---|---|---|
-| `roles.list` | read | ADMINISTRATOR | `API_KEYS`, `MANAGE_USERS`, `SECURITY-DASHBOARD` |
+| `roles.list` | read | ADMINISTRATOR | `MANAGE_USERS`, `SECURITY-DASHBOARD` |
 
 ### `session`
 
@@ -222,7 +222,7 @@ the key's role must also include one of those screens.
 | `workspaces.list` | read | ADMINISTRATOR | `MANAGE_USERS`, `MANAGE_WORKSPACES`, `SECURITY-DASHBOARD` |
 | `workspaces.update` | write | ADMINISTRATOR | `MANAGE_WORKSPACES` |
 
-## Not published, and why (48)
+## Not published, and why (47)
 
 These parts of the application do not cross to agents. A person does them in the web app,
 or they are already available under another name.
@@ -231,7 +231,7 @@ or they are already available under another name.
 |---|---|---|
 | Managing the locations documents are loaded from (creating, editing, syncing, removing and assigning them to an area, or reviewing their method and impact) is done by a person in the web app. Agents can list folders with `GET /v1/locations`. | `DOC_LOCATIONS`, `MANAGE_WORKSPACES`, `PROCESS_PIPELINE` | 13 |
 | Plan changes, purchases and cancellations move money or a contract: a person does them in the web app. | `PAYMENT_METHODS`, `SUBSCRIPTION_CANCELLATIONS` | 9 |
-| An agent credential does not manage credentials (API keys). | `API_KEYS`, `SECURITY-DASHBOARD` | 5 |
+| An agent credential does not manage credentials (API keys). | `API_KEYS`, `SECURITY-DASHBOARD` | 4 |
 | Connector secrets need a person's session. | — | 4 |
 | Ingestion steps driven by the web app's session. How an agent drives them is still to be decided. | `PROCESS_DOCUMENTS`, `PROCESS_PIPELINE` | 4 |
 | Already published as `GET /v1/locations`. | `CHAT-FINAL-USER`, `CHAT-USER`, `DOC_LOCATIONS`, `MANAGE_WORKSPACES`, `PROCESS_DOCUMENTS`, `PROCESS_PIPELINE` | 1 |
