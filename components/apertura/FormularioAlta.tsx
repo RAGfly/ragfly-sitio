@@ -14,6 +14,7 @@
 /* Las utm_* de la URL viajan siempre (plan §6: fuente de cada cuenta). */
 /* ------------------------------------------------------------------ */
 import { useState } from 'react'
+import { track } from '@vercel/analytics'
 import { URL_LOGIN, type TextosComunes } from '../../content/apertura'
 
 const CLAVES_UTM = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'] as const
@@ -63,12 +64,19 @@ export function FormularioAlta({ id, textos, compacto = false }: { id?: string; 
   const campo = compacto ? 'px-4 py-2.5 text-sm' : 'px-5 py-3 text-base'
   const enviar = compacto ? 'px-5 py-2.5 text-sm' : 'px-6 py-3 text-base'
 
+  function medirRegistro(metodo: string) {
+    // Dos propiedades, sin correo ni otros datos personales. Es intención, no alta completada.
+    track('signup_intent', { metodo, utm_content: new URLSearchParams(window.location.search).get('utm_content') ?? '' })
+  }
+
   function ir(e: React.MouseEvent<HTMLAnchorElement>, extra: Record<string, string>) {
     e.currentTarget.href = urlLogin(extra)
+    if (extra.proveedor) medirRegistro(extra.proveedor)
   }
 
   function crear(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
+    medirRegistro('email')
     window.location.href = urlLogin({ registro: '1' }, correo.trim())
   }
 

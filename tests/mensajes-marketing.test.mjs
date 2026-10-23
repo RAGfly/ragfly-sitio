@@ -19,3 +19,13 @@ test('lookup normalizes identifiers and fails safely on invalid responses',async
  global.fetch=async()=>{throw Error('offline')};assert.equal(await cargarMensajeMarketing('i-c4'),null)
  }finally{global.fetch=old}
 })
+
+test('campaign attribution never overrides the visitor language', async () => {
+ const old = global.fetch
+ global.fetch = () => { throw Error('English copy must not be fetched for another locale') }
+ try {
+  for (const locale of ['es', 'pt', 'fr', 'de']) {
+   assert.equal(await cargarMensajeMarketing('i-c3', locale), null)
+  }
+ } finally { global.fetch = old }
+})

@@ -15,7 +15,10 @@ export function validarMensaje(valor: unknown): MensajeMarketing | null {
   return m as MensajeMarketing
 }
 
-export async function cargarMensajeMarketing(id: unknown): Promise<MensajeMarketing | null> {
+export async function cargarMensajeMarketing(id: unknown, locale: string = 'en'): Promise<MensajeMarketing | null> {
+  // El copy de campaña disponible es inglés. Nunca impone su idioma al visitante:
+  // los demás locales usan el contenido localizado de la landing.
+  if (locale !== 'en') return null
   if (typeof id !== 'string' || !/^(?:i-[cmp][1-6]|l-[bk][1-7])$/i.test(id)) return null
   try {
     const response = await fetch(`https://ragfly-corp-production.up.railway.app/parametros/mensajes-marketing/${id.toLowerCase()}`, {

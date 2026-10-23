@@ -54,8 +54,8 @@ export async function generateMetadata({ params, searchParams }: { params: Promi
   const { dolor } = await params
   const p = PAGINAS[(dolor === 'marketing' ? 'memory' : dolor) as Dolor]
   if (!p) return {}
-  const mensaje = await cargarMensajeMarketing((await searchParams).utm_content)
-  const locale = mensaje ? mensaje.idioma : await idioma()
+  const locale = await idioma()
+  const mensaje = await cargarMensajeMarketing((await searchParams).utm_content, locale)
   const base = p.textos[locale]
   const t = mensaje
     ? { titulo: mensaje.titulo.map(f => f.texto).join(''), metaDescripcion: mensaje.cuerpo }
@@ -80,8 +80,8 @@ export default async function PaginaDolor({ params, searchParams }: { params: Pr
   if (!PUBLICADA && ES_PRODUCCION) notFound()
 
   const query = await searchParams
-  const mensaje = await cargarMensajeMarketing(query.utm_content)
-  const locale = mensaje ? mensaje.idioma : await idioma()
+  const locale = await idioma()
+  const mensaje = await cargarMensajeMarketing(query.utm_content, locale)
   const base = p.textos[locale]
 
   const t = dolor === 'marketing' ? {...base, titulo: GENERICOS[locale][0], bajada: GENERICOS[locale][1]} : base
