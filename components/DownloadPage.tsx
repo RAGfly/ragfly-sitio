@@ -80,8 +80,8 @@ export default function DownloadPage() {
       href="/download/mac"
       className={
         primary
-          ? 'rf-boton inline-flex items-center gap-2.5 bg-slm-dark text-slm-light px-7 py-3.5 rounded-full font-medium text-base hover:opacity-90 transition-opacity'
-          : 'rf-boton inline-flex items-center gap-2.5 border border-slm-dark text-slm-dark px-7 py-3.5 rounded-full font-medium text-base hover:bg-gray-50 transition-colors'
+          ? 'font-helvetica-neue inline-flex items-center gap-2.5 bg-slm-dark text-slm-light px-7 py-3.5 rounded-full font-medium text-base hover:opacity-90 transition-opacity'
+          : 'font-helvetica-neue inline-flex items-center gap-2.5 border border-slm-dark text-slm-dark px-7 py-3.5 rounded-full font-medium text-base hover:bg-gray-50 transition-colors'
       }
     >
       <AppleIcon />
@@ -94,8 +94,8 @@ export default function DownloadPage() {
       href="/download/windows"
       className={
         primary
-          ? 'rf-boton inline-flex items-center gap-2.5 bg-slm-dark text-slm-light px-7 py-3.5 rounded-full font-medium text-base hover:opacity-90 transition-opacity'
-          : 'rf-boton inline-flex items-center gap-2.5 border border-slm-dark text-slm-dark px-7 py-3.5 rounded-full font-medium text-base hover:bg-gray-50 transition-colors'
+          ? 'font-helvetica-neue inline-flex items-center gap-2.5 bg-slm-dark text-slm-light px-7 py-3.5 rounded-full font-medium text-base hover:opacity-90 transition-opacity'
+          : 'font-helvetica-neue inline-flex items-center gap-2.5 border border-slm-dark text-slm-dark px-7 py-3.5 rounded-full font-medium text-base hover:bg-gray-50 transition-colors'
       }
     >
       <WindowsIcon />
