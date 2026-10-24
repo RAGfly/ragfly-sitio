@@ -50,11 +50,11 @@ export const FALLBACK: Catalogo = {
     { codigo_caracteristica: 'CHAT', nombre: 'Asistencias', tipo_caracteristica: 'CUPO', unidad: null },
   ],
   valores: Object.fromEntries([
-    ['FREE', [1000, 1500, 30, 5, 2, 4, 5, 1500, 10]],
-    ['STARTER', [10000, 5000, 300, 50, 5, 12, 10, 10000, 30]],
-    ['GROWTH', [50000, 25000, 1500, 150, 25, 50, 50, 50000, 100]],
-    ['SCALE', [250000, 100000, 5000, 500, 150, 200, 200, 200000, 250]],
-    ['BUSINESS', [1000000, 1000000, 12500, 1250, 500, 1000, 1000, 750000, 1000]],
+    ['FREE', [1000, 1500, 30, 5, 5, 4, 5, 1500, 10]],
+    ['STARTER', [10000, 5000, 300, 50, 25, 12, 10, 10000, 30]],
+    ['GROWTH', [50000, 25000, 1500, 150, 150, 50, 50, 50000, 100]],
+    ['SCALE', [250000, 100000, 5000, 500, 500, 200, 200, 200000, 250]],
+    ['BUSINESS', [1000000, 1000000, 12500, 1250, 1500, 1000, 1000, 750000, 1000]],
     ['ENTERPRISE', [null, null, null, null, null, null, null, null, null]],
   ].map(([codigo, cantidades]) => [
     codigo,
