@@ -166,10 +166,10 @@ export type TextosComunes = {
   }
 }
 
-/* Video del Quickstart en YouTube (Víctor, 15-oct), el mismo en las dos
+/* Video del Quickstart en YouTube (Víctor, 15-oct; reemplazado 25-oct), el mismo en las dos
    páginas y en todos los idiomas. Va incrustado bajo el hero; el iframe se
    carga al hacer clic (components/apertura/VideoYouTube.tsx). */
-export const VIDEO_YOUTUBE_ID = 'EfhvUpb80FI'
+export const VIDEO_YOUTUBE_ID = 'uuTads0TB4g'
 
 export const COMUN: Record<Locale, TextosComunes> = {
   en: {
