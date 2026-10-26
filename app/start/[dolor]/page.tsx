@@ -116,8 +116,9 @@ export default async function PaginaDolor({ params, searchParams }: { params: Pr
               <h1 className="font-helvetica-neue text-4xl md:text-5xl font-medium leading-[1.06] tracking-[-0.035em] text-balance">
                 {mensaje ? <TituloMarketing fragmentos={mensaje.titulo} /> : t.titulo}
               </h1>
-              <p className="font-helvetica-neue text-lg md:text-xl leading-relaxed">{mensaje?.cuerpo ?? t.bajada}</p>
-              <p className="font-helvetica-neue text-base md:text-lg leading-relaxed text-slm-gray">{c.lineaProducto}</p>
+              {/* Con bajada (Víctor, 26-oct): título → bajada → cuerpo del aviso en gris, en lugar de la línea de producto. */}
+              <p className="font-helvetica-neue text-lg md:text-xl leading-relaxed">{mensaje?.bajada ?? mensaje?.cuerpo ?? t.bajada}</p>
+              <p className="font-helvetica-neue text-base md:text-lg leading-relaxed text-slm-gray">{mensaje?.bajada ? mensaje.cuerpo : c.lineaProducto}</p>
               <p className="font-helvetica-neue text-lg md:text-xl font-medium text-slm-brand-dark">{c.eslogan}</p>
             </div>
             <FormularioAlta id="signup" textos={c} compacto />

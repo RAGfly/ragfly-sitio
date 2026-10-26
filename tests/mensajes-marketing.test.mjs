@@ -7,6 +7,8 @@ test('validates structured copy and rejects injected styles and oversized data',
  for(const titulo of [[],[{texto:'x',estilo:'script'}],[{texto:'x',html:'<script>x</script>'}],[{texto:'x'.repeat(501)}]]) assert.equal(validarMensaje({...valid,titulo},'en'),null)
  assert.equal(validarMensaje({...valid,version:2},'en'),null)
  assert.equal(validarMensaje(valid,'es'),null)
+ assert.ok(validarMensaje({...valid,bajada:'Subtitle'},'en'))
+ for(const bajada of ['', 42, 'x'.repeat(1001)]) assert.equal(validarMensaje({...valid,bajada},'en'),null)
 })
 test('never requests arbitrary URL content or arrays',async()=>{
  const old=global.fetch;global.fetch=()=>{throw Error('must not fetch')}
