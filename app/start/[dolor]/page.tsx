@@ -5,7 +5,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getLocale } from 'next-intl/server'
-import { BotonEmpezar } from '../../../components/apertura/BotonEmpezar'
 import { FormularioAlta } from '../../../components/apertura/FormularioAlta'
 import { VideoYouTube } from '../../../components/apertura/VideoYouTube'
 import { PricingSection } from '../../../components/sections/PricingSection'
@@ -100,14 +99,9 @@ export default async function PaginaDolor({ params, searchParams }: { params: Pr
             <Image src="/ala_5c.png" alt="" width={2348} height={553} className="h-7 w-auto" />
             <span className="font-manrope text-2xl font-semibold tracking-tight">RAGfly</span>
           </Link>
+          {/* Sin «Start free» arriba (Víctor, 26-oct): el registro ya está en el hero. */}
           <div className="flex items-center gap-3">
             <SelectorIdioma />
-            <BotonEmpezar
-              destino={URL_REGISTRO}
-              className="rf-boton hidden sm:inline-block rounded-full bg-slm-dark px-6 py-2.5 text-base font-medium text-slm-light hover:opacity-90"
-            >
-              {c.empezar}
-            </BotonEmpezar>
           </div>
         </div>
       </header>
