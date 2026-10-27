@@ -6,27 +6,16 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getLocale } from 'next-intl/server'
 import { FormularioAlta } from '../../../components/apertura/FormularioAlta'
-import { VideoYouTube } from '../../../components/apertura/VideoYouTube'
 import { PricingSection } from '../../../components/sections/PricingSection'
 import { SelectorIdioma } from '../../../components/SelectorIdioma'
-import { COMUN, PAGINAS, PUBLICADA, URL_GUIA_MCP, URL_REGISTRO, VIDEO_YOUTUBE_ID, type Dolor } from '../../../content/apertura'
+import { COMUN, PAGINAS, PUBLICADA, URL_GUIA_MCP, type Dolor } from '../../../content/apertura'
+import { PRE_REGISTRATION } from '../../../content/preregistro'
 import { locales, type Locale } from '../../../i18n/config'
 
-/* ------------------------------------------------------------------ */
-/* /start/[dolor] — páginas de destino de la apertura controlada        */
-/*                                                                     */
-/* Una por dolor: /start/context y /start/memory. Estructura vigente   */
-/* (plan v2.8 §11, Víctor 14 y 15-oct): 1 hero (titular, bajada del     */
-/* dolor, eslogan, registro + login) · video del Quickstart · 2 cómo   */
-/* empieza · 3 pilares · 4 cierre (Free + registro + login) · 5 FAQ · */
-/* 6 planes (Víctor, 16-oct: «pruebo gratis, pero luego ¿cuánto        */
-/* pagaré?»). La grilla es la misma de la home, desde el catálogo vivo; */
-/* cada registro Free enlaza a ella con «Ver precios ↓».                */
-/*                                                                     */
-/* Multilingüe (Víctor, 15-oct): el idioma sale de getLocale(), la     */
-/* misma cadena del resto del sitio, y se cambia con SelectorIdioma.    */
-/* Sin índice en buscadores: son destino de campaña.                    */
-/* ------------------------------------------------------------------ */
+/** Landing de campaña: gancho y dos párrafos del catálogo, captura por correo y
+ * propuesta del producto. El acceso se confirma después desde el computador.
+ * Sin login, tutorial ni video. Los mensajes siguen el idioma del visitante.
+ */
 
 const ES_PRODUCCION = process.env.VERCEL_ENV === 'production'
 
@@ -88,7 +77,7 @@ export default async function PaginaDolor({ params, searchParams }: { params: Pr
 
 
   const titulo2 = 'text-slm-dark text-2xl md:text-[30px] font-helvetica-neue font-medium leading-tight tracking-[-0.02em] text-balance'
-  const bloque = 'px-6 md:px-12 py-12 md:py-14 border-t border-slm-brand-light'
+  const bloque = 'px-6 md:px-12 py-8 md:py-10 border-t border-slm-brand-light'
   const texto = 'font-helvetica-neue text-base md:text-lg leading-relaxed text-slm-gray'
 
   return (
@@ -105,10 +94,14 @@ export default async function PaginaDolor({ params, searchParams }: { params: Pr
           </div>
         </div>
       </header>
+      <div className="border-y border-slm-brand-light bg-slm-light px-6 py-3 md:hidden">
+        <p className="font-helvetica-neue text-sm leading-relaxed text-slm-dark">{PRE_REGISTRATION[locale].mobileNotice}</p>
+        <a href="#signup" className="mt-1 inline-flex min-h-9 items-center font-helvetica-neue text-sm font-medium text-slm-brand-dark underline">{PRE_REGISTRATION[locale].submit} →</a>
+      </div>
 
       <main>
         {/* 1 · Hero en dos columnas (Víctor, 17-oct): titular y bajada a la izquierda,
-            registro + login compacto a la derecha; en móvil se apilan. */}
+            pre-registro por correo a la derecha; en móvil se apilan. */}
         <section className="px-6 md:px-12 pt-8 pb-12 md:pt-14">
           <div className="mx-auto grid max-w-[980px] items-start gap-8 md:grid-cols-[minmax(0,1fr)_340px] md:gap-12">
             <div className="flex min-w-0 flex-col gap-6">
@@ -121,36 +114,7 @@ export default async function PaginaDolor({ params, searchParams }: { params: Pr
               <p className="font-helvetica-neue text-base md:text-lg leading-relaxed text-slm-gray">{mensaje?.bajada ? mensaje.cuerpo : c.lineaProducto}</p>
               <p className="font-helvetica-neue text-lg md:text-xl font-medium text-slm-brand-dark">{c.eslogan}</p>
             </div>
-            <FormularioAlta id="signup" textos={c} compacto />
-          </div>
-        </section>
-
-        {/* 2 · Cómo empieza */}
-        <section id="start" className={bloque}>
-          <div className="mx-auto flex max-w-[760px] flex-col gap-5">
-            <Etiqueta>{c.pasosEtiqueta}</Etiqueta>
-            <h2 className={titulo2}>{c.pasosTitulo}</h2>
-            <ol className="flex flex-col gap-5">
-              {c.pasos.map((paso, i) => (
-                <li key={paso.titulo} className="grid grid-cols-[40px_1fr] items-baseline gap-3">
-                  <span className="grid h-8 w-8 place-items-center rounded-full border border-slm-brand-light font-[family-name:var(--font-dato)] text-sm text-slm-brand">
-                    {i + 1}
-                  </span>
-                  <span className="min-w-0 flex flex-col gap-1">
-                    <span className="font-helvetica-neue text-base md:text-lg font-medium">{paso.titulo}</span>
-                    <span className="font-helvetica-neue text-base text-slm-gray">{paso.detalle}</span>
-                  </span>
-                </li>
-              ))}
-            </ol>
-            <p className="font-helvetica-neue text-base md:text-lg">{c.despuesPasos}</p>
-          </div>
-        </section>
-
-        {/* Video del Quickstart: después de «Cómo empieza» (Víctor, 15-oct); carga al clic */}
-        <section className="px-6 md:px-12 pb-12 md:pb-14">
-          <div className="mx-auto max-w-[760px]">
-            <VideoYouTube id={VIDEO_YOUTUBE_ID} etiqueta={c.reproducirVideo} />
+            <FormularioAlta id="signup" locale={locale} />
           </div>
         </section>
 
@@ -167,14 +131,6 @@ export default async function PaginaDolor({ params, searchParams }: { params: Pr
                 <p className={texto}>{pilar.texto}</p>
               </div>
             ))}
-          </div>
-        </section>
-
-        {/* 4 · Cierre */}
-        <section className={bloque}>
-          <div className="mx-auto flex max-w-[760px] flex-col gap-6">
-            <h2 className={titulo2}>{c.cierre}</h2>
-            <FormularioAlta id="signup-cierre" textos={c} />
           </div>
         </section>
 
@@ -235,7 +191,7 @@ export default async function PaginaDolor({ params, searchParams }: { params: Pr
         </section>
 
         {/* 6 · Planes: al final; el registro Free enlaza aquí (#planes) */}
-        <PricingSection locale={locale} destino={URL_REGISTRO} />
+        <PricingSection locale={locale} destino="#signup" />
       </main>
 
       <footer className="border-t border-slm-brand-light px-6 md:px-12 py-8 font-helvetica-neue text-sm text-slm-gray">

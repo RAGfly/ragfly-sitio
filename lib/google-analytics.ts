@@ -5,7 +5,7 @@
 export const GA_ID = 'G-GV0Q0RP5WP'
 export const CONSENT_COOKIE = 'ragfly_analytics_consent'
 const HOSTS = ['www.ragfly.ai', 'ragfly.ai', 'app.ragfly.ai']
-type Evento = 'page_view' | 'signup_start' | 'registration_view' | 'registration_submitted' | 'sign_up'
+type Evento = 'page_view' | 'signup_start' | 'registration_view' | 'registration_submitted' | 'sign_up' | 'pre_registration_requested'
 declare global {
   interface Window {
     dataLayer?: unknown[]
