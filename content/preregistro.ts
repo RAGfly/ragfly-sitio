@@ -1,6 +1,6 @@
 import type { Locale } from '../i18n/config'
 
-/** Textos de captura por correo; el alta real ocurre al verificar el enlace. */
+/** Textos de captura por correo; la bienvenida incluye el acceso directo para el computador. */
 export const PRE_REGISTRATION = {
   "es": {
     "title": "Continúa en tu computador",
@@ -9,14 +9,14 @@ export const PRE_REGISTRATION = {
     "submit": "Enviarme el enlace",
     "sending": "Enviando…",
     "success": "Solicitud guardada",
-    "next": "Busca el correo de RAGfly y abre el enlace en tu computador. Revisa también spam.",
+    "next": "Busca la bienvenida de hello@ragfly.ai y ábrela en tu computador. Incluye tu acceso, el video y los primeros pasos. Revisa también spam.",
     "resend": "Solicitar otro envío",
     "error": "No pudimos guardar la solicitud. Inténtalo de nuevo en unos minutos.",
     "accept": "Acepto los",
     "terms": "Términos",
     "andPrivacy": "y he leído la",
     "privacy": "Política de privacidad",
-    "free": "Cuenta Free al confirmar tu correo. Sin contraseña ni tarjeta.",
+    "free": "Empieza gratis, sin contraseña ni tarjeta.",
     "mobileNotice": "Empieza RAGfly desde un computador. Guarda aquí tu enlace de acceso."
   },
   "en": {
@@ -26,14 +26,14 @@ export const PRE_REGISTRATION = {
     "submit": "Email me the link",
     "sending": "Sending…",
     "success": "Request saved",
-    "next": "Find the email from RAGfly and open the link on your computer. Check spam too.",
+    "next": "Find the welcome email from hello@ragfly.ai and open it on your computer. It includes your access link, the video and first steps. Check spam too.",
     "resend": "Request another email",
     "error": "We could not save your request. Please try again in a few minutes.",
     "accept": "I accept the",
     "terms": "Terms",
     "andPrivacy": "and have read the",
     "privacy": "Privacy Policy",
-    "free": "Free account when you confirm your email. No password or card.",
+    "free": "Start free, without a password or card.",
     "mobileNotice": "Get started with RAGfly on a computer. Save your access link here."
   },
   "pt": {
@@ -43,14 +43,14 @@ export const PRE_REGISTRATION = {
     "submit": "Enviar o link por e-mail",
     "sending": "Enviando…",
     "success": "Solicitação salva",
-    "next": "Encontre o e-mail do RAGfly e abra o link no computador. Verifique também o spam.",
+    "next": "Encontre as boas-vindas de hello@ragfly.ai e abra no computador. O e-mail inclui seu acesso, o vídeo e os primeiros passos. Verifique também o spam.",
     "resend": "Solicitar outro envio",
     "error": "Não foi possível salvar a solicitação. Tente novamente em alguns minutos.",
     "accept": "Aceito os",
     "terms": "Termos",
     "andPrivacy": "e li a",
     "privacy": "Política de Privacidade",
-    "free": "Conta Free ao confirmar seu e-mail. Sem senha nem cartão.",
+    "free": "Comece grátis, sem senha nem cartão.",
     "mobileNotice": "Comece a usar o RAGfly no computador. Salve seu link de acesso aqui."
   },
   "fr": {
@@ -60,14 +60,14 @@ export const PRE_REGISTRATION = {
     "submit": "Recevoir le lien par e-mail",
     "sending": "Envoi…",
     "success": "Demande enregistrée",
-    "next": "Retrouvez l’e-mail de RAGfly et ouvrez le lien sur votre ordinateur. Vérifiez aussi les spams.",
+    "next": "Retrouvez l’e-mail de bienvenue de hello@ragfly.ai et ouvrez-le sur votre ordinateur. Il contient votre accès, la vidéo et les premiers pas. Vérifiez aussi les spams.",
     "resend": "Demander un nouvel envoi",
     "error": "Impossible d’enregistrer votre demande. Réessayez dans quelques minutes.",
     "accept": "J’accepte les",
     "terms": "Conditions",
     "andPrivacy": "et j’ai lu la",
     "privacy": "Politique de confidentialité",
-    "free": "Compte Free après confirmation de votre adresse e-mail. Sans mot de passe ni carte.",
+    "free": "Commencez gratuitement, sans mot de passe ni carte.",
     "mobileNotice": "Commencez avec RAGfly sur un ordinateur. Recevez votre lien d’accès ici."
   },
   "de": {
@@ -77,14 +77,14 @@ export const PRE_REGISTRATION = {
     "submit": "Link per E-Mail senden",
     "sending": "Wird gesendet…",
     "success": "Anfrage gespeichert",
-    "next": "Öffne die E-Mail von RAGfly und den Link auf deinem Computer. Prüfe auch den Spamordner.",
+    "next": "Öffne die Willkommensmail von hello@ragfly.ai am Computer. Sie enthält deinen Zugang, das Video und die ersten Schritte. Prüfe auch den Spamordner.",
     "resend": "Erneut senden lassen",
     "error": "Deine Anfrage konnte nicht gespeichert werden. Versuche es in ein paar Minuten erneut.",
     "accept": "Ich akzeptiere die",
     "terms": "Nutzungsbedingungen",
     "andPrivacy": "und habe die",
     "privacy": "Datenschutzerklärung gelesen",
-    "free": "Free-Konto nach Bestätigung deiner E-Mail-Adresse. Ohne Passwort oder Kreditkarte.",
+    "free": "Starte kostenlos, ohne Passwort oder Kreditkarte.",
     "mobileNotice": "Starte RAGfly am Computer. Lass dir hier deinen Zugangslink senden."
   }
 } satisfies Record<Locale, Record<string, string>>
