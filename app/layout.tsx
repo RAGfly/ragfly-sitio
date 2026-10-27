@@ -29,6 +29,7 @@ const montserrat = Montserrat_Alternates({
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("metadata");
+  const locale = await getLocale();
   return {
     metadataBase: new URL("https://ragfly.ai"),
     // Verificación de propiedad en Google Search Console (necesaria para la
@@ -54,11 +55,13 @@ export async function generateMetadata(): Promise<Metadata> {
       type: "website",
       siteName: "RAGfly",
       url: "https://ragfly.ai",
+      images: [{ url: `/opengraph-image?locale=${locale}`, width: 1200, height: 630, alt: t("imageAlt") }],
       title: t("title"),
       description: t("description"),
     },
     twitter: {
       card: "summary_large_image",
+      images: [{ url: `/twitter-image?locale=${locale}`, width: 1200, height: 630, alt: t("imageAlt") }],
       title: t("title"),
       description: t("description"),
     },

@@ -34,6 +34,7 @@ export const planes = [
       vectores: '2 workspaces',
     },
     features: [
+      'RAGfly Desktop (incluido en todos los planes, también en Free)',
       '1.500 Retrieval simple/mes',
       '30 RAG Aumentado/mes',
       '5 RAG Agéntico/mes',
@@ -55,7 +56,6 @@ export const planes = [
       '300 RAG Aumentado/mes',
       '50 RAG Agéntico/mes',
       'Adicionales: corpus +10.000/$10 mes · RAG Aumentado +500/$35 · RAG Agéntico +50/$59',
-      'RAGfly Desktop',
       '12 áreas · 10 Espacios de Trabajo · síntesis de hasta 10.000 páginas',
     ],
   },

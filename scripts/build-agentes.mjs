@@ -44,6 +44,7 @@ const operations = {
 const json = {
   name: 'RAGfly',
   description: 'Document retrieval for agents, exposed through MCP tools and a separate RBAC-filtered REST operations manifest.',
+  desktop: { included_in: 'all_plans', free_plan_included: true, download_url: 'https://ragfly.ai/download' },
   site: 'https://ragfly.ai',
   app: 'https://app.ragfly.ai',
   updated: date,
@@ -74,6 +75,7 @@ const lines = [
   '- SSE endpoint (legacy, not recommended; its session is lost on a redeploy): ' + mcp.endpointSSE,
   '- Authentication: ' + mcp.auth,
   '- Scope: ' + mcp.scope,
+  '- RAGfly Desktop is included on every plan, Free included: https://ragfly.ai/download',
   '- Key-based setup script (validates the key, stores it in ~/.ragfly/ragfly-mcp.env, registers Claude Code / Codex / Claude Desktop; download, read, then run): ' + mcp.setupScript,
   '- Same setup for Windows PowerShell 5.1+ (not yet run on a Windows machine; see MCP.md): ' + mcp.setupScriptWindows,
   '',

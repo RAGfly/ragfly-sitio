@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { BlurIn } from './shared'
 
 /* ------------------------------------------------------------------ */
@@ -10,6 +10,7 @@ import { BlurIn } from './shared'
 /* ------------------------------------------------------------------ */
 export function PerfilesSection() {
   const t = useTranslations()
+  const locale = useLocale()
   const puntos = [0, 1, 2, 3].map((i) => ({
     titulo: t(`perfiles.p${i}Titulo` as Parameters<typeof t>[0]),
     desc: t(`perfiles.p${i}Desc` as Parameters<typeof t>[0]),
@@ -30,7 +31,7 @@ export function PerfilesSection() {
               {t('perfiles.descripcion')}
             </p>
           </div>
-          <Image src="/design/A-carta-espacio-aereo.svg" alt="" aria-hidden width={960} height={520} className="w-full h-auto" />
+          <Image src={`/design/A-carta-espacio-aereo${locale === 'en' ? '.en' : ''}.svg`} alt="" aria-hidden width={960} height={520} className="w-full h-auto" />
         </div>
 
         <div className="grid md:grid-cols-2 gap-px bg-slm-dark/10 border border-slm-dark/10">

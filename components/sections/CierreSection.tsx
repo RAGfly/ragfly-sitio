@@ -29,12 +29,6 @@ export function CierreSection() {
             {t('cierre.titulo')}
           </BlurIn>
           <span className="rf-eje" aria-hidden="true" />
-          <div className="flex flex-col gap-2 max-w-[620px]">
-            <p className="text-slm-dark font-helvetica-neue text-lg font-medium leading-relaxed">
-              {t('cierre.northStarTitulo')}
-            </p>
-            <p className="text-slm-gray font-helvetica-neue text-base leading-relaxed">{t('cierre.northStarDesc')}</p>
-          </div>
           <div className="flex flex-col sm:flex-row items-start gap-3">
             <a
               href="https://app.ragfly.ai"

@@ -116,7 +116,7 @@
       "blocks": [
         {
           "kind": "p",
-          "text": "Le Service peut traiter des données dans des pays autres que le vôtre. Lorsque la loi applicable l'exige, nous utilisons des garanties appropriées (telles que les clauses contractuelles types) pour les transferts transfrontaliers. Sur les forfaits compatibles, RAGfly Desktop maintient le traitement de vos fichiers originaux au sein de votre propre infrastructure ; les représentations dérivées de leur contenu (chunks, embeddings et métadonnées) peuvent continuer à être traitées par le Service comme décrit dans la présente politique."
+          "text": "Le Service peut traiter des données dans des pays autres que le vôtre. Lorsque la loi applicable l'exige, nous utilisons des garanties appropriées (telles que les clauses contractuelles types) pour les transferts transfrontaliers. Dans tous les plans, Free compris, RAGfly Desktop maintient le traitement de vos fichiers originaux au sein de votre propre infrastructure ; les représentations dérivées de leur contenu (chunks, embeddings et métadonnées) peuvent continuer à être traitées par le Service comme décrit dans la présente politique."
         }
       ]
     },

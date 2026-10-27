@@ -16,27 +16,14 @@ export function Hero() {
         </BlurIn>
       </div>
       <div className="flex-1 flex flex-col items-center justify-center z-10 gap-6">
-        <BlurIn
-          as="h1"
-          className="text-center font-helvetica-neue font-medium text-slm-dark max-w-3xl flex flex-col gap-2 md:gap-3"
-        >
-          <span className="block text-3xl md:text-5xl lg:text-6xl tracking-[-0.03em] leading-[1.08]">{t('hero.headlineLead')}</span>
-          <span className="block text-xl md:text-3xl lg:text-4xl tracking-[-0.02em] leading-snug pb-[0.12em] bg-gradient-to-r from-slm-brand-dark via-slm-brand to-slm-brand-light bg-clip-text text-transparent">
-            {t('hero.headlineAccent')}
-          </span>
+        <BlurIn as="h1" className="text-center font-helvetica-neue font-medium text-slm-dark max-w-3xl text-3xl md:text-5xl lg:text-6xl tracking-[-0.03em] leading-[1.08]">
+          {t('hero.headlineLead')}
         </BlurIn>
-        <BlurIn delay={0.08} className="font-helvetica-neue text-base md:text-xl text-slm-dark/90 font-medium tracking-[0.01em] max-w-2xl text-center leading-snug mt-2">
+        <BlurIn delay={0.08} className="font-helvetica-neue text-base md:text-xl text-slm-dark/90 max-w-2xl text-center leading-relaxed mt-2">
+          {t('hero.descripcion')}
+        </BlurIn>
+        <BlurIn delay={0.1} className="font-helvetica-neue text-sm md:text-base max-w-2xl text-center leading-relaxed pb-[0.12em] bg-gradient-to-r from-slm-dark via-slm-brand-dark to-slm-brand-dark bg-clip-text text-transparent">
           {t('hero.slogan')}
-        </BlurIn>
-        <BlurIn delay={0.09} className="font-helvetica-neue text-sm md:text-base text-slm-dark/75 tracking-[0.01em] max-w-2xl text-center leading-snug">
-          {t('hero.lineaApoyo')}
-        </BlurIn>
-        {/* Definición de workspace — MENSAJE-CANONICO §7.1 (literal) */}
-        <BlurIn delay={0.095} className="font-helvetica-neue text-sm md:text-base text-slm-dark/75 tracking-[0.01em] max-w-2xl text-center leading-snug">
-          {t('hero.definicionContexto')}
-        </BlurIn>
-        <BlurIn delay={0.1} className="font-[family-name:var(--font-interfaz)] text-xs md:text-sm text-slm-gray tracking-[0.01em] max-w-2xl text-center leading-relaxed">
-          {t('hero.tagline')}
         </BlurIn>
       </div>
       <div className="z-10 flex flex-col items-center gap-7 max-w-xl text-center pt-8 md:pt-10">
@@ -48,16 +35,17 @@ export function Hero() {
             {t('hero.ctaPrimario')}
           </a>
           <a
-            /* #pruebalo (ChatSection) salió del flujo: la demostración
-               temprana ahora es S2 → S5 la precisión. */
-            href="#negativa"
+            href="#como-funciona"
             className="rf-boton border border-slm-dark text-slm-dark px-7 py-3 rounded-full font-medium text-base hover:bg-gray-50 transition-colors"
           >
             {t('hero.ctaSecundario')}
           </a>
         </BlurIn>
+        <BlurIn delay={0.35} className="font-helvetica-neue text-xs md:text-sm text-slm-gray leading-relaxed">
+          {t('hero.lineaApoyo')}
+        </BlurIn>
       </div>
-      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white to-transparent z-20 pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-white to-transparent z-20 pointer-events-none" />
     </div>
   )
 }

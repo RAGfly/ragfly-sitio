@@ -2,7 +2,7 @@
 
 > Discover MCP tools with tools/list. Discover the separate manifest operations with GET /v1/operations.
 
-Updated: 2026-10-23
+Updated: 2026-10-27
 
 ## MCP connection
 
@@ -10,6 +10,7 @@ Updated: 2026-10-23
 - SSE endpoint (legacy, not recommended; its session is lost on a redeploy): https://api.ragfly.ai/mcp/sse
 - Authentication: OAuth 2.1 or Authorization: Bearer rf_xxxxxxxxxx (API Key issued from a human session)
 - Scope: Every call is filtered by the key owner’s organization, workspace, area and role. Flexible workspace focus is stored server-side.
+- RAGfly Desktop is included on every plan, Free included: https://ragfly.ai/download
 - Key-based setup script (validates the key, stores it in ~/.ragfly/ragfly-mcp.env, registers Claude Code / Codex / Claude Desktop; download, read, then run): https://ragfly.ai/integradores/ragfly-mcp-setup.sh
 - Same setup for Windows PowerShell 5.1+ (not yet run on a Windows machine; see MCP.md): https://ragfly.ai/integradores/ragfly-mcp-setup.ps1
 

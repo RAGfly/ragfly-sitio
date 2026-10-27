@@ -24,8 +24,7 @@ export function Footer() {
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-10">
           <div className="flex flex-col gap-3">
             <span className="rf-anot text-white/60">{t('footer.producto' as Parameters<typeof t>[0])}</span>
-            {/* Simple → Privado → Preciso: mismo orden del eslogan y del nav. */}
-            <a href="#simple" className="font-helvetica-neue text-sm hover:text-white">{t('footer.capacidades')}</a>
+            <a href="#como-funciona" className="font-helvetica-neue text-sm hover:text-white">{t('footer.capacidades')}</a>
             <a href="#privado" className="font-helvetica-neue text-sm hover:text-white">{t('footer.seguridadLink')}</a>
             <a href="#precision" className="font-helvetica-neue text-sm hover:text-white">{t('nav.capacidades')}</a>
             <a href="#superficies" className="font-helvetica-neue text-sm hover:text-white">{t('footer.comoFunciona')}</a>

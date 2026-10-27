@@ -1,9 +1,14 @@
 {
   "name": "RAGfly",
   "description": "Document retrieval for agents, exposed through MCP tools and a separate RBAC-filtered REST operations manifest.",
+  "desktop": {
+    "included_in": "all_plans",
+    "free_plan_included": true,
+    "download_url": "https://ragfly.ai/download"
+  },
   "site": "https://ragfly.ai",
   "app": "https://app.ragfly.ai",
-  "updated": "2026-10-23",
+  "updated": "2026-10-27",
   "mcp": {
     "nombre": "ragfly",
     "endpointHTTP": "https://api.ragfly.ai/mcp-http/",

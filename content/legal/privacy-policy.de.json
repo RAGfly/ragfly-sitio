@@ -116,7 +116,7 @@
       "blocks": [
         {
           "kind": "p",
-          "text": "Der Dienst kann Daten in anderen Ländern als Ihrem verarbeiten. Soweit das geltende Recht es verlangt, verwenden wir geeignete Garantien (wie Standardvertragsklauseln) für grenzüberschreitende Übermittlungen. Bei unterstützten Tarifen hält RAGfly Desktop die Verarbeitung Ihrer Originaldateien innerhalb Ihrer eigenen Infrastruktur; abgeleitete Darstellungen ihres Inhalts (Chunks, Embeddings und Metadaten) können weiterhin durch den Dienst gemäß dieser Richtlinie verarbeitet werden."
+          "text": "Der Dienst kann Daten in anderen Ländern als Ihrem verarbeiten. Soweit das geltende Recht es verlangt, verwenden wir geeignete Garantien (wie Standardvertragsklauseln) für grenzüberschreitende Übermittlungen. In allen Tarifen, auch in Free, hält RAGfly Desktop die Verarbeitung Ihrer Originaldateien innerhalb Ihrer eigenen Infrastruktur; abgeleitete Darstellungen ihres Inhalts (Chunks, Embeddings und Metadaten) können weiterhin durch den Dienst gemäß dieser Richtlinie verarbeitet werden."
         }
       ]
     },

@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { BlurIn } from './shared'
 
 /* ------------------------------------------------------------------ */
@@ -10,11 +10,10 @@ import { BlurIn } from './shared'
 /* Sin «<30 min»: la ingesta es desatendida; la velocidad va en runtime.*/
 /* ------------------------------------------------------------------ */
 
-/* Estados REALES del pipeline (docs/operativos/OPER_PROCESS_PIPELINE). */
-const ESTADOS = ['CARGADO', 'METADATA', 'ESCANEADO', 'CHUNKEADO', 'VECTORIZADO']
-
 export function SimpleSection() {
   const t = useTranslations()
+  const locale = useLocale()
+  const estados = t.raw('simple.estados') as string[]
 
   return (
     <section id="simple" className="relative rf-corte px-6 md:px-12 lg:px-[60px] py-24 md:py-32 bg-white overflow-hidden">
@@ -34,7 +33,7 @@ export function SimpleSection() {
         {/* Perfil de vuelo + estados del pipeline en monoespaciada */}
         <div className="border border-slm-dark/10 p-6 md:p-10 flex flex-col gap-8">
           <Image
-            src="/design/B-perfil-de-vuelo.svg"
+            src={`/design/B-perfil-de-vuelo${locale === 'en' ? '.en' : ''}.svg`}
             alt=""
             aria-hidden
             width={960}
@@ -44,10 +43,10 @@ export function SimpleSection() {
           <div className="flex flex-col gap-3">
             <span className="rf-anot rf-anot-sm text-slm-dark/45">{t('simple.pipelineTitulo')}</span>
             <ol className="flex flex-wrap items-center gap-x-3 gap-y-2">
-              {ESTADOS.map((e, i) => (
+              {estados.map((e, i) => (
                 <li key={e} className="flex items-center gap-3">
                   <span className="rf-anot rf-anot-sm text-slm-dark/80 border border-slm-dark/12 px-2.5 py-1.5">{e}</span>
-                  {i < ESTADOS.length - 1 && <span className="text-slm-dark/25" aria-hidden="true">→</span>}
+                  {i < estados.length - 1 && <span className="text-slm-dark/25" aria-hidden="true">→</span>}
                 </li>
               ))}
             </ol>

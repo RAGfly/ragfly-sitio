@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "title": "RAGfly — RAG service for AI agents, with access by workspace",
-    "description": "RAG service for AI agents. Access by workspace, area, role and agent, with privacy verifiable by deployment mode. Connect a directory via MCP, REST, CLI or SDK.",
+    "title": "RAGfly — Your documents, ready for AI",
+    "description": "Choose your folders and talk to your documents, with the source of every answer. Connect them to Claude, ChatGPT or your own agents. We don't store your documents.",
     "keywords": [
       "RAG service",
       "RAG service",
@@ -22,13 +22,17 @@
       "RAG for consultancies and integrators",
       "Ragie alternative",
       "LlamaParse alternative",
-      "Vectara alternative"
-    ]
+      "Vectara alternative",
+      "chat with your documents",
+      "documents for AI",
+      "AI document search"
+    ],
+    "imageAlt": "RAGfly — Your documents, ready for AI."
   },
   "nav": {
-    "producto": "Simple",
+    "producto": "How it works",
     "capacidades": "Precise",
-    "comoFunciona": "How to use it",
+    "comoFunciona": "For developers",
     "paraAgentes": "MCP",
     "seguridad": "Private",
     "planes": "Plans",
@@ -37,15 +41,13 @@
     "descargar": "Desktop"
   },
   "hero": {
-    "eyebrow": "RAG Service",
-    "headlineLead": "Augmented retrieval",
-    "headlineAccent": "for your agents.",
+    "eyebrow": "Documents for the AI era",
+    "headlineLead": "Your documents, ready for AI.",
     "slogan": "Simple, private, and precise. Access by workspace, area, role and agent.",
-    "lineaApoyo": "Works with the agents you already use — over MCP — and with the ones you build.",
-    "definicionContexto": "A workspace is whatever you decide must never mix: your personal life and your business inside the same agent, or each client of your accounting practice. You draw the line. Nothing crosses it. Inside each workspace, you decide who sees what by area, role and agent.",
-    "tagline": "At scale, with privacy verifiable by deployment mode. Connect a directory and your agent answers with citations — without building or maintaining a RAG pipeline.",
-    "ctaPrimario": "Start free",
-    "ctaSecundario": "See the live demo"
+    "lineaApoyo": "Works with Claude, ChatGPT and the agents you build (over MCP).",
+    "ctaPrimario": "Try it with your documents",
+    "ctaSecundario": "How it works",
+    "descripcion": "Choose your folders. RAGfly prepares them so your agents can query them, with the source of every answer. Try it right away in our chat."
   },
   "construyendo": {
     "eyebrow": "What are you building?",
@@ -184,20 +186,20 @@
     "paso2Desc": "RAGfly scans, vectorizes and indexes your documents, ready for your interface and your agents.",
     "cloudNota": "Prefer to start without installing anything?",
     "cloudCta": "Use RAGfly Cloud",
-    "actualizacion": "Updates download on their own: when a new version is ready, just hit «Restart to apply»."
+    "actualizacion": "Updates download on their own: when a new version is ready, just hit «Restart to apply».",
+    "planesNota": "RAGfly Desktop is included on every plan, Free included."
   },
   "superficies": {
-    "eyebrow": "How to use it",
-    "titulo1": "MCP, REST, CLI or SDK.",
-    "tituloAccent": "Use it from wherever you work.",
-    "descripcion": "Four surfaces, on every plan. The message is one of neutrality; the path we show first is MCP.",
-    "mcpTitulo": "MCP",
+    "eyebrow": "FOR DEVELOPERS",
+    "titulo1": "Use it from wherever you work.",
+    "tituloAccent": "Claude, ChatGPT… over MCP, REST, CLI or SDK.",
+    "mcpTitulo": "Your agents (over MCP)",
     "mcpDesc": "Connect RAGfly as an MCP server and your agent converses with the documents without you building any UI. It's where we open the door.",
     "restTitulo": "REST",
     "restDesc": "The universal production foundation. The base everything else sits on.",
     "cliTitulo": "CLI",
     "cliDesc": "DX, operations and bulk ingestion. Day-to-day convenience.",
-    "snippetTitulo": "MCP connection",
+    "snippetTitulo": "Connect your agents (over MCP)",
     "snippetSub": "No integration project.",
     "sdkTitulo": "SDK",
     "sdkDesc": "Integrate RAGfly directly into your code. Python and TypeScript. No MCP infrastructure required.",
@@ -206,7 +208,9 @@
     "accionDesc": "The agent doesn't stop at retrieving chunks: it invokes operations over sets of documents by prompt, from your own agent.",
     "accionCita": "«Download these 500 documents and put them where I tell you.»",
     "accionRemate": "RAGfly is a toolset of document operations that the agent calls, not just a context provider.",
-    "planesNota": "All six interfaces —web chat, MCP, REST, Python SDK, TypeScript SDK and CLI— are on every plan, the free one included. RAGfly Desktop is separate, from Starter up."
+    "planesNota": "All six interfaces —web chat, MCP, REST, Python SDK, TypeScript SDK and CLI— are on every plan, the free one included. RAGfly Desktop too.",
+    "empezar": "Start here",
+    "catalogo": "Catalog (Markdown)"
   },
   "construido": {
     "eyebrow": "How it's built",
@@ -293,12 +297,12 @@
     "invalid": "Please enter a valid email."
   },
   "footer": {
-    "tagline": "RAG service for your AI agents. Access by workspace, area, role and agent. Cloud does not retain the original; Desktop processes it locally; on sovereign plans the database belongs to the customer.",
+    "tagline": "Your documents, ready for AI. Access by workspace, area, role and agent.",
     "producto": "Product",
     "empresa": "Resources",
     "legal": "Legal",
-    "capacidades": "Simple",
-    "comoFunciona": "How to use it",
+    "capacidades": "How it works",
+    "comoFunciona": "For developers",
     "paraAgentes": "MCP",
     "planesLink": "Plans",
     "seguridadLink": "Private",
@@ -503,12 +507,19 @@
     "limiteDesc": "We don't process audio, video, or non-text images.",
     "interfaces": "Web chat, MCP server, REST API /v1, Python SDK, TypeScript SDK and CLI.",
     "interfacesNotaTitulo": "On every plan",
-    "interfacesNotaDesc": "All six, from a single configuration. RAGfly Desktop is separate, from Starter up."
+    "interfacesNotaDesc": "All six, from a single configuration. RAGfly Desktop is included on every plan, Free included.",
+    "estados": [
+      "LOADED",
+      "METADATA",
+      "SCANNED",
+      "CHUNKED",
+      "VECTORIZED"
+    ]
   },
   "privado": {
     "eyebrow": "PRIVATE · THE MANIFESTO",
-    "titulo1": "We never store your document.",
-    "tituloAccent": "And if you want, the document never leaves your network.",
+    "titulo1": "We don't store your documents.",
+    "tituloAccent": "And if you want, they never leave your network.",
     "descripcion": "In Cloud the original is processed on the way in and not retained: what persists are the derivatives —chunks, embeddings and metadata—. With Desktop, the file and its extraction stay inside your network, and depending on the deployment encrypted derivatives may be synchronized. On sovereign plans, that database is yours.",
     "manifiestoTag": "ISOLATION",
     "manifiestoTitulo": "It's not that you can't see it. It's that it isn't on board.",
@@ -553,7 +564,8 @@
     "triage1": "generation",
     "triage2": "citation",
     "triage3": "numeric accuracy",
-    "remate": "Improvement is targeted, not guesswork."
+    "remate": "Improvement is targeted, not guesswork.",
+    "detallesTitulo": "How we get there"
   },
   "config": {
     "eyebrow": "CONFIGURATION",
@@ -608,48 +620,46 @@
   },
   "cierre": {
     "eyebrow": "CLOSING",
-    "titulo": "Point RAGfly at your documents and give any agent the exact context it needs — production-ready, with access by workspace, area, role and agent.",
-    "northStarTitulo": "We build for agents in production, not for demos.",
-    "northStarDesc": "We measure what matters: agents and applications serving retrieval from RAGfly. Not chat users, not documents uploaded.",
+    "titulo": "Point RAGfly at your documents. Try it in the chat, then connect your agents.",
     "ctaPrimario": "Create a free account",
-    "ctaSecundario": "Connect your agent (MCP)",
+    "ctaSecundario": "Connect your agent",
     "escribenos": "Prefer to write to us?",
     "faqEyebrow": "FREQUENTLY ASKED QUESTIONS",
     "faqTitulo": "What people ask us before starting"
   },
   "faq": {
-    "q0": "Why does RAG answer better than searching your files?",
-    "a0": "Because it works with fragments, not whole files. A file system searches names, paths or exact text and hands back entire files that your agent has to read in full. A RAG splits your documents into fragments (chunks) and searches them by meaning: it understands questions in natural language, finds the relevant fragments very quickly, and gives your agent only what it needs, with the source.",
-    "q1": "What is RAGfly?",
-    "a1": "A RAG service for AI agents: it turns any document corpus —thousands or tens of thousands, scans included— into a secure retrieval base, organized in isolated workspaces, that's ready for production, without building or maintaining a RAG pipeline.",
-    "q2": "Who is it for?",
-    "a2": "For developers, consultancies and integrators building AI agents on private documents —sometimes for many different clients— who don't want to build or maintain a RAG pipeline at scale.",
-    "q3": "How much does it cost?",
-    "a3": "Plans in USD: Free $0, Starter $39/month, Growth $149/month, Scale $590/month, Business $1,990/month and Enterprise by agreement. Each plan shows active corpus, Simple Retrieval, Augmented RAG, Agentic RAG and workspaces; paid plans support manual add-ons and have no automatic overage. MCP, REST, CLI and SDK are available on every plan.",
-    "q4": "How does it work?",
-    "a4": "You point RAGfly at your documents directory; the system scans, vectorizes and indexes them automatically. Then your agent retrieves by meaning and gets answers with citations to the source via MCP, REST or CLI, isolated by workspace and with the data handling that matches the deployment mode.",
-    "q5": "How does an AI agent consume RAGfly?",
-    "a5": "Through a remote MCP server (SSE or HTTP) or the RAGfly Desktop CLI, authenticating with a JWT or an API Key. The catalog of operations is published at `https://ragfly.ai/agents.json` and `https://ragfly.ai/llms-full.txt`.",
-    "q6": "What does RAGfly process, and where does my data end up?",
-    "a6": "RAGfly processes document information on the way in and relevant chunks on the way out. In Cloud it processes the original file but does not retain it after ingestion; chunks, embeddings and metadata persist. With Desktop, the original and its extraction are processed inside your network, although derivatives may be synchronized. On sovereign plans, the database and the derivatives at rest belong to the customer; RAGfly accesses the chunks it needs to retrieve and deliver context.",
-    "q7": "How is one customer's data isolated from another's?",
-    "a7": "Isolated workspaces by default: each workspace lives in a corpus isolated at the database level, with an Organization → Workspaces → Areas structure. A workspace is whatever you decide must never mix: your personal life and your business inside the same agent, or each client of your accounting practice. You draw the line. Nothing crosses it. Inside each workspace, you decide who sees what by area, role and agent. A consultancy or integrator can serve dozens of clients from a single platform without a single record crossing over.",
-    "q8": "Can I use my own vector database and my own model?",
-    "a8": "It depends on the plan. Growth enables parsing-BYOK, embedding-BYOK and agentic-BYOK; Scale adds a customer-owned Supabase vector project; Enterprise supports customer LLMs and compatible vector databases.",
-    "q9": "Which AI models does it work with — Claude, GPT, Gemini?",
-    "a9": "RAGfly is model-agnostic. It delivers retrieval with citations and permissions; your agent runs on whichever LLM you prefer —Claude, GPT, Gemini or another— and consumes RAGfly via MCP, REST or CLI.",
+    "q0": "What is RAGfly?",
+    "a0": "A service that gets your documents ready for AI. You choose your folders; RAGfly reads, organizes and indexes them — scans included — so agents like Claude or ChatGPT can query them. You can try it first in RAGfly's chat. Every answer comes with its source, and each workspace stays isolated from the rest.",
+    "q1": "Who is it for?",
+    "a1": "For people and teams with lots of documents who want to use them with AI: professionals, companies and consultancies — and developers building their own agents.",
+    "q2": "Do I need to build an agent?",
+    "a2": "No. Connect the agent you already use, like Claude or ChatGPT, over MCP — or use REST, the SDK or the CLI. Your agent can help with setup. Before that, you can try RAGfly in its own chat, with your documents.",
+    "q3": "How does it work?",
+    "a3": "You choose your folders with RAGfly Desktop, on any plan, and RAGfly scans, indexes and vectorizes them on its own. You can try it in its chat; then your agent asks over MCP, REST or the CLI and gets answers with citations to the source, isolated by workspace.",
+    "q4": "Why does RAG answer better than searching your files?",
+    "a4": "Because it works with fragments, not whole files. A file system searches names, paths or exact text and hands back entire files that your agent has to read in full. A RAG splits your documents into fragments (chunks) and searches them by meaning: it understands questions in natural language, finds the relevant fragments very quickly, and gives your agent only what it needs, with the source.",
+    "q5": "How much does it cost?",
+    "a5": "Plans in USD: Free $0, Starter $39/month, Growth $149/month, Scale $590/month, Business $1,990/month and Enterprise by agreement. Each plan shows active corpus, Simple Retrieval, Augmented RAG, Agentic RAG and workspaces; paid plans support manual add-ons and have no automatic overage. MCP, REST, CLI and SDK are available on every plan.",
+    "q6": "What's the difference between Free and paid plans?",
+    "a6": "Limits and capacity. Privacy is the same on every plan. Free is permanent, with monthly limits, and needs no credit card.",
+    "q7": "Who processes my documents?",
+    "a7": "Models from providers whose terms exclude training on your data, on every plan, Free included. RAGfly doesn't use your documents to train models of its own.",
+    "q8": "What does RAGfly process, and where does my data end up?",
+    "a8": "RAGfly processes document information on the way in and relevant chunks on the way out. In Cloud it processes the original file but does not retain it after ingestion; chunks, embeddings and metadata persist. With Desktop, the original and its extraction are processed inside your network, although derivatives may be synchronized. On sovereign plans, the database and the derivatives at rest belong to the customer; RAGfly accesses the chunks it needs to retrieve and deliver context.",
+    "q9": "How is one customer's data isolated from another's?",
+    "a9": "Isolated workspaces by default: each workspace lives in a corpus isolated at the database level, with an Organization → Workspaces → Areas structure. A workspace is whatever you decide must never mix: your personal life and your business inside the same agent, or each client of your accounting practice. You draw the line. Nothing crosses it. Inside each workspace, you decide who sees what by area, role and agent. A consultancy or integrator can serve dozens of clients from a single platform without a single record crossing over.",
     "q10": "Which formats are supported? Does it work with scanned PDFs (OCR)?",
     "a10": "PDF, Word, Excel and plain text, including scanned documents thanks to first-rate OCR and table and layout understanding. The focus is text and complex documents, not audio or video.",
     "q11": "Can I use it with regulated data (legal, healthcare, government)?",
     "a11": "Yes. Desktop processes the original file and its extraction inside the customer's network. On sovereign plans, the customer owns the database where the derivatives persist. RAGfly still processes chunks on the way out to produce retrieval; a full in-situ runtime is the mode that keeps that processing inside the customer's infrastructure too.",
-    "q12": "How long does it take to go from a directory to an agent answering with citations?",
-    "a12": "You point RAGfly at a directory and, with automatic ingestion, vectorization and indexing, you can have an agent answering with citations in a short time, with no human help — and without building or maintaining a RAG pipeline at scale.",
-    "q13": "Who processes my documents?",
-    "a13": "Models from providers whose terms exclude training on your data, on every plan, Free included. RAGfly doesn't use your documents to train models of its own.",
-    "q14": "Do I need to build an agent to use RAGfly?",
-    "a14": "No. Connect the agent you already use, like Claude or GPT, over MCP, or use REST, the SDK or the CLI. Your agent can help with setup.",
-    "q15": "What's the difference between Free and paid plans?",
-    "a15": "Limits and capacity. Privacy is the same on every plan. Free is permanent, with monthly limits, and needs no credit card.",
+    "q12": "Which AI models does it work with — Claude, GPT, Gemini?",
+    "a12": "RAGfly is model-agnostic. It delivers retrieval with citations and permissions; your agent runs on whichever LLM you prefer —Claude, GPT, Gemini or another— and consumes RAGfly via MCP, REST or CLI.",
+    "q13": "How long does it take to go from a directory to an agent answering with citations?",
+    "a13": "You point RAGfly at a directory and, with automatic ingestion, vectorization and indexing, you can have an agent answering with citations in a short time, with no human help — and without building or maintaining a RAG pipeline at scale.",
+    "q14": "How does an AI agent consume RAGfly?",
+    "a14": "Through a remote MCP server (SSE or HTTP) or the RAGfly Desktop CLI, authenticating with a JWT or an API Key. The catalog of operations is published at `https://ragfly.ai/agents.json` and `https://ragfly.ai/llms-full.txt`.",
+    "q15": "Can I use my own vector database and my own model?",
+    "a15": "It depends on the plan. Growth enables parsing-BYOK, embedding-BYOK and agentic-BYOK; Scale adds a customer-owned Supabase vector project; Enterprise supports customer LLMs and compatible vector databases.",
     "total": "16"
   },
   "jsonLd": {
@@ -662,5 +672,19 @@
       "DB-agnostic and BYO: bring your own vector database and your own LLM",
       "MCP, REST, CLI and SDK surfaces on every plan"
     ]
+  },
+  "comoFunciona": {
+    "eyebrow": "HOW IT WORKS",
+    "titulo": "From your folders to answers with sources.",
+    "paso0Titulo": "Choose your folders.",
+    "paso0Desc": "With RAGfly Desktop, on Mac or Windows. RAGfly reads, organizes and indexes them on its own — scans included.",
+    "paso0Nota": "We don't store your documents.",
+    "paso1Titulo": "Try it in the chat.",
+    "paso1Desc": "Ask RAGfly's chat about your documents and see how it answers. Every answer comes with its source: the document and the page.",
+    "paso2Titulo": "Connect your agents.",
+    "paso2Desc": "Then put it to work: Claude, ChatGPT or your own agents query your documents whenever they need them.",
+    "paso2Nota": "Over MCP, REST, the SDK or the CLI.",
+    "guia": "Connection guide",
+    "cta": "Try it with your documents"
   }
 }

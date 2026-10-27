@@ -116,7 +116,7 @@
       "blocks": [
         {
           "kind": "p",
-          "text": "The Service may process data in countries other than yours. Where applicable law requires, we use appropriate safeguards (such as standard contractual clauses) for cross-border transfers. On supported plans, RAGfly Desktop keeps the processing of your original files within your own infrastructure; derived representations of their content (chunks, embeddings, and metadata) may still be processed by the Service as described in this policy."
+          "text": "The Service may process data in countries other than yours. Where applicable law requires, we use appropriate safeguards (such as standard contractual clauses) for cross-border transfers. On every plan, Free included, RAGfly Desktop keeps the processing of your original files within your own infrastructure; derived representations of their content (chunks, embeddings, and metadata) may still be processed by the Service as described in this policy."
         }
       ]
     },

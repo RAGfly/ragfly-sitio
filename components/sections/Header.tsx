@@ -13,11 +13,7 @@ export function Header() {
   const t = useTranslations()
   const [open, setOpen] = useState(false)
   const links = [
-    /* Anclas del orden nuevo (S1→S10). Las viejas —#que-es, #diferencia,
-       #como-se-usa, #seguridad, #pruebalo— ya no existen en la página.
-       El orden Simple → Privado → Preciso refuerza el eslogan y espeja el
-       orden de las secciones de la landing. */
-    { l: t('nav.producto'), h: '#simple' },
+    { l: t('nav.producto'), h: '#como-funciona' },
     { l: t('nav.seguridad'), h: '#privado' },
     { l: t('nav.capacidades'), h: '#precision' },
     { l: t('nav.comoFunciona'), h: '#superficies' },
@@ -32,7 +28,7 @@ export function Header() {
           <Image src="/ala_5c.png" alt="" width={2348} height={553} className="h-7 w-auto" />
           <span className="font-manrope font-semibold text-2xl text-slm-dark tracking-tight">RAGfly</span>
         </a>
-        <nav className="hidden lg:flex items-center gap-8">
+        <nav className="hidden xl:flex items-center gap-8">
           {links.map((it) => (
             <a key={it.l} href={it.h} className="text-base text-slm-dark hover:opacity-70 transition-opacity">
               {it.l}
@@ -41,7 +37,7 @@ export function Header() {
         </nav>
       </div>
 
-      <div className="hidden lg:flex items-center gap-4">
+      <div className="hidden xl:flex items-center gap-4">
         <SelectorIdioma />
         <a href="https://app.ragfly.ai" className="text-base font-medium text-slm-dark hover:opacity-70 transition-opacity">
           {t('nav.iniciarSesion')}
@@ -54,7 +50,7 @@ export function Header() {
         </a>
       </div>
 
-      <button onClick={() => setOpen((o) => !o)} className="lg:hidden text-slm-dark" aria-label="Menu">
+      <button onClick={() => setOpen((o) => !o)} className="xl:hidden text-slm-dark" aria-label="Menu">
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={open ? 'x' : 'm'}
@@ -83,7 +79,7 @@ export function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3, ease: 'easeOut' }}
-            className="absolute top-24 left-0 right-0 bg-white shadow-lg mx-4 rounded-lg px-6 py-8 z-50 lg:hidden"
+            className="absolute top-24 left-0 right-0 bg-white shadow-lg mx-4 rounded-lg px-6 py-8 z-50 xl:hidden"
           >
             <div className="flex flex-col gap-5">
               {links.map((it, i) => (

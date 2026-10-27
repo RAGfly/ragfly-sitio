@@ -145,6 +145,9 @@ export default function DownloadPage() {
           <p className="font-helvetica-neue text-base md:text-lg text-slm-gray max-w-[620px] leading-relaxed">
             {t('download.descripcion')}
           </p>
+          <p className="font-interfaz text-sm text-slm-brand-dark leading-relaxed">
+            {t('download.planesNota')}
+          </p>
 
           {/* Botones: el OS detectado va primero como primario */}
           <div className="flex flex-col sm:flex-row items-center gap-3 mt-2">

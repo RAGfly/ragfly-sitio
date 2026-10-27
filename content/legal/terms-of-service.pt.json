@@ -89,7 +89,7 @@
             "**Isolamento.** Os Dados do Cliente são logicamente isolados dos de outros clientes: nenhuma outra organização ou cliente pode acessá-los. Dentro da sua organização, cada workspace só é acessível aos usuários e agentes que você autorizar nele.",
             "**Portabilidade e devolução.** Você pode exportar ou solicitar a devolução dos seus Dados do Cliente a qualquer momento durante a vigência e durante o período de carência posterior ao encerramento descrito na Seção 12.",
             "**Exclusão.** A seu pedido, ou após o encerramento e o período de carência aplicável, excluiremos seus Dados do Cliente dos nossos sistemas, exceto quando a retenção for exigida por lei.",
-            "**Processamento local opcional.** Nos planos compatíveis, o RAGfly Desktop processa o arquivo original e sua extração dentro da sua rede. Dependendo da implantação, chunks, embeddings e metadados podem ser sincronizados; o RAGfly processa os chunks necessários para recuperar contexto."
+            "**Processamento local opcional.** Em todos os planos, inclusive no Free, o RAGfly Desktop processa o arquivo original e sua extração dentro da sua rede. Dependendo da implantação, chunks, embeddings e metadados podem ser sincronizados; o RAGfly processa os chunks necessários para recuperar contexto."
           ]
         },
         {

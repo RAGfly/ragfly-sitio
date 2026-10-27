@@ -3,6 +3,8 @@
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { BlurIn } from './shared'
+import { CredentialsBlock } from './CredentialsBlock'
+import { LockInSection } from './LockInSection'
 
 /* ------------------------------------------------------------------ */
 /* SurfacesSection — "MCP, REST, CLI o SDK" + snippet                   */
@@ -25,29 +27,28 @@ export function SurfacesSection() {
   }
 }`
   return (
-    <section id="superficies" className="relative rf-corte px-6 md:px-12 lg:px-[60px] py-24 md:py-32 bg-slm-light overflow-hidden">
-      <div className="max-w-[1200px] mx-auto flex flex-col gap-12">
+    <section id="superficies" className="relative rf-corte px-6 md:px-12 lg:px-[60px] pt-24 md:pt-32 bg-slm-light overflow-hidden">
+      <div className="max-w-[1200px] mx-auto flex flex-col gap-12 pb-24 md:pb-32">
         <div className="max-w-[720px] flex flex-col gap-6">
           <span className="rf-anot text-slm-brand">{t('superficies.eyebrow')}</span>
           <BlurIn as="h2" className="text-slm-dark text-4xl md:text-5xl lg:text-6xl font-helvetica-neue font-medium leading-[1.05] tracking-[-0.03em]">
             {t('superficies.titulo1')}{' '}
             <span className="inline-block pb-[0.06em] bg-gradient-to-r from-slm-brand-dark via-slm-brand to-slm-brand-light bg-clip-text text-transparent">{t('superficies.tituloAccent')}</span>
           </BlurIn>
-          <p className="text-base md:text-lg text-slm-gray font-helvetica-neue max-w-[560px] leading-relaxed">{t('superficies.descripcion')}</p>
           <p className="font-interfaz text-xs md:text-[13px] text-slm-dark/70 leading-relaxed border-l border-slm-brand/50 pl-4 max-w-[620px]">
             {t('superficies.planesNota')}
           </p>
         </div>
-        <div className="grid md:grid-cols-4 gap-4">
+        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-4">
           {surfaces.map((s) => (
             <Link
               key={s.h}
               href={s.href}
               className={`rounded-[24px] p-8 flex flex-col gap-3 border transition-colors hover:border-slm-brand hover:bg-slm-light ${s.feat ? 'bg-white border-slm-brand/40' : 'bg-white border-slm-dark/8'}`}
             >
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <h3 className="font-mono text-xl font-medium text-slm-dark">{s.h}</h3>
-                {s.feat && <span className="rf-boton text-[10px] uppercase tracking-[0.15em] bg-slm-brand/10 text-slm-brand px-2 py-0.5 rounded-full">abrimos aquí</span>}
+                {s.feat && <span className="rf-boton text-[10px] uppercase tracking-[0.15em] bg-slm-brand/10 text-slm-brand px-2 py-0.5 rounded-full">{t('superficies.empezar')}</span>}
               </div>
               <p className="text-slm-gray font-helvetica-neue text-base leading-relaxed">{s.d}</p>
             </Link>
@@ -61,7 +62,7 @@ export function SurfacesSection() {
           <pre className="overflow-x-auto font-mono text-sm leading-relaxed text-slm-light/90 bg-black/20 rounded-xl p-4"><code>{snippet}</code></pre>
           <div className="flex flex-wrap gap-3">
             <a href="/agents.json" className="rf-boton bg-slm-brand-light text-slm-dark px-5 py-2.5 rounded-full font-medium text-sm hover:opacity-90 transition-opacity">agents.json</a>
-            <a href="/llms-full.txt" className="rf-boton border border-white/30 text-slm-light px-5 py-2.5 rounded-full font-medium text-sm hover:bg-white/10 transition-colors">Catálogo (Markdown)</a>
+            <a href="/llms-full.txt" className="rf-boton border border-white/30 text-slm-light px-5 py-2.5 rounded-full font-medium text-sm hover:bg-white/10 transition-colors">{t('superficies.catalogo')}</a>
             <a href="https://api.ragfly.ai/docs" target="_blank" rel="noopener noreferrer" className="rf-boton border border-white/30 text-slm-light px-5 py-2.5 rounded-full font-medium text-sm hover:bg-white/10 transition-colors">Swagger API</a>
             <Link href="/build/quickstart" className="rf-boton border border-white/30 text-slm-light px-5 py-2.5 rounded-full font-medium text-sm hover:bg-white/10 transition-colors">Quickstart →</Link>
           </div>
@@ -77,7 +78,9 @@ export function SurfacesSection() {
           <p className="font-interfaz text-sm text-slm-dark/80 border-l border-slm-brand/50 pl-4">{t('superficies.accionCita')}</p>
           <p className="text-slm-dark/85 font-helvetica-neue text-base leading-relaxed">{t('superficies.accionRemate')}</p>
         </div>
+        <CredentialsBlock />
       </div>
+      <LockInSection />
     </section>
   )
 }

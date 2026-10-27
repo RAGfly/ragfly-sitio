@@ -1,12 +1,13 @@
 import { ImageResponse } from "next/og";
+import { defaultLocale, locales, type Locale } from "../../i18n/config";
 
-// Imagen social (Open Graph / Twitter) generada en build.
-// Paleta de marca: dark #0F1729, gradiente #1E4A82 → #4089CD → #7AB4DD.
-export const alt = "RAGfly — Servicio de RAG para agentes de IA. Acceso por workspace, área, rol y agente.";
-export const size = { width: 1200, height: 630 };
-export const contentType = "image/png";
+// Explicit locale in the image URL keeps social crawlers independent of cookies.
+const size = { width: 1200, height: 630 };
 
-export default function Image() {
+export async function GET(request: Request) {
+  const requested = new URL(request.url).searchParams.get("locale");
+  const locale = requested && locales.includes(requested as Locale) ? requested : defaultLocale;
+  const { metadata, hero } = (await import(`../../messages/${locale}.json`)).default;
   return new ImageResponse(
     (
       <div
@@ -49,13 +50,13 @@ export default function Image() {
             style={{
               display: "flex",
               marginTop: 24,
-              fontSize: 44,
+              fontSize: 52,
               fontWeight: 600,
               lineHeight: 1.2,
               color: "#7AB4DD",
             }}
           >
-            Acceso por workspace, área, rol y agente
+            {metadata.title.replace(/^RAGfly — /, "")}
           </div>
           <div
             style={{
@@ -68,7 +69,7 @@ export default function Image() {
               maxWidth: 980,
             }}
           >
-            Recuperación aumentada para tus agentes de IA, aislada por workspace y con privacidad verificable.
+            {hero.slogan}
           </div>
         </div>
 

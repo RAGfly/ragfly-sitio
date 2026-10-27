@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "title": "RAGfly — Service de RAG pour agents IA, avec accès par workspace",
-    "description": "Service de RAG pour agents IA. Accès par workspace, zone, rôle et agent, avec une confidentialité vérifiable selon le mode de déploiement. Connectez un répertoire via MCP, REST, CLI ou SDK.",
+    "title": "RAGfly — Vos documents, prêts pour l’IA",
+    "description": "Choisissez vos dossiers et discutez avec vos documents, avec la source de chaque réponse. Connectez-les à Claude, ChatGPT ou à vos propres agents. Nous ne stockons pas vos documents.",
     "keywords": [
       "Service de RAG",
       "RAG avec workspaces",
@@ -23,13 +23,17 @@
       "apportez votre propre base vectorielle",
       "RAG pour consultants et intégrateurs",
       "alternative à Ragie",
-      "alternative à LlamaParse"
-    ]
+      "alternative à LlamaParse",
+      "chat with your documents",
+      "documents for AI",
+      "AI document search"
+    ],
+    "imageAlt": "RAGfly — Vos documents, prêts pour l’IA."
   },
   "nav": {
-    "producto": "Simple",
+    "producto": "Comment ça marche",
     "capacidades": "Précis",
-    "comoFunciona": "Comment l'utiliser",
+    "comoFunciona": "Développeurs",
     "paraAgentes": "MCP",
     "seguridad": "Privé",
     "planes": "Forfaits",
@@ -38,15 +42,13 @@
     "descargar": "Desktop"
   },
   "hero": {
-    "eyebrow": "Service de RAG",
-    "headlineLead": "Récupération augmentée",
-    "headlineAccent": "pour vos agents.",
-    "slogan": "Simple, privé et précis. Accès par workspace, zone, rôle et agent.",
-    "lineaApoyo": "Fonctionne avec les agents que vous utilisez déjà — via MCP — et avec ceux que vous construisez.",
-    "definicionContexto": "Un workspace, c'est ce que vous décidez de ne jamais mélanger : votre vie personnelle et votre activité dans un même agent, ou chaque client de votre cabinet comptable. Vous tracez la frontière. Rien ne la franchit. Dans chaque workspace, vous décidez qui voit quoi par zone, rôle et agent.",
-    "tagline": "À l'échelle, avec une confidentialité vérifiable selon le mode de déploiement. Vous connectez un répertoire et votre agent répond avec des citations — sans construire ni maintenir un pipeline RAG.",
-    "ctaPrimario": "Commencer gratuitement",
-    "ctaSecundario": "Voir la démo en direct"
+    "eyebrow": "Des documents pour l’ère de l’IA",
+    "headlineLead": "Vos documents, prêts pour l’IA.",
+    "descripcion": "Choisissez vos dossiers. RAGfly les prépare pour que vos agents puissent les consulter, avec la source de chaque réponse. Essayez dès maintenant dans notre chat.",
+    "slogan": "Simple, privé et précis. Accès par workspace, domaine, rôle et agent.",
+    "ctaPrimario": "Essayez avec vos documents",
+    "ctaSecundario": "Comment ça marche",
+    "lineaApoyo": "Fonctionne avec Claude, ChatGPT et les agents que vous créez (via MCP)."
   },
   "construyendo": {
     "eyebrow": "Que construisez-vous ?",
@@ -185,20 +187,20 @@
     "paso2Desc": "RAGfly scanne, vectorise et indexe vos documents, prêts pour votre interface et vos agents.",
     "cloudNota": "Vous préférez commencer sans rien installer ?",
     "cloudCta": "Utilisez RAGfly Cloud",
-    "actualizacion": "Les mises à jour se téléchargent toutes seules : quand une nouvelle version est prête, il suffit d'appuyer sur « Redémarrer pour appliquer »."
+    "actualizacion": "Les mises à jour se téléchargent toutes seules : quand une nouvelle version est prête, il suffit d'appuyer sur « Redémarrer pour appliquer ».",
+    "planesNota": "RAGfly Desktop est inclus dans tous les plans, Free compris."
   },
   "superficies": {
-    "eyebrow": "Comment l'utiliser",
-    "titulo1": "MCP, REST, CLI ou SDK.",
-    "tituloAccent": "Utilisez-le là où vous travaillez.",
-    "descripcion": "Quatre surfaces, dans tous les forfaits. Le message est de neutralité ; le chemin que nous montrons en premier est MCP.",
-    "mcpTitulo": "MCP",
+    "eyebrow": "POUR LES DÉVELOPPEURS",
+    "titulo1": "Utilisez-le depuis votre environnement de travail.",
+    "tituloAccent": "Claude, ChatGPT… via MCP, REST, CLI ou SDK.",
+    "mcpTitulo": "Vos agents (via MCP)",
     "mcpDesc": "Connectez RAGfly comme serveur MCP et votre agent converse avec les documents sans que vous construisiez la moindre UI. C'est par là que nous ouvrons.",
     "restTitulo": "REST",
     "restDesc": "Le fondement universel de production. La base sur laquelle repose tout le reste.",
     "cliTitulo": "CLI",
     "cliDesc": "DX, opération et ingestion massive. La commodité au quotidien.",
-    "snippetTitulo": "Connexion MCP",
+    "snippetTitulo": "Connectez vos agents (via MCP)",
     "snippetSub": "Sans projet d'intégration.",
     "sdkTitulo": "SDK",
     "sdkDesc": "Intégrez RAGfly directement dans votre code. Python et TypeScript. Sans infrastructure MCP nécessaire.",
@@ -207,7 +209,9 @@
     "accionDesc": "L'agent ne se limite pas à récupérer des fragments : il invoque des opérations sur des ensembles de documents par prompt, depuis votre propre agent.",
     "accionCita": "« Télécharge ces 500 documents et place-les où je t'indique. »",
     "accionRemate": "RAGfly est un toolset d'opérations documentaires que l'agent appelle, pas seulement un fournisseur de contexte.",
-    "planesNota": "Les six interfaces —chat web, MCP, REST, SDK Python, SDK TypeScript et CLI— sont dans tous les forfaits, le gratuit inclus. RAGfly Desktop est à part, à partir de Starter."
+    "planesNota": "Les six interfaces —chat web, MCP, REST, SDK Python, SDK TypeScript et CLI— sont dans tous les forfaits, le gratuit inclus. RAGfly Desktop aussi.",
+    "empezar": "Commencez ici",
+    "catalogo": "Catalogue (Markdown)"
   },
   "construido": {
     "eyebrow": "Comment c'est construit",
@@ -294,12 +298,12 @@
     "invalid": "Saisissez une adresse e-mail valide."
   },
   "footer": {
-    "tagline": "Service de RAG pour vos agents IA. Accès par workspace, zone, rôle et agent. Le Cloud ne conserve pas l'original ; Desktop le traite localement ; dans les offres souveraines, la base de données appartient au client.",
+    "tagline": "Vos documents, prêts pour l’IA. Accès par workspace, domaine, rôle et agent.",
     "producto": "Produit",
     "empresa": "Ressources",
     "legal": "Légal",
-    "capacidades": "Simple",
-    "comoFunciona": "Comment l'utiliser",
+    "capacidades": "Comment ça marche",
+    "comoFunciona": "Développeurs",
     "paraAgentes": "MCP",
     "planesLink": "Forfaits",
     "seguridadLink": "Privé",
@@ -504,12 +508,19 @@
     "limiteDesc": "Nous ne traitons pas l'audio, la vidéo ni les images qui ne sont pas du texte.",
     "interfaces": "Chat web, serveur MCP, API REST /v1, SDK Python, SDK TypeScript et CLI.",
     "interfacesNotaTitulo": "Dans tous les forfaits",
-    "interfacesNotaDesc": "Les six, avec une seule configuration. RAGfly Desktop est à part, à partir de Starter."
+    "interfacesNotaDesc": "Les six, avec une seule configuration. RAGfly Desktop est inclus dans tous les plans, Free compris.",
+    "estados": [
+      "CHARGÉ",
+      "METADATA",
+      "NUMÉRISÉ",
+      "FRAGMENTÉ",
+      "VECTORISÉ"
+    ]
   },
   "privado": {
     "eyebrow": "PRIVÉ · LE MANIFESTE",
-    "titulo1": "Nous ne stockons jamais votre document.",
-    "tituloAccent": "Et si vous le souhaitez, le document ne quitte jamais votre réseau.",
+    "titulo1": "Nous ne stockons pas vos documents.",
+    "tituloAccent": "Et si vous le souhaitez, ils ne quittent jamais votre réseau.",
     "descripcion": "Dans le Cloud, l'original est traité à l'entrée et n'est pas conservé : ce qui persiste, ce sont les dérivés —fragments, embeddings et métadonnées—. Avec Desktop, le fichier et son extraction restent dans votre réseau et, selon le déploiement, des dérivés chiffrés peuvent être synchronisés. Dans les offres souveraines, cette base est la vôtre.",
     "manifiestoTag": "ISOLEMENT",
     "manifiestoTitulo": "Ce n'est pas que vous ne le voyez pas. C'est qu'il n'est pas à bord.",
@@ -554,7 +565,8 @@
     "triage1": "génération",
     "triage2": "citation",
     "triage3": "exactitude numérique",
-    "remate": "On améliore de façon ciblée, pas à l'aveugle."
+    "remate": "On améliore de façon ciblée, pas à l'aveugle.",
+    "detallesTitulo": "Comment nous y parvenons"
   },
   "config": {
     "eyebrow": "CONFIGURATION",
@@ -608,49 +620,47 @@
     "remate": "Avec parsing-BYOK et embedding-BYOK, le contenu est traité avec vos identifiants. Avec les forfaits souverains, les vecteurs sont stockés dans votre propre base de données."
   },
   "cierre": {
-    "eyebrow": "CLÔTURE",
-    "titulo": "Pointez RAGfly vers vos documents et donnez à n'importe quel agent le contexte exact dont il a besoin — prêt pour la production, avec un accès par workspace, zone, rôle et agent.",
-    "northStarTitulo": "Nous construisons pour des agents en production, pas pour des démos.",
-    "northStarDesc": "Nous mesurons ce qui compte : les agents et applications qui servent de la récupération depuis RAGfly. Pas les utilisateurs de chat, pas les documents chargés.",
+    "eyebrow": "POUR FINIR",
+    "titulo": "Indiquez vos documents à RAGfly. Essayez dans le chat, puis connectez vos agents.",
     "ctaPrimario": "Créer un compte gratuit",
-    "ctaSecundario": "Connecter votre agent (MCP)",
+    "ctaSecundario": "Connectez votre agent",
     "escribenos": "Vous préférez nous écrire ?",
     "faqEyebrow": "QUESTIONS FRÉQUENTES",
     "faqTitulo": "Ce qu'on nous demande avant de commencer"
   },
   "faq": {
-    "q0": "Pourquoi un RAG répond-il mieux qu'une recherche dans vos fichiers ?",
-    "a0": "Parce qu'il travaille avec des fragments, pas avec des fichiers entiers. Un système de fichiers cherche par nom, chemin ou texte exact et renvoie des fichiers entiers que votre agent doit lire en entier. Un RAG découpe vos documents en fragments (chunks) et les cherche par le sens : il comprend les questions en langage naturel, trouve très vite les fragments pertinents, et ne donne à votre agent que ce dont il a besoin, avec la source.",
-    "q1": "Qu'est-ce que RAGfly ?",
-    "a1": "Un service de RAG pour agents d'IA : il transforme n'importe quel corpus documentaire —des milliers ou des dizaines de milliers de documents, scans compris— en une base de récupération sécurisée, organisée en workspaces isolés et prête pour la production, sans construire ni maintenir un pipeline RAG.",
-    "q2": "À qui s'adresse-t-il ?",
-    "a2": "Aux développeurs, cabinets de conseil et intégrateurs qui construisent des agents d'IA sur des documents privés —parfois pour de nombreux clients différents— et qui ne veulent ni construire ni maintenir le pipeline de RAG à l'échelle.",
-    "q3": "Combien ça coûte ?",
-    "a3": "Offres en USD : Free 0 $, Starter 39 $/mois, Growth 149 $/mois, Scale 590 $/mois, Business 1 990 $/mois et Enterprise sur devis. Chaque offre indique le corpus actif, le Retrieval simple, le RAG Augmenté, le RAG Agentique et les workspaces ; les offres payantes permettent des compléments manuels et n'ont pas de dépassement automatique. MCP, REST, CLI et SDK sont disponibles dans toutes les offres.",
-    "q4": "Comment ça marche ?",
-    "a4": "Vous pointez RAGfly vers le répertoire de vos documents ; le système les analyse, les vectorise et les indexe automatiquement. Ensuite, votre agent récupère par le sens et obtient des réponses avec citations de la source via MCP, REST ou CLI, isolé par workspace et avec le traitement des données correspondant au mode de déploiement.",
-    "q5": "Comment un agent d'IA consomme-t-il RAGfly ?",
-    "a5": "Via un serveur MCP distant (SSE ou HTTP) ou la CLI de RAGfly Desktop, en s'authentifiant avec un JWT ou une API Key. Le catalogue des opérations est publié sur `https://ragfly.ai/agents.json` et `https://ragfly.ai/llms-full.txt`.",
-    "q6": "Que traite RAGfly et où restent mes données ?",
-    "a6": "RAGfly traite l'information documentaire à l'entrée et les chunks pertinents à la sortie. Dans le Cloud, il traite le fichier original mais ne le conserve pas après l'ingestion ; les chunks, embeddings et métadonnées persistent. Avec Desktop, l'original et son extraction sont traités dans votre réseau, même si des dérivés peuvent être synchronisés. Dans les offres souveraines, la base de données et les dérivés au repos appartiennent au client ; RAGfly accède aux chunks nécessaires pour récupérer et livrer le contexte.",
-    "q7": "Comment les données d'un client sont-elles isolées de celles d'un autre ?",
-    "a7": "Workspaces isolés par défaut : chaque workspace vit dans un corpus isolé dès la base de données, avec une structure Organisation → Workspaces → Zones. Un workspace, c'est ce que vous décidez de ne jamais mélanger : votre vie personnelle et votre activité dans un même agent, ou chaque client de votre cabinet comptable. Vous tracez la frontière. Rien ne la franchit. Dans chaque workspace, vous décidez qui voit quoi par zone, rôle et agent. Un cabinet de conseil ou un intégrateur peut servir des dizaines de clients depuis une seule plateforme sans qu'une donnée passe de l'un à l'autre.",
-    "q8": "Puis-je utiliser ma propre base vectorielle et mon propre modèle ?",
-    "a8": "Cela dépend du forfait. Growth active parsing-BYOK, embedding-BYOK et agentic-BYOK ; Scale ajoute un projet vectoriel Supabase appartenant au client ; Enterprise accepte les LLM et bases vectorielles compatibles du client.",
-    "q9": "Avec quels modèles d'IA fonctionne-t-il — Claude, GPT, Gemini ?",
-    "a9": "RAGfly est agnostique de modèle. Il livre la récupération avec citations et permissions ; votre agent tourne sur le LLM que vous préférez —Claude, GPT, Gemini ou un autre— et consomme RAGfly via MCP, REST ou CLI.",
+    "q0": "Qu'est-ce que RAGfly ?",
+    "a0": "Un service de RAG pour agents d'IA : il transforme n'importe quel corpus documentaire —des milliers ou des dizaines de milliers de documents, scans compris— en une base de récupération sécurisée, organisée en workspaces isolés et prête pour la production, sans construire ni maintenir un pipeline RAG.",
+    "q1": "À qui s'adresse-t-il ?",
+    "a1": "Aux développeurs, cabinets de conseil et intégrateurs qui construisent des agents d'IA sur des documents privés —parfois pour de nombreux clients différents— et qui ne veulent ni construire ni maintenir le pipeline de RAG à l'échelle.",
+    "q2": "Dois-je créer un agent pour utiliser RAGfly ?",
+    "a2": "Non. Connectez l'agent que vous utilisez déjà, comme Claude ou GPT, via MCP, ou utilisez REST, le SDK ou la CLI. Votre agent peut vous aider à la configuration.",
+    "q3": "Comment ça marche ?",
+    "a3": "Vous pointez RAGfly vers le répertoire de vos documents ; le système les analyse, les vectorise et les indexe automatiquement. Ensuite, votre agent récupère par le sens et obtient des réponses avec citations de la source via MCP, REST ou CLI, isolé par workspace et avec le traitement des données correspondant au mode de déploiement.",
+    "q4": "Pourquoi un RAG répond-il mieux qu'une recherche dans vos fichiers ?",
+    "a4": "Parce qu'il travaille avec des fragments, pas avec des fichiers entiers. Un système de fichiers cherche par nom, chemin ou texte exact et renvoie des fichiers entiers que votre agent doit lire en entier. Un RAG découpe vos documents en fragments (chunks) et les cherche par le sens : il comprend les questions en langage naturel, trouve très vite les fragments pertinents, et ne donne à votre agent que ce dont il a besoin, avec la source.",
+    "q5": "Combien ça coûte ?",
+    "a5": "Offres en USD : Free 0 $, Starter 39 $/mois, Growth 149 $/mois, Scale 590 $/mois, Business 1 990 $/mois et Enterprise sur devis. Chaque offre indique le corpus actif, le Retrieval simple, le RAG Augmenté, le RAG Agentique et les workspaces ; les offres payantes permettent des compléments manuels et n'ont pas de dépassement automatique. MCP, REST, CLI et SDK sont disponibles dans toutes les offres.",
+    "q6": "Qu'est-ce qui change entre Free et les plans payants ?",
+    "a6": "Les limites et la capacité. La confidentialité est la même sur tous les plans. Free est permanent, avec des limites mensuelles, et ne demande pas de carte bancaire.",
+    "q7": "Qui traite mes documents ?",
+    "a7": "Des modèles de fournisseurs dont les conditions excluent l'entraînement sur vos données, sur tous les plans, Free compris. RAGfly n'utilise pas vos documents pour entraîner ses propres modèles.",
+    "q8": "Que traite RAGfly et où restent mes données ?",
+    "a8": "RAGfly traite l'information documentaire à l'entrée et les chunks pertinents à la sortie. Dans le Cloud, il traite le fichier original mais ne le conserve pas après l'ingestion ; les chunks, embeddings et métadonnées persistent. Avec Desktop, l'original et son extraction sont traités dans votre réseau, même si des dérivés peuvent être synchronisés. Dans les offres souveraines, la base de données et les dérivés au repos appartiennent au client ; RAGfly accède aux chunks nécessaires pour récupérer et livrer le contexte.",
+    "q9": "Comment les données d'un client sont-elles isolées de celles d'un autre ?",
+    "a9": "Workspaces isolés par défaut : chaque workspace vit dans un corpus isolé dès la base de données, avec une structure Organisation → Workspaces → Zones. Un workspace, c'est ce que vous décidez de ne jamais mélanger : votre vie personnelle et votre activité dans un même agent, ou chaque client de votre cabinet comptable. Vous tracez la frontière. Rien ne la franchit. Dans chaque workspace, vous décidez qui voit quoi par zone, rôle et agent. Un cabinet de conseil ou un intégrateur peut servir des dizaines de clients depuis une seule plateforme sans qu'une donnée passe de l'un à l'autre.",
     "q10": "Quels formats sont pris en charge ? Fonctionne-t-il avec des PDF scannés (OCR) ?",
     "a10": "PDF, Word, Excel et texte brut, y compris les documents scannés grâce à un OCR de premier plan et à la compréhension des tableaux et de la mise en page. Le focus est le texte et les documents complexes, pas l'audio ni la vidéo.",
     "q11": "Puis-je l'utiliser avec des données réglementées (juridique, santé, secteur public) ?",
     "a11": "Oui. Desktop traite le fichier original et son extraction au sein du réseau du client. Dans les offres souveraines, le client est propriétaire de la base où persistent les dérivés. RAGfly traite toujours des chunks à la sortie pour produire la récupération ; un runtime in-situ complet est le mode qui maintient aussi ce traitement dans l'infrastructure du client.",
-    "q12": "En combien de temps passe-t-on d'un répertoire à un agent qui répond avec des citations ?",
-    "a12": "Vous pointez RAGfly vers un répertoire et, avec l'ingestion, la vectorisation et l'indexation automatiques, vous pouvez avoir un agent qui répond avec des citations en peu de temps, sans aide humaine — et sans construire ni maintenir un pipeline RAG à l'échelle.",
-    "q13": "Qui traite mes documents ?",
-    "a13": "Des modèles de fournisseurs dont les conditions excluent l'entraînement sur vos données, sur tous les plans, Free compris. RAGfly n'utilise pas vos documents pour entraîner ses propres modèles.",
-    "q14": "Dois-je créer un agent pour utiliser RAGfly ?",
-    "a14": "Non. Connectez l'agent que vous utilisez déjà, comme Claude ou GPT, via MCP, ou utilisez REST, le SDK ou la CLI. Votre agent peut vous aider à la configuration.",
-    "q15": "Qu'est-ce qui change entre Free et les plans payants ?",
-    "a15": "Les limites et la capacité. La confidentialité est la même sur tous les plans. Free est permanent, avec des limites mensuelles, et ne demande pas de carte bancaire.",
+    "q12": "Avec quels modèles d'IA fonctionne-t-il — Claude, GPT, Gemini ?",
+    "a12": "RAGfly est agnostique de modèle. Il livre la récupération avec citations et permissions ; votre agent tourne sur le LLM que vous préférez —Claude, GPT, Gemini ou un autre— et consomme RAGfly via MCP, REST ou CLI.",
+    "q13": "En combien de temps passe-t-on d'un répertoire à un agent qui répond avec des citations ?",
+    "a13": "Vous pointez RAGfly vers un répertoire et, avec l'ingestion, la vectorisation et l'indexation automatiques, vous pouvez avoir un agent qui répond avec des citations en peu de temps, sans aide humaine — et sans construire ni maintenir un pipeline RAG à l'échelle.",
+    "q14": "Comment un agent d'IA consomme-t-il RAGfly ?",
+    "a14": "Via un serveur MCP distant (SSE ou HTTP) ou la CLI de RAGfly Desktop, en s'authentifiant avec un JWT ou une API Key. Le catalogue des opérations est publié sur `https://ragfly.ai/agents.json` et `https://ragfly.ai/llms-full.txt`.",
+    "q15": "Puis-je utiliser ma propre base vectorielle et mon propre modèle ?",
+    "a15": "Cela dépend du forfait. Growth active parsing-BYOK, embedding-BYOK et agentic-BYOK ; Scale ajoute un projet vectoriel Supabase appartenant au client ; Enterprise accepte les LLM et bases vectorielles compatibles du client.",
     "total": "16"
   },
   "jsonLd": {
@@ -663,5 +673,19 @@
       "Agnostique de la base de données et BYO : apportez votre propre base vectorielle et votre propre LLM",
       "Interfaces MCP, REST, CLI et SDK sur tous les plans"
     ]
+  },
+  "comoFunciona": {
+    "eyebrow": "COMMENT ÇA MARCHE",
+    "titulo": "De vos dossiers à des réponses sourcées.",
+    "paso0Titulo": "Choisissez vos dossiers.",
+    "paso0Desc": "Avec RAGfly Desktop, sur Mac ou Windows. RAGfly les lit, les organise et les indexe tout seul, y compris les documents numérisés.",
+    "paso0Nota": "Nous ne stockons pas vos documents.",
+    "paso1Titulo": "Essayez dans le chat.",
+    "paso1Desc": "Interrogez le chat de RAGfly sur vos documents et voyez ses réponses. Chaque réponse indique sa source : le document et la page.",
+    "paso2Titulo": "Connectez-les à vos agents.",
+    "paso2Desc": "Ensuite, au travail : Claude, ChatGPT ou vos propres agents consultent vos documents quand ils en ont besoin.",
+    "paso2Nota": "Via MCP, REST, le SDK ou la CLI.",
+    "guia": "Guide de connexion",
+    "cta": "Essayez avec vos documents"
   }
 }

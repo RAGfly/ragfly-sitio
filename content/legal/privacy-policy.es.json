@@ -116,7 +116,7 @@
       "blocks": [
         {
           "kind": "p",
-          "text": "El Servicio puede tratar datos en países distintos del suyo. Cuando la ley aplicable lo exige, utilizamos garantías apropiadas (como cláusulas contractuales tipo) para las transferencias transfronterizas. En los planes compatibles, RAGfly Desktop mantiene el procesamiento de sus archivos originales dentro de su propia infraestructura; las representaciones derivadas de su contenido (chunks, embeddings y metadatos) pueden seguir siendo tratadas por el Servicio según lo descrito en esta política."
+          "text": "El Servicio puede tratar datos en países distintos del suyo. Cuando la ley aplicable lo exige, utilizamos garantías apropiadas (como cláusulas contractuales tipo) para las transferencias transfronterizas. En todos los planes, también en Free, RAGfly Desktop mantiene el procesamiento de sus archivos originales dentro de su propia infraestructura; las representaciones derivadas de su contenido (chunks, embeddings y metadatos) pueden seguir siendo tratadas por el Servicio según lo descrito en esta política."
         }
       ]
     },
