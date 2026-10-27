@@ -26,4 +26,10 @@ El catálogo público de PROD consultado el 27-oct-2026 confirma `FREE.ENTIDADES
 - Playwright contra build de producción: ES/EN a 390, 1024 y 1440 px; sin desborde ni errores de JavaScript. Menú adaptable, anclas válidas, orden de secciones, 16 FAQ, BYOK/lock-in, acordeón de precisión y metadata correctos.
 - OG y Twitter: PNG 200 en ES/EN; `/start/context`, `/start/memory`, `/download`, `/build/mcp`: 200.
 - Paridad de claves en cinco idiomas y smoke PT/FR/DE sin mensajes faltantes.
-- Verificación de diff: precios, límites, dependencias y rutas de apertura intactos. La publicación se limita al preview de la rama; no se promueve a main.
+- Verificación de diff: precios, límites, dependencias y rutas de apertura intactos. El preview fue aprobado por Víctor el 27-oct-2026; autorizó publicar en main y alinear la descripción para agentes.
+
+## Descripción para agentes y publicación
+
+Por solicitud de Víctor, la presentación de `llms.txt`, `llms-full.txt`, `agents.json` y `SoftwareApplication` (JSON-LD) reutiliza los textos de la home: documentos primero, prueba en chat y conexión de agentes después. `metadata.description` es la fuente compartida; se elimina la descripción paralela de `jsonLd`. Los textos técnicos de herramientas, autenticación y permisos se conservan. El catálogo Markdown se regenera con `build:agentes`.
+
+Validación adicional: descripción del JSON-LD idéntica a la metadata en los cinco idiomas; `agents.json`, `llms-full.txt` y `llms.txt` contienen la presentación nueva y los pasos de la home. El catálogo conserva sus 42 tools; `/start/context` y `/start/memory` responden 200. Lint, TypeScript y build pasan.

@@ -11,6 +11,8 @@ const pub = resolve(root, 'public')
 const kit = process.env.RAGFLY_KIT_DIR ? resolve(process.env.RAGFLY_KIT_DIR) : resolve(root, KIT_DIR)
 const date = new Date().toISOString().slice(0, 10)
 const backtick = String.fromCharCode(96)
+// Reuse the home copy so machine-readable descriptions cannot drift from it.
+const { metadata, comoFunciona } = JSON.parse(readFileSync(resolve(root, 'messages/en.json'), 'utf8'))
 
 function readMcpTools() {
   const markdown = readFileSync(resolve(kit, 'MCP.md'), 'utf8')
@@ -43,7 +45,7 @@ const operations = {
 }
 const json = {
   name: 'RAGfly',
-  description: 'Document retrieval for agents, exposed through MCP tools and a separate RBAC-filtered REST operations manifest.',
+  description: metadata.description,
   desktop: { included_in: 'all_plans', free_plan_included: true, download_url: 'https://ragfly.ai/download' },
   site: 'https://ragfly.ai',
   app: 'https://app.ragfly.ai',
@@ -63,9 +65,19 @@ writeFileSync(
 )
 
 const lines = [
-  '# RAGfly — Agent interface catalog',
+  '# ' + metadata.title,
   '',
-  '> Discover MCP tools with tools/list. Discover the separate manifest operations with GET /v1/operations.',
+  '> ' + metadata.description,
+  '',
+  '## ' + comoFunciona.eyebrow,
+  '',
+  '1. ' + comoFunciona.paso0Titulo + ' ' + comoFunciona.paso0Desc + ' ' + comoFunciona.paso0Nota,
+  '2. ' + comoFunciona.paso1Titulo + ' ' + comoFunciona.paso1Desc,
+  '3. ' + comoFunciona.paso2Titulo + ' ' + comoFunciona.paso2Desc + ' ' + comoFunciona.paso2Nota,
+  '',
+  '## Agent interface catalog',
+  '',
+  'Discover MCP tools with tools/list. Discover the separate manifest operations with GET /v1/operations.',
   '',
   'Updated: ' + date,
   '',

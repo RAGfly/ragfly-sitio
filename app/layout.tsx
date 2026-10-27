@@ -81,7 +81,7 @@ type FaqEntry = { q: string; a: string };
 // cupos que la grilla (PricingSection), para que el OfferCatalog no quede en español.
 type TextosPlanes = { titulo: string; aMedida: string; porMesCorto: string; otrosLimites: string; sub: (codigo: string) => string };
 
-// Descripción y funcionalidades del SoftwareApplication: namespace `jsonLd` en los 5 idiomas.
+// SoftwareApplication shares its description with the home metadata; capabilities use `jsonLd`.
 type TextosApp = { descripcion: string; funciones: string[] };
 
 const buildJsonLd = (faq: FaqEntry[], catalogo: Catalogo, locale: string, tp: TextosPlanes, app: TextosApp) => {
@@ -151,6 +151,7 @@ export default async function RootLayout({
   const tFaq = await getTranslations("faq");
   const tPlanes = await getTranslations("planes");
   const tJsonLd = await getTranslations("jsonLd");
+  const tMetadata = await getTranslations("metadata");
   const jsonLd = buildJsonLd(
     Array.from({ length: Number(tFaq("total")) }, (_, i) => ({
       q: tFaq(`q${i}` as Parameters<typeof tFaq>[0]),
@@ -165,7 +166,7 @@ export default async function RootLayout({
       otrosLimites: tPlanes("limitesSecundarios"),
       sub: (codigo) => tPlanes(`sub${codigo}` as Parameters<typeof tPlanes>[0]),
     },
-    { descripcion: tJsonLd("descripcion"), funciones: tJsonLd.raw("funciones") as string[] },
+    { descripcion: tMetadata("description"), funciones: tJsonLd.raw("funciones") as string[] },
   );
 
   return (

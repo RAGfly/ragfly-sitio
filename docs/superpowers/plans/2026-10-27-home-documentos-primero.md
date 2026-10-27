@@ -8,7 +8,7 @@
 
 ## Restricciones
 
-- Rama `home/documentos-primero` desde `github/main`; entregar preview Vercel; no publicar en main.
+- Rama `home/documentos-primero` desde `github/main`; entregar preview Vercel. Actualización: Víctor autorizó publicar en main después de revisar el preview.
 - No modificar `app/start`, `components/apertura`, `content/apertura.ts`, precios, cupos ni catálogo de planes.
 - ES y EN literales según la tarea; mantener claves disponibles en PT/FR/DE para que los componentes compartidos sigan funcionando.
 - Desktop incluido desde Free; corregir copy en todas las superficies del sitio sin modificar producto/BD.

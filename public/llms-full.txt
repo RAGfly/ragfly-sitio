@@ -1,6 +1,16 @@
-# RAGfly — Agent interface catalog
+# RAGfly — Your documents, ready for AI
 
-> Discover MCP tools with tools/list. Discover the separate manifest operations with GET /v1/operations.
+> Choose your folders and talk to your documents, with the source of every answer. Connect them to Claude, ChatGPT or your own agents. We don't store your documents.
+
+## HOW IT WORKS
+
+1. Choose your folders. With RAGfly Desktop, on Mac or Windows. RAGfly reads, organizes and indexes them on its own — scans included. We don't store your documents.
+2. Try it in the chat. Ask RAGfly's chat about your documents and see how it answers. Every answer comes with its source: the document and the page.
+3. Connect your agents. Then put it to work: Claude, ChatGPT or your own agents query your documents whenever they need them. Over MCP, REST, the SDK or the CLI.
+
+## Agent interface catalog
+
+Discover MCP tools with tools/list. Discover the separate manifest operations with GET /v1/operations.
 
 Updated: 2026-10-27
 

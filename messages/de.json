@@ -663,7 +663,6 @@
     "total": "16"
   },
   "jsonLd": {
-    "descripcion": "RAG-Service für KI-Agenten: macht aus jedem Dokumentenkorpus eine sichere, produktionsreife Retrieval-Basis, mit Zugriff nach Workspace, Bereich, Rolle und Agent. Cloud bewahrt die Originaldatei nicht auf; Desktop verarbeitet sie lokal; in souveränen Plänen gehört die Datenbank dem Kunden.",
     "funciones": [
       "Von null auf Produktion, indem du auf ein Verzeichnis zeigst (automatische Aufnahme, Vektorisierung und Indexierung)",
       "Ab Werk isolierte Workspaces: ein isolierter Korpus pro Workspace (Organisation → Workspaces → Bereiche), mit Zugriff nach Bereich, Rolle und Agent",

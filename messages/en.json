@@ -663,7 +663,6 @@
     "total": "16"
   },
   "jsonLd": {
-    "descripcion": "RAG service for AI agents: turns any document corpus into a secure, production-ready retrieval base, with access by workspace, area, role and agent. Cloud does not keep the original file; Desktop processes it locally; on sovereign plans the database belongs to the customer.",
     "funciones": [
       "From zero to production by pointing at a directory (automatic ingestion, vectorization and indexing)",
       "Workspaces isolated out of the box: one isolated corpus per workspace (Organization → Workspaces → Areas), with access by area, role and agent",

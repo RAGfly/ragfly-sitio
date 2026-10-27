@@ -664,7 +664,6 @@
     "total": "16"
   },
   "jsonLd": {
-    "descripcion": "Servicio de RAG para agentes de IA: convierte cualquier corpus de documentos en una base de recuperación segura, con acceso por workspace, área, rol y agente, y lista para producción. Cloud no conserva el archivo original; Desktop lo procesa localmente; en planes soberanos la base de datos es del cliente.",
     "funciones": [
       "De cero a producción apuntando a un directorio (ingesta, vectorización e indexado automáticos)",
       "Workspaces aislados de fábrica: un corpus aislado por workspace (Organización → Workspaces → Áreas), con acceso por área, rol y agente",

@@ -1,6 +1,6 @@
 {
   "name": "RAGfly",
-  "description": "Document retrieval for agents, exposed through MCP tools and a separate RBAC-filtered REST operations manifest.",
+  "description": "Choose your folders and talk to your documents, with the source of every answer. Connect them to Claude, ChatGPT or your own agents. We don't store your documents.",
   "desktop": {
     "included_in": "all_plans",
     "free_plan_included": true,
