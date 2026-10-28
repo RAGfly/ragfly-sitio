@@ -3,7 +3,7 @@ Mensajes Marketing — lado del sitio
 Fuente: CORP, tabla `mensajes_marketing` (desde 2026-10-26; antes `parametros_generales`, ya
 retirado). Contrato del endpoint, idiomas y estados: `docs/operativos/MENSAJES_MARKETING.md` en
 RAGfly/ragfly-corp. Cómo se trabaja una campaña y dónde vive cada dato: manual
-`comercial/publicidad/README.md` en el Drive de RAGfly. No duplicar esas reglas aquí.
+`comercial/publicidad/README.md` en la carpeta RAGfly de Dropbox. No duplicar esas reglas aquí.
 
 Lo propio del sitio:
 
