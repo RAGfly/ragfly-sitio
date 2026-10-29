@@ -30,6 +30,12 @@ export function SimpleSection() {
           </p>
         </div>
 
+        <div className="max-w-[760px] border-l-2 border-slm-brand pl-6 flex flex-col gap-3">
+          <h3 className="font-helvetica-neue text-xl font-medium text-slm-dark">{t('simple.driveTitulo')}</h3>
+          <p className="text-slm-gray font-helvetica-neue text-base leading-relaxed">{t('simple.driveDesc')}</p>
+          <a href="/legal/privacy" className="text-slm-brand-dark underline underline-offset-4">{t('simple.drivePrivacidad')}</a>
+        </div>
+
         {/* Perfil de vuelo + estados del pipeline en monoespaciada */}
         <div className="border border-slm-dark/10 p-6 md:p-10 flex flex-col gap-8">
           <Image
