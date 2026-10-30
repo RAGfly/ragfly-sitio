@@ -42,7 +42,8 @@
     "descargar": "Desktop"
   },
   "hero": {
-    "eyebrow": "Documentos para a era da IA",
+    "eyebrow": "Serviço de RAG",
+    "ragDefinition": "RAG: Geração Aumentada por Recuperação",
     "headlineLead": "Seus documentos, prontos para a IA.",
     "descripcion": "Escolha suas pastas. O RAGfly as prepara para que seus agentes possam consultá-las, com a fonte de cada resposta. Experimente agora no nosso chat.",
     "slogan": "Simples, privado e preciso. Acesso por workspace, área, papel e agente.",

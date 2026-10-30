@@ -42,7 +42,8 @@
     "descargar": "Desktop"
   },
   "hero": {
-    "eyebrow": "Des documents pour l’ère de l’IA",
+    "eyebrow": "Service RAG",
+    "ragDefinition": "RAG : génération augmentée par récupération",
     "headlineLead": "Vos documents, prêts pour l’IA.",
     "descripcion": "Choisissez vos dossiers. RAGfly les prépare pour que vos agents puissent les consulter, avec la source de chaque réponse. Essayez dès maintenant dans notre chat.",
     "slogan": "Simple, privé et précis. Accès par workspace, domaine, rôle et agent.",

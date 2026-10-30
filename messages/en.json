@@ -41,7 +41,8 @@
     "descargar": "Desktop"
   },
   "hero": {
-    "eyebrow": "Documents for the AI era",
+    "eyebrow": "RAG service",
+    "ragDefinition": "RAG: Retrieval-Augmented Generation",
     "headlineLead": "Your documents, ready for AI.",
     "slogan": "Simple, private, and precise. Access by workspace, area, role and agent.",
     "lineaApoyo": "Works with Claude, ChatGPT and the agents you build (over MCP).",

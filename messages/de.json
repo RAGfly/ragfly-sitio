@@ -41,7 +41,8 @@
     "descargar": "Desktop"
   },
   "hero": {
-    "eyebrow": "Dokumente für das KI-Zeitalter",
+    "eyebrow": "RAG-Dienst",
+    "ragDefinition": "RAG: durch Informationsabruf ergänzte Generierung",
     "headlineLead": "Deine Dokumente, bereit für KI.",
     "descripcion": "Wähle deine Ordner. RAGfly bereitet sie vor, damit deine Agenten sie abfragen können – mit der Quelle jeder Antwort. Probiere es gleich in unserem Chat aus.",
     "slogan": "Einfach, privat und präzise. Zugriff nach Workspace, Bereich, Rolle und Agent.",
