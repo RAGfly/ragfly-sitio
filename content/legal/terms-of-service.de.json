@@ -1,6 +1,6 @@
 {
   "title": "Nutzungsbedingungen",
-  "subtitle": "Zuletzt aktualisiert: 15/10/2026 · Version 1.3",
+  "subtitle": "Zuletzt aktualisiert: 01/11/2026 · Version 1.3",
   "intro": [
     {
       "kind": "p",
@@ -59,7 +59,7 @@
           "items": [
             "Self-Service-Abonnements werden ab Kaufdatum monatlich im Voraus abgerechnet. Änderungen von Tarif und wiederkehrender Kapazität werden über Paddle anteilig berechnet.",
             "Free ist dauerhaft, erfordert keine Karte und hat monatliche Kontingente. Es ist kein befristeter Test.",
-            "Pakete für Erweitertes RAG und Agentisches RAG sind einmalige Käufe nicht verfallender Guthaben; zusätzliche Korpuskapazität ist wiederkehrend. Mehrverbrauch wird niemals automatisch berechnet.",
+            "Pakete für Agentisches RAG sind einmalige Käufe nicht verfallender Guthaben; zusätzliche Korpuskapazität ist wiederkehrend. Mehrverbrauch wird niemals automatisch berechnet.",
             "Die enthaltene Verarbeitung unterliegt einer angemessenen Nutzung zum Schutz gemeinsamer Verfügbarkeit und Leistung; bei ungewöhnlicher Nutzung können wir Uploads pausieren und Sie kontaktieren, bevor eine dauerhafte Einschränkung erfolgt.",
             "Preise können sich ändern; wir kündigen dies mit angemessener Frist an, und Änderungen treten zum nächsten Abrechnungszyklus in Kraft.",
             "Verspätete oder fehlgeschlagene Zahlungen können nach Ankündigung zur Sperrung des Dienstes führen.",

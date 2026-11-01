@@ -11,7 +11,6 @@ export async function PricingSection({ locale: localeFijo, destino }: { locale?:
   const catalogo = await cargarCatalogo(locale)
   const porCodigo = new Map(catalogo.caracteristicas.map((c) => [c.codigo_caracteristica, c]))
   const corpus = porCodigo.get('CORPUS_ACTIVO')
-  const aumentado = porCodigo.get('RECUP_INTELIGENTE')
   const agentico = porCodigo.get('RAG_AGENTICO')
 
   return (
@@ -35,12 +34,10 @@ export async function PricingSection({ locale: localeFijo, destino }: { locale?:
               aMedida: t('aMedida'),
               porMesCorto: t('porMesCorto'),
             })
-            const adicionales = !free && !enterprise && corpus && aumentado && agentico
+            const adicionales = !free && !enterprise && corpus && agentico
               ? t('adicionalesLinea', {
                   corpus: numero(Number(corpus.unidades_adicional_recurrente || 10000), locale),
                   corpusPrecio: usd(Number(corpus.precio_adicional_recurrente_usd || 10), locale),
-                  aumentado: numero(Number(aumentado.unidades_pack || 500), locale),
-                  aumentadoPrecio: usd(Number(aumentado.precio_pack_usd || 35), locale),
                   agentico: numero(Number(agentico.unidades_pack || 50), locale),
                   agenticoPrecio: usd(Number(agentico.precio_pack_usd || 59), locale),
                 })

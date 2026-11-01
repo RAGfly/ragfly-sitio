@@ -1,6 +1,6 @@
 {
   "title": "Conditions d'utilisation",
-  "subtitle": "Dernière mise à jour : 15/10/2026 · Version 1.3",
+  "subtitle": "Dernière mise à jour : 01/11/2026 · Version 1.3",
   "intro": [
     {
       "kind": "p",
@@ -59,7 +59,7 @@
           "items": [
             "Les abonnements en libre-service sont facturés mensuellement à l'avance à compter de la date d'achat. Les changements de forfait et de capacité récurrente sont calculés au prorata par Paddle.",
             "Free est permanent, ne nécessite aucune carte et comporte des quotas mensuels. Il ne s'agit pas d'un essai à durée limitée.",
-            "Les packs RAG augmenté et RAG agentique sont des achats uniques de crédits sans expiration ; la capacité de corpus ajoutée est récurrente. Aucun dépassement n'est facturé automatiquement.",
+            "Les packs RAG agentique sont des achats uniques de crédits sans expiration ; la capacité de corpus ajoutée est récurrente. Aucun dépassement n'est facturé automatiquement.",
             "Le traitement inclus est soumis à un usage raisonnable afin de protéger la disponibilité et les performances partagées ; en cas d'usage anormal, nous pouvons suspendre les chargements et vous contacter avant toute restriction durable.",
             "Les prix peuvent changer ; nous donnerons un préavis raisonnable, et les changements prennent effet au cycle de facturation suivant.",
             "Un paiement tardif ou en échec peut entraîner la suspension du Service après préavis.",

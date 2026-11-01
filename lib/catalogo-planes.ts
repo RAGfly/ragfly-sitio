@@ -26,7 +26,7 @@ export type Catalogo = {
   valores: Record<string, Record<string, Valor>>
 }
 
-export const PRINCIPALES = ['CORPUS_ACTIVO', 'RETRIEVALS', 'RECUP_INTELIGENTE', 'RAG_AGENTICO']
+export const PRINCIPALES = ['CORPUS_ACTIVO', 'RETRIEVALS', 'RAG_AGENTICO']
 export const SECUNDARIOS = ['ENTIDADES', 'AREAS', 'ESPACIOS_TRABAJO', 'SINTESIS', 'CHAT']
 
 export const FALLBACK: Catalogo = {
@@ -41,7 +41,6 @@ export const FALLBACK: Catalogo = {
   caracteristicas: [
     { codigo_caracteristica: 'CORPUS_ACTIVO', nombre: 'Corpus activo', tipo_caracteristica: 'CUPO', unidad: 'páginas', unidades_adicional_recurrente: 10000, precio_adicional_recurrente_usd: 10 },
     { codigo_caracteristica: 'RETRIEVALS', nombre: 'Retrieval simple', tipo_caracteristica: 'CUPO', unidad: 'retrievals' },
-    { codigo_caracteristica: 'RECUP_INTELIGENTE', nombre: 'RAG Aumentado', tipo_caracteristica: 'CUPO', unidad: 'operaciones', unidades_pack: 500, precio_pack_usd: 35 },
     { codigo_caracteristica: 'RAG_AGENTICO', nombre: 'RAG Agéntico', tipo_caracteristica: 'CUPO', unidad: 'operaciones', unidades_pack: 50, precio_pack_usd: 59 },
     { codigo_caracteristica: 'ENTIDADES', nombre: 'Workspaces', tipo_caracteristica: 'CUPO', unidad: null },
     { codigo_caracteristica: 'AREAS', nombre: 'Áreas', tipo_caracteristica: 'CUPO', unidad: null },
@@ -132,7 +131,7 @@ export function resumenPlanEs(catalogo: Catalogo, codigoPlan: string): string | 
   const cantidad = (codigo: string) => valores[codigo]?.cantidad_incluida
   const corpus = cantidad('CORPUS_ACTIVO')
   if (corpus == null) return null
-  const mensuales = ['RETRIEVALS', 'RECUP_INTELIGENTE', 'RAG_AGENTICO']
+  const mensuales = ['RETRIEVALS', 'RAG_AGENTICO']
     .filter((codigo) => cantidad(codigo) != null)
     .map((codigo) => `${entero(Number(cantidad(codigo)))} ${nombre(codigo)}`)
   const workspaces = cantidad('ENTIDADES')
@@ -153,10 +152,9 @@ export function lineaPreciosEs(catalogo: Catalogo): string {
   })
   const porCodigo = new Map(catalogo.caracteristicas.map((c) => [c.codigo_caracteristica, c]))
   const corpus = porCodigo.get('CORPUS_ACTIVO')
-  const aumentado = porCodigo.get('RECUP_INTELIGENTE')
   const agentico = porCodigo.get('RAG_AGENTICO')
-  const adicionales = corpus?.unidades_adicional_recurrente && aumentado?.unidades_pack && agentico?.unidades_pack
-    ? ` Adicionales (planes pagados): corpus activo +${entero(Number(corpus.unidades_adicional_recurrente))} páginas por $${entero(Number(corpus.precio_adicional_recurrente_usd))}/mes; packs de compra única de ${aumentado.nombre} (+${entero(Number(aumentado.unidades_pack))} por $${entero(Number(aumentado.precio_pack_usd))}) y ${agentico.nombre} (+${entero(Number(agentico.unidades_pack))} por $${entero(Number(agentico.precio_pack_usd))}); sin cobro automático por exceso.`
+  const adicionales = corpus?.unidades_adicional_recurrente && agentico?.unidades_pack
+    ? ` Adicionales (planes pagados): corpus activo +${entero(Number(corpus.unidades_adicional_recurrente))} páginas por $${entero(Number(corpus.precio_adicional_recurrente_usd))}/mes; pack de compra única de ${agentico.nombre} (+${entero(Number(agentico.unidades_pack))} por $${entero(Number(agentico.precio_pack_usd))}); sin cobro automático por exceso.`
     : ''
   return `- Precios (USD; fuente: catálogo vivo, https://ragfly.ai/#planes): ${planes.join(' · ')}.${adicionales}`
 }

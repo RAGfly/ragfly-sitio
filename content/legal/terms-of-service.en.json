@@ -1,6 +1,6 @@
 {
   "title": "Terms of Service",
-  "subtitle": "Last updated: 15/10/2026 · Version 1.3",
+  "subtitle": "Last updated: 01/11/2026 · Version 1.3",
   "intro": [
     {
       "kind": "p",
@@ -59,7 +59,7 @@
           "items": [
             "Self-service subscriptions are billed monthly in advance from the purchase date. Plan and recurring-capacity changes are prorated through Paddle's mechanism.",
             "Free is permanent, requires no payment card, and has monthly allowances. It is not an expiring trial.",
-            "Augmented RAG and Agentic RAG packs are one-time purchases of non-expiring credits; added corpus capacity is recurring. No excess usage is charged automatically.",
+            "Agentic RAG packs are one-time purchases of non-expiring credits; added corpus capacity is recurring. No excess usage is charged automatically.",
             "Included processing is subject to reasonable use to protect shared availability and performance; for anomalous usage we may pause uploads and contact you before imposing a lasting restriction.",
             "Prices may change; we will give reasonable advance notice, and changes take effect at the next billing cycle.",
             "Late or failed payment may result in suspension of the Service after notice.",

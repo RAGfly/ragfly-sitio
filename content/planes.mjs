@@ -14,7 +14,7 @@
 //   - "resaltado: true" marca el plan recomendado (solo uno).
 //   - "featuresIniciales" se muestran primero; luego "limites"; luego "features".
 //
-// MODELO (ago-2026): corpus activo, Retrieval simple, RAG Aumentado y RAG
+// MODELO (ago-2026): corpus activo, Retrieval simple y RAG
 // Agéntico, con adicionales explícitos y sin overage automático.
 // Superficies MCP/REST/CLI/SDK en todos los planes. Margen vive en la
 // recuperación/generación verificada (valor); storage/infra a costo.
@@ -36,7 +36,6 @@ export const planes = [
     features: [
       'RAGfly Desktop (incluido en todos los planes, también en Free)',
       '1.500 Retrieval simple/mes',
-      '30 RAG Aumentado/mes',
       '5 RAG Agéntico/mes',
       '4 áreas · 5 Espacios de Trabajo · síntesis de hasta 1.500 páginas',
     ],
@@ -53,9 +52,8 @@ export const planes = [
     },
     features: [
       '5.000 Retrieval simple/mes',
-      '300 RAG Aumentado/mes',
       '50 RAG Agéntico/mes',
-      'Adicionales: corpus +10.000/$10 mes · RAG Aumentado +500/$35 · RAG Agéntico +50/$59',
+      'Adicionales: corpus +10.000/$10 mes · RAG Agéntico +50/$59',
       '12 áreas · 10 Espacios de Trabajo · síntesis de hasta 10.000 páginas',
     ],
   },
@@ -72,9 +70,8 @@ export const planes = [
     featuresIniciales: ['Todo lo de Starter'],
     features: [
       '25.000 Retrieval simple/mes',
-      '1.500 RAG Aumentado/mes',
       '150 RAG Agéntico/mes',
-      'Adicionales: corpus +10.000/$10 mes · RAG Aumentado +500/$35 · RAG Agéntico +50/$59',
+      'Adicionales: corpus +10.000/$10 mes · RAG Agéntico +50/$59',
       'Operaciones entre Espacios · parsing-BYOK · embedding-BYOK · agentic-BYOK',
       '50 áreas · 50 Espacios de Trabajo · síntesis de hasta 50.000 páginas',
     ],
@@ -92,9 +89,8 @@ export const planes = [
     featuresIniciales: ['Todo lo de Growth'],
     features: [
       '100.000 Retrieval simple/mes',
-      '5.000 RAG Aumentado/mes',
       '500 RAG Agéntico/mes',
-      'Adicionales: corpus +10.000/$10 mes · RAG Aumentado +500/$35 · RAG Agéntico +50/$59',
+      'Adicionales: corpus +10.000/$10 mes · RAG Agéntico +50/$59',
       'Proyecto Supabase vectorial propio',
       '200 áreas · 200 Espacios de Trabajo · síntesis de hasta 200.000 páginas',
     ],
@@ -111,7 +107,7 @@ export const planes = [
     },
     featuresIniciales: ['Todo lo de Scale'],
     features: [
-      'Retrieval simple, RAG Aumentado y RAG Agéntico a convenir',
+      'Retrieval simple y RAG Agéntico a convenir',
       'BYO LLM + bases vectoriales soportadas',
       'parsing-BYOK · embedding-BYOK · agentic-BYOK',
       'DPA/SLA',

@@ -1,6 +1,6 @@
 {
   "title": "Términos de Servicio",
-  "subtitle": "Última actualización: 15/10/2026 · Versión 1.3",
+  "subtitle": "Última actualización: 01/11/2026 · Versión 1.3",
   "intro": [
     {
       "kind": "p",
@@ -59,7 +59,7 @@
           "items": [
             "Las suscripciones self-service se facturan mensualmente por adelantado desde la fecha de compra. Los cambios de plan y de capacidad recurrente se prorratean según el mecanismo de Paddle.",
             "Free es permanente, no requiere tarjeta y tiene cupos mensuales. No es una prueba con vencimiento.",
-            "Los packs de RAG Aumentado y RAG Agéntico son compras únicas de crédito no expirable; la capacidad adicional de corpus es recurrente. Ningún exceso se cobra automáticamente.",
+            "Los packs de RAG Agéntico son compras únicas de crédito no expirable; la capacidad adicional de corpus es recurrente. Ningún exceso se cobra automáticamente.",
             "El procesamiento incluido está sujeto a uso razonable para proteger la disponibilidad y el rendimiento compartido; ante un uso anómalo podremos pausar cargas y contactarlo antes de aplicar una restricción duradera.",
             "Los precios pueden cambiar; daremos aviso previo razonable, y los cambios surten efecto en el siguiente ciclo de facturación.",
             "El pago atrasado o fallido puede dar lugar a la suspensión del Servicio tras un aviso.",
