@@ -1,6 +1,6 @@
 {
   "title": "Política de Privacidad",
-  "subtitle": "Última actualización: 18/10/2026 · Versión 1.2",
+  "subtitle": "Última actualización: 02/11/2026 · Versión 1.3",
   "intro": [
     {
       "kind": "p",
@@ -189,6 +189,14 @@
         {
           "kind": "p",
           "text": "El uso que RAGfly hace de la información recibida de las APIs de Google se ajusta a la **Política de Datos de Usuario de los Servicios de la API de Google**, incluidos los requisitos de **Uso Limitado (Limited Use)**. No vendemos estos datos ni los usamos para entrenar modelos de IA generalizados."
+        },
+        {
+          "kind": "p",
+          "text": "**Quién recibe estos datos.** El texto extraído de sus documentos de Drive y la información derivada de él (como tipos de documento, características, resúmenes, glosario y vectores de búsqueda) se almacena con los proveedores de alojamiento y de base de datos de RAGfly y, solo en la medida estrictamente necesaria para procesarlo, puede ser procesado por los proveedores de modelos de IA configurados para la operación. RAGfly selecciona proveedores cuyos términos excluyen el entrenamiento con sus datos. No transferimos estos datos a ningún otro tercero, salvo cuando la ley lo exija."
+        },
+        {
+          "kind": "p",
+          "text": "**Retención y eliminación.** Estos datos se conservan según sus instrucciones y lo descrito en la Sección 7. Usted puede eliminar documentos de RAGfly, desconectar Google Drive y revocar el acceso de RAGfly en cualquier momento desde su Cuenta de Google en https://myaccount.google.com/permissions. También puede solicitarnos la eliminación de los datos de usuario de Google que conservamos escribiendo a admin@ragfly.ai (véase la Sección 9). La Sección 8 describe cómo se protegen estos datos."
         }
       ]
     },
