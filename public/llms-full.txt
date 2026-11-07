@@ -1,4 +1,4 @@
-# RAGfly — Your documents, ready for AI
+# RAGfly — Your AI, answering from your documents
 
 > Choose your folders and talk to your documents, with the source of every answer. Connect them to Claude, ChatGPT or your own agents. We don't store your documents.
 

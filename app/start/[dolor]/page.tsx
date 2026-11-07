@@ -26,11 +26,11 @@ export function generateStaticParams() {
 }
 
 const GENERICOS: Record<Locale, [string, string]> = {
-    en: ['Make your documents available to your agents.', 'RAGfly is a RAG service. You connect your documents once, and the agents you already use query them over MCP, with the source and with access by workspace, area, role and agent.'],
-    es: ['Disponibiliza tus documentos a tus agentes.', 'RAGfly es un servicio de RAG. Conectas tus documentos una vez y los agentes que ya usas los consultan por MCP, con la fuente y con acceso por workspace, área, rol y agente.'],
-    pt: ['Disponibilize seus documentos para seus agentes.', 'O RAGfly é um serviço de RAG. Você conecta seus documentos uma vez e os agentes que você já usa os consultam por MCP, com a fonte e com acesso por workspace, área, papel e agente.'],
-    fr: ['Mettez vos documents à la disposition de vos agents.', 'RAGfly est un service de RAG. Vous connectez vos documents une fois, et les agents que vous utilisez déjà les interrogent via MCP, avec la source et avec un accès par workspace, zone, rôle et agent.'],
-    de: ['Stelle deine Dokumente deinen Agenten bereit.', 'RAGfly ist ein RAG-Dienst. Du verbindest deine Dokumente einmal, und die Agenten, die du bereits nutzt, fragen sie über MCP ab – mit Quelle und mit Zugriff nach Workspace, Bereich, Rolle und Agent.'],
+    en: ['Your AI, answering from your documents.', 'RAGfly is a RAG service. You connect your documents once, and the AI you already use queries them over MCP, with the source and with access by workspace, area, role and agent.'],
+    es: ['Que tu IA responda con tus documentos.', 'RAGfly es un servicio de RAG. Conectas tus documentos una vez y la IA que ya usas los consulta por MCP, con la fuente y con acceso por workspace, área, rol y agente.'],
+    pt: ['Sua IA, respondendo com os seus documentos.', 'O RAGfly é um serviço de RAG. Você conecta seus documentos uma vez e a IA que você já usa os consulta por MCP, com a fonte e com acesso por workspace, área, papel e agente.'],
+    fr: ['Votre IA, qui répond à partir de vos documents.', 'RAGfly est un service de RAG. Vous connectez vos documents une fois, et l’IA que vous utilisez déjà les interroge via MCP, avec la source et avec un accès par workspace, zone, rôle et agent.'],
+    de: ['Deine KI, die mit deinen Dokumenten antwortet.', 'RAGfly ist ein RAG-Dienst. Du verbindest deine Dokumente einmal, und die KI, die du bereits nutzt, fragt sie über MCP ab – mit Quelle und mit Zugriff nach Workspace, Bereich, Rolle und Agent.'],
   }
 
 async function idioma(): Promise<Locale> {

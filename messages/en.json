@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "title": "RAGfly — Your documents, ready for AI",
-    "description": "Choose your folders and talk to your documents, with the source of every answer. Connect them to Claude, ChatGPT or your own agents. We don't store your documents.",
+    "title": "RAGfly — Your AI, answering from your documents",
+    "description": "Choose your folders and talk to your documents, with the source of every answer. Connect them to ChatGPT, Claude or the AI you use. We don't store your documents.",
     "keywords": [
       "RAG service",
       "RAG service",
@@ -27,7 +27,7 @@
       "documents for AI",
       "AI document search"
     ],
-    "imageAlt": "RAGfly — Your documents, ready for AI."
+    "imageAlt": "RAGfly — Your AI, answering from your documents."
   },
   "nav": {
     "producto": "How it works",
@@ -43,12 +43,12 @@
   "hero": {
     "eyebrow": "RAG service",
     "ragDefinition": "RAG: Retrieval-Augmented Generation",
-    "headlineLead": "Your documents, ready for AI.",
+    "headlineLead": "We help your AI answer from your documents.",
     "slogan": "Simple, private, and precise. Access by workspace, area, role and agent.",
-    "lineaApoyo": "Works with Claude, ChatGPT and the agents you build (over MCP).",
+    "lineaApoyo": "Try it in our chat, or connect it over MCP to the AI you already use.",
     "ctaPrimario": "Try it with your documents",
     "ctaSecundario": "How it works",
-    "descripcion": "Choose your folders. RAGfly prepares them so your agents can query them, with the source of every answer. Try it right away in our chat."
+    "descripcion": "Choose your folders. RAGfly prepares them so your AI can query them, with the source of every answer. Try it right away in our chat."
   },
   "construyendo": {
     "eyebrow": "What are you building?",
@@ -266,7 +266,7 @@
   },
   "porQue": {
     "eyebrow": "Why RAGfly",
-    "titulo": "Augmented retrieval for your agents.",
+    "titulo": "Augmented retrieval for your AI.",
     "item0Titulo": "The RAG service, solved",
     "item0Desc": "Ingestion, scale, multi-tenancy and security come solved. You build the agent logic, not the infrastructure.",
     "item1Titulo": "One workspace per client",
@@ -298,7 +298,7 @@
     "invalid": "Please enter a valid email."
   },
   "footer": {
-    "tagline": "Your documents, ready for AI. Access by workspace, area, role and agent.",
+    "tagline": "Your AI, answering from your documents. Access by workspace, area, role and agent.",
     "producto": "Product",
     "empresa": "Resources",
     "legal": "Legal",
@@ -624,7 +624,7 @@
   },
   "cierre": {
     "eyebrow": "CLOSING",
-    "titulo": "Point RAGfly at your documents. Try it in the chat, then connect your agents.",
+    "titulo": "Point RAGfly at your documents. Try it in the chat, then connect your AI.",
     "ctaPrimario": "Create a free account",
     "ctaSecundario": "Connect your agent",
     "escribenos": "Prefer to write to us?",
@@ -633,11 +633,11 @@
   },
   "faq": {
     "q0": "What is RAGfly?",
-    "a0": "A service that gets your documents ready for AI. You choose your folders; RAGfly reads, organizes and indexes them — scans included — so agents like Claude or ChatGPT can query them. You can try it first in RAGfly's chat. Every answer comes with its source, and each workspace stays isolated from the rest.",
+    "a0": "A service that helps your AI answer from your documents. You choose your folders; RAGfly reads, organizes and indexes them — scans included — so your AI, like Claude or ChatGPT, can query them. You can try it first in RAGfly's chat. Every answer comes with its source, and each workspace stays isolated from the rest.",
     "q1": "Who is it for?",
     "a1": "For people and teams with lots of documents who want to use them with AI: professionals, companies and consultancies — and developers building their own agents.",
     "q2": "Do I need to build an agent?",
-    "a2": "No. Connect the agent you already use, like Claude or ChatGPT, over MCP — or use REST, the SDK or the CLI. Your agent can help with setup. Before that, you can try RAGfly in its own chat, with your documents.",
+    "a2": "No. Connect the AI you already use, like Claude or ChatGPT, over MCP — or use REST, the SDK or the CLI. Your AI can help with setup. Before that, you can try RAGfly in its own chat, with your documents.",
     "q3": "How does it work?",
     "a3": "You choose your folders with RAGfly Desktop, on any plan, and RAGfly scans, indexes and vectorizes them on its own. You can try it in its chat; then your agent asks over MCP, REST or the CLI and gets answers with citations to the source, isolated by workspace.",
     "q4": "Why does RAG answer better than searching your files?",
@@ -684,7 +684,7 @@
     "paso0Nota": "We don't store your documents.",
     "paso1Titulo": "Try it in the chat.",
     "paso1Desc": "Ask RAGfly's chat about your documents and see how it answers. Every answer comes with its source: the document and the page.",
-    "paso2Titulo": "Connect your agents.",
+    "paso2Titulo": "Connect your AI.",
     "paso2Desc": "Then put it to work: Claude, ChatGPT or your own agents query your documents whenever they need them.",
     "paso2Nota": "Over MCP, REST, the SDK or the CLI.",
     "guia": "Connection guide",
