@@ -72,7 +72,7 @@ export async function generateMetadata(): Promise<Metadata> {
 // Mantener en español (mercado primario); los agentes lo parsean igual.
 // Precios y cupos = GET /pagos/catalogo-publico (BD), vía lib/catalogo-planes.ts:
 // las ofertas del JSON-LD se arman del catálogo vivo, no se escriben a mano.
-// FAQ: fuente única en comercial/comercial-operativo/RAGfly_FAQ.md (bloque A).
+// FAQ: copia comercial en comercial/comercial/RAGfly_FAQ.md (bloque A), sincronizada a mano.
 // Vive en i18n (namespace `faq`, claves q0/a0…qN/aN + `total`) en los 5 idiomas,
 // para que el FAQPage estructurado hable el mismo idioma que la página.
 type FaqEntry = { q: string; a: string };

@@ -10,7 +10,7 @@ import { BlurIn } from './shared'
 /*                                                                     */
 /* El FAQ vive en i18n (namespace `faq`, claves q0/a0…qN/aN + `total`), */
 /* en los 5 idiomas. Se rinde como acordeón nativo (<details>): sin JS, */
-/* sin rebote. content/faq.json quedó sin consumir.                     */
+/* sin rebote. (content/faq.json, que quedó sin consumir, se borró.)    */
 /* ------------------------------------------------------------------ */
 export function CierreSection() {
   const t = useTranslations()
