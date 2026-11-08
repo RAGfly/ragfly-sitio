@@ -19,6 +19,10 @@ export function Hero() {
         <BlurIn as="h1" className="text-center font-helvetica-neue font-medium max-w-3xl text-3xl md:text-5xl lg:text-6xl tracking-[-0.03em] leading-[1.08] pb-[0.12em] bg-gradient-to-r from-slm-brand-dark via-slm-brand to-slm-brand-light bg-clip-text text-transparent">
           {t('hero.headlineLead')}
         </BlurIn>
+        {/* Descriptor de categoría §3 (MENSAJE-CANONICO, 2026-11-07): subtítulo bajo la frase de entrada. */}
+        <BlurIn delay={0.04} as="p" className="font-helvetica-neue font-medium text-lg md:text-2xl text-slm-brand-dark text-center tracking-[-0.01em] -mt-2">
+          {t('hero.categoria')}
+        </BlurIn>
         <BlurIn delay={0.08} className="font-helvetica-neue text-base md:text-xl text-slm-dark/90 max-w-2xl text-center leading-relaxed mt-2">
           {t('hero.descripcion')}
         </BlurIn>

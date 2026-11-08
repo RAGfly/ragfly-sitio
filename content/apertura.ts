@@ -606,3 +606,55 @@ export const COMUN: Record<Locale, TextosComunes> = {
 export const URL_REGISTRO = 'https://app.ragfly.ai/login?registro=1'
 export const URL_LOGIN = 'https://app.ragfly.ai/login'
 export const URL_GUIA_MCP = '/build/mcp'
+
+/** Landing general `/start/marketing` (público general): mismo cuerpo que COMUN, con «tu IA»
+ *  en vez de «tu agente» (regla «Sujeto del beneficio», MENSAJE-CANONICO 2026-11-07). Las landings
+ *  `context` y `memory` se dirigen a quien opera agentes y usan COMUN tal cual. */
+export const COMUN_GENERAL: Record<Locale, { etiqueta: string; reemplazos: [string, string][] }> = {
+  en: {
+    etiqueta: "RAG service",
+    reemplazos: [
+      ["before answering, your agent searches it for the passages it needs", "before answering, your AI searches it for the passages it needs"],
+      ["Your agent can help with setup.", "Your AI can help with setup."],
+    ],
+  },
+  es: {
+    etiqueta: "Servicio de RAG",
+    reemplazos: [
+      ["antes de responder, tu agente busca ahí", "antes de responder, tu IA busca ahí"],
+      ["Tu agente puede ayudarte con la configuración.", "Tu IA puede ayudarte con la configuración."],
+    ],
+  },
+  pt: {
+    etiqueta: "Serviço de RAG",
+    reemplazos: [
+      ["antes de responder, seu agente busca ali", "antes de responder, sua IA busca ali"],
+      ["Seu agente pode ajudar na configuração.", "Sua IA pode ajudar na configuração."],
+    ],
+  },
+  fr: {
+    etiqueta: "Service RAG",
+    reemplazos: [
+      ["avant de répondre, votre agent y cherche les passages dont il a besoin", "avant de répondre, votre IA y cherche les passages dont elle a besoin"],
+      ["Votre agent peut vous aider à la configuration.", "Votre IA peut vous aider à la configuration."],
+    ],
+  },
+  de: {
+    etiqueta: "RAG-Dienst",
+    reemplazos: [
+      ["bevor dein Agent antwortet, sucht er dort die Passagen, die er braucht", "bevor deine KI antwortet, sucht sie dort die Passagen, die sie braucht"],
+      ["Dein Agent kann bei der Einrichtung helfen.", "Deine KI kann bei der Einrichtung helfen."],
+    ],
+  },
+}
+
+export function comunGeneral(c: TextosComunes, locale: Locale): TextosComunes {
+  const g = COMUN_GENERAL[locale]
+  const r = (x: string) => g.reemplazos.reduce((acc, [a, b]) => acc.split(a).join(b), x)
+  return {
+    ...c,
+    etiqueta: g.etiqueta,
+    queEsRag: { ...c.queEsRag, texto: r(c.queEsRag.texto) },
+    pilares: c.pilares.map((p) => ({ ...p, texto: r(p.texto) })),
+  }
+}

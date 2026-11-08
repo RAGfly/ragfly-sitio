@@ -45,6 +45,7 @@
     "eyebrow": "Service RAG",
     "ragDefinition": "RAG : génération augmentée par récupération",
     "headlineLead": "Nous aidons votre IA à répondre à partir de vos documents.",
+    "categoria": "Récupération augmentée pour votre IA.",
     "descripcion": "Choisissez vos dossiers. RAGfly les prépare pour que votre IA puisse les consulter, avec la source de chaque réponse. Essayez dès maintenant dans notre chat.",
     "slogan": "Simple, privé et précis. Accès par workspace, domaine, rôle et agent.",
     "ctaPrimario": "Essayez avec vos documents",

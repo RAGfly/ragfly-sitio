@@ -8,7 +8,7 @@ import { getLocale } from 'next-intl/server'
 import { FormularioAlta } from '../../../components/apertura/FormularioAlta'
 import { PricingSection } from '../../../components/sections/PricingSection'
 import { SelectorIdioma } from '../../../components/SelectorIdioma'
-import { COMUN, PAGINAS, PUBLICADA, URL_GUIA_MCP, type Dolor } from '../../../content/apertura'
+import { COMUN, comunGeneral, PAGINAS, PUBLICADA, URL_GUIA_MCP, type Dolor } from '../../../content/apertura'
 import { PRE_REGISTRATION } from '../../../content/preregistro'
 import { locales, type Locale } from '../../../i18n/config'
 
@@ -73,7 +73,7 @@ export default async function PaginaDolor({ params, searchParams }: { params: Pr
   const base = p.textos[locale]
 
   const t = dolor === 'marketing' ? {...base, titulo: GENERICOS[locale][0], bajada: GENERICOS[locale][1]} : base
-  const c = COMUN[locale]
+  const c = dolor === 'marketing' ? comunGeneral(COMUN[locale], locale) : COMUN[locale]
 
 
   const titulo2 = 'text-slm-dark text-2xl md:text-[30px] font-helvetica-neue font-medium leading-tight tracking-[-0.02em] text-balance'
