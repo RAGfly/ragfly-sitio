@@ -238,7 +238,7 @@ export const COMUN: Record<Locale, TextosComunes> = {
       preguntas: [
         {
           q: "Why does RAG answer better than searching your files?",
-          a: "Because it works with fragments, not whole files. A file system searches names, paths or exact text and hands back entire files that your agent has to read in full. A RAG splits your documents into fragments (chunks) and searches them by meaning: it understands questions in natural language, finds the relevant fragments very quickly, and gives your agent only what it needs, with the source.",
+          a: "Because it works with fragments, not whole files. A file system searches names, paths or exact text and hands back entire files that your AI has to read in full. A RAG splits your documents into fragments (chunks) and searches them by meaning: it understands questions in natural language, finds the relevant fragments very quickly, and gives your AI only what it needs, with the source.",
           tabla: {
             columnas: ["", "File system", "RAG"],
             filas: [
@@ -249,10 +249,10 @@ export const COMUN: Record<Locale, TextosComunes> = {
             ],
           },
         },
-        { q: "Do you store my documents?", a: "We don't keep your original files. To answer your agent, RAGfly stores what search needs: text fragments, their embeddings and the document's metadata. With RAGfly Desktop, the original file never leaves your network." },
+        { q: "Do you store my documents?", a: "We don't keep your original files. To answer your AI, RAGfly stores what search needs: text fragments, their embeddings and the document's metadata. With RAGfly Desktop, the original file never leaves your network." },
         { q: "Who processes my documents?", a: "Models from providers whose terms exclude training on your data, on every plan, Free included. RAGfly doesn't use your documents to train models of its own." },
         { q: "Can other people or agents see my documents?", a: "Only the workspaces, areas, roles and agents you allow. Each workspace is isolated: a search in one never returns documents from another." },
-        { q: "Do I need to build an agent to use RAGfly?", a: "No. Connect the agent you already use, like Claude or GPT, over MCP, or use REST, the SDK or the CLI. Your agent can help with setup." },
+        { q: "Do I need to build an agent to use RAGfly?", a: "No. Connect the AI you already use, like Claude or ChatGPT, over MCP — or use REST, the SDK or the CLI. Your AI can help with setup. Before that, you can try RAGfly in its own chat, with your documents." },
         { q: "What's the difference between Free and paid plans?", a: "Limits and capacity. Privacy is the same on every plan. Free is permanent, with monthly limits, and needs no credit card." },
       ],
     },
@@ -323,7 +323,7 @@ export const COMUN: Record<Locale, TextosComunes> = {
       preguntas: [
         {
           q: "¿Por qué un RAG responde mejor que buscar en tus archivos?",
-          a: "Porque trabaja con fragmentos, no con archivos completos. Un sistema de archivos busca por nombre, ruta o texto exacto y entrega archivos enteros que tu agente tiene que leer completos. Un RAG divide tus documentos en fragmentos (chunks) y los busca por significado: entiende preguntas en lenguaje natural, encuentra muy rápido los fragmentos pertinentes, y le entrega a tu agente solo lo que necesita, con la fuente.",
+          a: "Porque trabaja con fragmentos, no con archivos completos. Un sistema de archivos busca por nombre, ruta o texto exacto y entrega archivos enteros que tu IA tiene que leer completos. Un RAG divide tus documentos en fragmentos (chunks) y los busca por significado: entiende preguntas en lenguaje natural, encuentra muy rápido los fragmentos pertinentes, y le entrega a tu IA solo lo que necesita, con la fuente.",
           tabla: {
             columnas: ["", "Sistema de archivos", "RAG"],
             filas: [
@@ -334,10 +334,10 @@ export const COMUN: Record<Locale, TextosComunes> = {
             ],
           },
         },
-        { q: "¿Guardan mis documentos?", a: "No guardamos tus archivos originales. Para responderle a tu agente, RAGfly guarda lo que la búsqueda necesita: fragmentos del texto, sus embeddings y los metadatos del documento. Con RAGfly Desktop, el archivo original nunca sale de tu red." },
+        { q: "¿Guardan mis documentos?", a: "No guardamos tus archivos originales. Para responderle a tu IA, RAGfly guarda lo que la búsqueda necesita: fragmentos del texto, sus embeddings y los metadatos del documento. Con RAGfly Desktop, el archivo original nunca sale de tu red." },
         { q: "¿Quién procesa mis documentos?", a: "Modelos de proveedores cuyos términos excluyen entrenar con tus datos, en todos los planes, también en Free. RAGfly no usa tus documentos para entrenar modelos propios." },
         { q: "¿Otras personas o agentes pueden ver mis documentos?", a: "Solo los workspaces, áreas, roles y agentes que tú autorizas. Cada workspace queda aislado: una búsqueda en uno nunca devuelve documentos de otro." },
-        { q: "¿Tengo que construir un agente para usar RAGfly?", a: "No. Conecta el agente que ya usas, como Claude o GPT, por MCP, o usa REST, el SDK o la CLI. Tu agente puede ayudarte con la configuración." },
+        { q: "¿Tengo que construir un agente para usar RAGfly?", a: "No. Conecta la IA que ya usas, como Claude o ChatGPT, por MCP, o usa REST, el SDK o la CLI. Tu IA puede ayudarte con la configuración. Antes de eso, puedes probar RAGfly en su propio chat, con tus documentos." },
         { q: "¿Qué cambia entre Free y los planes pagados?", a: "Los límites y la capacidad. La privacidad es la misma en todos los planes. Free es permanente, con límites mensuales, y no pide tarjeta de crédito." },
       ],
     },
@@ -408,7 +408,7 @@ export const COMUN: Record<Locale, TextosComunes> = {
       preguntas: [
         {
           q: "Por que um RAG responde melhor do que buscar nos seus arquivos?",
-          a: "Porque trabalha com fragmentos, não com arquivos inteiros. Um sistema de arquivos busca por nome, caminho ou texto exato e devolve arquivos inteiros que seu agente precisa ler por completo. Um RAG divide seus documentos em fragmentos (chunks) e os busca pelo significado: entende perguntas em linguagem natural, encontra muito rápido os fragmentos pertinentes, e entrega ao seu agente só o que ele precisa, com a fonte.",
+          a: "Porque trabalha com fragmentos, não com arquivos inteiros. Um sistema de arquivos busca por nome, caminho ou texto exato e devolve arquivos inteiros que sua IA precisa ler por completo. Um RAG divide seus documentos em fragmentos (chunks) e os busca pelo significado: entende perguntas em linguagem natural, encontra muito rápido os fragmentos pertinentes, e entrega à sua IA só o que ela precisa, com a fonte.",
           tabla: {
             columnas: ["", "Sistema de arquivos", "RAG"],
             filas: [
@@ -419,10 +419,10 @@ export const COMUN: Record<Locale, TextosComunes> = {
             ],
           },
         },
-        { q: "Vocês armazenam meus documentos?", a: "Não guardamos seus arquivos originais. Para responder ao seu agente, o RAGfly guarda o que a busca precisa: fragmentos do texto, seus embeddings e os metadados do documento. Com o RAGfly Desktop, o arquivo original nunca sai da sua rede." },
+        { q: "Vocês armazenam meus documentos?", a: "Não guardamos seus arquivos originais. Para responder à sua IA, o RAGfly guarda o que a busca precisa: fragmentos do texto, seus embeddings e os metadados do documento. Com o RAGfly Desktop, o arquivo original nunca sai da sua rede." },
         { q: "Quem processa meus documentos?", a: "Modelos de provedores cujos termos excluem o treinamento com seus dados, em todos os planos, inclusive no Free. O RAGfly não usa seus documentos para treinar modelos próprios." },
         { q: "Outras pessoas ou agentes podem ver meus documentos?", a: "Só os workspaces, áreas, papéis e agentes que você autoriza. Cada workspace fica isolado: uma busca em um nunca traz documentos de outro." },
-        { q: "Preciso construir um agente para usar o RAGfly?", a: "Não. Conecte o agente que você já usa, como Claude ou GPT, por MCP, ou use REST, o SDK ou a CLI. Seu agente pode ajudar na configuração." },
+        { q: "Preciso construir um agente para usar o RAGfly?", a: "Não. Conecte a IA que você já usa, como Claude ou GPT, por MCP, ou use REST, o SDK ou a CLI. Sua IA pode ajudar na configuração." },
         { q: "O que muda entre o Free e os planos pagos?", a: "Os limites e a capacidade. A privacidade é a mesma em todos os planos. O Free é permanente, com limites mensais, e não pede cartão de crédito." },
       ],
     },
@@ -493,7 +493,7 @@ export const COMUN: Record<Locale, TextosComunes> = {
       preguntas: [
         {
           q: "Pourquoi un RAG répond-il mieux qu'une recherche dans vos fichiers ?",
-          a: "Parce qu'il travaille avec des fragments, pas avec des fichiers entiers. Un système de fichiers cherche par nom, chemin ou texte exact et renvoie des fichiers entiers que votre agent doit lire en entier. Un RAG découpe vos documents en fragments (chunks) et les cherche par le sens : il comprend les questions en langage naturel, trouve très vite les fragments pertinents, et ne donne à votre agent que ce dont il a besoin, avec la source.",
+          a: "Parce qu'il travaille avec des fragments, pas avec des fichiers entiers. Un système de fichiers cherche par nom, chemin ou texte exact et renvoie des fichiers entiers que votre IA doit lire en entier. Un RAG découpe vos documents en fragments (chunks) et les cherche par le sens : il comprend les questions en langage naturel, trouve très vite les fragments pertinents, et ne donne à votre IA que ce dont elle a besoin, avec la source.",
           tabla: {
             columnas: ["", "Système de fichiers", "RAG"],
             filas: [
@@ -504,10 +504,10 @@ export const COMUN: Record<Locale, TextosComunes> = {
             ],
           },
         },
-        { q: "Stockez-vous mes documents ?", a: "Nous ne conservons pas vos fichiers originaux. Pour répondre à votre agent, RAGfly garde ce dont la recherche a besoin : des fragments du texte, leurs embeddings et les métadonnées du document. Avec RAGfly Desktop, le fichier original ne quitte jamais votre réseau." },
+        { q: "Stockez-vous mes documents ?", a: "Nous ne conservons pas vos fichiers originaux. Pour répondre à votre IA, RAGfly garde ce dont la recherche a besoin : des fragments du texte, leurs embeddings et les métadonnées du document. Avec RAGfly Desktop, le fichier original ne quitte jamais votre réseau." },
         { q: "Qui traite mes documents ?", a: "Des modèles de fournisseurs dont les conditions excluent l'entraînement sur vos données, sur tous les plans, Free compris. RAGfly n'utilise pas vos documents pour entraîner ses propres modèles." },
         { q: "D'autres personnes ou agents peuvent-ils voir mes documents ?", a: "Seulement les workspaces, zones, rôles et agents que vous autorisez. Chaque workspace est isolé : une recherche dans l'un ne renvoie jamais de documents d'un autre." },
-        { q: "Dois-je créer un agent pour utiliser RAGfly ?", a: "Non. Connectez l'agent que vous utilisez déjà, comme Claude ou GPT, via MCP, ou utilisez REST, le SDK ou la CLI. Votre agent peut vous aider à la configuration." },
+        { q: "Dois-je créer un agent pour utiliser RAGfly ?", a: "Non. Connectez l'IA que vous utilisez déjà, comme Claude ou GPT, via MCP, ou utilisez REST, le SDK ou la CLI. Votre IA peut vous aider à la configuration." },
         { q: "Qu'est-ce qui change entre Free et les plans payants ?", a: "Les limites et la capacité. La confidentialité est la même sur tous les plans. Free est permanent, avec des limites mensuelles, et ne demande pas de carte bancaire." },
       ],
     },
@@ -578,7 +578,7 @@ export const COMUN: Record<Locale, TextosComunes> = {
       preguntas: [
         {
           q: "Warum antwortet ein RAG besser als eine Suche in deinen Dateien?",
-          a: "Weil es mit Fragmenten arbeitet, nicht mit ganzen Dateien. Ein Dateisystem sucht nach Namen, Pfaden oder exaktem Text und liefert ganze Dateien, die dein Agent vollständig lesen muss. Ein RAG zerlegt deine Dokumente in Fragmente (Chunks) und durchsucht sie nach Bedeutung: Es versteht Fragen in natürlicher Sprache, findet die passenden Fragmente sehr schnell, und gibt deinem Agenten nur, was er braucht, mit Quelle.",
+          a: "Weil es mit Fragmenten arbeitet, nicht mit ganzen Dateien. Ein Dateisystem sucht nach Namen, Pfaden oder exaktem Text und liefert ganze Dateien, die deine KI vollständig lesen muss. Ein RAG zerlegt deine Dokumente in Fragmente (Chunks) und durchsucht sie nach Bedeutung: Es versteht Fragen in natürlicher Sprache, findet die passenden Fragmente sehr schnell, und gibt deiner KI nur, was sie braucht, mit Quelle.",
           tabla: {
             columnas: ["", "Dateisystem", "RAG"],
             filas: [
@@ -589,10 +589,10 @@ export const COMUN: Record<Locale, TextosComunes> = {
             ],
           },
         },
-        { q: "Speichert ihr meine Dokumente?", a: "Deine Originaldateien bewahren wir nicht auf. Um deinem Agenten zu antworten, speichert RAGfly, was die Suche braucht: Textfragmente, ihre Embeddings und die Metadaten des Dokuments. Mit RAGfly Desktop verlässt die Originaldatei nie dein Netzwerk." },
+        { q: "Speichert ihr meine Dokumente?", a: "Deine Originaldateien bewahren wir nicht auf. Um deiner KI zu antworten, speichert RAGfly, was die Suche braucht: Textfragmente, ihre Embeddings und die Metadaten des Dokuments. Mit RAGfly Desktop verlässt die Originaldatei nie dein Netzwerk." },
         { q: "Wer verarbeitet meine Dokumente?", a: "Modelle von Anbietern, deren Bedingungen das Training mit deinen Daten ausschließen, in allen Plänen, auch im Free-Plan. RAGfly nutzt deine Dokumente nicht, um eigene Modelle zu trainieren." },
         { q: "Können andere Personen oder Agenten meine Dokumente sehen?", a: "Nur die Workspaces, Bereiche, Rollen und Agenten, die du freigibst. Jeder Workspace ist isoliert: Eine Suche in einem liefert nie Dokumente aus einem anderen." },
-        { q: "Muss ich einen Agenten bauen, um RAGfly zu nutzen?", a: "Nein. Verbinde den Agenten, den du schon nutzt, etwa Claude oder GPT, über MCP, oder nutze REST, das SDK oder die CLI. Dein Agent kann bei der Einrichtung helfen." },
+        { q: "Muss ich einen Agenten bauen, um RAGfly zu nutzen?", a: "Nein. Verbinde die KI, die du schon nutzt, etwa Claude oder GPT, über MCP, oder nutze REST, das SDK oder die CLI. Deine KI kann bei der Einrichtung helfen." },
         { q: "Was ist der Unterschied zwischen Free und den bezahlten Plänen?", a: "Limits und Kapazität. Der Datenschutz ist in allen Plänen gleich. Der Free-Plan ist dauerhaft, mit monatlichen Limits, und braucht keine Kreditkarte." },
       ],
     },
