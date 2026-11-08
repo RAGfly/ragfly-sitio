@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "title": "RAGfly — Deine KI, die mit deinen Dokumenten antwortet",
-    "description": "Wähle deine Ordner und unterhalte dich mit deinen Dokumenten, mit der Quelle jeder Antwort. Verbinde sie mit ChatGPT, Claude oder der KI, die du nutzt. Wir speichern deine Dokumente nicht.",
+    "title": "RAGfly — Deine KI, die auf Basis deiner Dokumente antwortet",
+    "description": "Wähle deine Ordner und unterhalte dich mit deinen Dokumenten – jede Antwort mit Quelle. Verbinde sie mit ChatGPT, Claude oder der KI, die du nutzt. Wir speichern deine Dokumente nicht.",
     "keywords": [
       "RAG-Dienst",
       "mandantenfähiges RAG",
@@ -27,7 +27,7 @@
       "documents for AI",
       "AI document search"
     ],
-    "imageAlt": "RAGfly — Deine KI, die mit deinen Dokumenten antwortet."
+    "imageAlt": "RAGfly — Deine KI, die auf Basis deiner Dokumente antwortet."
   },
   "nav": {
     "producto": "So funktioniert’s",
@@ -43,13 +43,13 @@
   "hero": {
     "eyebrow": "RAG-Dienst",
     "ragDefinition": "RAG: durch Informationsabruf ergänzte Generierung",
-    "headlineLead": "Wir helfen deiner KI, mit deinen Dokumenten zu antworten.",
+    "headlineLead": "Wir helfen deiner KI, auf Basis deiner Dokumente zu antworten.",
     "categoria": "Angereicherte Suche für deine KI.",
     "descripcion": "Wähle deine Ordner. RAGfly bereitet sie vor, damit deine KI sie abfragen kann – mit der Quelle jeder Antwort. Probiere es gleich in unserem Chat aus.",
     "slogan": "Einfach, privat und präzise. Zugriff nach Workspace, Bereich, Rolle und Agent.",
     "ctaPrimario": "Mit deinen Dokumenten ausprobieren",
     "ctaSecundario": "So funktioniert’s",
-    "lineaApoyo": "Probiere es in unserem Chat aus, oder verbinde es über MCP mit der KI, die du bereits nutzt."
+    "lineaApoyo": "Probiere es in unserem Chat aus oder verbinde es über MCP mit der KI, die du bereits nutzt."
   },
   "construyendo": {
     "eyebrow": "Was baust du?",
@@ -299,7 +299,7 @@
     "invalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein."
   },
   "footer": {
-    "tagline": "Deine KI, die mit deinen Dokumenten antwortet. Zugriff nach Workspace, Bereich, Rolle und Agent.",
+    "tagline": "Deine KI, die auf Basis deiner Dokumente antwortet. Zugriff nach Workspace, Bereich, Rolle und Agent.",
     "producto": "Produkt",
     "empresa": "Ressourcen",
     "legal": "Rechtliches",
@@ -497,7 +497,7 @@
     "titulo1": "Du zeigst auf das Verzeichnis.",
     "tituloAccent": "Den Rest macht die Pipeline.",
     "driveTitulo": "Google Drive und Ihre Dokumente",
-    "driveDesc": "Wenn Sie Google Drive verbinden, erlauben Sie RAGfly, Dokumente im ausgewählten Ordner und seinen Unterordnern zu lesen. Wir extrahieren den Text, um Vektorrepräsentationen und einen RAG-Index zu erstellen, damit Ihre KI relevante Informationen mit Quellen abrufen kann. Sie können dieses Wissen mit Dokumenten aus anderen Quellen verbinden und den Zugriff über Workspaces, Benutzer und Profile steuern. RAGfly fordert nur Lesezugriff an und verändert oder löscht Ihre Drive-Dateien nicht.",
+    "driveDesc": "Wenn du Google Drive verbindest, erlaubst du RAGfly, Dokumente im ausgewählten Ordner und seinen Unterordnern zu lesen. Wir extrahieren den Text, um Vektorrepräsentationen und einen RAG-Index zu erstellen, damit deine KI relevante Informationen mit Quellen abrufen kann. Du kannst dieses Wissen mit Dokumenten aus anderen Quellen verbinden und den Zugriff über Workspaces, Benutzer und Profile steuern. RAGfly fordert nur Lesezugriff an und verändert oder löscht deine Drive-Dateien nicht.",
     "drivePrivacidad": "Datenschutzerklärung",
     "descripcion": "Du lieferst das Verzeichnis —deinen lokalen Ordner— und das System lädt, extrahiert, analysiert, chunkt und vektorisiert von allein. Keine Entwicklung für die Dokumentenaufnahme, keine Vorkonfiguration und kein Integrationsprojekt.",
     "formatosTitulo": "EINGANG · FORMATE",
@@ -634,13 +634,13 @@
   },
   "faq": {
     "q0": "Was ist RAGfly?",
-    "a0": "Ein Dienst, der deiner KI hilft, mit deinen Dokumenten zu antworten. Du wählst deine Ordner; RAGfly liest, ordnet und indexiert sie, Scans inklusive, damit deine KI, etwa Claude oder ChatGPT, sie abfragen kann. Du kannst es zuerst im Chat von RAGfly ausprobieren. Jede Antwort kommt mit ihrer Quelle, und jeder Workspace bleibt von den anderen isoliert.",
+    "a0": "Ein Dienst, der deiner KI hilft, auf Basis deiner Dokumente zu antworten. Du wählst deine Ordner; RAGfly liest, ordnet und indexiert sie, Scans inklusive, damit deine KI, etwa Claude oder ChatGPT, sie abfragen kann. Du kannst es zuerst im Chat von RAGfly ausprobieren. Jede Antwort kommt mit ihrer Quelle, und jeder Workspace bleibt von den anderen isoliert.",
     "q1": "Für wen ist es?",
-    "a1": "Für Entwickler, Beratungen und Integratoren, die KI-Agenten auf privaten Dokumenten bauen —manchmal für viele verschiedene Kunden— und die RAG-Pipeline nicht selbst in großem Maßstab bauen und pflegen wollen.",
+    "a1": "Für Menschen und Teams mit vielen Dokumenten, die sie mit KI nutzen wollen: Fachleute, Unternehmen und Beratungen und auch Entwickler, die ihre eigenen Agenten bauen.",
     "q2": "Muss ich einen Agenten bauen, um RAGfly zu nutzen?",
-    "a2": "Nein. Verbinde die KI, die du schon nutzt, etwa Claude oder GPT, über MCP, oder nutze REST, das SDK oder die CLI. Deine KI kann bei der Einrichtung helfen.",
+    "a2": "Nein. Verbinde die KI, die du schon nutzt, etwa Claude oder ChatGPT, über MCP, oder nutze REST, das SDK oder die CLI. Deine KI kann dir bei der Einrichtung helfen. Vorher kannst du RAGfly in seinem eigenen Chat mit deinen Dokumenten ausprobieren.",
     "q3": "Wie funktioniert es?",
-    "a3": "Du richtest RAGfly auf das Verzeichnis deiner Dokumente; das System scannt, vektorisiert und indexiert sie automatisch. Danach ruft deine KI nach Bedeutung ab und erhält Antworten mit Quellenangaben über MCP, REST oder CLI, isoliert nach Workspace und mit der Datenbehandlung, die zum Bereitstellungsmodus passt.",
+    "a3": "Du wählst deine Ordner mit RAGfly Desktop aus, in jedem Plan, und RAGfly scannt, indexiert und vektorisiert sie selbstständig. Du kannst es in seinem Chat ausprobieren; danach fragt deine KI über MCP, REST oder die CLI und erhält Antworten mit Quellenangaben, isoliert nach Workspace.",
     "q4": "Warum antwortet ein RAG besser als eine Suche in deinen Dateien?",
     "a4": "Weil es mit Fragmenten arbeitet, nicht mit ganzen Dateien. Ein Dateisystem sucht nach Namen, Pfaden oder exaktem Text und liefert ganze Dateien, die deine KI vollständig lesen muss. Ein RAG zerlegt deine Dokumente in Fragmente (Chunks) und durchsucht sie nach Bedeutung: Es versteht Fragen in natürlicher Sprache, findet die passenden Fragmente sehr schnell, und gibt deiner KI nur, was sie braucht, mit Quelle.",
     "q5": "Was kostet es?",
@@ -658,9 +658,9 @@
     "q11": "Kann ich es mit regulierten Daten nutzen (Recht, Gesundheit, Behörden)?",
     "a11": "Ja. Desktop verarbeitet die Originaldatei und ihre Extraktion im Netz des Kunden. In souveränen Tarifen gehört dem Kunden die Datenbank, in der die Derivate liegen. RAGfly verarbeitet weiterhin Chunks am Ausgang, um den Abruf zu erzeugen; eine vollständige In-situ-Laufzeit ist der Modus, der auch diese Verarbeitung in der Infrastruktur des Kunden hält.",
     "q12": "Mit welchen KI-Modellen funktioniert es — Claude, GPT, Gemini?",
-    "a12": "RAGfly ist modellagnostisch. Es liefert den Abruf mit Zitaten und Berechtigungen; deine KI —Claude, GPT, Gemini oder eine andere— nutzt RAGfly über MCP, REST oder CLI.",
-    "q13": "Wie lange dauert es von einem Verzeichnis bis zu deiner KI, die mit Zitaten antwortet?",
-    "a13": "Du richtest RAGfly auf ein Verzeichnis und kannst mit automatischer Aufnahme, Vektorisierung und Indexierung deine KI in kurzer Zeit mit Zitaten antworten lassen — ohne menschliche Hilfe und ohne eine RAG-Pipeline im großen Maßstab zu bauen oder zu pflegen.",
+    "a12": "RAGfly ist modellagnostisch. Es liefert den Abruf mit Quellenangaben und Berechtigungen; deine KI —Claude, GPT, Gemini oder eine andere— nutzt RAGfly über MCP, REST oder CLI.",
+    "q13": "Wie lange dauert es von einem Verzeichnis bis zu deiner KI, die mit Quellenangaben antwortet?",
+    "a13": "Du richtest RAGfly auf ein Verzeichnis und kannst mit automatischer Aufnahme, Vektorisierung und Indexierung deine KI in kurzer Zeit mit Quellenangaben antworten lassen — ohne menschliche Hilfe und ohne eine RAG-Pipeline im großen Maßstab zu bauen oder zu pflegen.",
     "q14": "Wie greift ein KI-Agent auf RAGfly zu?",
     "a14": "Über einen entfernten MCP-Server (SSE oder HTTP) oder die CLI von RAGfly Desktop, authentifiziert per JWT oder API Key. Der Katalog der Operationen ist unter `https://ragfly.ai/agents.json` und `https://ragfly.ai/llms-full.txt` veröffentlicht.",
     "q15": "Kann ich meine eigene Vektordatenbank und mein eigenes Modell nutzen?",

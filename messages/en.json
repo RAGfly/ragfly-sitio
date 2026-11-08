@@ -658,7 +658,7 @@
     "q11": "Can I use it with regulated data (legal, healthcare, government)?",
     "a11": "Yes. Desktop processes the original file and its extraction inside the customer's network. On sovereign plans, the customer owns the database where the derivatives persist. RAGfly still processes chunks on the way out to produce retrieval; a full in-situ runtime is the mode that keeps that processing inside the customer's infrastructure too.",
     "q12": "Which AI models does it work with — Claude, GPT, Gemini?",
-    "a12": "RAGfly is model-agnostic. It delivers retrieval with citations and permissions; your AI —Claude, GPT, Gemini or another— consumes RAGfly via MCP, REST or CLI.",
+    "a12": "RAGfly is model-agnostic. It delivers retrieval with citations and permissions; your AI —Claude, GPT, Gemini or another— uses RAGfly via MCP, REST or CLI.",
     "q13": "How long does it take to go from a directory to your AI answering with citations?",
     "a13": "You point RAGfly at a directory and, with automatic ingestion, vectorization and indexing, you can have your AI answering with citations in a short time, with no human help — and without building or maintaining a RAG pipeline at scale.",
     "q14": "How does an AI agent consume RAGfly?",
