@@ -689,6 +689,18 @@
     "paso2Desc": "Then put it to work: Claude, ChatGPT or your own agents query your documents whenever they need them.",
     "paso2Nota": "Over MCP, REST, the SDK or the CLI.",
     "guia": "Connection guide",
-    "cta": "Try it with your documents"
+    "cta": "Try it with your documents",
+    "chatPregunta": "How do I stop the contract from renewing?",
+    "chatPreparando": "Preparing answer",
+    "chatRespuesta": "Give written notice 60 days before it expires.",
+    "chatColDocumento": "Document",
+    "chatColResumen": "Summary",
+    "chatColAbrir": "Open",
+    "chatDoc0": "Service agreement.pdf",
+    "chatResumen0": "Notice must be given in writing.",
+    "chatDoc1": "Renewal addendum.pdf",
+    "chatResumen1": "The notice period is 60 days.",
+    "chatVer": "View",
+    "chatOtros": "I found 32 other documents on contract terms."
   }
 }

@@ -690,6 +690,18 @@
     "paso2Desc": "Depois, mãos à obra: Claude, ChatGPT ou seus próprios agentes consultam seus documentos quando precisam.",
     "paso2Nota": "Via MCP, REST, SDK ou CLI.",
     "guia": "Guia de conexão",
-    "cta": "Experimente com seus documentos"
+    "cta": "Experimente com seus documentos",
+    "chatPregunta": "Como evito que o contrato seja renovado?",
+    "chatPreparando": "Preparando a resposta",
+    "chatRespuesta": "Avise por escrito 60 dias antes do vencimento.",
+    "chatColDocumento": "Documento",
+    "chatColResumen": "Resumo",
+    "chatColAbrir": "Abrir",
+    "chatDoc0": "Contrato de serviço.pdf",
+    "chatResumen0": "O aviso deve ser enviado por escrito.",
+    "chatDoc1": "Anexo de renovação.pdf",
+    "chatResumen1": "O prazo de aviso é de 60 dias.",
+    "chatVer": "Ver",
+    "chatOtros": "Encontrei outros 32 documentos sobre condições contratuais."
   }
 }

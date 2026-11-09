@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { BlurIn } from './shared'
+import { ChatAnimado } from './ChatAnimado'
 
 export function ComoFuncionaSection() {
   const t = useTranslations('comoFunciona')
@@ -16,22 +17,25 @@ export function ComoFuncionaSection() {
           </BlurIn>
           <span className="rf-eje" aria-hidden="true" />
         </div>
-        <ol className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
-          {[0, 1, 2].map((i) => (
-            <li key={i} className="min-w-0 border-t border-slm-dark/12 pt-6 flex flex-col gap-4">
-              <span className="font-[family-name:var(--font-dato)] text-5xl md:text-6xl text-slm-brand/60" aria-hidden="true">{i + 1}</span>
-              <h3 className="font-helvetica-neue text-2xl font-medium text-slm-dark tracking-[-0.02em]">{t(`paso${i}Titulo`)}</h3>
-              <p className="text-slm-gray font-helvetica-neue text-base leading-relaxed">{t(`paso${i}Desc`)}</p>
-              {i === 0 && <p className="font-interfaz text-sm text-slm-brand-dark">{t('paso0Nota')}</p>}
-              {i === 2 && (
-                <p className="font-interfaz text-sm text-slm-gray leading-relaxed">
-                  {t('paso2Nota')}{' · '}
-                  <Link href="/build/mcp" className="text-slm-brand-dark underline underline-offset-4 hover:opacity-75">{t('guia')} →</Link>
-                </p>
-              )}
-            </li>
-          ))}
-        </ol>
+        <div className="grid grid-cols-1 lg:grid-cols-[340px_minmax(0,1fr)] xl:grid-cols-[400px_minmax(0,1fr)] gap-10 lg:gap-8 xl:gap-12 items-start">
+          <ChatAnimado />
+          <ol className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 lg:gap-6 xl:gap-8">
+            {[0, 1, 2].map((i) => (
+              <li key={i} className="min-w-0 border-t border-slm-dark/12 pt-6 flex flex-col gap-4">
+                <span className="font-[family-name:var(--font-dato)] text-5xl md:text-6xl text-slm-brand/60" aria-hidden="true">{i + 1}</span>
+                <h3 className="font-helvetica-neue text-2xl lg:text-xl xl:text-2xl font-medium text-slm-dark tracking-[-0.02em]">{t(`paso${i}Titulo`)}</h3>
+                <p className="text-slm-gray font-helvetica-neue text-base lg:text-[15px] xl:text-base leading-relaxed">{t(`paso${i}Desc`)}</p>
+                {i === 0 && <p className="font-interfaz text-sm text-slm-brand-dark">{t('paso0Nota')}</p>}
+                {i === 2 && (
+                  <p className="font-interfaz text-sm text-slm-gray leading-relaxed">
+                    {t('paso2Nota')}{' · '}
+                    <Link href="/build/mcp" className="text-slm-brand-dark underline underline-offset-4 hover:opacity-75">{t('guia')} →</Link>
+                  </p>
+                )}
+              </li>
+            ))}
+          </ol>
+        </div>
         <a href="https://app.ragfly.ai" className="rf-boton self-start bg-slm-dark text-slm-light px-7 py-3 rounded-full font-medium text-base hover:opacity-90 transition-opacity">{t('cta')}</a>
       </div>
     </section>

@@ -689,6 +689,18 @@
     "paso2Desc": "Dann an die Arbeit: Claude, ChatGPT oder deine eigenen Agenten fragen deine Dokumente ab, wann immer sie sie brauchen.",
     "paso2Nota": "Über MCP, REST, das SDK oder die CLI.",
     "guia": "Verbindungsanleitung",
-    "cta": "Mit deinen Dokumenten ausprobieren"
+    "cta": "Mit deinen Dokumenten ausprobieren",
+    "chatPregunta": "Wie verhindere ich, dass sich der Vertrag verlängert?",
+    "chatPreparando": "Antwort wird vorbereitet",
+    "chatRespuesta": "Kündige schriftlich 60 Tage vor Ablauf.",
+    "chatColDocumento": "Dokument",
+    "chatColResumen": "Inhalt",
+    "chatColAbrir": "Öffnen",
+    "chatDoc0": "Vertrag.pdf",
+    "chatResumen0": "Kündigung nur schriftlich.",
+    "chatDoc1": "Nachtrag.pdf",
+    "chatResumen1": "Die Frist beträgt 60 Tage.",
+    "chatVer": "Öffnen",
+    "chatOtros": "Ich habe 32 weitere Dokumente zu Vertragsbedingungen gefunden."
   }
 }

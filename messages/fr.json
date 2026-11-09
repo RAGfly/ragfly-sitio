@@ -690,6 +690,18 @@
     "paso2Desc": "Ensuite, au travail : Claude, ChatGPT ou vos propres agents consultent vos documents quand ils en ont besoin.",
     "paso2Nota": "Via MCP, REST, le SDK ou la CLI.",
     "guia": "Guide de connexion",
-    "cta": "Essayez avec vos documents"
+    "cta": "Essayez avec vos documents",
+    "chatPregunta": "Comment éviter le renouvellement du contrat ?",
+    "chatPreparando": "Préparation de la réponse",
+    "chatRespuesta": "Envoyez un préavis écrit 60 jours avant l’échéance.",
+    "chatColDocumento": "Document",
+    "chatColResumen": "Résumé",
+    "chatColAbrir": "Ouvrir",
+    "chatDoc0": "Contrat de service.pdf",
+    "chatResumen0": "Le préavis doit être envoyé par écrit.",
+    "chatDoc1": "Avenant.pdf",
+    "chatResumen1": "Le délai de préavis est de 60 jours.",
+    "chatVer": "Voir",
+    "chatOtros": "J’ai trouvé 32 autres documents sur les conditions contractuelles."
   }
 }
