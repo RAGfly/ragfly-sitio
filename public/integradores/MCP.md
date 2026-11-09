@@ -38,28 +38,24 @@ text. Document and organization-authored content keeps its original language.
 
 <a id="chatgpt-web"></a>
 
-## ChatGPT web — private TEST pilot
+## ChatGPT web
 
-RAGfly's dedicated ChatGPT MCP endpoint currently runs in TEST. It exposes only
-`session` and `search_documents`; the server rejects other tools. A production
-ChatGPT connection is not available yet. Do not configure the general
-`/mcp-http/` endpoint in ChatGPT: that endpoint also offers write-capable tools.
+ChatGPT web connects to RAGfly production at `https://app.ragfly.ai/mcp` using OAuth
+(connection verified on 2026-11-08).
 
-The private pilot requires an eligible ChatGPT account, OAuth consent and a
-synthetic TEST document approved for the trial. The pilot operator verifies
-**Scan Tools** shows exactly the two read tools, checks a cited result and
-revocation, and only then prepares production availability and a public setup
-guide. Ask your RAGfly contact to join the pilot rather than entering a
-production endpoint that has not been released.
+All clients use the same MCP endpoint, tool catalog and user authorization.
+Connect with OAuth at `https://app.ragfly.ai/mcp`. Review the discovered tools
+and complete the RAGfly consent flow. Read and write operations enforce the
+connected user's permissions and active scope.
 
-When the pilot is available, a question sent through ChatGPT reaches RAGfly and
-matching excerpts, document names and citations return to the ChatGPT
-conversation. RAGfly may send the query and candidate excerpts to the configured
-reranking provider. Revoking OAuth stops future requests but cannot remove text
-already returned to ChatGPT. Review your workspace's data controls and the
-provider terms before connecting sensitive documents.
+The previous read-only pilot endpoint `/mcp-chatgpt` has been retired. Reconnect
+at `/mcp` to authorize the common service. Tokens issued to the retired resource
+are rejected. Existing general clients at `/mcp-http` and legacy SSE clients
+at `/mcp/sse` remain compatible with the same MCP instance.
 
----
+Transport and OAuth checks do not establish a completed ChatGPT UI connection.
+The client compatibility evidence below records the actual UI checks.
+
 
 ## Connect from an MCP client with OAuth
 
@@ -67,8 +63,15 @@ Use this path when your client supports the MCP authorization flow. RAGfly's rem
 Streamable HTTP endpoint is:
 
 ```text
-https://api.ragfly.ai/mcp-http
+https://app.ragfly.ai/mcp
 ```
+
+The API-domain URL `https://api.ragfly.ai/mcp` remains compatible. Both
+production URLs use the same MCP instance, tool catalog and user permissions.
+
+For TEST, configure `https://test.ragfly.ai/mcp` with OAuth. The web domain
+proxies the same TEST MCP instance and publishes matching protected-resource
+metadata. The previous Railway endpoint remains available for existing clients.
 
 The client discovers OAuth metadata, opens the RAGfly sign-in and consent page,
 then stores the credential for later MCP calls. RAGfly records a revocable API
@@ -84,10 +87,10 @@ client may need a new sign-in after expiration.
 | Client | Add the server | Sign in |
 |---|---|---|
 | **Codex desktop app** | Settings → **Complementos** → **MCP** → **Agregar** → **Conectar con un MCP personalizado**. Enter a name, choose **HTTP secuenciable** (Streamable HTTP), and use the URL above. Labels may appear in English depending on the app language. | Continue and finish the browser sign-in and consent at RAGfly. |
-| **Codex CLI** | `codex mcp add ragfly --url https://api.ragfly.ai/mcp-http` | `codex mcp login ragfly`; complete the browser flow. Check with `codex mcp list`. |
+| **Codex CLI** | `codex mcp add ragfly --url https://api.ragfly.ai/mcp` | `codex mcp login ragfly`; complete the browser flow. Check with `codex mcp list`. |
 | **Claude.ai / Claude Desktop** | Settings → Connectors → Add custom connector; enter a name and the URL above. | Select **Connect** and finish the RAGfly browser flow. No sign-in available? Use an API key instead: [Claude Desktop chat — API key](#claude-desktop-chat--api-key-no-browser-sign-in). |
-| **Claude Code** | `claude mcp add --transport http ragfly https://api.ragfly.ai/mcp-http` | Run `/mcp` and follow the sign-in prompt. |
-| **Gemini CLI** | `gemini mcp add --transport http ragfly https://api.ragfly.ai/mcp-http` | Run `/mcp auth ragfly` and follow the browser flow. |
+| **Claude Code** | `claude mcp add --transport http ragfly https://api.ragfly.ai/mcp` | Run `/mcp` and follow the sign-in prompt. |
+| **Gemini CLI** | `gemini mcp add --transport http ragfly https://api.ragfly.ai/mcp` | Run `/mcp auth ragfly` and follow the browser flow. |
 | **VS Code with GitHub Copilot** | Add an HTTP server to `.vscode/mcp.json` (example below), or use **MCP: Add Server** from the Command Palette. | Start the server and complete its OAuth prompt. This MCP path does not require an OpenAPI document. |
 | **Cursor** | Add an HTTP server to `mcp.json` with the pre-registered client id shown below. | Start the server and complete the RAGfly browser flow. |
 
@@ -103,7 +106,7 @@ does not establish behavior in PROD or in another product from the same vendor.
 | **Claude Desktop** (version not recorded in the connection evidence) | RAGfly CORP, `/mcp-http`: OAuth callback completed and `Ragfly-Corp Session` returned a session. After the grant was revoked, Claude asked to reconnect. | A Claude HTTP 401 was not captured; document retrieval, protocol version, workspace/environment isolation and PROD behavior were not tested. |
 | **Claude Desktop chat, macOS, API key** (version not recorded) | RAGfly TEST, `/mcp-http/` through `mcp-remote` 0.14.3 with an `rf_…` key: the local server connected and answered in the chat when started through a launcher script kept outside Dropbox (reported by the operator). The direct `npx` form in this guide was verified outside the app with a minimal environment — MCP `initialize` plus a `session` call returned `authenticated: true` — but not yet run inside Claude Desktop. A launcher inside Dropbox failed with `Operation not permitted`. | Windows and Linux; PROD; the direct `npx` form inside the app; document retrieval from the chat. |
 | **Gemini CLI / Antigravity** | No RAGfly connection was observed for either client during this compatibility check. | RAGfly OAuth or MCP compatibility for either client. |
-| **ChatGPT web** | The private TEST pilot has not been run. | A completed ChatGPT connection, citations, revocation behavior or production availability. |
+| **ChatGPT web** | PROD web connection completed on 2026-11-08: CIMD discovery, Google sign-in, explicit user consent and callback; settings show a connected account at `https://app.ragfly.ai/mcp` using OAuth. | Document query/citations from ChatGPT and ChatGPT UI revocation behavior. |
 
 The setup instructions for other clients in this guide are configuration references; this table does
 not claim that every listed client/version has passed an end-to-end test. After OAuth, verify the
@@ -117,7 +120,7 @@ VS Code workspace example:
   "servers": {
     "ragfly": {
       "type": "http",
-      "url": "https://api.ragfly.ai/mcp-http"
+      "url": "https://api.ragfly.ai/mcp"
     }
   }
 }
@@ -129,7 +132,7 @@ Cursor example:
 {
   "mcpServers": {
     "ragfly": {
-      "url": "https://api.ragfly.ai/mcp-http",
+      "url": "https://api.ragfly.ai/mcp",
       "auth": { "CLIENT_ID": "ragfly-cursor" }
     }
   }
@@ -289,7 +292,7 @@ HTTP headers:
   "mcpServers": {
     "ragfly": {
       "type": "http",
-      "url": "https://api.ragfly.ai/mcp-http",
+      "url": "https://api.ragfly.ai/mcp",
       "headers": {
         "Authorization": "Bearer ${RAGFLY_API_KEY}"
       }
@@ -336,7 +339,7 @@ under `mcpServers`, keeping whatever else is already in the file:
       "command": "/absolute/path/to/npx",
       "args": [
         "-y", "mcp-remote@0.14.3",
-        "https://api.ragfly.ai/mcp-http/",
+        "https://api.ragfly.ai/mcp/",
         "--transport", "http-only",
         "--header", "Authorization:Bearer ${RAGFLY_API_KEY}",
         "--silent"
@@ -386,7 +389,7 @@ its authorization prompt. For an API-key setup, run
 [`ragfly-mcp-setup.sh`](#set-up-with-one-command-api-key) (Windows: `ragfly-mcp-setup.ps1`) and register its launcher,
 `~/.ragfly/bin/ragfly-mcp.sh`, as the server `command` (a stdio server, no key in
 the config). If the client can only talk HTTP and lets you set a header, use
-`https://api.ragfly.ai/mcp-http` with `Authorization: Bearer <key>`; keep that key out
+`https://api.ragfly.ai/mcp` with `Authorization: Bearer <key>`; keep that key out
 of any file you share. The legacy SSE URL (`/mcp/sse`) is not recommended: its session
 is lost on a redeploy.
 
@@ -408,6 +411,7 @@ is lost on a redeploy.
 | `list_collections` | Lists the organization's Collections | `limit` |
 | `get_collection` | Collection detail: criteria + documents + queue | `collection_id`, `doc_limit` |
 | `compose_collections` | Set algebra (COMPOSE) of two Collections → a new Collection handle | `operation`, `collection_id_a`, `collection_id_b`, `name?`, `collection_type?` (`TEMPORARY`\|`SAVED`) |
+| `save_search_as_collection` | Runs a search again and keeps its candidates as a new snapshot Collection; call it only when the person asks | `query`, `max_documents?`, `name?`, `collection_type?`, `collection_id?`, `filter?`, `location_code?` |
 | `read_collection` | Materialize a Collection (READ) at a chosen resolution, paginated | `collection_id`, `resolution?`, `query?`, `limit?` |
 | `refresh_collection` | Re-applies the Collection's natural-language criteria and re-materializes its set (picks up newly qualifying documents) | `collection_id` |
 | `save_collection` | Saves a temporary Collection (`TEMPORARY`) as a saved one (`SAVED`) | `collection_id` |
@@ -598,13 +602,13 @@ Each tool operates in the context of the API key's user — same RBAC as the web
 Codex supports both OAuth and bearer API-key authentication for remote MCP.
 In the desktop app, use **Settings → Complementos → MCP → Agregar → Conectar
 con un MCP personalizado**, select **HTTP secuenciable**, and enter
-`https://api.ragfly.ai/mcp-http`. The browser sign-in creates and stores the
+`https://api.ragfly.ai/mcp`. The browser sign-in creates and stores the
 RAGfly credential for this MCP connection.
 
 The CLI can configure and authorize the same remote endpoint:
 
 ```bash
-codex mcp add ragfly --url https://api.ragfly.ai/mcp-http
+codex mcp add ragfly --url https://api.ragfly.ai/mcp
 codex mcp login ragfly
 codex mcp list
 ```
@@ -614,7 +618,7 @@ For API-key authentication, either run `bash ragfly-mcp-setup.sh --client codex`
 
 ```bash
 codex mcp add ragfly \
-  --url https://api.ragfly.ai/mcp-http \
+  --url https://api.ragfly.ai/mcp \
   --bearer-token-env-var RAGFLY_API_KEY
 ```
 
