@@ -691,7 +691,7 @@
     "paso2Nota": "Por MCP, REST, el SDK o la CLI.",
     "guia": "Guía de conexión",
     "cta": "Prueba con tus documentos",
-    "chatPregunta": "¿Cómo evito que se renueve el contrato?",
+    "chatPregunta": "¿Cómo evito que se renueve el contrato de ACME?",
     "chatPreparando": "Preparando respuesta",
     "chatRespuesta": "Avisa por escrito 60 días antes del vencimiento.",
     "chatColDocumento": "Documento",
@@ -702,6 +702,6 @@
     "chatDoc1": "Anexo de renovación.pdf",
     "chatResumen1": "El plazo de aviso es de 60 días.",
     "chatVer": "Ver",
-    "chatOtros": "Encontré otros 32 documentos sobre condiciones contractuales."
+    "chatOtros": "Encontré otros 32 documentos de ACME sobre condiciones contractuales."
   }
 }

@@ -690,7 +690,7 @@
     "paso2Nota": "Over MCP, REST, the SDK or the CLI.",
     "guia": "Connection guide",
     "cta": "Try it with your documents",
-    "chatPregunta": "How do I stop the contract from renewing?",
+    "chatPregunta": "How do I stop the ACME contract from renewing?",
     "chatPreparando": "Preparing answer",
     "chatRespuesta": "Give written notice 60 days before it expires.",
     "chatColDocumento": "Document",
@@ -701,6 +701,6 @@
     "chatDoc1": "Renewal addendum.pdf",
     "chatResumen1": "The notice period is 60 days.",
     "chatVer": "View",
-    "chatOtros": "I found 32 other documents on contract terms."
+    "chatOtros": "I found 32 other ACME documents on contract terms."
   }
 }

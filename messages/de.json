@@ -690,7 +690,7 @@
     "paso2Nota": "Über MCP, REST, das SDK oder die CLI.",
     "guia": "Verbindungsanleitung",
     "cta": "Mit deinen Dokumenten ausprobieren",
-    "chatPregunta": "Wie verhindere ich, dass sich der Vertrag verlängert?",
+    "chatPregunta": "Wie verhindere ich, dass sich der ACME-Vertrag verlängert?",
     "chatPreparando": "Antwort wird vorbereitet",
     "chatRespuesta": "Kündige schriftlich 60 Tage vor Ablauf.",
     "chatColDocumento": "Dokument",
@@ -701,6 +701,6 @@
     "chatDoc1": "Nachtrag.pdf",
     "chatResumen1": "Die Frist beträgt 60 Tage.",
     "chatVer": "Öffnen",
-    "chatOtros": "Ich habe 32 weitere Dokumente zu Vertragsbedingungen gefunden."
+    "chatOtros": "Ich habe 32 weitere ACME-Dokumente zu Vertragsbedingungen gefunden."
   }
 }

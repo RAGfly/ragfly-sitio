@@ -691,7 +691,7 @@
     "paso2Nota": "Via MCP, REST, le SDK ou la CLI.",
     "guia": "Guide de connexion",
     "cta": "Essayez avec vos documents",
-    "chatPregunta": "Comment éviter le renouvellement du contrat ?",
+    "chatPregunta": "Comment éviter le renouvellement du contrat ACME ?",
     "chatPreparando": "Préparation de la réponse",
     "chatRespuesta": "Envoyez un préavis écrit 60 jours avant l’échéance.",
     "chatColDocumento": "Document",
@@ -702,6 +702,6 @@
     "chatDoc1": "Avenant.pdf",
     "chatResumen1": "Le délai de préavis est de 60 jours.",
     "chatVer": "Voir",
-    "chatOtros": "J’ai trouvé 32 autres documents sur les conditions contractuelles."
+    "chatOtros": "J’ai trouvé 32 autres documents ACME sur les conditions contractuelles."
   }
 }
