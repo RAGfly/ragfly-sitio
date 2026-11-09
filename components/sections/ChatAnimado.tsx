@@ -156,7 +156,7 @@ export function ChatAnimado() {
                 <p className="text-lg font-semibold leading-snug tracking-[-0.01em]">{t('chatRespuesta')}</p>
                 <div className="mt-3.5 overflow-hidden rounded-xl border border-slm-dark/12 text-xs sm:text-[13px] leading-snug">
                   <Aparece visible={conRespuesta} retardo={300}>
-                    <div className="grid grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)_3rem] gap-x-2 bg-slm-light px-3 py-2 font-semibold">
+                    <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)_3rem] gap-x-2 bg-slm-light px-3 py-2 font-semibold">
                       <span>{t('chatColDocumento')}</span>
                       <span>{t('chatColResumen')}</span>
                       <span className="text-right whitespace-nowrap">{t('chatColAbrir')}</span>
@@ -164,7 +164,7 @@ export function ChatAnimado() {
                   </Aparece>
                   {filas.map((f) => (
                     <Aparece key={f.doc} visible={conRespuesta} retardo={f.retardo}>
-                      <div className="grid grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)_3rem] items-center gap-x-2 border-t border-slm-dark/12 px-3 py-2.5">
+                      <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)_3rem] items-center gap-x-2 border-t border-slm-dark/12 px-3 py-2.5">
                         <span className="min-w-0 break-words font-semibold">{f.doc}</span>
                         <span className="min-w-0 text-slm-gray">{f.resumen}</span>
                         <span className="text-right whitespace-nowrap text-slm-brand-dark underline underline-offset-2">{t('chatVer')}</span>
