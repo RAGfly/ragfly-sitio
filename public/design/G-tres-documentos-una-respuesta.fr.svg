@@ -1,0 +1,119 @@
+<svg class="source-answer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 260" width="960" xml:lang="fr" role="img" aria-labelledby="sources-title sources-desc">
+  <title id="sources-title">Trois documents apportent des citations à une réponse</title>
+  <desc id="sources-desc">Une lumière part de chaque passage jaune et rejoint la réponse, révélant une phrase et sa citation numérotée.</desc>
+  <style>
+    .source-answer {
+      --cycle: 8s;
+      font-family: system-ui, sans-serif;
+    }
+    .source-answer .route {
+      fill: none;
+      stroke: #55b2e4;
+      stroke-width: 1.1;
+      stroke-opacity: .38;
+    }
+    .source-answer .chunk {
+      fill: none;
+      stroke: #ffc06b;
+      stroke-width: 2;
+      stroke-linecap: round;
+    }
+    .source-answer .source-lines {
+      fill: none;
+      stroke: #8bbbd7;
+      stroke-linecap: round;
+    }
+    .source-answer .signal {
+      offset-path: var(--route);
+      opacity: 0;
+      animation: sources-travel var(--cycle) linear var(--phase) infinite;
+    }
+    .source-answer .citation {
+      opacity: 0;
+      animation: sources-reveal var(--cycle) ease-out var(--phase) infinite;
+    }
+    .source-answer .response-content {
+      animation: sources-reset var(--cycle) ease-in-out infinite;
+    }
+    @keyframes sources-travel {
+      0% { offset-distance: 0%; opacity: 0; }
+      5% { opacity: 1; }
+      24% { offset-distance: 100%; opacity: 1; }
+      26%, 100% { offset-distance: 100%; opacity: 0; }
+    }
+    @keyframes sources-reveal {
+      0%, 24% { opacity: 0; }
+      29%, 100% { opacity: 1; }
+    }
+    @keyframes sources-reset {
+      0%, 13% { opacity: 0; }
+      18%, 84% { opacity: 1; }
+      97%, 100% { opacity: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .source-answer .signal { animation: none; }
+      .source-answer .citation, .source-answer .response-content { animation: none; opacity: 1; }
+    }
+  </style>
+  <defs>
+    <g id="sources-page" stroke-linejoin="round">
+      <path d="M0 0 H23 L33 10 V41 H0 Z" fill="#142e43" stroke="#55b2e4" stroke-width="1.2"/>
+      <path d="M23 0 V10 H33" fill="none" stroke="#8bbbd7" stroke-linecap="round"/>
+    </g>
+    <g id="sources-signal">
+      <circle r="6.5" fill="#ffc06b" opacity=".22"/>
+      <circle r="2.8" fill="#fff2d4"/>
+    </g>
+    <marker id="sources-arrow" viewBox="0 0 6 6" refX="6" refY="3" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L6 3 L0 6 Z" fill="#55b2e4" opacity=".8"/>
+    </marker>
+    <path id="sources-route-1" d="M49 52 C112 52 149 94 210 94"/>
+    <path id="sources-route-2" d="M51 137 C107 137 159 139 210 139"/>
+    <path id="sources-route-3" d="M44 214 C109 214 153 184 210 184"/>
+  </defs>
+  <rect width="480" height="260" fill="#0b1926"/>
+  <text x="24" y="26" fill="#a9cde3" font-size="8.5" letter-spacing="1.7">DOCUMENTS</text>
+  <g fill="#c7deeb" font-size="9">
+    <use href="#sources-page" x="24" y="36"/>
+    <path class="source-lines" d="M31 58 H48 M31 65 H48 M31 70 H43"/>
+    <path class="chunk" d="M31 52 H49"/>
+    <text x="24" y="90">Contrat · p. 14</text>
+    <use href="#sources-page" x="24" y="108"/>
+    <path class="source-lines" d="M31 124 H48 M31 130 H48 M31 142 H43"/>
+    <path class="chunk" d="M31 137 H51"/>
+    <text x="24" y="162">Annexe technique · p. 3</text>
+    <use href="#sources-page" x="24" y="180"/>
+    <path class="source-lines" d="M31 196 H48 M31 202 H48 M31 209 H48"/>
+    <path class="chunk" d="M31 214 H44"/>
+    <text x="24" y="234">Calendrier · p. 2</text>
+  </g>
+  <g class="route">
+    <use href="#sources-route-1" marker-end="url(#sources-arrow)"/>
+    <use href="#sources-route-2" marker-end="url(#sources-arrow)"/>
+    <use href="#sources-route-3" marker-end="url(#sources-arrow)"/>
+  </g>
+  <rect x="210" y="37" width="246" height="184" rx="10" fill="#102539" stroke="#427695"/>
+  <text x="228" y="61" fill="#d9edf8" font-size="9" font-weight="650" letter-spacing="1.5">RÉPONSE</text>
+  <text x="438" y="61" fill="#a9cde3" font-size="7.5" text-anchor="end" letter-spacing="1.1">EXEMPLE</text>
+  <path d="M228 70 H438 M228 115 H438 M228 160 H438" stroke="#25475f" stroke-width=".8"/>
+  <use class="signal" href="#sources-signal" style="--route: url(#sources-route-1); --phase: 0s"/>
+  <use class="signal" href="#sources-signal" style="--route: url(#sources-route-2); --phase: .5s"/>
+  <use class="signal" href="#sources-signal" style="--route: url(#sources-route-3); --phase: 1s"/>
+  <g class="response-content" fill="#e3f2fa" font-size="10.5">
+    <g class="citation" style="--phase: 0s">
+      <text x="228" y="98">Livraison sous 120 jours calendaires.</text>
+      <rect x="418" y="84" width="20" height="20" rx="4" fill="#4a3924"/>
+      <text x="428" y="98" fill="#ffcb85" text-anchor="middle" font-weight="650">1</text>
+    </g>
+    <g class="citation" style="--phase: .5s">
+      <text x="228" y="143">Tests de réception requis.</text>
+      <rect x="418" y="129" width="20" height="20" rx="4" fill="#4a3924"/>
+      <text x="428" y="143" fill="#ffcb85" text-anchor="middle" font-weight="650">2</text>
+    </g>
+    <g class="citation" style="--phase: 1s">
+      <text x="228" y="188">Premier jalon au 30e jour.</text>
+      <rect x="418" y="174" width="20" height="20" rx="4" fill="#4a3924"/>
+      <text x="428" y="188" fill="#ffcb85" text-anchor="middle" font-weight="650">3</text>
+    </g>
+  </g>
+</svg>

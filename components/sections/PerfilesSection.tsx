@@ -31,7 +31,7 @@ export function PerfilesSection() {
               {t('perfiles.descripcion')}
             </p>
           </div>
-          <Image src={`/design/A-carta-espacio-aereo${locale === 'en' ? '.en' : ''}.svg`} alt="" aria-hidden width={960} height={520} className="w-full h-auto" />
+          <Image src={`/design/A-carta-espacio-aereo${locale === 'en' ? '.en' : ''}.svg`} alt="" aria-hidden width={960} height={500} className="w-full h-auto" />
         </div>
 
         <div className="grid md:grid-cols-2 gap-px bg-slm-dark/10 border border-slm-dark/10">
