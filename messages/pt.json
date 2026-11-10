@@ -43,14 +43,12 @@
   },
   "hero": {
     "eyebrow": "Serviço de RAG",
-    "ragDefinition": "RAG: Geração Aumentada por Recuperação",
-    "headlineLead": "Ajudamos sua IA a responder com base nos seus documentos.",
+    "headlineLead": "Sua IA, respondendo com os seus documentos.",
     "categoria": "Recuperação aumentada para sua IA.",
-    "descripcion": "Escolha suas pastas. O RAGfly as prepara para que sua IA possa consultá-las, com a fonte de cada resposta. Experimente agora no nosso chat.",
+    "descripcion": "Escolha suas pastas. O RAGfly as prepara para que sua IA possa citar as fontes.",
     "slogan": "Simples, privado e preciso. Acesso por workspace, área, papel e agente.",
     "ctaPrimario": "Experimente com seus documentos",
-    "ctaSecundario": "Como funciona",
-    "lineaApoyo": "Experimente no nosso chat ou conecte-o por MCP à IA que você já usa."
+    "ctaSecundario": "Como funciona"
   },
   "construyendo": {
     "eyebrow": "O que você está construindo?",

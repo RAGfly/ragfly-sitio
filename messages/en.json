@@ -42,14 +42,12 @@
   },
   "hero": {
     "eyebrow": "RAG service",
-    "ragDefinition": "RAG: Retrieval-Augmented Generation",
-    "headlineLead": "We help your AI answer from your documents.",
+    "headlineLead": "Your AI, answering from your documents.",
     "categoria": "Augmented retrieval for your AI.",
     "slogan": "Simple, private, and precise. Access by workspace, area, role and agent.",
-    "lineaApoyo": "Try it in our chat, or connect it over MCP to the AI you already use.",
     "ctaPrimario": "Try it with your documents",
     "ctaSecundario": "How it works",
-    "descripcion": "Choose your folders. RAGfly prepares them so your AI can query them, with the source of every answer. Try it right away in our chat."
+    "descripcion": "Choose your folders. RAGfly prepares them so your AI can cite its sources."
   },
   "construyendo": {
     "eyebrow": "What are you building?",

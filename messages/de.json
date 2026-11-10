@@ -42,14 +42,12 @@
   },
   "hero": {
     "eyebrow": "RAG-Dienst",
-    "ragDefinition": "RAG: durch Informationsabruf ergänzte Generierung",
-    "headlineLead": "Wir helfen deiner KI, auf Basis deiner Dokumente zu antworten.",
+    "headlineLead": "Deine KI, die mit deinen Dokumenten antwortet.",
     "categoria": "Angereicherte Suche für deine KI.",
-    "descripcion": "Wähle deine Ordner. RAGfly bereitet sie vor, damit deine KI sie abfragen kann – mit der Quelle jeder Antwort. Probiere es gleich in unserem Chat aus.",
+    "descripcion": "Wähle deine Ordner. RAGfly bereitet sie vor, damit deine KI ihre Quellen angeben kann.",
     "slogan": "Einfach, privat und präzise. Zugriff nach Workspace, Bereich, Rolle und Agent.",
     "ctaPrimario": "Mit deinen Dokumenten ausprobieren",
-    "ctaSecundario": "So funktioniert’s",
-    "lineaApoyo": "Probiere es in unserem Chat aus oder verbinde es über MCP mit der KI, die du bereits nutzt."
+    "ctaSecundario": "So funktioniert’s"
   },
   "construyendo": {
     "eyebrow": "Was baust du?",

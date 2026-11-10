@@ -16,22 +16,21 @@ export function Hero() {
         </BlurIn>
       </div>
       <div className="flex-1 flex flex-col items-center justify-center z-10 gap-6">
-        <BlurIn as="h1" className="text-center font-helvetica-neue font-medium max-w-3xl text-3xl md:text-5xl lg:text-6xl tracking-[-0.03em] leading-[1.08] pb-[0.12em] bg-gradient-to-r from-slm-brand-dark via-slm-brand to-slm-brand-light bg-clip-text text-transparent">
+        <BlurIn as="h1" className="text-center text-balance font-helvetica-neue font-medium max-w-3xl text-3xl md:text-5xl lg:text-6xl tracking-[-0.03em] leading-[1.08] pb-[0.12em] bg-gradient-to-r from-slm-brand-dark via-slm-brand to-slm-brand-light bg-clip-text text-transparent">
           {t('hero.headlineLead')}
         </BlurIn>
         {/* Descriptor de categoría §3 (MENSAJE-CANONICO, 2026-11-07): subtítulo bajo la frase de entrada. */}
         <BlurIn delay={0.04} as="p" className="font-helvetica-neue font-medium text-lg md:text-2xl text-slm-brand-dark text-center tracking-[-0.01em] -mt-2">
           {t('hero.categoria')}
         </BlurIn>
-        <BlurIn delay={0.08} className="font-helvetica-neue text-base md:text-xl text-slm-dark/90 max-w-2xl text-center leading-relaxed mt-2">
+        <BlurIn delay={0.08} className="font-helvetica-neue text-base md:text-xl text-slm-dark/90 max-w-2xl text-center text-balance leading-relaxed mt-2">
           {t('hero.descripcion')}
         </BlurIn>
         <BlurIn delay={0.1} className="font-helvetica-neue text-sm md:text-base max-w-2xl text-center leading-relaxed pb-[0.12em] bg-gradient-to-r from-slm-dark via-slm-brand-dark to-slm-brand-dark bg-clip-text text-transparent">
-          {t('hero.ragDefinition')}<br />
           {t('hero.slogan')}
         </BlurIn>
       </div>
-      <div className="z-10 flex flex-col items-center gap-7 max-w-xl text-center pt-8 md:pt-10">
+      <div className="z-10 text-center pt-8 md:pt-10">
         <BlurIn delay={0.3} className="flex flex-col sm:flex-row items-center gap-3">
           <a
             href="https://app.ragfly.ai"
@@ -45,9 +44,6 @@ export function Hero() {
           >
             {t('hero.ctaSecundario')}
           </a>
-        </BlurIn>
-        <BlurIn delay={0.35} className="font-helvetica-neue text-xs md:text-sm text-slm-gray leading-relaxed">
-          {t('hero.lineaApoyo')}
         </BlurIn>
       </div>
       <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-white to-transparent z-20 pointer-events-none" />
