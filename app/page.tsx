@@ -1,6 +1,7 @@
 import { HeroBg } from '../components/sections/HeroBg'
 import { Header } from '../components/sections/Header'
 import { Hero } from '../components/sections/Hero'
+import { PorQueRagSection } from '../components/sections/PorQueRagSection'
 import { ComoFuncionaSection } from '../components/sections/ComoFuncionaSection'
 import { NegativaSection } from '../components/sections/NegativaSection'
 import { SimpleSection } from '../components/sections/SimpleSection'
@@ -21,6 +22,7 @@ export default function Home() {
         <Header />
         <Hero />
       </div>
+      <PorQueRagSection />
       <ComoFuncionaSection />
       <NegativaSection />
       <SimpleSection />

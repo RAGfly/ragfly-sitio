@@ -45,7 +45,7 @@
     "eyebrow": "Service RAG",
     "headlineLead": "Votre IA, qui répond à partir de vos documents.",
     "categoria": "Récupération augmentée pour votre IA.",
-    "descripcion": "Choisissez vos dossiers. RAGfly les prépare pour que votre IA puisse citer ses sources.",
+    "descripcion": "RAGfly cherche dans tous vos documents et ne transmet à votre IA que les paragraphes qui répondent, avec leur source.",
     "slogan": "Simple, privé et précis. Accès par workspace, zone, rôle et agent.",
     "ctaPrimario": "Essayez avec vos documents",
     "ctaSecundario": "Comment ça marche"
@@ -675,6 +675,15 @@
       "Agnostique de la base de données et BYO : apportez votre propre base vectorielle et votre propre LLM",
       "Interfaces MCP, REST, CLI et SDK sur tous les plans"
     ]
+  },
+  "porQueRag": {
+    "eyebrow": "Pourquoi un RAG",
+    "titulo": "Votre IA peut répondre à partir d'un document, ou de quelques-uns. À partir de centaines ou de milliers, non.",
+    "descripcion1": "Elle devrait tous les lire, ou vous devriez lui dire lequel ouvrir.",
+    "descripcion2": "C'est à cela que sert un RAG. Il cherche rapidement dans tous vos documents et ne transmet à votre IA que les paragraphes qui répondent à la question.",
+    "item0": "Répond avec ce que l'IA ne sait pas : vos documents privés.",
+    "item1": "Cite la source, pour que vous puissiez vérifier.",
+    "item2": "Ne paie pas pour lire 16 pages quand un paragraphe suffisait."
   },
   "comoFunciona": {
     "eyebrow": "COMMENT ÇA MARCHE",

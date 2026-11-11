@@ -44,7 +44,7 @@
     "eyebrow": "RAG-Dienst",
     "headlineLead": "Deine KI, die mit deinen Dokumenten antwortet.",
     "categoria": "Angereicherte Suche für deine KI.",
-    "descripcion": "Wähle deine Ordner. RAGfly bereitet sie vor, damit deine KI ihre Quellen angeben kann.",
+    "descripcion": "RAGfly durchsucht alle deine Dokumente und gibt deiner KI nur die Absätze, die antworten, mit ihrer Quelle.",
     "slogan": "Einfach, privat und präzise. Zugriff nach Workspace, Bereich, Rolle und Agent.",
     "ctaPrimario": "Mit deinen Dokumenten ausprobieren",
     "ctaSecundario": "So funktioniert’s"
@@ -674,6 +674,15 @@
       "Datenbankunabhängig und BYO: bring deine eigene Vektordatenbank und dein eigenes LLM mit",
       "MCP-, REST-, CLI- und SDK-Schnittstellen in allen Plänen"
     ]
+  },
+  "porQueRag": {
+    "eyebrow": "Warum ein RAG",
+    "titulo": "Deine KI kann mit einem Dokument antworten, oder mit wenigen. Mit Hunderten oder Tausenden nicht.",
+    "descripcion1": "Sie müsste alle lesen, oder du müsstest ihr sagen, welches sie öffnen soll.",
+    "descripcion2": "Genau dafür gibt es ein RAG. Es durchsucht schnell alle deine Dokumente und gibt deiner KI nur die Absätze, die die Frage beantworten.",
+    "item0": "Antwortet mit dem, was die KI nicht weiß: deinen privaten Dokumenten.",
+    "item1": "Nennt die Quelle, damit du sie prüfen kannst.",
+    "item2": "Zahlt nicht dafür, 16 Seiten zu lesen, wenn ein Absatz gereicht hätte."
   },
   "comoFunciona": {
     "eyebrow": "SO FUNKTIONIERT’S",

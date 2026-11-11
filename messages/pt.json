@@ -45,7 +45,7 @@
     "eyebrow": "Serviço de RAG",
     "headlineLead": "Sua IA, respondendo com os seus documentos.",
     "categoria": "Recuperação aumentada para sua IA.",
-    "descripcion": "Escolha suas pastas. O RAGfly as prepara para que sua IA possa citar as fontes.",
+    "descripcion": "O RAGfly busca em todos os seus documentos e entrega à sua IA só os parágrafos que respondem, com a fonte.",
     "slogan": "Simples, privado e preciso. Acesso por workspace, área, papel e agente.",
     "ctaPrimario": "Experimente com seus documentos",
     "ctaSecundario": "Como funciona"
@@ -675,6 +675,15 @@
       "Agnóstico de banco de dados e BYO: traga seu próprio banco vetorial e seu próprio LLM",
       "Interfaces MCP, REST, CLI e SDK em todos os planos"
     ]
+  },
+  "porQueRag": {
+    "eyebrow": "Por que um RAG",
+    "titulo": "Sua IA pode responder com um documento, ou com alguns. Com centenas ou milhares, não.",
+    "descripcion1": "Teria que ler todos, ou você teria que dizer qual abrir.",
+    "descripcion2": "É para isso que existe um RAG. Ele busca rapidamente em todos os seus documentos e entrega à sua IA só os parágrafos que respondem à pergunta.",
+    "item0": "Responde com o que a IA não sabe: seus documentos privados.",
+    "item1": "Cita a fonte, para que você possa verificar.",
+    "item2": "Não paga para ler 16 páginas quando bastava um parágrafo."
   },
   "comoFunciona": {
     "eyebrow": "COMO FUNCIONA",

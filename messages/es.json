@@ -48,7 +48,7 @@
     "slogan": "Simple, privado y preciso. Acceso por workspace, área, rol y agente.",
     "ctaPrimario": "Prueba con tus documentos",
     "ctaSecundario": "Cómo funciona",
-    "descripcion": "Elige tus carpetas. RAGfly las prepara para que tu IA pueda citar las fuentes."
+    "descripcion": "RAGfly busca en todos tus documentos y le entrega a tu IA solo los párrafos que responden, con su fuente."
   },
   "construyendo": {
     "eyebrow": "¿Qué estás construyendo?",
@@ -675,6 +675,15 @@
       "DB-agnóstico y BYO: trae tu propia base vectorial y tu propio LLM",
       "Superficies MCP, REST, CLI y SDK en todos los planes"
     ]
+  },
+  "porQueRag": {
+    "eyebrow": "Por qué un RAG",
+    "titulo": "Tu IA puede responder con un documento, o con unos pocos. Con cientos o miles, no.",
+    "descripcion1": "Tendría que leerlos todos, o tú decirle cuál abrir.",
+    "descripcion2": "Para eso existe un RAG. Busca rápidamente en todos tus documentos y le entrega a tu IA solo los párrafos que responden la pregunta.",
+    "item0": "Responde con lo que la IA no sabe: tus documentos privados.",
+    "item1": "Cita la fuente, para que puedas verificar.",
+    "item2": "No paga por leer 16 páginas cuando bastaba un párrafo."
   },
   "comoFunciona": {
     "eyebrow": "CÓMO FUNCIONA",

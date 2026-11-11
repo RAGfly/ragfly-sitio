@@ -47,7 +47,7 @@
     "slogan": "Simple, private, and precise. Access by workspace, area, role and agent.",
     "ctaPrimario": "Try it with your documents",
     "ctaSecundario": "How it works",
-    "descripcion": "Choose your folders. RAGfly prepares them so your AI can cite its sources."
+    "descripcion": "RAGfly searches all your documents and hands your AI only the paragraphs that answer, with their source."
   },
   "construyendo": {
     "eyebrow": "What are you building?",
@@ -674,6 +674,15 @@
       "DB-agnostic and BYO: bring your own vector database and your own LLM",
       "MCP, REST, CLI and SDK surfaces on every plan"
     ]
+  },
+  "porQueRag": {
+    "eyebrow": "Why a RAG",
+    "titulo": "Your AI can answer from one document, or a few. From hundreds or thousands, it can't.",
+    "descripcion1": "It would have to read them all, or you would have to tell it which one to open.",
+    "descripcion2": "That's what a RAG is for. It quickly searches all your documents and hands your AI only the paragraphs that answer the question.",
+    "item0": "Answers with what the AI doesn't know: your private documents.",
+    "item1": "Cites the source, so you can check.",
+    "item2": "Doesn't pay to read 16 pages when one paragraph was enough."
   },
   "comoFunciona": {
     "eyebrow": "HOW IT WORKS",
