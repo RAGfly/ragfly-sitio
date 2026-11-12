@@ -28,8 +28,10 @@ export async function cargarMensajeMarketing(id: unknown, locale: string = 'en')
   if (!IDIOMAS.includes(locale)) return null
   if (typeof id !== 'string' || !/^[a-z0-9][a-z0-9-]{0,29}$/i.test(id)) return null
   try {
+    // 8 s: con 3 s, una respuesta lenta de Corp dejaba al visitante de un aviso en el texto genérico
+    // (visto el 12-nov-2026 con ASI-WORKSPACES; lo normal es 0,5–1 s). El mensaje es el titular del aviso.
     const response = await fetch(`https://ragfly-corp-production.up.railway.app/parametros/mensajes-marketing/${id.toLowerCase()}?locale=${locale}`, {
-      next: { revalidate: 60 }, signal: AbortSignal.timeout(3000),
+      next: { revalidate: 60 }, signal: AbortSignal.timeout(8000),
     })
     if (!response.ok) return null
     return validarMensaje(await response.json(), locale)
