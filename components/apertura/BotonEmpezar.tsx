@@ -15,20 +15,23 @@ const CLAVES = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_
 
 export function BotonEmpezar({
   destino,
+  pais,
   className,
   children,
 }: {
   destino: string
+  pais?: string | null
   className?: string
   children: React.ReactNode
 }) {
   function conAtribucion(e: React.MouseEvent<HTMLAnchorElement>) {
     const actual = new URLSearchParams(window.location.search)
-    const url = new URL(destino)
+    const url = new URL(destino, window.location.href)
     for (const k of CLAVES) {
       const v = actual.get(k)
       if (v) url.searchParams.set(k, v)
     }
+    if (pais && (pais === 'GLOBAL' || /^[A-Z]{2}$/.test(pais))) url.searchParams.set('country', pais)
     e.currentTarget.href = url.toString()
     medirGoogle('signup_start')
     // Paso landing → registro: sin esto, un clic de aviso que no se registra no deja huella.
