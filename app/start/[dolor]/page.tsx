@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getLocale } from 'next-intl/server'
+import { cookies, headers } from 'next/headers'
 import { FormularioAlta } from '../../../components/apertura/FormularioAlta'
 import { PricingSection } from '../../../components/sections/PricingSection'
 import { SelectorIdioma } from '../../../components/SelectorIdioma'
@@ -69,6 +70,9 @@ export default async function PaginaDolor({ params, searchParams }: { params: Pr
 
   const query = await searchParams
   const locale = await idioma()
+  const [cookieStore, headerStore] = await Promise.all([cookies(), headers()])
+  const paisElegido = cookieStore.get('RAGFLY_PRICE_COUNTRY')?.value
+  const paisPropuesto = paisElegido === 'GLOBAL' ? null : (paisElegido || headerStore.get('x-vercel-ip-country'))
   const mensaje = await cargarMensajeMarketing(query.utm_content, locale)
   const base = p.textos[locale]
 
@@ -114,7 +118,7 @@ export default async function PaginaDolor({ params, searchParams }: { params: Pr
               <p className="font-helvetica-neue text-base md:text-lg leading-relaxed text-slm-gray">{mensaje?.bajada ? mensaje.cuerpo : c.lineaProducto}</p>
               <p className="font-helvetica-neue text-lg md:text-xl font-medium text-slm-brand-dark">{c.eslogan}</p>
             </div>
-            <FormularioAlta id="signup" locale={locale} />
+            <FormularioAlta id="signup" locale={locale} paisPropuesto={paisPropuesto} />
           </div>
         </section>
 

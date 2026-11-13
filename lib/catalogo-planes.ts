@@ -18,12 +18,15 @@ export type Plan = {
   codigo_plan: string
   nombre: string
   precio_mensual_usd: number | null
+  precio_referencia_clp?: number
   descripcion: string | null
 }
 export type Catalogo = {
   planes: Plan[]
   caracteristicas: Caracteristica[]
   valores: Record<string, Record<string, Valor>>
+  paises?: Array<{ codigo_pais: string; nombre_pais: string }>
+  referencia_clp?: { fecha: string; aproximado: true }
 }
 
 export const PRINCIPALES = ['CORPUS_ACTIVO', 'RETRIEVALS', 'RAG_AGENTICO']
@@ -63,13 +66,20 @@ export const FALLBACK: Catalogo = {
   ])),
 }
 
-export async function cargarCatalogo(locale: string): Promise<Catalogo> {
+export async function cargarCatalogo(locale: string, country?: string, includeCountries = false): Promise<Catalogo> {
   const base = process.env.RAGFLY_API_URL || 'https://api.ragfly.ai'
   try {
-    const respuesta = await fetch(
-      `${base}/pagos/catalogo-publico?locale=${encodeURIComponent(locale)}`,
+    const query = new URLSearchParams({ locale })
+    if (country) query.set('country', country)
+    if (includeCountries) query.set('include_countries', 'true')
+    let respuesta = await fetch(
+      `${base}/pagos/catalogo-publico?${query}`,
       { next: { revalidate: 300 } },
     )
+    if (respuesta.status === 422 && country) {
+      query.delete('country')
+      respuesta = await fetch(`${base}/pagos/catalogo-publico?${query}`, { next: { revalidate: 300 } })
+    }
     if (!respuesta.ok) return FALLBACK
     return await respuesta.json() as Catalogo
   } catch {

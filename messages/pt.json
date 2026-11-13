@@ -243,6 +243,9 @@
     "punto9": "O Desktop processa o original localmente; nos planos soberanos o cliente é dono do banco e dos derivados em repouso, enquanto o RAGfly acessa chunks para recuperar contexto"
   },
   "planes": {
+    "paisPrecios": "Preços para:",
+    "paisInternacional": "Internacional",
+    "precioReferenciaClp": "Aprox. {precio} (referência de {fecha})",
     "eyebrow": "Planos",
     "titulo": "Planos claros para um RAG simples, privado e preciso.",
     "recomendado": "Recomendado",
