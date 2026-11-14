@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { FAQ, MARCA, POR_QUE_NO_BASTA, SUPERFICIES, VIGENTE } from '../../content/regfly'
 import { AREAS } from '../../content/regfly-areas'
@@ -91,6 +92,19 @@ function Ejemplo() {
           </ol>
         </div>
       </div>
+      <figure className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <figcaption className="text-base md:text-lg text-slm-gray leading-relaxed">
+          Una respuesta puede reunir fuentes de distintos niveles: la ley, el reglamento y la norma del supervisor.
+          El esquema es ilustrativo; las fuentes y citas dependen de cada consulta.
+        </figcaption>
+        <Image
+          src="/design/regfly-tres-normas-una-respuesta.svg"
+          alt="Ejemplo conceptual de una ley, un reglamento y una norma del supervisor que aportan fuentes a una respuesta."
+          width={960}
+          height={520}
+          className="w-full h-auto rounded-xl"
+        />
+      </figure>
     </Seccion>
   )
 }
