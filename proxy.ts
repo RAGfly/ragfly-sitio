@@ -20,7 +20,7 @@ function proxyRegfly(request: NextRequest) {
     url.pathname = `/regfly${ruta}`
     return NextResponse.rewrite(url)
   }
-  if (ruta === '/robots.txt' || ruta === '/sitemap.xml') {
+  if (ruta === '/robots.txt' || ruta === '/sitemap.xml' || ruta === '/llms.txt') {
     const url = request.nextUrl.clone()
     url.pathname = `/regfly${ruta}`
     return NextResponse.rewrite(url)

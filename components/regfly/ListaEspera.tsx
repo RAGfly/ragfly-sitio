@@ -7,7 +7,7 @@ type Estado = 'idle' | 'enviando' | 'ok' | 'error' | 'invalido'
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 /** Lista de espera de REGfly: mismo endpoint que el sitio madre, con su propia `source`. */
-export function ListaEspera() {
+export function ListaEspera({ fuente = 'regfly:lista-espera' }: { fuente?: string }) {
   const [email, setEmail] = useState('')
   const [empresa, setEmpresa] = useState('') // honeypot
   const [estado, setEstado] = useState<Estado>('idle')
@@ -25,7 +25,7 @@ export function ListaEspera() {
       const res = await fetch('/api/waitlist', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: valor, company: empresa, source: 'regfly:lista-espera' }),
+        body: JSON.stringify({ email: valor, company: empresa, source: fuente }),
       })
       if (!res.ok) throw new Error('estado')
       setEstado('ok')

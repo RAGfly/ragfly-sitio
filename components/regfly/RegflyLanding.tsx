@@ -1,14 +1,8 @@
-import Image from 'next/image'
-import { AREAS, ESCALERA, FAQ, MARCA, NAV, POR_QUE_NO_BASTA, SUPERFICIES, VIGENTE } from '../../content/regfly'
+import Link from 'next/link'
+import { ESCALERA, FAQ, MARCA, POR_QUE_NO_BASTA, SUPERFICIES, VIGENTE } from '../../content/regfly'
+import { AREAS } from '../../content/regfly-areas'
 import { ListaEspera } from './ListaEspera'
-
-const RAGFLY = 'https://www.ragfly.ai'
-
-const ESTADO_ESTILO: Record<string, string> = {
-  Disponible: 'bg-slm-brand text-white',
-  'En evaluación': 'bg-slm-brand-light text-slm-brand-dark',
-  Próximamente: 'bg-slm-dark/5 text-slm-gray',
-}
+import { Cabecera, EstadoChip, Pie, RAGFLY } from './Marco'
 
 function Seccion({
   id,
@@ -37,34 +31,6 @@ function Seccion({
         {children}
       </div>
     </section>
-  )
-}
-
-function Cabecera() {
-  return (
-    <header className="sticky top-0 z-20 bg-white/85 backdrop-blur-sm border-b border-slm-dark/5">
-      <div className="max-w-[1200px] mx-auto flex items-center justify-between px-6 md:px-12 py-4">
-        <a href="#" className="flex items-center gap-2.5 shrink-0 whitespace-nowrap" aria-label={`${MARCA.nombre}, ${MARCA.porMadre}`}>
-          <Image src="/ala_5c.png" alt="" width={2348} height={553} className="h-6 w-auto" />
-          <span className="font-manrope font-semibold text-2xl text-slm-dark tracking-tight">{MARCA.nombre}</span>
-          <span className="hidden md:inline text-xs text-slm-gray mt-1">{MARCA.porMadre}</span>
-        </a>
-        <nav className="hidden xl:flex items-center gap-7">
-          {NAV.map((it) => (
-            <a key={it.l} href={it.h} className="text-base text-slm-dark hover:opacity-70 transition-opacity">
-              {it.l}
-            </a>
-          ))}
-        </nav>
-        <a
-          href="#acceso"
-          className="rf-boton shrink-0 bg-slm-dark text-white px-5 py-2.5 rounded-full font-medium text-sm md:text-base whitespace-nowrap hover:opacity-90 transition-opacity"
-        >
-          <span className="sm:hidden">Preguntar</span>
-          <span className="hidden sm:inline">Hazle una pregunta</span>
-        </a>
-      </div>
-    </header>
   )
 }
 
@@ -135,10 +101,33 @@ function Tarjetas({ items }: { items: readonly { t: string; d: string }[] }) {
   )
 }
 
+// JSON-LD propio de REGfly (el de RAGfly no se hereda en este host).
+const JSON_LD = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      name: 'REGfly',
+      alternateName: 'REGfly, by RAGfly',
+      url: 'https://www.regfly.ai/cl',
+      parentOrganization: { '@type': 'Organization', name: 'RAGfly', url: RAGFLY },
+    },
+    {
+      '@type': 'FAQPage',
+      inLanguage: 'es-CL',
+      mainEntity: FAQ.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  ],
+}
+
 export function RegflyLanding() {
-  const anio = new Date().getFullYear()
   return (
     <main className="regfly flex flex-col min-h-full">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }} />
       <Cabecera />
       <Hero />
 
@@ -185,14 +174,21 @@ export function RegflyLanding() {
       <Seccion id="cobertura" eyebrow="Cobertura" titulo="Lo que cubrimos, con su estado real.">
         <div className="flex flex-col gap-3">
           {AREAS.map((a) => (
-            <div key={a.area} className="rounded-2xl border border-slm-dark/10 bg-white px-6 py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div key={a.slug} className="rounded-2xl border border-slm-dark/10 bg-white px-6 py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div>
-                <h3 className="font-helvetica-neue font-semibold text-lg text-slm-dark">{a.area}</h3>
-                <p className="text-sm text-slm-gray">{a.supervisor}</p>
+                <h3 className="font-helvetica-neue font-semibold text-lg text-slm-dark">
+                  <Link href={`/cl/${a.slug}`} className="hover:text-slm-brand-dark">{a.nombre}</Link>
+                </h3>
+                <p className="text-sm text-slm-gray">
+                  {a.supervisores.map((s, i) => (
+                    <span key={s.slug}>
+                      {i > 0 && ' · '}
+                      <Link href={`/cl/${a.slug}/${s.slug}`} className="hover:text-slm-brand-dark underline-offset-4 hover:underline">{s.sigla ?? s.nombre}</Link>
+                    </span>
+                  ))}
+                </p>
               </div>
-              <span className={`self-start sm:self-auto rounded-full px-4 py-1.5 text-sm font-medium whitespace-nowrap ${ESTADO_ESTILO[a.estado]}`}>
-                {a.estado}
-              </span>
+              <span className="self-start sm:self-auto"><EstadoChip estado={a.estado} /></span>
             </div>
           ))}
         </div>
@@ -257,23 +253,7 @@ export function RegflyLanding() {
         <ListaEspera />
       </Seccion>
 
-      <footer className="px-6 md:px-12 py-14 bg-slm-dark text-white/70">
-        <div className="max-w-[1100px] mx-auto flex flex-col gap-6">
-          <div className="flex items-center gap-2.5 font-manrope font-semibold text-2xl text-white">
-            <Image src="/ala_1.5c.png" alt="" width={2348} height={553} className="h-6 w-auto" />
-            {MARCA.nombre}
-            <span className="text-sm font-normal text-white/60 mt-1">{MARCA.porMadre}</span>
-          </div>
-          <p className="text-sm">{MARCA.aviso}</p>
-          <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
-            <a href={`${RAGFLY}/legal/terms`} className="hover:text-white">Términos</a>
-            <a href={`${RAGFLY}/legal/privacy`} className="hover:text-white">Privacidad</a>
-            <a href={`${RAGFLY}/legal/refund`} className="hover:text-white">Reembolsos</a>
-            <a href={RAGFLY} className="hover:text-white">RAGfly</a>
-          </div>
-          <p className="text-xs text-white/50">© {anio} {MARCA.nombre}, {MARCA.porMadre}.</p>
-        </div>
-      </footer>
+      <Pie />
     </main>
   )
 }

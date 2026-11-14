@@ -60,30 +60,7 @@ export const ESCALERA = [
   'Oficios circulares, guías y preguntas frecuentes',
 ] as const
 
-export const AREAS = [
-  {
-    area: 'Empresa, mercados y consumo',
-    supervisor: 'Comisión para el Mercado Financiero (CMF)',
-    estado: 'En evaluación',
-  },
-  {
-    area: 'Derecho tributario',
-    supervisor: 'Servicio de Impuestos Internos (SII)',
-    estado: 'En evaluación',
-  },
-  {
-    area: 'Trabajo y seguridad social',
-    supervisor: 'Dirección del Trabajo y supervisores del sistema previsional',
-    estado: 'Próximamente',
-  },
-  {
-    area: 'Compras públicas',
-    supervisor: 'Desde la mirada del proveedor',
-    estado: 'Próximamente',
-  },
-] as const
-
-export type EstadoCobertura = (typeof AREAS)[number]['estado'] | 'Disponible'
+// La cobertura por área y supervisor vive en content/regfly-areas.ts.
 
 export const SUPERFICIES = [
   { t: 'Chat', d: 'Pregunta en lenguaje natural y recibe la respuesta con su cita.' },
