@@ -4,7 +4,9 @@ import { GoogleAcquisition } from '../lib/GoogleAcquisition'
 import { Analytics } from "@vercel/analytics/next";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages, getTranslations } from "next-intl/server";
+import { headers } from "next/headers";
 import "./globals.css";
+import { esHostRegfly, URL_REGFLY } from "../lib/host";
 import { bajadaPlan, cargarCatalogo, cuposPlan, type Catalogo } from "../lib/catalogo-planes";
 
 const inter = Inter({
@@ -27,7 +29,26 @@ const montserrat = Montserrat_Alternates({
   weight: ["400", "500", "600", "700"],
 });
 
+// REGfly (regfly.ai) comparte este despliegue: su metadata y su shell van aparte
+// para no heredar el JSON-LD, las analíticas ni el idioma de RAGfly.
+const METADATA_REGFLY: Metadata = {
+  metadataBase: new URL(URL_REGFLY),
+  title: "REGfly, by RAGfly — Que tu IA responda con la normativa vigente",
+  description:
+    "Normativa chilena vigente, de la ley a la circular de cada supervisor, con cita a la norma y al artículo. Simple, vigente y preciso.",
+  alternates: { canonical: "/cl" },
+  openGraph: {
+    type: "website",
+    siteName: "REGfly",
+    url: `${URL_REGFLY}/cl`,
+    locale: "es_CL",
+    title: "REGfly, by RAGfly — Que tu IA responda con la normativa vigente",
+    description: "Nosotros la mantenemos al día. Tú la consultas, con cita a la norma y al artículo.",
+  },
+};
+
 export async function generateMetadata(): Promise<Metadata> {
+  if (esHostRegfly((await headers()).get("host"))) return METADATA_REGFLY;
   const t = await getTranslations("metadata");
   const locale = await getLocale();
   return {
@@ -146,6 +167,16 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  if (esHostRegfly((await headers()).get("host"))) {
+    return (
+      <html lang="es-CL" className={`${inter.variable} ${zalando.variable} ${montserrat.variable} ${zalandoMarketing.variable} h-full antialiased`}>
+        <body className="min-h-full flex flex-col">
+          {children}
+          <Analytics />
+        </body>
+      </html>
+    );
+  }
   const locale = await getLocale();
   const messages = await getMessages();
   const tFaq = await getTranslations("faq");
