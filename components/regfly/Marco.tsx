@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { MARCA, NAV } from '../../content/regfly'
 import { ETIQUETA_ESTADO, type Estado } from '../../content/regfly-areas'
+import { URL_APP_REGFLY } from '../../lib/host'
 
 export const RAGFLY = 'https://www.ragfly.ai'
 
@@ -37,7 +38,7 @@ export function Cabecera({ base = '' }: { base?: string }) {
           ))}
         </nav>
         <a
-          href={`${base}#acceso`}
+          href={URL_APP_REGFLY}
           className="rf-boton shrink-0 bg-slm-dark text-white px-5 py-2.5 rounded-full font-medium text-sm md:text-base whitespace-nowrap hover:opacity-90 transition-opacity"
         >
           <span className="sm:hidden">Preguntar</span>

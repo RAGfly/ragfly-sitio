@@ -12,3 +12,5 @@ export function esHostRegfly(host: string | null | undefined): boolean {
 }
 
 export const URL_REGFLY = 'https://www.regfly.ai'
+/** La aplicación de REGfly (cuenta RAGfly). El de pruebas es test.regfly.ai y el corporativo corp.regfly.ai. */
+export const URL_APP_REGFLY = 'https://app.regfly.ai'

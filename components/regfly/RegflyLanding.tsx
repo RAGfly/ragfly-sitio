@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { ESCALERA, FAQ, MARCA, POR_QUE_NO_BASTA, SUPERFICIES, VIGENTE } from '../../content/regfly'
 import { AREAS } from '../../content/regfly-areas'
+import { URL_APP_REGFLY } from '../../lib/host'
 import { ListaEspera } from './ListaEspera'
 import { Cabecera, EstadoChip, Pie, RAGFLY } from './Marco'
 
@@ -47,7 +48,7 @@ function Hero() {
         <p className="font-helvetica-neue font-medium text-lg md:text-2xl text-slm-brand-dark tracking-[-0.01em]">{MARCA.cobertura}</p>
         <p className="font-helvetica-neue text-base md:text-xl text-slm-dark/85 max-w-2xl text-balance leading-relaxed">{MARCA.apoyo}</p>
         <div className="flex flex-col sm:flex-row items-center gap-3 pt-4">
-          <a href="#acceso" className="rf-boton bg-slm-dark text-white px-7 py-3 rounded-full font-medium text-base hover:opacity-90 transition-opacity">
+          <a href={URL_APP_REGFLY} className="rf-boton bg-slm-dark text-white px-7 py-3 rounded-full font-medium text-base hover:opacity-90 transition-opacity">
             Hazle una pregunta
           </a>
           <a href="#conecta" className="rf-boton border border-slm-dark text-slm-dark px-7 py-3 rounded-full font-medium text-base hover:bg-white transition-colors">
@@ -248,8 +249,11 @@ export function RegflyLanding() {
 
       <Seccion id="acceso" eyebrow="Acceso" titulo="Hazle tu primera pregunta a la normativa.">
         <p className="text-base md:text-lg text-slm-gray max-w-2xl leading-relaxed mb-6">
-          Estamos abriendo por áreas. Deja tu correo y te escribimos cuando puedas consultar.
+          Entra con tu cuenta RAGfly. Estamos abriendo por áreas: si quieres que te avisemos cuando se abra la tuya, deja tu correo.
         </p>
+        <a href={URL_APP_REGFLY} className="rf-boton inline-flex bg-slm-dark text-white px-7 py-3 rounded-full font-medium text-base hover:opacity-90 transition-opacity mb-8">
+          Entrar a REGfly
+        </a>
         <ListaEspera />
       </Seccion>
 
