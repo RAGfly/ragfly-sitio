@@ -5,3 +5,68 @@
   scroll-behavior: smooth;
 }
 .regfly [id] { scroll-margin-top: 5.5rem; }
+
+/* ------------------------------------------------------------------ */
+/* Movimiento de REGfly — el mismo sistema que RAGfly, con sus colores (sin acento propio). */
+/* Reglas: velocidad constante, sin spring ni rebote, nada cae (todo    */
+/* viaja), un solo movimiento por sección, y se apaga con              */
+/* prefers-reduced-motion. Las claves wingDrift*, travel y pf* viven en */
+/* globals.css (compartidas).                                          */
+/* ------------------------------------------------------------------ */
+
+/* Hero: alas a la deriva + corredores. Las alas son la pieza ala_1.5c.png como máscara. */
+.regfly .rg-hero-fondo { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+.regfly .rg-ala {
+  position: absolute;
+  aspect-ratio: 2348 / 553;
+  background: var(--slm-brand-light);
+  -webkit-mask: url(/ala_1.5c.png) center / contain no-repeat;
+  mask: url(/ala_1.5c.png) center / contain no-repeat;
+  will-change: transform;
+}
+.regfly .rg-ala--arriba {
+  top: -6%; right: -14%;
+  width: min(120vw, 1700px);
+  opacity: 0.85;
+  animation: wingDriftTop 26s ease-in-out infinite;
+}
+.regfly .rg-ala--abajo {
+  bottom: -14%; left: -22%;
+  width: min(95vw, 1300px);
+  opacity: 0.5;
+  transform: scaleX(-1) rotate(4deg);
+  animation: wingDriftBottom 34s ease-in-out infinite;
+}
+/* Corredores, puntos y corte inclinado: los de globals.css, sin tocar (azul de RAGfly). */
+
+/* Escalera de jerarquía: una fila encendida baja de la norma superior a la instrucción.
+   12 s por ciclo, 1 s por peldaño (el retardo de cada <li> es su índice en segundos). */
+.regfly .rg-escala > li { animation: rgPeldano 12s linear infinite; }
+@keyframes rgPeldano {
+  0%, 14%, 100% { background: #ffffff; border-color: rgba(0, 46, 71, 0.10); }
+  2%, 10%       { background: var(--slm-light); border-color: color-mix(in srgb, var(--slm-brand) 45%, transparent); }
+}
+
+/* Con tus documentos: la vía por la que viaja el punto (como un corredor del hero). */
+.regfly .rg-via { position: relative; height: 1px; background: #AAD8F1; }
+
+/* Estado «En evaluación»: el punto respira (como accentPulse de RAGfly). */
+.rg-pulso {
+  display: inline-block;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  margin-right: 8px;
+  vertical-align: 1px;
+  animation: rgPulso 2.4s ease-in-out infinite;
+}
+@keyframes rgPulso {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.45; transform: scale(1.25); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .regfly .rg-ala { animation: none !important; }
+  .regfly .rg-escala > li { animation: none; }
+  .rg-pulso { animation: none; }
+}

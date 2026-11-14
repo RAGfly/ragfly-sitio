@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { MARCA, NAV } from '../../content/regfly'
 import { ETIQUETA_ESTADO, type Estado } from '../../content/regfly-areas'
 import { URL_APP_REGFLY } from '../../lib/host'
+import { MenuMovil } from './MenuMovil'
 
 export const RAGFLY = 'https://www.ragfly.ai'
 
@@ -15,6 +16,7 @@ const ESTADO_ESTILO: Record<Estado, string> = {
 export function EstadoChip({ estado }: { estado: Estado }) {
   return (
     <span className={`rounded-full px-4 py-1.5 text-sm font-medium whitespace-nowrap ${ESTADO_ESTILO[estado]}`}>
+      {estado === 'evaluacion' && <span className="rg-pulso" aria-hidden="true" />}
       {ETIQUETA_ESTADO[estado]}
     </span>
   )
@@ -27,7 +29,7 @@ export function Cabecera({ base = '' }: { base?: string }) {
       <div className="max-w-[1200px] mx-auto flex items-center justify-between px-6 md:px-12 py-4">
         <Link href={base || '#'} className="flex items-center gap-2.5 shrink-0 whitespace-nowrap" aria-label={`${MARCA.nombre}, ${MARCA.porMadre}`}>
           <Image src="/ala_5c.png" alt="" width={2348} height={553} className="h-6 w-auto" />
-          <span className="font-manrope font-semibold text-2xl text-slm-dark tracking-tight">{MARCA.nombre}</span>
+          <span className="font-manrope font-semibold text-xl sm:text-2xl text-slm-dark tracking-tight">{MARCA.nombre}</span>
           <span className="hidden md:inline text-xs text-slm-gray mt-1">{MARCA.porMadre}</span>
         </Link>
         <nav className="hidden xl:flex items-center gap-7">
@@ -37,13 +39,16 @@ export function Cabecera({ base = '' }: { base?: string }) {
             </a>
           ))}
         </nav>
-        <a
-          href={URL_APP_REGFLY}
-          className="rf-boton shrink-0 bg-slm-dark text-white px-5 py-2.5 rounded-full font-medium text-sm md:text-base whitespace-nowrap hover:opacity-90 transition-opacity"
-        >
-          <span className="sm:hidden">Preguntar</span>
-          <span className="hidden sm:inline">Hazle una pregunta</span>
-        </a>
+        <div className="flex items-center gap-3 sm:gap-4">
+          <a
+            href={URL_APP_REGFLY}
+            className="rf-boton shrink-0 bg-slm-dark text-white px-4 sm:px-5 py-2.5 rounded-full font-medium text-sm md:text-base whitespace-nowrap hover:opacity-90 transition-opacity"
+          >
+            <span className="sm:hidden">Preguntar</span>
+            <span className="hidden sm:inline">Hazle una pregunta</span>
+          </a>
+          <MenuMovil links={NAV.map((it) => ({ l: it.l, h: `${base}${it.h}` }))} />
+        </div>
       </div>
     </header>
   )
