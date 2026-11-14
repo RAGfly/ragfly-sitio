@@ -9,9 +9,17 @@ import { ESCALERA } from '../../content/regfly'
 /* Preflight — la lista de chequeo y la negativa (NegativaSection)      */
 /* El ámbar vive aquí: marca lo autorizado y el ítem que bloquea.       */
 /* ------------------------------------------------------------------ */
-const CHEQUEOS = ['La norma está en el corpus', 'La norma sigue vigente', 'El artículo respalda la respuesta'] as const
-const BLOQUEO = 'La pregunta está dentro de la cobertura'
-const RESPUESTA_NEGATIVA = 'Esto no está respaldado en la normativa cargada, así que no te lo respondo.'
+/* Copy revisado el 14-nov-2026 contra ARQUITECTURA-DE-MARCA.md: solo afirma lo que la marca ya
+   sostiene (el corpus acredita la respuesta, cita norma y artículo, se abstiene fuera de cobertura).
+   La cobertura va primero (es la compuerta); el ítem que bloquea es la falta de respaldo.
+   No se afirma «vigencia verificada» en el Preflight: la vigencia es el atributo de la digestión. */
+const CHEQUEOS = [
+  'La pregunta está dentro de la cobertura',
+  'La norma está cargada en el corpus',
+  'La cita se resuelve a la norma y al artículo',
+] as const
+const BLOQUEO = 'Respaldo para esta afirmación'
+const RESPUESTA_NEGATIVA = 'No encontré respaldo en la normativa cargada para responder esto con confianza.'
 
 export function PreflightAnimado() {
   return (
@@ -54,7 +62,7 @@ export function PreflightAnimado() {
           </span>
           <span className="pf-stack">
             <span className="rf-anot rf-anot-sm text-slm-light/40 pf-fade-out" style={{ animationDelay: '3.3s' }}>Pendiente</span>
-            <span className="rf-anot rf-anot-sm text-[#C08A3A] pf-fade-in" style={{ animationDelay: '3.3s' }}>Bloqueado</span>
+            <span className="rf-anot rf-anot-sm text-[#C08A3A] pf-fade-in" style={{ animationDelay: '3.3s' }}>Sin respaldo</span>
           </span>
         </li>
       </ul>
