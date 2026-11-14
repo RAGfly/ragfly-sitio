@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation'
 import { AREAS, AVISO_LEGAL, getArea } from '../../../../content/regfly-areas'
 import { Cabecera, EstadoChip, Pie } from '../../../../components/regfly/Marco'
 import { ListaEspera } from '../../../../components/regfly/ListaEspera'
-import { esHostRegfly } from '../../../../lib/host'
+import { esHostRegfly, URL_REGISTRO_REGFLY } from '../../../../lib/host'
 import '../../regfly.css'
 
 type Props = { params: Promise<{ area: string }> }
@@ -70,7 +70,7 @@ export default async function PaginaArea({ params }: Props) {
             </div>
           )}
           <div className="mt-10 flex flex-wrap gap-3">
-            <Link href="/cl#acceso" className="rf-boton bg-slm-dark text-white px-7 py-3 rounded-full font-medium text-base hover:opacity-90 transition-opacity">Hazle una pregunta</Link>
+            <a href={URL_REGISTRO_REGFLY} className="rf-boton bg-slm-dark text-white px-7 py-3 rounded-full font-medium text-base hover:opacity-90 transition-opacity">Crear cuenta gratis</a>
             <Link href="/cl#conecta" className="rf-boton border border-slm-dark text-slm-dark px-7 py-3 rounded-full font-medium text-base hover:bg-white transition-colors">Conecta tu IA</Link>
           </div>
           <p className="mt-10 text-sm text-slm-gray">{AVISO_LEGAL}</p>

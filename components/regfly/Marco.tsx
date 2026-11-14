@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { MARCA, NAV } from '../../content/regfly'
 import { ETIQUETA_ESTADO, type Estado } from '../../content/regfly-areas'
-import { URL_APP_REGFLY } from '../../lib/host'
+import { URL_LOGIN_REGFLY, URL_REGISTRO_REGFLY } from '../../lib/host'
 import { MenuMovil } from './MenuMovil'
 
 export const RAGFLY = 'https://www.ragfly.ai'
@@ -40,12 +40,15 @@ export function Cabecera({ base = '' }: { base?: string }) {
           ))}
         </nav>
         <div className="flex items-center gap-3 sm:gap-4">
+          <a href={URL_LOGIN_REGFLY} className="hidden sm:inline text-base font-medium text-slm-dark hover:opacity-70 transition-opacity whitespace-nowrap">
+            Iniciar sesión
+          </a>
           <a
-            href={URL_APP_REGFLY}
+            href={URL_REGISTRO_REGFLY}
             className="rf-boton shrink-0 bg-slm-dark text-white px-4 sm:px-5 py-2.5 rounded-full font-medium text-sm md:text-base whitespace-nowrap hover:opacity-90 transition-opacity"
           >
-            <span className="sm:hidden">Preguntar</span>
-            <span className="hidden sm:inline">Hazle una pregunta</span>
+            <span className="sm:hidden">Regístrate</span>
+            <span className="hidden sm:inline">Empieza gratis</span>
           </a>
           <MenuMovil links={NAV.map((it) => ({ l: it.l, h: `${base}${it.h}` }))} />
         </div>

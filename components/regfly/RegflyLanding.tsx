@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { FAQ, MARCA, POR_QUE_NO_BASTA, SUPERFICIES, VIGENTE } from '../../content/regfly'
 import { AREAS } from '../../content/regfly-areas'
-import { URL_APP_REGFLY } from '../../lib/host'
+import { URL_LOGIN_REGFLY, URL_REGISTRO_REGFLY } from '../../lib/host'
 import { BlurIn } from '../sections/shared'
 import { ChatAnimado } from './ChatAnimado'
 import { HeroFondo } from './HeroFondo'
@@ -55,8 +55,8 @@ function Hero() {
         <BlurIn delay={0.04} as="p" className="font-helvetica-neue font-medium text-lg md:text-2xl text-slm-brand-dark tracking-[-0.01em]">{MARCA.cobertura}</BlurIn>
         <BlurIn delay={0.08} as="p" className="font-helvetica-neue text-base md:text-xl text-slm-dark/85 max-w-2xl text-balance leading-relaxed">{MARCA.apoyo}</BlurIn>
         <BlurIn delay={0.3} className="flex flex-col sm:flex-row items-center gap-3 pt-4">
-          <a href={URL_APP_REGFLY} className="rf-boton bg-slm-dark text-white px-7 py-3 rounded-full font-medium text-base hover:opacity-90 transition-opacity">
-            Hazle una pregunta
+          <a href={URL_REGISTRO_REGFLY} className="rf-boton bg-slm-dark text-white px-7 py-3 rounded-full font-medium text-base hover:opacity-90 transition-opacity">
+            Crear cuenta gratis
           </a>
           <a href="#conecta" className="rf-boton border border-slm-dark text-slm-dark px-7 py-3 rounded-full font-medium text-base hover:bg-white transition-colors">
             Conecta tu IA
@@ -252,13 +252,18 @@ export function RegflyLanding() {
         </Escalonado>
       </Seccion>
 
-      <Seccion id="acceso" eyebrow="Acceso" titulo="Hazle tu primera pregunta a la normativa.">
+      <Seccion id="acceso" eyebrow="Acceso" titulo="Crea tu cuenta y consulta la normativa.">
         <p className="text-base md:text-lg text-slm-gray max-w-2xl leading-relaxed mb-6">
-          Entra con tu cuenta RAGfly. Estamos abriendo por áreas: si quieres que te avisemos cuando se abra la tuya, deja tu correo.
+          Regístrate gratis o entra con tu cuenta RAGfly. Estamos abriendo por áreas: si quieres que te avisemos cuando se abra la tuya, deja tu correo.
         </p>
-        <a href={URL_APP_REGFLY} className="rf-boton inline-flex bg-slm-dark text-white px-7 py-3 rounded-full font-medium text-base hover:opacity-90 transition-opacity mb-8">
-          Entrar a REGfly
-        </a>
+        <div className="flex flex-wrap items-center gap-5 mb-8">
+          <a href={URL_REGISTRO_REGFLY} className="rf-boton inline-flex bg-slm-dark text-white px-7 py-3 rounded-full font-medium text-base hover:opacity-90 transition-opacity">
+            Crear cuenta gratis
+          </a>
+          <a href={URL_LOGIN_REGFLY} className="text-base font-medium text-slm-dark hover:opacity-70 transition-opacity">
+            Iniciar sesión
+          </a>
+        </div>
         <ListaEspera />
       </Seccion>
 
