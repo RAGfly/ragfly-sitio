@@ -1,11 +1,7 @@
-/* REGfly — mismo sistema de diseño que RAGfly, con acento propio (verde azulado).
-   Solo redefine los tokens de color del acento dentro de `.regfly`; la tinta
-   (--slm-dark), los grises y las fuentes siguen siendo los de la marca madre. */
+/* REGfly — hereda todo el sistema de marca de RAGfly, sin color de acento propio
+   (decisión 2026-11-14: docs/decisiones/2026-11-14-marca-regfly.md en regu-Ragfly).
+   Solo ajusta el desplazamiento de los anclas por el encabezado fijo. */
 .regfly {
-  --slm-brand:       #0E8F7E;
-  --slm-brand-dark:  #0A5C52;
-  --slm-brand-light: #D3F0EA;
-  --slm-light:       #EAF7F4;
   scroll-behavior: smooth;
 }
 .regfly [id] { scroll-margin-top: 5.5rem; }
