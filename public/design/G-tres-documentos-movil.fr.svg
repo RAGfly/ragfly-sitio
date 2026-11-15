@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 355" width="720" role="img" aria-labelledby="title desc">
+  <title id="title">Tres documentos aportan fuentes a una respuesta</title>
+  <desc id="desc">Ejemplo conceptual de tres documentos con citas en una respuesta.</desc>
+  <style>
+    svg { font-family: system-ui, sans-serif; }
+    .route { fill: none; stroke: #55b2e4; stroke-width: 1.2; opacity: .5; }
+    .signal { offset-path: var(--route); opacity: 0; animation: travel 8s linear var(--phase) infinite; }
+    .citation { opacity: 0; animation: reveal 8s ease-out var(--phase) infinite; }
+    .response { animation: reset 8s ease-in-out infinite; }
+    @keyframes travel { 0% { offset-distance: 0%; opacity: 0; } 5% { opacity: 1; } 24% { offset-distance: 100%; opacity: 1; } 26%, 100% { offset-distance: 100%; opacity: 0; } }
+    @keyframes reveal { 0%, 24% { opacity: 0; } 29%, 100% { opacity: 1; } }
+    @keyframes reset { 0%, 13% { opacity: 0; } 18%, 84% { opacity: 1; } 97%, 100% { opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) { .signal { animation: none; } .citation, .response { animation: none; opacity: 1; } }
+  </style>
+  <defs>
+    <path id="route1" d="M66 108 V155"/>
+    <path id="route2" d="M180 108 V155"/>
+    <path id="route3" d="M294 108 V155"/>
+    <g id="point"><circle r="6" fill="#ffc06b" opacity=".22"/><circle r="2.8" fill="#fff2d4"/></g>
+  </defs>
+  <rect width="360" height="355" rx="12" fill="#0b1926"/>
+  <text x="16" y="27" fill="#a9cde3" font-size="10" letter-spacing="1.5">DOCUMENTS</text>
+  <g fill="#142e43" stroke="#427695"><rect x="16" y="41" width="100" height="67" rx="7"/><rect x="130" y="41" width="100" height="67" rx="7"/><rect x="244" y="41" width="100" height="67" rx="7"/></g>
+  <g fill="#d9edf8" font-size="13" text-anchor="middle">
+    <text x="66" y="79"><tspan x="66">Contrat · p. 14</tspan></text><text x="180" y="71"><tspan x="180">Annexe technique</tspan><tspan x="180" dy="16">p. 3</tspan></text>
+    <text x="294" y="71"><tspan x="294">Calendrier</tspan><tspan x="294" dy="16">p. 2</tspan></text>
+  </g>
+  <g class="route"><use href="#route1"/><use href="#route2"/><use href="#route3"/></g>
+  <use class="signal" href="#point" style="--route:url(#route1);--phase:0s"/>
+  <use class="signal" href="#point" style="--route:url(#route2);--phase:.5s"/>
+  <use class="signal" href="#point" style="--route:url(#route3);--phase:1s"/>
+  <rect x="16" y="155" width="328" height="182" rx="9" fill="#102539" stroke="#427695"/>
+  <text x="32" y="181" fill="#d9edf8" font-size="11" font-weight="650" letter-spacing="1.3">RÉPONSE</text>
+  <text x="328" y="181" fill="#a9cde3" font-size="10" text-anchor="end" letter-spacing=".8">EXEMPLE</text>
+  <path d="M32 192 H328 M32 237 H328 M32 282 H328" stroke="#25475f" stroke-width=".8"/>
+  <g class="response" fill="#e3f2fa" font-size="15">
+    <g class="citation" style="--phase:0s"><text x="32" y="212"><tspan x="32">Livraison sous 120</tspan><tspan x="32" dy="16">jours calendaires.</tspan></text><rect x="301" y="203" width="27" height="25" rx="4" fill="#4a3924"/><text x="314.5" y="220" fill="#ffcb85" text-anchor="middle" font-weight="650">1</text></g>
+    <g class="citation" style="--phase:.5s"><text x="32" y="257"><tspan x="32">Tests de réception</tspan><tspan x="32" dy="16">requis.</tspan></text><rect x="301" y="248" width="27" height="25" rx="4" fill="#4a3924"/><text x="314.5" y="265" fill="#ffcb85" text-anchor="middle" font-weight="650">2</text></g>
+    <g class="citation" style="--phase:1s"><text x="32" y="302"><tspan x="32">Premier jalon</tspan><tspan x="32" dy="16">au 30e jour.</tspan></text><rect x="301" y="293" width="27" height="25" rx="4" fill="#4a3924"/><text x="314.5" y="310" fill="#ffcb85" text-anchor="middle" font-weight="650">3</text></g>
+  </g>
+</svg>

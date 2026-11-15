@@ -39,7 +39,7 @@ export function GoogleAcquisition({ locale, app = false }: { locale: string; app
     <>
       {preguntar && <aside role="region" aria-label="Google Analytics" className={`fixed bottom-0 left-0 right-0 z-[100] border-t p-4 text-sm shadow-lg ${app ? "border-borde bg-fondo-tarjeta text-texto" : "border-slm-brand-light bg-white text-slm-dark"}`}>
         <div className="mx-auto flex max-w-5xl flex-wrap items-center gap-3">
-          <p className="min-w-0 flex-1">{t.texto}</p>
+          <p className="min-w-0 w-full sm:w-auto sm:flex-1">{t.texto}</p>
           <button type="button" onClick={() => elegir(false)} className={`rounded border px-4 py-2 ${app ? "border-borde" : "border-slm-brand"}`}>{t.rechazar}</button>
           <button type="button" onClick={() => elegir(true)} className={`rounded px-4 py-2 ${app ? "bg-primario text-primario-texto" : "bg-slm-dark text-white"}`}>{t.aceptar}</button>
           <a href="https://www.ragfly.ai/legal/privacy" className="underline">{t.privacidad}</a>

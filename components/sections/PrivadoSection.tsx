@@ -51,7 +51,10 @@ export function PrivadoSection() {
 
         {/* Pieza 2 — ejemplo de respuesta con citas junto a los permisos por área. */}
         <div className="grid lg:grid-cols-[1fr_1.05fr] gap-8 lg:gap-12 items-center border border-white/10 bg-[#0b1926] p-6 md:p-10">
-          <Image src={`/design/G-tres-documentos-una-respuesta${locale === 'es' ? '' : `.${locale}`}.svg`} alt="" aria-hidden width={960} height={520} className="w-full h-auto order-2 lg:order-1" />
+          <picture className="order-2 lg:order-1">
+            <source media="(max-width: 639px)" srcSet={`/design/G-tres-documentos-movil.${locale}.svg`} />
+            <Image src={`/design/G-tres-documentos-una-respuesta${locale === 'es' ? '' : `.${locale}`}.svg`} alt="" aria-hidden width={960} height={520} className="w-full h-auto" />
+          </picture>
           <div className="flex flex-col gap-5 order-1 lg:order-2">
             <span className="rf-anot text-white/45">{t('privado.cartaTag')}</span>
             <h3 className="font-helvetica-neue text-2xl md:text-3xl font-medium text-slm-light tracking-[-0.02em] leading-tight">
