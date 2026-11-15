@@ -97,13 +97,16 @@ function Ejemplo() {
           Una respuesta puede reunir fuentes de distintos niveles: la ley, el reglamento y la norma del supervisor.
           El esquema es ilustrativo; las fuentes y citas dependen de cada consulta.
         </figcaption>
-        <Image
-          src="/design/regfly-tres-normas-una-respuesta.svg"
-          alt="Ejemplo conceptual de una ley, un reglamento y una norma del supervisor que aportan fuentes a una respuesta."
-          width={960}
-          height={520}
-          className="w-full h-auto rounded-xl"
-        />
+        <picture>
+          <source media="(max-width: 639px)" srcSet="/design/regfly-tres-normas-movil.svg" />
+          <Image
+            src="/design/regfly-tres-normas-una-respuesta.svg"
+            alt="Ejemplo conceptual de una ley, un reglamento y una norma del supervisor que aportan fuentes a una respuesta."
+            width={960}
+            height={520}
+            className="w-full h-auto rounded-xl"
+          />
+        </picture>
       </figure>
     </Seccion>
   )
