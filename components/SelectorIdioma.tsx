@@ -37,7 +37,7 @@ export function SelectorIdioma() {
         onClick={() => setAbierto((v) => !v)}
         disabled={pending}
         aria-label={t('label')}
-        className="flex items-center gap-1 text-sm text-[#737373] hover:text-[var(--foreground)] transition-colors px-2 py-1 rounded border border-transparent hover:border-[#EAEAEA]"
+        className="flex items-center gap-1 text-xs text-[#737373] hover:text-[var(--foreground)] transition-colors px-2 py-1 rounded border border-transparent hover:border-[#EAEAEA]"
       >
         <span>{localeShort[locale]}</span>
         <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor">
