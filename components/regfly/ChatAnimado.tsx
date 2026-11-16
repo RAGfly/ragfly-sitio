@@ -24,7 +24,7 @@ const TEXTO = {
     { doc: '1 · Ley 18.045', resumen: 'La obligación de informar hechos esenciales.', retardo: 550 },
     { doc: '2 · NCG N° 515 de la CMF', resumen: 'El canal de envío: CMF Supervisa.', retardo: 800 },
   ],
-  pie: 'Cita la ley primero y después la norma del supervisor.',
+  pie: 'Cita la ley primero y después la norma del regulador.',
 } as const
 
 const VACIO = 0

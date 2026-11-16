@@ -15,7 +15,7 @@ export const MARCA = {
   porMadre: 'by RAGfly',
   atributos: 'Simple, vigente y preciso',
   titular: 'Que tu IA responda con la normativa vigente.',
-  cobertura: 'De la ley a la circular de cada supervisor.',
+  cobertura: 'De la ley a la circular de cada regulador.',
   apoyo: 'Nosotros la mantenemos al día. Tú la consultas, con cita a la norma y al artículo.',
   aviso: 'Información normativa con su fuente; no constituye asesoría legal.',
 } as const
@@ -40,7 +40,7 @@ export const POR_QUE_NO_BASTA = [
   },
   {
     t: 'Mezcla la ley con la circular',
-    d: 'Trata igual una ley y una guía del supervisor. Cuando se contradicen, no sabe cuál manda.',
+    d: 'Trata igual una ley y una guía del regulador. Cuando se contradicen, no sabe cuál manda.',
   },
 ] as const
 
@@ -60,7 +60,7 @@ export const ESCALERA = [
   'Oficios circulares, guías y preguntas frecuentes',
 ] as const
 
-// La cobertura por área y supervisor vive en content/regfly-areas.ts.
+// La cobertura por área y regulador vive en content/regfly-areas.ts.
 
 export const SUPERFICIES = [
   { t: 'Chat', d: 'Pregunta en lenguaje natural y recibe la respuesta con su cita.' },
@@ -77,7 +77,7 @@ export const FAQ = [
   },
   {
     q: '¿Qué normativa cubre hoy?',
-    a: 'Abrimos por áreas y supervisores, y solo damos por disponible lo que pasó nuestra evaluación. La sección Cobertura muestra el estado de cada una.',
+    a: 'Abrimos por áreas y reguladores, y solo damos por disponible lo que pasó nuestra evaluación. La sección Cobertura muestra el estado de cada una.',
   },
   {
     q: '¿Qué pasa si no hay respaldo para mi pregunta?',
@@ -85,7 +85,7 @@ export const FAQ = [
   },
   {
     q: '¿Qué norma cita primero cuando hay conflicto?',
-    a: 'La de mayor rango. Si una circular y una ley se contradicen, cita primero la ley y después la instrucción del supervisor.',
+    a: 'La de mayor rango. Si una circular y una ley se contradicen, cita primero la ley y después la instrucción del regulador.',
   },
   {
     q: '¿Necesito una cuenta nueva?',
@@ -93,6 +93,6 @@ export const FAQ = [
   },
   {
     q: '¿Qué normas entran a continuación?',
-    a: 'Primero la normativa y las instrucciones de cada supervisor. En una segunda fase se suman dictámenes, oficios, sanciones y sentencias.',
+    a: 'Primero la normativa y las instrucciones de cada regulador. En una segunda fase se suman dictámenes, oficios, sanciones y sentencias.',
   },
 ] as const

@@ -35,7 +35,7 @@ const METADATA_REGFLY: Metadata = {
   metadataBase: new URL(URL_REGFLY),
   title: "REGfly, by RAGfly — Que tu IA responda con la normativa vigente",
   description:
-    "Normativa chilena vigente, de la ley a la circular de cada supervisor, con cita a la norma y al artículo. Simple, vigente y preciso.",
+    "Normativa chilena vigente, de la ley a la circular de cada regulador, con cita a la norma y al artículo. Simple, vigente y preciso.",
   alternates: { canonical: "/cl" },
   openGraph: {
     type: "website",

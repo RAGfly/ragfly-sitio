@@ -1,6 +1,6 @@
 <svg class="source-answer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 260" width="960" xml:lang="es" role="img" aria-labelledby="sources-title sources-desc">
   <title id="sources-title">Tres normas aportan fuentes a una respuesta</title>
-  <desc id="sources-desc">Ejemplo conceptual: una ley, un reglamento y una norma del supervisor aportan cada uno una fuente a una respuesta. Una luz recorre cada trayectoria y aparece la cita correspondiente.</desc>
+  <desc id="sources-desc">Ejemplo conceptual: una ley, un reglamento y una norma del regulador aportan cada uno una fuente a una respuesta. Una luz recorre cada trayectoria y aparece la cita correspondiente.</desc>
   <style>
     .source-answer {
       --cycle: 8s;
@@ -85,7 +85,7 @@
     <use href="#sources-page" x="24" y="180"/>
     <path class="source-lines" d="M31 196 H48 M31 202 H48 M31 209 H48"/>
     <path class="chunk" d="M31 214 H44"/>
-    <text x="24" y="234">Norma del supervisor</text>
+    <text x="24" y="234">Norma del regulador</text>
   </g>
   <g class="route">
     <use href="#sources-route-1" marker-end="url(#sources-arrow)"/>
@@ -111,7 +111,7 @@
       <text x="428" y="143" fill="#ffcb85" text-anchor="middle" font-weight="650">2</text>
     </g>
     <g class="citation" style="--phase: 1s">
-      <text x="228" y="188">El supervisor lo instruye.</text>
+      <text x="228" y="188">El regulador lo instruye.</text>
       <rect x="418" y="174" width="20" height="20" rx="4" fill="#4a3924"/>
       <text x="428" y="188" fill="#ffcb85" text-anchor="middle" font-weight="650">3</text>
     </g>

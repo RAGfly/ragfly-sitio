@@ -63,7 +63,7 @@ export default async function PaginaSupervisor({ params }: Props) {
 
           {sup.segundaFase && (
             <p className="mt-8 rounded-2xl bg-slm-light border border-slm-brand-light p-5 max-w-xl text-slm-dark">
-              Esta fuente forma parte de la segunda fase: los casos concretos, de la ley al dictamen. La primera fase cubre la norma y las instrucciones generales de cada supervisor.
+              Esta fuente forma parte de la segunda fase: los casos concretos, de la ley al dictamen. La primera fase cubre la norma y las instrucciones generales de cada regulador.
             </p>
           )}
 

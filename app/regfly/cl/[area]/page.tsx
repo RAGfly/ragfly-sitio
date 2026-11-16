@@ -50,7 +50,7 @@ export default async function PaginaArea({ params }: Props) {
             ))}
           </ul>
 
-          <h2 className="mt-14 mb-5 font-helvetica-neue font-medium text-2xl tracking-[-0.02em] text-slm-dark">Supervisores</h2>
+          <h2 className="mt-14 mb-5 font-helvetica-neue font-medium text-2xl tracking-[-0.02em] text-slm-dark">Reguladores</h2>
           <ul className="grid gap-3">
             {area.supervisores.map((s) => (
               <li key={s.slug} className="rounded-2xl border border-slm-dark/10 bg-white p-5 flex items-start justify-between gap-4">

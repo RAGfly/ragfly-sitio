@@ -94,14 +94,14 @@ function Ejemplo() {
       </div>
       <figure className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
         <figcaption className="text-base md:text-lg text-slm-gray leading-relaxed">
-          Una respuesta puede reunir fuentes de distintos niveles: la ley, el reglamento y la norma del supervisor.
+          Una respuesta puede reunir fuentes de distintos niveles: la ley, el reglamento y la norma del regulador.
           El esquema es ilustrativo; las fuentes y citas dependen de cada consulta.
         </figcaption>
         <picture>
           <source media="(max-width: 639px)" srcSet="/design/regfly-tres-normas-movil.svg" />
           <Image
             src="/design/regfly-tres-normas-una-respuesta.svg"
-            alt="Ejemplo conceptual de una ley, un reglamento y una norma del supervisor que aportan fuentes a una respuesta."
+            alt="Ejemplo conceptual de una ley, un reglamento y una norma del regulador que aportan fuentes a una respuesta."
             width={960}
             height={520}
             className="w-full h-auto rounded-xl"
@@ -172,7 +172,7 @@ export function RegflyLanding() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
           <p className="text-base md:text-lg text-slm-gray leading-relaxed">
             Las normas no pesan igual. REGfly las ordena por jerarquía y, cuando dos se contradicen, cita primero la de mayor rango y
-            después la instrucción del supervisor. Cada respuesta lleva la norma y el artículo.
+            después la instrucción del regulador. Cada respuesta lleva la norma y el artículo.
           </p>
           <EscaleraAnimada />
         </div>

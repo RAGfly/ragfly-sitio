@@ -1,5 +1,5 @@
 /**
- * Cobertura de REGfly Chile por área y supervisor: alimenta la sección Cobertura de la
+ * Cobertura de REGfly Chile por área y regulador: alimenta la sección Cobertura de la
  * portada y las páginas indexables /cl/[area] y /cl/[area]/[supervisor].
  *
  * Reglas (admin/estrategia/ARQUITECTURA-DE-MARCA.md):
@@ -28,7 +28,7 @@ export type Supervisor = {
   estado: Estado
   /** Qué trae, en una frase. Solo lo que el alcance de lanzamiento declara. */
   trae: string
-  /** true = jurisprudencia propia del supervisor (segunda fase). */
+  /** true = jurisprudencia propia del regulador (segunda fase). */
   segundaFase?: boolean
 }
 
@@ -186,7 +186,7 @@ export const AREAS: Area[] = [
     slug: 'legislacion',
     nombre: 'Legislación',
     estado: 'proximamente',
-    resumen: 'Las leyes que citan los supervisores, con su texto actualizado: la base que ordena todo lo demás.',
+    resumen: 'Las leyes que citan los reguladores, con su texto actualizado: la base que ordena todo lo demás.',
     preguntas: [
       '¿Qué dice el artículo de la ley que cita la circular?',
       '¿Esa norma sigue vigente o fue modificada o derogada?',
@@ -194,9 +194,9 @@ export const AREAS: Area[] = [
     supervisores: [
       {
         slug: 'ley-chile',
-        nombre: 'Ley Chile (legislación citada por los supervisores)',
+        nombre: 'Ley Chile (legislación citada por los reguladores)',
         estado: 'proximamente',
-        trae: 'Leyes, decretos con fuerza de ley y decretos ley que cada supervisor lista como su legislación, con el texto actualizado.',
+        trae: 'Leyes, decretos con fuerza de ley y decretos ley que cada regulador lista como su legislación, con el texto actualizado.',
       },
     ],
   },

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 355" width="720" role="img" aria-labelledby="title desc">
   <title id="title">Tres normas aportan fuentes a una respuesta</title>
-  <desc id="desc">Ejemplo conceptual: una ley, un reglamento y una norma del supervisor aportan cada uno una fuente a una respuesta.</desc>
+  <desc id="desc">Ejemplo conceptual: una ley, un reglamento y una norma del regulador aportan cada uno una fuente a una respuesta.</desc>
   <style>
     svg { font-family: system-ui, sans-serif; }
     .route { fill: none; stroke: #55b2e4; stroke-width: 1.2; opacity: .5; }
@@ -23,7 +23,7 @@
   <g fill="#142e43" stroke="#427695"><rect x="16" y="41" width="100" height="67" rx="7"/><rect x="130" y="41" width="100" height="67" rx="7"/><rect x="244" y="41" width="100" height="67" rx="7"/></g>
   <g fill="#d9edf8" font-size="12" text-anchor="middle">
     <text x="66" y="79">Ley</text><text x="180" y="79">Reglamento</text>
-    <text x="294" y="70"><tspan x="294">Norma del</tspan><tspan x="294" dy="16">supervisor</tspan></text>
+    <text x="294" y="70"><tspan x="294">Norma del</tspan><tspan x="294" dy="16">regulador</tspan></text>
   </g>
   <g class="route"><use href="#route1"/><use href="#route2"/><use href="#route3"/></g>
   <use class="signal" href="#point" style="--route:url(#route1);--phase:0s"/>
@@ -36,6 +36,6 @@
   <g class="response" fill="#e3f2fa" font-size="13">
     <g class="citation" style="--phase:0s"><text x="32" y="220">La ley establece el marco.</text><rect x="301" y="203" width="27" height="25" rx="4" fill="#4a3924"/><text x="314.5" y="220" fill="#ffcb85" text-anchor="middle" font-weight="650">1</text></g>
     <g class="citation" style="--phase:.5s"><text x="32" y="265">El reglamento lo desarrolla.</text><rect x="301" y="248" width="27" height="25" rx="4" fill="#4a3924"/><text x="314.5" y="265" fill="#ffcb85" text-anchor="middle" font-weight="650">2</text></g>
-    <g class="citation" style="--phase:1s"><text x="32" y="310">El supervisor lo instruye.</text><rect x="301" y="293" width="27" height="25" rx="4" fill="#4a3924"/><text x="314.5" y="310" fill="#ffcb85" text-anchor="middle" font-weight="650">3</text></g>
+    <g class="citation" style="--phase:1s"><text x="32" y="310">El regulador lo instruye.</text><rect x="301" y="293" width="27" height="25" rx="4" fill="#4a3924"/><text x="314.5" y="310" fill="#ffcb85" text-anchor="middle" font-weight="650">3</text></g>
   </g>
 </svg>
