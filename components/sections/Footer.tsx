@@ -1,5 +1,6 @@
 'use client'
 
+import { Marca } from '../Marca'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
@@ -17,7 +18,7 @@ export function Footer() {
         <div className="flex flex-col gap-4 max-w-[320px]">
           <div className="flex items-center gap-2.5 font-manrope font-semibold text-2xl text-white">
             <Image src="/ala_1.5c.png" alt="" width={2348} height={553} className="h-7 w-auto" />
-            RAGfly
+            <Marca nombre="RAGfly" />
           </div>
           <p className="font-helvetica-neue text-sm leading-relaxed">{t('footer.tagline')}</p>
         </div>

@@ -1,3 +1,4 @@
+import { Marca } from '../../../components/Marca'
 import type { Metadata } from 'next'
 import { cargarMensajeMarketing } from '../../../lib/mensajes-marketing'
 import { TituloMarketing } from '../../../components/apertura/TituloMarketing'
@@ -86,7 +87,7 @@ export default async function PaginaDolor({ params, searchParams }: { params: Pr
         <div className="mx-auto flex max-w-[980px] items-center justify-between">
           <Link href="/" className="flex items-center gap-2.5" aria-label="RAGfly">
             <Image src="/ala_5c.png" alt="" width={2348} height={553} className="h-7 w-auto" />
-            <span className="font-manrope text-2xl font-semibold tracking-tight">RAGfly</span>
+            <span className="font-manrope text-2xl font-semibold tracking-tight"><Marca nombre="RAGfly" /></span>
           </Link>
           {/* Sin «Start free» arriba (Víctor, 26-oct): el registro ya está en el hero. */}
           <div className="flex items-center gap-3">

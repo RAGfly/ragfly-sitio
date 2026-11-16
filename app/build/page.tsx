@@ -1,3 +1,4 @@
+import { Marca } from '../../components/Marca'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -37,7 +38,7 @@ export default async function BuildPage() {
         <div className="mx-auto flex max-w-[960px] items-center justify-between px-6 py-4 md:px-8">
           <Link href="/" className="flex items-center gap-2.5 font-manrope text-xl font-semibold text-slm-dark">
             <Image src="/ala_5c.png" alt="" width={2348} height={553} className="h-6 w-auto" />
-            RAGfly
+            <Marca nombre="RAGfly" />
           </Link>
           <nav className="flex items-center gap-5 text-sm text-slm-gray">
             <Link href="/build/mcp" className="hidden transition-colors hover:text-slm-dark sm:inline">MCP</Link>

@@ -37,7 +37,7 @@ export function SelectorIdioma() {
         onClick={() => setAbierto((v) => !v)}
         disabled={pending}
         aria-label={t('label')}
-        className="flex items-center gap-1 text-sm text-[var(--gray-mid)] hover:text-[var(--foreground)] transition-colors px-2 py-1 rounded border border-transparent hover:border-[var(--gray-light)]"
+        className="flex items-center gap-1 text-sm text-[#666666] hover:text-[var(--foreground)] transition-colors px-2 py-1 rounded border border-transparent hover:border-[#EAEAEA]"
       >
         <span>{localeShort[locale]}</span>
         <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor">
@@ -45,19 +45,19 @@ export function SelectorIdioma() {
         </svg>
       </button>
       {abierto && (
-        <ul className="absolute right-0 top-full mt-1 bg-white border border-[var(--gray-light)] rounded-md shadow-md py-1 min-w-[140px] z-50">
+        <ul className="absolute right-0 top-full mt-1 bg-white border border-[#EAEAEA] rounded-md shadow-md py-1 min-w-[140px] z-50">
           {locales.map((loc) => (
             <li key={loc}>
               <button
                 type="button"
                 onClick={() => elegir(loc)}
-                className={`w-full text-left px-3 py-1.5 text-sm hover:bg-[var(--gray-very-light)] ${
+                className={`w-full text-left px-3 py-1.5 text-sm hover:bg-[#F5F5F5] ${
                   loc === locale
                     ? 'text-[var(--foreground)] font-semibold'
-                    : 'text-[var(--gray-mid)]'
+                    : 'text-[#666666]'
                 }`}
               >
-                <span className="inline-block w-7 text-xs text-[var(--gray-mid)]">
+                <span className="inline-block w-7 text-xs text-[#666666]">
                   {localeShort[loc]}
                 </span>
                 {localeNames[loc]}

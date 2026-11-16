@@ -1,5 +1,6 @@
 'use client'
 
+import { Marca } from './Marca'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useTranslations, useLocale } from 'next-intl'
@@ -116,7 +117,7 @@ export default function DownloadPage() {
         <div className="mx-auto flex max-w-[1100px] items-center justify-between px-6 py-4 md:px-10">
           <Link href="/" className="flex items-center gap-2.5 font-manrope text-xl font-semibold text-slm-dark">
             <Image src="/ala_5c.png" alt="" width={2348} height={553} className="h-6 w-auto" />
-            RAGfly
+            <Marca nombre="RAGfly" />
           </Link>
           <div className="flex items-center gap-4">
             <SelectorIdioma />

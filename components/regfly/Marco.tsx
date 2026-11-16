@@ -1,3 +1,4 @@
+import { Marca } from '../Marca'
 import Image from 'next/image'
 import Link from 'next/link'
 import { MARCA, NAV } from '../../content/regfly'
@@ -29,7 +30,7 @@ export function Cabecera({ base = '' }: { base?: string }) {
       <div className="max-w-[1320px] mx-auto flex items-center justify-between gap-6 xl:gap-8 px-6 md:px-12 py-4">
         <Link href={base || '#'} className="flex items-center gap-2.5 shrink-0 whitespace-nowrap" aria-label={`${MARCA.nombre}, ${MARCA.porMadre}`}>
           <Image src="/ala_5c.png" alt="" width={2348} height={553} className="h-6 w-auto" />
-          <span className="font-manrope font-semibold text-xl sm:text-2xl text-slm-dark tracking-tight">{MARCA.nombre}</span>
+          <span className="font-manrope font-semibold text-xl sm:text-2xl text-slm-dark tracking-tight"><Marca nombre="REGfly" /></span>
           <span className="hidden md:inline text-xs text-slm-gray mt-1">{MARCA.porMadre}</span>
         </Link>
         <nav className="hidden xl:flex items-center gap-5 2xl:gap-7">
@@ -64,7 +65,7 @@ export function Pie() {
       <div className="max-w-[1100px] mx-auto flex flex-col gap-6">
         <div className="flex items-center gap-2.5 font-manrope font-semibold text-2xl text-white">
           <Image src="/ala_1.5c.png" alt="" width={2348} height={553} className="h-6 w-auto" />
-          {MARCA.nombre}
+          <Marca nombre="REGfly" />
           <span className="text-sm font-normal text-white/60 mt-1">{MARCA.porMadre}</span>
         </div>
         <p className="text-sm">{MARCA.aviso}</p>

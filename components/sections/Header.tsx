@@ -1,5 +1,6 @@
 'use client'
 
+import { Marca } from '../Marca'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
@@ -26,7 +27,7 @@ export function Header() {
       <div className="flex items-center gap-8 2xl:gap-10">
         <a href="#" className="flex items-center gap-2.5" aria-label="RAGfly">
           <Image src="/ala_5c.png" alt="" width={2348} height={553} className="h-7 w-auto" />
-          <span className="font-manrope font-semibold text-2xl text-slm-dark tracking-tight">RAGfly</span>
+          <span className="font-manrope font-semibold text-2xl text-slm-dark tracking-tight"><Marca nombre="RAGfly" /></span>
         </a>
         <nav className="hidden xl:flex items-center gap-5 2xl:gap-8">
           {links.map((it) => (

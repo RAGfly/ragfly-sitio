@@ -1,3 +1,4 @@
+import { Marca } from '../../../components/Marca'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -59,7 +60,7 @@ export default async function DocPage({ params }: { params: Promise<{ doc: strin
         <div className="mx-auto flex h-auto max-w-[820px] items-center justify-between px-6 py-4 md:px-8">
           <Link href="/build" className="flex items-center gap-2.5">
             <Image src="/ala_5c.png" alt="" width={2348} height={553} className="h-6 w-auto" />
-            <span className="font-manrope text-xl font-semibold text-slm-dark">RAGfly</span>
+            <span className="font-manrope text-xl font-semibold text-slm-dark"><Marca nombre="RAGfly" /></span>
             <span className="text-slm-gray-light">/</span>
             <span className="text-sm text-slm-gray">build</span>
           </Link>
