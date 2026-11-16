@@ -26,7 +26,7 @@ export function EstadoChip({ estado }: { estado: Estado }) {
 export function Cabecera({ base = '' }: { base?: string }) {
   return (
     <header className="sticky top-0 z-20 bg-white/85 backdrop-blur-sm border-b border-slm-dark/5">
-      <div className="max-w-[1200px] mx-auto flex items-center justify-between px-6 md:px-12 py-4">
+      <div className="max-w-[1200px] mx-auto flex items-center justify-between gap-6 xl:gap-10 px-6 md:px-12 py-4">
         <Link href={base || '#'} className="flex items-center gap-2.5 shrink-0 whitespace-nowrap" aria-label={`${MARCA.nombre}, ${MARCA.porMadre}`}>
           <Image src="/ala_5c.png" alt="" width={2348} height={553} className="h-6 w-auto" />
           <span className="font-manrope font-semibold text-xl sm:text-2xl text-slm-dark tracking-tight">{MARCA.nombre}</span>
@@ -45,7 +45,7 @@ export function Cabecera({ base = '' }: { base?: string }) {
           </a>
           <a
             href={URL_REGISTRO_REGFLY}
-            className="rf-boton shrink-0 bg-slm-dark text-white px-4 sm:px-5 py-2.5 rounded-full font-medium text-sm md:text-base whitespace-nowrap hover:opacity-90 transition-opacity"
+            className="font-manrope shrink-0 bg-slm-dark text-white px-4 sm:px-5 py-2.5 rounded-full font-medium text-sm md:text-base whitespace-nowrap hover:opacity-90 transition-opacity"
           >
             <span className="sm:hidden">Regístrate</span>
             <span className="hidden sm:inline">Empieza gratis</span>

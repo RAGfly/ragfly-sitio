@@ -22,7 +22,7 @@ export function Header() {
   ]
 
   return (
-    <header className="sticky top-0 left-0 right-0 flex justify-between items-center px-6 md:px-12 lg:px-15 py-6 z-20 bg-white/80 backdrop-blur-sm">
+    <header className="sticky top-0 left-0 right-0 flex justify-between items-center gap-6 xl:gap-10 px-6 md:px-12 lg:px-15 py-6 z-20 bg-white/80 backdrop-blur-sm">
       <div className="flex items-center gap-10">
         <a href="#" className="flex items-center gap-2.5" aria-label="RAGfly">
           <Image src="/ala_5c.png" alt="" width={2348} height={553} className="h-7 w-auto" />
@@ -44,7 +44,7 @@ export function Header() {
         </a>
         <a
           href="https://app.ragfly.ai"
-          className="rf-boton bg-slm-dark text-slm-light px-6 py-2.5 rounded-full font-medium text-base whitespace-nowrap hover:opacity-90 transition-opacity"
+          className="font-manrope bg-slm-dark text-slm-light px-6 py-2.5 rounded-full font-medium text-base whitespace-nowrap hover:opacity-90 transition-opacity"
         >
           {t('nav.cta')}
         </a>
@@ -102,7 +102,7 @@ export function Header() {
               </a>
               <a
                 href="https://app.ragfly.ai"
-                className="rf-boton bg-slm-dark text-slm-light px-6 py-2.5 rounded-full font-medium text-base text-center"
+                className="font-manrope bg-slm-dark text-slm-light px-6 py-2.5 rounded-full font-medium text-base text-center"
               >
                 {t('nav.cta')}
               </a>
