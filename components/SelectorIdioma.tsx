@@ -37,7 +37,7 @@ export function SelectorIdioma() {
         onClick={() => setAbierto((v) => !v)}
         disabled={pending}
         aria-label={t('label')}
-        className="flex items-center gap-1 text-sm text-[#666666] hover:text-[var(--foreground)] transition-colors px-2 py-1 rounded border border-transparent hover:border-[#EAEAEA]"
+        className="flex items-center gap-1 text-sm text-[#737373] hover:text-[var(--foreground)] transition-colors px-2 py-1 rounded border border-transparent hover:border-[#EAEAEA]"
       >
         <span>{localeShort[locale]}</span>
         <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor">
@@ -54,10 +54,10 @@ export function SelectorIdioma() {
                 className={`w-full text-left px-3 py-1.5 text-sm hover:bg-[#F5F5F5] ${
                   loc === locale
                     ? 'text-[var(--foreground)] font-semibold'
-                    : 'text-[#666666]'
+                    : 'text-[#737373]'
                 }`}
               >
-                <span className="inline-block w-7 text-xs text-[#666666]">
+                <span className="inline-block w-7 text-xs text-[#737373]">
                   {localeShort[loc]}
                 </span>
                 {localeNames[loc]}
