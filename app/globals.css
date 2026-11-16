@@ -195,9 +195,11 @@ body {
 /* Variante chica de la anotación: el tamaño original (chips del pipeline). */
 .rf-anot-sm { font-size: 0.6875rem; }
 
-/* Botones y píldoras del sitio: fuente de dato (Zalando Sans Expanded), igual
-   que la píldora «Servicio de RAG» del hero. Aplica en todas las páginas. */
-.rf-boton { font-family: var(--font-dato), system-ui, sans-serif; }
+/* Las píldoras informativas conservan la fuente de dato; las acciones usan Inter. */
+span.rf-boton { font-family: var(--font-dato), system-ui, sans-serif; }
+button, button.rf-boton, a.rf-boton, .font-interfaz button, .font-interfaz a.rf-boton {
+  font-family: var(--font-sans), 'Inter', Arial, sans-serif;
+}
 
 /* Anotación en la fuente de interfaz (Montserrat): estados del cuadro PREFLIGHT. */
 .rf-anot-interfaz { font-family: var(--font-interfaz), system-ui, sans-serif; }
