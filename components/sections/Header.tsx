@@ -22,13 +22,13 @@ export function Header() {
   ]
 
   return (
-    <header className="sticky top-0 left-0 right-0 flex justify-between items-center gap-6 xl:gap-10 px-6 md:px-12 lg:px-15 py-6 z-20 bg-white/80 backdrop-blur-sm">
-      <div className="flex items-center gap-10">
+    <header className="sticky top-0 left-0 right-0 flex justify-between items-center gap-6 2xl:gap-10 px-6 md:px-12 lg:px-15 xl:px-8 2xl:px-15 py-6 z-20 bg-white/80 backdrop-blur-sm">
+      <div className="flex items-center gap-8 2xl:gap-10">
         <a href="#" className="flex items-center gap-2.5" aria-label="RAGfly">
           <Image src="/ala_5c.png" alt="" width={2348} height={553} className="h-7 w-auto" />
           <span className="font-manrope font-semibold text-2xl text-slm-dark tracking-tight">RAGfly</span>
         </a>
-        <nav className="hidden xl:flex items-center gap-8">
+        <nav className="hidden xl:flex items-center gap-5 2xl:gap-8">
           {links.map((it) => (
             <a key={it.l} href={it.h} className="text-base text-slm-dark hover:opacity-70 transition-opacity">
               {it.l}
@@ -37,9 +37,9 @@ export function Header() {
         </nav>
       </div>
 
-      <div className="hidden xl:flex items-center gap-4">
+      <div className="hidden xl:flex items-center gap-4 shrink-0">
         <SelectorIdioma />
-        <a href="https://app.ragfly.ai" className="text-base font-medium text-slm-dark hover:opacity-70 transition-opacity">
+        <a href="https://app.ragfly.ai" className="text-base font-medium text-slm-dark hover:opacity-70 transition-opacity whitespace-nowrap">
           {t('nav.iniciarSesion')}
         </a>
         <a
