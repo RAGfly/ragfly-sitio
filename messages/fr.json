@@ -243,6 +243,9 @@
     "punto9": "Desktop traite l'original localement ; dans les offres souveraines, le client possède la base et les dérivés au repos, tandis que RAGfly accède aux chunks pour récupérer le contexte"
   },
   "planes": {
+    "paisPrecios": "Tarifs pour :",
+    "paisInternacional": "International",
+    "precioReferenciaClp": "Env. {precio} (référence du {fecha})",
     "eyebrow": "Forfaits",
     "titulo": "Des forfaits clairs pour un RAG simple, privé et précis.",
     "recomendado": "Recommandé",

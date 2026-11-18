@@ -2,13 +2,23 @@ import { getLocale, getTranslations } from 'next-intl/server'
 import { BlurIn } from './shared'
 import { BotonEmpezar } from '../apertura/BotonEmpezar'
 import { bajadaPlan, cargarCatalogo, cuposPlan, numero, usd } from '../../lib/catalogo-planes'
+import { cookies, headers } from 'next/headers'
+import { SelectorPaisPrecios } from './SelectorPaisPrecios'
+import { PAISES_ISO } from '../../lib/paises-iso'
 
 /* `locale` y `destino` los fija /start/[dolor]: el idioma puede venir del mensaje
    de campaña (utm_content) y el botón reenvía las utm_* al registro. */
 export async function PricingSection({ locale: localeFijo, destino }: { locale?: string; destino?: string } = {}) {
   const locale = localeFijo ?? await getLocale()
   const t = await getTranslations({ locale, namespace: 'planes' })
-  const catalogo = await cargarCatalogo(locale)
+  const [cookieStore, headerStore] = await Promise.all([cookies(), headers()])
+  const preferido = cookieStore.get('RAGFLY_PRICE_COUNTRY')?.value
+  const detectado = headerStore.get('x-vercel-ip-country')
+  const candidato = preferido === 'GLOBAL' ? null : (preferido || detectado)
+  const paisCandidato = candidato && PAISES_ISO.has(candidato) ? candidato : null
+  const catalogo = await cargarCatalogo(locale, paisCandidato ?? undefined, true)
+  const pais = catalogo.paises && paisCandidato && !catalogo.paises.some(p => p.codigo_pais === paisCandidato)
+    ? null : paisCandidato
   const porCodigo = new Map(catalogo.caracteristicas.map((c) => [c.codigo_caracteristica, c]))
   const corpus = porCodigo.get('CORPUS_ACTIVO')
   const agentico = porCodigo.get('RAG_AGENTICO')
@@ -23,6 +33,8 @@ export async function PricingSection({ locale: localeFijo, destino }: { locale?:
           </BlurIn>
           <span className="rf-eje" aria-hidden="true" />
           <span className="rf-anot text-slm-dark/45">{t('anotacion')}</span>
+          <SelectorPaisPrecios pais={pais} paises={catalogo.paises ?? []} locale={locale}
+            etiqueta={t('paisPrecios')} internacional={t('paisInternacional')} />
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -54,6 +66,14 @@ export async function PricingSection({ locale: localeFijo, destino }: { locale?:
                 </div>
                 <div className={`font-helvetica-neue text-lg font-medium ${featured ? 'text-white' : 'text-slm-dark'}`}>
                   {plan.precio_mensual_usd == null ? t('aMedida') : plan.precio_mensual_usd === 0 ? t('gratis') : `${usd(Number(plan.precio_mensual_usd), locale)}${t('porMes')}`}
+                  {plan.precio_referencia_clp != null && catalogo.referencia_clp && (
+                    <p className={`mt-1 text-sm font-normal ${featured ? 'text-slm-light/70' : 'text-slm-gray'}`}>
+                      {t('precioReferenciaClp', {
+                        precio: new Intl.NumberFormat(locale, { style: 'currency', currency: 'CLP', maximumFractionDigits: 0 }).format(plan.precio_referencia_clp),
+                        fecha: catalogo.referencia_clp.fecha,
+                      })}
+                    </p>
+                  )}
                 </div>
                 <ul className="flex flex-col gap-3 flex-1">
                   {principales.map((linea) => (
@@ -65,7 +85,7 @@ export async function PricingSection({ locale: localeFijo, destino }: { locale?:
                   <li className={`text-xs leading-relaxed ${featured ? 'text-slm-light/70' : 'text-slm-gray'}`}>{t('limitesSecundarios')}: {secundarios}</li>
                   {adicionales && <li className={`text-xs leading-relaxed ${featured ? 'text-slm-light/70' : 'text-slm-gray'}`}>{adicionales}</li>}
                 </ul>
-                <BotonEmpezar destino={destino ?? 'https://app.ragfly.ai'} className={`rf-boton text-center font-medium text-sm px-5 py-3 rounded-full transition-opacity hover:opacity-90 ${featured ? 'bg-slm-brand-light text-slm-dark' : 'bg-slm-dark text-slm-light'}`}>
+                <BotonEmpezar pais={preferido === 'GLOBAL' ? 'GLOBAL' : pais} destino={destino ?? 'https://app.ragfly.ai'} className={`rf-boton text-center font-medium text-sm px-5 py-3 rounded-full transition-opacity hover:opacity-90 ${featured ? 'bg-slm-brand-light text-slm-dark' : 'bg-slm-dark text-slm-light'}`}>
                   {enterprise ? t('ctaEmpresa') : free ? t('ctaGratis') : t('ctaEmpezar')}
                 </BotonEmpezar>
               </article>

@@ -6,11 +6,12 @@ import { track } from '@vercel/analytics'
 import { medirGoogle } from '../../lib/google-analytics'
 import { PRE_REGISTRATION } from '../../content/preregistro'
 import type { Locale } from '../../i18n/config'
+import { PAISES_ISO } from '../../lib/paises-iso'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.ragfly.ai'
 const CLAVES_UTM = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'] as const
 
-export function FormularioAlta({ id = 'signup', locale }: { id?: string; locale: Locale }) {
+export function FormularioAlta({ id = 'signup', locale, paisPropuesto }: { id?: string; locale: Locale; paisPropuesto?: string | null }) {
   const t = PRE_REGISTRATION[locale]
   const [correo, setCorreo] = useState('')
   const [acepta, setAcepta] = useState(false)
@@ -21,6 +22,8 @@ export function FormularioAlta({ id = 'signup', locale }: { id?: string; locale:
     if (estado === 'sending' || !acepta) return
     setEstado('sending')
     const query = new URLSearchParams(window.location.search)
+    const paisCookie = document.cookie.match(/(?:^|;\s*)RAGFLY_PRICE_COUNTRY=([^;]+)/)?.[1]
+    const pais = paisCookie || paisPropuesto
     const attribution = Object.fromEntries(CLAVES_UTM.flatMap(key => {
       const value = query.get(key)?.trim().slice(0, 200)
       return value ? [[key, value]] : []
@@ -29,7 +32,8 @@ export function FormularioAlta({ id = 'signup', locale }: { id?: string; locale:
       const response = await fetch(`${API_URL}/auth/pre-registration`, {
         method: 'POST', credentials: 'omit',
         headers: { 'Content-Type': 'application/json', 'Accept-Language': locale },
-        body: JSON.stringify({ email: correo.trim(), locale, terms_accepted: true, attribution }),
+        body: JSON.stringify({ email: correo.trim(), locale, terms_accepted: true, attribution,
+          ...((pais && (pais === 'GLOBAL' || PAISES_ISO.has(pais))) ? { country: pais } : {}) }),
         signal: AbortSignal.timeout(25000),
       })
       if (!response.ok) throw new Error('request_failed')

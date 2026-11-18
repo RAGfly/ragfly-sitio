@@ -242,6 +242,9 @@
     "punto9": "Desktop verarbeitet das Original lokal; in souveränen Tarifen besitzt der Kunde Datenbank und ruhende Derivate, während RAGfly auf Chunks für den Kontextabruf zugreift"
   },
   "planes": {
+    "paisPrecios": "Preise für:",
+    "paisInternacional": "International",
+    "precioReferenciaClp": "Ca. {precio} (Referenz vom {fecha})",
     "eyebrow": "Pläne",
     "titulo": "Klare Pläne für einfaches, privates und präzises RAG.",
     "recomendado": "Empfohlen",

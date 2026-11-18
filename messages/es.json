@@ -243,6 +243,9 @@
     "punto9": "Desktop procesa el original localmente; en soberano la BD y los derivados en reposo son del cliente, mientras RAGfly accede a chunks para recuperar contexto"
   },
   "planes": {
+    "paisPrecios": "Precios para:",
+    "paisInternacional": "Internacional",
+    "precioReferenciaClp": "Aprox. {precio} (referencia del {fecha})",
     "eyebrow": "Planes",
     "titulo": "Planes claros para un RAG simple, privado y preciso.",
     "recomendado": "Recomendado",

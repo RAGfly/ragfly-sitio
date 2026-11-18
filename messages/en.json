@@ -242,6 +242,9 @@
     "punto9": "Desktop processes the original locally; on sovereign plans the customer owns the database and derivatives at rest, while RAGfly accesses chunks to retrieve context"
   },
   "planes": {
+    "paisPrecios": "Pricing for:",
+    "paisInternacional": "International",
+    "precioReferenciaClp": "Approx. {precio} (reference on {fecha})",
     "eyebrow": "Plans",
     "titulo": "Clear plans for simple, private and precise RAG.",
     "recomendado": "Recommended",
